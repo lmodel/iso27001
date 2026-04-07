@@ -1,0 +1,20 @@
+id: iso27001:risk-legacy-remote-access
+name: Legacy Remote Access Protocol Risk
+risk_source: Internal system configuration
+threat_description: Outdated VPN client versions expose unpatched vulnerabilities exploitable remotely.
+vulnerability_description: Legacy remote access endpoints lack modern TLS and certificate pinning.
+affected_assets:
+  - iso27001:asset-remote-access-gateway
+  - iso27001:asset-corporate-endpoints
+affected_cia_properties:
+  - confidentiality
+  - integrity
+risk_owner: Head of IT Operations
+likelihood: possible
+impact: major
+inherent_risk_level: high
+existing_controls:
+  - iso27001:control-access-review
+residual_risk_level: critical
+risk_treatment_option: avoid
+treatment_priority: critical

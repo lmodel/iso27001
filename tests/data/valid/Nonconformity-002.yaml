@@ -1,0 +1,16 @@
+id: iso27001:nc-2026-002
+name: Missing Supplier Security Assessments
+nonconformity_source: internal_audit
+detection_date: "2026-04-02"
+detected_by: Internal Audit Team
+requirement_violated: Critical suppliers must have a completed security assessment on record before renewal.
+nonconformity_description: Three of five critical SaaS suppliers have no security assessment record. Contracts are due for renewal within 90 days.
+immediate_actions:
+  - Notify procurement team of the finding.
+  - Place assessment requirement on contract renewal checklist.
+consequences_addressed: Pending - assessments not yet completed.
+root_cause: Programme ownership gap following organisational restructure.
+similar_nonconformities_check: No similar gaps identified in physical supplier contracts.
+linked_corrective_actions:
+  - iso27001:ca-2026-002
+status: open

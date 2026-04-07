@@ -1,0 +1,9 @@
+id: iso27001:control-set-up-2fa-for-all-contributors
+name: Set-up 2FA for all contributors
+control_id: "8.4"
+control_title: Set-up 2FA for all contributors
+control_category: technological
+control_text: >-
+  It reduces the risk of account compromise for all contributors, especially the ones not in
+  your company
+implementation_status: not_started

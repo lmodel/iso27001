@@ -1,0 +1,9 @@
+id: iso27001:control-enable-code-scanning
+name: Enable code scanning
+control_id: "8.8"
+control_title: Enable code scanning
+control_category: technological
+control_text: >-
+  It ensures that potential security flaws are detected early. This proactive approach
+  strengthens your security posture and helps maintain high code quality
+implementation_status: not_started

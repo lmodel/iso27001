@@ -1,0 +1,10 @@
+id: iso27001:control-have-testing-procedures
+name: Have testing procedures
+control_id: "8.33"
+control_title: Have testing procedures
+control_category: technological
+control_text: >-
+  Systematic testing ensures reliability, quickly uncovers potential security or
+  functionality gaps, and upholds quality standards. It leads to fewer incidents in
+  production
+implementation_status: not_started

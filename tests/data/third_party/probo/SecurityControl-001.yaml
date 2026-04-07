@@ -1,0 +1,10 @@
+id: iso27001:control-define-roles-responsibilities-for-isms
+name: Define roles & responsibilities for ISMS
+control_id: "5.2"
+control_title: Define roles & responsibilities for ISMS
+control_category: organizational
+control_text: >-
+  Clear accountability and authority lines within your ISMS help avoid confusion, empower
+  individuals to act decisively, and foster a security culture where each participant
+  understands their own critical role in the organization’s protection
+implementation_status: not_started

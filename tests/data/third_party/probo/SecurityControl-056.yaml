@@ -1,0 +1,10 @@
+id: iso27001:control-set-up-a-waf
+name: Set-up a WAF
+control_id: "8.20"
+control_title: Set-up a WAF
+control_category: technological
+control_text: >-
+  It filters malicious traffic, preventing attacks (like SQL injections and cross-site
+  scripting) and mitigates risks of service disruptions. Additionally, it can masks your
+  origin IP, reducing exposure and limiting direct access to your infrastructure
+implementation_status: not_started

@@ -1,0 +1,14 @@
+id: iso27001:control-know-your-recruits
+name: Know your recruits
+control_id: "6.1"
+control_title: Know your recruits
+control_category: people
+control_text: >-
+  When recruiting someone, you want to be sure of who you are hiring: by performing
+  reference checks (it can also be background checks), you add an additional layer of
+  certainty on the candidate by looking for potential red flags in the candidate’s past
+  (history of unethical behavior, harassment, fraud, etc..)
+implementation_guidance: >-
+  Recruitment is key, especially early stage, so you are probably already doing it right, it
+  is only about documenting it
+implementation_status: not_started

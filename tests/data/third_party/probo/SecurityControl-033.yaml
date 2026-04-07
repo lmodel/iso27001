@@ -1,0 +1,10 @@
+id: iso27001:control-infra-github-tokens
+name: Plug your infrastructure & GitHub - avoid lifetime tokens
+control_id: "8.4"
+control_title: Plug your infrastructure & GitHub - avoid lifetime tokens
+control_category: technological
+control_text: >-
+  Having credentials to manage can become a nightmare (especially if you need to
+  change/rotate them often) - it quickly becomes time consuming. It is the same with
+  lifetime tokens - someone leaving and you need to change them
+implementation_status: not_started

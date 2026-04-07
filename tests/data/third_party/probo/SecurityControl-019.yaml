@@ -1,0 +1,9 @@
+id: iso27001:control-ensure-proof-of-employment
+name: Ensure proof of employment
+control_id: "5.32"
+control_title: Ensure proof of employment
+control_category: organizational
+control_text: >-
+  Having signed employment contracts reduces legal ambiguity, ensures clear understanding of
+  obligations, and underpins accountability
+implementation_status: not_started

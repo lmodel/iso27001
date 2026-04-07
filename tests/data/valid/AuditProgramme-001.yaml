@@ -1,0 +1,10 @@
+id: iso27001:audit-programme-2026
+name: 2026 Internal Audit Programme
+document_type: plan
+programme_period: 2026 calendar year
+planned_audits:
+  - iso27001:audit-2026-001
+audit_frequency_rationale: Higher-risk areas are audited more frequently based on prior findings.
+resource_requirements: Two internal auditors plus subject matter support.
+auditor_qualifications: Lead auditors must be trained in ISO 27001 internal auditing.
+programme_status: approved

@@ -1,0 +1,7 @@
+id: iso27001:control-evaluate-your-vendors
+name: Evaluate your vendors
+control_id: "7.14"
+control_title: Evaluate your vendors
+control_category: physical
+control_text: "Create an inventory of your vendors, evaluate their risk level and review them regularly"
+implementation_status: not_started

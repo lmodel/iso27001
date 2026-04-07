@@ -1,0 +1,29 @@
+id: iso27001:incident-2026-001
+name: Suspicious Email Incident
+incident_datetime: "2026-03-12T09:14:00Z"
+incident_category: phishing
+severity: medium
+affected_assets:
+  - iso27001:asset-email-gateway
+affected_cia:
+  - confidentiality
+incident_description: A user reported a phishing email requesting credential verification.
+detection_method: User report through the security mailbox.
+response_actions:
+  - Quarantine the message in the email gateway.
+containment_actions:
+  - Block sender domain and related indicators.
+eradication_actions:
+  - Remove similar messages from affected inboxes.
+recovery_actions:
+  - Reconfirm user account MFA enrollment.
+root_cause: External phishing campaign targeted a finance distribution list.
+lessons_learned: Finance-targeted simulations should continue quarterly.
+evidence_collected:
+  - Email headers
+  - Gateway quarantine record
+notification_required: false
+notifications_made:
+  - Security operations team briefing
+closure_datetime: "2026-03-12T13:30:00Z"
+post_incident_review: Response followed documented procedures and no compromise occurred.

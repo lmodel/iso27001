@@ -1,0 +1,7 @@
+id: iso27001:control-cloud-datacenter-physical-security
+name: Cloud datacenter physical security
+control_id: "7.4"
+control_title: Cloud datacenter physical security
+control_category: physical
+control_text: "You know how critical a data center is. You don’t want unauthorized people to access it"
+implementation_status: not_started

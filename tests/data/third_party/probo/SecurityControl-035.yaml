@@ -1,0 +1,9 @@
+id: iso27001:control-password-manager
+name: Setup a password manager
+control_id: "8.5"
+control_title: Setup a password manager
+control_category: technological
+control_text: >-
+  In order to minimize the threat of someone getting access to something they should not, we
+  want to ensure a few things: 1. The password used in your company are complex enough
+implementation_status: not_started

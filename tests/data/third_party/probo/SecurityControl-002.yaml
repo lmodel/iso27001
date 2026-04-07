@@ -1,0 +1,11 @@
+id: iso27001:control-define-bcdr-objectives
+name: Define BCDR objectives
+control_id: "5.3"
+control_title: Define BCDR objectives
+control_category: organizational
+control_text: >-
+  Defining precise BCDR objectives ensures you can effectively prepare for disruptions,
+  clearly measure downtime thresholds, and communicate recovery expectations to stakeholders
+  and third-party providers, reducing confusion and minimizing the impact of potential
+  disasters
+implementation_status: not_started

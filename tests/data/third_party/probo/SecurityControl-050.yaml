@@ -1,0 +1,10 @@
+id: iso27001:control-create-test-your-disaster-recovery-plan
+name: Create & test your disaster recovery plan
+control_id: "8.14"
+control_title: Create & test your disaster recovery plan
+control_category: technological
+control_text: >-
+  Disasters might seem far-fetched, but data loss, service outages, and misconfigurations
+  can happen. Whether it's a simple human error or a regional outage, a disaster recovery
+  plan helps your team recover fast and maintain customer trust
+implementation_status: not_started

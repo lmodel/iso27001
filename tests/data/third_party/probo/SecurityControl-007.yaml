@@ -1,0 +1,10 @@
+id: iso27001:control-integrate-security-checklist-in-your-onboarding-process
+name: Integrate security checklist in your onboarding process
+control_id: "5.9"
+control_title: Integrate security checklist in your onboarding process
+control_category: organizational
+control_text: >-
+  It is the perfect timing to ensure that every employees has (not exhaustive): - accepted
+  and signed all documents - the access needed to perform his/her tasks - started his/her
+  security training
+implementation_status: not_started

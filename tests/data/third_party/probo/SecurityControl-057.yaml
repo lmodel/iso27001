@@ -1,0 +1,10 @@
+id: iso27001:control-help-the-auditor-with-a-data-flow-diagram
+name: Help the auditor with a data-flow diagram
+control_id: "8.20"
+control_title: Help the auditor with a data-flow diagram
+control_category: technological
+control_text: >-
+  The auditor doesn’t know your company and your systems. Providing him with a diagram that
+  show all account data accross your systems & networks will enable him/her to understand
+  your challenges faster and also to better evaluate your tradeoffs (when needed)
+implementation_status: not_started

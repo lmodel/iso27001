@@ -1,0 +1,9 @@
+id: iso27001:control-have-distinct-coding-environment
+name: Have distinct coding environment
+control_id: "8.31"
+control_title: Have distinct coding environment
+control_category: technological
+control_text: >-
+  Not doing everything directly in production, especially for testing purpose, is for the
+  best
+implementation_status: not_started

@@ -1,0 +1,18 @@
+id: iso27001:nc-2026-001
+name: Delayed Quarterly Access Review
+nonconformity_source: internal_audit
+detection_date: "2026-03-28"
+detected_by: Internal Audit Team
+requirement_violated: Quarterly privileged access reviews shall be completed within 10 business days of quarter end.
+nonconformity_description: Two privileged access reviews were completed after the defined deadline.
+immediate_actions:
+  - Complete the overdue reviews.
+  - Notify service owners of the delay.
+consequences_addressed: Late reviews were completed and no inappropriate access was identified.
+root_cause: Reviewer availability was not aligned with the review schedule.
+similar_nonconformities_check: No similar delays were identified in other control areas.
+linked_corrective_actions:
+  - iso27001:ca-2026-001
+status: closed
+closure_date: "2026-04-02"
+closure_evidence: Audit closure memo and signed access review records.

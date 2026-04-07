@@ -1,0 +1,11 @@
+id: iso27001:control-require-pull-requests-prs
+name: Require Pull Requests (PRs)
+control_id: "5.3"
+control_title: Require Pull Requests (PRs)
+control_category: organizational
+control_text: >-
+  Requiring pull requests and code reviews ensures higher code quality and security by
+  allowing multiple team members to catch bugs, inefficiencies, and potential
+  vulnerabilities before code is merged. It also promotes collaboration, knowledge sharing,
+  and accountability within the team
+implementation_status: not_started

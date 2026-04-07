@@ -1,0 +1,4 @@
+id: iso27001:control-bad-status
+name: Control With Invalid Implementation Status
+control_category: organizational
+implementation_status: done

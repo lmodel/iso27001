@@ -1,0 +1,4 @@
+id: iso27001:audit-finding-bad-date
+name: Finding With Invalid Closure Date
+finding_type: observation
+closure_date: "31-04-2026"

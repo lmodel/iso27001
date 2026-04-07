@@ -1,0 +1,9 @@
+id: iso27001:control-implement-physical-security-measures
+name: Implement physical security measures
+control_id: "7.4"
+control_title: Implement physical security measures
+control_category: physical
+control_text: >-
+  Physical safeguards bolster your security stance by preventing theft, deterring
+  unauthorized access, and providing forensic evidence in case of breaches
+implementation_status: not_started

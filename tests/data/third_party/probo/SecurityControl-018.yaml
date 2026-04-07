@@ -1,0 +1,10 @@
+id: iso27001:control-maintain-a-compliance-register
+name: Maintain a compliance register
+control_id: "5.31"
+control_title: Maintain a compliance register
+control_category: organizational
+control_text: >-
+  A formal register of compliance requirements provides clarity on obligations, helps manage
+  compliance tasks systematically, and reduces the risk of overlooked or outdated mandates
+  leading to legal or regulatory issues
+implementation_status: not_started

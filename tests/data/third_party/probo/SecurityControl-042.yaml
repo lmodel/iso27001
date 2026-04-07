@@ -1,0 +1,10 @@
+id: iso27001:control-set-up-dependancy-vulnerability-alerts
+name: Set-up dependancy vulnerability alerts
+control_id: "8.8"
+control_title: Set-up dependancy vulnerability alerts
+control_category: technological
+control_text: >-
+  It ensures your project stays secure and up-to-date without manual tracking of
+  dependencies. It also reduces the risk of using outdated or insecure libraries in your
+  codebase
+implementation_status: not_started

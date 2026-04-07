@@ -1,0 +1,9 @@
+id: iso27001:control-provide-terms-of-service
+name: Provide terms of service
+control_id: "5.14"
+control_title: Provide terms of service
+control_category: organizational
+control_text: >-
+  Terms of service set clear legal and ethical boundaries, protect your organization from
+  misuse, and clarify user responsibilities
+implementation_status: not_started

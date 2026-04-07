@@ -1,0 +1,15 @@
+id: iso27001:control-enable-2fa-on-critical-services
+name: Enable 2FA on critical services
+control_id: "8.5"
+control_title: Enable 2FA on critical services
+control_category: technological
+control_text: >-
+  In order to minimize the threat of someone getting access to something they should not, we
+  follow the **secure principle:** nobody can easily get access to data/systems. We need to
+  ensure that if someone has access to your password, they still cannot log into your
+  account
+implementation_guidance: >-
+  Enable 2FA across all your systems. If you don’t want to activate it everywhere,
+  prioritize: - System containing sensitive data - System related to your network,
+  infrastructure or production
+implementation_status: not_started

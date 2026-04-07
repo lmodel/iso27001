@@ -1,0 +1,17 @@
+id: iso27001:org-example
+name: Example Corp Organization
+legal_name: Example Corp Ltd
+trading_names:
+  - Example Corp
+organization_type: corporation
+industry_sector: Technology
+size_category: Enterprise
+employee_count: 250
+geographic_locations:
+  - Ireland
+  - Germany
+regulatory_jurisdictions:
+  - EU
+  - Ireland
+subsidiaries:
+  - Example Services GmbH

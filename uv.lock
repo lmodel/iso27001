@@ -1304,12 +1304,12 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "linkml-runtime", specifier = ">=1.9.4" }]
+requires-dist = [{ name = "linkml-runtime", specifier = ">=1.9.5" }]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "jupyter", specifier = ">=1.0.0" },
-    { name = "linkml", specifier = ">=1.9.3" },
+    { name = "linkml", specifier = ">=1.9.6" },
     { name = "mkdocs-material", specifier = ">=8.2.8" },
     { name = "mkdocs-mermaid2-plugin", specifier = ">=1.1.1" },
     { name = "mkdocs-pymdownx-material-extras", specifier = ">=2.5.6" },

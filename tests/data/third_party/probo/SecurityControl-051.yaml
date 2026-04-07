@@ -1,0 +1,10 @@
+id: iso27001:control-keep-your-logs
+name: Keep your logs
+control_id: "8.15"
+control_title: Keep your logs
+control_category: technological
+control_text: >-
+  Logs help you to detect and investigate security incidents and troubleshoot operational
+  issues. They provide an audit trail
+implementation_guidance: "You should consider a retention period of at least 90 days, and up to 1 year"
+implementation_status: not_started

@@ -1,0 +1,9 @@
+id: iso27001:control-list-of-your-assets
+name: List of your assets
+control_id: "5.9"
+control_title: List of your assets
+control_category: organizational
+control_text: >-
+  The assets storing/processing data are potential vulnerabilities that need to be known,
+  properly managed, and secured to reduce your risk exposure
+implementation_status: not_started

@@ -1,0 +1,9 @@
+id: iso27001:control-document-your-development-lifecycle
+name: Document your development lifecycle
+control_id: "8.25"
+control_title: Document your development lifecycle
+control_category: technological
+control_text: >-
+  Formalizing a proper development lifecycle helps your engineer in their jobs and helps you
+  to scale your team. It reduces the chances of human error
+implementation_status: not_started

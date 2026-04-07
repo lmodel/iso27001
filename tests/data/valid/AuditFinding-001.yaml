@@ -1,0 +1,13 @@
+id: iso27001:audit-finding-001
+name: Delayed Completion of Access Review
+finding_type: minor_nonconformity
+clause_reference: "9.2"
+control_reference: iso27001:control-access-review
+finding_description: One quarterly privileged access review was completed after the internal deadline.
+objective_evidence: Review ticket timestamps and signed review records.
+root_cause_analysis: Reviewer availability constraints delayed completion.
+risk_implication: Elevated access may persist longer than intended.
+recommended_action: Rebalance reviewer assignments and automate reminders.
+auditee_response: Procedure owners agreed to rebalance assignments.
+linked_corrective_action: iso27001:ca-2026-001
+closure_status: open

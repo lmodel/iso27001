@@ -1,0 +1,11 @@
+id: iso27001:control-vpn-remote-access
+name: Use VPNs to secure access for remote devices
+control_id: "6.7"
+control_title: Use VPNs to secure access for remote devices
+control_category: people
+control_text: >-
+  In short, implementing a VPN will encrypt your data and ensure a safe transmission between
+  your employees devices and your internal network (even when using untrusted networks like
+  a public wifi) -> it offers a layer of security for your data. If everything is on Google
+  Suite/Notion/Slack/etc
+implementation_status: not_started

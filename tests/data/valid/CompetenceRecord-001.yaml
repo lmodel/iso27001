@@ -1,0 +1,19 @@
+id: iso27001:competence-001
+name: IAM Administrator Competence Record
+document_type: record
+person_name: Alex Smith
+person_role: IAM Administrator
+required_competencies:
+  - Identity lifecycle management
+  - MFA administration
+education_records:
+  - BSc in Information Systems
+training_records:
+  - Vendor IAM Administration Course
+experience_records:
+  - 4 years administering identity systems
+competency_assessment_date: "2026-02-14"
+competency_gaps:
+  - Deeper federation troubleshooting knowledge
+development_actions:
+  - Attend federation engineering workshop

@@ -1,0 +1,14 @@
+id: iso27001:ca-2026-001
+name: Rebalance Access Review Assignments
+linked_nonconformity: iso27001:nc-2026-001
+action_description: Assign backup reviewers and automate escalation reminders.
+root_cause_addressed: Reviewer availability constraints
+responsible_party: IAM Operations Lead
+target_completion_date: "2026-05-15"
+actual_completion_date: "2026-05-10"
+resources_required: Workflow automation support
+effectiveness_criteria: No quarterly review exceeds deadline for two consecutive cycles.
+effectiveness_review_date: "2026-08-01"
+effectiveness_verified: true
+isms_changes_required: Update access review procedure and review calendar.
+status: completed

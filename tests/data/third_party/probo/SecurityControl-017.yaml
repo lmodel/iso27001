@@ -1,0 +1,9 @@
+id: iso27001:control-maintain-history-of-incident-review
+name: Maintain history of incident review
+control_id: "5.28"
+control_title: Maintain history of incident review
+control_category: organizational
+control_text: >-
+  Retaining incident review records helps you refine your incident response plans, avoid
+  repeated mistakes, and provide an audit trail for accountability and compliance
+implementation_status: not_started

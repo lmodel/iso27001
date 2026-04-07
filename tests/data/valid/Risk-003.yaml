@@ -1,0 +1,18 @@
+id: iso27001:risk-public-website-defacement
+name: Public Website Defacement Risk
+risk_source: External opportunistic threat actor
+threat_description: Opportunistic attackers may attempt to deface the public marketing website.
+vulnerability_description: Static content site hosted on hardened CDN with limited attack surface.
+affected_assets:
+  - iso27001:asset-public-website
+affected_cia_properties:
+  - integrity
+  - availability
+risk_owner: Head of IT Operations
+likelihood: rare
+impact: minor
+inherent_risk_level: very_low
+residual_risk_level: very_low
+risk_treatment_option: accept
+treatment_priority: low
+related_treatment_plan: iso27001:rtp-website-2026

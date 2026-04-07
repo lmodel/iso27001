@@ -1,0 +1,21 @@
+id: iso27001:rtp-phishing-2026
+name: 2026 Phishing Risk Treatment Plan
+document_type: plan
+plan_scope: Reduce phishing-related account compromise risk for workforce email services.
+risks_addressed:
+  - iso27001:risk-email-phishing
+treatment_actions:
+  - Enforce MFA for all workforce email access.
+  - Run targeted phishing simulations for high-risk teams.
+controls_to_implement:
+  - iso27001:control-access-review
+resources_required: Identity engineering and awareness program capacity.
+responsible_parties:
+  - Identity Engineering Team
+  - Security Awareness Lead
+implementation_timeline: Q2 2026
+risk_owner_approval: Head of IT Operations
+approved_date: "2026-04-01"
+residual_risk_acceptance: Residual risk accepted if quarterly simulations show decreasing click-through rates.
+implementation_status: in_progress
+completion_date: "2026-06-30"

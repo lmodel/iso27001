@@ -1,0 +1,14 @@
+id: iso27001:control-conduct-an-access-reviews
+name: Conduct an Access Reviews
+control_id: "5.18"
+control_title: Conduct an Access Reviews
+control_category: organizational
+control_text: >-
+  A formal/explicit process to review employee access on a quarterly/yearly basis is a must
+  have in terms of security hygiene
+implementation_guidance: >-
+  Every 3 or 6 months, plan an “Access review session” with the relevant people to audit
+  accesses on all systems (that is another good reason to enable SSO). You need to ensure
+  everyone has the proper access for his/her job - an account inactive for the last 90 days
+  can probably be disable
+implementation_status: not_started

@@ -1,0 +1,10 @@
+id: iso27001:control-protect-your-employees-devices
+name: Protect your employees devices
+control_id: "8.1"
+control_title: Protect your employees devices
+control_category: technological
+control_text: >-
+  Mobile devices store and access sensitive data; proper configuration (screen lock,
+  FileVault, firewall, etc.) reduces vulnerabilities and maintains compliance with security
+  policies
+implementation_status: not_started

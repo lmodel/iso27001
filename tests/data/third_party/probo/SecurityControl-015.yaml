@@ -1,0 +1,14 @@
+id: iso27001:control-external-support
+name: External support available
+control_id: "5.19"
+control_title: External support available
+control_category: organizational
+control_text: >-
+  External support is not required, but it enhances transparency by showcasing your security
+  practices, policies, and compliance efforts, building trust with customers and
+  stakeholders. Ultimately, this is what compliance is about: reassuring your prospect and
+  customer on how you work
+implementation_guidance: >-
+  Create and maintain a complete list of support resources (eg. user guides, technical
+  documentation) for all your services
+implementation_status: not_started

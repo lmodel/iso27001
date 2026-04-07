@@ -1,0 +1,10 @@
+id: iso27001:control-encrypt-your-data-storage
+name: Encrypt your data storage
+control_id: "8.11"
+control_title: Encrypt your data storage
+control_category: technological
+control_text: >-
+  By encrypting data, you ensure that loss or theft of a device won’t result in a data
+  breach. It also protects sensitive information from unauthorized access
+implementation_guidance: "You need to ensure that all sensitive data stored is encrypted"
+implementation_status: not_started

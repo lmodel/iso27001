@@ -1,0 +1,11 @@
+id: iso27001:control-build-an-incident-response-process
+name: Build an incident response process
+control_id: "5.5"
+control_title: Build an incident response process
+control_category: organizational
+control_text: >-
+  An **incident response plan** is crucial for quickly identifying, containing, and
+  resolving incidents, minimizing potential disruptions. It ensures you’re prepared
+  effectively and that you keep your operations running smoothly, even in the face of
+  unexpected threats
+implementation_status: not_started

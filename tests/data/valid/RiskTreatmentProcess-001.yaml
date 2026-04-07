@@ -1,0 +1,7 @@
+id: iso27001:rt-process-001
+name: Risk Treatment Process
+document_type: procedure
+treatment_options_guidance: Prefer risk modification where effective controls are available.
+control_selection_criteria: Select controls based on proportionality, feasibility, and residual risk.
+soa_template: Standard SoA template version 2026.1
+approval_workflow: Risk owner approval followed by executive oversight for high risks.

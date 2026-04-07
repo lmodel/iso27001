@@ -1,0 +1,9 @@
+id: iso27001:control-insert-security-clause-in-third-party-contracts
+name: Insert security clause in third-party contracts
+control_id: "5.20"
+control_title: Insert security clause in third-party contracts
+control_category: organizational
+control_text: >-
+  Strong contractual language ensures third parties protect your data with the same rigor
+  you do, lowering supply-chain risk and establishing clear accountability
+implementation_status: not_started

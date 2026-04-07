@@ -1,0 +1,10 @@
+id: iso27001:control-enable-autoscaling
+name: Enable autoscaling
+control_id: "8.6"
+control_title: Enable autoscaling
+control_category: technological
+control_text: >-
+  Autoscaling helps maintain stable performance under changing workloads, preventing outages
+  from sudden traffic spikes while optimizing costs when load decreases. It also reduces
+  manual intervention, freeing your team to focus on more critical tasks
+implementation_status: not_started

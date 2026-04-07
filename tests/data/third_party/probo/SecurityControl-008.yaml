@@ -1,0 +1,9 @@
+id: iso27001:control-properly-off-board-your-employees
+name: Properly off-board your employees
+control_id: "5.11"
+control_title: Properly off-board your employees
+control_category: organizational
+control_text: >-
+  Yes, people will leave your company (either by your decision or theirs). And you want to
+  be prepare!
+implementation_status: not_started

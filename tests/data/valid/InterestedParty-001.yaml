@@ -1,0 +1,8 @@
+id: iso27001:party-regulator
+name: Lead Regulator
+party_type: regulatory
+relationship: Supervisory authority
+requirements:
+  - Notify material incidents within regulatory timelines.
+communication_needs: Quarterly compliance updates
+contact_information: regulator@example.org

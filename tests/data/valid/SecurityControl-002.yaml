@@ -1,0 +1,20 @@
+id: iso27001:control-privileged-access
+name: Privileged Access Rights Control
+control_id: "8.2"
+control_title: Restrict and Monitor Privileged Access
+control_category: technological
+control_text: The organization restricts and monitors the allocation and use of privileged access rights to identity and directory systems.
+implementation_guidance: Apply just-in-time provisioning, enforce MFA for all privileged accounts, and review standing privileges quarterly.
+applicable_threats:
+  - Insider threat
+  - Credential theft
+applicable_assets:
+  - Active Directory
+  - Cloud IAM platform
+control_owner: IAM Operations Lead
+implementation_status: in_progress
+effectiveness_rating: partially_effective
+last_test_date: "2026-03-15"
+evidence_references:
+  - Privileged access review report 2026-Q1
+  - PAM tool configuration baseline

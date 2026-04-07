@@ -1,0 +1,3 @@
+id: iso27001:soa-invalid-date
+name: Invalid SoA Review Date
+last_review_date: yesterday

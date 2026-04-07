@@ -1,0 +1,11 @@
+id: iso27001:control-setup-role-based-access
+name: Setup role based access
+control_id: "8.2"
+control_title: Setup role based access
+control_category: technological
+control_text: >-
+  In order to minimize the threat of someone getting access to something they should not, we
+  follow the **least privilege principle:** access is limited to what's necessary for job
+  duties. We need to define which function should have access to which tool in your company
+  to serve as a reference when providing access to people (password manager vaults etc.)
+implementation_status: not_started

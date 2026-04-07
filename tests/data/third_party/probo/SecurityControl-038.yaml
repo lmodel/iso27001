@@ -1,0 +1,11 @@
+id: iso27001:control-email-filtering
+name: Implement email filtering and warning system
+control_id: "8.7"
+control_title: Implement email filtering and warning system
+control_category: technological
+control_text: >-
+  As you know -> email is the most common entry point. Each phishing email filtered out of
+  your employee mailbox is less mental load for you and your employees and less risk faced
+  by your company
+implementation_guidance: "You need to configure your email system to scan all incoming emails for potential threats"
+implementation_status: not_started

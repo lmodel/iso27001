@@ -1,0 +1,2 @@
+name: ISMS Without Required ID
+scope_statement: An ISMS instance missing its required identifier field.

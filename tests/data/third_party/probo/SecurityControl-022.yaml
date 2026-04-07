@@ -1,0 +1,9 @@
+id: iso27001:control-require-signed-nda-with-critical-third-parties
+name: Require signed NDA with critical third parties
+control_id: "6.6"
+control_title: Require signed NDA with critical third parties
+control_category: people
+control_text: >-
+  NDAs formalize confidentiality expectations and legal protections, minimizing the risk of
+  data leakage or misuse by external entities who handle or access proprietary information
+implementation_status: not_started

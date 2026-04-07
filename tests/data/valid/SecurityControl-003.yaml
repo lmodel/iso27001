@@ -1,0 +1,21 @@
+id: iso27001:control-physical-perimeter
+name: Physical Security Perimeter Control
+control_id: "7.1"
+control_title: Define and Enforce Physical Security Perimeters
+control_category: physical
+control_text: The organization defines and enforces physical security perimeters for all areas containing sensitive information and processing facilities.
+implementation_guidance: Install badge-controlled doors at all data centre entry points and review physical access logs monthly.
+applicable_threats:
+  - Unauthorized physical access
+  - Equipment theft
+applicable_assets:
+  - Primary data centre
+  - Server room
+control_owner: Facilities and Security Manager
+implementation_status: implemented
+implementation_date: "2025-09-01"
+effectiveness_rating: effective
+last_test_date: "2026-02-28"
+evidence_references:
+  - Physical access control audit report
+  - Badge reader inspection log

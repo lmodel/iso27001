@@ -1,0 +1,13 @@
+id: iso27001:control-be-automatically-notified-of-issues
+name: Be automatically notified of issues
+control_id: "8.15"
+control_title: Be automatically notified of issues
+control_category: technological
+control_text: >-
+  Setting up alerting allows you to respond quickly and minimize downtime or potential data
+  breaches. It ensures that important events, such as unauthorized access or system
+  failures, are addressed promptly
+implementation_guidance: >-
+  Don't implement alerts for everything. **Focus on critical events** - if you have alerts
+  on everything, it's not alerting anymore
+implementation_status: not_started

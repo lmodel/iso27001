@@ -1,0 +1,10 @@
+id: iso27001:control-monitor-usb-usage-endpoint-security
+name: Monitor USB usage (endpoint security)
+control_id: "7.10"
+control_title: Monitor USB usage (endpoint security)
+control_category: physical
+control_text: >-
+  Restricting and reviewing USB usage helps close an overlooked attack vector, ensuring
+  sensitive data isn’t copied offsite and external malware-laden drives don’t compromise the
+  network
+implementation_status: not_started

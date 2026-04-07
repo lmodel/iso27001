@@ -1,0 +1,10 @@
+id: iso27001:control-establish-documentation-system
+name: Establish documentation system
+control_id: "5.33"
+control_title: Establish documentation system
+control_category: organizational
+control_text: >-
+  A central documentation system ensures information is accessible, consistent, and easily
+  updated. It simplifies audits, maintains clarity across teams, and helps prove compliance
+  with internal and external requirements
+implementation_status: not_started

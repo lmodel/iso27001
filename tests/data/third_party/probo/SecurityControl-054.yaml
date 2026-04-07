@@ -1,0 +1,10 @@
+id: iso27001:control-synchronize-clock-on-infra
+name: Synchronize clock on infra
+control_id: "8.17"
+control_title: Synchronize clock on infra
+control_category: technological
+control_text: >-
+  Accurate timestamps are critical for correlating logs, investigating incidents, and
+  maintaining consistent audit trails. A centralized clock source reduces confusion,
+  improves analysis, and streamlines incident management
+implementation_status: not_started

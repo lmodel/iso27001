@@ -1,0 +1,10 @@
+id: iso27001:control-data-inventory
+name: Data inventory
+control_id: "5.13"
+control_title: Data inventory
+control_category: organizational
+control_text: >-
+  Having an accurate and up-to-date inventory of all your data assets (databases, cloud
+  storage or even file shares) enables you to be exhaustive in how you treat your data
+  safety
+implementation_status: not_started

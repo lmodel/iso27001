@@ -1,0 +1,10 @@
+id: iso27001:control-run-a-penetration-test
+name: Run a penetration test
+control_id: "8.29"
+control_title: Run a penetration test
+control_category: technological
+control_text: >-
+  It is a good way to safeguard your company’s data. It is a real-life simulation of attack
+  scenarios on your company: it enables you to identify potential vulnerabilities that can
+  be fixed before being exploited
+implementation_status: not_started

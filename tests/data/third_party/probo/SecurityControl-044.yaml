@@ -1,0 +1,10 @@
+id: iso27001:control-restrict-public-access-on-your-infrastructure
+name: Restrict public access on your infrastructure
+control_id: "8.9"
+control_title: Restrict public access on your infrastructure
+control_category: technological
+control_text: >-
+  Public access to your company's infrastructure is a serious security risk. By configuring
+  your cloud provider to restrict public access, you can reduce the risk of unauthorized
+  access to your sensitive data and systems
+implementation_status: not_started

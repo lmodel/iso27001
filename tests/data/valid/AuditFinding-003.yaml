@@ -1,0 +1,13 @@
+id: iso27001:audit-finding-003
+name: Supplier Security Assessment Programme Not Established
+finding_type: major_nonconformity
+clause_reference: "6.1.3"
+control_reference: iso27001:control-access-review
+finding_description: No formal supplier security assessment programme exists. Critical SaaS providers have not been assessed against applicable Annex A controls.
+objective_evidence: Supplier register contains no assessment dates or evidence of control verification for three of five critical suppliers.
+root_cause_analysis: Programme ownership was not assigned following the last organisational restructure.
+risk_implication: Uncontrolled third-party risk exposure inconsistent with Annex A 5.19 through 5.22.
+recommended_action: Assign programme ownership, establish assessment criteria, and schedule assessments within 60 days.
+auditee_response: Vendor Risk Manager assigned and kick-off meeting scheduled.
+linked_corrective_action: iso27001:ca-2026-002
+closure_status: open

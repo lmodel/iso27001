@@ -1,0 +1,7 @@
+id: iso27001:control-identify-threats-mitigations-fire-extinguisher-etc
+name: Identify threats & mitigations (fire extinguisher etc)
+control_id: "7.5"
+control_title: Identify threats & mitigations (fire extinguisher etc)
+control_category: physical
+control_text: "Recognizing environmental and physical risks ensures you can proactively deploy measures"
+implementation_status: not_started

@@ -1,0 +1,16 @@
+id: iso27001:control-configure-logs-and-implement-real-time-monitoring
+name: Configure logs and implement real-time monitoring
+control_id: "8.15"
+control_title: Configure logs and implement real-time monitoring
+control_category: technological
+control_text: >-
+  It allows you to detect and respond to potential security incidents or system failures
+  immediately, minimizing downtime and reducing the risk of data breaches. It maintain
+  visibility into system performance and security events
+implementation_guidance: >-
+  Once you have selected the tool you are using and implemented it, you need to implement
+  your first dashboard (if not already the case). At least, we think you should be able to
+  follow: - Availability: Resource usage (CPU, memory, storage), System downtime event -
+  Optional: Uptime, latency - Access: Failed log attemps, unauthorized access, MFA usage -
+  Integrity: Error rate (eg
+implementation_status: not_started

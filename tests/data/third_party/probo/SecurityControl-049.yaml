@@ -1,0 +1,11 @@
+id: iso27001:control-automated-backup
+name: Automated backup
+control_id: "8.13"
+control_title: Automated backup
+control_category: technological
+control_text: >-
+  Automated backups ensure that your data—one of your company’s most important assets—is
+  regularly and securely saved, reducing the risk of data loss. The back-up keeps it safe
+  and available, while the automated and regular aspect allows for a restoration just before
+  any disruption, minimizing loss
+implementation_status: not_started

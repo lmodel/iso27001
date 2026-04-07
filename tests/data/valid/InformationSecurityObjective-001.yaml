@@ -1,0 +1,16 @@
+id: iso27001:objective-mfa
+name: Increase MFA Coverage
+objective_statement: Achieve full MFA coverage for workforce access.
+target_value: 100%
+current_value: 92%
+metric_definition: Percentage of workforce identities protected by MFA.
+measurement_method: Weekly IAM coverage report
+measurement_frequency: weekly
+responsible_role: iso27001:role-ciso
+target_date: "2026-06-30"
+achievement_status: on_track
+related_risks:
+  - iso27001:risk-email-phishing
+related_controls:
+  - iso27001:control-access-review
+action_plan: Complete legacy application onboarding to MFA.

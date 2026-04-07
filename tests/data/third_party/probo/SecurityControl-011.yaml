@@ -1,0 +1,9 @@
+id: iso27001:control-database-auth
+name: Implement IAM for database authentication
+control_id: "5.15"
+control_title: Implement IAM for database authentication
+control_category: organizational
+control_text: >-
+  You want to ensure that only the proper people can access your production database. You
+  also want to avoid the burden of managing another list of users or rotating credentials
+implementation_status: not_started

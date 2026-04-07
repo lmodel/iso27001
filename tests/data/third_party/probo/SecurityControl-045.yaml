@@ -1,0 +1,10 @@
+id: iso27001:control-manage-your-service-accounts
+name: Manage your service accounts
+control_id: "8.9"
+control_title: Manage your service accounts
+control_category: technological
+control_text: >-
+  You don’t want to use the “default” service account, it has way too many permissions - it
+  is a super administrator. Even GCP is asking you not to use theirs, it is only here for
+  legacy reasons
+implementation_status: not_started

@@ -1,0 +1,20 @@
+id: iso27001:risk-email-phishing
+name: Phishing Compromise Risk
+risk_source: External threat actor campaigns
+threat_description: Phishing emails may capture user credentials.
+vulnerability_description: Inconsistent MFA adoption for legacy email access.
+affected_assets:
+  - iso27001:asset-email-gateway
+affected_cia_properties:
+  - confidentiality
+  - availability
+risk_owner: Head of IT Operations
+likelihood: likely
+impact: major
+inherent_risk_level: high
+existing_controls:
+  - iso27001:control-access-review
+residual_risk_level: medium
+risk_treatment_option: modify
+treatment_priority: high
+related_treatment_plan: iso27001:rtp-phishing-2026

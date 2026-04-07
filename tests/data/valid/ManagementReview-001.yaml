@@ -1,0 +1,24 @@
+id: iso27001:management-review-q1-2026
+name: Management Review Q1 2026
+document_type: report
+review_date: "2026-04-07"
+attendees:
+  - Chief Executive Officer
+  - Chief Information Security Officer
+  - Head of IT Operations
+previous_actions_status: Prior management review actions were completed on schedule.
+context_changes: Expanded cloud footprint increased third-party integration exposure.
+interested_party_changes: A key customer added MFA coverage requirements to contract renewals.
+performance_trends: Phishing reporting rates improved and privileged access exceptions declined.
+audit_results_summary: Internal audit found no major nonconformities and one observation.
+risk_assessment_results: Top risks remain phishing, supplier outage, and delayed patching.
+improvement_opportunities:
+  - Expand supplier control testing to critical SaaS platforms.
+  - Improve completion reporting for awareness campaigns.
+decisions:
+  - Approve budget for MFA hardening in legacy applications.
+  - Accept residual supplier outage risk pending contract updates.
+action_items:
+  - Update supplier assurance questionnaire.
+  - Review MFA rollout progress at the next meeting.
+next_review_date: "2026-07-15"

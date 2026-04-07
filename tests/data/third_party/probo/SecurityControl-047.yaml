@@ -1,0 +1,12 @@
+id: iso27001:control-encrypt-your-data-in-transit
+name: Encrypt your data in transit
+control_id: "8.11"
+control_title: Encrypt your data in transit
+control_category: technological
+control_text: >-
+  Data sent over networks can be intercepted and read - the encryption ensure it won’t be
+  intelligible. It secure it from potential threats
+implementation_guidance: >-
+  If you don’t have your own network or are not using FTP, you only need to focus on web
+  traffic
+implementation_status: not_started

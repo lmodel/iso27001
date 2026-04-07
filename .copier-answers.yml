@@ -9,7 +9,7 @@ gh_action_docs_preview: true
 gh_action_pypi: true
 github_org: lmodel
 license: Apache-2.0
-project_description: iso27001
+project_description: "ISO 27001 / ISMS: LinkML Schema"
 project_name: iso27001
 project_slug: iso27001
 

@@ -1,0 +1,11 @@
+id: iso27001:control-email-authentication
+name: Implement email authentication (DMARC)
+control_id: "8.7"
+control_title: Implement email authentication (DMARC)
+control_category: technological
+control_text: >-
+  DMARC (Domain-based Message Authentication, Reporting, and Conformance) helps prevent
+  email spoofing and phishing attacks by verifying the authenticity of emails sent from your
+  domain. It will do two things: -> your recipient will know for sure it is coming from you
+  and it will protect your company reputation (with gmail and cie)
+implementation_status: not_started

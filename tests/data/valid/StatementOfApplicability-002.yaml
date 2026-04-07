@@ -1,0 +1,26 @@
+id: iso27001:soa-2026-partial
+name: Statement of Applicability 2026 - Partial with Exclusions
+document_type: report
+soa_entries:
+  - control_reference: iso27001:control-privileged-access
+    is_applicable: true
+    inclusion_justification: Privileged access risks are identified in the current risk assessment.
+    implementation_status: in_progress
+    responsible_role: iso27001:role-ciso
+    target_implementation_date: "2026-09-30"
+  - control_reference: iso27001:control-physical-perimeter
+    is_applicable: true
+    inclusion_justification: Organization operates a data centre requiring physical access controls.
+    implementation_status: implemented
+    implementation_evidence: Physical access audit report retained in GRC repository.
+    responsible_role: iso27001:role-ciso
+  - control_reference: iso27001:control-na-teleworking-legacy
+    is_applicable: false
+    exclusion_justification: Organization does not permit remote working from personal devices; all remote access uses managed endpoints covered by control 8.2.
+    implementation_status: not_applicable
+total_controls: 93
+implemented_count: 1
+planned_count: 1
+not_applicable_count: 1
+last_review_date: "2026-04-10"
+approved_by: Chief Information Security Officer

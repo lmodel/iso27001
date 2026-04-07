@@ -1,0 +1,11 @@
+id: iso27001:control-setup-slack-channel-for-access-request
+name: Setup an access request process
+control_id: "5.17"
+control_title: Setup an access request process
+control_category: organizational
+control_text: >-
+  In order to minimize the threat of someone getting access to something they should not, we
+  follow the **continuous update principle:** making sure the privileges are up to date. We
+  need to setup a proper process to define how we grant and revoke access to different
+  systems
+implementation_status: not_started

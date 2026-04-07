@@ -1,0 +1,13 @@
+id: iso27001:audit-finding-002
+name: Comprehensive Evidence Retention Observed
+finding_type: positive_finding
+clause_reference: "7.5"
+control_reference: iso27001:control-access-review
+finding_description: The information security team maintains centrally accessible, version-controlled evidence records that exceed the documented retention requirements.
+objective_evidence: GRC repository audit trail and retention policy compliance report.
+root_cause_analysis: Not applicable - positive finding.
+risk_implication: None - control exceeds requirements.
+recommended_action: Document the practice as a benchmark for other control areas.
+auditee_response: Team will share approach with other process owners.
+closure_status: closed
+closure_date: "2026-04-03"

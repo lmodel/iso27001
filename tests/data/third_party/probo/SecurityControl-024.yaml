@@ -1,0 +1,10 @@
+id: iso27001:control-implement-physical-access-control
+name: Implement physical access control
+control_id: "7.2"
+control_title: Implement physical access control
+control_category: physical
+control_text: >-
+  Even if you do most of your business online, you still have offices, computers or even
+  printed document: you need to make sure those assets are physically secured (we will focus
+  on the digital access later)
+implementation_status: not_started

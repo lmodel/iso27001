@@ -1,0 +1,9 @@
+id: iso27001:control-scan-for-security-updates
+name: Scan for Security updates
+control_id: "8.8"
+control_title: Scan for Security updates
+control_category: technological
+control_text: >-
+  An automated security scanning software on your infrastructure components enables you to
+  fix potential vulnerabilities as soon as they are uncovered
+implementation_status: not_started

@@ -1,0 +1,11 @@
+id: iso27001:control-enforce-sso
+name: Enforce SSO when possible
+control_id: "5.16"
+control_title: Enforce SSO when possible
+control_category: organizational
+control_text: >-
+  To minimize the risk of unauthorized access, it's important to centralize and secure
+  authentication across your organization. Single Sign-On (SSO) enhances security by
+  enabling better control over account access, enforcing consistent security policies (e.g.,
+  2FA), and making it easier to revoke access when someone leaves the organization
+implementation_status: not_started

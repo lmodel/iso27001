@@ -1,0 +1,13 @@
+id: iso27001:ca-2026-002
+name: Establish Supplier Security Assessment Programme
+linked_nonconformity: iso27001:nc-2026-002
+action_description: Assign programme ownership, define assessment criteria aligned to Annex A 5.19-5.22, and complete assessments for all critical suppliers.
+root_cause_addressed: Unassigned programme ownership following organisational restructure.
+responsible_party: Vendor Risk Manager
+target_completion_date: "2026-06-30"
+resources_required: Vendor Risk Manager time and third-party assessment template.
+effectiveness_criteria: All critical suppliers assessed and findings remediated before contract renewal.
+effectiveness_review_date: "2026-07-31"
+effectiveness_verified: false
+isms_changes_required: Add supplier assessment step to the procurement approval workflow.
+status: in_progress

@@ -1,0 +1,10 @@
+id: iso27001:control-prove-customer-data-is-deleted-upon-request
+name: Prove customer data is deleted upon request
+control_id: "8.10"
+control_title: Prove customer data is deleted upon request
+control_category: technological
+control_text: >-
+  Being able to demonstrate data deletion meets regulatory requirements (like GDPR), and
+  protects you from potential legal consequences if data isn’t erased or retention policies
+  aren’t followed
+implementation_status: not_started

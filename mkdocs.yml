@@ -51,6 +51,7 @@ watch:
 
 nav:
   - Home: index.md
+  - Rights: rights.md
   - Schema: elements/index.md
   - About: about.md
 

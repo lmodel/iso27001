@@ -1,0 +1,16 @@
+id: iso27001:control-security-awareness-training
+name: Security Awareness Education and Training
+control_id: "6.3"
+control_title: Deliver Information Security Awareness and Training Programme
+control_category: people
+control_text: The organization delivers information security awareness, education, and training to all personnel relevant to their job function.
+implementation_guidance: Run mandatory annual security awareness training and supplement with monthly phishing simulations tracked per team.
+applicable_threats:
+  - Social engineering
+  - Phishing
+applicable_assets:
+  - All personnel
+control_owner: Security Awareness Lead
+implementation_status: not_started
+evidence_references:
+  - Training programme design document
