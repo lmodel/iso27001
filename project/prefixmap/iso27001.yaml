@@ -1,0 +1,10 @@
+{
+   "dcterms": "http://purl.org/dc/terms/",
+   "iso": "https://www.iso.org/standard/",
+   "iso27001": "https://w3id.org/lmodel/iso-iec-27001/",
+   "iso27002": "https://w3id.org/lmodel/iso-iec-27002/",
+   "linkml": "https://w3id.org/linkml/",
+   "prov": "http://www.w3.org/ns/prov#",
+   "schema": "http://schema.org/",
+   "skos": "http://www.w3.org/2004/02/skos/core#"
+}

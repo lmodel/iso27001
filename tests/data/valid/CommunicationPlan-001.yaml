@@ -1,0 +1,11 @@
+id: iso27001:comm-plan-001
+name: ISMS Communication Plan
+document_type: plan
+communication_items:
+  - subject: Quarterly security update
+    purpose: Maintain awareness of ISMS priorities
+    audience: All staff
+    frequency: quarterly
+    method: intranet post
+    responsible_party: Security Communications Lead
+    records_required: true

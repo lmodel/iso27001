@@ -1,0 +1,13 @@
+id: iso27001:op-proc-001
+name: Access Review Procedure
+document_type: procedure
+procedure_scope: Quarterly review of privileged and elevated access.
+process_criteria: Reviews must be completed within 10 business days after quarter end.
+control_measures:
+  - Reviewer independence check
+  - Evidence retention in GRC platform
+responsible_roles:
+  - iso27001:role-ciso
+related_controls:
+  - iso27001:control-access-review
+change_control_requirements: Changes to review cadence require CISO approval.

@@ -1,0 +1,707 @@
+# metamodel_version: 1.7.0
+# version: 1.0.0
+BASE <https://w3id.org/lmodel/iso-iec-27001/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX linkml: <https://w3id.org/linkml/>
+
+
+<PositiveIntegerType> xsd:positiveInteger
+
+<UnsignedShortType> xsd:unsignedShort
+
+<DurationType> xsd:duration
+
+linkml:String xsd:string
+
+linkml:Integer xsd:integer
+
+linkml:Boolean xsd:boolean
+
+linkml:Float xsd:float
+
+linkml:Double xsd:double
+
+linkml:Decimal xsd:decimal
+
+linkml:Time xsd:time
+
+linkml:Date xsd:date
+
+linkml:Datetime xsd:dateTime
+
+linkml:DateOrDatetime linkml:DateOrDatetime
+
+linkml:Uriorcurie IRI
+
+linkml:Curie xsd:string
+
+linkml:Uri IRI
+
+linkml:Ncname xsd:string
+
+linkml:Objectidentifier IRI
+
+linkml:Nodeidentifier NONLITERAL
+
+linkml:Jsonpointer xsd:string
+
+linkml:Jsonpath xsd:string
+
+linkml:Sparqlpath xsd:string
+
+<Asset> CLOSED {
+    (  $<Asset_tes> (  &<NamedEntity_tes> ;
+          rdf:type [ <NamedEntity> ] ? ;
+          <asset_type> @linkml:String ? ;
+          <asset_owner> @linkml:String ? ;
+          <asset_custodian> @linkml:String ? ;
+          <classification> @linkml:String ? ;
+          <location> @linkml:String ? ;
+          <criticality> @linkml:String ? ;
+          <related_risks> @<Risk> * ;
+          <applicable_controls> @<SecurityControl> *
+       ) ;
+       rdf:type [ <Asset> ]
+    )
+}
+
+<AuditFinding> CLOSED {
+    (  $<AuditFinding_tes> (  &<NamedEntity_tes> ;
+          rdf:type [ <NamedEntity> ] ? ;
+          <finding_type> [ <https://w3id.org/lmodel/iso-iec-27001/AuditFindingType#major_nonconformity>
+             <https://w3id.org/lmodel/iso-iec-27001/AuditFindingType#minor_nonconformity>
+             <https://w3id.org/lmodel/iso-iec-27001/AuditFindingType#observation>
+             <https://w3id.org/lmodel/iso-iec-27001/AuditFindingType#positive_finding> ] ? ;
+          <clause_reference> @linkml:String ? ;
+          <control_reference> @<SecurityControl> ? ;
+          <finding_description> @linkml:String ? ;
+          <objective_evidence> @linkml:String ? ;
+          <root_cause_analysis> @linkml:String ? ;
+          <risk_implication> @linkml:String ? ;
+          <recommended_action> @linkml:String ? ;
+          <auditee_response> @linkml:String ? ;
+          <linked_corrective_action> @<CorrectiveAction> ? ;
+          <closure_status> @linkml:String ? ;
+          <closure_date> @linkml:Date ?
+       ) ;
+       rdf:type [ <AuditFinding> ]
+    )
+}
+
+<AuditProgramme> CLOSED {
+    (  $<AuditProgramme_tes> (  &<DocumentedInformation_tes> ;
+          rdf:type [ <DocumentedInformation> ] ? ;
+          <programme_period> @linkml:String ? ;
+          <planned_audits> @<InternalAudit> * ;
+          <audit_frequency_rationale> @linkml:String ? ;
+          <resource_requirements> @linkml:String ? ;
+          <auditor_qualifications> @linkml:String ? ;
+          <programme_status> @linkml:String ?
+       ) ;
+       rdf:type [ <AuditProgramme> ]
+    )
+}
+
+<AwarenessProgram> CLOSED {
+    (  $<AwarenessProgram_tes> (  &<DocumentedInformation_tes> ;
+          rdf:type [ <DocumentedInformation> ] ? ;
+          <awareness_topics> @linkml:String * ;
+          <delivery_methods> @linkml:String * ;
+          <target_audience> @linkml:String ? ;
+          <frequency> @linkml:String ? ;
+          <completion_tracking> @linkml:String ? ;
+          <effectiveness_measures> @linkml:String ?
+       ) ;
+       rdf:type [ <AwarenessProgram> ]
+    )
+}
+
+<CommunicationItem> CLOSED {
+    (  $<CommunicationItem_tes> (  <subject> @linkml:String ? ;
+          <purpose> @linkml:String ? ;
+          <audience> @linkml:String ? ;
+          <frequency> @linkml:String ? ;
+          <method> @linkml:String ? ;
+          <responsible_party> @linkml:String ? ;
+          <records_required> @linkml:Boolean ?
+       ) ;
+       rdf:type [ <CommunicationItem> ] ?
+    )
+}
+
+<CommunicationPlan> CLOSED {
+    (  $<CommunicationPlan_tes> (  &<DocumentedInformation_tes> ;
+          rdf:type [ <DocumentedInformation> ] ? ;
+          <communication_items> @<CommunicationItem> *
+       ) ;
+       rdf:type [ <CommunicationPlan> ]
+    )
+}
+
+<CompetenceRecord> CLOSED {
+    (  $<CompetenceRecord_tes> (  &<DocumentedInformation_tes> ;
+          rdf:type [ <DocumentedInformation> ] ? ;
+          <person_name> @linkml:String ? ;
+          <person_role> @linkml:String ? ;
+          <required_competencies> @linkml:String * ;
+          <education_records> @linkml:String * ;
+          <training_records> @linkml:String * ;
+          <experience_records> @linkml:String * ;
+          <competency_assessment_date> @linkml:Date ? ;
+          <competency_gaps> @linkml:String * ;
+          <development_actions> @linkml:String *
+       ) ;
+       rdf:type [ <CompetenceRecord> ]
+    )
+}
+
+<CorrectiveAction> CLOSED {
+    (  $<CorrectiveAction_tes> (  &<NamedEntity_tes> ;
+          rdf:type [ <NamedEntity> ] ? ;
+          <linked_nonconformity> @<Nonconformity> ? ;
+          <action_description> @linkml:String ? ;
+          <root_cause_addressed> @linkml:String ? ;
+          <responsible_party> @linkml:String ? ;
+          <target_completion_date> @linkml:Date ? ;
+          <actual_completion_date> @linkml:Date ? ;
+          <resources_required> @linkml:String ? ;
+          <effectiveness_criteria> @linkml:String ? ;
+          <effectiveness_review_date> @linkml:Date ? ;
+          <effectiveness_verified> @linkml:Boolean ? ;
+          <isms_changes_required> @linkml:String ? ;
+          <status> @linkml:String ?
+       ) ;
+       rdf:type [ <CorrectiveAction> ]
+    )
+}
+
+<DocumentedInformation>  (
+    @<AuditProgramme> OR @<AwarenessProgram> OR @<CommunicationPlan> OR @<CompetenceRecord> OR @<InformationSecurityPolicy> OR
+    @<InternalAudit> OR @<ManagementReview> OR @<MonitoringProgram> OR @<OperationalProcedure> OR @<RiskAssessment> OR
+    @<RiskAssessmentProcess> OR @<RiskTreatmentPlan> OR @<RiskTreatmentProcess> OR @<StatementOfApplicability> OR
+    @<TopicSpecificPolicy>
+)
+
+<DocumentedInformation_struct> {
+    (  $<DocumentedInformation_tes> (  &<NamedEntity_tes> ;
+          rdf:type [ <NamedEntity> ] ? ;
+          <document_type> [ <https://w3id.org/lmodel/iso-iec-27001/DocumentType#policy>
+             <https://w3id.org/lmodel/iso-iec-27001/DocumentType#procedure>
+             <https://w3id.org/lmodel/iso-iec-27001/DocumentType#standard>
+             <https://w3id.org/lmodel/iso-iec-27001/DocumentType#guideline>
+             <https://w3id.org/lmodel/iso-iec-27001/DocumentType#record> <https://w3id.org/lmodel/iso-iec-27001/DocumentType#plan>
+             <https://w3id.org/lmodel/iso-iec-27001/DocumentType#report> ] ? ;
+          <document_reference> @linkml:String ? ;
+          <author> @linkml:String ? ;
+          <owner> @linkml:String ? ;
+          <approved_by> @linkml:String ? ;
+          <approved_date> @linkml:Date ? ;
+          <effective_date> @linkml:Date ? ;
+          <review_date> @linkml:Date ? ;
+          <status> @linkml:String ? ;
+          <classification> @linkml:String ? ;
+          <retention_period> @<DurationType> ?
+       ) ;
+       rdf:type [ <DocumentedInformation> ]
+    )
+}
+
+<ImprovementOpportunity> CLOSED {
+    (  $<ImprovementOpportunity_tes> (  &<NamedEntity_tes> ;
+          rdf:type [ <NamedEntity> ] ? ;
+          <improvement_source> @linkml:String ? ;
+          <identification_date> @linkml:Date ? ;
+          <identified_by> @linkml:String ? ;
+          <improvement_description> @linkml:String ? ;
+          <expected_benefit> @linkml:String ? ;
+          <priority> @linkml:String ? ;
+          <implementation_plan> @linkml:String ? ;
+          <responsible_party> @linkml:String ? ;
+          <target_date> @linkml:Date ? ;
+          <actual_completion_date> @linkml:Date ? ;
+          <outcome_assessment> @linkml:String ? ;
+          <status> @linkml:String ?
+       ) ;
+       rdf:type [ <ImprovementOpportunity> ]
+    )
+}
+
+<InformationSecurityEvent> CLOSED {
+    (  $<InformationSecurityEvent_tes> (  &<NamedEntity_tes> ;
+          rdf:type [ <NamedEntity> ] ? ;
+          <event_datetime> @linkml:Datetime ? ;
+          <reporter> @linkml:String ? ;
+          <event_description> @linkml:String ? ;
+          <affected_assets> @<Asset> * ;
+          <initial_assessment> @linkml:String ? ;
+          <categorized_as_incident> @linkml:Boolean ? ;
+          <linked_incident> @<InformationSecurityIncident> ?
+       ) ;
+       rdf:type [ <InformationSecurityEvent> ]
+    )
+}
+
+<InformationSecurityIncident> CLOSED {
+    (  $<InformationSecurityIncident_tes> (  &<NamedEntity_tes> ;
+          rdf:type [ <NamedEntity> ] ? ;
+          <incident_datetime> @linkml:Datetime ? ;
+          <incident_category> @linkml:String ? ;
+          <severity> @linkml:String ? ;
+          <affected_assets> @<Asset> * ;
+          <affected_cia> @linkml:String * ;
+          <incident_description> @linkml:String ? ;
+          <detection_method> @linkml:String ? ;
+          <response_actions> @linkml:String * ;
+          <containment_actions> @linkml:String * ;
+          <eradication_actions> @linkml:String * ;
+          <recovery_actions> @linkml:String * ;
+          <root_cause> @linkml:String ? ;
+          <lessons_learned> @linkml:String ? ;
+          <evidence_collected> @linkml:String * ;
+          <notification_required> @linkml:Boolean ? ;
+          <notifications_made> @linkml:String * ;
+          <closure_datetime> @linkml:Datetime ? ;
+          <post_incident_review> @linkml:String ?
+       ) ;
+       rdf:type [ <InformationSecurityIncident> ]
+    )
+}
+
+<InformationSecurityManagementSystem> CLOSED {
+    (  $<InformationSecurityManagementSystem_tes> (  &<NamedEntity_tes> ;
+          rdf:type [ <NamedEntity> ] ? ;
+          <organization> @<Organization> ? ;
+          <scope_statement> @linkml:String ? ;
+          <scope_boundaries> @linkml:String * ;
+          <scope_exclusions> @linkml:String * ;
+          <context_internal_issues> @linkml:String * ;
+          <context_external_issues> @linkml:String * ;
+          <interested_parties> @<InterestedParty> * ;
+          <information_security_policy> @<InformationSecurityPolicy> ? ;
+          <objectives> @<InformationSecurityObjective> * ;
+          <risk_assessment_process> @<RiskAssessmentProcess> ? ;
+          <risk_treatment_process> @<RiskTreatmentProcess> ? ;
+          <statement_of_applicability> @<StatementOfApplicability> ? ;
+          <controls> @<SecurityControl> * ;
+          <roles> @<Role> * ;
+          <resources> @<Resource> * ;
+          <competence_records> @<CompetenceRecord> * ;
+          <awareness_program> @<AwarenessProgram> ? ;
+          <communication_plan> @<CommunicationPlan> ? ;
+          <documented_information_register> @<DocumentedInformation> * ;
+          <operational_procedures> @<OperationalProcedure> * ;
+          <risk_assessments> @<RiskAssessment> * ;
+          <risk_treatment_plans> @<RiskTreatmentPlan> * ;
+          <monitoring_program> @<MonitoringProgram> ? ;
+          <internal_audits> @<InternalAudit> * ;
+          <management_reviews> @<ManagementReview> * ;
+          <nonconformities> @<Nonconformity> * ;
+          <corrective_actions> @<CorrectiveAction> * ;
+          <improvements> @<ImprovementOpportunity> * ;
+          <certification_status> @linkml:String ? ;
+          <certification_body> @linkml:String ? ;
+          <certification_date> @linkml:Date ? ;
+          <recertification_date> @linkml:Date ?
+       ) ;
+       rdf:type [ <InformationSecurityManagementSystem> ]
+    )
+}
+
+<InformationSecurityObjective> CLOSED {
+    (  $<InformationSecurityObjective_tes> (  &<NamedEntity_tes> ;
+          rdf:type [ <NamedEntity> ] ? ;
+          <objective_statement> @linkml:String ? ;
+          <target_value> @linkml:String ? ;
+          <current_value> @linkml:String ? ;
+          <metric_definition> @linkml:String ? ;
+          <measurement_method> @linkml:String ? ;
+          <measurement_frequency> @linkml:String ? ;
+          <responsible_role> @<Role> ? ;
+          <target_date> @linkml:Date ? ;
+          <achievement_status> @linkml:String ? ;
+          <related_risks> @<Risk> * ;
+          <related_controls> @<SecurityControl> * ;
+          <action_plan> @linkml:String ?
+       ) ;
+       rdf:type [ <InformationSecurityObjective> ]
+    )
+}
+
+<InformationSecurityPolicy> CLOSED {
+    (  $<InformationSecurityPolicy_tes> (  &<DocumentedInformation_tes> ;
+          rdf:type [ <DocumentedInformation> ] ? ;
+          <policy_statement> @linkml:String ? ;
+          <policy_objectives_framework> @linkml:String ? ;
+          <commitment_statements> @linkml:String * ;
+          <applicability_statement> @linkml:String ? ;
+          <communication_date> @linkml:Date ? ;
+          <acknowledgment_required> @linkml:Boolean ? ;
+          <related_topic_policies> @<TopicSpecificPolicy> *
+       ) ;
+       rdf:type [ <InformationSecurityPolicy> ]
+    )
+}
+
+<InterestedParty> CLOSED {
+    (  $<InterestedParty_tes> (  &<NamedEntity_tes> ;
+          rdf:type [ <NamedEntity> ] ? ;
+          <party_type> @linkml:String ? ;
+          <relationship> @linkml:String ? ;
+          <requirements> @linkml:String * ;
+          <communication_needs> @linkml:String ? ;
+          <contact_information> @linkml:String ?
+       ) ;
+       rdf:type [ <InterestedParty> ]
+    )
+}
+
+<InternalAudit> CLOSED {
+    (  $<InternalAudit_tes> (  &<DocumentedInformation_tes> ;
+          rdf:type [ <DocumentedInformation> ] ? ;
+          <audit_reference> @linkml:String ? ;
+          <audit_type> @linkml:String ? ;
+          <audit_scope> @linkml:String ? ;
+          <audit_criteria> @linkml:String * ;
+          <audit_objectives> @linkml:String * ;
+          <audit_period_start> @linkml:Date ? ;
+          <audit_period_end> @linkml:Date ? ;
+          <lead_auditor> @linkml:String ? ;
+          <audit_team> @linkml:String * ;
+          <auditee_representatives> @linkml:String * ;
+          <audit_plan> @linkml:String ? ;
+          <findings> @<AuditFinding> * ;
+          <positive_observations> @linkml:String * ;
+          <audit_conclusion> @linkml:String ? ;
+          <report_date> @linkml:Date ? ;
+          <report_distribution> @linkml:String *
+       ) ;
+       rdf:type [ <InternalAudit> ]
+    )
+}
+
+<ManagementReview> CLOSED {
+    (  $<ManagementReview_tes> (  &<DocumentedInformation_tes> ;
+          rdf:type [ <DocumentedInformation> ] ? ;
+          <review_date> @linkml:Date ? ;
+          <attendees> @linkml:String * ;
+          <previous_actions_status> @linkml:String ? ;
+          <context_changes> @linkml:String ? ;
+          <interested_party_changes> @linkml:String ? ;
+          <performance_trends> @linkml:String ? ;
+          <audit_results_summary> @linkml:String ? ;
+          <risk_assessment_results> @linkml:String ? ;
+          <improvement_opportunities> @linkml:String * ;
+          <decisions> @linkml:String * ;
+          <action_items> @linkml:String * ;
+          <next_review_date> @linkml:Date ?
+       ) ;
+       rdf:type [ <ManagementReview> ]
+    )
+}
+
+<MonitoringItem> CLOSED {
+    (  $<MonitoringItem_tes> (  <metric_name> @linkml:String ? ;
+          <metric_description> @linkml:String ? ;
+          <measurement_method> @linkml:String ? ;
+          <measurement_frequency> @linkml:String ? ;
+          <responsible_party> @linkml:String ? ;
+          <analysis_frequency> @linkml:String ? ;
+          <analyst> @linkml:String ? ;
+          <target_threshold> @linkml:String ? ;
+          <alert_threshold> @linkml:String ? ;
+          <current_value> @linkml:String ? ;
+          <trend> @linkml:String ?
+       ) ;
+       rdf:type [ <MonitoringItem> ] ?
+    )
+}
+
+<MonitoringProgram> CLOSED {
+    (  $<MonitoringProgram_tes> (  &<DocumentedInformation_tes> ;
+          rdf:type [ <DocumentedInformation> ] ? ;
+          <monitoring_items> @<MonitoringItem> *
+       ) ;
+       rdf:type [ <MonitoringProgram> ]
+    )
+}
+
+<NamedEntity>  (
+    @<Asset> OR @<AuditFinding> OR @<CorrectiveAction> OR @<DocumentedInformation> OR @<ImprovementOpportunity> OR
+    @<InformationSecurityEvent> OR @<InformationSecurityIncident> OR @<InformationSecurityManagementSystem> OR
+    @<InformationSecurityObjective> OR @<InterestedParty> OR @<Nonconformity> OR @<Organization> OR @<Resource> OR @<Risk> OR
+    @<Role> OR @<SecurityControl>
+)
+
+<NamedEntity_struct> {
+    (  $<NamedEntity_tes> (  <name> @linkml:String ;
+          <description> @linkml:String ? ;
+          <created_date> @linkml:Date ? ;
+          <modified_date> @linkml:Date ? ;
+          <version> @linkml:String ?
+       ) ;
+       rdf:type [ <NamedEntity> ]
+    )
+}
+
+<Nonconformity> CLOSED {
+    (  $<Nonconformity_tes> (  &<NamedEntity_tes> ;
+          rdf:type [ <NamedEntity> ] ? ;
+          <nonconformity_source> @linkml:String ? ;
+          <detection_date> @linkml:Date ? ;
+          <detected_by> @linkml:String ? ;
+          <requirement_violated> @linkml:String ? ;
+          <nonconformity_description> @linkml:String ? ;
+          <immediate_actions> @linkml:String * ;
+          <consequences_addressed> @linkml:String ? ;
+          <root_cause> @linkml:String ? ;
+          <similar_nonconformities_check> @linkml:String ? ;
+          <linked_corrective_actions> @<CorrectiveAction> * ;
+          <status> @linkml:String ? ;
+          <closure_date> @linkml:Date ? ;
+          <closure_evidence> @linkml:String ?
+       ) ;
+       rdf:type [ <Nonconformity> ]
+    )
+}
+
+<OperationalProcedure> CLOSED {
+    (  $<OperationalProcedure_tes> (  &<DocumentedInformation_tes> ;
+          rdf:type [ <DocumentedInformation> ] ? ;
+          <procedure_scope> @linkml:String ? ;
+          <process_criteria> @linkml:String ? ;
+          <control_measures> @linkml:String * ;
+          <responsible_roles> @<Role> * ;
+          <related_controls> @<SecurityControl> * ;
+          <change_control_requirements> @linkml:String ?
+       ) ;
+       rdf:type [ <OperationalProcedure> ]
+    )
+}
+
+<Organization> CLOSED {
+    (  $<Organization_tes> (  &<NamedEntity_tes> ;
+          rdf:type [ <NamedEntity> ] ? ;
+          <legal_name> @linkml:String ? ;
+          <trading_names> @linkml:String * ;
+          <organization_type> @linkml:String ? ;
+          <industry_sector> @linkml:String ? ;
+          <size_category> @linkml:String ? ;
+          <employee_count> @<PositiveIntegerType> ? ;
+          <geographic_locations> @linkml:String * ;
+          <regulatory_jurisdictions> @linkml:String * ;
+          <parent_organization> @linkml:String ? ;
+          <subsidiaries> @linkml:String *
+       ) ;
+       rdf:type [ <Organization> ]
+    )
+}
+
+<Resource> CLOSED {
+    (  $<Resource_tes> (  &<NamedEntity_tes> ;
+          rdf:type [ <NamedEntity> ] ? ;
+          <resource_type> @linkml:String ? ;
+          <quantity> @linkml:String ? ;
+          <allocation_date> @linkml:Date ? ;
+          <allocated_to> @linkml:String ? ;
+          <cost> @linkml:String ? ;
+          <availability_status> @linkml:String ?
+       ) ;
+       rdf:type [ <Resource> ]
+    )
+}
+
+<Risk> CLOSED {
+    (  $<Risk_tes> (  &<NamedEntity_tes> ;
+          rdf:type [ <NamedEntity> ] ? ;
+          <risk_source> @linkml:String ? ;
+          <threat_description> @linkml:String ? ;
+          <vulnerability_description> @linkml:String ? ;
+          <affected_assets> @<Asset> * ;
+          <affected_cia_properties> @linkml:String * ;
+          <risk_owner> @linkml:String ? ;
+          <likelihood> [ <https://w3id.org/lmodel/iso-iec-27001/LikelihoodRating#rare>
+             <https://w3id.org/lmodel/iso-iec-27001/LikelihoodRating#unlikely>
+             <https://w3id.org/lmodel/iso-iec-27001/LikelihoodRating#possible>
+             <https://w3id.org/lmodel/iso-iec-27001/LikelihoodRating#likely>
+             <https://w3id.org/lmodel/iso-iec-27001/LikelihoodRating#almost_certain> ] ? ;
+          <impact> [ <https://w3id.org/lmodel/iso-iec-27001/ImpactRating#negligible>
+             <https://w3id.org/lmodel/iso-iec-27001/ImpactRating#minor>
+             <https://w3id.org/lmodel/iso-iec-27001/ImpactRating#moderate>
+             <https://w3id.org/lmodel/iso-iec-27001/ImpactRating#major> <https://w3id.org/lmodel/iso-iec-27001/ImpactRating#severe>
+             ] ? ;
+          <inherent_risk_level> [ <https://w3id.org/lmodel/iso-iec-27001/RiskLevel#very_low>
+             <https://w3id.org/lmodel/iso-iec-27001/RiskLevel#low> <https://w3id.org/lmodel/iso-iec-27001/RiskLevel#medium>
+             <https://w3id.org/lmodel/iso-iec-27001/RiskLevel#high> <https://w3id.org/lmodel/iso-iec-27001/RiskLevel#critical> ] ?
+          ;
+          <existing_controls> @<SecurityControl> * ;
+          <residual_risk_level> [ <https://w3id.org/lmodel/iso-iec-27001/RiskLevel#very_low>
+             <https://w3id.org/lmodel/iso-iec-27001/RiskLevel#low> <https://w3id.org/lmodel/iso-iec-27001/RiskLevel#medium>
+             <https://w3id.org/lmodel/iso-iec-27001/RiskLevel#high> <https://w3id.org/lmodel/iso-iec-27001/RiskLevel#critical> ] ?
+          ;
+          <risk_treatment_option> [ <https://w3id.org/lmodel/iso-iec-27001/RiskTreatmentOption#modify>
+             <https://w3id.org/lmodel/iso-iec-27001/RiskTreatmentOption#accept>
+             <https://w3id.org/lmodel/iso-iec-27001/RiskTreatmentOption#avoid>
+             <https://w3id.org/lmodel/iso-iec-27001/RiskTreatmentOption#share> ] ? ;
+          <treatment_priority> @linkml:String ? ;
+          <related_treatment_plan> @<RiskTreatmentPlan> ?
+       ) ;
+       rdf:type [ <Risk> ]
+    )
+}
+
+<RiskAssessment> CLOSED {
+    (  $<RiskAssessment_tes> (  &<DocumentedInformation_tes> ;
+          rdf:type [ <DocumentedInformation> ] ? ;
+          <assessment_scope> @linkml:String ? ;
+          <assessment_date> @linkml:Date ? ;
+          <assessor> @linkml:String ? ;
+          <methodology_used> @linkml:String ? ;
+          <risks_identified> @<Risk> * ;
+          <summary_findings> @linkml:String ? ;
+          <recommendations> @linkml:String * ;
+          <next_assessment_date> @linkml:Date ?
+       ) ;
+       rdf:type [ <RiskAssessment> ]
+    )
+}
+
+<RiskAssessmentProcess> CLOSED {
+    (  $<RiskAssessmentProcess_tes> (  &<DocumentedInformation_tes> ;
+          rdf:type [ <DocumentedInformation> ] ? ;
+          <risk_acceptance_criteria> @linkml:String ? ;
+          <assessment_criteria> @linkml:String ? ;
+          <assessment_methodology> @linkml:String ? ;
+          <likelihood_scale> @linkml:String ? ;
+          <impact_scale> @linkml:String ? ;
+          <risk_matrix> @linkml:String ? ;
+          <assessment_frequency> @linkml:String ? ;
+          <trigger_events> @linkml:String *
+       ) ;
+       rdf:type [ <RiskAssessmentProcess> ]
+    )
+}
+
+<RiskTreatmentPlan> CLOSED {
+    (  $<RiskTreatmentPlan_tes> (  &<DocumentedInformation_tes> ;
+          rdf:type [ <DocumentedInformation> ] ? ;
+          <plan_scope> @linkml:String ? ;
+          <risks_addressed> @<Risk> * ;
+          <treatment_actions> @linkml:String * ;
+          <controls_to_implement> @<SecurityControl> * ;
+          <resources_required> @linkml:String ? ;
+          <responsible_parties> @linkml:String * ;
+          <implementation_timeline> @linkml:String ? ;
+          <risk_owner_approval> @linkml:String ? ;
+          <approved_date> @linkml:Date ? ;
+          <residual_risk_acceptance> @linkml:String ? ;
+          <implementation_status> [ <https://w3id.org/lmodel/iso-iec-27001/ImplementationStatus#not_started>
+             <https://w3id.org/lmodel/iso-iec-27001/ImplementationStatus#planned>
+             <https://w3id.org/lmodel/iso-iec-27001/ImplementationStatus#in_progress>
+             <https://w3id.org/lmodel/iso-iec-27001/ImplementationStatus#implemented>
+             <https://w3id.org/lmodel/iso-iec-27001/ImplementationStatus#not_applicable> ] ? ;
+          <completion_date> @linkml:Date ?
+       ) ;
+       rdf:type [ <RiskTreatmentPlan> ]
+    )
+}
+
+<RiskTreatmentProcess> CLOSED {
+    (  $<RiskTreatmentProcess_tes> (  &<DocumentedInformation_tes> ;
+          rdf:type [ <DocumentedInformation> ] ? ;
+          <treatment_options_guidance> @linkml:String ? ;
+          <control_selection_criteria> @linkml:String ? ;
+          <soa_template> @linkml:String ? ;
+          <approval_workflow> @linkml:String ?
+       ) ;
+       rdf:type [ <RiskTreatmentProcess> ]
+    )
+}
+
+<Role> CLOSED {
+    (  $<Role_tes> (  &<NamedEntity_tes> ;
+          rdf:type [ <NamedEntity> ] ? ;
+          <role_type> @linkml:String ? ;
+          <responsibilities> @linkml:String * ;
+          <authorities> @linkml:String * ;
+          <accountability> @linkml:String ? ;
+          <assigned_to> @linkml:String * ;
+          <delegation_rules> @linkml:String ? ;
+          <reporting_line> @linkml:String ?
+       ) ;
+       rdf:type [ <Role> ]
+    )
+}
+
+<SecurityControl> CLOSED {
+    (  $<SecurityControl_tes> (  &<NamedEntity_tes> ;
+          rdf:type [ <NamedEntity> ] ? ;
+          <control_id> @linkml:String ? ;
+          <control_title> @linkml:String ? ;
+          <control_category> [ <https://w3id.org/lmodel/iso-iec-27001/ControlCategory#organizational>
+             <https://w3id.org/lmodel/iso-iec-27001/ControlCategory#people>
+             <https://w3id.org/lmodel/iso-iec-27001/ControlCategory#physical>
+             <https://w3id.org/lmodel/iso-iec-27001/ControlCategory#technological> ] ? ;
+          <control_text> @linkml:String ? ;
+          <implementation_guidance> @linkml:String ? ;
+          <related_controls> @<SecurityControl> * ;
+          <applicable_threats> @linkml:String * ;
+          <applicable_assets> @linkml:String * ;
+          <control_owner> @linkml:String ? ;
+          <implementation_status> [ <https://w3id.org/lmodel/iso-iec-27001/ImplementationStatus#not_started>
+             <https://w3id.org/lmodel/iso-iec-27001/ImplementationStatus#planned>
+             <https://w3id.org/lmodel/iso-iec-27001/ImplementationStatus#in_progress>
+             <https://w3id.org/lmodel/iso-iec-27001/ImplementationStatus#implemented>
+             <https://w3id.org/lmodel/iso-iec-27001/ImplementationStatus#not_applicable> ] ? ;
+          <implementation_date> @linkml:Date ? ;
+          <effectiveness_rating> @linkml:String ? ;
+          <last_test_date> @linkml:Date ? ;
+          <evidence_references> @linkml:String *
+       ) ;
+       rdf:type [ <SecurityControl> ]
+    )
+}
+
+<SoAEntry> CLOSED {
+    (  $<SoAEntry_tes> (  <control_reference> @<SecurityControl> ? ;
+          <is_applicable> @linkml:Boolean ? ;
+          <inclusion_justification> @linkml:String ? ;
+          <exclusion_justification> @linkml:String ? ;
+          <implementation_status> [ <https://w3id.org/lmodel/iso-iec-27001/ImplementationStatus#not_started>
+             <https://w3id.org/lmodel/iso-iec-27001/ImplementationStatus#planned>
+             <https://w3id.org/lmodel/iso-iec-27001/ImplementationStatus#in_progress>
+             <https://w3id.org/lmodel/iso-iec-27001/ImplementationStatus#implemented>
+             <https://w3id.org/lmodel/iso-iec-27001/ImplementationStatus#not_applicable> ] ? ;
+          <implementation_evidence> @linkml:String ? ;
+          <responsible_role> @<Role> ? ;
+          <target_implementation_date> @linkml:Date ?
+       ) ;
+       rdf:type [ <SoAEntry> ] ?
+    )
+}
+
+<StatementOfApplicability> CLOSED {
+    (  $<StatementOfApplicability_tes> (  &<DocumentedInformation_tes> ;
+          rdf:type [ <DocumentedInformation> ] ? ;
+          <soa_entries> @<SoAEntry> * ;
+          <total_controls> @<UnsignedShortType> ? ;
+          <implemented_count> @<UnsignedShortType> ? ;
+          <planned_count> @<UnsignedShortType> ? ;
+          <not_applicable_count> @<UnsignedShortType> ? ;
+          <last_review_date> @linkml:Date ?
+       ) ;
+       rdf:type [ <StatementOfApplicability> ]
+    )
+}
+
+<TopicSpecificPolicy> CLOSED {
+    (  $<TopicSpecificPolicy_tes> (  &<DocumentedInformation_tes> ;
+          rdf:type [ <DocumentedInformation> ] ? ;
+          <topic_area> @linkml:String ? ;
+          <parent_policy> @<InformationSecurityPolicy> ? ;
+          <applicable_controls> @<SecurityControl> * ;
+          <target_audience> @linkml:String ?
+       ) ;
+       rdf:type [ <TopicSpecificPolicy> ]
+    )
+}

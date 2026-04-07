@@ -1,0 +1,21 @@
+id: iso27001:control-access-review
+name: User Access Review Control
+control_id: "5.15"
+control_title: Access Control Review
+control_category: organizational
+control_text: Access rights are reviewed at planned intervals and after role changes.
+implementation_guidance: Review privileged access quarterly and retain evidence of approvals.
+applicable_threats:
+  - Excessive privilege
+  - Unauthorized access
+applicable_assets:
+  - Identity platform
+  - Human resources records
+control_owner: Identity and Access Manager
+implementation_status: implemented
+implementation_date: "2026-02-10"
+effectiveness_rating: effective
+last_test_date: "2026-03-31"
+evidence_references:
+  - Access review report Q1-2026
+  - IAM approval ticket IAM-441

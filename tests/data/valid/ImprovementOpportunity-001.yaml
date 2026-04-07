@@ -1,0 +1,14 @@
+id: iso27001:improvement-2026-001
+name: Expand Supplier Assurance Testing
+improvement_source: management_review
+identification_date: "2026-04-07"
+identified_by: Chief Information Security Officer
+improvement_description: Extend assurance testing to critical SaaS providers.
+expected_benefit: Better visibility of supplier resilience and control operation.
+priority: medium
+implementation_plan: Add assurance checkpoints to the annual supplier review cycle.
+responsible_party: Vendor Risk Manager
+target_date: "2026-09-30"
+actual_completion_date: "2026-09-15"
+outcome_assessment: Supplier oversight improved and critical exceptions were tracked earlier.
+status: completed

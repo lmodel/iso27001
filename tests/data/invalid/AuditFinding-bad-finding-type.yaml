@@ -1,0 +1,3 @@
+id: iso27001:audit-finding-invalid
+name: Invalid Finding Type
+finding_type: catastrophic

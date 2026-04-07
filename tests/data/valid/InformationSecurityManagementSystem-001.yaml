@@ -1,0 +1,32 @@
+id: iso27001:isms-example
+name: Example Corp ISMS
+organization: iso27001:org-example
+scope_statement: The ISMS covers corporate IT, identity services, and customer support systems.
+scope_boundaries:
+  - Corporate headquarters
+  - Shared SaaS platform
+scope_exclusions:
+  - Excludes development environments dedicated to isolated research prototypes.
+context_internal_issues:
+  - Rapid growth increased onboarding workload.
+context_external_issues:
+  - Customers require stronger assurance over access management controls.
+interested_parties:
+  - iso27001:party-regulator
+information_security_policy: iso27001:policy-isms
+risk_treatment_plans:
+  - iso27001:rtp-phishing-2026
+controls:
+  - iso27001:control-access-review
+management_reviews:
+  - iso27001:management-review-q1-2026
+nonconformities:
+  - iso27001:nc-2026-001
+corrective_actions:
+  - iso27001:ca-2026-001
+improvements:
+  - iso27001:improvement-2026-001
+certification_status: certified
+certification_body: Example Certification Services
+certification_date: "2026-03-01"
+recertification_date: "2029-03-01"

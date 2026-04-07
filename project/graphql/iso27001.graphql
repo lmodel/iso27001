@@ -1,0 +1,892 @@
+# metamodel_version: 1.7.0
+# version: 1.0.0
+enum AuditFindingType
+  {
+    major_nonconformity
+    minor_nonconformity
+    observation
+    positive_finding
+  }
+
+enum ControlCategory
+  {
+    organizational
+    people
+    physical
+    technological
+  }
+
+enum DocumentType
+  {
+    policy
+    procedure
+    standard
+    guideline
+    record
+    plan
+    report
+  }
+
+enum ImpactRating
+  {
+    negligible
+    minor
+    moderate
+    major
+    severe
+  }
+
+enum ImplementationStatus
+  {
+    not_started
+    planned
+    in_progress
+    implemented
+    not_applicable
+  }
+
+enum LikelihoodRating
+  {
+    rare
+    unlikely
+    possible
+    likely
+    almost_certain
+  }
+
+enum RiskLevel
+  {
+    very_low
+    low
+    medium
+    high
+    critical
+  }
+
+enum RiskTreatmentOption
+  {
+    modify
+    accept
+    avoid
+    share
+  }
+
+type Asset
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    assetType: String
+    assetOwner: String
+    assetCustodian: String
+    classification: String
+    location: String
+    criticality: String
+    relatedRisks: [Risk]
+    applicableControls: [SecurityControl]
+  }
+
+type AuditFinding
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    findingType: AuditFindingType
+    clauseReference: String
+    controlReference: SecurityControl
+    findingDescription: String
+    objectiveEvidence: String
+    rootCauseAnalysis: String
+    riskImplication: String
+    recommendedAction: String
+    auditeeResponse: String
+    linkedCorrectiveAction: CorrectiveAction
+    closureStatus: String
+    closureDate: String
+  }
+
+type AuditProgramme
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    documentType: DocumentType
+    documentReference: String
+    author: String
+    owner: String
+    approvedBy: String
+    approvedDate: String
+    effectiveDate: String
+    reviewDate: String
+    status: String
+    classification: String
+    retentionPeriod: DurationType
+    programmePeriod: String
+    plannedAudits: [InternalAudit]
+    auditFrequencyRationale: String
+    resourceRequirements: String
+    auditorQualifications: String
+    programmeStatus: String
+  }
+
+type AwarenessProgram
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    documentType: DocumentType
+    documentReference: String
+    author: String
+    owner: String
+    approvedBy: String
+    approvedDate: String
+    effectiveDate: String
+    reviewDate: String
+    status: String
+    classification: String
+    retentionPeriod: DurationType
+    awarenessTopics: [String]
+    deliveryMethods: [String]
+    targetAudience: String
+    frequency: String
+    completionTracking: String
+    effectivenessMeasures: String
+  }
+
+type CommunicationItem
+  {
+    subject: String
+    purpose: String
+    audience: String
+    frequency: String
+    method: String
+    responsibleParty: String
+    recordsRequired: Boolean
+  }
+
+type CommunicationPlan
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    documentType: DocumentType
+    documentReference: String
+    author: String
+    owner: String
+    approvedBy: String
+    approvedDate: String
+    effectiveDate: String
+    reviewDate: String
+    status: String
+    classification: String
+    retentionPeriod: DurationType
+    communicationItems: [CommunicationItem]
+  }
+
+type CompetenceRecord
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    documentType: DocumentType
+    documentReference: String
+    author: String
+    owner: String
+    approvedBy: String
+    approvedDate: String
+    effectiveDate: String
+    reviewDate: String
+    status: String
+    classification: String
+    retentionPeriod: DurationType
+    personName: String
+    personRole: String
+    requiredCompetencies: [String]
+    educationRecords: [String]
+    trainingRecords: [String]
+    experienceRecords: [String]
+    competencyAssessmentDate: String
+    competencyGaps: [String]
+    developmentActions: [String]
+  }
+
+type CorrectiveAction
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    linkedNonconformity: Nonconformity
+    actionDescription: String
+    rootCauseAddressed: String
+    responsibleParty: String
+    targetCompletionDate: String
+    actualCompletionDate: String
+    resourcesRequired: String
+    effectivenessCriteria: String
+    effectivenessReviewDate: String
+    effectivenessVerified: Boolean
+    ismsChangesRequired: String
+    status: String
+  }
+
+interface DocumentedInformation
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    documentType: DocumentType
+    documentReference: String
+    author: String
+    owner: String
+    approvedBy: String
+    approvedDate: String
+    effectiveDate: String
+    reviewDate: String
+    status: String
+    classification: String
+    retentionPeriod: DurationType
+  }
+
+type ImprovementOpportunity
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    improvementSource: String
+    identificationDate: String
+    identifiedBy: String
+    improvementDescription: String
+    expectedBenefit: String
+    priority: String
+    implementationPlan: String
+    responsibleParty: String
+    targetDate: String
+    actualCompletionDate: String
+    outcomeAssessment: String
+    status: String
+  }
+
+type InformationSecurityEvent
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    eventDatetime: String
+    reporter: String
+    eventDescription: String
+    affectedAssets: [Asset]
+    initialAssessment: String
+    categorizedAsIncident: Boolean
+    linkedIncident: InformationSecurityIncident
+  }
+
+type InformationSecurityIncident
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    incidentDatetime: String
+    incidentCategory: String
+    severity: String
+    affectedAssets: [Asset]
+    affectedCia: [String]
+    incidentDescription: String
+    detectionMethod: String
+    responseActions: [String]
+    containmentActions: [String]
+    eradicationActions: [String]
+    recoveryActions: [String]
+    rootCause: String
+    lessonsLearned: String
+    evidenceCollected: [String]
+    notificationRequired: Boolean
+    notificationsMade: [String]
+    closureDatetime: String
+    postIncidentReview: String
+  }
+
+type InformationSecurityManagementSystem
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    organization: Organization
+    scopeStatement: String
+    scopeBoundaries: [String]
+    scopeExclusions: [String]
+    contextInternalIssues: [String]
+    contextExternalIssues: [String]
+    interestedParties: [InterestedParty]
+    informationSecurityPolicy: InformationSecurityPolicy
+    objectives: [InformationSecurityObjective]
+    riskAssessmentProcess: RiskAssessmentProcess
+    riskTreatmentProcess: RiskTreatmentProcess
+    statementOfApplicability: StatementOfApplicability
+    controls: [SecurityControl]
+    roles: [Role]
+    resources: [Resource]
+    competenceRecords: [CompetenceRecord]
+    awarenessProgram: AwarenessProgram
+    communicationPlan: CommunicationPlan
+    documentedInformationRegister: [DocumentedInformation]
+    operationalProcedures: [OperationalProcedure]
+    riskAssessments: [RiskAssessment]
+    riskTreatmentPlans: [RiskTreatmentPlan]
+    monitoringProgram: MonitoringProgram
+    internalAudits: [InternalAudit]
+    managementReviews: [ManagementReview]
+    nonconformities: [Nonconformity]
+    correctiveActions: [CorrectiveAction]
+    improvements: [ImprovementOpportunity]
+    certificationStatus: String
+    certificationBody: String
+    certificationDate: String
+    recertificationDate: String
+  }
+
+type InformationSecurityObjective
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    objectiveStatement: String
+    targetValue: String
+    currentValue: String
+    metricDefinition: String
+    measurementMethod: String
+    measurementFrequency: String
+    responsibleRole: Role
+    targetDate: String
+    achievementStatus: String
+    relatedRisks: [Risk]
+    relatedControls: [SecurityControl]
+    actionPlan: String
+  }
+
+type InformationSecurityPolicy
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    documentType: DocumentType
+    documentReference: String
+    author: String
+    owner: String
+    approvedBy: String
+    approvedDate: String
+    effectiveDate: String
+    reviewDate: String
+    status: String
+    classification: String
+    retentionPeriod: DurationType
+    policyStatement: String
+    policyObjectivesFramework: String
+    commitmentStatements: [String]
+    applicabilityStatement: String
+    communicationDate: String
+    acknowledgmentRequired: Boolean
+    relatedTopicPolicies: [TopicSpecificPolicy]
+  }
+
+type InterestedParty
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    partyType: String
+    relationship: String
+    requirements: [String]
+    communicationNeeds: String
+    contactInformation: String
+  }
+
+type InternalAudit
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    documentType: DocumentType
+    documentReference: String
+    author: String
+    owner: String
+    approvedBy: String
+    approvedDate: String
+    effectiveDate: String
+    reviewDate: String
+    status: String
+    classification: String
+    retentionPeriod: DurationType
+    auditReference: String
+    auditType: String
+    auditScope: String
+    auditCriteria: [String]
+    auditObjectives: [String]
+    auditPeriodStart: String
+    auditPeriodEnd: String
+    leadAuditor: String
+    auditTeam: [String]
+    auditeeRepresentatives: [String]
+    auditPlan: String
+    findings: [AuditFinding]
+    positiveObservations: [String]
+    auditConclusion: String
+    reportDate: String
+    reportDistribution: [String]
+  }
+
+type ManagementReview
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    documentType: DocumentType
+    documentReference: String
+    author: String
+    owner: String
+    approvedBy: String
+    approvedDate: String
+    effectiveDate: String
+    status: String
+    classification: String
+    retentionPeriod: DurationType
+    reviewDate: String
+    attendees: [String]
+    previousActionsStatus: String
+    contextChanges: String
+    interestedPartyChanges: String
+    performanceTrends: String
+    auditResultsSummary: String
+    riskAssessmentResults: String
+    improvementOpportunities: [String]
+    decisions: [String]
+    actionItems: [String]
+    nextReviewDate: String
+  }
+
+type MonitoringItem
+  {
+    metricName: String
+    metricDescription: String
+    measurementMethod: String
+    measurementFrequency: String
+    responsibleParty: String
+    analysisFrequency: String
+    analyst: String
+    targetThreshold: String
+    alertThreshold: String
+    currentValue: String
+    trend: String
+  }
+
+type MonitoringProgram
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    documentType: DocumentType
+    documentReference: String
+    author: String
+    owner: String
+    approvedBy: String
+    approvedDate: String
+    effectiveDate: String
+    reviewDate: String
+    status: String
+    classification: String
+    retentionPeriod: DurationType
+    monitoringItems: [MonitoringItem]
+  }
+
+interface NamedEntity
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+  }
+
+type Nonconformity
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    nonconformitySource: String
+    detectionDate: String
+    detectedBy: String
+    requirementViolated: String
+    nonconformityDescription: String
+    immediateActions: [String]
+    consequencesAddressed: String
+    rootCause: String
+    similarNonconformitiesCheck: String
+    linkedCorrectiveActions: [CorrectiveAction]
+    status: String
+    closureDate: String
+    closureEvidence: String
+  }
+
+type OperationalProcedure
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    documentType: DocumentType
+    documentReference: String
+    author: String
+    owner: String
+    approvedBy: String
+    approvedDate: String
+    effectiveDate: String
+    reviewDate: String
+    status: String
+    classification: String
+    retentionPeriod: DurationType
+    procedureScope: String
+    processCriteria: String
+    controlMeasures: [String]
+    responsibleRoles: [Role]
+    relatedControls: [SecurityControl]
+    changeControlRequirements: String
+  }
+
+type Organization
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    legalName: String
+    tradingNames: [String]
+    organizationType: String
+    industrySector: String
+    sizeCategory: String
+    employeeCount: PositiveIntegerType
+    geographicLocations: [String]
+    regulatoryJurisdictions: [String]
+    parentOrganization: String
+    subsidiaries: [String]
+  }
+
+type Resource
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    resourceType: String
+    quantity: String
+    allocationDate: String
+    allocatedTo: String
+    cost: String
+    availabilityStatus: String
+  }
+
+type Risk
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    riskSource: String
+    threatDescription: String
+    vulnerabilityDescription: String
+    affectedAssets: [Asset]
+    affectedCiaProperties: [String]
+    riskOwner: String
+    likelihood: LikelihoodRating
+    impact: ImpactRating
+    inherentRiskLevel: RiskLevel
+    existingControls: [SecurityControl]
+    residualRiskLevel: RiskLevel
+    riskTreatmentOption: RiskTreatmentOption
+    treatmentPriority: String
+    relatedTreatmentPlan: RiskTreatmentPlan
+  }
+
+type RiskAssessment
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    documentType: DocumentType
+    documentReference: String
+    author: String
+    owner: String
+    approvedBy: String
+    approvedDate: String
+    effectiveDate: String
+    reviewDate: String
+    status: String
+    classification: String
+    retentionPeriod: DurationType
+    assessmentScope: String
+    assessmentDate: String
+    assessor: String
+    methodologyUsed: String
+    risksIdentified: [Risk]
+    summaryFindings: String
+    recommendations: [String]
+    nextAssessmentDate: String
+  }
+
+type RiskAssessmentProcess
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    documentType: DocumentType
+    documentReference: String
+    author: String
+    owner: String
+    approvedBy: String
+    approvedDate: String
+    effectiveDate: String
+    reviewDate: String
+    status: String
+    classification: String
+    retentionPeriod: DurationType
+    riskAcceptanceCriteria: String
+    assessmentCriteria: String
+    assessmentMethodology: String
+    likelihoodScale: String
+    impactScale: String
+    riskMatrix: String
+    assessmentFrequency: String
+    triggerEvents: [String]
+  }
+
+type RiskTreatmentPlan
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    documentType: DocumentType
+    documentReference: String
+    author: String
+    owner: String
+    approvedBy: String
+    effectiveDate: String
+    reviewDate: String
+    status: String
+    classification: String
+    retentionPeriod: DurationType
+    planScope: String
+    risksAddressed: [Risk]
+    treatmentActions: [String]
+    controlsToImplement: [SecurityControl]
+    resourcesRequired: String
+    responsibleParties: [String]
+    implementationTimeline: String
+    riskOwnerApproval: String
+    approvedDate: String
+    residualRiskAcceptance: String
+    implementationStatus: ImplementationStatus
+    completionDate: String
+  }
+
+type RiskTreatmentProcess
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    documentType: DocumentType
+    documentReference: String
+    author: String
+    owner: String
+    approvedBy: String
+    approvedDate: String
+    effectiveDate: String
+    reviewDate: String
+    status: String
+    classification: String
+    retentionPeriod: DurationType
+    treatmentOptionsGuidance: String
+    controlSelectionCriteria: String
+    soaTemplate: String
+    approvalWorkflow: String
+  }
+
+type Role
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    roleType: String
+    responsibilities: [String]
+    authorities: [String]
+    accountability: String
+    assignedTo: [String]
+    delegationRules: String
+    reportingLine: String
+  }
+
+type SecurityControl
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    controlId: String
+    controlTitle: String
+    controlCategory: ControlCategory
+    controlText: String
+    implementationGuidance: String
+    relatedControls: [SecurityControl]
+    applicableThreats: [String]
+    applicableAssets: [String]
+    controlOwner: String
+    implementationStatus: ImplementationStatus
+    implementationDate: String
+    effectivenessRating: String
+    lastTestDate: String
+    evidenceReferences: [String]
+  }
+
+type SoAEntry
+  {
+    controlReference: SecurityControl
+    isApplicable: Boolean
+    inclusionJustification: String
+    exclusionJustification: String
+    implementationStatus: ImplementationStatus
+    implementationEvidence: String
+    responsibleRole: Role
+    targetImplementationDate: String
+  }
+
+type StatementOfApplicability
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    documentType: DocumentType
+    documentReference: String
+    author: String
+    owner: String
+    approvedDate: String
+    effectiveDate: String
+    reviewDate: String
+    status: String
+    classification: String
+    retentionPeriod: DurationType
+    soaEntries: [SoAEntry]
+    totalControls: UnsignedShortType
+    implementedCount: UnsignedShortType
+    plannedCount: UnsignedShortType
+    notApplicableCount: UnsignedShortType
+    lastReviewDate: String
+    approvedBy: String
+  }
+
+type TopicSpecificPolicy
+  {
+    id: String!
+    name: String!
+    description: String
+    createdDate: String
+    modifiedDate: String
+    version: String
+    documentType: DocumentType
+    documentReference: String
+    author: String
+    owner: String
+    approvedBy: String
+    approvedDate: String
+    effectiveDate: String
+    reviewDate: String
+    status: String
+    classification: String
+    retentionPeriod: DurationType
+    topicArea: String
+    parentPolicy: InformationSecurityPolicy
+    applicableControls: [SecurityControl]
+    targetAudience: String
+  }

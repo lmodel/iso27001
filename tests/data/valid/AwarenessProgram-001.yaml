@@ -1,0 +1,13 @@
+id: iso27001:awareness-001
+name: Workforce Security Awareness Program
+document_type: plan
+awareness_topics:
+  - Phishing recognition
+  - Password hygiene
+delivery_methods:
+  - e-learning
+  - tabletop exercises
+target_audience: All employees
+frequency: quarterly
+completion_tracking: LMS completion reports
+effectiveness_measures: Simulation click-through rate and completion rate trends

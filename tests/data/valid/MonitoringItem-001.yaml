@@ -1,0 +1,11 @@
+metric_name: Phishing reporting rate
+metric_description: Portion of phishing simulations reported by users
+measurement_method: Simulation platform report
+measurement_frequency: monthly
+responsible_party: Security Awareness Lead
+analysis_frequency: monthly
+analyst: Security Metrics Analyst
+target_threshold: ">80%"
+alert_threshold: "<60%"
+current_value: 74%
+trend: improving

@@ -1,0 +1,793 @@
+ syntax="proto3";
+ package
+// metamodel_version: 1.7.0
+// version: 1.0.0
+// An information asset or associated asset requiring protection, per Annex A control 5.9.
+message Asset
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  string assetType = 0
+  string assetOwner = 0
+  string assetCustodian = 0
+  string classification = 0
+  string location = 0
+  string criticality = 0
+ repeated  risk relatedRisks = 0
+ repeated  securityControl applicableControls = 0
+ }
+// A finding from an internal audit, including nonconformities, observations, and positive findings.
+message AuditFinding
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  auditFindingType findingType = 0
+  string clauseReference = 0
+  securityControl controlReference = 0
+  string findingDescription = 0
+  string objectiveEvidence = 0
+  string rootCauseAnalysis = 0
+  string riskImplication = 0
+  string recommendedAction = 0
+  string auditeeResponse = 0
+  correctiveAction linkedCorrectiveAction = 0
+  string closureStatus = 0
+  date closureDate = 0
+ }
+// The internal audit programme per 9.2.2, planning audit activities over a defined period.
+message AuditProgramme
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  documentType documentType = 0
+  string documentReference = 0
+  string author = 0
+  string owner = 0
+  string approvedBy = 0
+  date approvedDate = 0
+  date effectiveDate = 0
+  date reviewDate = 0
+  string status = 0
+  string classification = 0
+  durationType retentionPeriod = 0
+  string programmePeriod = 0
+ repeated  internalAudit plannedAudits = 0
+  string auditFrequencyRationale = 0
+  string resourceRequirements = 0
+  string auditorQualifications = 0
+  string programmeStatus = 0
+ }
+// The awareness program ensuring personnel understand their information security responsibilities per Clause 7.3.
+message AwarenessProgram
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  documentType documentType = 0
+  string documentReference = 0
+  string author = 0
+  string owner = 0
+  string approvedBy = 0
+  date approvedDate = 0
+  date effectiveDate = 0
+  date reviewDate = 0
+  string status = 0
+  string classification = 0
+  durationType retentionPeriod = 0
+ repeated  string awarenessTopics = 0
+ repeated  string deliveryMethods = 0
+  string targetAudience = 0
+  string frequency = 0
+  string completionTracking = 0
+  string effectivenessMeasures = 0
+ }
+// A single communication requirement within the communication plan.
+message CommunicationItem
+ {
+  string subject = 0
+  string purpose = 0
+  string audience = 0
+  string frequency = 0
+  string method = 0
+  string responsibleParty = 0
+  boolean recordsRequired = 0
+ }
+// Plan for internal and external communications relevant to the ISMS per Clause 7.4.
+message CommunicationPlan
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  documentType documentType = 0
+  string documentReference = 0
+  string author = 0
+  string owner = 0
+  string approvedBy = 0
+  date approvedDate = 0
+  date effectiveDate = 0
+  date reviewDate = 0
+  string status = 0
+  string classification = 0
+  durationType retentionPeriod = 0
+ repeated  communicationItem communicationItems = 0
+ }
+// Evidence of competence for personnel affecting information security performance per Clause 7.2 d).
+message CompetenceRecord
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  documentType documentType = 0
+  string documentReference = 0
+  string author = 0
+  string owner = 0
+  string approvedBy = 0
+  date approvedDate = 0
+  date effectiveDate = 0
+  date reviewDate = 0
+  string status = 0
+  string classification = 0
+  durationType retentionPeriod = 0
+  string personName = 0
+  string personRole = 0
+ repeated  string requiredCompetencies = 0
+ repeated  string educationRecords = 0
+ repeated  string trainingRecords = 0
+ repeated  string experienceRecords = 0
+  date competencyAssessmentDate = 0
+ repeated  string competencyGaps = 0
+ repeated  string developmentActions = 0
+ }
+// A corrective action per Clause 10.2 to eliminate the cause of a nonconformity and prevent recurrence.
+message CorrectiveAction
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  nonconformity linkedNonconformity = 0
+  string actionDescription = 0
+  string rootCauseAddressed = 0
+  string responsibleParty = 0
+  date targetCompletionDate = 0
+  date actualCompletionDate = 0
+  string resourcesRequired = 0
+  string effectivenessCriteria = 0
+  date effectivenessReviewDate = 0
+  boolean effectivenessVerified = 0
+  string ismsChangesRequired = 0
+  string status = 0
+ }
+// An opportunity for continual improvement per Clause 10.1, enhancing ISMS suitability, adequacy, or effectiveness.
+message ImprovementOpportunity
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  string improvementSource = 0
+  date identificationDate = 0
+  string identifiedBy = 0
+  string improvementDescription = 0
+  string expectedBenefit = 0
+  string priority = 0
+  string implementationPlan = 0
+  string responsibleParty = 0
+  date targetDate = 0
+  date actualCompletionDate = 0
+  string outcomeAssessment = 0
+  string status = 0
+ }
+// An information security event per A.5.25, which may or may not be categorized as an incident.
+message InformationSecurityEvent
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  datetime eventDatetime = 0
+  string reporter = 0
+  string eventDescription = 0
+ repeated  asset affectedAssets = 0
+  string initialAssessment = 0
+  boolean categorizedAsIncident = 0
+  informationSecurityIncident linkedIncident = 0
+ }
+// An information security incident per A.5.26, requiring response per documented procedures.
+message InformationSecurityIncident
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  datetime incidentDatetime = 0
+  string incidentCategory = 0
+  string severity = 0
+ repeated  asset affectedAssets = 0
+ repeated  string affectedCia = 0
+  string incidentDescription = 0
+  string detectionMethod = 0
+ repeated  string responseActions = 0
+ repeated  string containmentActions = 0
+ repeated  string eradicationActions = 0
+ repeated  string recoveryActions = 0
+  string rootCause = 0
+  string lessonsLearned = 0
+ repeated  string evidenceCollected = 0
+  boolean notificationRequired = 0
+ repeated  string notificationsMade = 0
+  datetime closureDatetime = 0
+  string postIncidentReview = 0
+ }
+// Top-level container representing an organization's complete ISMS per ISO 27001. Aggregates all components required for establishing, implementing, maintaining, and continually improving information security management.
+message InformationSecurityManagementSystem
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  organization organization = 0
+  string scopeStatement = 0
+ repeated  string scopeBoundaries = 0
+ repeated  string scopeExclusions = 0
+ repeated  string contextInternalIssues = 0
+ repeated  string contextExternalIssues = 0
+ repeated  interestedParty interestedParties = 0
+  informationSecurityPolicy informationSecurityPolicy = 0
+ repeated  informationSecurityObjective objectives = 0
+  riskAssessmentProcess riskAssessmentProcess = 0
+  riskTreatmentProcess riskTreatmentProcess = 0
+  statementOfApplicability statementOfApplicability = 0
+ repeated  securityControl controls = 0
+ repeated  role roles = 0
+ repeated  resource resources = 0
+ repeated  competenceRecord competenceRecords = 0
+  awarenessProgram awarenessProgram = 0
+  communicationPlan communicationPlan = 0
+ repeated  documentedInformation documentedInformationRegister = 0
+ repeated  operationalProcedure operationalProcedures = 0
+ repeated  riskAssessment riskAssessments = 0
+ repeated  riskTreatmentPlan riskTreatmentPlans = 0
+  monitoringProgram monitoringProgram = 0
+ repeated  internalAudit internalAudits = 0
+ repeated  managementReview managementReviews = 0
+ repeated  nonconformity nonconformities = 0
+ repeated  correctiveAction correctiveActions = 0
+ repeated  improvementOpportunity improvements = 0
+  string certificationStatus = 0
+  string certificationBody = 0
+  date certificationDate = 0
+  date recertificationDate = 0
+ }
+// A measurable information security objective per Clause 6.2, established at relevant functions and levels of the organization.
+message InformationSecurityObjective
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  string objectiveStatement = 0
+  string targetValue = 0
+  string currentValue = 0
+  string metricDefinition = 0
+  string measurementMethod = 0
+  string measurementFrequency = 0
+  role responsibleRole = 0
+  date targetDate = 0
+  string achievementStatus = 0
+ repeated  risk relatedRisks = 0
+ repeated  securityControl relatedControls = 0
+  string actionPlan = 0
+ }
+// The information security policy established by top management per Clause 5.2. Provides framework for setting objectives and demonstrates commitment.
+message InformationSecurityPolicy
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  documentType documentType = 0
+  string documentReference = 0
+  string author = 0
+  string owner = 0
+  string approvedBy = 0
+  date approvedDate = 0
+  date effectiveDate = 0
+  date reviewDate = 0
+  string status = 0
+  string classification = 0
+  durationType retentionPeriod = 0
+  string policyStatement = 0
+  string policyObjectivesFramework = 0
+ repeated  string commitmentStatements = 0
+  string applicabilityStatement = 0
+  date communicationDate = 0
+  boolean acknowledgmentRequired = 0
+ repeated  topicSpecificPolicy relatedTopicPolicies = 0
+ }
+// A stakeholder whose needs and expectations are relevant to the ISMS per 4.2. Includes internal parties (employees, management) and external parties (customers, regulators, suppliers).
+message InterestedParty
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  string partyType = 0
+  string relationship = 0
+ repeated  string requirements = 0
+  string communicationNeeds = 0
+  string contactInformation = 0
+ }
+// An internal audit instance per Clause 9.2, assessing ISMS conformance and effectiveness.
+message InternalAudit
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  documentType documentType = 0
+  string documentReference = 0
+  string author = 0
+  string owner = 0
+  string approvedBy = 0
+  date approvedDate = 0
+  date effectiveDate = 0
+  date reviewDate = 0
+  string status = 0
+  string classification = 0
+  durationType retentionPeriod = 0
+  string auditReference = 0
+  string auditType = 0
+  string auditScope = 0
+ repeated  string auditCriteria = 0
+ repeated  string auditObjectives = 0
+  date auditPeriodStart = 0
+  date auditPeriodEnd = 0
+  string leadAuditor = 0
+ repeated  string auditTeam = 0
+ repeated  string auditeeRepresentatives = 0
+  string auditPlan = 0
+ repeated  auditFinding findings = 0
+ repeated  string positiveObservations = 0
+  string auditConclusion = 0
+  date reportDate = 0
+ repeated  string reportDistribution = 0
+ }
+// A management review per Clause 9.3, conducted by top management to ensure ISMS suitability, adequacy, and effectiveness.
+message ManagementReview
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  documentType documentType = 0
+  string documentReference = 0
+  string author = 0
+  string owner = 0
+  string approvedBy = 0
+  date approvedDate = 0
+  date effectiveDate = 0
+  string status = 0
+  string classification = 0
+  durationType retentionPeriod = 0
+  date reviewDate = 0
+ repeated  string attendees = 0
+  string previousActionsStatus = 0
+  string contextChanges = 0
+  string interestedPartyChanges = 0
+  string performanceTrends = 0
+  string auditResultsSummary = 0
+  string riskAssessmentResults = 0
+ repeated  string improvementOpportunities = 0
+ repeated  string decisions = 0
+ repeated  string actionItems = 0
+  date nextReviewDate = 0
+ }
+// A single item to be monitored and measured per 9.1.
+message MonitoringItem
+ {
+  string metricName = 0
+  string metricDescription = 0
+  string measurementMethod = 0
+  string measurementFrequency = 0
+  string responsibleParty = 0
+  string analysisFrequency = 0
+  string analyst = 0
+  string targetThreshold = 0
+  string alertThreshold = 0
+  string currentValue = 0
+  string trend = 0
+ }
+// The program for monitoring, measurement, analysis, and evaluation per Clause 9.1.
+message MonitoringProgram
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  documentType documentType = 0
+  string documentReference = 0
+  string author = 0
+  string owner = 0
+  string approvedBy = 0
+  date approvedDate = 0
+  date effectiveDate = 0
+  date reviewDate = 0
+  string status = 0
+  string classification = 0
+  durationType retentionPeriod = 0
+ repeated  monitoringItem monitoringItems = 0
+ }
+// A nonconformity identified per Clause 10.2, representing failure to fulfill a requirement.
+message Nonconformity
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  string nonconformitySource = 0
+  date detectionDate = 0
+  string detectedBy = 0
+  string requirementViolated = 0
+  string nonconformityDescription = 0
+ repeated  string immediateActions = 0
+  string consequencesAddressed = 0
+  string rootCause = 0
+  string similarNonconformitiesCheck = 0
+ repeated  correctiveAction linkedCorrectiveActions = 0
+  string status = 0
+  date closureDate = 0
+  string closureEvidence = 0
+ }
+// A documented procedure for operational planning and control per Clause 8.1.
+message OperationalProcedure
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  documentType documentType = 0
+  string documentReference = 0
+  string author = 0
+  string owner = 0
+  string approvedBy = 0
+  date approvedDate = 0
+  date effectiveDate = 0
+  date reviewDate = 0
+  string status = 0
+  string classification = 0
+  durationType retentionPeriod = 0
+  string procedureScope = 0
+  string processCriteria = 0
+ repeated  string controlMeasures = 0
+ repeated  role responsibleRoles = 0
+ repeated  securityControl relatedControls = 0
+  string changeControlRequirements = 0
+ }
+// The organization establishing and operating the ISMS. Captures context needed for Clause 4.1 (understanding the organization).
+message Organization
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  string legalName = 0
+ repeated  string tradingNames = 0
+  string organizationType = 0
+  string industrySector = 0
+  string sizeCategory = 0
+  positiveIntegerType employeeCount = 0
+ repeated  string geographicLocations = 0
+ repeated  string regulatoryJurisdictions = 0
+  string parentOrganization = 0
+ repeated  string subsidiaries = 0
+ }
+// A resource provided for the ISMS per Clause 7.1, including personnel, infrastructure, technology, and budget.
+message Resource
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  string resourceType = 0
+  string quantity = 0
+  date allocationDate = 0
+  string allocatedTo = 0
+  string cost = 0
+  string availabilityStatus = 0
+ }
+// An identified information security risk associated with loss of confidentiality, integrity, or availability per 6.1.2 c).
+message Risk
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  string riskSource = 0
+  string threatDescription = 0
+  string vulnerabilityDescription = 0
+ repeated  asset affectedAssets = 0
+ repeated  string affectedCiaProperties = 0
+  string riskOwner = 0
+  likelihoodRating likelihood = 0
+  impactRating impact = 0
+  riskLevel inherentRiskLevel = 0
+ repeated  securityControl existingControls = 0
+  riskLevel residualRiskLevel = 0
+  riskTreatmentOption riskTreatmentOption = 0
+  string treatmentPriority = 0
+  riskTreatmentPlan relatedTreatmentPlan = 0
+ }
+// An instance of risk assessment performed per Clause 8.2, identifying and evaluating information security risks.
+message RiskAssessment
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  documentType documentType = 0
+  string documentReference = 0
+  string author = 0
+  string owner = 0
+  string approvedBy = 0
+  date approvedDate = 0
+  date effectiveDate = 0
+  date reviewDate = 0
+  string status = 0
+  string classification = 0
+  durationType retentionPeriod = 0
+  string assessmentScope = 0
+  date assessmentDate = 0
+  string assessor = 0
+  string methodologyUsed = 0
+ repeated  risk risksIdentified = 0
+  string summaryFindings = 0
+ repeated  string recommendations = 0
+  date nextAssessmentDate = 0
+ }
+// The documented risk assessment process per Clause 6.1.2, defining criteria and methodology for identifying, analyzing, and evaluating risks.
+message RiskAssessmentProcess
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  documentType documentType = 0
+  string documentReference = 0
+  string author = 0
+  string owner = 0
+  string approvedBy = 0
+  date approvedDate = 0
+  date effectiveDate = 0
+  date reviewDate = 0
+  string status = 0
+  string classification = 0
+  durationType retentionPeriod = 0
+  string riskAcceptanceCriteria = 0
+  string assessmentCriteria = 0
+  string assessmentMethodology = 0
+  string likelihoodScale = 0
+  string impactScale = 0
+  string riskMatrix = 0
+  string assessmentFrequency = 0
+ repeated  string triggerEvents = 0
+ }
+// A risk treatment plan per 6.1.3 e), documenting actions to implement selected treatment options and controls.
+message RiskTreatmentPlan
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  documentType documentType = 0
+  string documentReference = 0
+  string author = 0
+  string owner = 0
+  string approvedBy = 0
+  date effectiveDate = 0
+  date reviewDate = 0
+  string status = 0
+  string classification = 0
+  durationType retentionPeriod = 0
+  string planScope = 0
+ repeated  risk risksAddressed = 0
+ repeated  string treatmentActions = 0
+ repeated  securityControl controlsToImplement = 0
+  string resourcesRequired = 0
+ repeated  string responsibleParties = 0
+  string implementationTimeline = 0
+  string riskOwnerApproval = 0
+  date approvedDate = 0
+  string residualRiskAcceptance = 0
+  implementationStatus implementationStatus = 0
+  date completionDate = 0
+ }
+// The documented risk treatment process per Clause 6.1.3, defining how treatment options are selected and controls determined.
+message RiskTreatmentProcess
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  documentType documentType = 0
+  string documentReference = 0
+  string author = 0
+  string owner = 0
+  string approvedBy = 0
+  date approvedDate = 0
+  date effectiveDate = 0
+  date reviewDate = 0
+  string status = 0
+  string classification = 0
+  durationType retentionPeriod = 0
+  string treatmentOptionsGuidance = 0
+  string controlSelectionCriteria = 0
+  string soaTemplate = 0
+  string approvalWorkflow = 0
+ }
+// An information security role with defined responsibilities and authorities per Clause 5.3.
+message Role
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  string roleType = 0
+ repeated  string responsibilities = 0
+ repeated  string authorities = 0
+  string accountability = 0
+ repeated  string assignedTo = 0
+  string delegationRules = 0
+  string reportingLine = 0
+ }
+// A security control from Annex A of ISO/IEC 27001:2022, derived from ISO/IEC 27002:2022. Represents a measure that modifies risk.
+message SecurityControl
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  string controlId = 0
+  string controlTitle = 0
+  controlCategory controlCategory = 0
+  string controlText = 0
+  string implementationGuidance = 0
+ repeated  securityControl relatedControls = 0
+ repeated  string applicableThreats = 0
+ repeated  string applicableAssets = 0
+  string controlOwner = 0
+  implementationStatus implementationStatus = 0
+  date implementationDate = 0
+  string effectivenessRating = 0
+  date lastTestDate = 0
+ repeated  string evidenceReferences = 0
+ }
+// A single entry in the Statement of Applicability, documenting the applicability and implementation status of one control.
+message SoAEntry
+ {
+  securityControl controlReference = 0
+  boolean isApplicable = 0
+  string inclusionJustification = 0
+  string exclusionJustification = 0
+  implementationStatus implementationStatus = 0
+  string implementationEvidence = 0
+  role responsibleRole = 0
+  date targetImplementationDate = 0
+ }
+// The Statement of Applicability (SoA) per 6.1.3 d), listing necessary controls with justification and implementation status.
+message StatementOfApplicability
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  documentType documentType = 0
+  string documentReference = 0
+  string author = 0
+  string owner = 0
+  date approvedDate = 0
+  date effectiveDate = 0
+  date reviewDate = 0
+  string status = 0
+  string classification = 0
+  durationType retentionPeriod = 0
+ repeated  soAEntry soaEntries = 0
+  unsignedShortType totalControls = 0
+  unsignedShortType implementedCount = 0
+  unsignedShortType plannedCount = 0
+  unsignedShortType notApplicableCount = 0
+  date lastReviewDate = 0
+  string approvedBy = 0
+ }
+// A policy addressing a specific information security topic, supporting the overarching information security policy.
+message TopicSpecificPolicy
+ {
+  uriorcurie id = 0
+  string name = 0
+  string description = 0
+  date createdDate = 0
+  date modifiedDate = 0
+  string version = 0
+  documentType documentType = 0
+  string documentReference = 0
+  string author = 0
+  string owner = 0
+  string approvedBy = 0
+  date approvedDate = 0
+  date effectiveDate = 0
+  date reviewDate = 0
+  string status = 0
+  string classification = 0
+  durationType retentionPeriod = 0
+  string topicArea = 0
+  informationSecurityPolicy parentPolicy = 0
+ repeated  securityControl applicableControls = 0
+  string targetAudience = 0
+ }

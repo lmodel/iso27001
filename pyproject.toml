@@ -15,12 +15,12 @@ requires-python = ">=3.9,<4.0"
 dynamic = ["version"]
 
 dependencies = [
-  "linkml-runtime >=1.9.4",
+  "linkml-runtime >=1.9.5",
 ]
 
 [dependency-groups]
 dev = [
-    "linkml>=1.9.3",
+    "linkml>=1.9.6",
     "mkdocs-material>=8.2.8",
     "mkdocs-mermaid2-plugin>=1.1.1",
     "mkdocs-pymdownx-material-extras>=2.5.6",

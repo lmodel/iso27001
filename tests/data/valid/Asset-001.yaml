@@ -1,0 +1,12 @@
+id: iso27001:asset-email-gateway
+name: Email Gateway
+asset_type: service
+asset_owner: Head of IT Operations
+asset_custodian: Messaging Team
+classification: internal
+location: EU cloud region
+criticality: high
+related_risks:
+  - iso27001:risk-email-phishing
+applicable_controls:
+  - iso27001:control-access-review

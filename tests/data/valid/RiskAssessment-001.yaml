@@ -1,0 +1,14 @@
+id: iso27001:ra-2026-q1
+name: Q1 2026 Risk Assessment
+document_type: record
+assessment_scope: Workforce identity, email, and endpoint controls
+assessment_date: "2026-03-20"
+assessor: Security Risk Team
+methodology_used: Corporate qualitative method v2
+risks_identified:
+  - iso27001:risk-email-phishing
+summary_findings: Phishing and supplier resilience remain the highest-priority risks.
+recommendations:
+  - Accelerate MFA completion.
+  - Improve supplier outage testing.
+next_assessment_date: "2026-09-20"

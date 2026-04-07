@@ -1,0 +1,12 @@
+id: iso27001:role-ciso
+name: Chief Information Security Officer
+role_type: CISO
+responsibilities:
+  - Oversee ISMS performance.
+  - Report security posture to top management.
+authorities:
+  - Approve security standards.
+accountability: Overall ISMS effectiveness
+assigned_to:
+  - Jane Doe
+reporting_line: Chief Executive Officer

@@ -1,0 +1,27 @@
+id: iso27001:audit-2026-001
+name: Access Governance Internal Audit
+document_type: report
+audit_reference: IA-2026-001
+audit_type: partial
+audit_scope: Access governance and privileged access reviews
+audit_criteria:
+  - ISO 27001 Clause 9.2
+  - Access Review Procedure
+audit_objectives:
+  - Confirm quarterly access reviews are performed on time.
+audit_period_start: "2026-03-01"
+audit_period_end: "2026-03-31"
+lead_auditor: Priya Patel
+audit_team:
+  - Priya Patel
+auditee_representatives:
+  - IAM Operations Lead
+audit_plan: Audit plan IA-2026-001
+findings:
+  - iso27001:audit-finding-001
+positive_observations:
+  - Review evidence was centrally retained.
+audit_conclusion: Control is generally effective with one minor delay observed.
+report_date: "2026-04-02"
+report_distribution:
+  - Chief Information Security Officer

@@ -1,0 +1,15 @@
+id: iso27001:monitoring-001
+name: ISMS Monitoring Program
+document_type: plan
+monitoring_items:
+  - metric_name: MFA coverage
+    metric_description: Percentage of workforce identities protected by MFA
+    measurement_method: Weekly IAM export
+    measurement_frequency: weekly
+    responsible_party: IAM Operations Lead
+    analysis_frequency: monthly
+    analyst: Security Metrics Analyst
+    target_threshold: 100%
+    alert_threshold: "<95%"
+    current_value: 92%
+    trend: improving

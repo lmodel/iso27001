@@ -1,0 +1,8 @@
+id: iso27001:policy-access-control
+name: Access Control Policy
+document_type: policy
+topic_area: Access Control
+parent_policy: iso27001:policy-isms
+applicable_controls:
+  - iso27001:control-access-review
+target_audience: All workforce users

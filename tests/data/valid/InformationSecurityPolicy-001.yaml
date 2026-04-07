@@ -1,0 +1,20 @@
+id: iso27001:policy-isms
+name: Information Security Policy
+document_type: policy
+document_reference: ISMS-POL-001
+owner: Chief Information Security Officer
+approved_by: Chief Executive Officer
+approved_date: "2026-01-15"
+effective_date: "2026-02-01"
+review_date: "2027-02-01"
+status: approved
+classification: internal
+retention_period: P3Y
+policy_statement: Protect information assets in line with organizational objectives.
+policy_objectives_framework: Define measurable security objectives aligned to risk treatment priorities.
+commitment_statements:
+  - Satisfy applicable legal, regulatory, and contractual requirements.
+  - Continually improve the information security management system.
+applicability_statement: Applies to all employees, contractors, and in-scope suppliers.
+communication_date: "2026-02-03"
+acknowledgment_required: true

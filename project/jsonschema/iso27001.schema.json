@@ -1,0 +1,5224 @@
+{
+    "$defs": {
+        "Asset": {
+            "additionalProperties": false,
+            "description": "An information asset or associated asset requiring protection, per Annex A control 5.9.",
+            "properties": {
+                "applicable_controls": {
+                    "description": "Controls related to this policy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "asset_custodian": {
+                    "description": "Custodian responsible for day-to-day protection.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "asset_owner": {
+                    "description": "Owner of the asset.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "asset_type": {
+                    "description": "Type of asset.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "classification": {
+                    "description": "Information classification level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "criticality": {
+                    "description": "Criticality rating of the asset.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "location": {
+                    "description": "Physical or logical location.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "related_risks": {
+                    "description": "Associated risks.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "Asset",
+            "type": "object"
+        },
+        "AuditFinding": {
+            "additionalProperties": false,
+            "description": "A finding from an internal audit, including nonconformities, observations, and positive findings.",
+            "properties": {
+                "auditee_response": {
+                    "description": "Response from the auditee.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "clause_reference": {
+                    "description": "Reference to standard clause.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "closure_date": {
+                    "description": "Date the finding was closed.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "closure_status": {
+                    "description": "Status of finding closure.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "control_reference": {
+                    "description": "Reference to the control (e.g., A.5.1).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "finding_description": {
+                    "description": "Description of the finding.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "finding_type": {
+                    "$ref": "#/$defs/AuditFindingType",
+                    "description": "Type of audit finding."
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "linked_corrective_action": {
+                    "description": "Corrective action linked to this finding.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "objective_evidence": {
+                    "description": "Evidence supporting the finding.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "recommended_action": {
+                    "description": "Recommended action to address finding.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "risk_implication": {
+                    "description": "Risk implications of the finding.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "root_cause_analysis": {
+                    "description": "Analysis of root cause.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "AuditFinding",
+            "type": "object"
+        },
+        "AuditFindingType": {
+            "description": "Classification of internal audit findings.",
+            "enum": [
+                "major_nonconformity",
+                "minor_nonconformity",
+                "observation",
+                "positive_finding"
+            ],
+            "title": "AuditFindingType",
+            "type": "string"
+        },
+        "AuditProgramme": {
+            "additionalProperties": false,
+            "description": "The internal audit programme per 9.2.2, planning audit activities over a defined period.",
+            "properties": {
+                "approved_by": {
+                    "description": "Person who approved the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_date": {
+                    "description": "Date when the document was approved.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "audit_frequency_rationale": {
+                    "description": "Rationale for audit frequency decisions.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "auditor_qualifications": {
+                    "description": "Required qualifications for auditors.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "classification": {
+                    "description": "Information classification level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_reference": {
+                    "description": "Unique reference number for document control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_type": {
+                    "$ref": "#/$defs/DocumentType",
+                    "description": "Classification of the documented information."
+                },
+                "effective_date": {
+                    "description": "Date when the document becomes effective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "Person accountable for the document content and maintenance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "planned_audits": {
+                    "description": "Audits planned in this programme.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "programme_period": {
+                    "description": "Period covered by the audit programme.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "programme_status": {
+                    "description": "Current status of the programme.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "resource_requirements": {
+                    "description": "Resource requirements for the programme.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "retention_period": {
+                    "description": "Duration for which the document must be retained.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "review_date": {
+                    "description": "Date when the document is due for review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "AuditProgramme",
+            "type": "object"
+        },
+        "AwarenessProgram": {
+            "additionalProperties": false,
+            "description": "The awareness program ensuring personnel understand their information security responsibilities per Clause 7.3.",
+            "properties": {
+                "approved_by": {
+                    "description": "Person who approved the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_date": {
+                    "description": "Date when the document was approved.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "awareness_topics": {
+                    "description": "Topics covered in awareness program.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "classification": {
+                    "description": "Information classification level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "completion_tracking": {
+                    "description": "How completion is tracked.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "delivery_methods": {
+                    "description": "Methods used to deliver awareness content.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_reference": {
+                    "description": "Unique reference number for document control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_type": {
+                    "$ref": "#/$defs/DocumentType",
+                    "description": "Classification of the documented information."
+                },
+                "effective_date": {
+                    "description": "Date when the document becomes effective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "effectiveness_measures": {
+                    "description": "How effectiveness is measured.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "frequency": {
+                    "description": "Frequency of the activity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "Person accountable for the document content and maintenance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "retention_period": {
+                    "description": "Duration for which the document must be retained.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "review_date": {
+                    "description": "Date when the document is due for review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "target_audience": {
+                    "description": "Intended audience for the policy or document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "AwarenessProgram",
+            "type": "object"
+        },
+        "CommunicationItem": {
+            "additionalProperties": false,
+            "description": "A single communication requirement within the communication plan.",
+            "properties": {
+                "audience": {
+                    "description": "Target audience.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "frequency": {
+                    "description": "Frequency of the activity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "method": {
+                    "description": "Method of communication.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "purpose": {
+                    "description": "Purpose of the communication.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "records_required": {
+                    "description": "Whether records are required.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "responsible_party": {
+                    "description": "Party responsible for the activity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "subject": {
+                    "description": "Subject of the communication.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "CommunicationItem",
+            "type": "object"
+        },
+        "CommunicationPlan": {
+            "additionalProperties": false,
+            "description": "Plan for internal and external communications relevant to the ISMS per Clause 7.4.",
+            "properties": {
+                "approved_by": {
+                    "description": "Person who approved the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_date": {
+                    "description": "Date when the document was approved.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "classification": {
+                    "description": "Information classification level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "communication_items": {
+                    "description": "Communication items in the plan.",
+                    "items": {
+                        "$ref": "#/$defs/CommunicationItem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_reference": {
+                    "description": "Unique reference number for document control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_type": {
+                    "$ref": "#/$defs/DocumentType",
+                    "description": "Classification of the documented information."
+                },
+                "effective_date": {
+                    "description": "Date when the document becomes effective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "Person accountable for the document content and maintenance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "retention_period": {
+                    "description": "Duration for which the document must be retained.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "review_date": {
+                    "description": "Date when the document is due for review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "CommunicationPlan",
+            "type": "object"
+        },
+        "CompetenceRecord": {
+            "additionalProperties": false,
+            "description": "Evidence of competence for personnel affecting information security performance per Clause 7.2 d).",
+            "properties": {
+                "approved_by": {
+                    "description": "Person who approved the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_date": {
+                    "description": "Date when the document was approved.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "classification": {
+                    "description": "Information classification level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "competency_assessment_date": {
+                    "description": "Date of last competency assessment.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "competency_gaps": {
+                    "description": "Identified competency gaps.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "development_actions": {
+                    "description": "Actions to address competency gaps.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "document_reference": {
+                    "description": "Unique reference number for document control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_type": {
+                    "$ref": "#/$defs/DocumentType",
+                    "description": "Classification of the documented information."
+                },
+                "education_records": {
+                    "description": "Education qualifications.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "effective_date": {
+                    "description": "Date when the document becomes effective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "experience_records": {
+                    "description": "Relevant experience.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "Person accountable for the document content and maintenance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "person_name": {
+                    "description": "Name of the person.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "person_role": {
+                    "description": "Role of the person.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "required_competencies": {
+                    "description": "Competencies required for the role.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "retention_period": {
+                    "description": "Duration for which the document must be retained.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "review_date": {
+                    "description": "Date when the document is due for review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "training_records": {
+                    "description": "Training completed.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "CompetenceRecord",
+            "type": "object"
+        },
+        "ControlCategory": {
+            "description": "The four control domains defined in ISO/IEC 27001:2022 Annex A, corresponding to Clauses 5-8 of ISO/IEC 27002:2022.",
+            "enum": [
+                "organizational",
+                "people",
+                "physical",
+                "technological"
+            ],
+            "title": "ControlCategory",
+            "type": "string"
+        },
+        "CorrectiveAction": {
+            "additionalProperties": false,
+            "description": "A corrective action per Clause 10.2 to eliminate the cause of a nonconformity and prevent recurrence.",
+            "properties": {
+                "action_description": {
+                    "description": "Description of the action.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "actual_completion_date": {
+                    "description": "Actual date the action was completed.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "effectiveness_criteria": {
+                    "description": "Criteria for evaluating effectiveness.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "effectiveness_review_date": {
+                    "description": "Date effectiveness was reviewed.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "effectiveness_verified": {
+                    "description": "Whether effectiveness was verified.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "isms_changes_required": {
+                    "description": "Changes to ISMS required as a result.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "linked_nonconformity": {
+                    "description": "Nonconformity this action addresses.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "resources_required": {
+                    "description": "Resources required for implementation.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "responsible_party": {
+                    "description": "Party responsible for the activity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "root_cause_addressed": {
+                    "description": "Root cause this action addresses.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "target_completion_date": {
+                    "description": "Target date for completing the action.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "CorrectiveAction",
+            "type": "object"
+        },
+        "DocumentType": {
+            "description": "Categories of documented information required or recommended by ISO 27001.",
+            "enum": [
+                "policy",
+                "procedure",
+                "standard",
+                "guideline",
+                "record",
+                "plan",
+                "report"
+            ],
+            "title": "DocumentType",
+            "type": "string"
+        },
+        "ImpactRating": {
+            "description": "Qualitative impact scale for risk assessment.",
+            "enum": [
+                "negligible",
+                "minor",
+                "moderate",
+                "major",
+                "severe"
+            ],
+            "title": "ImpactRating",
+            "type": "string"
+        },
+        "ImplementationStatus": {
+            "description": "Lifecycle status of a security control, used in Statement of Applicability and control tracking.",
+            "enum": [
+                "not_started",
+                "planned",
+                "in_progress",
+                "implemented",
+                "not_applicable"
+            ],
+            "title": "ImplementationStatus",
+            "type": "string"
+        },
+        "ImprovementOpportunity": {
+            "additionalProperties": false,
+            "description": "An opportunity for continual improvement per Clause 10.1, enhancing ISMS suitability, adequacy, or effectiveness.",
+            "properties": {
+                "actual_completion_date": {
+                    "description": "Actual date the action was completed.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "expected_benefit": {
+                    "description": "Expected benefit from implementation.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "identification_date": {
+                    "description": "Date identified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "identified_by": {
+                    "description": "Person who identified it.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "implementation_plan": {
+                    "description": "Plan for implementing the improvement.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "improvement_description": {
+                    "description": "Description of the improvement.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "improvement_source": {
+                    "description": "Source of the improvement opportunity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "outcome_assessment": {
+                    "description": "Assessment of actual outcomes.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "priority": {
+                    "description": "Priority level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "responsible_party": {
+                    "description": "Party responsible for the activity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "target_date": {
+                    "description": "Target date for achieving the objective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "ImprovementOpportunity",
+            "type": "object"
+        },
+        "InformationSecurityEvent": {
+            "additionalProperties": false,
+            "description": "An information security event per A.5.25, which may or may not be categorized as an incident.",
+            "properties": {
+                "affected_assets": {
+                    "description": "Assets affected by this risk or incident.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "categorized_as_incident": {
+                    "description": "Whether the event was categorized as an incident.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "event_datetime": {
+                    "description": "Date and time of the event.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "event_description": {
+                    "description": "Description of the event.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "initial_assessment": {
+                    "description": "Initial assessment of the event.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "linked_incident": {
+                    "description": "Linked incident if categorized.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "reporter": {
+                    "description": "Person who reported the event.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "InformationSecurityEvent",
+            "type": "object"
+        },
+        "InformationSecurityIncident": {
+            "additionalProperties": false,
+            "description": "An information security incident per A.5.26, requiring response per documented procedures.",
+            "properties": {
+                "affected_assets": {
+                    "description": "Assets affected by this risk or incident.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "affected_cia": {
+                    "description": "CIA properties affected.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "closure_datetime": {
+                    "description": "Date and time of incident closure.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "containment_actions": {
+                    "description": "Actions to contain the incident.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "detection_method": {
+                    "description": "How the incident was detected.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "eradication_actions": {
+                    "description": "Actions to eradicate the cause.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "evidence_collected": {
+                    "description": "Evidence collected.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "incident_category": {
+                    "description": "Category of incident.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "incident_datetime": {
+                    "description": "Date and time the incident occurred or was detected.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "incident_description": {
+                    "description": "Description of the incident.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "lessons_learned": {
+                    "description": "Lessons learned from the incident.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "notification_required": {
+                    "description": "Whether notification to authorities/parties was required.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "notifications_made": {
+                    "description": "Notifications that were made.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "post_incident_review": {
+                    "description": "Post-incident review findings.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "recovery_actions": {
+                    "description": "Actions to recover normal operations.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "response_actions": {
+                    "description": "Actions taken in response.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "root_cause": {
+                    "description": "Root cause of the nonconformity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "severity": {
+                    "description": "Severity rating.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "InformationSecurityIncident",
+            "type": "object"
+        },
+        "InformationSecurityManagementSystem": {
+            "additionalProperties": false,
+            "description": "Top-level container representing an organization's complete ISMS per ISO 27001. Aggregates all components required for establishing, implementing, maintaining, and continually improving information security management.",
+            "properties": {
+                "awareness_program": {
+                    "description": "Reference to the awareness program.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "certification_body": {
+                    "description": "Accredited certification body.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "certification_date": {
+                    "description": "Date certification was achieved.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "certification_status": {
+                    "description": "Current certification status.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "communication_plan": {
+                    "description": "Reference to the communication plan.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "competence_records": {
+                    "description": "Competence records for personnel.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "context_external_issues": {
+                    "description": "External issues relevant to ISMS per 4.1.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "context_internal_issues": {
+                    "description": "Internal issues relevant to ISMS per 4.1.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "controls": {
+                    "description": "Security controls applied in the ISMS.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "corrective_actions": {
+                    "description": "Corrective actions.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "documented_information_register": {
+                    "description": "Register of documented information.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "improvements": {
+                    "description": "Improvement opportunities tracked.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "information_security_policy": {
+                    "description": "Reference to the information security policy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "interested_parties": {
+                    "description": "Stakeholders relevant to the ISMS.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "internal_audits": {
+                    "description": "Internal audit instances.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "management_reviews": {
+                    "description": "Management review instances.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "monitoring_program": {
+                    "description": "Reference to the monitoring program.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "nonconformities": {
+                    "description": "Nonconformities identified.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "objectives": {
+                    "description": "Information security objectives.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "operational_procedures": {
+                    "description": "Operational procedures.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "organization": {
+                    "description": "Reference to the organization operating the ISMS.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "recertification_date": {
+                    "description": "Date recertification is due.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "resources": {
+                    "description": "Resources provided for the ISMS.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "risk_assessment_process": {
+                    "description": "Reference to the risk assessment process.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "risk_assessments": {
+                    "description": "Risk assessment instances.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "risk_treatment_plans": {
+                    "description": "Risk treatment plans.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "risk_treatment_process": {
+                    "description": "Reference to the risk treatment process.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "roles": {
+                    "description": "Information security roles defined in the ISMS.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "scope_boundaries": {
+                    "description": "Defined boundaries of the ISMS scope.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "scope_exclusions": {
+                    "description": "Any exclusions from scope with justification.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "scope_statement": {
+                    "description": "Documented statement of ISMS scope per 4.3.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "statement_of_applicability": {
+                    "description": "Reference to the Statement of Applicability.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "InformationSecurityManagementSystem",
+            "type": "object"
+        },
+        "InformationSecurityObjective": {
+            "additionalProperties": false,
+            "description": "A measurable information security objective per Clause 6.2, established at relevant functions and levels of the organization.",
+            "properties": {
+                "achievement_status": {
+                    "description": "Current status of objective achievement.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "action_plan": {
+                    "description": "Plan for achieving the objective.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "current_value": {
+                    "description": "Current measured value.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "measurement_frequency": {
+                    "description": "How often measurement is performed.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "measurement_method": {
+                    "description": "Method used to measure the metric.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "metric_definition": {
+                    "description": "Definition of how the objective is measured.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "objective_statement": {
+                    "description": "Clear statement of the objective.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "related_controls": {
+                    "description": "Other controls related to this one.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "related_risks": {
+                    "description": "Associated risks.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "responsible_role": {
+                    "description": "Role responsible for the objective or control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "target_date": {
+                    "description": "Target date for achieving the objective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "target_value": {
+                    "description": "Target value for the objective metric.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "InformationSecurityObjective",
+            "type": "object"
+        },
+        "InformationSecurityPolicy": {
+            "additionalProperties": false,
+            "description": "The information security policy established by top management per Clause 5.2. Provides framework for setting objectives and demonstrates commitment.",
+            "properties": {
+                "acknowledgment_required": {
+                    "description": "Whether acknowledgment is required from personnel.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "applicability_statement": {
+                    "description": "Statement of policy applicability.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_by": {
+                    "description": "Person who approved the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_date": {
+                    "description": "Date when the document was approved.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "classification": {
+                    "description": "Information classification level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "commitment_statements": {
+                    "description": "Statements of commitment included in the policy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "communication_date": {
+                    "description": "Date when the policy was communicated.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_reference": {
+                    "description": "Unique reference number for document control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_type": {
+                    "$ref": "#/$defs/DocumentType",
+                    "description": "Classification of the documented information."
+                },
+                "effective_date": {
+                    "description": "Date when the document becomes effective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "Person accountable for the document content and maintenance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "policy_objectives_framework": {
+                    "description": "Framework for setting information security objectives.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "policy_statement": {
+                    "description": "The core policy statement text.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "related_topic_policies": {
+                    "description": "Topic-specific policies supporting this policy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "retention_period": {
+                    "description": "Duration for which the document must be retained.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "review_date": {
+                    "description": "Date when the document is due for review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "InformationSecurityPolicy",
+            "type": "object"
+        },
+        "InterestedParty": {
+            "additionalProperties": false,
+            "description": "A stakeholder whose needs and expectations are relevant to the ISMS per 4.2. Includes internal parties (employees, management) and external parties (customers, regulators, suppliers).",
+            "properties": {
+                "communication_needs": {
+                    "description": "Communication requirements for this party.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "contact_information": {
+                    "description": "Contact details for the party.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "party_type": {
+                    "description": "Category of interested party.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "relationship": {
+                    "description": "Nature of the relationship with the organization.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "requirements": {
+                    "description": "Requirements of the interested party.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "InterestedParty",
+            "type": "object"
+        },
+        "InternalAudit": {
+            "additionalProperties": false,
+            "description": "An internal audit instance per Clause 9.2, assessing ISMS conformance and effectiveness.",
+            "properties": {
+                "approved_by": {
+                    "description": "Person who approved the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_date": {
+                    "description": "Date when the document was approved.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "audit_conclusion": {
+                    "description": "Overall audit conclusion.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "audit_criteria": {
+                    "description": "Criteria against which audit is conducted.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "audit_objectives": {
+                    "description": "Objectives of the audit.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "audit_period_end": {
+                    "description": "End date of audit period.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "audit_period_start": {
+                    "description": "Start date of audit period.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "audit_plan": {
+                    "description": "Audit plan document reference.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "audit_reference": {
+                    "description": "Reference identifier for the audit.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "audit_scope": {
+                    "description": "Scope of the audit.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "audit_team": {
+                    "description": "Audit team members.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "audit_type": {
+                    "description": "Type of audit.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "auditee_representatives": {
+                    "description": "Representatives from audited areas.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "classification": {
+                    "description": "Information classification level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_reference": {
+                    "description": "Unique reference number for document control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_type": {
+                    "$ref": "#/$defs/DocumentType",
+                    "description": "Classification of the documented information."
+                },
+                "effective_date": {
+                    "description": "Date when the document becomes effective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "findings": {
+                    "description": "Audit findings.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "lead_auditor": {
+                    "description": "Lead auditor for the audit.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "Person accountable for the document content and maintenance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "positive_observations": {
+                    "description": "Positive observations noted.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "report_date": {
+                    "description": "Date the report was issued.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "report_distribution": {
+                    "description": "Distribution list for the report.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "retention_period": {
+                    "description": "Duration for which the document must be retained.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "review_date": {
+                    "description": "Date when the document is due for review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "InternalAudit",
+            "type": "object"
+        },
+        "LikelihoodRating": {
+            "description": "Qualitative likelihood scale for risk assessment.",
+            "enum": [
+                "rare",
+                "unlikely",
+                "possible",
+                "likely",
+                "almost_certain"
+            ],
+            "title": "LikelihoodRating",
+            "type": "string"
+        },
+        "ManagementReview": {
+            "additionalProperties": false,
+            "description": "A management review per Clause 9.3, conducted by top management to ensure ISMS suitability, adequacy, and effectiveness.",
+            "properties": {
+                "action_items": {
+                    "description": "Action items from the review.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "approved_by": {
+                    "description": "Person who approved the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_date": {
+                    "description": "Date when the document was approved.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "attendees": {
+                    "description": "Attendees of the review.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "audit_results_summary": {
+                    "description": "Summary of audit results.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "classification": {
+                    "description": "Information classification level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "context_changes": {
+                    "description": "Changes in context since last review.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "decisions": {
+                    "description": "Decisions made in the review.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_reference": {
+                    "description": "Unique reference number for document control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_type": {
+                    "$ref": "#/$defs/DocumentType",
+                    "description": "Classification of the documented information."
+                },
+                "effective_date": {
+                    "description": "Date when the document becomes effective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "improvement_opportunities": {
+                    "description": "Opportunities for improvement identified.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "interested_party_changes": {
+                    "description": "Changes in interested party requirements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "next_review_date": {
+                    "description": "Planned date for next review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "owner": {
+                    "description": "Person accountable for the document content and maintenance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "performance_trends": {
+                    "description": "Trends in information security performance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "previous_actions_status": {
+                    "description": "Status of actions from previous reviews.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "retention_period": {
+                    "description": "Duration for which the document must be retained.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "review_date": {
+                    "description": "Date when the management review was conducted.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "risk_assessment_results": {
+                    "description": "Results of risk assessment.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "ManagementReview",
+            "type": "object"
+        },
+        "MonitoringItem": {
+            "additionalProperties": false,
+            "description": "A single item to be monitored and measured per 9.1.",
+            "properties": {
+                "alert_threshold": {
+                    "description": "Threshold triggering alerts.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "analysis_frequency": {
+                    "description": "How often analysis is performed.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "analyst": {
+                    "description": "Person performing analysis.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "current_value": {
+                    "description": "Current measured value.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "measurement_frequency": {
+                    "description": "How often measurement is performed.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "measurement_method": {
+                    "description": "Method used to measure the metric.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "metric_description": {
+                    "description": "Description of what is measured.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "metric_name": {
+                    "description": "Name of the metric.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "responsible_party": {
+                    "description": "Party responsible for the activity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "target_threshold": {
+                    "description": "Target threshold value.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trend": {
+                    "description": "Current trend direction.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "MonitoringItem",
+            "type": "object"
+        },
+        "MonitoringProgram": {
+            "additionalProperties": false,
+            "description": "The program for monitoring, measurement, analysis, and evaluation per Clause 9.1.",
+            "properties": {
+                "approved_by": {
+                    "description": "Person who approved the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_date": {
+                    "description": "Date when the document was approved.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "classification": {
+                    "description": "Information classification level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_reference": {
+                    "description": "Unique reference number for document control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_type": {
+                    "$ref": "#/$defs/DocumentType",
+                    "description": "Classification of the documented information."
+                },
+                "effective_date": {
+                    "description": "Date when the document becomes effective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "monitoring_items": {
+                    "description": "Items to be monitored.",
+                    "items": {
+                        "$ref": "#/$defs/MonitoringItem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "Person accountable for the document content and maintenance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "retention_period": {
+                    "description": "Duration for which the document must be retained.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "review_date": {
+                    "description": "Date when the document is due for review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "MonitoringProgram",
+            "type": "object"
+        },
+        "Nonconformity": {
+            "additionalProperties": false,
+            "description": "A nonconformity identified per Clause 10.2, representing failure to fulfill a requirement.",
+            "properties": {
+                "closure_date": {
+                    "description": "Date the finding was closed.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "closure_evidence": {
+                    "description": "Evidence supporting closure.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "consequences_addressed": {
+                    "description": "How consequences were dealt with.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "detected_by": {
+                    "description": "Person or process that detected the nonconformity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "detection_date": {
+                    "description": "Date the nonconformity was detected.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "immediate_actions": {
+                    "description": "Immediate actions taken to control/correct.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "linked_corrective_actions": {
+                    "description": "Corrective actions addressing this nonconformity.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "nonconformity_description": {
+                    "description": "Description of the nonconformity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "nonconformity_source": {
+                    "description": "Source of nonconformity detection.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "requirement_violated": {
+                    "description": "Requirement that was not fulfilled.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "root_cause": {
+                    "description": "Root cause of the nonconformity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "similar_nonconformities_check": {
+                    "description": "Check for similar nonconformities elsewhere.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "Nonconformity",
+            "type": "object"
+        },
+        "OperationalProcedure": {
+            "additionalProperties": false,
+            "description": "A documented procedure for operational planning and control per Clause 8.1.",
+            "properties": {
+                "approved_by": {
+                    "description": "Person who approved the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_date": {
+                    "description": "Date when the document was approved.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "change_control_requirements": {
+                    "description": "Requirements for controlling changes.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "classification": {
+                    "description": "Information classification level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "control_measures": {
+                    "description": "Control measures implemented.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_reference": {
+                    "description": "Unique reference number for document control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_type": {
+                    "$ref": "#/$defs/DocumentType",
+                    "description": "Classification of the documented information."
+                },
+                "effective_date": {
+                    "description": "Date when the document becomes effective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "Person accountable for the document content and maintenance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "procedure_scope": {
+                    "description": "Scope of the procedure.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "process_criteria": {
+                    "description": "Criteria established for the process.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "related_controls": {
+                    "description": "Other controls related to this one.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "responsible_roles": {
+                    "description": "Roles responsible for the procedure.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "retention_period": {
+                    "description": "Duration for which the document must be retained.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "review_date": {
+                    "description": "Date when the document is due for review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "OperationalProcedure",
+            "type": "object"
+        },
+        "Organization": {
+            "additionalProperties": false,
+            "description": "The organization establishing and operating the ISMS. Captures context needed for Clause 4.1 (understanding the organization).",
+            "properties": {
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "employee_count": {
+                    "description": "Approximate number of employees.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "geographic_locations": {
+                    "description": "Countries or regions where the organization operates.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "industry_sector": {
+                    "description": "Primary industry sector of the organization.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "legal_name": {
+                    "description": "Legal registered name of the organization.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "organization_type": {
+                    "description": "Type of organization (e.g., corporation, government, nonprofit).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "parent_organization": {
+                    "description": "Parent organization if applicable.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "regulatory_jurisdictions": {
+                    "description": "Jurisdictions whose regulations apply to the organization.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "size_category": {
+                    "description": "Organization size classification.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "subsidiaries": {
+                    "description": "Subsidiary organizations if applicable.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "trading_names": {
+                    "description": "Names under which the organization conducts business.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "Organization",
+            "type": "object"
+        },
+        "Resource": {
+            "additionalProperties": false,
+            "description": "A resource provided for the ISMS per Clause 7.1, including personnel, infrastructure, technology, and budget.",
+            "properties": {
+                "allocated_to": {
+                    "description": "What the resource is allocated to.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "allocation_date": {
+                    "description": "Date the resource was allocated.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "availability_status": {
+                    "description": "Current availability of the resource.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "cost": {
+                    "description": "Cost of the resource.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "quantity": {
+                    "description": "Quantity of the resource.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "resource_type": {
+                    "description": "Type of resource.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "Resource",
+            "type": "object"
+        },
+        "Risk": {
+            "additionalProperties": false,
+            "description": "An identified information security risk associated with loss of confidentiality, integrity, or availability per 6.1.2 c).",
+            "properties": {
+                "affected_assets": {
+                    "description": "Assets affected by this risk or incident.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "affected_cia_properties": {
+                    "description": "Which CIA properties are affected (confidentiality, integrity, availability).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "existing_controls": {
+                    "description": "Controls currently in place affecting this risk.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "impact": {
+                    "$ref": "#/$defs/ImpactRating",
+                    "description": "Assessed impact if risk materializes."
+                },
+                "inherent_risk_level": {
+                    "$ref": "#/$defs/RiskLevel",
+                    "description": "Risk level before controls are applied."
+                },
+                "likelihood": {
+                    "$ref": "#/$defs/LikelihoodRating",
+                    "description": "Assessed likelihood of risk occurrence."
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "related_treatment_plan": {
+                    "description": "Risk treatment plan addressing this risk.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "residual_risk_level": {
+                    "$ref": "#/$defs/RiskLevel",
+                    "description": "Risk level after controls are applied."
+                },
+                "risk_owner": {
+                    "description": "Person accountable for managing the risk.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "risk_source": {
+                    "description": "Source or origin of the risk.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "risk_treatment_option": {
+                    "$ref": "#/$defs/RiskTreatmentOption",
+                    "description": "Selected treatment option for the risk."
+                },
+                "threat_description": {
+                    "description": "Description of the threat exploiting the vulnerability.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "treatment_priority": {
+                    "description": "Priority for treating this risk.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "vulnerability_description": {
+                    "description": "Description of the vulnerability that could be exploited.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "Risk",
+            "type": "object"
+        },
+        "RiskAssessment": {
+            "additionalProperties": false,
+            "description": "An instance of risk assessment performed per Clause 8.2, identifying and evaluating information security risks.",
+            "properties": {
+                "approved_by": {
+                    "description": "Person who approved the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_date": {
+                    "description": "Date when the document was approved.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "assessment_date": {
+                    "description": "Date the assessment was conducted.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "assessment_scope": {
+                    "description": "Scope of the assessment.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "assessor": {
+                    "description": "Person or team who conducted the assessment.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "classification": {
+                    "description": "Information classification level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_reference": {
+                    "description": "Unique reference number for document control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_type": {
+                    "$ref": "#/$defs/DocumentType",
+                    "description": "Classification of the documented information."
+                },
+                "effective_date": {
+                    "description": "Date when the document becomes effective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "methodology_used": {
+                    "description": "Specific methodology applied in this assessment.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "next_assessment_date": {
+                    "description": "Planned date for next assessment.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "owner": {
+                    "description": "Person accountable for the document content and maintenance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "recommendations": {
+                    "description": "Recommendations from the assessment.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "retention_period": {
+                    "description": "Duration for which the document must be retained.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "review_date": {
+                    "description": "Date when the document is due for review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "risks_identified": {
+                    "description": "Risks identified in this assessment.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "summary_findings": {
+                    "description": "Summary of assessment findings.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "RiskAssessment",
+            "type": "object"
+        },
+        "RiskAssessmentProcess": {
+            "additionalProperties": false,
+            "description": "The documented risk assessment process per Clause 6.1.2, defining criteria and methodology for identifying, analyzing, and evaluating risks.",
+            "properties": {
+                "approved_by": {
+                    "description": "Person who approved the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_date": {
+                    "description": "Date when the document was approved.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "assessment_criteria": {
+                    "description": "Criteria for performing risk assessments.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "assessment_frequency": {
+                    "description": "Planned frequency of risk assessments.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "assessment_methodology": {
+                    "description": "Methodology used for risk assessment.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "classification": {
+                    "description": "Information classification level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_reference": {
+                    "description": "Unique reference number for document control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_type": {
+                    "$ref": "#/$defs/DocumentType",
+                    "description": "Classification of the documented information."
+                },
+                "effective_date": {
+                    "description": "Date when the document becomes effective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "impact_scale": {
+                    "description": "Scale used for impact rating.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "likelihood_scale": {
+                    "description": "Scale used for likelihood rating.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "Person accountable for the document content and maintenance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "retention_period": {
+                    "description": "Duration for which the document must be retained.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "review_date": {
+                    "description": "Date when the document is due for review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "risk_acceptance_criteria": {
+                    "description": "Criteria for accepting risks.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "risk_matrix": {
+                    "description": "Risk matrix or calculation method.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "trigger_events": {
+                    "description": "Events that trigger risk assessment outside planned schedule.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "RiskAssessmentProcess",
+            "type": "object"
+        },
+        "RiskLevel": {
+            "description": "Qualitative risk rating derived from likelihood \u00d7 impact analysis.",
+            "enum": [
+                "very_low",
+                "low",
+                "medium",
+                "high",
+                "critical"
+            ],
+            "title": "RiskLevel",
+            "type": "string"
+        },
+        "RiskTreatmentOption": {
+            "description": "Standard risk treatment options per ISO 31000 and ISO 27005.",
+            "enum": [
+                "modify",
+                "accept",
+                "avoid",
+                "share"
+            ],
+            "title": "RiskTreatmentOption",
+            "type": "string"
+        },
+        "RiskTreatmentPlan": {
+            "additionalProperties": false,
+            "description": "A risk treatment plan per 6.1.3 e), documenting actions to implement selected treatment options and controls.",
+            "properties": {
+                "approved_by": {
+                    "description": "Person who approved the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_date": {
+                    "description": "Date when the risk treatment plan was approved.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "classification": {
+                    "description": "Information classification level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "completion_date": {
+                    "description": "Date when implementation was completed.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "controls_to_implement": {
+                    "description": "Controls to be implemented as part of treatment.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_reference": {
+                    "description": "Unique reference number for document control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_type": {
+                    "$ref": "#/$defs/DocumentType",
+                    "description": "Classification of the documented information."
+                },
+                "effective_date": {
+                    "description": "Date when the document becomes effective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "implementation_status": {
+                    "$ref": "#/$defs/ImplementationStatus",
+                    "description": "Current implementation status."
+                },
+                "implementation_timeline": {
+                    "description": "Timeline for implementation.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "Person accountable for the document content and maintenance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "plan_scope": {
+                    "description": "Scope of the plan.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "residual_risk_acceptance": {
+                    "description": "Documentation of residual risk acceptance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "resources_required": {
+                    "description": "Resources required for implementation.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "responsible_parties": {
+                    "description": "Parties responsible for implementation.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "retention_period": {
+                    "description": "Duration for which the document must be retained.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "review_date": {
+                    "description": "Date when the document is due for review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "risk_owner_approval": {
+                    "description": "Risk owner who approved the plan.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "risks_addressed": {
+                    "description": "Risks addressed by this plan.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "treatment_actions": {
+                    "description": "Actions to be taken for treatment.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "RiskTreatmentPlan",
+            "type": "object"
+        },
+        "RiskTreatmentProcess": {
+            "additionalProperties": false,
+            "description": "The documented risk treatment process per Clause 6.1.3, defining how treatment options are selected and controls determined.",
+            "properties": {
+                "approval_workflow": {
+                    "description": "Workflow for approving risk treatment.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_by": {
+                    "description": "Person who approved the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_date": {
+                    "description": "Date when the document was approved.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "classification": {
+                    "description": "Information classification level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "control_selection_criteria": {
+                    "description": "Criteria for selecting controls.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_reference": {
+                    "description": "Unique reference number for document control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_type": {
+                    "$ref": "#/$defs/DocumentType",
+                    "description": "Classification of the documented information."
+                },
+                "effective_date": {
+                    "description": "Date when the document becomes effective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "Person accountable for the document content and maintenance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "retention_period": {
+                    "description": "Duration for which the document must be retained.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "review_date": {
+                    "description": "Date when the document is due for review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "soa_template": {
+                    "description": "Template used for Statement of Applicability.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "treatment_options_guidance": {
+                    "description": "Guidance on selecting treatment options.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "RiskTreatmentProcess",
+            "type": "object"
+        },
+        "Role": {
+            "additionalProperties": false,
+            "description": "An information security role with defined responsibilities and authorities per Clause 5.3.",
+            "properties": {
+                "accountability": {
+                    "description": "What the role is accountable for.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "assigned_to": {
+                    "description": "Person(s) assigned to this role.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "authorities": {
+                    "description": "Authorities granted to the role.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "delegation_rules": {
+                    "description": "Rules for delegating responsibilities.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "reporting_line": {
+                    "description": "To whom this role reports.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "responsibilities": {
+                    "description": "Responsibilities assigned to the role.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "role_type": {
+                    "description": "Category of the role.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "Role",
+            "type": "object"
+        },
+        "SecurityControl": {
+            "additionalProperties": false,
+            "description": "A security control from Annex A of ISO/IEC 27001:2022, derived from ISO/IEC 27002:2022. Represents a measure that modifies risk.",
+            "properties": {
+                "applicable_assets": {
+                    "description": "Asset types this control applies to.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "applicable_threats": {
+                    "description": "Threats this control addresses.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "control_category": {
+                    "$ref": "#/$defs/ControlCategory",
+                    "description": "Domain category of the control."
+                },
+                "control_id": {
+                    "description": "Control identifier from Annex A (e.g., 5.1, 8.24).",
+                    "pattern": "^[5-8]\\.[0-9]{1,2}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "control_owner": {
+                    "description": "Person responsible for the control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "control_text": {
+                    "description": "Full text of the control requirement.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "control_title": {
+                    "description": "Title of the control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "effectiveness_rating": {
+                    "description": "Rating of control effectiveness.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence_references": {
+                    "description": "References to evidence of implementation.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "implementation_date": {
+                    "description": "Date the control was implemented.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "implementation_guidance": {
+                    "description": "Guidance for implementing the control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "implementation_status": {
+                    "$ref": "#/$defs/ImplementationStatus",
+                    "description": "Current implementation status."
+                },
+                "last_test_date": {
+                    "description": "Date the control was last tested.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "related_controls": {
+                    "description": "Other controls related to this one.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "SecurityControl",
+            "type": "object"
+        },
+        "SoAEntry": {
+            "additionalProperties": false,
+            "description": "A single entry in the Statement of Applicability, documenting the applicability and implementation status of one control.",
+            "properties": {
+                "control_reference": {
+                    "description": "Reference to the control (e.g., A.5.1).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "exclusion_justification": {
+                    "description": "Justification for excluding the control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "implementation_evidence": {
+                    "description": "Evidence of control implementation.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "implementation_status": {
+                    "$ref": "#/$defs/ImplementationStatus",
+                    "description": "Current implementation status."
+                },
+                "inclusion_justification": {
+                    "description": "Justification for including the control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "is_applicable": {
+                    "description": "Whether the control is applicable.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "responsible_role": {
+                    "description": "Role responsible for the objective or control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "target_implementation_date": {
+                    "description": "Target date for implementing the control.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "SoAEntry",
+            "type": "object"
+        },
+        "StatementOfApplicability": {
+            "additionalProperties": false,
+            "description": "The Statement of Applicability (SoA) per 6.1.3 d), listing necessary controls with justification and implementation status.",
+            "properties": {
+                "approved_by": {
+                    "description": "Person who approved the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_date": {
+                    "description": "Date when the document was approved.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "classification": {
+                    "description": "Information classification level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_reference": {
+                    "description": "Unique reference number for document control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_type": {
+                    "$ref": "#/$defs/DocumentType",
+                    "description": "Classification of the documented information."
+                },
+                "effective_date": {
+                    "description": "Date when the document becomes effective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "implemented_count": {
+                    "description": "Number of implemented controls.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "last_review_date": {
+                    "description": "Date of last review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "not_applicable_count": {
+                    "description": "Number of controls marked not applicable.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "owner": {
+                    "description": "Person accountable for the document content and maintenance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "planned_count": {
+                    "description": "Number of controls planned for implementation.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "retention_period": {
+                    "description": "Duration for which the document must be retained.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "review_date": {
+                    "description": "Date when the document is due for review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "soa_entries": {
+                    "description": "Individual control entries in the SoA.",
+                    "items": {
+                        "$ref": "#/$defs/SoAEntry"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "total_controls": {
+                    "description": "Total number of controls in scope.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "StatementOfApplicability",
+            "type": "object"
+        },
+        "TopicSpecificPolicy": {
+            "additionalProperties": false,
+            "description": "A policy addressing a specific information security topic, supporting the overarching information security policy.",
+            "properties": {
+                "applicable_controls": {
+                    "description": "Controls related to this policy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "approved_by": {
+                    "description": "Person who approved the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_date": {
+                    "description": "Date when the document was approved.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "classification": {
+                    "description": "Information classification level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_reference": {
+                    "description": "Unique reference number for document control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_type": {
+                    "$ref": "#/$defs/DocumentType",
+                    "description": "Classification of the documented information."
+                },
+                "effective_date": {
+                    "description": "Date when the document becomes effective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "Person accountable for the document content and maintenance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "parent_policy": {
+                    "description": "The parent policy this topic-specific policy supports.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "retention_period": {
+                    "description": "Duration for which the document must be retained.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "review_date": {
+                    "description": "Date when the document is due for review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "target_audience": {
+                    "description": "Intended audience for the policy or document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "topic_area": {
+                    "description": "The specific topic addressed by the policy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "TopicSpecificPolicy",
+            "type": "object"
+        }
+    },
+    "$id": "https://w3id.org/lmodel/iso-iec-27001",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": true,
+    "metamodel_version": "1.7.0",
+    "title": "iso27001",
+    "type": "object",
+    "version": "1.0.0"
+}

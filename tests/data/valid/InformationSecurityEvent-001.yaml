@@ -1,0 +1,10 @@
+id: iso27001:event-2026-001
+name: Suspicious Login Event
+event_datetime: "2026-03-12T08:55:00Z"
+reporter: SIEM Platform
+event_description: Multiple failed logins followed by a successful login from an unusual IP address.
+affected_assets:
+  - iso27001:asset-email-gateway
+initial_assessment: Requires triage for potential credential compromise.
+categorized_as_incident: true
+linked_incident: iso27001:incident-2026-001

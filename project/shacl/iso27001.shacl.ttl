@@ -1,0 +1,4250 @@
+@prefix iso27001: <https://w3id.org/lmodel/iso-iec-27001/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+iso27001:AuditProgramme a sh:NodeShape ;
+    rdfs:comment "The internal audit programme per 9.2.2, planning audit activities over a defined period." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Resource requirements for the programme." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:resource_requirements ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 21 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the programme." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:programme_status ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique reference number for document control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:document_reference ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who created the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:author ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person accountable for the document content and maintenance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:owner ],
+        [ sh:class iso27001:InternalAudit ;
+            sh:description "Audits planned in this programme." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path iso27001:planned_audits ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document was approved." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:approved_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Period covered by the audit programme." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:programme_period ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document becomes effective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:effective_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Information classification level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 22 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Rationale for audit frequency decisions." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:audit_frequency_rationale ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 20 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who approved the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:approved_by ],
+        [ sh:description "Classification of the documented information." ;
+            sh:in ( "policy" "procedure" "standard" "guideline" "record" "plan" "report" ) ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path iso27001:document_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 18 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document is due for review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:review_date ],
+        [ sh:datatype xsd:duration ;
+            sh:description "Duration for which the document must be retained." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:retention_period ],
+        [ sh:datatype xsd:string ;
+            sh:description "Required qualifications for auditors." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:auditor_qualifications ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 19 ;
+            sh:path iso27001:description ] ;
+    sh:targetClass iso27001:AuditProgramme .
+
+iso27001:InformationSecurityEvent a sh:NodeShape ;
+    rdfs:comment "An information security event per A.5.25, which may or may not be categorized as an incident." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the event." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:event_description ],
+        [ sh:class iso27001:Asset ;
+            sh:description "Assets affected by this risk or incident." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path iso27001:affected_assets ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Whether the event was categorized as an incident." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:categorized_as_incident ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Date and time of the event." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:event_datetime ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who reported the event." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:reporter ],
+        [ sh:class iso27001:InformationSecurityIncident ;
+            sh:description "Linked incident if categorized." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path iso27001:linked_incident ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Initial assessment of the event." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:initial_assessment ] ;
+    sh:targetClass iso27001:InformationSecurityEvent .
+
+iso27001:InformationSecurityManagementSystem a sh:NodeShape ;
+    rdfs:comment "Top-level container representing an organization's complete ISMS per ISO 27001. Aggregates all components required for establishing, implementing, maintaining, and continually improving information security management." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class iso27001:InternalAudit ;
+            sh:description "Internal audit instances." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 23 ;
+            sh:path iso27001:internal_audits ],
+        [ sh:class iso27001:Resource ;
+            sh:description "Resources provided for the ISMS." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 14 ;
+            sh:path iso27001:resources ],
+        [ sh:class iso27001:DocumentedInformation ;
+            sh:description "Register of documented information." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 18 ;
+            sh:path iso27001:documented_information_register ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 37 ;
+            sh:path iso27001:version ],
+        [ sh:class iso27001:ManagementReview ;
+            sh:description "Management review instances." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 24 ;
+            sh:path iso27001:management_reviews ],
+        [ sh:class iso27001:CommunicationPlan ;
+            sh:description "Reference to the communication plan." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 17 ;
+            sh:path iso27001:communication_plan ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 36 ;
+            sh:path iso27001:modified_date ],
+        [ sh:class iso27001:RiskTreatmentPlan ;
+            sh:description "Risk treatment plans." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 21 ;
+            sh:path iso27001:risk_treatment_plans ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 33 ;
+            sh:path iso27001:name ],
+        [ sh:class iso27001:CompetenceRecord ;
+            sh:description "Competence records for personnel." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 15 ;
+            sh:path iso27001:competence_records ],
+        [ sh:datatype xsd:string ;
+            sh:description "Documented statement of ISMS scope per 4.3." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:scope_statement ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 32 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Accredited certification body." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 29 ;
+            sh:path iso27001:certification_body ],
+        [ sh:datatype xsd:string ;
+            sh:description "External issues relevant to ISMS per 4.1." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:context_external_issues ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date certification was achieved." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 30 ;
+            sh:path iso27001:certification_date ],
+        [ sh:class iso27001:Organization ;
+            sh:description "Reference to the organization operating the ISMS." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path iso27001:organization ],
+        [ sh:class iso27001:CorrectiveAction ;
+            sh:description "Corrective actions." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 26 ;
+            sh:path iso27001:corrective_actions ],
+        [ sh:class iso27001:ImprovementOpportunity ;
+            sh:description "Improvement opportunities tracked." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 27 ;
+            sh:path iso27001:improvements ],
+        [ sh:class iso27001:InformationSecurityPolicy ;
+            sh:description "Reference to the information security policy." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path iso27001:information_security_policy ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 35 ;
+            sh:path iso27001:created_date ],
+        [ sh:class iso27001:AwarenessProgram ;
+            sh:description "Reference to the awareness program." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 16 ;
+            sh:path iso27001:awareness_program ],
+        [ sh:datatype xsd:string ;
+            sh:description "Defined boundaries of the ISMS scope." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:scope_boundaries ],
+        [ sh:class iso27001:RiskAssessment ;
+            sh:description "Risk assessment instances." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 20 ;
+            sh:path iso27001:risk_assessments ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 34 ;
+            sh:path iso27001:description ],
+        [ sh:class iso27001:Nonconformity ;
+            sh:description "Nonconformities identified." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 25 ;
+            sh:path iso27001:nonconformities ],
+        [ sh:datatype xsd:string ;
+            sh:description "Any exclusions from scope with justification." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:scope_exclusions ],
+        [ sh:class iso27001:SecurityControl ;
+            sh:description "Security controls applied in the ISMS." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 12 ;
+            sh:path iso27001:controls ],
+        [ sh:class iso27001:InterestedParty ;
+            sh:description "Stakeholders relevant to the ISMS." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path iso27001:interested_parties ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current certification status." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 28 ;
+            sh:path iso27001:certification_status ],
+        [ sh:class iso27001:Role ;
+            sh:description "Information security roles defined in the ISMS." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 13 ;
+            sh:path iso27001:roles ],
+        [ sh:class iso27001:InformationSecurityObjective ;
+            sh:description "Information security objectives." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 8 ;
+            sh:path iso27001:objectives ],
+        [ sh:class iso27001:StatementOfApplicability ;
+            sh:description "Reference to the Statement of Applicability." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 11 ;
+            sh:path iso27001:statement_of_applicability ],
+        [ sh:class iso27001:RiskTreatmentProcess ;
+            sh:description "Reference to the risk treatment process." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 10 ;
+            sh:path iso27001:risk_treatment_process ],
+        [ sh:datatype xsd:string ;
+            sh:description "Internal issues relevant to ISMS per 4.1." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:context_internal_issues ],
+        [ sh:class iso27001:OperationalProcedure ;
+            sh:description "Operational procedures." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 19 ;
+            sh:path iso27001:operational_procedures ],
+        [ sh:class iso27001:MonitoringProgram ;
+            sh:description "Reference to the monitoring program." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 22 ;
+            sh:path iso27001:monitoring_program ],
+        [ sh:class iso27001:RiskAssessmentProcess ;
+            sh:description "Reference to the risk assessment process." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 9 ;
+            sh:path iso27001:risk_assessment_process ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date recertification is due." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 31 ;
+            sh:path iso27001:recertification_date ] ;
+    sh:targetClass iso27001:InformationSecurityManagementSystem .
+
+iso27001:NamedEntity a sh:NodeShape ;
+    rdfs:comment "Abstract base class for all entities with an identifier, name, and description. Provides common identification and documentation slots." ;
+    sh:closed false ;
+    sh:ignoredProperties ( iso27001:positive_observations iso27001:metric_definition iso27001:experience_records iso27001:soa_entries iso27001:process_criteria iso27001:risk_treatment_process iso27001:assessment_methodology iso27001:soa_template iso27001:statement_of_applicability iso27001:containment_actions iso27001:policy_statement iso27001:completion_date rdf:type iso27001:risks_addressed iso27001:effectiveness_rating iso27001:assigned_to iso27001:quantity iso27001:applicability_statement iso27001:recovery_actions iso27001:risks_identified iso27001:audit_scope iso27001:commitment_statements iso27001:risk_implication iso27001:context_changes iso27001:auditor_qualifications iso27001:risk_matrix iso27001:risk_owner_approval iso27001:next_assessment_date iso27001:root_cause_analysis iso27001:immediate_actions iso27001:trading_names iso27001:documented_information_register iso27001:implementation_plan iso27001:delivery_methods iso27001:linked_corrective_action iso27001:location iso27001:review_date iso27001:risk_treatment_option iso27001:operational_procedures iso27001:document_type iso27001:parent_policy iso27001:outcome_assessment iso27001:employee_count iso27001:recommendations iso27001:responsible_party iso27001:assessment_scope iso27001:applicable_threats iso27001:not_applicable_count iso27001:target_value iso27001:approved_date iso27001:allocated_to iso27001:identification_date iso27001:impact_scale iso27001:regulatory_jurisdictions iso27001:programme_status iso27001:notifications_made iso27001:legal_name iso27001:internal_audits iso27001:implementation_guidance iso27001:certification_status iso27001:assessment_frequency iso27001:resources_required iso27001:interested_parties iso27001:risk_treatment_plans iso27001:detection_date iso27001:auditee_representatives iso27001:information_security_policy iso27001:audit_objectives iso27001:requirement_violated iso27001:nonconformities iso27001:reporter iso27001:plan_scope iso27001:change_control_requirements iso27001:scope_statement iso27001:industry_sector iso27001:target_completion_date iso27001:monitoring_items iso27001:audit_type iso27001:responsible_roles iso27001:implementation_timeline iso27001:methodology_used iso27001:residual_risk_acceptance iso27001:implementation_date iso27001:topic_area iso27001:clause_reference iso27001:certification_body iso27001:approval_workflow iso27001:nonconformity_source iso27001:identified_by iso27001:control_id iso27001:planned_count iso27001:residual_risk_level iso27001:last_test_date iso27001:competency_gaps iso27001:linked_corrective_actions iso27001:root_cause_addressed iso27001:objective_statement iso27001:organization_type iso27001:report_distribution iso27001:last_review_date iso27001:scope_boundaries iso27001:incident_category iso27001:treatment_options_guidance iso27001:role_type iso27001:awareness_topics iso27001:report_date iso27001:audit_conclusion iso27001:applicable_assets iso27001:size_category iso27001:summary_findings iso27001:impact iso27001:procedure_scope iso27001:assessor iso27001:corrective_actions iso27001:event_datetime iso27001:authorities iso27001:priority iso27001:action_description iso27001:subsidiaries iso27001:monitoring_program iso27001:linked_nonconformity iso27001:risk_acceptance_criteria iso27001:allocation_date iso27001:status iso27001:finding_type iso27001:parent_organization iso27001:asset_custodian iso27001:control_category iso27001:planned_audits iso27001:communication_date iso27001:frequency iso27001:improvements iso27001:required_competencies iso27001:controls_to_implement iso27001:person_name iso27001:completion_tracking iso27001:recertification_date iso27001:author iso27001:party_type iso27001:implemented_count iso27001:audit_results_summary iso27001:linked_incident iso27001:inherent_risk_level iso27001:objectives iso27001:affected_cia_properties iso27001:auditee_response iso27001:related_treatment_plan iso27001:response_actions iso27001:development_actions iso27001:incident_description iso27001:decisions iso27001:classification iso27001:nonconformity_description iso27001:control_measures iso27001:control_selection_criteria iso27001:action_items iso27001:programme_period iso27001:asset_owner iso27001:post_incident_review iso27001:severity iso27001:related_controls iso27001:related_risks iso27001:finding_description iso27001:target_audience iso27001:document_reference iso27001:certification_date iso27001:categorized_as_incident iso27001:notification_required iso27001:control_text iso27001:incident_datetime iso27001:geographic_locations iso27001:contact_information iso27001:closure_status iso27001:event_description iso27001:applicable_controls iso27001:measurement_frequency iso27001:interested_party_changes iso27001:resource_requirements iso27001:root_cause iso27001:effectiveness_verified iso27001:communication_needs iso27001:closure_datetime iso27001:reporting_line iso27001:relationship iso27001:effectiveness_criteria iso27001:improvement_source iso27001:current_value iso27001:retention_period iso27001:detected_by iso27001:previous_actions_status iso27001:organization iso27001:policy_objectives_framework iso27001:competence_records iso27001:assessment_criteria iso27001:assessment_date iso27001:approved_by iso27001:risk_owner iso27001:context_internal_issues iso27001:related_topic_policies iso27001:evidence_references iso27001:communication_items iso27001:risk_assessments iso27001:recommended_action iso27001:implementation_status iso27001:expected_benefit iso27001:scope_exclusions iso27001:audit_team iso27001:performance_trends iso27001:control_reference iso27001:lead_auditor iso27001:audit_reference iso27001:affected_assets iso27001:evidence_collected iso27001:target_date iso27001:asset_type iso27001:responsibilities iso27001:action_plan iso27001:initial_assessment iso27001:criticality iso27001:threat_description iso27001:similar_nonconformities_check iso27001:awareness_program iso27001:effectiveness_measures iso27001:audit_period_end iso27001:audit_period_start iso27001:detection_method iso27001:affected_cia iso27001:findings iso27001:training_records iso27001:eradication_actions iso27001:risk_assessment_process iso27001:trigger_events iso27001:communication_plan iso27001:improvement_opportunities iso27001:audit_frequency_rationale iso27001:resource_type iso27001:controls iso27001:isms_changes_required iso27001:measurement_method iso27001:control_owner iso27001:requirements iso27001:existing_controls iso27001:audit_criteria iso27001:consequences_addressed iso27001:audit_plan iso27001:achievement_status iso27001:delegation_rules iso27001:context_external_issues iso27001:responsible_parties iso27001:closure_evidence iso27001:competency_assessment_date iso27001:likelihood_scale iso27001:education_records iso27001:risk_assessment_results iso27001:vulnerability_description iso27001:person_role iso27001:risk_source iso27001:objective_evidence iso27001:attendees iso27001:accountability iso27001:management_reviews iso27001:availability_status iso27001:actual_completion_date iso27001:total_controls iso27001:acknowledgment_required iso27001:control_title iso27001:improvement_description iso27001:treatment_actions iso27001:effective_date iso27001:likelihood iso27001:effectiveness_review_date iso27001:owner iso27001:treatment_priority iso27001:roles iso27001:closure_date iso27001:next_review_date iso27001:responsible_role iso27001:cost iso27001:lessons_learned iso27001:resources ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:modified_date ] ;
+    sh:targetClass iso27001:NamedEntity .
+
+iso27001:AuditFinding a sh:NodeShape ;
+    rdfs:comment "A finding from an internal audit, including nonconformities, observations, and positive findings." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Analysis of root cause." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:root_cause_analysis ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the finding." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:finding_description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Risk implications of the finding." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:risk_implication ],
+        [ sh:description "Type of audit finding." ;
+            sh:in ( "major_nonconformity" "minor_nonconformity" "observation" "positive_finding" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path iso27001:finding_type ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:version ],
+        [ sh:class iso27001:CorrectiveAction ;
+            sh:description "Corrective action linked to this finding." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 9 ;
+            sh:path iso27001:linked_corrective_action ],
+        [ sh:datatype xsd:string ;
+            sh:description "Reference to standard clause." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:clause_reference ],
+        [ sh:datatype xsd:string ;
+            sh:description "Evidence supporting the finding." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:objective_evidence ],
+        [ sh:datatype xsd:string ;
+            sh:description "Status of finding closure." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:closure_status ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date the finding was closed." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:closure_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Recommended action to address finding." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:recommended_action ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:name ],
+        [ sh:class iso27001:SecurityControl ;
+            sh:description "Reference to the control (e.g., A.5.1)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path iso27001:control_reference ],
+        [ sh:datatype xsd:string ;
+            sh:description "Response from the auditee." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:auditee_response ] ;
+    sh:targetClass iso27001:AuditFinding .
+
+iso27001:AwarenessProgram a sh:NodeShape ;
+    rdfs:comment "The awareness program ensuring personnel understand their information security responsibilities per Clause 7.3." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Classification of the documented information." ;
+            sh:in ( "policy" "procedure" "standard" "guideline" "record" "plan" "report" ) ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path iso27001:document_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who approved the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:approved_by ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document becomes effective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:effective_date ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Information classification level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person accountable for the document content and maintenance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:owner ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 21 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Frequency of the activity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:frequency ],
+        [ sh:datatype xsd:string ;
+            sh:description "How completion is tracked." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:completion_tracking ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 18 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:duration ;
+            sh:description "Duration for which the document must be retained." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:retention_period ],
+        [ sh:datatype xsd:string ;
+            sh:description "Methods used to deliver awareness content." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:delivery_methods ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who created the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:author ],
+        [ sh:datatype xsd:string ;
+            sh:description "How effectiveness is measured." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:effectiveness_measures ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique reference number for document control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:document_reference ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 19 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 20 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document is due for review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:review_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 22 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document was approved." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:approved_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:string ;
+            sh:description "Topics covered in awareness program." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:awareness_topics ],
+        [ sh:datatype xsd:string ;
+            sh:description "Intended audience for the policy or document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:target_audience ] ;
+    sh:targetClass iso27001:AwarenessProgram .
+
+iso27001:CommunicationItem a sh:NodeShape ;
+    rdfs:comment "A single communication requirement within the communication plan." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Frequency of the activity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:frequency ],
+        [ sh:datatype xsd:string ;
+            sh:description "Party responsible for the activity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:responsible_party ],
+        [ sh:datatype xsd:string ;
+            sh:description "Subject of the communication." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:subject ],
+        [ sh:datatype xsd:string ;
+            sh:description "Purpose of the communication." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:purpose ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Whether records are required." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:records_required ],
+        [ sh:datatype xsd:string ;
+            sh:description "Method of communication." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:method ],
+        [ sh:datatype xsd:string ;
+            sh:description "Target audience." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:audience ] ;
+    sh:targetClass iso27001:CommunicationItem .
+
+iso27001:CommunicationPlan a sh:NodeShape ;
+    rdfs:comment "Plan for internal and external communications relevant to the ISMS per Clause 7.4." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person accountable for the document content and maintenance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:owner ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique reference number for document control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:document_reference ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:duration ;
+            sh:description "Duration for which the document must be retained." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:retention_period ],
+        [ sh:description "Classification of the documented information." ;
+            sh:in ( "policy" "procedure" "standard" "guideline" "record" "plan" "report" ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path iso27001:document_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document becomes effective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:effective_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Information classification level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:classification ],
+        [ sh:class iso27001:CommunicationItem ;
+            sh:description "Communication items in the plan." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path iso27001:communication_items ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who approved the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:approved_by ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who created the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:author ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document is due for review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:review_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document was approved." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:approved_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:modified_date ] ;
+    sh:targetClass iso27001:CommunicationPlan .
+
+iso27001:CompetenceRecord a sh:NodeShape ;
+    rdfs:comment "Evidence of competence for personnel affecting information security performance per Clause 7.2 d)." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Relevant experience." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:experience_records ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who approved the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:approved_by ],
+        [ sh:datatype xsd:string ;
+            sh:description "Actions to address competency gaps." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:development_actions ],
+        [ sh:datatype xsd:string ;
+            sh:description "Name of the person." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:person_name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 25 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 20 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Education qualifications." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:education_records ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document was approved." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:approved_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 21 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date of last competency assessment." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:competency_assessment_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Competencies required for the role." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:required_competencies ],
+        [ sh:datatype xsd:string ;
+            sh:description "Information classification level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 18 ;
+            sh:path iso27001:classification ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document becomes effective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:effective_date ],
+        [ sh:description "Classification of the documented information." ;
+            sh:in ( "policy" "procedure" "standard" "guideline" "record" "plan" "report" ) ;
+            sh:maxCount 1 ;
+            sh:order 9 ;
+            sh:path iso27001:document_type ],
+        [ sh:datatype xsd:duration ;
+            sh:description "Duration for which the document must be retained." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 19 ;
+            sh:path iso27001:retention_period ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 22 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique reference number for document control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:document_reference ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 24 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who created the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:author ],
+        [ sh:datatype xsd:string ;
+            sh:description "Role of the person." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:person_role ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person accountable for the document content and maintenance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:owner ],
+        [ sh:datatype xsd:string ;
+            sh:description "Identified competency gaps." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:competency_gaps ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document is due for review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:review_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:string ;
+            sh:description "Training completed." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:training_records ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 23 ;
+            sh:path iso27001:created_date ] ;
+    sh:targetClass iso27001:CompetenceRecord .
+
+iso27001:DocumentedInformation a sh:NodeShape ;
+    rdfs:comment "Abstract class for documented information per Clause 7.5. Captures metadata required for document control." ;
+    sh:closed false ;
+    sh:ignoredProperties ( iso27001:positive_observations iso27001:audit_team iso27001:performance_trends iso27001:experience_records iso27001:soa_entries iso27001:required_competencies iso27001:process_criteria iso27001:lead_auditor iso27001:audit_reference iso27001:controls_to_implement iso27001:auditee_representatives iso27001:person_name iso27001:assessment_methodology iso27001:soa_template iso27001:completion_tracking iso27001:audit_objectives iso27001:plan_scope iso27001:change_control_requirements iso27001:implemented_count iso27001:policy_statement iso27001:audit_results_summary iso27001:monitoring_items iso27001:completion_date rdf:type iso27001:risks_addressed iso27001:development_actions iso27001:audit_type iso27001:responsible_roles iso27001:effectiveness_measures iso27001:applicability_statement iso27001:audit_period_end iso27001:implementation_timeline iso27001:audit_period_start iso27001:decisions iso27001:risks_identified iso27001:methodology_used iso27001:control_selection_criteria iso27001:residual_risk_acceptance iso27001:control_measures iso27001:topic_area iso27001:findings iso27001:audit_scope iso27001:commitment_statements iso27001:programme_period iso27001:approval_workflow iso27001:action_items iso27001:context_changes iso27001:training_records iso27001:frequency iso27001:related_controls iso27001:planned_count iso27001:trigger_events iso27001:target_audience iso27001:risk_matrix iso27001:auditor_qualifications iso27001:audit_frequency_rationale iso27001:risk_owner_approval iso27001:next_assessment_date iso27001:competency_gaps iso27001:improvement_opportunities iso27001:planned_audits iso27001:audit_criteria iso27001:delivery_methods iso27001:audit_plan iso27001:applicable_controls iso27001:report_distribution iso27001:last_review_date iso27001:responsible_parties iso27001:resource_requirements iso27001:interested_party_changes iso27001:treatment_options_guidance iso27001:awareness_topics iso27001:report_date iso27001:competency_assessment_date iso27001:likelihood_scale iso27001:education_records iso27001:risk_assessment_results iso27001:audit_conclusion iso27001:person_role iso27001:parent_policy iso27001:summary_findings iso27001:recommendations iso27001:attendees iso27001:previous_actions_status iso27001:procedure_scope iso27001:assessor iso27001:assessment_scope iso27001:not_applicable_count iso27001:policy_objectives_framework iso27001:acknowledgment_required iso27001:total_controls iso27001:assessment_criteria iso27001:assessment_date iso27001:treatment_actions iso27001:risk_acceptance_criteria iso27001:impact_scale iso27001:related_topic_policies iso27001:programme_status iso27001:communication_items iso27001:next_review_date iso27001:assessment_frequency iso27001:implementation_status iso27001:resources_required iso27001:communication_date ) ;
+    sh:property [ sh:datatype xsd:date ;
+            sh:description "Date when the document was approved." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:approved_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document becomes effective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:effective_date ],
+        [ sh:datatype xsd:duration ;
+            sh:description "Duration for which the document must be retained." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:retention_period ],
+        [ sh:description "Classification of the documented information." ;
+            sh:in ( "policy" "procedure" "standard" "guideline" "record" "plan" "report" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path iso27001:document_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person accountable for the document content and maintenance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:owner ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who approved the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:approved_by ],
+        [ sh:datatype xsd:string ;
+            sh:description "Information classification level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who created the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:author ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document is due for review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:review_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique reference number for document control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:document_reference ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:created_date ] ;
+    sh:targetClass iso27001:DocumentedInformation .
+
+iso27001:ImprovementOpportunity a sh:NodeShape ;
+    rdfs:comment "An opportunity for continual improvement per Clause 10.1, enhancing ISMS suitability, adequacy, or effectiveness." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Priority level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:priority ],
+        [ sh:datatype xsd:date ;
+            sh:description "Target date for achieving the objective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:target_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Assessment of actual outcomes." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:outcome_assessment ],
+        [ sh:datatype xsd:string ;
+            sh:description "Party responsible for the activity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:responsible_party ],
+        [ sh:datatype xsd:date ;
+            sh:description "Actual date the action was completed." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:actual_completion_date ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date identified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:identification_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who identified it." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:identified_by ],
+        [ sh:datatype xsd:string ;
+            sh:description "Expected benefit from implementation." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:expected_benefit ],
+        [ sh:datatype xsd:string ;
+            sh:description "Source of the improvement opportunity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:improvement_source ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Plan for implementing the improvement." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:implementation_plan ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the improvement." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:improvement_description ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:modified_date ] ;
+    sh:targetClass iso27001:ImprovementOpportunity .
+
+iso27001:InformationSecurityIncident a sh:NodeShape ;
+    rdfs:comment "An information security incident per A.5.26, requiring response per documented procedures." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "How the incident was detected." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:detection_method ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Date and time of incident closure." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:closure_datetime ],
+        [ sh:datatype xsd:string ;
+            sh:description "Lessons learned from the incident." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:lessons_learned ],
+        [ sh:datatype xsd:string ;
+            sh:description "Actions to recover normal operations." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:recovery_actions ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 22 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Actions to contain the incident." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:containment_actions ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Date and time the incident occurred or was detected." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:incident_datetime ],
+        [ sh:datatype xsd:string ;
+            sh:description "Severity rating." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:severity ],
+        [ sh:class iso27001:Asset ;
+            sh:description "Assets affected by this risk or incident." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path iso27001:affected_assets ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 23 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 20 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Actions to eradicate the cause." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:eradication_actions ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Whether notification to authorities/parties was required." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:notification_required ],
+        [ sh:datatype xsd:string ;
+            sh:description "Post-incident review findings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:post_incident_review ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 21 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Evidence collected." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:evidence_collected ],
+        [ sh:datatype xsd:string ;
+            sh:description "Category of incident." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:incident_category ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 18 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "CIA properties affected." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:affected_cia ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 19 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the incident." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:incident_description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Notifications that were made." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:notifications_made ],
+        [ sh:datatype xsd:string ;
+            sh:description "Actions taken in response." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:response_actions ],
+        [ sh:datatype xsd:string ;
+            sh:description "Root cause of the nonconformity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:root_cause ] ;
+    sh:targetClass iso27001:InformationSecurityIncident .
+
+iso27001:InformationSecurityObjective a sh:NodeShape ;
+    rdfs:comment "A measurable information security objective per Clause 6.2, established at relevant functions and levels of the organization." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class iso27001:SecurityControl ;
+            sh:description "Other controls related to this one." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 10 ;
+            sh:path iso27001:related_controls ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of objective achievement." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:achievement_status ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Target value for the objective metric." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:target_value ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Plan for achieving the objective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:action_plan ],
+        [ sh:datatype xsd:string ;
+            sh:description "Definition of how the objective is measured." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:metric_definition ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Clear statement of the objective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:objective_statement ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Target date for achieving the objective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:target_date ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "How often measurement is performed." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:measurement_frequency ],
+        [ sh:class iso27001:Role ;
+            sh:description "Role responsible for the objective or control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path iso27001:responsible_role ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current measured value." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:current_value ],
+        [ sh:datatype xsd:string ;
+            sh:description "Method used to measure the metric." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:measurement_method ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:created_date ],
+        [ sh:class iso27001:Risk ;
+            sh:description "Associated risks." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 9 ;
+            sh:path iso27001:related_risks ] ;
+    sh:targetClass iso27001:InformationSecurityObjective .
+
+iso27001:InterestedParty a sh:NodeShape ;
+    rdfs:comment "A stakeholder whose needs and expectations are relevant to the ISMS per 4.2. Includes internal parties (employees, management) and external parties (customers, regulators, suppliers)." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Communication requirements for this party." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:communication_needs ],
+        [ sh:datatype xsd:string ;
+            sh:description "Contact details for the party." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:contact_information ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Requirements of the interested party." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:requirements ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Category of interested party." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:party_type ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Nature of the relationship with the organization." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:relationship ] ;
+    sh:targetClass iso27001:InterestedParty .
+
+iso27001:ManagementReview a sh:NodeShape ;
+    rdfs:comment "A management review per Clause 9.3, conducted by top management to ensure ISMS suitability, adequacy, and effectiveness." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Results of risk assessment." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:risk_assessment_results ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 23 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document becomes effective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 18 ;
+            sh:path iso27001:effective_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document was approved." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:approved_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Status of actions from previous reviews." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:previous_actions_status ],
+        [ sh:datatype xsd:string ;
+            sh:description "Attendees of the review." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:attendees ],
+        [ sh:datatype xsd:string ;
+            sh:description "Information classification level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 20 ;
+            sh:path iso27001:classification ],
+        [ sh:datatype xsd:date ;
+            sh:description "Planned date for next review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:next_review_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Opportunities for improvement identified." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:improvement_opportunities ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 22 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person accountable for the document content and maintenance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:owner ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the management review was conducted." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:review_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 19 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:string ;
+            sh:description "Trends in information security performance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:performance_trends ],
+        [ sh:datatype xsd:string ;
+            sh:description "Action items from the review." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:action_items ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 24 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 27 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:duration ;
+            sh:description "Duration for which the document must be retained." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 21 ;
+            sh:path iso27001:retention_period ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 25 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 26 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Summary of audit results." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:audit_results_summary ],
+        [ sh:datatype xsd:string ;
+            sh:description "Changes in context since last review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:context_changes ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique reference number for document control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:document_reference ],
+        [ sh:datatype xsd:string ;
+            sh:description "Decisions made in the review." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:decisions ],
+        [ sh:description "Classification of the documented information." ;
+            sh:in ( "policy" "procedure" "standard" "guideline" "record" "plan" "report" ) ;
+            sh:maxCount 1 ;
+            sh:order 12 ;
+            sh:path iso27001:document_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who created the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:author ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who approved the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:approved_by ],
+        [ sh:datatype xsd:string ;
+            sh:description "Changes in interested party requirements." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:interested_party_changes ] ;
+    sh:targetClass iso27001:ManagementReview .
+
+iso27001:MonitoringItem a sh:NodeShape ;
+    rdfs:comment "A single item to be monitored and measured per 9.1." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Current trend direction." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:trend ],
+        [ sh:datatype xsd:string ;
+            sh:description "Method used to measure the metric." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:measurement_method ],
+        [ sh:datatype xsd:string ;
+            sh:description "Name of the metric." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:metric_name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Target threshold value." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:target_threshold ],
+        [ sh:datatype xsd:string ;
+            sh:description "Party responsible for the activity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:responsible_party ],
+        [ sh:datatype xsd:string ;
+            sh:description "Threshold triggering alerts." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:alert_threshold ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current measured value." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:current_value ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person performing analysis." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:analyst ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of what is measured." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:metric_description ],
+        [ sh:datatype xsd:string ;
+            sh:description "How often measurement is performed." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:measurement_frequency ],
+        [ sh:datatype xsd:string ;
+            sh:description "How often analysis is performed." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:analysis_frequency ] ;
+    sh:targetClass iso27001:MonitoringItem .
+
+iso27001:MonitoringProgram a sh:NodeShape ;
+    rdfs:comment "The program for monitoring, measurement, analysis, and evaluation per Clause 9.1." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:date ;
+            sh:description "Date when the document was approved." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:approved_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document becomes effective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:effective_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who created the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:author ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document is due for review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:review_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:modified_date ],
+        [ sh:description "Classification of the documented information." ;
+            sh:in ( "policy" "procedure" "standard" "guideline" "record" "plan" "report" ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path iso27001:document_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique reference number for document control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:document_reference ],
+        [ sh:datatype xsd:string ;
+            sh:description "Information classification level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person accountable for the document content and maintenance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:owner ],
+        [ sh:class iso27001:MonitoringItem ;
+            sh:description "Items to be monitored." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path iso27001:monitoring_items ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who approved the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:approved_by ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:duration ;
+            sh:description "Duration for which the document must be retained." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:retention_period ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:description ] ;
+    sh:targetClass iso27001:MonitoringProgram .
+
+iso27001:OperationalProcedure a sh:NodeShape ;
+    rdfs:comment "A documented procedure for operational planning and control per Clause 8.1." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who approved the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:approved_by ],
+        [ sh:datatype xsd:string ;
+            sh:description "Control measures implemented." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:control_measures ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:string ;
+            sh:description "Scope of the procedure." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:procedure_scope ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person accountable for the document content and maintenance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:owner ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document is due for review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:review_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Criteria established for the process." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:process_criteria ],
+        [ sh:class iso27001:Role ;
+            sh:description "Roles responsible for the procedure." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path iso27001:responsible_roles ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 20 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Information classification level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "Requirements for controlling changes." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:change_control_requirements ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document was approved." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:approved_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document becomes effective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:effective_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 22 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:duration ;
+            sh:description "Duration for which the document must be retained." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:retention_period ],
+        [ sh:description "Classification of the documented information." ;
+            sh:in ( "policy" "procedure" "standard" "guideline" "record" "plan" "report" ) ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path iso27001:document_type ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 21 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who created the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:author ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 18 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 19 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique reference number for document control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:document_reference ],
+        [ sh:class iso27001:SecurityControl ;
+            sh:description "Other controls related to this one." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path iso27001:related_controls ] ;
+    sh:targetClass iso27001:OperationalProcedure .
+
+iso27001:Organization a sh:NodeShape ;
+    rdfs:comment "The organization establishing and operating the ISMS. Captures context needed for Clause 4.1 (understanding the organization)." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Names under which the organization conducts business." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:trading_names ],
+        [ sh:datatype xsd:string ;
+            sh:description "Primary industry sector of the organization." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:industry_sector ],
+        [ sh:datatype xsd:string ;
+            sh:description "Parent organization if applicable." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:parent_organization ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Countries or regions where the organization operates." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:geographic_locations ],
+        [ sh:datatype xsd:positiveInteger ;
+            sh:description "Approximate number of employees." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:employee_count ],
+        [ sh:datatype xsd:string ;
+            sh:description "Legal registered name of the organization." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:legal_name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Type of organization (e.g., corporation, government, nonprofit)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:organization_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "Jurisdictions whose regulations apply to the organization." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:regulatory_jurisdictions ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Organization size classification." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:size_category ],
+        [ sh:datatype xsd:string ;
+            sh:description "Subsidiary organizations if applicable." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:subsidiaries ] ;
+    sh:targetClass iso27001:Organization .
+
+iso27001:Resource a sh:NodeShape ;
+    rdfs:comment "A resource provided for the ISMS per Clause 7.1, including personnel, infrastructure, technology, and budget." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date the resource was allocated." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:allocation_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Type of resource." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:resource_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "What the resource is allocated to." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:allocated_to ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current availability of the resource." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:availability_status ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Quantity of the resource." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:quantity ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Cost of the resource." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:cost ] ;
+    sh:targetClass iso27001:Resource .
+
+iso27001:RiskAssessment a sh:NodeShape ;
+    rdfs:comment "An instance of risk assessment performed per Clause 8.2, identifying and evaluating information security risks." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 23 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person or team who conducted the assessment." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:assessor ],
+        [ sh:class iso27001:Risk ;
+            sh:description "Risks identified in this assessment." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path iso27001:risks_identified ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique reference number for document control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:document_reference ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who approved the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:approved_by ],
+        [ sh:datatype xsd:string ;
+            sh:description "Information classification level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "Summary of assessment findings." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:summary_findings ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 21 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date the assessment was conducted." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:assessment_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Specific methodology applied in this assessment." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:methodology_used ],
+        [ sh:description "Classification of the documented information." ;
+            sh:in ( "policy" "procedure" "standard" "guideline" "record" "plan" "report" ) ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path iso27001:document_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "Recommendations from the assessment." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:recommendations ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document is due for review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:review_date ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 19 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:duration ;
+            sh:description "Duration for which the document must be retained." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 18 ;
+            sh:path iso27001:retention_period ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 22 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 20 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document was approved." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:approved_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person accountable for the document content and maintenance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:owner ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who created the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:author ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document becomes effective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:effective_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 24 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Scope of the assessment." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:assessment_scope ],
+        [ sh:datatype xsd:date ;
+            sh:description "Planned date for next assessment." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:next_assessment_date ] ;
+    sh:targetClass iso27001:RiskAssessment .
+
+iso27001:RiskAssessmentProcess a sh:NodeShape ;
+    rdfs:comment "The documented risk assessment process per Clause 6.1.2, defining criteria and methodology for identifying, analyzing, and evaluating risks." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 19 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Criteria for performing risk assessments." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:assessment_criteria ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique reference number for document control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:document_reference ],
+        [ sh:datatype xsd:string ;
+            sh:description "Methodology used for risk assessment." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:assessment_methodology ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person accountable for the document content and maintenance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:owner ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document is due for review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:review_date ],
+        [ sh:description "Classification of the documented information." ;
+            sh:in ( "policy" "procedure" "standard" "guideline" "record" "plan" "report" ) ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path iso27001:document_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 24 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 21 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 20 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:duration ;
+            sh:description "Duration for which the document must be retained." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 18 ;
+            sh:path iso27001:retention_period ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 22 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Planned frequency of risk assessments." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:assessment_frequency ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who created the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:author ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who approved the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:approved_by ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 23 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:string ;
+            sh:description "Risk matrix or calculation method." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:risk_matrix ],
+        [ sh:datatype xsd:string ;
+            sh:description "Scale used for likelihood rating." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:likelihood_scale ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document becomes effective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:effective_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Events that trigger risk assessment outside planned schedule." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:trigger_events ],
+        [ sh:datatype xsd:string ;
+            sh:description "Information classification level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "Scale used for impact rating." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:impact_scale ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document was approved." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:approved_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Criteria for accepting risks." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:risk_acceptance_criteria ] ;
+    sh:targetClass iso27001:RiskAssessmentProcess .
+
+iso27001:RiskTreatmentProcess a sh:NodeShape ;
+    rdfs:comment "The documented risk treatment process per Clause 6.1.3, defining how treatment options are selected and controls determined." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Criteria for selecting controls." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:control_selection_criteria ],
+        [ sh:datatype xsd:string ;
+            sh:description "Workflow for approving risk treatment." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:approval_workflow ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person accountable for the document content and maintenance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:owner ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Guidance on selecting treatment options." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:treatment_options_guidance ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 19 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document becomes effective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:effective_date ],
+        [ sh:description "Classification of the documented information." ;
+            sh:in ( "policy" "procedure" "standard" "guideline" "record" "plan" "report" ) ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path iso27001:document_type ],
+        [ sh:datatype xsd:duration ;
+            sh:description "Duration for which the document must be retained." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:retention_period ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who created the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:author ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique reference number for document control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:document_reference ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who approved the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:approved_by ],
+        [ sh:datatype xsd:string ;
+            sh:description "Information classification level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:classification ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document was approved." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:approved_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document is due for review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:review_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 20 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Template used for Statement of Applicability." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:soa_template ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 18 ;
+            sh:path iso27001:created_date ] ;
+    sh:targetClass iso27001:RiskTreatmentProcess .
+
+iso27001:SoAEntry a sh:NodeShape ;
+    rdfs:comment "A single entry in the Statement of Applicability, documenting the applicability and implementation status of one control." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class iso27001:Role ;
+            sh:description "Role responsible for the objective or control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path iso27001:responsible_role ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Whether the control is applicable." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:is_applicable ],
+        [ sh:datatype xsd:string ;
+            sh:description "Evidence of control implementation." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:implementation_evidence ],
+        [ sh:datatype xsd:date ;
+            sh:description "Target date for implementing the control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:target_implementation_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Justification for excluding the control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:exclusion_justification ],
+        [ sh:class iso27001:SecurityControl ;
+            sh:description "Reference to the control (e.g., A.5.1)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path iso27001:control_reference ],
+        [ sh:datatype xsd:string ;
+            sh:description "Justification for including the control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:inclusion_justification ],
+        [ sh:description "Current implementation status." ;
+            sh:in ( "not_started" "planned" "in_progress" "implemented" "not_applicable" ) ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path iso27001:implementation_status ] ;
+    sh:targetClass iso27001:SoAEntry .
+
+iso27001:StatementOfApplicability a sh:NodeShape ;
+    rdfs:comment "The Statement of Applicability (SoA) per 6.1.3 d), listing necessary controls with justification and implementation status." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 22 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Information classification level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person accountable for the document content and maintenance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:owner ],
+        [ sh:datatype xsd:duration ;
+            sh:description "Duration for which the document must be retained." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:retention_period ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique reference number for document control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:document_reference ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 21 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 20 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:unsignedShort ;
+            sh:description "Number of implemented controls." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:implemented_count ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:unsignedShort ;
+            sh:description "Total number of controls in scope." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:total_controls ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document was approved." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:approved_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date of last review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:last_review_date ],
+        [ sh:description "Classification of the documented information." ;
+            sh:in ( "policy" "procedure" "standard" "guideline" "record" "plan" "report" ) ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path iso27001:document_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 18 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who approved the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:approved_by ],
+        [ sh:datatype xsd:unsignedShort ;
+            sh:description "Number of controls marked not applicable." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:not_applicable_count ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who created the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:author ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 19 ;
+            sh:path iso27001:description ],
+        [ sh:class iso27001:SoAEntry ;
+            sh:description "Individual control entries in the SoA." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 0 ;
+            sh:path iso27001:soa_entries ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document is due for review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:review_date ],
+        [ sh:datatype xsd:unsignedShort ;
+            sh:description "Number of controls planned for implementation." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:planned_count ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document becomes effective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:effective_date ] ;
+    sh:targetClass iso27001:StatementOfApplicability .
+
+iso27001:TopicSpecificPolicy a sh:NodeShape ;
+    rdfs:comment "A policy addressing a specific information security topic, supporting the overarching information security policy." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person accountable for the document content and maintenance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:owner ],
+        [ sh:description "Classification of the documented information." ;
+            sh:in ( "policy" "procedure" "standard" "guideline" "record" "plan" "report" ) ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path iso27001:document_type ],
+        [ sh:class iso27001:SecurityControl ;
+            sh:description "Controls related to this policy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path iso27001:applicable_controls ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:id ],
+        [ sh:class iso27001:InformationSecurityPolicy ;
+            sh:description "The parent policy this topic-specific policy supports." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path iso27001:parent_policy ],
+        [ sh:datatype xsd:string ;
+            sh:description "Intended audience for the policy or document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:target_audience ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 20 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "The specific topic addressed by the policy." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:topic_area ],
+        [ sh:datatype xsd:string ;
+            sh:description "Information classification level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique reference number for document control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:document_reference ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 19 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document was approved." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:approved_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who approved the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:approved_by ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who created the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:author ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document becomes effective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:effective_date ],
+        [ sh:datatype xsd:duration ;
+            sh:description "Duration for which the document must be retained." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:retention_period ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 18 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document is due for review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:review_date ] ;
+    sh:targetClass iso27001:TopicSpecificPolicy .
+
+iso27001:InformationSecurityPolicy a sh:NodeShape ;
+    rdfs:comment "The information security policy established by top management per Clause 5.2. Provides framework for setting objectives and demonstrates commitment." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Statement of policy applicability." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:applicability_statement ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Whether acknowledgment is required from personnel." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:acknowledgment_required ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 21 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique reference number for document control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:document_reference ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 20 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "The core policy statement text." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:policy_statement ],
+        [ sh:datatype xsd:string ;
+            sh:description "Framework for setting information security objectives." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:policy_objectives_framework ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 18 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document was approved." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:approved_date ],
+        [ sh:class iso27001:TopicSpecificPolicy ;
+            sh:description "Topic-specific policies supporting this policy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path iso27001:related_topic_policies ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who approved the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:approved_by ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document becomes effective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:effective_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 22 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document is due for review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:review_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Statements of commitment included in the policy." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:commitment_statements ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who created the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:author ],
+        [ sh:datatype xsd:duration ;
+            sh:description "Duration for which the document must be retained." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:retention_period ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 23 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Information classification level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:classification ],
+        [ sh:description "Classification of the documented information." ;
+            sh:in ( "policy" "procedure" "standard" "guideline" "record" "plan" "report" ) ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path iso27001:document_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 19 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the policy was communicated." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:communication_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person accountable for the document content and maintenance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:owner ] ;
+    sh:targetClass iso27001:InformationSecurityPolicy .
+
+iso27001:InternalAudit a sh:NodeShape ;
+    rdfs:comment "An internal audit instance per Clause 9.2, assessing ISMS conformance and effectiveness." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Information classification level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 25 ;
+            sh:path iso27001:classification ],
+        [ sh:datatype xsd:date ;
+            sh:description "Start date of audit period." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:audit_period_start ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 30 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:duration ;
+            sh:description "Duration for which the document must be retained." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 26 ;
+            sh:path iso27001:retention_period ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 28 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Distribution list for the report." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:report_distribution ],
+        [ sh:datatype xsd:string ;
+            sh:description "Positive observations noted." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:positive_observations ],
+        [ sh:datatype xsd:string ;
+            sh:description "Overall audit conclusion." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:audit_conclusion ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date the report was issued." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:report_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Scope of the audit." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:audit_scope ],
+        [ sh:datatype xsd:string ;
+            sh:description "Audit plan document reference." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:audit_plan ],
+        [ sh:datatype xsd:string ;
+            sh:description "Lead auditor for the audit." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:lead_auditor ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 29 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Audit team members." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:audit_team ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 24 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:date ;
+            sh:description "End date of audit period." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:audit_period_end ],
+        [ sh:datatype xsd:string ;
+            sh:description "Reference identifier for the audit." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:audit_reference ],
+        [ sh:datatype xsd:string ;
+            sh:description "Criteria against which audit is conducted." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:audit_criteria ],
+        [ sh:datatype xsd:string ;
+            sh:description "Representatives from audited areas." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:auditee_representatives ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who created the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 18 ;
+            sh:path iso27001:author ],
+        [ sh:description "Classification of the documented information." ;
+            sh:in ( "policy" "procedure" "standard" "guideline" "record" "plan" "report" ) ;
+            sh:maxCount 1 ;
+            sh:order 16 ;
+            sh:path iso27001:document_type ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document was approved." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 21 ;
+            sh:path iso27001:approved_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Objectives of the audit." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:audit_objectives ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document is due for review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 23 ;
+            sh:path iso27001:review_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document becomes effective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 22 ;
+            sh:path iso27001:effective_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who approved the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 20 ;
+            sh:path iso27001:approved_by ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique reference number for document control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:document_reference ],
+        [ sh:datatype xsd:string ;
+            sh:description "Type of audit." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:audit_type ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 27 ;
+            sh:path iso27001:id ],
+        [ sh:class iso27001:AuditFinding ;
+            sh:description "Audit findings." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 11 ;
+            sh:path iso27001:findings ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person accountable for the document content and maintenance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 19 ;
+            sh:path iso27001:owner ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 32 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 31 ;
+            sh:path iso27001:modified_date ] ;
+    sh:targetClass iso27001:InternalAudit .
+
+iso27001:Nonconformity a sh:NodeShape ;
+    rdfs:comment "A nonconformity identified per Clause 10.2, representing failure to fulfill a requirement." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:string ;
+            sh:description "Evidence supporting closure." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:closure_evidence ],
+        [ sh:class iso27001:CorrectiveAction ;
+            sh:description "Corrective actions addressing this nonconformity." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 9 ;
+            sh:path iso27001:linked_corrective_actions ],
+        [ sh:datatype xsd:string ;
+            sh:description "Check for similar nonconformities elsewhere." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:similar_nonconformities_check ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person or process that detected the nonconformity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:detected_by ],
+        [ sh:datatype xsd:string ;
+            sh:description "Root cause of the nonconformity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:root_cause ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the nonconformity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:nonconformity_description ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Source of nonconformity detection." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:nonconformity_source ],
+        [ sh:datatype xsd:string ;
+            sh:description "Immediate actions taken to control/correct." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:immediate_actions ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date the finding was closed." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:closure_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date the nonconformity was detected." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:detection_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 18 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Requirement that was not fulfilled." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:requirement_violated ],
+        [ sh:datatype xsd:string ;
+            sh:description "How consequences were dealt with." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:consequences_addressed ] ;
+    sh:targetClass iso27001:Nonconformity .
+
+iso27001:RiskTreatmentPlan a sh:NodeShape ;
+    rdfs:comment "A risk treatment plan per 6.1.3 e), documenting actions to implement selected treatment options and controls." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Resources required for implementation." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:resources_required ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 24 ;
+            sh:path iso27001:description ],
+        [ sh:description "Current implementation status." ;
+            sh:in ( "not_started" "planned" "in_progress" "implemented" "not_applicable" ) ;
+            sh:maxCount 1 ;
+            sh:order 10 ;
+            sh:path iso27001:implementation_status ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the risk treatment plan was approved." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:approved_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique reference number for document control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:document_reference ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who approved the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:approved_by ],
+        [ sh:description "Classification of the documented information." ;
+            sh:in ( "policy" "procedure" "standard" "guideline" "record" "plan" "report" ) ;
+            sh:maxCount 1 ;
+            sh:order 12 ;
+            sh:path iso27001:document_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person who created the document." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:author ],
+        [ sh:datatype xsd:string ;
+            sh:description "Risk owner who approved the plan." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:risk_owner_approval ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 19 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 25 ;
+            sh:path iso27001:created_date ],
+        [ sh:class iso27001:Risk ;
+            sh:description "Risks addressed by this plan." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path iso27001:risks_addressed ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 27 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 23 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:duration ;
+            sh:description "Duration for which the document must be retained." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 21 ;
+            sh:path iso27001:retention_period ],
+        [ sh:datatype xsd:string ;
+            sh:description "Documentation of residual risk acceptance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:residual_risk_acceptance ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person accountable for the document content and maintenance." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:owner ],
+        [ sh:datatype xsd:string ;
+            sh:description "Actions to be taken for treatment." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:treatment_actions ],
+        [ sh:datatype xsd:string ;
+            sh:description "Information classification level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 20 ;
+            sh:path iso27001:classification ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when implementation was completed." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:completion_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document is due for review." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 18 ;
+            sh:path iso27001:review_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Scope of the plan." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:plan_scope ],
+        [ sh:datatype xsd:string ;
+            sh:description "Parties responsible for implementation." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:responsible_parties ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 26 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 22 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the document becomes effective." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:effective_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Timeline for implementation." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:implementation_timeline ],
+        [ sh:class iso27001:SecurityControl ;
+            sh:description "Controls to be implemented as part of treatment." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path iso27001:controls_to_implement ] ;
+    sh:targetClass iso27001:RiskTreatmentPlan .
+
+iso27001:Asset a sh:NodeShape ;
+    rdfs:comment "An information asset or associated asset requiring protection, per Annex A control 5.9." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Physical or logical location." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:location ],
+        [ sh:datatype xsd:string ;
+            sh:description "Owner of the asset." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:asset_owner ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Type of asset." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:asset_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "Criticality rating of the asset." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:criticality ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:name ],
+        [ sh:class iso27001:SecurityControl ;
+            sh:description "Controls related to this policy." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path iso27001:applicable_controls ],
+        [ sh:datatype xsd:string ;
+            sh:description "Information classification level." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:classification ],
+        [ sh:datatype xsd:string ;
+            sh:description "Custodian responsible for day-to-day protection." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:asset_custodian ],
+        [ sh:class iso27001:Risk ;
+            sh:description "Associated risks." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path iso27001:related_risks ] ;
+    sh:targetClass iso27001:Asset .
+
+iso27001:CorrectiveAction a sh:NodeShape ;
+    rdfs:comment "A corrective action per Clause 10.2 to eliminate the cause of a nonconformity and prevent recurrence." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Root cause this action addresses." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:root_cause_addressed ],
+        [ sh:datatype xsd:string ;
+            sh:description "Current status of the document or entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:status ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the action." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:action_description ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Party responsible for the activity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:responsible_party ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date effectiveness was reviewed." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:effectiveness_review_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Target date for completing the action." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:target_completion_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Actual date the action was completed." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:actual_completion_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:version ],
+        [ sh:class iso27001:Nonconformity ;
+            sh:description "Nonconformity this action addresses." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path iso27001:linked_nonconformity ],
+        [ sh:datatype xsd:boolean ;
+            sh:description "Whether effectiveness was verified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:effectiveness_verified ],
+        [ sh:datatype xsd:string ;
+            sh:description "Resources required for implementation." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:resources_required ],
+        [ sh:datatype xsd:string ;
+            sh:description "Criteria for evaluating effectiveness." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:effectiveness_criteria ],
+        [ sh:datatype xsd:string ;
+            sh:description "Changes to ISMS required as a result." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:isms_changes_required ] ;
+    sh:targetClass iso27001:CorrectiveAction .
+
+iso27001:Risk a sh:NodeShape ;
+    rdfs:comment "An identified information security risk associated with loss of confidentiality, integrity, or availability per 6.1.2 c)." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Which CIA properties are affected (confidentiality, integrity, availability)." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:affected_cia_properties ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 19 ;
+            sh:path iso27001:version ],
+        [ sh:datatype xsd:string ;
+            sh:description "Priority for treating this risk." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:treatment_priority ],
+        [ sh:class iso27001:RiskTreatmentPlan ;
+            sh:description "Risk treatment plan addressing this risk." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 13 ;
+            sh:path iso27001:related_treatment_plan ],
+        [ sh:description "Selected treatment option for the risk." ;
+            sh:in ( "modify" "accept" "avoid" "share" ) ;
+            sh:maxCount 1 ;
+            sh:order 11 ;
+            sh:path iso27001:risk_treatment_option ],
+        [ sh:description "Assessed impact if risk materializes." ;
+            sh:in ( "negligible" "minor" "moderate" "major" "severe" ) ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path iso27001:impact ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 18 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person accountable for managing the risk." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:risk_owner ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the threat exploiting the vulnerability." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:threat_description ],
+        [ sh:description "Assessed likelihood of risk occurrence." ;
+            sh:in ( "rare" "unlikely" "possible" "likely" "almost_certain" ) ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path iso27001:likelihood ],
+        [ sh:datatype xsd:string ;
+            sh:description "Description of the vulnerability that could be exploited." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:vulnerability_description ],
+        [ sh:class iso27001:Asset ;
+            sh:description "Assets affected by this risk or incident." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path iso27001:affected_assets ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:description ],
+        [ sh:class iso27001:SecurityControl ;
+            sh:description "Controls currently in place affecting this risk." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 9 ;
+            sh:path iso27001:existing_controls ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "Source or origin of the risk." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:risk_source ],
+        [ sh:description "Risk level after controls are applied." ;
+            sh:in ( "very_low" "low" "medium" "high" "critical" ) ;
+            sh:maxCount 1 ;
+            sh:order 10 ;
+            sh:path iso27001:residual_risk_level ],
+        [ sh:description "Risk level before controls are applied." ;
+            sh:in ( "very_low" "low" "medium" "high" "critical" ) ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path iso27001:inherent_risk_level ] ;
+    sh:targetClass iso27001:Risk .
+
+iso27001:Role a sh:NodeShape ;
+    rdfs:comment "An information security role with defined responsibilities and authorities per Clause 5.3." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:modified_date ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Authorities granted to the role." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path iso27001:authorities ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:string ;
+            sh:description "To whom this role reports." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:reporting_line ],
+        [ sh:datatype xsd:string ;
+            sh:description "What the role is accountable for." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:accountability ],
+        [ sh:datatype xsd:string ;
+            sh:description "Category of the role." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:role_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person(s) assigned to this role." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:assigned_to ],
+        [ sh:datatype xsd:string ;
+            sh:description "Responsibilities assigned to the role." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:responsibilities ],
+        [ sh:datatype xsd:string ;
+            sh:description "Rules for delegating responsibilities." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path iso27001:delegation_rules ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:version ] ;
+    sh:targetClass iso27001:Role .
+
+iso27001:SecurityControl a sh:NodeShape ;
+    rdfs:comment "A security control from Annex A of ISO/IEC 27001:2022, derived from ISO/IEC 27002:2022. Represents a measure that modifies risk." ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:date ;
+            sh:description "Date the control was last tested." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path iso27001:last_test_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Title of the control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path iso27001:control_title ],
+        [ sh:datatype xsd:string ;
+            sh:description "Guidance for implementing the control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path iso27001:implementation_guidance ],
+        [ sh:datatype xsd:string ;
+            sh:description "Control identifier from Annex A (e.g., 5.1, 8.24)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path iso27001:control_id ;
+            sh:pattern "^[5-8]\\.[0-9]{1,2}$" ],
+        [ sh:datatype xsd:string ;
+            sh:description "References to evidence of implementation." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path iso27001:evidence_references ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date the control was implemented." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path iso27001:implementation_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Version identifier for the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 19 ;
+            sh:path iso27001:version ],
+        [ sh:description "Domain category of the control." ;
+            sh:in ( "organizational" "people" "physical" "technological" ) ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path iso27001:control_category ],
+        [ sh:datatype xsd:string ;
+            sh:description "Threats this control addresses." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path iso27001:applicable_threats ],
+        [ sh:datatype xsd:string ;
+            sh:description "Full text of the control requirement." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path iso27001:control_text ],
+        [ sh:description "Current implementation status." ;
+            sh:in ( "not_started" "planned" "in_progress" "implemented" "not_applicable" ) ;
+            sh:maxCount 1 ;
+            sh:order 9 ;
+            sh:path iso27001:implementation_status ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was created." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 17 ;
+            sh:path iso27001:created_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Detailed description of the entity." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 16 ;
+            sh:path iso27001:description ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Unique identifier for this entity instance." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path iso27001:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "Rating of control effectiveness." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path iso27001:effectiveness_rating ],
+        [ sh:datatype xsd:string ;
+            sh:description "Asset types this control applies to." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path iso27001:applicable_assets ],
+        [ sh:datatype xsd:string ;
+            sh:description "Person responsible for the control." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path iso27001:control_owner ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable name or title." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 15 ;
+            sh:path iso27001:name ],
+        [ sh:datatype xsd:date ;
+            sh:description "Date when the entity was last modified." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 18 ;
+            sh:path iso27001:modified_date ],
+        [ sh:class iso27001:SecurityControl ;
+            sh:description "Other controls related to this one." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path iso27001:related_controls ] ;
+    sh:targetClass iso27001:SecurityControl .
+

@@ -1,0 +1,8 @@
+id: iso27001:resource-awareness-budget
+name: Security Awareness Budget
+resource_type: budget
+quantity: EUR 25000
+allocation_date: "2026-01-05"
+allocated_to: Awareness program
+cost: EUR 25000
+availability_status: allocated

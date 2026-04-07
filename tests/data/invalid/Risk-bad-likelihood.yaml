@@ -1,0 +1,3 @@
+id: iso27001:risk-invalid-likelihood
+name: Invalid Likelihood Risk
+likelihood: certain

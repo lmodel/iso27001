@@ -1,0 +1,17 @@
+id: iso27001:soa-2026
+name: Statement of Applicability 2026
+document_type: report
+soa_entries:
+  - control_reference: iso27001:control-access-review
+    is_applicable: true
+    inclusion_justification: Required to address access governance risks identified in the 2026 risk assessment.
+    implementation_status: implemented
+    implementation_evidence: Quarterly access review report retained in the GRC repository.
+    responsible_role: iso27001:role-ciso
+    target_implementation_date: "2026-03-31"
+total_controls: 93
+implemented_count: 1
+planned_count: 0
+not_applicable_count: 0
+last_review_date: "2026-04-05"
+approved_by: Chief Information Security Officer

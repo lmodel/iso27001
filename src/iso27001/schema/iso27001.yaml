@@ -73,7 +73,7 @@ imports:
 # ----------------------
 types:
   positive integer type:
-    typeof: integer
+    base: int
     uri: xsd:positiveInteger
     description: >-
       integer greater than zero; natural number explicitly excluding zero
@@ -81,7 +81,7 @@ types:
       - wikidata:Q28920044
 
   unsigned short type:
-    typeof: integer
+    base: int
     uri: xsd:unsignedShort
     description: >-
       data type for non-negative integers that can be represented with 16 bits
@@ -89,7 +89,7 @@ types:
       - wikidata:Q110650833
 
   duration type:
-    typeof: string
+    base: str
     uri: xsd:duration
     description: >-
       ISO 8601 duration value such as P1Y, P30D, or PT4H
@@ -541,9 +541,6 @@ classes:
       - communication_date
       - acknowledgment_required
       - related_topic_policies
-    slot_usage:
-      document_type:
-        equals_string: policy
 
   TopicSpecificPolicy:
     is_a: DocumentedInformation
@@ -737,10 +734,13 @@ classes:
       - responsible_parties
       - implementation_timeline
       - risk_owner_approval
-      - approval_date
+      - approved_date
       - residual_risk_acceptance
       - implementation_status
       - completion_date
+    slot_usage:
+      approved_date:
+        description: Date when the risk treatment plan was approved.
 
   StatementOfApplicability:
     is_a: DocumentedInformation
@@ -1085,6 +1085,9 @@ classes:
       - decisions
       - action_items
       - next_review_date
+    slot_usage:
+      review_date:
+        description: Date when the management review was conducted.
 
   # ---------------------
   # Improvement (Clause 10)
@@ -2377,10 +2380,6 @@ slots:
     description: Management review instances.
     range: ManagementReview
     multivalued: true
-
-  review_date:
-    description: Date of the review.
-    range: date
 
   attendees:
     description: Attendees of the review.

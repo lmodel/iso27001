@@ -1,0 +1,13 @@
+id: iso27001:rap-001
+name: Corporate Risk Assessment Process
+document_type: procedure
+risk_acceptance_criteria: Residual risks rated medium or below may be accepted by the risk owner.
+assessment_criteria: Assess confidentiality, integrity, and availability impacts.
+assessment_methodology: Qualitative assessment using likelihood and impact matrices.
+likelihood_scale: rare to almost_certain
+impact_scale: negligible to severe
+risk_matrix: 5x5 heat map
+assessment_frequency: annual
+trigger_events:
+  - Material architecture change
+  - New regulatory obligation
