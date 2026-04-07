@@ -5469,7 +5469,7 @@ classes:
     class_uri: iso27001:InformationSecurityIncident
 metamodel_version: 1.7.0
 source_file: iso27001.yaml
-source_file_date: '2026-04-07T22:24:04'
+source_file_date: '2026-04-07T22:31:29'
 source_file_size: 74145
-generation_date: '2026-04-07T22:24:16'
+generation_date: '2026-04-07T22:31:41'
 
