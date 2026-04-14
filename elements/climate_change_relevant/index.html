@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://lmodel.github.io/iso27001/elements/target_audience/">
+        <link rel="canonical" href="https://lmodel.github.io/iso27001/elements/climate_change_relevant/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: target_audience - iso27001</title>
+        <title>Slot: climate_change_relevant - iso27001</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-target_audience" class="md-skip">
+        <a href="#slot-climate_change_relevant" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: target_audience
+              Slot: climate_change_relevant
             
           </span>
         </div>
@@ -442,6 +442,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -452,6 +463,17 @@
   
     <nav class="md-nav" aria-label="Identifier and Mapping Information">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#schema-source" class="md-nav__link">
@@ -512,10 +534,10 @@
   
 
 
-<h1 id="slot-target_audience">Slot: target_audience</h1>
-<p><em>Intended audience for the policy or document.</em></p>
-<p>URI: <a href="https://w3id.org/lmodel/iso27001/target_audience">iso27001:target_audience</a>
-Alias: target_audience</p>
+<h1 id="slot-climate_change_relevant">Slot: climate_change_relevant</h1>
+<p><em>Whether climate change has been determined to be a relevant issue for the organization's context, per Clause 4.1 as amended by Amd. 1:2024.</em></p>
+<p>URI: <a href="https://w3id.org/lmodel/iso27001/climate_change_relevant">iso27001:climate_change_relevant</a>
+Alias: climate_change_relevant</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -529,13 +551,8 @@ Alias: target_audience</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../AwarenessProgram/">AwarenessProgram</a></td>
-<td>The awareness program ensuring personnel understand their information securit...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../TopicSpecificPolicy/">TopicSpecificPolicy</a></td>
-<td>A policy addressing a specific information security topic, supporting the ove...</td>
+<td><a href="../Organization/">Organization</a></td>
+<td>The organization establishing and operating the ISMS</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -552,11 +569,11 @@ Alias: target_audience</p>
 <tbody>
 <tr>
 <td>Range</td>
-<td><a href="../String/">String</a></td>
+<td><a href="../Boolean/">Boolean</a></td>
 </tr>
 <tr>
 <td>Domain Of</td>
-<td><a href="../TopicSpecificPolicy/">TopicSpecificPolicy</a>, <a href="../AwarenessProgram/">AwarenessProgram</a></td>
+<td><a href="../Organization/">Organization</a></td>
 </tr>
 </tbody>
 </table>
@@ -575,7 +592,31 @@ Alias: target_audience</p>
 </tr>
 </tbody>
 </table>
+<h2 id="comments">Comments</h2>
+<ul>
+<li>Set true if climate change is identified as a relevant external or internal issue</li>
+<li>When true, capture details in context_external_issues or context_internal_issues</li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="annotations">Annotations</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iso27001_clause</td>
+<td>4.1</td>
+</tr>
+<tr>
+<td>iso27001_amendment</td>
+<td>Amd. 1:2024</td>
+</tr>
+</tbody>
+</table>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: https://w3id.org/lmodel/iso27001</li>
@@ -591,25 +632,35 @@ Alias: target_audience</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>iso27001:target_audience</td>
+<td>iso27001:climate_change_relevant</td>
 </tr>
 <tr>
 <td>native</td>
-<td>iso27001:target_audience</td>
+<td>iso27001:climate_change_relevant</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">target_audience</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Intended audience for the policy or document.</span>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">climate_change_relevant</span>
+<span class="nt">annotations</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">iso27001_clause</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iso27001_clause</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;4.1&#39;</span>
+<span class="w">  </span><span class="nt">iso27001_amendment</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iso27001_amendment</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Amd. 1:2024</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Whether climate change has been determined to be a relevant issue for</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">the organization&#39;s context, per Clause 4.1 as amended by Amd. 1:2024.</span>
+<span class="nt">comments</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set true if climate change is identified as a relevant external or internal issue</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">When true, capture details in context_external_issues or context_internal_issues</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/iso27001</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">target_audience</span>
+<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">climate_change_relevant</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TopicSpecificPolicy</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AwarenessProgram</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Organization</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boolean</span>
 </code></pre></div>
 </details>
 

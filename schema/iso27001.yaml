@@ -3,6 +3,15 @@ annotations:
   standard_reference:
     tag: standard_reference
     value: ISO/IEC 27001:2022(E)
+  amendment_reference:
+    tag: amendment_reference
+    value: ISO/IEC 27001:2022/Amd. 1:2024(E)
+  amendment_title:
+    tag: amendment_title
+    value: Climate action changes
+  amendment_date:
+    tag: amendment_date
+    value: 2024-02
   standard_title:
     tag: standard_title
     value: Information security, cybersecurity and privacy protection -  Information
@@ -41,7 +50,7 @@ description: 'A comprehensive LinkML schema modeling ISMS entities, workflows, a
   This schema captures: - ISMS lifecycle (establish, implement, maintain, improve)
   - Risk assessment and treatment processes (Clause 6.1) - Annex A control catalog
   structures organized by domain - Audit, measurement, and continual improvement artifacts'
-title: ISO/IEC 27001:2022 Information Security Management System Schema
+title: 'ISO 27001 / ISMS: LinkML Schema'
 id: https://w3id.org/lmodel/iso27001
 version: 1.0.0
 imports:
@@ -1111,6 +1120,28 @@ slots:
     - InformationSecurityManagementSystem
     range: string
     multivalued: true
+  climate_change_relevant:
+    name: climate_change_relevant
+    definition_uri: https://w3id.org/lmodel/iso27001/climate_change_relevant
+    annotations:
+      iso27001_clause:
+        tag: iso27001_clause
+        value: '4.1'
+      iso27001_amendment:
+        tag: iso27001_amendment
+        value: Amd. 1:2024
+    description: Whether climate change has been determined to be a relevant issue
+      for the organization's context, per Clause 4.1 as amended by Amd. 1:2024.
+    comments:
+    - Set true if climate change is identified as a relevant external or internal
+      issue
+    - When true, capture details in context_external_issues or context_internal_issues
+    from_schema: https://w3id.org/lmodel/iso27001
+    slot_uri: iso27001:climate_change_relevant
+    owner: Organization
+    domain_of:
+    - Organization
+    range: boolean
   interested_parties:
     name: interested_parties
     definition_uri: https://w3id.org/lmodel/iso27001/interested_parties
@@ -4254,12 +4285,16 @@ classes:
       iso27001_clause:
         tag: iso27001_clause
         value: '4.1'
+      iso27001_amendment:
+        tag: iso27001_amendment
+        value: Amd. 1:2024
     description: The organization establishing and operating the ISMS. Captures context
       needed for Clause 4.1 (understanding the organization).
     comments:
     - Context determination per 4.1 feeds into ISMS planning
-    - 'Reference: ISO/IEC 27001:2022 Clause 4.1. ISO/IEC standards text is copyright
-      ISO - not reproduced here.'
+    - Climate change relevance determination added by Amd. 1:2024 to Clause 4.1
+    - 'Reference: ISO/IEC 27001:2022 Clause 4.1 and Amd. 1:2024. ISO/IEC standards
+      text is copyright ISO - not reproduced here.'
     in_subset:
     - isms_core
     from_schema: https://w3id.org/lmodel/iso27001
@@ -4281,6 +4316,7 @@ classes:
     - regulatory_jurisdictions
     - parent_organization
     - subsidiaries
+    - climate_change_relevant
     class_uri: iso27001:Organization
   InterestedParty:
     name: InterestedParty
@@ -4289,14 +4325,19 @@ classes:
       iso27001_clause:
         tag: iso27001_clause
         value: '4.2'
+      iso27001_amendment:
+        tag: iso27001_amendment
+        value: Amd. 1:2024
     description: A stakeholder whose needs and expectations are relevant to the ISMS
       per 4.2. Includes internal parties (employees, management) and external parties
       (customers, regulators, suppliers).
     comments:
     - Captures stakeholder needs and expectations relevant to ISMS scope
     - Requirements may include legal, regulatory, and contractual obligations
-    - 'Reference: ISO/IEC 27001:2022 Clause 4.2. ISO/IEC standards text is copyright
-      ISO - not reproduced here.'
+    - Relevant interested parties can have requirements related to climate change
+      (Amd. 1:2024 Clause 4.2 Note 2)
+    - 'Reference: ISO/IEC 27001:2022 Clause 4.2 and Amd. 1:2024. ISO/IEC standards
+      text is copyright ISO - not reproduced here.'
     in_subset:
     - isms_core
     from_schema: https://w3id.org/lmodel/iso27001
@@ -5507,7 +5548,7 @@ classes:
     class_uri: iso27001:InformationSecurityIncident
 metamodel_version: 1.7.0
 source_file: iso27001.yaml
-source_file_date: '2026-04-14T22:25:01'
-source_file_size: 76871
-generation_date: '2026-04-14T22:25:13'
+source_file_date: '2026-04-14T23:35:03'
+source_file_size: 77875
+generation_date: '2026-04-14T23:35:14'
 
