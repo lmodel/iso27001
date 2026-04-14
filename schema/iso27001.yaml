@@ -5,8 +5,8 @@ annotations:
     value: ISO/IEC 27001:2022(E)
   standard_title:
     tag: standard_title
-    value: "Information security, cybersecurity and privacy protection \u2014  Information\
-      \ security management systems \u2014 Requirements"
+    value: Information security, cybersecurity and privacy protection -  Information
+      security management systems - Requirements
   standard_edition:
     tag: standard_edition
     value: Third edition
@@ -444,9 +444,9 @@ enums:
     permissible_values:
       organizational:
         text: organizational
-        description: "Organizational controls (Annex A.5) \u2014 policies, roles,\
-          \ asset management, access control, supplier relationships, incident management,\
-          \ compliance."
+        description: Organizational controls (Annex A.5) - policies, roles, asset
+          management, access control, supplier relationships, incident management,
+          compliance.
         annotations:
           annex_clause:
             tag: annex_clause
@@ -456,9 +456,8 @@ enums:
             value: '37'
       people:
         text: people
-        description: "People controls (Annex A.6) \u2014 screening, employment terms,\
-          \ awareness, disciplinary process, termination responsibilities, remote\
-          \ working."
+        description: People controls (Annex A.6) - screening, employment terms, awareness,
+          disciplinary process, termination responsibilities, remote working.
         annotations:
           annex_clause:
             tag: annex_clause
@@ -468,8 +467,8 @@ enums:
             value: '8'
       physical:
         text: physical
-        description: "Physical controls (Annex A.7) \u2014 perimeters, entry controls,\
-          \ equipment protection, secure areas, media handling, cabling, maintenance."
+        description: Physical controls (Annex A.7) - perimeters, entry controls, equipment
+          protection, secure areas, media handling, cabling, maintenance.
         annotations:
           annex_clause:
             tag: annex_clause
@@ -479,9 +478,9 @@ enums:
             value: '14'
       technological:
         text: technological
-        description: "Technological controls (Annex A.8) \u2014 endpoint security,\
-          \ access restrictions, authentication, malware protection, logging, cryptography,\
-          \ secure development."
+        description: Technological controls (Annex A.8) - endpoint security, access
+          restrictions, authentication, malware protection, logging, cryptography,
+          secure development.
         annotations:
           annex_clause:
             tag: annex_clause
@@ -4202,8 +4201,8 @@ classes:
     - This is the root entity for any ISMS conformance dataset
     - Aggregates ISMS processes and their relationships
     - Includes explicit scope metadata and related governance artifacts
-    - "Reference: ISO/IEC 27001:2022 Clause 4.4. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 4.4. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - isms_core
     from_schema: https://w3id.org/lmodel/iso27001
@@ -4259,8 +4258,8 @@ classes:
       needed for Clause 4.1 (understanding the organization).
     comments:
     - Context determination per 4.1 feeds into ISMS planning
-    - "Reference: ISO/IEC 27001:2022 Clause 4.1. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 4.1. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - isms_core
     from_schema: https://w3id.org/lmodel/iso27001
@@ -4296,8 +4295,8 @@ classes:
     comments:
     - Captures stakeholder needs and expectations relevant to ISMS scope
     - Requirements may include legal, regulatory, and contractual obligations
-    - "Reference: ISO/IEC 27001:2022 Clause 4.2. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 4.2. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - isms_core
     from_schema: https://w3id.org/lmodel/iso27001
@@ -4330,8 +4329,8 @@ classes:
     comments:
     - Captures policy intent and governance commitments
     - Supports communication and acknowledgement tracking
-    - "Reference: ISO/IEC 27001:2022 Clause 5.2. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 5.2. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - isms_core
     - documented_information
@@ -4414,8 +4413,8 @@ classes:
     comments:
     - Used to assign ISMS responsibilities, authorities, and accountability
     - Supports reporting-line and delegation modeling
-    - "Reference: ISO/IEC 27001:2022 Clause 5.3. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 5.3. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - isms_core
     from_schema: https://w3id.org/lmodel/iso27001
@@ -4447,8 +4446,8 @@ classes:
     comments:
     - Designed for measurable objective tracking and periodic review
     - Links objectives to related risks, controls, and action plans
-    - "Reference: ISO/IEC 27001:2022 Clause 6.2. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 6.2. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - isms_core
     from_schema: https://w3id.org/lmodel/iso27001
@@ -4488,8 +4487,8 @@ classes:
     comments:
     - Defines reusable criteria, scales, and methods for risk assessments
     - Supports repeatable assessment execution over time
-    - "Reference: ISO/IEC 27001:2022 Clause 6.1.2. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 6.1.2. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - risk_management
     - documented_information
@@ -4534,8 +4533,8 @@ classes:
     comments:
     - Performed at planned intervals or when significant changes occur
     - Results are retained as documented information
-    - "Reference: ISO/IEC 27001:2022 Clause 8.2. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 8.2. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - risk_management
     from_schema: https://w3id.org/lmodel/iso27001
@@ -4579,8 +4578,8 @@ classes:
     comments:
     - Links threat, vulnerability, and affected assets to risk ownership
     - Supports likelihood, impact, treatment, and residual risk tracking
-    - "Reference: ISO/IEC 27001:2022 Clause 6.1.2. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 6.1.2. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - risk_management
     from_schema: https://w3id.org/lmodel/iso27001
@@ -4622,8 +4621,8 @@ classes:
     comments:
     - Defines how treatment options and controls are selected
     - Supports Statement of Applicability generation workflows
-    - "Reference: ISO/IEC 27001:2022 Clause 6.1.3. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 6.1.3. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - risk_management
     - documented_information
@@ -4664,8 +4663,8 @@ classes:
     comments:
     - Captures treatment execution plans with approval and acceptance metadata
     - Supports implementation status and completion tracking
-    - "Reference: ISO/IEC 27001:2022 Clause 6.1.3. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 6.1.3. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - risk_management
     - documented_information
@@ -4720,8 +4719,8 @@ classes:
     comments:
     - Records control applicability and implementation state
     - Captures inclusion or exclusion rationale for each control entry
-    - "Reference: ISO/IEC 27001:2022 Clause 6.1.3 d). ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 6.1.3 d). ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - isms_core
     - annex_a_controls
@@ -4790,8 +4789,8 @@ classes:
     - 93 controls organized in four domains (organizational, people, physical, technological)
     - Controls are referenced in risk treatment and SoA
     - Supports organization-authored control statements and evidence links
-    - "Reference: ISO/IEC 27001:2022 Annex A; ISO/IEC 27002:2022 Clauses 5-8. ISO/IEC\
-      \ standards text is copyright ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Annex A; ISO/IEC 27002:2022 Clauses 5-8. ISO/IEC
+      standards text is copyright ISO - not reproduced here.'
     - The control_text slot must contain organization-authored content only, not ISO
       standards text.
     in_subset:
@@ -4830,8 +4829,8 @@ classes:
     description: A resource provided for the ISMS per Clause 7.1, including personnel,
       infrastructure, technology, and budget.
     comments:
-    - "Reference: ISO/IEC 27001:2022 Clause 7.1. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 7.1. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - isms_core
     from_schema: https://w3id.org/lmodel/iso27001
@@ -4862,8 +4861,8 @@ classes:
     comments:
     - Documents personnel qualifications and development activities
     - Actions to acquire competence are evaluated for effectiveness
-    - "Reference: ISO/IEC 27001:2022 Clause 7.2. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 7.2. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - isms_core
     - documented_information
@@ -4908,8 +4907,8 @@ classes:
       security responsibilities per Clause 7.3.
     comments:
     - Tracks security awareness coverage, delivery, and personnel completion records
-    - "Reference: ISO/IEC 27001:2022 Clause 7.3. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 7.3. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - isms_core
     from_schema: https://w3id.org/lmodel/iso27001
@@ -4950,8 +4949,8 @@ classes:
       per Clause 7.4.
     comments:
     - Captures communication scope, timing, audience, and channels
-    - "Reference: ISO/IEC 27001:2022 Clause 7.4. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 7.4. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - isms_core
     - documented_information
@@ -5008,8 +5007,8 @@ classes:
       8.1.
     comments:
     - Captures process criteria, controls, and accountable roles
-    - "Reference: ISO/IEC 27001:2022 Clause 8.1. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 8.1. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - documented_information
     from_schema: https://w3id.org/lmodel/iso27001
@@ -5051,8 +5050,8 @@ classes:
     comments:
     - Captures metrics, methods, and analysis cadence
     - Supports reproducible monitoring and evaluation records
-    - "Reference: ISO/IEC 27001:2022 Clause 9.1. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 9.1. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - performance_evaluation
     - documented_information
@@ -5114,8 +5113,8 @@ classes:
     comments:
     - Captures audit scope, criteria, findings, and conclusions
     - Supports periodic conformance and effectiveness assessment records
-    - "Reference: ISO/IEC 27001:2022 Clause 9.2. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 9.2. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - performance_evaluation
     - documented_information
@@ -5168,8 +5167,8 @@ classes:
     comments:
     - Captures planned audit activities over a defined period
     - Includes cadence rationale, resources, and qualification metadata
-    - "Reference: ISO/IEC 27001:2022 Clause 9.2.2. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 9.2.2. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - performance_evaluation
     - documented_information
@@ -5244,8 +5243,8 @@ classes:
       evaluate ongoing ISMS performance and fitness for purpose.
     comments:
     - Captures periodic management review inputs, outputs, and follow-up actions
-    - "Reference: ISO/IEC 27001:2022 Clause 9.3. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 9.3. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - performance_evaluation
     - documented_information
@@ -5296,8 +5295,8 @@ classes:
       to fulfill a requirement.
     comments:
     - Captures detection, correction, consequence handling, and root-cause data
-    - "Reference: ISO/IEC 27001:2022 Clause 10.2. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 10.2. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - continual_improvement
     from_schema: https://w3id.org/lmodel/iso27001
@@ -5335,8 +5334,8 @@ classes:
     comments:
     - Tracks actions intended to prevent recurrence of nonconformities
     - Supports effectiveness review and related ISMS change tracking
-    - "Reference: ISO/IEC 27001:2022 Clause 10.2. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 10.2. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - continual_improvement
     from_schema: https://w3id.org/lmodel/iso27001
@@ -5373,8 +5372,8 @@ classes:
     comments:
     - May arise from management reviews, audits, or operational experience
     - Distinct from corrective actions (proactive vs. reactive)
-    - "Reference: ISO/IEC 27001:2022 Clause 10.1. ISO/IEC standards text is copyright\
-      \ ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Clause 10.1. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
     in_subset:
     - continual_improvement
     from_schema: https://w3id.org/lmodel/iso27001
@@ -5410,8 +5409,8 @@ classes:
       Annex A control 5.9.
     comments:
     - Supports asset inventory, ownership, classification, and related controls
-    - "Reference: ISO/IEC 27001:2022 Annex A control 5.9; ISO/IEC 27002:2022 Clause\
-      \ 5.9. ISO/IEC standards text is copyright ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Annex A control 5.9; ISO/IEC 27002:2022 Clause
+      5.9. ISO/IEC standards text is copyright ISO - not reproduced here.'
     in_subset:
     - annex_a_controls
     from_schema: https://w3id.org/lmodel/iso27001
@@ -5442,8 +5441,8 @@ classes:
     description: An information security event per A.5.25, which may or may not be
       categorized as an incident.
     comments:
-    - "Reference: ISO/IEC 27001:2022 Annex A control 5.25; ISO/IEC 27002:2022 Clause\
-      \ 5.25. ISO/IEC standards text is copyright ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Annex A control 5.25; ISO/IEC 27002:2022 Clause
+      5.25. ISO/IEC standards text is copyright ISO - not reproduced here.'
     in_subset:
     - annex_a_controls
     from_schema: https://w3id.org/lmodel/iso27001
@@ -5474,8 +5473,8 @@ classes:
       documented procedures.
     comments:
     - Captures response lifecycle, evidence references, and lessons learned
-    - "Reference: ISO/IEC 27001:2022 Annex A control 5.26; ISO/IEC 27002:2022 Clause\
-      \ 5.26. ISO/IEC standards text is copyright ISO \u2014 not reproduced here."
+    - 'Reference: ISO/IEC 27001:2022 Annex A control 5.26; ISO/IEC 27002:2022 Clause
+      5.26. ISO/IEC standards text is copyright ISO - not reproduced here.'
     in_subset:
     - annex_a_controls
     from_schema: https://w3id.org/lmodel/iso27001
@@ -5508,7 +5507,7 @@ classes:
     class_uri: iso27001:InformationSecurityIncident
 metamodel_version: 1.7.0
 source_file: iso27001.yaml
-source_file_date: '2026-04-14T21:49:57'
-source_file_size: 76939
-generation_date: '2026-04-14T21:50:10'
+source_file_date: '2026-04-14T21:54:50'
+source_file_size: 76871
+generation_date: '2026-04-14T21:55:02'
 
