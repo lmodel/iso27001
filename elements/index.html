@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://lmodel.github.io/iso27001/elements/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../rights/">
       
       
         <link rel="next" href="../about/">
@@ -292,6 +292,33 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../rights/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rights
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -547,9 +574,9 @@
 
 
 <h1 id="isoiec-270012022-information-security-management-system-schema">ISO/IEC 27001:2022 Information Security Management System Schema</h1>
-<p>A comprehensive LinkML schema modeling the requirements, clauses, and Annex A controls of ISO/IEC 27001:2022. Designed for open data publication, automated validation, and integration with governance, risk, and compliance (GRC) systems.
-This schema captures: - ISMS lifecycle (establish, implement, maintain, improve) - Risk assessment and treatment processes (Clause 6.1) - All 93 Annex A controls organized by domain - Audit, measurement, and continual improvement artifacts</p>
-<p>URI: https://w3id.org/lmodel/iso-iec-27001</p>
+<p>A comprehensive LinkML schema modeling ISMS entities, workflows, and traceability links aligned to ISO/IEC 27001:2022 clause and Annex references. Designed for open data publication, automated validation, and integration with governance, risk, and compliance (GRC) systems.
+This schema captures: - ISMS lifecycle (establish, implement, maintain, improve) - Risk assessment and treatment processes (Clause 6.1) - Annex A control catalog structures organized by domain - Audit, measurement, and continual improvement artifacts</p>
+<p>URI: https://w3id.org/lmodel/iso27001</p>
 <p>Name: iso27001</p>
 <h2 id="classes">Classes</h2>
 <table>
@@ -634,7 +661,7 @@ This schema captures: - ISMS lifecycle (establish, implement, maintain, improve)
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="RiskTreatmentPlan/">RiskTreatmentPlan</a></td>
-<td>A risk treatment plan per 6</td>
+<td>A risk treatment plan documenting planned actions to address identified risks...</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="RiskTreatmentProcess/">RiskTreatmentProcess</a></td>
@@ -642,7 +669,7 @@ This schema captures: - ISMS lifecycle (establish, implement, maintain, improve)
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="StatementOfApplicability/">StatementOfApplicability</a></td>
-<td>The Statement of Applicability (SoA) per 6</td>
+<td>The Statement of Applicability (SoA) recording which controls apply, their ra...</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="TopicSpecificPolicy/">TopicSpecificPolicy</a></td>
@@ -686,7 +713,7 @@ This schema captures: - ISMS lifecycle (establish, implement, maintain, improve)
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Risk/">Risk</a></td>
-<td>An identified information security risk associated with loss of confidentiali...</td>
+<td>An identified information security risk that may affect information security ...</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Role/">Role</a></td>
@@ -1061,7 +1088,7 @@ This schema captures: - ISMS lifecycle (establish, implement, maintain, improve)
 </tr>
 <tr>
 <td><a href="control_text/">control_text</a></td>
-<td>Full text of the control requirement</td>
+<td>Organization-authored control statement or external control summary</td>
 </tr>
 <tr>
 <td><a href="control_title/">control_title</a></td>
@@ -1261,7 +1288,7 @@ This schema captures: - ISMS lifecycle (establish, implement, maintain, improve)
 </tr>
 <tr>
 <td><a href="implementation_guidance/">implementation_guidance</a></td>
-<td>Guidance for implementing the control</td>
+<td>Organization-authored implementation notes for the control</td>
 </tr>
 <tr>
 <td><a href="implementation_plan/">implementation_plan</a></td>
@@ -1713,7 +1740,7 @@ This schema captures: - ISMS lifecycle (establish, implement, maintain, improve)
 </tr>
 <tr>
 <td><a href="retention_period/">retention_period</a></td>
-<td>Duration for which the document must be retained</td>
+<td>Duration for which the document is retained</td>
 </tr>
 <tr>
 <td><a href="review_date/">review_date</a></td>
@@ -1956,7 +1983,7 @@ This schema captures: - ISMS lifecycle (establish, implement, maintain, improve)
 </tr>
 <tr>
 <td><a href="RiskLevel/">RiskLevel</a></td>
-<td>Qualitative risk rating derived from likelihood × impact analysis</td>
+<td>Qualitative risk rating derived from likelihood x impact analysis</td>
 </tr>
 <tr>
 <td><a href="RiskTreatmentOption/">RiskTreatmentOption</a></td>
@@ -2134,7 +2161,7 @@ This schema captures: - ISMS lifecycle (establish, implement, maintain, improve)
     >
       
         <a
-          href=".."
+          href="../rights/"
           class="md-footer__link md-footer__link--prev"
           rel="prev"
         >
@@ -2146,7 +2173,7 @@ This schema captures: - ISMS lifecycle (establish, implement, maintain, improve)
               <span class="md-footer__direction">
                 Previous
               </span>
-              Home
+              Rights
             </div>
           </div>
         </a>
