@@ -81,6 +81,9 @@ prefixes:
   prov:
     prefix_prefix: prov
     prefix_reference: http://www.w3.org/ns/prov#
+  cis_controls:
+    prefix_prefix: cis_controls
+    prefix_reference: https://w3id.org/lmodel/cis-controls/
 default_prefix: iso27001
 default_range: string
 subsets:
@@ -4237,6 +4240,8 @@ classes:
     in_subset:
     - isms_core
     from_schema: https://w3id.org/lmodel/iso27001
+    related_mappings:
+    - cis_controls:CISControlsDocument
     is_a: NamedEntity
     slots:
     - NamedEntity_id
@@ -4837,6 +4842,8 @@ classes:
     in_subset:
     - annex_a_controls
     from_schema: https://w3id.org/lmodel/iso27001
+    related_mappings:
+    - cis_controls:Safeguard
     is_a: NamedEntity
     slots:
     - NamedEntity_id
@@ -5548,7 +5555,7 @@ classes:
     class_uri: iso27001:InformationSecurityIncident
 metamodel_version: 1.7.0
 source_file: iso27001.yaml
-source_file_date: '2026-04-15T16:57:49'
-source_file_size: 77875
-generation_date: '2026-04-15T16:58:01'
+source_file_date: '2026-04-15T22:14:35'
+source_file_size: 78035
+generation_date: '2026-04-15T22:14:46'
 
