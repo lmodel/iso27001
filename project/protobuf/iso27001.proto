@@ -1,6 +1,6 @@
  syntax="proto3";
  package
-// metamodel_version: 1.7.0
+// metamodel_version: 1.11.0
 // version: 1.0.0
 // An information asset or associated asset requiring protection, per Annex A control 5.9.
 message Asset
@@ -62,6 +62,11 @@ message AuditProgramme
   string status = 0
   string classification = 0
   durationType retentionPeriod = 0
+ repeated  string distributionControls = 0
+  string storageAndPreservation = 0
+  string changeControlMethod = 0
+  boolean externalOrigin = 0
+  string externalOriginSource = 0
   string programmePeriod = 0
  repeated  internalAudit plannedAudits = 0
   string auditFrequencyRationale = 0
@@ -89,6 +94,11 @@ message AwarenessProgram
   string status = 0
   string classification = 0
   durationType retentionPeriod = 0
+ repeated  string distributionControls = 0
+  string storageAndPreservation = 0
+  string changeControlMethod = 0
+  boolean externalOrigin = 0
+  string externalOriginSource = 0
  repeated  string awarenessTopics = 0
  repeated  string deliveryMethods = 0
   string targetAudience = 0
@@ -127,6 +137,11 @@ message CommunicationPlan
   string status = 0
   string classification = 0
   durationType retentionPeriod = 0
+ repeated  string distributionControls = 0
+  string storageAndPreservation = 0
+  string changeControlMethod = 0
+  boolean externalOrigin = 0
+  string externalOriginSource = 0
  repeated  communicationItem communicationItems = 0
  }
 // Evidence of competence for personnel affecting information security performance per Clause 7.2 d).
@@ -149,6 +164,11 @@ message CompetenceRecord
   string status = 0
   string classification = 0
   durationType retentionPeriod = 0
+ repeated  string distributionControls = 0
+  string storageAndPreservation = 0
+  string changeControlMethod = 0
+  boolean externalOrigin = 0
+  string externalOriginSource = 0
   string personName = 0
   string personRole = 0
  repeated  string requiredCompetencies = 0
@@ -230,10 +250,10 @@ message InformationSecurityIncident
   date modifiedDate = 0
   string version = 0
   datetime incidentDatetime = 0
-  string incidentCategory = 0
-  string severity = 0
+  securityIncidentCategory incidentCategory = 0
+  riskLevel severity = 0
  repeated  asset affectedAssets = 0
- repeated  string affectedCia = 0
+ repeated  cIAProperty affectedCia = 0
   string incidentDescription = 0
   string detectionMethod = 0
  repeated  string responseActions = 0
@@ -241,7 +261,7 @@ message InformationSecurityIncident
  repeated  string eradicationActions = 0
  repeated  string recoveryActions = 0
   string rootCause = 0
-  string lessonsLearned = 0
+ repeated  string lessonsLearned = 0
  repeated  string evidenceCollected = 0
   boolean notificationRequired = 0
  repeated  string notificationsMade = 0
@@ -258,14 +278,22 @@ message InformationSecurityManagementSystem
   date modifiedDate = 0
   string version = 0
   organization organization = 0
+  string topManagement = 0
+  string governingBody = 0
+ repeated  string leadershipCommitmentEvidence = 0
   string scopeStatement = 0
  repeated  string scopeBoundaries = 0
  repeated  string scopeExclusions = 0
+ repeated  string interfacesAndDependencies = 0
+  string processesAndInteractions = 0
  repeated  string contextInternalIssues = 0
  repeated  string contextExternalIssues = 0
  repeated  interestedParty interestedParties = 0
   informationSecurityPolicy informationSecurityPolicy = 0
  repeated  informationSecurityObjective objectives = 0
+ repeated  string risksAndOpportunitiesActions = 0
+ repeated  string plannedChanges = 0
+ repeated  string externallyProvidedServices = 0
   riskAssessmentProcess riskAssessmentProcess = 0
   riskTreatmentProcess riskTreatmentProcess = 0
   statementOfApplicability statementOfApplicability = 0
@@ -311,6 +339,7 @@ message InformationSecurityObjective
  repeated  risk relatedRisks = 0
  repeated  securityControl relatedControls = 0
   string actionPlan = 0
+  string objectiveResourcesRequired = 0
  }
 // The information security policy established by top management per Clause 5.2. Provides framework for setting objectives and demonstrates commitment.
 message InformationSecurityPolicy
@@ -332,13 +361,21 @@ message InformationSecurityPolicy
   string status = 0
   string classification = 0
   durationType retentionPeriod = 0
+ repeated  string distributionControls = 0
+  string storageAndPreservation = 0
+  string changeControlMethod = 0
+  boolean externalOrigin = 0
+  string externalOriginSource = 0
   string policyStatement = 0
   string policyObjectivesFramework = 0
  repeated  string commitmentStatements = 0
   string applicabilityStatement = 0
   date communicationDate = 0
   boolean acknowledgmentRequired = 0
+  date lastPolicyReviewDate = 0
+  date nextPolicyReviewDate = 0
  repeated  topicSpecificPolicy relatedTopicPolicies = 0
+ repeated  relatedManagementSystem integratedManagementSystems = 0
  }
 // A stakeholder whose needs and expectations are relevant to the ISMS per 4.2. Includes internal parties (employees, management) and external parties (customers, regulators, suppliers).
 message InterestedParty
@@ -352,6 +389,8 @@ message InterestedParty
   string partyType = 0
   string relationship = 0
  repeated  string requirements = 0
+ repeated  string addressedRequirements = 0
+ repeated  string climateChangeRelatedRequirements = 0
   string communicationNeeds = 0
   string contactInformation = 0
  }
@@ -375,8 +414,13 @@ message InternalAudit
   string status = 0
   string classification = 0
   durationType retentionPeriod = 0
+ repeated  string distributionControls = 0
+  string storageAndPreservation = 0
+  string changeControlMethod = 0
+  boolean externalOrigin = 0
+  string externalOriginSource = 0
   string auditReference = 0
-  string auditType = 0
+  auditType auditType = 0
   string auditScope = 0
  repeated  string auditCriteria = 0
  repeated  string auditObjectives = 0
@@ -411,14 +455,22 @@ message ManagementReview
   string status = 0
   string classification = 0
   durationType retentionPeriod = 0
+ repeated  string distributionControls = 0
+  string storageAndPreservation = 0
+  string changeControlMethod = 0
+  boolean externalOrigin = 0
+  string externalOriginSource = 0
   date reviewDate = 0
  repeated  string attendees = 0
   string previousActionsStatus = 0
   string contextChanges = 0
   string interestedPartyChanges = 0
+  string interestedPartyFeedback = 0
   string performanceTrends = 0
   string auditResultsSummary = 0
   string riskAssessmentResults = 0
+  string riskTreatmentStatus = 0
+  string risksAndOpportunitiesChanges = 0
  repeated  string improvementOpportunities = 0
  repeated  string decisions = 0
  repeated  string actionItems = 0
@@ -459,6 +511,11 @@ message MonitoringProgram
   string status = 0
   string classification = 0
   durationType retentionPeriod = 0
+ repeated  string distributionControls = 0
+  string storageAndPreservation = 0
+  string changeControlMethod = 0
+  boolean externalOrigin = 0
+  string externalOriginSource = 0
  repeated  monitoringItem monitoringItems = 0
  }
 // A nonconformity identified per Clause 10.2, representing failure to fulfill a requirement.
@@ -504,6 +561,11 @@ message OperationalProcedure
   string status = 0
   string classification = 0
   durationType retentionPeriod = 0
+ repeated  string distributionControls = 0
+  string storageAndPreservation = 0
+  string changeControlMethod = 0
+  boolean externalOrigin = 0
+  string externalOriginSource = 0
   string procedureScope = 0
   string processCriteria = 0
  repeated  string controlMeasures = 0
@@ -561,7 +623,7 @@ message Risk
   string threatDescription = 0
   string vulnerabilityDescription = 0
  repeated  asset affectedAssets = 0
- repeated  string affectedCiaProperties = 0
+ repeated  cIAProperty affectedCiaProperties = 0
   string riskOwner = 0
   likelihoodRating likelihood = 0
   impactRating impact = 0
@@ -592,6 +654,11 @@ message RiskAssessment
   string status = 0
   string classification = 0
   durationType retentionPeriod = 0
+ repeated  string distributionControls = 0
+  string storageAndPreservation = 0
+  string changeControlMethod = 0
+  boolean externalOrigin = 0
+  string externalOriginSource = 0
   string assessmentScope = 0
   date assessmentDate = 0
   string assessor = 0
@@ -621,6 +688,11 @@ message RiskAssessmentProcess
   string status = 0
   string classification = 0
   durationType retentionPeriod = 0
+ repeated  string distributionControls = 0
+  string storageAndPreservation = 0
+  string changeControlMethod = 0
+  boolean externalOrigin = 0
+  string externalOriginSource = 0
   string riskAcceptanceCriteria = 0
   string assessmentCriteria = 0
   string assessmentMethodology = 0
@@ -649,6 +721,11 @@ message RiskTreatmentPlan
   string status = 0
   string classification = 0
   durationType retentionPeriod = 0
+ repeated  string distributionControls = 0
+  string storageAndPreservation = 0
+  string changeControlMethod = 0
+  boolean externalOrigin = 0
+  string externalOriginSource = 0
   string planScope = 0
  repeated  risk risksAddressed = 0
  repeated  string treatmentActions = 0
@@ -682,8 +759,14 @@ message RiskTreatmentProcess
   string status = 0
   string classification = 0
   durationType retentionPeriod = 0
+ repeated  string distributionControls = 0
+  string storageAndPreservation = 0
+  string changeControlMethod = 0
+  boolean externalOrigin = 0
+  string externalOriginSource = 0
   string treatmentOptionsGuidance = 0
   string controlSelectionCriteria = 0
+  string annexAOmissionVerification = 0
   string soaTemplate = 0
   string approvalWorkflow = 0
  }
@@ -713,7 +796,7 @@ message SecurityControl
   date createdDate = 0
   date modifiedDate = 0
   string version = 0
-  string controlId = 0
+  annexAControlId controlId = 0
   string controlTitle = 0
   controlCategory controlCategory = 0
   string controlText = 0
@@ -759,6 +842,11 @@ message StatementOfApplicability
   string status = 0
   string classification = 0
   durationType retentionPeriod = 0
+ repeated  string distributionControls = 0
+  string storageAndPreservation = 0
+  string changeControlMethod = 0
+  boolean externalOrigin = 0
+  string externalOriginSource = 0
  repeated  soAEntry soaEntries = 0
   unsignedShortType totalControls = 0
   unsignedShortType implementedCount = 0
@@ -787,6 +875,11 @@ message TopicSpecificPolicy
   string status = 0
   string classification = 0
   durationType retentionPeriod = 0
+ repeated  string distributionControls = 0
+  string storageAndPreservation = 0
+  string changeControlMethod = 0
+  boolean externalOrigin = 0
+  string externalOriginSource = 0
   string topicArea = 0
   informationSecurityPolicy parentPolicy = 0
  repeated  securityControl applicableControls = 0

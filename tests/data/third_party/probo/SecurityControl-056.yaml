@@ -1,6 +1,6 @@
 id: iso27001:control-set-up-a-waf
 name: Set-up a WAF
-control_id: "8.20"
+control_id: a_8_20
 control_title: Set-up a WAF
 control_category: technological
 control_text: >-

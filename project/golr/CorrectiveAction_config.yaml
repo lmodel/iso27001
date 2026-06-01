@@ -1,0 +1,62 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: CorrectiveAction
+schema_generating: true
+description: A corrective action per Clause 10.2 to address the root cause of a nonconformity
+  and reduce the likelihood of recurrence.
+display_name: CorrectiveAction
+document_category: CorrectiveAction
+weight: 20
+fields:
+- id: id
+  description: Unique identifier for this entity instance.
+  display_name: NamedEntity_id
+- id: name
+  description: Human-readable name or title.
+  display_name: name
+- id: description
+  description: Detailed description of the entity.
+  display_name: description
+- id: created_date
+  description: Date when the entity was created.
+  display_name: created_date
+- id: modified_date
+  description: Date when the entity was last modified.
+  display_name: modified_date
+- id: version
+  description: Version identifier for the entity.
+  display_name: version
+- id: linked_nonconformity
+  description: Nonconformity this action addresses.
+  display_name: linked_nonconformity
+- id: action_description
+  description: Description of the action.
+  display_name: action_description
+- id: root_cause_addressed
+  description: Root cause this action addresses.
+  display_name: root_cause_addressed
+- id: responsible_party
+  description: Party responsible for the activity.
+  display_name: responsible_party
+- id: target_completion_date
+  description: Target date for completing the action.
+  display_name: target_completion_date
+- id: actual_completion_date
+  description: Actual date the action was completed.
+  display_name: actual_completion_date
+- id: resources_required
+  description: Resources required for implementation.
+  display_name: resources_required
+- id: effectiveness_criteria
+  description: Criteria for evaluating effectiveness.
+  display_name: effectiveness_criteria
+- id: effectiveness_review_date
+  description: Date effectiveness was reviewed.
+  display_name: effectiveness_review_date
+- id: effectiveness_verified
+  description: Whether effectiveness was verified.
+  display_name: effectiveness_verified
+- id: isms_changes_required
+  description: Changes to ISMS required as a result.
+  display_name: isms_changes_required
+- id: status
+  description: Current status of the document or entity.
+  display_name: status

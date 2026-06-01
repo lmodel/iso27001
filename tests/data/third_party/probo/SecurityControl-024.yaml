@@ -1,6 +1,6 @@
 id: iso27001:control-implement-physical-access-control
 name: Implement physical access control
-control_id: "7.2"
+control_id: a_7_2
 control_title: Implement physical access control
 control_category: physical
 control_text: >-

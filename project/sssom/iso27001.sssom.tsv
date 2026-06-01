@@ -1,0 +1,209 @@
+#license: https://www.apache.org/licenses/LICENSE-2.0
+#mapping_set_id: https://w3id.org/lmodel/iso27001
+#mapping_tool: https://w3id.org/linkml/
+#creator_id: linkml_user
+#mapping_date: 2026-06-01
+#curie_map: 
+# linkml: https://w3id.org/linkml/
+# iso27001: https://w3id.org/lmodel/iso27001/
+# iso27002: https://w3id.org/lmodel/iso27002/
+# iso: https://www.iso.org/standard/
+# schema: http://schema.org/
+# dcterms: http://purl.org/dc/terms/
+# skos: http://www.w3.org/2004/02/skos/core#
+# prov: http://www.w3.org/ns/prov#
+# cis_controls: https://w3id.org/lmodel/cis-controls/
+# oscal: https://w3id.org/lmodel/oscal/
+# nist_sp_800_53: https://w3id.org/lmodel/nist-sp-800-53/
+# nist_csf_v2: https://w3id.org/lmodel/nist-csf-v2/
+# nist_sp_800_171: https://w3id.org/lmodel/nist-sp-800-171/
+# nist_sp_800_218: https://w3id.org/lmodel/nist-sp-800-218/
+# attack: https://w3id.org/lmodel/attack/
+# d3f: https://d3fend.mitre.org/ontologies/d3fend.owl#
+# slsa: https://w3id.org/lmodel/slsa/
+# stix: https://w3id.org/lmodel/stix/
+# ocsf: https://w3id.org/lmodel/ocsf/
+# spdx: https://w3id.org/lmodel/spdx/
+# capec: https://w3id.org/lmodel/capec/
+# cwe: https://w3id.org/lmodel/cwe/
+# cve: https://w3id.org/lmodel/cve/
+# nvd: https://w3id.org/lmodel/nist-nvd/
+# kev_catalog: https://w3id.org/lmodel/kev-catalog/
+# iso29100: https://w3id.org/lmodel/iso29100/
+# semapv: https://w3id.org/semapv/vocab/
+# iso42001: https://w3id.org/lmodel/iso42001/
+subject_id	subject_label	predicate_id	predicate_modifier	object_id	object_label	match_type	subject_source	object_source	mapping_tool	confidence	subject_match_field	object_match_field	subject_category	object_category	match_string	comment
+iso27001:affected_assets	affected_assets	skos:relatedMatch		ocsf:Device		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:affected_assets	affected_assets	skos:closeMatch		iso42001:affected_ai_systems		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:applicable_threats	applicable_threats	skos:relatedMatch		attack:AttackTechnique		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:applicable_threats	applicable_threats	skos:relatedMatch		capec:AttackPattern		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:applicable_threats	applicable_threats	skos:relatedMatch		stix:AttackPattern		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:awareness_program	awareness_program	skos:exactMatch		iso42001:awareness_program		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:certification_body	certification_body	skos:exactMatch		iso42001:certification_body		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:certification_date	certification_date	skos:exactMatch		iso42001:certification_date		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:certification_status	certification_status	skos:exactMatch		iso42001:certification_status		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:climate_change_relevant	climate_change_relevant	skos:exactMatch		iso42001:climate_change_relevant		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:communication_plan	communication_plan	skos:exactMatch		iso42001:communication_plan		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:competence_records	competence_records	skos:exactMatch		iso42001:competence_records		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:context_external_issues	context_external_issues	skos:exactMatch		iso42001:context_external_issues		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:context_internal_issues	context_internal_issues	skos:exactMatch		iso42001:context_internal_issues		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:control_id	control_id	skos:closeMatch		oscal:Control		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:corrective_actions	corrective_actions	skos:exactMatch		iso42001:corrective_actions		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:description	description	skos:exactMatch		iso42001:description		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:detection_method	detection_method	skos:relatedMatch		ocsf:observables		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:documented_information_register	documented_information_register	skos:exactMatch		iso42001:documented_information_register		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:event_datetime	event_datetime	skos:closeMatch		ocsf:time		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:evidence_collected	evidence_collected	skos:relatedMatch		ocsf:Evidences		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:evidence_collected	evidence_collected	skos:relatedMatch		stix:ObservedData		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:governing_body	governing_body	skos:exactMatch		iso42001:governing_body		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:id	id	skos:exactMatch		iso42001:id		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:implementation_status	implementation_status	skos:closeMatch		oscal:ImplementationStatus		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:improvements	improvements	skos:exactMatch		iso42001:improvements		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:incident_category	incident_category	skos:closeMatch		ocsf:category_uid		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:information_security_policy	information_security_policy	skos:closeMatch		iso42001:ai_policy		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:integrated_management_systems	integrated_management_systems	skos:exactMatch		iso42001:integrated_management_systems		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:interested_parties	interested_parties	skos:exactMatch		iso42001:interested_parties		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:internal_audits	internal_audits	skos:exactMatch		iso42001:internal_audits		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:isms_changes_required	isms_changes_required	skos:closeMatch		iso42001:aims_changes_required		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:last_policy_review_date	last_policy_review_date	skos:exactMatch		iso42001:last_policy_review_date		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:leadership_commitment_evidence	leadership_commitment_evidence	skos:exactMatch		iso42001:leadership_commitment_evidence		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:management_reviews	management_reviews	skos:exactMatch		iso42001:management_reviews		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:monitoring_program	monitoring_program	skos:exactMatch		iso42001:monitoring_program		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:name	name	skos:exactMatch		iso42001:name		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:id	NamedEntity_id	skos:exactMatch		iso42001:id		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:next_policy_review_date	next_policy_review_date	skos:exactMatch		iso42001:next_policy_review_date		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:nonconformities	nonconformities	skos:exactMatch		iso42001:nonconformities		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:notifications_made	notifications_made	skos:relatedMatch		stix:Note		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:objectives	objectives	skos:closeMatch		iso42001:ai_objectives		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:operational_procedures	operational_procedures	skos:exactMatch		iso42001:operational_procedures		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:organization	organization	skos:exactMatch		iso42001:organization		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:planned_changes	planned_changes	skos:exactMatch		iso42001:planned_changes		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:recertification_date	recertification_date	skos:exactMatch		iso42001:recertification_date		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:related_topic_policies	related_topic_policies	skos:exactMatch		iso42001:related_topic_policies		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:reporter	reporter	skos:closeMatch		ocsf:User		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:resources	resources	skos:exactMatch		iso42001:resources		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:risk_assessment_process	risk_assessment_process	skos:closeMatch		iso42001:ai_risk_assessment_process		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:risk_assessments	risk_assessments	skos:closeMatch		iso42001:ai_risk_assessments		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:risk_treatment_plans	risk_treatment_plans	skos:closeMatch		iso42001:ai_risk_treatment_plans		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:risk_treatment_process	risk_treatment_process	skos:closeMatch		iso42001:ai_risk_treatment_process		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:roles	roles	skos:closeMatch		iso42001:ai_roles		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:scope_boundaries	scope_boundaries	skos:exactMatch		iso42001:scope_boundaries		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:scope_exclusions	scope_exclusions	skos:exactMatch		iso42001:scope_exclusions		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:scope_statement	scope_statement	skos:exactMatch		iso42001:scope_statement		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:severity	severity	skos:closeMatch		nvd:baseSeverity		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:severity	severity	skos:closeMatch		ocsf:severity_id		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:statement_of_applicability	statement_of_applicability	skos:exactMatch		iso42001:statement_of_applicability		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:top_management	top_management	skos:exactMatch		iso42001:top_management		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:version	version	skos:exactMatch		iso42001:version		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:vulnerability_description	vulnerability_description	skos:relatedMatch		cwe:Weakness		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:vulnerability_description	vulnerability_description	skos:relatedMatch		stix:Vulnerability		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:vulnerability_description	vulnerability_description	skos:closeMatch		cve:description		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:vulnerability_description	vulnerability_description	skos:closeMatch		kev_catalog:shortDescription		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Asset	Asset	skos:relatedMatch		iso29100:PII		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Asset	Asset	skos:relatedMatch		iso42001:AISystem		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Asset	Asset	skos:relatedMatch		nvd:CpeMatch		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Asset	Asset	skos:relatedMatch		slsa:ResourceDescriptor		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Asset	Asset	skos:relatedMatch		stix:Infrastructure		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Asset	Asset	skos:broadMatch		iso42001:ComputingResource		skos:broadMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Asset	Asset	skos:broadMatch		iso42001:DataResource		skos:broadMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Asset	Asset	skos:broadMatch		iso42001:HumanResource		skos:broadMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Asset	Asset	skos:broadMatch		iso42001:ToolingResource		skos:broadMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Asset	Asset	skos:closeMatch		ocsf:Device		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Asset	Asset	skos:closeMatch		oscal:SspInventoryItem		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Asset	Asset	skos:closeMatch		spdx:Package		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:AuditFinding	AuditFinding	skos:closeMatch		oscal:RelatedFinding		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:AuditFinding	AuditFinding	skos:exactMatch		iso42001:AuditFinding		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:AuditProgramme	AuditProgramme	skos:relatedMatch		oscal:AssessmentPlan		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:AuditProgramme	AuditProgramme	skos:exactMatch		iso42001:AuditProgramme		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:AwarenessProgram	AwarenessProgram	skos:exactMatch		iso42001:AwarenessProgram		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:CommunicationItem	CommunicationItem	skos:exactMatch		iso42001:CommunicationItem		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:CommunicationPlan	CommunicationPlan	skos:exactMatch		iso42001:CommunicationPlan		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:CompetenceRecord	CompetenceRecord	skos:relatedMatch		oscal:Party		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:CompetenceRecord	CompetenceRecord	skos:exactMatch		iso42001:CompetenceRecord		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:CorrectiveAction	CorrectiveAction	skos:closeMatch		oscal:PoamItem		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:CorrectiveAction	CorrectiveAction	skos:exactMatch		iso42001:CorrectiveAction		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:DocumentedInformation	DocumentedInformation	skos:relatedMatch		spdx:SpdxDocument		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:DocumentedInformation	DocumentedInformation	skos:closeMatch		oscal:OscalDocument		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:DocumentedInformation	DocumentedInformation	skos:exactMatch		iso42001:DocumentedInformation		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:ImprovementOpportunity	ImprovementOpportunity	skos:exactMatch		iso42001:ImprovementOpportunity		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InformationSecurityEvent	InformationSecurityEvent	skos:closeMatch		iso42001:AISystemEvent		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InformationSecurityEvent	InformationSecurityEvent	skos:closeMatch		ocsf:SecurityFinding		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InformationSecurityEvent	InformationSecurityEvent	skos:closeMatch		stix:Sighting		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InformationSecurityIncident	InformationSecurityIncident	skos:relatedMatch		oscal:PoamItem		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InformationSecurityIncident	InformationSecurityIncident	skos:closeMatch		iso42001:AIIncident		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InformationSecurityIncident	InformationSecurityIncident	skos:closeMatch		ocsf:IncidentFinding		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InformationSecurityIncident	InformationSecurityIncident	skos:closeMatch		stix:Incident		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InformationSecurityManagementSystem	InformationSecurityManagementSystem	skos:relatedMatch		cis_controls:CISControlsDocument		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InformationSecurityManagementSystem	InformationSecurityManagementSystem	skos:relatedMatch		iso29100:PrivacyFramework		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InformationSecurityManagementSystem	InformationSecurityManagementSystem	skos:relatedMatch		nist_csf_v2:CSFDocument		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InformationSecurityManagementSystem	InformationSecurityManagementSystem	skos:closeMatch		iso42001:AIManagementSystem		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InformationSecurityManagementSystem	InformationSecurityManagementSystem	skos:closeMatch		oscal:SystemSecurityPlan		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InformationSecurityObjective	InformationSecurityObjective	skos:closeMatch		iso42001:AIObjective		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InformationSecurityPolicy	InformationSecurityPolicy	skos:closeMatch		iso42001:AIPolicy		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InterestedParty	InterestedParty	skos:relatedMatch		iso29100:PIIPrincipal		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InterestedParty	InterestedParty	skos:relatedMatch		iso42001:CustomerRelationship		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InterestedParty	InterestedParty	skos:relatedMatch		iso42001:SupplierRelationship		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InterestedParty	InterestedParty	skos:relatedMatch		iso42001:ThirdPartyRelationship		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InterestedParty	InterestedParty	skos:closeMatch		oscal:ResponsibleParty		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InterestedParty	InterestedParty	skos:closeMatch		stix:Identity		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InterestedParty	InterestedParty	skos:exactMatch		iso42001:InterestedParty		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InternalAudit	InternalAudit	skos:closeMatch		oscal:AssessmentPlan		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:InternalAudit	InternalAudit	skos:exactMatch		iso42001:InternalAudit		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:ManagementReview	ManagementReview	skos:exactMatch		iso42001:ManagementReview		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:MonitoringItem	MonitoringItem	skos:exactMatch		iso42001:MonitoringItem		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:MonitoringProgram	MonitoringProgram	skos:exactMatch		iso42001:MonitoringProgram		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:NamedEntity	NamedEntity	skos:exactMatch		iso42001:NamedEntity		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Nonconformity	Nonconformity	skos:relatedMatch		iso42001:ConcernReport		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Nonconformity	Nonconformity	skos:closeMatch		oscal:RelatedFinding		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Nonconformity	Nonconformity	skos:exactMatch		iso42001:Nonconformity		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:OperationalProcedure	OperationalProcedure	skos:relatedMatch		nist_sp_800_218:CatalogElement		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:OperationalProcedure	OperationalProcedure	skos:closeMatch		oscal:Activity		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:OperationalProcedure	OperationalProcedure	skos:exactMatch		iso42001:OperationalProcedure		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Organization	Organization	skos:relatedMatch		iso29100:PIIController		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Organization	Organization	skos:relatedMatch		iso29100:PIIProcessor		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Organization	Organization	skos:closeMatch		ocsf:Organization		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Organization	Organization	skos:closeMatch		oscal:Party		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Organization	Organization	skos:closeMatch		spdx:Organization		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Organization	Organization	skos:closeMatch		stix:Identity		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Organization	Organization	skos:exactMatch		iso42001:Organization		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Resource	Resource	skos:exactMatch		iso42001:Resource		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Risk	Risk	skos:relatedMatch		attack:AttackTechnique		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Risk	Risk	skos:relatedMatch		capec:AttackPattern		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Risk	Risk	skos:relatedMatch		cwe:Weakness		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Risk	Risk	skos:relatedMatch		iso29100:PrivacyRisk		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Risk	Risk	skos:relatedMatch		ocsf:VulnerabilityDetails		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Risk	Risk	skos:relatedMatch		stix:ThreatActor		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Risk	Risk	skos:closeMatch		cve:CveRecord		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Risk	Risk	skos:closeMatch		iso42001:AIRisk		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Risk	Risk	skos:closeMatch		kev_catalog:KevVulnerability		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Risk	Risk	skos:closeMatch		nvd:CveItem		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:RiskAssessment	RiskAssessment	skos:relatedMatch		iso42001:AISystemImpactAssessment		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:RiskAssessment	RiskAssessment	skos:relatedMatch		oscal:AssessmentPlan		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:RiskAssessment	RiskAssessment	skos:closeMatch		iso42001:AIRiskAssessment		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:RiskAssessmentProcess	RiskAssessmentProcess	skos:relatedMatch		iso42001:AISystemImpactAssessmentProcess		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:RiskAssessmentProcess	RiskAssessmentProcess	skos:closeMatch		iso42001:AIRiskAssessmentProcess		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:RiskTreatmentPlan	RiskTreatmentPlan	skos:closeMatch		iso42001:AIRiskTreatmentPlan		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:RiskTreatmentPlan	RiskTreatmentPlan	skos:closeMatch		oscal:PlanOfActionAndMilestones		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:RiskTreatmentProcess	RiskTreatmentProcess	skos:closeMatch		iso42001:AIRiskTreatmentProcess		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Role	Role	skos:closeMatch		ocsf:User		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Role	Role	skos:closeMatch		oscal:Role		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:Role	Role	skos:exactMatch		iso42001:Role		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:SecurityControl	SecurityControl	skos:relatedMatch		cis_controls:Safeguard		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:SecurityControl	SecurityControl	skos:relatedMatch		attack:AttackMitigation		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:SecurityControl	SecurityControl	skos:relatedMatch		capec:Mitigation		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:SecurityControl	SecurityControl	skos:relatedMatch		d3f:DefensiveTechnique		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:SecurityControl	SecurityControl	skos:relatedMatch		nist_sp_800_171:Requirement		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:SecurityControl	SecurityControl	skos:relatedMatch		nist_sp_800_218:CatalogElement		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:SecurityControl	SecurityControl	skos:relatedMatch		ocsf:Compliance		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:SecurityControl	SecurityControl	skos:relatedMatch		slsa:BuildLevelEnum		skos:relatedMatch	https://w3id.org/lmodel/iso27001									
+iso27001:SecurityControl	SecurityControl	skos:closeMatch		iso42001:AIReferenceControl		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:SecurityControl	SecurityControl	skos:closeMatch		nist_csf_v2:CSFSubcategory		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:SecurityControl	SecurityControl	skos:closeMatch		nist_sp_800_53:Control		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:SecurityControl	SecurityControl	skos:closeMatch		oscal:Control		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:SecurityControl	SecurityControl	skos:closeMatch		stix:CourseOfAction		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:SoAEntry	SoAEntry	skos:closeMatch		oscal:SspImplementedRequirement		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:SoAEntry	SoAEntry	skos:exactMatch		iso42001:SoAEntry		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:StatementOfApplicability	StatementOfApplicability	skos:closeMatch		nist_sp_800_53:ProfileDocument		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:StatementOfApplicability	StatementOfApplicability	skos:closeMatch		oscal:SspControlImplementation		skos:closeMatch	https://w3id.org/lmodel/iso27001									
+iso27001:StatementOfApplicability	StatementOfApplicability	skos:exactMatch		iso42001:StatementOfApplicability		skos:exactMatch	https://w3id.org/lmodel/iso27001									
+iso27001:TopicSpecificPolicy	TopicSpecificPolicy	skos:exactMatch		iso42001:TopicSpecificPolicy		skos:exactMatch	https://w3id.org/lmodel/iso27001									

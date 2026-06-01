@@ -1,0 +1,30 @@
+# mapping_set_id: https://w3id.org/lmodel/iso27001/mappings/iso27001_to_capec
+# mapping_set_version: 0.1.0
+# mapping_set_title: ISO/IEC 27001:2022 to CAPEC Mappings
+# mapping_set_description: Mappings between ISO/IEC 27001:2022 Annex A controls and MITRE CAPEC (Common Attack Pattern Enumeration and Classification) attack patterns. CAPEC identifiers follow CAPEC-NNN format. These mappings inform threat-driven control selection during risk assessment.
+# license: https://creativecommons.org/licenses/by/4.0/
+# subject_source: https://w3id.org/lmodel/iso27001
+# object_source: https://w3id.org/lmodel/capec
+# mapping_date: 2026-06-01
+# curie_map:
+#   iso27001: https://w3id.org/lmodel/iso27001/
+#   capec: https://w3id.org/lmodel/capec/
+#   owl: http://www.w3.org/2002/07/owl#
+#   semapv: https://w3id.org/semapv/vocab/
+#   skos: http://www.w3.org/2004/02/skos/core#
+subject_id	subject_label	subject_category	predicate_id	predicate_label	object_id	object_label	object_category	mapping_justification	comment
+iso27001:Risk	Risk	owl:Class	skos:relatedMatch	related match	capec:AttackPattern	AttackPattern	owl:Class	semapv:LLMBasedMatching	Risk references applicable CAPEC attack patterns
+iso27001:applicable_threats	applicable_threats	owl:DatatypeProperty	skos:relatedMatch	related match	capec:AttackPattern	AttackPattern	owl:Class	semapv:LLMBasedMatching	Applicable threats expressed as CAPEC patterns
+iso27001:SecurityControl	SecurityControl	owl:Class	skos:relatedMatch	related match	capec:Mitigation	Mitigation	owl:Class	semapv:LLMBasedMatching	Annex A controls correspond to CAPEC mitigations
+iso27001:AnnexAControlId#a_5_17	A.5.17 Authentication information	skos:Concept	skos:relatedMatch	related match	capec:capec_560	CAPEC-560 Use of Known Domain Credentials	skos:Concept	semapv:LLMBasedMatching	Authentication credentials abuse
+iso27001:AnnexAControlId#a_8_5	A.8.5 Secure authentication	skos:Concept	skos:relatedMatch	related match	capec:capec_49	CAPEC-49 Password Brute Forcing	skos:Concept	semapv:LLMBasedMatching	Brute force mitigated by secure auth
+iso27001:AnnexAControlId#a_8_7	A.8.7 Protection against malware	skos:Concept	skos:relatedMatch	related match	capec:capec_542	CAPEC-542 Targeted Malware	skos:Concept	semapv:LLMBasedMatching	Targeted malware mitigation
+iso27001:AnnexAControlId#a_8_8	A.8.8 Management of technical vulnerabilities	skos:Concept	skos:relatedMatch	related match	capec:capec_310	CAPEC-310 Scanning for Vulnerable Software	skos:Concept	semapv:LLMBasedMatching	Vulnerability management
+iso27001:AnnexAControlId#a_8_12	A.8.12 Data leakage prevention	skos:Concept	skos:relatedMatch	related match	capec:capec_116	CAPEC-116 Excavation	skos:Concept	semapv:LLMBasedMatching	Data exfiltration mitigation
+iso27001:AnnexAControlId#a_8_21	A.8.21 Security of network services	skos:Concept	skos:relatedMatch	related match	capec:capec_117	CAPEC-117 Interception	skos:Concept	semapv:LLMBasedMatching	Network interception mitigation
+iso27001:AnnexAControlId#a_8_22	A.8.22 Segregation of networks	skos:Concept	skos:relatedMatch	related match	capec:capec_169	CAPEC-169 Footprinting	skos:Concept	semapv:LLMBasedMatching	Network reconnaissance mitigation
+iso27001:AnnexAControlId#a_8_23	A.8.23 Web filtering	skos:Concept	skos:relatedMatch	related match	capec:capec_98	CAPEC-98 Phishing	skos:Concept	semapv:LLMBasedMatching	Phishing site filtering
+iso27001:AnnexAControlId#a_8_28	A.8.28 Secure coding	skos:Concept	skos:relatedMatch	related match	capec:capec_66	CAPEC-66 SQL Injection	skos:Concept	semapv:LLMBasedMatching	Injection vulnerabilities mitigated by secure coding
+iso27001:AnnexAControlId#a_8_29	A.8.29 Security testing in development and acceptance	skos:Concept	skos:relatedMatch	related match	capec:capec_115	CAPEC-115 Authentication Bypass	skos:Concept	semapv:LLMBasedMatching	Authentication flaws found in testing
+iso27001:SecurityIncidentCategory#phishing	phishing	skos:Concept	skos:closeMatch	close match	capec:capec_98	CAPEC-98 Phishing	skos:Concept	semapv:LLMBasedMatching	Phishing incident category
+iso27001:SecurityIncidentCategory#denial_of_service	denial_of_service	skos:Concept	skos:closeMatch	close match	capec:capec_125	CAPEC-125 Flooding	skos:Concept	semapv:LLMBasedMatching	DoS via flooding

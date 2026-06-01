@@ -1,7 +1,11 @@
 package None;
 
-/* metamodel_version: 1.7.0 */
+/* metamodel_version: 1.11.0 */
 /* version: 1.0.0 */
+import java.net.URI;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import lombok.*;
 
@@ -23,5 +27,11 @@ public abstract class DocumentedInformation extends NamedEntity {
   private String status;
   private String classification;
   private String retentionPeriod;
+  private List<String> distributionControls;
+  private String storageAndPreservation;
+  private String changeControlMethod;
+  private Boolean externalOrigin;
+  private String externalOriginSource;
+
 
 }

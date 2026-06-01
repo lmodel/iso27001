@@ -1,6 +1,6 @@
 id: iso27001:control-build-an-incident-response-process
 name: Build an incident response process
-control_id: "5.5"
+control_id: a_5_5
 control_title: Build an incident response process
 control_category: organizational
 control_text: >-

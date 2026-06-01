@@ -1,0 +1,55 @@
+# mapping_set_id: https://w3id.org/lmodel/iso27001/mappings/iso27001_to_attack
+# mapping_set_version: 0.1.0
+# mapping_set_title: ISO/IEC 27001:2022 to MITRE ATT&CK Mappings
+# mapping_set_description: Mappings between ISO/IEC 27001:2022 ISMS LinkML classes/Annex A controls and MITRE ATT&CK concepts (Mitigations, Tactics, and Techniques). Class-level anchors link Risk and SecurityIncidentCategory to ATT&CK threat-modelling concepts. Per-control rows use skos:relatedMatch (default) to link Annex A technological controls to ATT&CK Mitigation entries (e.g., M1041 Encrypt Sensitive Information). Predicate choice - relatedMatch because Annex A controls are objectives whereas ATT&CK mitigations are tactical countermeasures; closeMatch where alignment is direct (e.g., MFA, encryption).
+# license: https://creativecommons.org/licenses/by/4.0/
+# subject_source: https://w3id.org/lmodel/iso27001
+# object_source: https://w3id.org/lmodel/attack
+# mapping_date: 2026-06-01
+# curie_map:
+#   iso27001: https://w3id.org/lmodel/iso27001/
+#   attack: https://w3id.org/lmodel/attack/
+#   owl: http://www.w3.org/2002/07/owl#
+#   semapv: https://w3id.org/semapv/vocab/
+#   skos: http://www.w3.org/2004/02/skos/core#
+subject_id	subject_label	subject_category	predicate_id	predicate_label	object_id	object_label	object_category	mapping_justification	comment
+iso27001:Risk	Risk	owl:Class	skos:relatedMatch	related match	attack:AttackTechnique	AttackTechnique	owl:Class	semapv:LLMBasedMatching	ISMS risk corresponds to one or more ATT&CK techniques that could realise it
+iso27001:SecurityControl	SecurityControl	owl:Class	skos:relatedMatch	related match	attack:AttackMitigation	AttackMitigation	owl:Class	semapv:LLMBasedMatching	Annex A control aligns with ATT&CK mitigation entries
+iso27001:applicable_threats	applicable_threats	owl:ObjectProperty	skos:relatedMatch	related match	attack:AttackTechnique	AttackTechnique	owl:Class	semapv:LLMBasedMatching	applicable_threats slot accepts ATT&CK technique URIs as related-mapping values
+iso27001:SecurityIncidentCategory	SecurityIncidentCategory	owl:Class	skos:relatedMatch	related match	attack:AttackTactic	AttackTactic	owl:Class	semapv:LLMBasedMatching	Incident categories correspond to ATT&CK tactical objectives
+iso27001:SecurityIncidentCategory#malware	malware	skos:Concept	skos:relatedMatch	related match	attack:tactic_ta0002	TA0002 Execution	skos:Concept	semapv:LLMBasedMatching	Malware execution tactic
+iso27001:SecurityIncidentCategory#ransomware	ransomware	skos:Concept	skos:relatedMatch	related match	attack:tactic_ta0040	TA0040 Impact	skos:Concept	semapv:LLMBasedMatching	Ransomware impact tactic
+iso27001:SecurityIncidentCategory#phishing	phishing	skos:Concept	skos:relatedMatch	related match	attack:tactic_ta0001	TA0001 Initial Access	skos:Concept	semapv:LLMBasedMatching	Phishing initial-access tactic
+iso27001:SecurityIncidentCategory#unauthorized_access	unauthorized_access	skos:Concept	skos:relatedMatch	related match	attack:tactic_ta0001	TA0001 Initial Access	skos:Concept	semapv:LLMBasedMatching	Unauthorised access initial-access tactic
+iso27001:SecurityIncidentCategory#account_compromise	account_compromise	skos:Concept	skos:relatedMatch	related match	attack:tactic_ta0006	TA0006 Credential Access	skos:Concept	semapv:LLMBasedMatching	Account compromise credential-access tactic
+iso27001:SecurityIncidentCategory#privilege_misuse	privilege_misuse	skos:Concept	skos:relatedMatch	related match	attack:tactic_ta0004	TA0004 Privilege Escalation	skos:Concept	semapv:LLMBasedMatching	Privilege misuse escalation tactic
+iso27001:SecurityIncidentCategory#data_breach	data_breach	skos:Concept	skos:relatedMatch	related match	attack:tactic_ta0010	TA0010 Exfiltration	skos:Concept	semapv:LLMBasedMatching	Data breach exfiltration tactic
+iso27001:SecurityIncidentCategory#denial_of_service	denial_of_service	skos:Concept	skos:relatedMatch	related match	attack:tactic_ta0040	TA0040 Impact	skos:Concept	semapv:LLMBasedMatching	Denial of service impact tactic
+iso27001:SecurityIncidentCategory#supply_chain	supply_chain	skos:Concept	skos:relatedMatch	related match	attack:technique_t1195	T1195 Supply Chain Compromise	skos:Concept	semapv:LLMBasedMatching	Supply chain compromise technique
+iso27001:SecurityIncidentCategory#insider_threat	insider_threat	skos:Concept	skos:relatedMatch	related match	attack:tactic_ta0004	TA0004 Privilege Escalation	skos:Concept	semapv:LLMBasedMatching	Insider threat tactic
+iso27001:AnnexAControlId#a_5_7	A.5.7 Threat intelligence	skos:Concept	skos:closeMatch	close match	attack:AttackTechnique	AttackTechnique	owl:Class	semapv:LLMBasedMatching	Threat intelligence consumption of ATT&CK technique catalogue
+iso27001:AnnexAControlId#a_5_15	A.5.15 Access control	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1018	M1018 User Account Management	skos:Concept	semapv:LLMBasedMatching	User account management mitigation
+iso27001:AnnexAControlId#a_5_16	A.5.16 Identity management	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1018	M1018 User Account Management	skos:Concept	semapv:LLMBasedMatching	Identity management mitigation
+iso27001:AnnexAControlId#a_5_17	A.5.17 Authentication information	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1032	M1032 Multi-factor Authentication	skos:Concept	semapv:LLMBasedMatching	MFA mitigation
+iso27001:AnnexAControlId#a_5_18	A.5.18 Access rights	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1018	M1018 User Account Management	skos:Concept	semapv:LLMBasedMatching	Access rights management
+iso27001:AnnexAControlId#a_5_21	A.5.21 Managing information security in the ICT supply chain	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1051	M1051 Update Software	skos:Concept	semapv:LLMBasedMatching	Supply chain integrity through software updates
+iso27001:AnnexAControlId#a_5_23	A.5.23 Information security for use of cloud services	skos:Concept	skos:relatedMatch	related match	attack:mitigation_m1041	M1041 Encrypt Sensitive Information	skos:Concept	semapv:LLMBasedMatching	Cloud data protection
+iso27001:AnnexAControlId#a_5_24	A.5.24 Information security incident management planning and preparation	skos:Concept	skos:relatedMatch	related match	attack:AttackTactic	AttackTactic	owl:Class	semapv:LLMBasedMatching	Incident-response playbooks aligned to ATT&CK tactics
+iso27001:AnnexAControlId#a_8_2	A.8.2 Privileged access rights	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1026	M1026 Privileged Account Management	skos:Concept	semapv:LLMBasedMatching	Privileged account management mitigation
+iso27001:AnnexAControlId#a_8_5	A.8.5 Secure authentication	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1032	M1032 Multi-factor Authentication	skos:Concept	semapv:LLMBasedMatching	MFA mitigation
+iso27001:AnnexAControlId#a_8_7	A.8.7 Protection against malware	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1049	M1049 Antivirus/Antimalware	skos:Concept	semapv:LLMBasedMatching	Antivirus mitigation
+iso27001:AnnexAControlId#a_8_8	A.8.8 Management of technical vulnerabilities	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1051	M1051 Update Software	skos:Concept	semapv:LLMBasedMatching	Vulnerability patching mitigation
+iso27001:AnnexAControlId#a_8_9	A.8.9 Configuration management	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1047	M1047 Audit	skos:Concept	semapv:LLMBasedMatching	Configuration audit mitigation
+iso27001:AnnexAControlId#a_8_11	A.8.11 Data masking	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1041	M1041 Encrypt Sensitive Information	skos:Concept	semapv:LLMBasedMatching	Data masking and encryption mitigation
+iso27001:AnnexAControlId#a_8_12	A.8.12 Data leakage prevention	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1057	M1057 Data Loss Prevention	skos:Concept	semapv:LLMBasedMatching	DLP mitigation
+iso27001:AnnexAControlId#a_8_13	A.8.13 Information backup	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1053	M1053 Data Backup	skos:Concept	semapv:LLMBasedMatching	Data backup mitigation
+iso27001:AnnexAControlId#a_8_15	A.8.15 Logging	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1047	M1047 Audit	skos:Concept	semapv:LLMBasedMatching	Audit logging mitigation
+iso27001:AnnexAControlId#a_8_16	A.8.16 Monitoring activities	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1047	M1047 Audit	skos:Concept	semapv:LLMBasedMatching	Activity monitoring mitigation
+iso27001:AnnexAControlId#a_8_19	A.8.19 Installation of software on operational systems	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1038	M1038 Execution Prevention	skos:Concept	semapv:LLMBasedMatching	Software execution prevention/allowlisting
+iso27001:AnnexAControlId#a_8_20	A.8.20 Networks security	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1030	M1030 Network Segmentation	skos:Concept	semapv:LLMBasedMatching	Network segmentation mitigation
+iso27001:AnnexAControlId#a_8_21	A.8.21 Security of network services	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1041	M1041 Encrypt Sensitive Information	skos:Concept	semapv:LLMBasedMatching	Network service encryption
+iso27001:AnnexAControlId#a_8_22	A.8.22 Segregation of networks	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1030	M1030 Network Segmentation	skos:Concept	semapv:LLMBasedMatching	Network segmentation mitigation
+iso27001:AnnexAControlId#a_8_23	A.8.23 Web filtering	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1021	M1021 Restrict Web-Based Content	skos:Concept	semapv:LLMBasedMatching	Web filtering mitigation
+iso27001:AnnexAControlId#a_8_24	A.8.24 Use of cryptography	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1041	M1041 Encrypt Sensitive Information	skos:Concept	semapv:LLMBasedMatching	Cryptography mitigation
+iso27001:AnnexAControlId#a_8_25	A.8.25 Secure development life cycle	skos:Concept	skos:closeMatch	close match	attack:mitigation_m1048	M1048 Application Isolation and Sandboxing	skos:Concept	semapv:LLMBasedMatching	Secure development supporting application isolation
+iso27001:AnnexAControlId#a_8_29	A.8.29 Security testing in development and acceptance	skos:Concept	skos:relatedMatch	related match	attack:AttackTechnique	AttackTechnique	owl:Class	semapv:LLMBasedMatching	Security testing exercises ATT&CK techniques

@@ -1,7 +1,11 @@
 package None;
 
-/* metamodel_version: 1.7.0 */
+/* metamodel_version: 1.11.0 */
 /* version: 1.0.0 */
+import java.net.URI;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import lombok.*;
 
@@ -12,11 +16,12 @@ import lombok.*;
 @EqualsAndHashCode(callSuper=false)
 public abstract class NamedEntity  {
 
-  private String id;
+  private URI id;
   private String name;
   private String description;
   private LocalDate createdDate;
   private LocalDate modifiedDate;
   private String version;
+
 
 }

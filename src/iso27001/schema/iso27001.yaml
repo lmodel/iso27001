@@ -41,7 +41,7 @@ annotations:
   amendment_title: Climate action changes
   amendment_date: 2024-02
   standard_title: >-
-    Information security, cybersecurity and privacy protection - 
+    Information security, cybersecurity and privacy protection -
     Information security management systems - Requirements
   standard_edition: Third edition
   standard_date: 2022-10
@@ -68,7 +68,26 @@ prefixes:
   skos: "http://www.w3.org/2004/02/skos/core#"
   prov: "http://www.w3.org/ns/prov#"
   cis_controls: https://w3id.org/lmodel/cis-controls/
+  oscal: https://w3id.org/lmodel/oscal/
+  nist_sp_800_53: https://w3id.org/lmodel/nist-sp-800-53/
+  nist_csf_v2: https://w3id.org/lmodel/nist-csf-v2/
+  nist_sp_800_171: https://w3id.org/lmodel/nist-sp-800-171/
+  nist_sp_800_218: https://w3id.org/lmodel/nist-sp-800-218/
+  attack: https://w3id.org/lmodel/attack/
+  d3f: https://d3fend.mitre.org/ontologies/d3fend.owl#
+  slsa: https://w3id.org/lmodel/slsa/
+  stix: https://w3id.org/lmodel/stix/
+  ocsf: https://w3id.org/lmodel/ocsf/
+  spdx: https://w3id.org/lmodel/spdx/
+  capec: https://w3id.org/lmodel/capec/
+  cwe: https://w3id.org/lmodel/cwe/
+  cve: https://w3id.org/lmodel/cve/
+  nvd: https://w3id.org/lmodel/nist-nvd/
+  kev_catalog: https://w3id.org/lmodel/kev-catalog/
+  iso29100: https://w3id.org/lmodel/iso29100/
+  semapv: https://w3id.org/semapv/vocab/
 
+  iso42001: https://w3id.org/lmodel/iso42001/
 default_prefix: iso27001
 default_range: string
 
@@ -84,6 +103,7 @@ imports:
 types:
   positive integer type:
     base: int
+    typeof: integer
     uri: xsd:positiveInteger
     description: >-
       integer greater than zero; natural number explicitly excluding zero
@@ -92,6 +112,7 @@ types:
 
   unsigned short type:
     base: int
+    typeof: integer
     uri: xsd:unsignedShort
     description: >-
       data type for non-negative integers that can be represented with 16 bits
@@ -100,6 +121,7 @@ types:
 
   duration type:
     base: str
+    typeof: string
     uri: xsd:duration
     description: >-
       ISO 8601 duration value such as P1Y, P30D, or PT4H
@@ -224,6 +246,8 @@ enums:
           Control excluded from scope with documented justification per 6.1.3 d).
         comments:
           - Requires justification in Statement of Applicability
+    exact_mappings:
+      - iso42001:ImplementationStatus
 
   RiskTreatmentOption:
     description: >-
@@ -255,6 +279,8 @@ enums:
           Transfer or share risk with external parties (e.g., insurance, outsourcing).
         aliases:
           - transfer
+    exact_mappings:
+      - iso42001:RiskTreatmentOption
 
   RiskLevel:
     description: >-
@@ -274,6 +300,8 @@ enums:
         description: >-
           Severe risk threatening organizational objectives; requires immediate
           executive action and resource allocation.
+    exact_mappings:
+      - iso42001:RiskLevel
 
   DocumentType:
     description: >-
@@ -295,6 +323,8 @@ enums:
         description: Documented approach for achieving objectives (e.g., risk treatment plan).
       report:
         description: Formal output of assessment, audit, or review activities.
+    exact_mappings:
+      - iso42001:DocumentType
 
   AuditFindingType:
     description: Classification of internal audit findings.
@@ -315,6 +345,8 @@ enums:
           - opportunity_for_improvement
       positive_finding:
         description: Evidence of effective implementation exceeding requirements.
+    exact_mappings:
+      - iso42001:AuditFindingType
 
   LikelihoodRating:
     description: Qualitative likelihood scale for risk assessment.
@@ -341,6 +373,1158 @@ enums:
         description: Expected to occur in most circumstances (> 80% probability).
         annotations:
           numeric_value: "5"
+    exact_mappings:
+      - iso42001:LikelihoodRating
+
+  CIAProperty:
+    description: >-
+      Information security properties whose loss is considered when identifying
+      risks per ISO/IEC 27001:2022 Clause 6.1.2 c) 1).
+    in_subset:
+      - risk_management
+    annotations:
+      iso27001_clause: "6.1.2 c) 1)"
+    permissible_values:
+      confidentiality:
+        description: >-
+          Property of information not being made available or disclosed to unauthorized
+          entities.
+      integrity:
+        description: Property of accuracy and completeness of information.
+      availability:
+        description: Property of being accessible and usable on demand by an authorized entity.
+
+  AuditType:
+    description: >-
+      Classification of audits referenced by ISO/IEC 27001:2022 Clause 9.2
+      and ISO/IEC 17021-1 (audit programmes).
+    in_subset:
+      - performance_evaluation
+    annotations:
+      iso27001_clause: "9.2"
+    permissible_values:
+      internal:
+        description: First-party audit conducted by the organization itself per 9.2.
+      external_second_party:
+        description: >-
+          Audit conducted by a party with an interest in the organization (e.g.,
+          customer).
+      external_third_party:
+        description: Independent audit by a certification body or other third party.
+      surveillance:
+        description: Periodic third-party audit between certification and recertification.
+      recertification:
+        description: Third-party audit conducted to renew certification.
+      combined:
+        description: Audit performed jointly against two or more management system standards.
+    exact_mappings:
+      - iso42001:AuditType
+
+  AnnexAControlId:
+    description: >-
+      Identifiers of the 93 reference information security controls listed in
+      ISO/IEC 27001:2022 Annex A (as also titled in ISO/IEC 27002:2022).
+      Control text and titles are normative ISO content and are not reproduced here.
+    in_subset:
+      - annex_a_controls
+    annotations:
+      iso27001_clause: "Annex A"
+      annex_a_reference: "Table A.1"
+    permissible_values:
+      a_5_1:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.1"
+        close_mappings:
+          - cis_controls:safeguard_14_1
+          - nist_csf_v2:subcategory_gv_pomg_01
+          - nist_sp_800_53:control_pm_1
+
+      a_5_2:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.2"
+        close_mappings:
+          - cis_controls:safeguard_14_9
+          - nist_csf_v2:subcategory_gv_rr_02
+          - nist_sp_800_218:practice_po_2_1
+          - nist_sp_800_53:control_pm_2
+
+      a_5_3:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.3"
+        close_mappings:
+          - cis_controls:safeguard_6_8
+          - nist_csf_v2:subcategory_pr_aa_05
+          - nist_sp_800_53:control_ac_5
+
+      a_5_4:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.4"
+        close_mappings:
+          - nist_csf_v2:subcategory_gv_rr_01
+          - nist_sp_800_53:control_ps_7
+
+      a_5_5:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.5"
+        close_mappings:
+          - nist_csf_v2:subcategory_rs_co_02
+          - nist_sp_800_53:control_ir_6
+
+      a_5_6:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.6"
+        close_mappings:
+          - nist_sp_800_53:control_pm_15
+        related_mappings:
+          - nist_csf_v2:subcategory_id_im_03
+
+      a_5_7:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.7"
+        close_mappings:
+          - cis_controls:control_13
+          - attack:AttackTechnique
+          - kev_catalog:KevCatalog
+          - nist_csf_v2:subcategory_id_ra_02
+          - nist_sp_800_218:practice_rv_1_2
+          - nist_sp_800_53:control_pm_16
+        related_mappings:
+          - nvd:CveItem
+
+      a_5_8:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.8"
+        related_mappings:
+          - cis_controls:safeguard_16_1
+        close_mappings:
+          - nist_csf_v2:subcategory_gv_sc_07
+          - nist_sp_800_53:control_sa_3
+
+      a_5_9:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.9"
+        close_mappings:
+          - cis_controls:control_1
+          - nist_csf_v2:subcategory_id_am_01
+          - nist_sp_800_53:control_cm_8
+          - spdx:SpdxDocument
+        related_mappings:
+          - nvd:CpeMatch
+
+      a_5_10:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.10"
+        close_mappings:
+          - cis_controls:safeguard_5_1
+          - nist_csf_v2:subcategory_pr_at_01
+          - nist_sp_800_53:control_pl_4
+
+      a_5_11:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.11"
+        close_mappings:
+          - cis_controls:safeguard_5_3
+          - nist_csf_v2:subcategory_id_am_08
+          - nist_sp_800_53:control_ps_4
+
+      a_5_12:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.12"
+        close_mappings:
+          - cis_controls:safeguard_3_7
+          - nist_csf_v2:subcategory_id_am_05
+          - nist_sp_800_53:control_ra_2
+
+      a_5_13:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.13"
+        close_mappings:
+          - cis_controls:safeguard_3_7
+          - nist_csf_v2:subcategory_id_am_05
+          - nist_sp_800_53:control_mp_3
+
+      a_5_14:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.14"
+        close_mappings:
+          - cis_controls:safeguard_3_10
+          - nist_csf_v2:subcategory_pr_ds_02
+          - nist_sp_800_53:control_ac_4
+        related_mappings:
+          - iso29100:PrivacyPrinciple#openness_transparency_notice
+
+      a_5_15:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.15"
+        close_mappings:
+          - cis_controls:control_6
+          - attack:mitigation_m1018
+          - d3f:AccessControl
+          - nist_csf_v2:subcategory_pr_aa_01
+          - nist_sp_800_171:requirement_03_01_01
+          - nist_sp_800_53:control_ac_1
+
+      a_5_16:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.16"
+        close_mappings:
+          - cis_controls:control_5
+          - attack:mitigation_m1018
+          - nist_csf_v2:subcategory_pr_aa_01
+          - nist_sp_800_171:requirement_03_05_01
+          - nist_sp_800_53:control_ia_4
+
+      a_5_17:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.17"
+        close_mappings:
+          - cis_controls:safeguard_6_5
+          - attack:mitigation_m1032
+          - d3f:MultifactorAuthentication
+          - nist_csf_v2:subcategory_pr_aa_03
+          - nist_sp_800_171:requirement_03_05_07
+          - nist_sp_800_53:control_ia_5
+        related_mappings:
+          - capec:capec_560
+
+      a_5_18:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.18"
+        close_mappings:
+          - cis_controls:safeguard_6_2
+          - attack:mitigation_m1018
+          - nist_csf_v2:subcategory_pr_aa_05
+          - nist_sp_800_171:requirement_03_01_02
+          - nist_sp_800_53:control_ac_2
+
+      a_5_19:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.19"
+        close_mappings:
+          - cis_controls:control_15
+          - nist_csf_v2:subcategory_gv_sc_01
+          - nist_sp_800_218:practice_po_1_3
+          - nist_sp_800_53:control_sa_9
+          - slsa:SlsaDocument
+        related_mappings:
+          - iso29100:PIIProcessor
+
+      a_5_20:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.20"
+        close_mappings:
+          - cis_controls:safeguard_15_4
+          - nist_csf_v2:subcategory_gv_sc_05
+          - nist_sp_800_218:practice_po_1_3
+          - nist_sp_800_53:control_sa_4
+          - slsa:BuildLevelEnum
+        related_mappings:
+          - iso29100:PIIProcessor
+
+      a_5_21:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.21"
+        close_mappings:
+          - cis_controls:safeguard_15_5
+          - attack:mitigation_m1051
+          - nist_csf_v2:subcategory_gv_sc_07
+          - nist_sp_800_218:practice_ps_3_2
+          - nist_sp_800_53:control_sr_3
+          - slsa:BuildProvenance
+          - spdx:Relationship
+
+      a_5_22:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.22"
+        close_mappings:
+          - cis_controls:safeguard_15_6
+          - nist_csf_v2:subcategory_gv_sc_09
+          - nist_sp_800_53:control_sa_9
+          - slsa:VerificationResultEnum
+
+      a_5_23:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.23"
+        close_mappings:
+          - cis_controls:safeguard_15_7
+          - nist_csf_v2:subcategory_gv_sc_06
+          - nist_sp_800_53:control_sa_9
+        related_mappings:
+          - attack:mitigation_m1041
+          - slsa:SourceLevelEnum
+
+      a_5_24:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.24"
+        close_mappings:
+          - cis_controls:safeguard_17_1
+          - nist_csf_v2:subcategory_rs_mar_01
+          - nist_sp_800_171:requirement_03_06_01
+          - nist_sp_800_53:control_ir_1
+        related_mappings:
+          - attack:AttackTactic
+          - kev_catalog:KevVulnerability
+
+      a_5_25:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.25"
+        close_mappings:
+          - cis_controls:safeguard_17_4
+          - nist_csf_v2:subcategory_de_ae_02
+          - nist_sp_800_171:requirement_03_06_02
+          - nist_sp_800_53:control_ir_4
+
+      a_5_26:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.26"
+        close_mappings:
+          - cis_controls:safeguard_17_4
+          - nist_csf_v2:subcategory_rs_mar_02
+          - nist_sp_800_171:requirement_03_06_01
+          - nist_sp_800_53:control_ir_4
+
+      a_5_27:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.27"
+        close_mappings:
+          - cis_controls:safeguard_17_8
+          - nist_csf_v2:subcategory_id_im_04
+          - nist_sp_800_53:control_ir_4
+
+      a_5_28:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.28"
+        close_mappings:
+          - cis_controls:safeguard_17_9
+          - nist_csf_v2:subcategory_rs_an_07
+          - nist_sp_800_53:control_au_11
+
+      a_5_29:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.29"
+        related_mappings:
+          - cis_controls:control_11
+        close_mappings:
+          - nist_csf_v2:subcategory_rc_rp_01
+          - nist_sp_800_53:control_cp_2
+
+      a_5_30:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.30"
+        close_mappings:
+          - cis_controls:safeguard_11_1
+          - nist_csf_v2:subcategory_rc_rp_01
+          - nist_sp_800_53:control_cp_2
+
+      a_5_31:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.31"
+        close_mappings:
+          - nist_csf_v2:subcategory_gv_oc_03
+          - nist_sp_800_53:control_pm_8
+
+      a_5_32:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.32"
+        close_mappings:
+          - nist_sp_800_53:control_cm_10
+
+      a_5_33:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.33"
+        close_mappings:
+          - cis_controls:control_3
+          - nist_csf_v2:subcategory_pr_ds_01
+          - nist_sp_800_53:control_si_12
+        related_mappings:
+          - iso29100:PrivacyPrinciple#information_security
+
+      a_5_34:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.34"
+        close_mappings:
+          - cis_controls:safeguard_3_1
+          - iso29100:PrivacyPrinciple
+          - nist_csf_v2:subcategory_gv_oc_01
+          - nist_sp_800_53:control_pt_1
+
+      a_5_35:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.35"
+        close_mappings:
+          - nist_csf_v2:subcategory_id_im_02
+          - nist_sp_800_53:control_ca_2
+
+      a_5_36:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.36"
+        close_mappings:
+          - nist_csf_v2:subcategory_gv_ov_01
+          - nist_sp_800_53:control_ca_7
+
+      a_5_37:
+        annotations:
+          control_category: organizational
+          annex_a_reference: "A.5.37"
+        related_mappings:
+          - cis_controls:safeguard_17_4
+        close_mappings:
+          - nist_sp_800_53:control_cm_1
+
+      a_6_1:
+        annotations:
+          control_category: people
+          annex_a_reference: "A.6.1"
+        close_mappings:
+          - nist_csf_v2:subcategory_pr_aa_04
+          - nist_sp_800_53:control_ps_3
+
+      a_6_2:
+        annotations:
+          control_category: people
+          annex_a_reference: "A.6.2"
+        close_mappings:
+          - nist_sp_800_53:control_ps_6
+
+      a_6_3:
+        annotations:
+          control_category: people
+          annex_a_reference: "A.6.3"
+        close_mappings:
+          - cis_controls:control_14
+          - nist_csf_v2:subcategory_pr_at_01
+          - nist_sp_800_171:requirement_03_02_01
+          - nist_sp_800_53:control_at_2
+        related_mappings:
+          - iso29100:PrivacyPrinciple#accountability
+
+      a_6_4:
+        annotations:
+          control_category: people
+          annex_a_reference: "A.6.4"
+        close_mappings:
+          - nist_sp_800_53:control_ps_8
+
+      a_6_5:
+        annotations:
+          control_category: people
+          annex_a_reference: "A.6.5"
+        close_mappings:
+          - nist_sp_800_53:control_ps_4
+
+      a_6_6:
+        annotations:
+          control_category: people
+          annex_a_reference: "A.6.6"
+        close_mappings:
+          - nist_csf_v2:subcategory_gv_rr_03
+          - nist_sp_800_53:control_ps_6
+
+      a_6_7:
+        annotations:
+          control_category: people
+          annex_a_reference: "A.6.7"
+        close_mappings:
+          - nist_csf_v2:subcategory_pr_aa_06
+          - nist_sp_800_53:control_ac_17
+
+      a_6_8:
+        annotations:
+          control_category: people
+          annex_a_reference: "A.6.8"
+        close_mappings:
+          - nist_csf_v2:subcategory_de_ae_03
+          - nist_sp_800_53:control_ir_6
+        related_mappings:
+          - kev_catalog:knownRansomwareCampaignUse
+
+      a_7_1:
+        annotations:
+          control_category: physical
+          annex_a_reference: "A.7.1"
+        close_mappings:
+          - nist_csf_v2:subcategory_pr_aa_06
+          - nist_sp_800_171:requirement_03_10_01
+          - nist_sp_800_53:control_pe_3
+
+      a_7_2:
+        annotations:
+          control_category: physical
+          annex_a_reference: "A.7.2"
+        close_mappings:
+          - nist_csf_v2:subcategory_pr_aa_06
+          - nist_sp_800_171:requirement_03_10_02
+          - nist_sp_800_53:control_pe_3
+
+      a_7_3:
+        annotations:
+          control_category: physical
+          annex_a_reference: "A.7.3"
+        close_mappings:
+          - nist_sp_800_53:control_pe_5
+
+      a_7_4:
+        annotations:
+          control_category: physical
+          annex_a_reference: "A.7.4"
+        close_mappings:
+          - nist_csf_v2:subcategory_de_cm_02
+          - nist_sp_800_53:control_pe_6
+
+      a_7_5:
+        annotations:
+          control_category: physical
+          annex_a_reference: "A.7.5"
+        close_mappings:
+          - nist_sp_800_53:control_pe_18
+
+      a_7_6:
+        annotations:
+          control_category: physical
+          annex_a_reference: "A.7.6"
+        close_mappings:
+          - nist_sp_800_53:control_pe_3
+
+      a_7_7:
+        annotations:
+          control_category: physical
+          annex_a_reference: "A.7.7"
+        close_mappings:
+          - nist_sp_800_53:control_mp_2
+
+      a_7_8:
+        annotations:
+          control_category: physical
+          annex_a_reference: "A.7.8"
+        close_mappings:
+          - nist_sp_800_53:control_pe_18
+
+      a_7_9:
+        annotations:
+          control_category: physical
+          annex_a_reference: "A.7.9"
+        close_mappings:
+          - nist_sp_800_53:control_mp_5
+
+      a_7_10:
+        annotations:
+          control_category: physical
+          annex_a_reference: "A.7.10"
+        close_mappings:
+          - nist_csf_v2:subcategory_pr_ds_01
+          - nist_sp_800_171:requirement_03_08_01
+          - nist_sp_800_53:control_mp_4
+
+      a_7_11:
+        annotations:
+          control_category: physical
+          annex_a_reference: "A.7.11"
+        close_mappings:
+          - nist_sp_800_53:control_pe_9
+
+      a_7_12:
+        annotations:
+          control_category: physical
+          annex_a_reference: "A.7.12"
+        close_mappings:
+          - nist_sp_800_53:control_pe_4
+
+      a_7_13:
+        annotations:
+          control_category: physical
+          annex_a_reference: "A.7.13"
+        close_mappings:
+          - nist_sp_800_53:control_ma_2
+
+      a_7_14:
+        annotations:
+          control_category: physical
+          annex_a_reference: "A.7.14"
+        close_mappings:
+          - nist_csf_v2:subcategory_id_am_08
+          - nist_sp_800_53:control_mp_6
+
+      a_8_1:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.1"
+        close_mappings:
+          - cis_controls:control_4
+          - nist_csf_v2:subcategory_pr_ps_06
+          - nist_sp_800_53:control_ac_19
+
+      a_8_2:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.2"
+        close_mappings:
+          - cis_controls:safeguard_5_4
+          - attack:mitigation_m1026
+          - d3f:PrivilegedAccountUsageAnalysis
+          - nist_csf_v2:subcategory_pr_aa_05
+          - nist_sp_800_171:requirement_03_01_05
+          - nist_sp_800_53:control_ac_6
+
+      a_8_3:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.3"
+        close_mappings:
+          - cis_controls:safeguard_3_3
+          - nist_csf_v2:subcategory_pr_aa_05
+          - nist_sp_800_171:requirement_03_01_02
+          - nist_sp_800_53:control_ac_3
+        related_mappings:
+          - cwe:cwe_284
+
+      a_8_4:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.4"
+        close_mappings:
+          - cis_controls:safeguard_16_4
+          - nist_sp_800_218:practice_ps_1_1
+          - nist_sp_800_53:control_cm_5
+          - slsa:SourceLevelEnum
+
+      a_8_5:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.5"
+        close_mappings:
+          - cis_controls:safeguard_6_3
+          - attack:mitigation_m1032
+          - d3f:MultifactorAuthentication
+          - nist_csf_v2:subcategory_pr_aa_03
+          - nist_sp_800_171:requirement_03_05_03
+          - nist_sp_800_53:control_ia_2
+        related_mappings:
+          - capec:capec_49
+          - cwe:cwe_287
+
+      a_8_6:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.6"
+        related_mappings:
+          - cis_controls:control_8
+        close_mappings:
+          - nist_sp_800_53:control_sc_5
+
+      a_8_7:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.7"
+        close_mappings:
+          - cis_controls:control_10
+          - attack:mitigation_m1049
+          - d3f:FileAnalysis
+          - nist_csf_v2:subcategory_de_cm_09
+          - nist_sp_800_171:requirement_03_14_02
+          - nist_sp_800_53:control_si_3
+        related_mappings:
+          - capec:capec_542
+
+      a_8_8:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.8"
+        close_mappings:
+          - cis_controls:control_7
+          - attack:mitigation_m1051
+          - cve:CveRecord
+          - d3f:ApplicationHardening
+          - kev_catalog:KevVulnerability
+          - nist_csf_v2:subcategory_id_ra_01
+          - nist_sp_800_171:requirement_03_11_02
+          - nist_sp_800_218:practice_rv_1_1
+          - nist_sp_800_53:control_ra_5
+          - nvd:CveItem
+          - spdx:Package
+        related_mappings:
+          - capec:capec_310
+          - cwe:cwe_1395
+
+      a_8_9:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.9"
+        close_mappings:
+          - cis_controls:control_4
+          - attack:mitigation_m1047
+          - d3f:SystemConfigurationPermissions
+          - nist_csf_v2:subcategory_pr_ps_01
+          - nist_sp_800_171:requirement_03_04_01
+          - nist_sp_800_53:control_cm_2
+        related_mappings:
+          - cwe:cwe_16
+
+      a_8_10:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.10"
+        close_mappings:
+          - cis_controls:safeguard_3_5
+          - nist_csf_v2:subcategory_pr_ds_02
+          - nist_sp_800_171:requirement_03_08_03
+          - nist_sp_800_53:control_mp_6
+        related_mappings:
+          - iso29100:PrivacyPrinciple#use_retention_disclosure_limitation
+
+      a_8_11:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.11"
+        close_mappings:
+          - cis_controls:safeguard_3_11
+          - attack:mitigation_m1041
+          - d3f:Encryption
+          - nist_csf_v2:subcategory_pr_ds_01
+          - nist_sp_800_53:control_sc_28
+        related_mappings:
+          - iso29100:PrivacyPrinciple#data_minimization
+          - nist_sp_800_171:requirement_03_13_11
+
+      a_8_12:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.12"
+        close_mappings:
+          - cis_controls:safeguard_3_13
+          - attack:mitigation_m1057
+          - d3f:OutboundTrafficFiltering
+          - nist_csf_v2:subcategory_pr_ds_02
+          - nist_sp_800_171:requirement_03_13_01
+          - nist_sp_800_53:control_sc_7
+        related_mappings:
+          - capec:capec_116
+          - cwe:cwe_200
+          - iso29100:PrivacyPrinciple#information_security
+
+      a_8_13:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.13"
+        close_mappings:
+          - cis_controls:safeguard_11_2
+          - attack:mitigation_m1053
+          - nist_csf_v2:subcategory_pr_ds_11
+          - nist_sp_800_171:requirement_03_08_09
+          - nist_sp_800_53:control_cp_9
+        related_mappings:
+          - d3f:DataInventoryMapping
+
+      a_8_14:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.14"
+        close_mappings:
+          - cis_controls:safeguard_11_3
+          - nist_csf_v2:subcategory_pr_ir_03
+          - nist_sp_800_53:control_cp_7
+
+      a_8_15:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.15"
+        close_mappings:
+          - cis_controls:control_8
+          - attack:mitigation_m1047
+          - d3f:SystemCallAnalysis
+          - nist_csf_v2:subcategory_pr_ps_04
+          - nist_sp_800_171:requirement_03_03_01
+          - nist_sp_800_53:control_au_2
+
+      a_8_16:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.16"
+        close_mappings:
+          - cis_controls:control_13
+          - attack:mitigation_m1047
+          - d3f:NetworkTrafficAnalysis
+          - nist_csf_v2:subcategory_de_cm_01
+          - nist_sp_800_171:requirement_03_14_06
+          - nist_sp_800_53:control_si_4
+
+      a_8_17:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.17"
+        close_mappings:
+          - cis_controls:safeguard_8_4
+          - nist_sp_800_53:control_au_8
+
+      a_8_18:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.18"
+        close_mappings:
+          - cis_controls:safeguard_5_4
+          - nist_sp_800_53:control_ac_6
+
+      a_8_19:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.19"
+        close_mappings:
+          - cis_controls:safeguard_2_5
+          - attack:mitigation_m1038
+          - d3f:ExecutableAllowlisting
+          - nist_sp_800_53:control_cm_11
+        related_mappings:
+          - spdx:Package
+
+      a_8_20:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.20"
+        close_mappings:
+          - cis_controls:control_12
+          - attack:mitigation_m1030
+          - d3f:NetworkIsolation
+          - nist_csf_v2:subcategory_pr_ir_01
+          - nist_sp_800_171:requirement_03_13_01
+          - nist_sp_800_53:control_sc_7
+
+      a_8_21:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.21"
+        close_mappings:
+          - cis_controls:safeguard_12_2
+          - attack:mitigation_m1041
+          - nist_sp_800_53:control_sc_8
+        related_mappings:
+          - capec:capec_117
+
+      a_8_22:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.22"
+        close_mappings:
+          - cis_controls:safeguard_12_2
+          - attack:mitigation_m1030
+          - d3f:NetworkIsolation
+          - nist_csf_v2:subcategory_pr_ir_01
+          - nist_sp_800_171:requirement_03_13_05
+          - nist_sp_800_53:control_sc_7
+        related_mappings:
+          - capec:capec_169
+
+      a_8_23:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.23"
+        close_mappings:
+          - cis_controls:control_9
+          - attack:mitigation_m1021
+          - d3f:DNSDenylisting
+          - nist_csf_v2:subcategory_pr_ir_01
+          - nist_sp_800_53:control_sc_7
+        related_mappings:
+          - capec:capec_98
+
+      a_8_24:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.24"
+        close_mappings:
+          - cis_controls:safeguard_3_11
+          - attack:mitigation_m1041
+          - d3f:Encryption
+          - nist_csf_v2:subcategory_pr_ds_01
+          - nist_sp_800_171:requirement_03_13_11
+          - nist_sp_800_53:control_sc_13
+        related_mappings:
+          - cwe:cwe_327
+
+      a_8_25:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.25"
+        close_mappings:
+          - cis_controls:control_16
+          - attack:mitigation_m1048
+          - d3f:ApplicationHardening
+          - nist_csf_v2:subcategory_pr_ps_06
+          - nist_sp_800_218:practice_po_3_1
+          - nist_sp_800_53:control_sa_3
+          - slsa:BuildDefinition
+        related_mappings:
+          - spdx:Build
+
+      a_8_26:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.26"
+        close_mappings:
+          - cis_controls:safeguard_16_1
+          - nist_csf_v2:subcategory_pr_ps_06
+          - nist_sp_800_218:practice_pw_1_1
+          - nist_sp_800_53:control_sa_8
+        related_mappings:
+          - cwe:cwe_710
+          - slsa:BuildLevelEnum
+
+      a_8_27:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.27"
+        close_mappings:
+          - cis_controls:safeguard_16_10
+          - nist_csf_v2:subcategory_pr_ps_06
+          - nist_sp_800_218:practice_pw_1_2
+          - nist_sp_800_53:control_sa_8
+        related_mappings:
+          - cwe:cwe_1008
+          - slsa:BuildEnvLevelEnum
+
+      a_8_28:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.28"
+        close_mappings:
+          - cis_controls:safeguard_16_11
+          - cwe:cwe_1006
+          - d3f:ApplicationHardening
+          - nist_csf_v2:subcategory_pr_ps_06
+          - nist_sp_800_171:requirement_03_14_02
+          - nist_sp_800_218:practice_pw_5_1
+          - nist_sp_800_53:control_sa_15
+        related_mappings:
+          - capec:capec_66
+          - slsa:SourceLevelEnum
+
+      a_8_29:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.29"
+        close_mappings:
+          - cis_controls:safeguard_16_13
+          - nist_csf_v2:subcategory_pr_ps_06
+          - nist_sp_800_218:practice_pw_8_2
+          - nist_sp_800_53:control_sa_11
+        related_mappings:
+          - attack:AttackTechnique
+          - capec:capec_115
+          - cwe:cwe_1008
+
+      a_8_30:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.30"
+        close_mappings:
+          - cis_controls:safeguard_15_4
+          - nist_sp_800_218:practice_po_1_3
+          - nist_sp_800_53:control_sa_4
+          - slsa:BuildLevelEnum
+        related_mappings:
+          - spdx:Package
+
+      a_8_31:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.31"
+        close_mappings:
+          - cis_controls:safeguard_16_8
+          - d3f:NetworkIsolation
+          - nist_csf_v2:subcategory_pr_ps_06
+          - nist_sp_800_218:practice_po_5_1
+          - nist_sp_800_53:control_cm_4
+          - slsa:BuildEnvLevelEnum
+
+      a_8_32:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.32"
+        close_mappings:
+          - cis_controls:safeguard_4_2
+          - nist_csf_v2:subcategory_pr_ps_01
+          - nist_sp_800_171:requirement_03_04_03
+          - nist_sp_800_218:practice_ps_3_1
+          - nist_sp_800_53:control_cm_3
+          - slsa:Statement
+
+      a_8_33:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.33"
+        close_mappings:
+          - cis_controls:safeguard_16_13
+          - nist_sp_800_218:practice_pw_8_1
+          - nist_sp_800_53:control_sa_15
+
+      a_8_34:
+        annotations:
+          control_category: technological
+          annex_a_reference: "A.8.34"
+        related_mappings:
+          - cis_controls:safeguard_18_5
+        close_mappings:
+          - nist_sp_800_53:control_ca_8
+    close_mappings:
+      - iso42001:AnnexAControlId
+
+  SecurityIncidentCategory:
+    description: >-
+      Categories of information security incident used to classify events and
+      incidents per ISO/IEC 27001:2022 Annex A controls A.5.24-A.5.28 and
+      ISO/IEC 27035 incident management guidance.
+    in_subset:
+      - annex_a_controls
+    annotations:
+      annex_a_reference: "A.5.24 / A.5.25"
+    permissible_values:
+      malware:
+        description: Malicious software, including viruses, worms, trojans, and ransomware.
+        close_mappings:
+          - stix:Malware
+        related_mappings:
+          - attack:tactic_ta0002
+
+      ransomware:
+        description: Malware encrypting or exfiltrating data for extortion.
+        related_mappings:
+          - attack:tactic_ta0040
+          - stix:Malware
+
+      phishing:
+        description: Social-engineering attempt to obtain credentials or trigger malicious action.
+        close_mappings:
+          - capec:capec_98
+        related_mappings:
+          - attack:tactic_ta0001
+          - stix:AttackPattern
+
+      social_engineering:
+        description: Manipulation of people to disclose information or perform unsafe actions.
+      unauthorized_access:
+        description: Access to systems or data by a party without authorization.
+        related_mappings:
+          - attack:tactic_ta0001
+
+      account_compromise:
+        description: Unauthorized control of a legitimate user or service account.
+        related_mappings:
+          - attack:tactic_ta0006
+
+      privilege_misuse:
+        description: Authorized user exceeding or misusing their granted privileges.
+        related_mappings:
+          - attack:tactic_ta0004
+
+      data_breach:
+        description: Confirmed disclosure of confidential or personal information.
+        related_mappings:
+          - attack:tactic_ta0010
+
+      data_loss:
+        description: >-
+          Loss of integrity or availability of information, including accidental
+          deletion.
+      denial_of_service:
+        description: >-
+          Disruption of availability through volumetric, protocol, or application
+          attacks.
+        close_mappings:
+          - capec:capec_125
+        related_mappings:
+          - attack:tactic_ta0040
+
+      web_application_attack:
+        description: Attack targeting a web application (e.g., injection, XSS, broken auth).
+      supply_chain:
+        description: Incident originating from a supplier, partner, or third-party component.
+        related_mappings:
+          - attack:technique_t1195
+
+      insider_threat:
+        description: Malicious or negligent action by an internal party.
+        related_mappings:
+          - attack:tactic_ta0004
+          - stix:ThreatActor
+
+      physical_security:
+        description: Theft, loss, or damage of physical assets or unauthorized physical access.
+      configuration_error:
+        description: Misconfiguration leading to security exposure.
+      cryptographic_failure:
+        description: Weak, broken, or misused cryptography.
+      policy_violation:
+        description: Failure to comply with information security policies or procedures.
+      other:
+        description: Other incident type not covered by the listed categories.
+    close_mappings:
+      - iso42001:AIIncidentCategory
+    related_mappings:
+      - attack:AttackTactic
+
+  RelatedManagementSystem:
+    description: >-
+      Other ISO/IEC management system standards with which the ISMS may be
+      integrated or aligned (e.g., harmonized structure of Annex SL).
+    in_subset:
+      - isms_core
+    permissible_values:
+      iso_iec_27001:
+        description: Information security management systems.
+      iso_iec_27701:
+        description: Privacy information management systems (PIMS).
+      iso_iec_27017:
+        description: Information security for cloud services.
+      iso_iec_27018:
+        description: Protection of personally identifiable information in public clouds.
+      iso_iec_42001:
+        description: Artificial intelligence management systems.
+      iso_9001:
+        description: Quality management systems.
+      iso_14001:
+        description: Environmental management systems.
+      iso_22301:
+        description: Business continuity management systems.
+      iso_iec_20000_1:
+        description: IT service management systems.
+      iso_31000:
+        description: Risk management - guidelines.
+    exact_mappings:
+      - iso42001:RelatedManagementSystem
 
   ImpactRating:
     description: Qualitative impact scale for risk assessment.
@@ -368,9 +1552,11 @@ enums:
         annotations:
           numeric_value: "5"
 
-# ==============================================================================
-# CLASSES
-# ==============================================================================
+    # ==============================================================================
+    # CLASSES
+    # ==============================================================================
+    exact_mappings:
+      - iso42001:ImpactRating
 
 classes:
   # ---------------------
@@ -397,6 +1583,8 @@ classes:
         identifier: true
         required: true
         description: Unique identifier for this entity instance.
+    exact_mappings:
+      - iso42001:NamedEntity
 
   DocumentedInformation:
     is_a: NamedEntity
@@ -423,10 +1611,21 @@ classes:
       - status
       - classification
       - retention_period
+      - distribution_controls
+      - storage_and_preservation
+      - change_control_method
+      - external_origin
+      - external_origin_source
 
-  # ---------------------
-  # Core ISMS Classes (Clauses 4-10)
-  # ---------------------
+    # ---------------------
+    # Core ISMS Classes (Clauses 4-10)
+    # ---------------------
+    exact_mappings:
+      - iso42001:DocumentedInformation
+    close_mappings:
+      - oscal:OscalDocument
+    related_mappings:
+      - spdx:SpdxDocument
 
   InformationSecurityManagementSystem:
     is_a: NamedEntity
@@ -439,20 +1638,30 @@ classes:
       - This is the root entity for any ISMS conformance dataset
       - Aggregates ISMS processes and their relationships
       - Includes explicit scope metadata and related governance artifacts
-      - "Reference: ISO/IEC 27001:2022 Clause 4.4. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 4.4. ISO/IEC standards text is copyright
+        ISO - not reproduced here.
     annotations:
       iso27001_clause: "4.4"
       mandatory: "true"
     slots:
       - organization
+      - top_management
+      - governing_body
+      - leadership_commitment_evidence
       - scope_statement
       - scope_boundaries
       - scope_exclusions
+      - interfaces_and_dependencies
+      - processes_and_interactions
       - context_internal_issues
       - context_external_issues
       - interested_parties
       - information_security_policy
       - objectives
+      - risks_and_opportunities_actions
+      - planned_changes
+      - externally_provided_services
       - risk_assessment_process
       - risk_treatment_process
       - statement_of_applicability
@@ -479,6 +1688,12 @@ classes:
     related_mappings:
       - cis_controls:CISControlsDocument
 
+      - iso29100:PrivacyFramework
+      - nist_csf_v2:CSFDocument
+    close_mappings:
+      - iso42001:AIManagementSystem
+      - oscal:SystemSecurityPlan
+
   Organization:
     is_a: NamedEntity
     description: >-
@@ -489,7 +1704,9 @@ classes:
     comments:
       - Context determination per 4.1 feeds into ISMS planning
       - Climate change relevance determination added by Amd. 1:2024 to Clause 4.1
-      - "Reference: ISO/IEC 27001:2022 Clause 4.1 and Amd. 1:2024. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 4.1 and Amd. 1:2024. ISO/IEC standards
+        text is copyright ISO - not reproduced here.
     annotations:
       iso27001_clause: "4.1"
       iso27001_amendment: "Amd. 1:2024"
@@ -505,6 +1722,16 @@ classes:
       - parent_organization
       - subsidiaries
       - climate_change_relevant
+    exact_mappings:
+      - iso42001:Organization
+    close_mappings:
+      - ocsf:Organization
+      - oscal:Party
+      - spdx:Organization
+      - stix:Identity
+    related_mappings:
+      - iso29100:PIIController
+      - iso29100:PIIProcessor
 
   InterestedParty:
     is_a: NamedEntity
@@ -517,8 +1744,12 @@ classes:
     comments:
       - Captures stakeholder needs and expectations relevant to ISMS scope
       - Requirements may include legal, regulatory, and contractual obligations
-      - Relevant interested parties can have requirements related to climate change (Amd. 1:2024 Clause 4.2 Note 2)
-      - "Reference: ISO/IEC 27001:2022 Clause 4.2 and Amd. 1:2024. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Relevant interested parties can have requirements related to climate change
+        (Amd. 1:2024 Clause 4.2 Note 2)
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 4.2 and Amd. 1:2024. ISO/IEC standards
+        text is copyright ISO - not reproduced here.
     annotations:
       iso27001_clause: "4.2"
       iso27001_amendment: "Amd. 1:2024"
@@ -526,12 +1757,24 @@ classes:
       - party_type
       - relationship
       - requirements
+      - addressed_requirements
+      - climate_change_related_requirements
       - communication_needs
       - contact_information
 
-  # ---------------------
-  # Leadership and Governance (Clause 5)
-  # ---------------------
+    # ---------------------
+    # Leadership and Governance (Clause 5)
+    # ---------------------
+    exact_mappings:
+      - iso42001:InterestedParty
+    close_mappings:
+      - oscal:ResponsibleParty
+      - stix:Identity
+    related_mappings:
+      - iso29100:PIIPrincipal
+      - iso42001:CustomerRelationship
+      - iso42001:SupplierRelationship
+      - iso42001:ThirdPartyRelationship
 
   InformationSecurityPolicy:
     is_a: DocumentedInformation
@@ -544,7 +1787,9 @@ classes:
     comments:
       - Captures policy intent and governance commitments
       - Supports communication and acknowledgement tracking
-      - "Reference: ISO/IEC 27001:2022 Clause 5.2. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 5.2. ISO/IEC standards text is copyright
+        ISO - not reproduced here.
     annotations:
       iso27001_clause: "5.2"
       mandatory: "true"
@@ -555,7 +1800,12 @@ classes:
       - applicability_statement
       - communication_date
       - acknowledgment_required
+      - last_policy_review_date
+      - next_policy_review_date
       - related_topic_policies
+      - integrated_management_systems
+    close_mappings:
+      - iso42001:AIPolicy
 
   TopicSpecificPolicy:
     is_a: DocumentedInformation
@@ -574,6 +1824,8 @@ classes:
       - parent_policy
       - applicable_controls
       - target_audience
+    exact_mappings:
+      - iso42001:TopicSpecificPolicy
 
   Role:
     is_a: NamedEntity
@@ -585,7 +1837,9 @@ classes:
     comments:
       - Used to assign ISMS responsibilities, authorities, and accountability
       - Supports reporting-line and delegation modeling
-      - "Reference: ISO/IEC 27001:2022 Clause 5.3. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 5.3. ISO/IEC standards text is copyright
+        ISO - not reproduced here.
     annotations:
       iso27001_clause: "5.3"
     slots:
@@ -597,9 +1851,14 @@ classes:
       - delegation_rules
       - reporting_line
 
-  # ---------------------
-  # Planning (Clause 6)
-  # ---------------------
+    # ---------------------
+    # Planning (Clause 6)
+    # ---------------------
+    exact_mappings:
+      - iso42001:Role
+    close_mappings:
+      - ocsf:User
+      - oscal:Role
 
   InformationSecurityObjective:
     is_a: NamedEntity
@@ -611,7 +1870,9 @@ classes:
     comments:
       - Designed for measurable objective tracking and periodic review
       - Links objectives to related risks, controls, and action plans
-      - "Reference: ISO/IEC 27001:2022 Clause 6.2. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 6.2. ISO/IEC standards text is copyright
+        ISO - not reproduced here.
     annotations:
       iso27001_clause: "6.2"
     slots:
@@ -627,6 +1888,9 @@ classes:
       - related_risks
       - related_controls
       - action_plan
+      - objective_resources_required
+    close_mappings:
+      - iso42001:AIObjective
 
   RiskAssessmentProcess:
     is_a: DocumentedInformation
@@ -639,7 +1903,9 @@ classes:
     comments:
       - Defines reusable criteria, scales, and methods for risk assessments
       - Supports repeatable assessment execution over time
-      - "Reference: ISO/IEC 27001:2022 Clause 6.1.2. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 6.1.2. ISO/IEC standards text is
+        copyright ISO - not reproduced here.
     annotations:
       iso27001_clause: "6.1.2"
       mandatory: "true"
@@ -652,6 +1918,10 @@ classes:
       - risk_matrix
       - assessment_frequency
       - trigger_events
+    close_mappings:
+      - iso42001:AIRiskAssessmentProcess
+    related_mappings:
+      - iso42001:AISystemImpactAssessmentProcess
 
   RiskAssessment:
     is_a: DocumentedInformation
@@ -663,7 +1933,9 @@ classes:
     comments:
       - Performed at planned intervals or when significant changes occur
       - Results are retained as documented information
-      - "Reference: ISO/IEC 27001:2022 Clause 8.2. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 8.2. ISO/IEC standards text is copyright
+        ISO - not reproduced here.
     annotations:
       iso27001_clause: "8.2"
     slots:
@@ -675,6 +1947,11 @@ classes:
       - summary_findings
       - recommendations
       - next_assessment_date
+    close_mappings:
+      - iso42001:AIRiskAssessment
+    related_mappings:
+      - iso42001:AISystemImpactAssessment
+      - oscal:AssessmentPlan
 
   Risk:
     is_a: NamedEntity
@@ -686,7 +1963,9 @@ classes:
     comments:
       - Links threat, vulnerability, and affected assets to risk ownership
       - Supports likelihood, impact, treatment, and residual risk tracking
-      - "Reference: ISO/IEC 27001:2022 Clause 6.1.2. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 6.1.2. ISO/IEC standards text is
+        copyright ISO - not reproduced here.
     annotations:
       iso27001_clause: "6.1.2"
     slots:
@@ -704,6 +1983,18 @@ classes:
       - risk_treatment_option
       - treatment_priority
       - related_treatment_plan
+    close_mappings:
+      - cve:CveRecord
+      - iso42001:AIRisk
+      - kev_catalog:KevVulnerability
+      - nvd:CveItem
+    related_mappings:
+      - attack:AttackTechnique
+      - capec:AttackPattern
+      - cwe:Weakness
+      - iso29100:PrivacyRisk
+      - ocsf:VulnerabilityDetails
+      - stix:ThreatActor
 
   RiskTreatmentProcess:
     is_a: DocumentedInformation
@@ -716,15 +2007,20 @@ classes:
     comments:
       - Defines how treatment options and controls are selected
       - Supports Statement of Applicability generation workflows
-      - "Reference: ISO/IEC 27001:2022 Clause 6.1.3. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 6.1.3. ISO/IEC standards text is
+        copyright ISO - not reproduced here.
     annotations:
       iso27001_clause: "6.1.3"
       mandatory: "true"
     slots:
       - treatment_options_guidance
       - control_selection_criteria
+      - annex_a_omission_verification
       - soa_template
       - approval_workflow
+    close_mappings:
+      - iso42001:AIRiskTreatmentProcess
 
   RiskTreatmentPlan:
     is_a: DocumentedInformation
@@ -737,7 +2033,9 @@ classes:
     comments:
       - Captures treatment execution plans with approval and acceptance metadata
       - Supports implementation status and completion tracking
-      - "Reference: ISO/IEC 27001:2022 Clause 6.1.3. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 6.1.3. ISO/IEC standards text is
+        copyright ISO - not reproduced here.
     annotations:
       iso27001_clause: "6.1.3"
     slots:
@@ -756,6 +2054,9 @@ classes:
     slot_usage:
       approved_date:
         description: Date when the risk treatment plan was approved.
+    close_mappings:
+      - iso42001:AIRiskTreatmentPlan
+      - oscal:PlanOfActionAndMilestones
 
   StatementOfApplicability:
     is_a: DocumentedInformation
@@ -769,7 +2070,9 @@ classes:
     comments:
       - Records control applicability and implementation state
       - Captures inclusion or exclusion rationale for each control entry
-      - "Reference: ISO/IEC 27001:2022 Clause 6.1.3 d). ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 6.1.3 d). ISO/IEC standards text is
+        copyright ISO - not reproduced here.
     annotations:
       iso27001_clause: "6.1.3 d)"
       mandatory: "true"
@@ -781,6 +2084,11 @@ classes:
       - not_applicable_count
       - last_review_date
       - approved_by
+    exact_mappings:
+      - iso42001:StatementOfApplicability
+    close_mappings:
+      - nist_sp_800_53:ProfileDocument
+      - oscal:SspControlImplementation
 
   SoAEntry:
     description: >-
@@ -801,9 +2109,13 @@ classes:
       - responsible_role
       - target_implementation_date
 
-  # ---------------------
-  # Annex A Security Controls
-  # ---------------------
+    # ---------------------
+    # Annex A Security Controls
+    # ---------------------
+    exact_mappings:
+      - iso42001:SoAEntry
+    close_mappings:
+      - oscal:SspImplementedRequirement
 
   SecurityControl:
     is_a: NamedEntity
@@ -816,8 +2128,12 @@ classes:
       - 93 controls organized in four domains (organizational, people, physical, technological)
       - Controls are referenced in risk treatment and SoA
       - Supports organization-authored control statements and evidence links
-      - "Reference: ISO/IEC 27001:2022 Annex A; ISO/IEC 27002:2022 Clauses 5-8. ISO/IEC standards text is copyright ISO - not reproduced here."
-      - The control_text slot must contain organization-authored content only, not ISO standards text.
+      - >-
+        Reference: ISO/IEC 27001:2022 Annex A; ISO/IEC 27002:2022 Clauses 5-8. ISO/IEC
+        standards text is copyright ISO - not reproduced here.
+      - >-
+        The control_text slot must contain organization-authored content only, not ISO
+        standards text.
     annotations:
       iso27001_clause: "6.1.3"
       annex_reference: "Annex A"
@@ -839,9 +2155,23 @@ classes:
     related_mappings:
       - cis_controls:Safeguard
 
-  # ---------------------
-  # Support (Clause 7)
-  # ---------------------
+      # ---------------------
+      # Support (Clause 7)
+      # ---------------------
+
+      - attack:AttackMitigation
+      - capec:Mitigation
+      - d3f:DefensiveTechnique
+      - nist_sp_800_171:Requirement
+      - nist_sp_800_218:CatalogElement
+      - ocsf:Compliance
+      - slsa:BuildLevelEnum
+    close_mappings:
+      - iso42001:AIReferenceControl
+      - nist_csf_v2:CSFSubcategory
+      - nist_sp_800_53:Control
+      - oscal:Control
+      - stix:CourseOfAction
 
   Resource:
     is_a: NamedEntity
@@ -851,7 +2181,9 @@ classes:
     in_subset:
       - isms_core
     comments:
-      - "Reference: ISO/IEC 27001:2022 Clause 7.1. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 7.1. ISO/IEC standards text is copyright
+        ISO - not reproduced here.
     annotations:
       iso27001_clause: "7.1"
     slots:
@@ -861,6 +2193,8 @@ classes:
       - allocated_to
       - cost
       - availability_status
+    exact_mappings:
+      - iso42001:Resource
 
   CompetenceRecord:
     is_a: DocumentedInformation
@@ -873,7 +2207,9 @@ classes:
     comments:
       - Documents personnel qualifications and development activities
       - Actions to acquire competence are evaluated for effectiveness
-      - "Reference: ISO/IEC 27001:2022 Clause 7.2. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 7.2. ISO/IEC standards text is copyright
+        ISO - not reproduced here.
     annotations:
       iso27001_clause: "7.2"
     slots:
@@ -886,6 +2222,10 @@ classes:
       - competency_assessment_date
       - competency_gaps
       - development_actions
+    exact_mappings:
+      - iso42001:CompetenceRecord
+    related_mappings:
+      - oscal:Party
 
   AwarenessProgram:
     is_a: DocumentedInformation
@@ -896,7 +2236,9 @@ classes:
       - isms_core
     comments:
       - Tracks security awareness coverage, delivery, and personnel completion records
-      - "Reference: ISO/IEC 27001:2022 Clause 7.3. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 7.3. ISO/IEC standards text is copyright
+        ISO - not reproduced here.
     annotations:
       iso27001_clause: "7.3"
     slots:
@@ -906,6 +2248,8 @@ classes:
       - frequency
       - completion_tracking
       - effectiveness_measures
+    exact_mappings:
+      - iso42001:AwarenessProgram
 
   CommunicationPlan:
     is_a: DocumentedInformation
@@ -917,11 +2261,15 @@ classes:
       - documented_information
     comments:
       - Captures communication scope, timing, audience, and channels
-      - "Reference: ISO/IEC 27001:2022 Clause 7.4. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 7.4. ISO/IEC standards text is copyright
+        ISO - not reproduced here.
     annotations:
       iso27001_clause: "7.4"
     slots:
       - communication_items
+    exact_mappings:
+      - iso42001:CommunicationPlan
 
   CommunicationItem:
     description: >-
@@ -939,9 +2287,11 @@ classes:
       - responsible_party
       - records_required
 
-  # ---------------------
-  # Operation (Clause 8)
-  # ---------------------
+    # ---------------------
+    # Operation (Clause 8)
+    # ---------------------
+    exact_mappings:
+      - iso42001:CommunicationItem
 
   OperationalProcedure:
     is_a: DocumentedInformation
@@ -951,7 +2301,9 @@ classes:
       - documented_information
     comments:
       - Captures process criteria, controls, and accountable roles
-      - "Reference: ISO/IEC 27001:2022 Clause 8.1. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 8.1. ISO/IEC standards text is copyright
+        ISO - not reproduced here.
     annotations:
       iso27001_clause: "8.1"
     slots:
@@ -962,9 +2314,15 @@ classes:
       - related_controls
       - change_control_requirements
 
-  # ---------------------
-  # Performance Evaluation (Clause 9)
-  # ---------------------
+    # ---------------------
+    # Performance Evaluation (Clause 9)
+    # ---------------------
+    exact_mappings:
+      - iso42001:OperationalProcedure
+    close_mappings:
+      - oscal:Activity
+    related_mappings:
+      - nist_sp_800_218:CatalogElement
 
   MonitoringProgram:
     is_a: DocumentedInformation
@@ -977,11 +2335,15 @@ classes:
     comments:
       - Captures metrics, methods, and analysis cadence
       - Supports reproducible monitoring and evaluation records
-      - "Reference: ISO/IEC 27001:2022 Clause 9.1. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 9.1. ISO/IEC standards text is copyright
+        ISO - not reproduced here.
     annotations:
       iso27001_clause: "9.1"
     slots:
       - monitoring_items
+    exact_mappings:
+      - iso42001:MonitoringProgram
 
   MonitoringItem:
     description: >-
@@ -1002,6 +2364,8 @@ classes:
       - alert_threshold
       - current_value
       - trend
+    exact_mappings:
+      - iso42001:MonitoringItem
 
   InternalAudit:
     is_a: DocumentedInformation
@@ -1014,7 +2378,9 @@ classes:
     comments:
       - Captures audit scope, criteria, findings, and conclusions
       - Supports periodic conformance and effectiveness assessment records
-      - "Reference: ISO/IEC 27001:2022 Clause 9.2. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 9.2. ISO/IEC standards text is copyright
+        ISO - not reproduced here.
     annotations:
       iso27001_clause: "9.2"
     slots:
@@ -1034,6 +2400,10 @@ classes:
       - audit_conclusion
       - report_date
       - report_distribution
+    exact_mappings:
+      - iso42001:InternalAudit
+    close_mappings:
+      - oscal:AssessmentPlan
 
   AuditProgramme:
     is_a: DocumentedInformation
@@ -1046,7 +2416,9 @@ classes:
     comments:
       - Captures planned audit activities over a defined period
       - Includes cadence rationale, resources, and qualification metadata
-      - "Reference: ISO/IEC 27001:2022 Clause 9.2.2. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 9.2.2. ISO/IEC standards text is
+        copyright ISO - not reproduced here.
     annotations:
       iso27001_clause: "9.2.2"
     slots:
@@ -1056,6 +2428,10 @@ classes:
       - resource_requirements
       - auditor_qualifications
       - programme_status
+    exact_mappings:
+      - iso42001:AuditProgramme
+    related_mappings:
+      - oscal:AssessmentPlan
 
   AuditFinding:
     is_a: NamedEntity
@@ -1079,6 +2455,10 @@ classes:
       - linked_corrective_action
       - closure_status
       - closure_date
+    exact_mappings:
+      - iso42001:AuditFinding
+    close_mappings:
+      - oscal:RelatedFinding
 
   ManagementReview:
     is_a: DocumentedInformation
@@ -1090,7 +2470,9 @@ classes:
       - documented_information
     comments:
       - Captures periodic management review inputs, outputs, and follow-up actions
-      - "Reference: ISO/IEC 27001:2022 Clause 9.3. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 9.3. ISO/IEC standards text is copyright
+        ISO - not reproduced here.
     annotations:
       iso27001_clause: "9.3"
     slots:
@@ -1099,9 +2481,12 @@ classes:
       - previous_actions_status
       - context_changes
       - interested_party_changes
+      - interested_party_feedback
       - performance_trends
       - audit_results_summary
       - risk_assessment_results
+      - risk_treatment_status
+      - risks_and_opportunities_changes
       - improvement_opportunities
       - decisions
       - action_items
@@ -1110,9 +2495,11 @@ classes:
       review_date:
         description: Date when the management review was conducted.
 
-  # ---------------------
-  # Improvement (Clause 10)
-  # ---------------------
+    # ---------------------
+    # Improvement (Clause 10)
+    # ---------------------
+    exact_mappings:
+      - iso42001:ManagementReview
 
   Nonconformity:
     is_a: NamedEntity
@@ -1123,7 +2510,9 @@ classes:
       - continual_improvement
     comments:
       - Captures detection, correction, consequence handling, and root-cause data
-      - "Reference: ISO/IEC 27001:2022 Clause 10.2. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 10.2. ISO/IEC standards text is copyright
+        ISO - not reproduced here.
     annotations:
       iso27001_clause: "10.2"
     slots:
@@ -1140,6 +2529,12 @@ classes:
       - status
       - closure_date
       - closure_evidence
+    exact_mappings:
+      - iso42001:Nonconformity
+    close_mappings:
+      - oscal:RelatedFinding
+    related_mappings:
+      - iso42001:ConcernReport
 
   CorrectiveAction:
     is_a: NamedEntity
@@ -1151,7 +2546,9 @@ classes:
     comments:
       - Tracks actions intended to prevent recurrence of nonconformities
       - Supports effectiveness review and related ISMS change tracking
-      - "Reference: ISO/IEC 27001:2022 Clause 10.2. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 10.2. ISO/IEC standards text is copyright
+        ISO - not reproduced here.
     annotations:
       iso27001_clause: "10.2"
     slots:
@@ -1167,6 +2564,10 @@ classes:
       - effectiveness_verified
       - isms_changes_required
       - status
+    exact_mappings:
+      - iso42001:CorrectiveAction
+    close_mappings:
+      - oscal:PoamItem
 
   ImprovementOpportunity:
     is_a: NamedEntity
@@ -1178,7 +2579,9 @@ classes:
     comments:
       - May arise from management reviews, audits, or operational experience
       - Distinct from corrective actions (proactive vs. reactive)
-      - "Reference: ISO/IEC 27001:2022 Clause 10.1. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Clause 10.1. ISO/IEC standards text is copyright
+        ISO - not reproduced here.
     annotations:
       iso27001_clause: "10.1"
     slots:
@@ -1195,9 +2598,11 @@ classes:
       - outcome_assessment
       - status
 
-  # ---------------------
-  # Supporting Classes
-  # ---------------------
+    # ---------------------
+    # Supporting Classes
+    # ---------------------
+    exact_mappings:
+      - iso42001:ImprovementOpportunity
 
   Asset:
     is_a: NamedEntity
@@ -1208,7 +2613,9 @@ classes:
       - annex_a_controls
     comments:
       - Supports asset inventory, ownership, classification, and related controls
-      - "Reference: ISO/IEC 27001:2022 Annex A control 5.9; ISO/IEC 27002:2022 Clause 5.9. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Annex A control 5.9; ISO/IEC 27002:2022 Clause
+        5.9. ISO/IEC standards text is copyright ISO - not reproduced here.
     annotations:
       annex_a_control: "5.9"
     slots:
@@ -1220,6 +2627,21 @@ classes:
       - criticality
       - related_risks
       - applicable_controls
+    close_mappings:
+      - ocsf:Device
+      - oscal:SspInventoryItem
+      - spdx:Package
+    broad_mappings:
+      - iso42001:ComputingResource
+      - iso42001:DataResource
+      - iso42001:HumanResource
+      - iso42001:ToolingResource
+    related_mappings:
+      - iso29100:PII
+      - iso42001:AISystem
+      - nvd:CpeMatch
+      - slsa:ResourceDescriptor
+      - stix:Infrastructure
 
   InformationSecurityEvent:
     is_a: NamedEntity
@@ -1229,7 +2651,9 @@ classes:
     in_subset:
       - annex_a_controls
     comments:
-      - "Reference: ISO/IEC 27001:2022 Annex A control 5.25; ISO/IEC 27002:2022 Clause 5.25. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Annex A control 5.25; ISO/IEC 27002:2022 Clause
+        5.25. ISO/IEC standards text is copyright ISO - not reproduced here.
     annotations:
       annex_a_control: "5.25"
     slots:
@@ -1240,6 +2664,10 @@ classes:
       - initial_assessment
       - categorized_as_incident
       - linked_incident
+    close_mappings:
+      - iso42001:AISystemEvent
+      - ocsf:SecurityFinding
+      - stix:Sighting
 
   InformationSecurityIncident:
     is_a: NamedEntity
@@ -1250,7 +2678,9 @@ classes:
       - annex_a_controls
     comments:
       - Captures response lifecycle, evidence references, and lessons learned
-      - "Reference: ISO/IEC 27001:2022 Annex A control 5.26; ISO/IEC 27002:2022 Clause 5.26. ISO/IEC standards text is copyright ISO - not reproduced here."
+      - >-
+        Reference: ISO/IEC 27001:2022 Annex A control 5.26; ISO/IEC 27002:2022 Clause
+        5.26. ISO/IEC standards text is copyright ISO - not reproduced here.
     annotations:
       annex_a_control: "5.26"
     slots:
@@ -1273,9 +2703,15 @@ classes:
       - closure_datetime
       - post_incident_review
 
-# ==============================================================================
-# SLOTS
-# ==============================================================================
+    # ==============================================================================
+    # SLOTS
+    # ==============================================================================
+    close_mappings:
+      - iso42001:AIIncident
+      - ocsf:IncidentFinding
+      - stix:Incident
+    related_mappings:
+      - oscal:PoamItem
 
 slots:
   # ---------------------
@@ -1292,17 +2728,23 @@ slots:
     examples:
       - value: "iso27001:risk-001"
       - value: "iso27001:control-5.1"
+    exact_mappings:
+      - iso42001:id
 
   name:
     description: Human-readable name or title.
     range: string
     required: true
+    exact_mappings:
+      - iso42001:name
 
   description:
     description: Detailed description of the entity.
     range: string
     comments:
       - Should provide sufficient detail for understanding without external reference
+    exact_mappings:
+      - iso42001:description
 
   version:
     description: Version identifier for the entity.
@@ -1312,6 +2754,8 @@ slots:
     examples:
       - value: "1.0"
       - value: "2.3.1"
+    exact_mappings:
+      - iso42001:version
 
   created_date:
     description: Date when the entity was created.
@@ -1389,6 +2833,48 @@ slots:
       - Per 7.5.3 f) retention and disposition
       - Use ISO 8601 duration notation such as P1Y or P90D
 
+  distribution_controls:
+    description: >-
+      Controls governing distribution, access, retrieval and use of the
+      documented information, per Clause 7.5.3 c).
+    range: string
+    multivalued: true
+    annotations:
+      iso27001_clause: "7.5.3"
+
+  storage_and_preservation:
+    description: >-
+      Arrangements for storage and preservation (including preservation of
+      legibility) of the documented information, per Clause 7.5.3 d).
+    range: string
+    annotations:
+      iso27001_clause: "7.5.3"
+
+  change_control_method:
+    description: >-
+      Method used for control of changes (e.g., version control) of the
+      documented information, per Clause 7.5.3 e).
+    range: string
+    annotations:
+      iso27001_clause: "7.5.3"
+
+  external_origin:
+    description: >-
+      Whether the documented information is of external origin and has been
+      identified as necessary for the planning and operation of the ISMS,
+      per Clause 7.5.3.
+    range: boolean
+    annotations:
+      iso27001_clause: "7.5.3"
+
+  external_origin_source:
+    description: >-
+      Source or provider of the externally originated documented information,
+      per Clause 7.5.3.
+    range: string
+    annotations:
+      iso27001_clause: "7.5.3"
+
   # ---------------------
   # Organization and Context Slots (Clause 4)
   # ---------------------
@@ -1396,6 +2882,8 @@ slots:
   organization:
     description: Reference to the organization operating the ISMS.
     range: Organization
+    exact_mappings:
+      - iso42001:organization
 
   legal_name:
     description: Legal registered name of the organization.
@@ -1455,26 +2943,36 @@ slots:
       - Available as documented information
     annotations:
       iso27001_clause: "4.3"
+    exact_mappings:
+      - iso42001:scope_statement
 
   scope_boundaries:
     description: Defined boundaries of the ISMS scope.
     range: string
     multivalued: true
+    exact_mappings:
+      - iso42001:scope_boundaries
 
   scope_exclusions:
     description: Any exclusions from scope with justification.
     range: string
     multivalued: true
+    exact_mappings:
+      - iso42001:scope_exclusions
 
   context_internal_issues:
     description: Internal issues relevant to ISMS per 4.1.
     range: string
     multivalued: true
+    exact_mappings:
+      - iso42001:context_internal_issues
 
   context_external_issues:
     description: External issues relevant to ISMS per 4.1.
     range: string
     multivalued: true
+    exact_mappings:
+      - iso42001:context_external_issues
 
   climate_change_relevant:
     description: >-
@@ -1487,6 +2985,8 @@ slots:
     comments:
       - Set true if climate change is identified as a relevant external or internal issue
       - When true, capture details in context_external_issues or context_internal_issues
+    exact_mappings:
+      - iso42001:climate_change_relevant
 
   interested_parties:
     description: Stakeholders relevant to the ISMS.
@@ -1494,6 +2994,8 @@ slots:
     multivalued: true
     annotations:
       iso27001_clause: "4.2"
+    exact_mappings:
+      - iso42001:interested_parties
 
   party_type:
     description: Category of interested party.
@@ -1514,6 +3016,17 @@ slots:
     comments:
       - May include legal, regulatory, and contractual requirements
 
+  addressed_requirements:
+    description: >-
+      Requirements of the interested party that the organization has
+      determined will be addressed through the ISMS, per Clause 4.2 c).
+    range: string
+    multivalued: true
+    annotations:
+      iso27001_clause: "4.2"
+    comments:
+      - Subset of requirements that the ISMS commits to address
+
   communication_needs:
     description: Communication requirements for this party.
     range: string
@@ -1521,6 +3034,16 @@ slots:
   contact_information:
     description: Contact details for the party.
     range: string
+
+  climate_change_related_requirements:
+    description: >-
+      Climate-change-related requirements of the interested party, per
+      ISO/IEC 27001:2022 Clause 4.2 NOTE 2 as added by Amd. 1:2024.
+    range: string
+    multivalued: true
+    annotations:
+      iso27001_clause: "4.2"
+      iso27001_amendment: "Amd. 1:2024"
 
   # ---------------------
   # Policy Slots (Clause 5.2)
@@ -1531,6 +3054,8 @@ slots:
     range: InformationSecurityPolicy
     annotations:
       iso27001_clause: "5.2"
+    close_mappings:
+      - iso42001:ai_policy
 
   policy_statement:
     description: The core policy statement text.
@@ -1562,10 +3087,37 @@ slots:
     description: Whether acknowledgment is required from personnel.
     range: boolean
 
+  last_policy_review_date:
+    description: Date of the most recent information security policy review.
+    range: date
+    annotations:
+      iso27001_clause: "5.2 / 9.3"
+    exact_mappings:
+      - iso42001:last_policy_review_date
+
+  next_policy_review_date:
+    description: Planned date of the next information security policy review.
+    range: date
+    annotations:
+      iso27001_clause: "5.2 / 9.3"
+    exact_mappings:
+      - iso42001:next_policy_review_date
+
+  integrated_management_systems:
+    description: >-
+      Other ISO/IEC management system standards with which the ISMS is
+      integrated or aligned (per the harmonized structure of Annex SL).
+    range: RelatedManagementSystem
+    multivalued: true
+    exact_mappings:
+      - iso42001:integrated_management_systems
+
   related_topic_policies:
     description: Topic-specific policies supporting this policy.
     range: TopicSpecificPolicy
     multivalued: true
+    exact_mappings:
+      - iso42001:related_topic_policies
 
   topic_area:
     description: The specific topic addressed by the policy.
@@ -1596,6 +3148,8 @@ slots:
     description: Information security roles defined in the ISMS.
     range: Role
     multivalued: true
+    close_mappings:
+      - iso42001:ai_roles
 
   role_type:
     description: Category of the role.
@@ -1641,6 +3195,8 @@ slots:
     description: Information security objectives.
     range: InformationSecurityObjective
     multivalued: true
+    close_mappings:
+      - iso42001:ai_objectives
 
   objective_statement:
     description: Clear statement of the objective.
@@ -1686,6 +3242,95 @@ slots:
     comments:
       - Per 6.2 h-l) planning to achieve objectives
 
+  objective_resources_required:
+    description: Resources required to achieve the information security objective.
+    range: string
+    annotations:
+      iso27001_clause: "6.2 i)"
+
+  # ---------------------
+  # ISMS Leadership and Planning Slots (Clauses 5.1, 6.1, 6.3, 8.1, 4.3, 4.4)
+  # ---------------------
+
+  top_management:
+    description: >-
+      The person or group of people who direct and control the organization at
+      the highest level, accountable for the ISMS per Clause 5.1.
+    range: string
+    annotations:
+      iso27001_clause: "5.1"
+    exact_mappings:
+      - iso42001:top_management
+
+  governing_body:
+    description: >-
+      The governing body to which top management reports, where applicable
+      (e.g., board of directors). Referenced in ISO/IEC 27001:2022 Clause 5.1 NOTE.
+    range: string
+    annotations:
+      iso27001_clause: "5.1 NOTE"
+    exact_mappings:
+      - iso42001:governing_body
+
+  leadership_commitment_evidence:
+    description: >-
+      Evidence of leadership and commitment with respect to the ISMS as required
+      by Clause 5.1 a-h).
+    range: string
+    multivalued: true
+    annotations:
+      iso27001_clause: "5.1"
+    exact_mappings:
+      - iso42001:leadership_commitment_evidence
+
+  processes_and_interactions:
+    description: >-
+      Description of the processes needed for the ISMS and their interactions,
+      per Clause 4.4.
+    range: string
+    annotations:
+      iso27001_clause: "4.4"
+
+  interfaces_and_dependencies:
+    description: >-
+      Interfaces and dependencies between activities performed by the organization
+      and those performed by other organizations, considered when determining the
+      ISMS scope per Clause 4.3 c).
+    range: string
+    multivalued: true
+    annotations:
+      iso27001_clause: "4.3 c)"
+
+  planned_changes:
+    description: >-
+      Changes to the ISMS planned and controlled per Clause 6.3 and 8.1
+      (planning of changes; control of planned changes).
+    range: string
+    multivalued: true
+    annotations:
+      iso27001_clause: "6.3 / 8.1"
+    exact_mappings:
+      - iso42001:planned_changes
+
+  externally_provided_services:
+    description: >-
+      Externally provided processes, products or services relevant to the ISMS
+      that are controlled per Clause 8.1.
+    range: string
+    multivalued: true
+    annotations:
+      iso27001_clause: "8.1"
+
+  risks_and_opportunities_actions:
+    description: >-
+      Actions to address risks and opportunities determined per Clause 6.1.1,
+      including how they are integrated into ISMS processes and how their
+      effectiveness is evaluated.
+    range: string
+    multivalued: true
+    annotations:
+      iso27001_clause: "6.1.1"
+
   # ---------------------
   # Risk Assessment Slots (Clause 6.1.2)
   # ---------------------
@@ -1693,6 +3338,8 @@ slots:
   risk_assessment_process:
     description: Reference to the risk assessment process.
     range: RiskAssessmentProcess
+    close_mappings:
+      - iso42001:ai_risk_assessment_process
 
   risk_acceptance_criteria:
     description: Criteria for accepting risks.
@@ -1739,6 +3386,8 @@ slots:
     description: Risk assessment instances.
     range: RiskAssessment
     multivalued: true
+    close_mappings:
+      - iso42001:ai_risk_assessments
 
   assessment_scope:
     description: Scope of the assessment.
@@ -1794,17 +3443,29 @@ slots:
   vulnerability_description:
     description: Description of the vulnerability that could be exploited.
     range: string
+    close_mappings:
+      - cve:description
+      - kev_catalog:shortDescription
+    related_mappings:
+      - cwe:Weakness
+      - stix:Vulnerability
 
   affected_assets:
     description: Assets affected by this risk or incident.
     range: Asset
     multivalued: true
+    close_mappings:
+      - iso42001:affected_ai_systems
+    related_mappings:
+      - ocsf:Device
 
   affected_cia_properties:
     description: >-
       Which CIA properties are affected (confidentiality, integrity, availability).
-    range: string
+    range: CIAProperty
     multivalued: true
+    annotations:
+      iso27001_clause: "6.1.2 c) 1)"
     comments:
       - Per 6.1.2 c) 1) risks associated with loss of CIA
 
@@ -1858,6 +3519,8 @@ slots:
   risk_treatment_process:
     description: Reference to the risk treatment process.
     range: RiskTreatmentProcess
+    close_mappings:
+      - iso42001:ai_risk_treatment_process
 
   treatment_options_guidance:
     description: Guidance on selecting treatment options.
@@ -1871,6 +3534,17 @@ slots:
     description: Template used for Statement of Applicability.
     range: string
 
+  annex_a_omission_verification:
+    description: >-
+      Description of how controls determined as necessary are compared with
+      those in Annex A to verify that no necessary controls have been omitted,
+      per Clause 6.1.3 c).
+    range: string
+    annotations:
+      iso27001_clause: "6.1.3"
+    comments:
+      - Document the comparison procedure and any gap-analysis outcomes
+
   approval_workflow:
     description: Workflow for approving risk treatment.
     range: string
@@ -1879,6 +3553,8 @@ slots:
     description: Risk treatment plans.
     range: RiskTreatmentPlan
     multivalued: true
+    close_mappings:
+      - iso42001:ai_risk_treatment_plans
 
   plan_scope:
     description: Scope of the plan.
@@ -1927,6 +3603,8 @@ slots:
   implementation_status:
     description: Current implementation status.
     range: ImplementationStatus
+    close_mappings:
+      - oscal:ImplementationStatus
 
   completion_date:
     description: Date when implementation was completed.
@@ -1939,6 +3617,8 @@ slots:
   statement_of_applicability:
     description: Reference to the Statement of Applicability.
     range: StatementOfApplicability
+    exact_mappings:
+      - iso42001:statement_of_applicability
 
   soa_entries:
     description: Individual control entries in the SoA.
@@ -2003,11 +3683,13 @@ slots:
     multivalued: true
 
   control_id:
-    description: Control identifier from Annex A (e.g., 5.1, 8.24).
-    range: string
-    pattern: "^[5-8]\\.[0-9]{1,2}$"
+    description: Control identifier from Annex A (e.g., a_5_1, a_8_24).
+    range: AnnexAControlId
     comments:
-      - Format matches Annex A numbering
+      - Enumerated permissible values mirror the 93 Annex A controls
+      - Provides stable per-control IRIs for SSSOM mapping subjects
+    close_mappings:
+      - oscal:Control
 
   control_title:
     description: Title of the control.
@@ -2036,6 +3718,10 @@ slots:
     description: Threats this control addresses.
     range: string
     multivalued: true
+    related_mappings:
+      - attack:AttackTechnique
+      - capec:AttackPattern
+      - stix:AttackPattern
 
   applicable_assets:
     description: Asset types this control applies to.
@@ -2071,6 +3757,8 @@ slots:
     description: Resources provided for the ISMS.
     range: Resource
     multivalued: true
+    exact_mappings:
+      - iso42001:resources
 
   resource_type:
     description: Type of resource.
@@ -2105,6 +3793,8 @@ slots:
     description: Competence records for personnel.
     range: CompetenceRecord
     multivalued: true
+    exact_mappings:
+      - iso42001:competence_records
 
   person_name:
     description: Name of the person.
@@ -2151,6 +3841,8 @@ slots:
   awareness_program:
     description: Reference to the awareness program.
     range: AwarenessProgram
+    exact_mappings:
+      - iso42001:awareness_program
 
   awareness_topics:
     description: Topics covered in awareness program.
@@ -2177,6 +3869,8 @@ slots:
   communication_plan:
     description: Reference to the communication plan.
     range: CommunicationPlan
+    exact_mappings:
+      - iso42001:communication_plan
 
   communication_items:
     description: Communication items in the plan.
@@ -2212,14 +3906,18 @@ slots:
     range: DocumentedInformation
     multivalued: true
 
-  # ---------------------
-  # Operation Slots (Clause 8)
-  # ---------------------
+    # ---------------------
+    # Operation Slots (Clause 8)
+    # ---------------------
+    exact_mappings:
+      - iso42001:documented_information_register
 
   operational_procedures:
     description: Operational procedures.
     range: OperationalProcedure
     multivalued: true
+    exact_mappings:
+      - iso42001:operational_procedures
 
   procedure_scope:
     description: Scope of the procedure.
@@ -2250,6 +3948,8 @@ slots:
   monitoring_program:
     description: Reference to the monitoring program.
     range: MonitoringProgram
+    exact_mappings:
+      - iso42001:monitoring_program
 
   monitoring_items:
     description: Items to be monitored.
@@ -2288,18 +3988,18 @@ slots:
     description: Internal audit instances.
     range: InternalAudit
     multivalued: true
+    exact_mappings:
+      - iso42001:internal_audits
 
   audit_reference:
     description: Reference identifier for the audit.
     range: string
 
   audit_type:
-    description: Type of audit.
-    range: string
-    examples:
-      - value: "full"
-      - value: "partial"
-      - value: "follow-up"
+    description: Type of audit per ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1.
+    range: AuditType
+    annotations:
+      iso27001_clause: "9.2"
 
   audit_scope:
     description: Scope of the audit.
@@ -2412,6 +4112,8 @@ slots:
     description: Management review instances.
     range: ManagementReview
     multivalued: true
+    exact_mappings:
+      - iso42001:management_reviews
 
   attendees:
     description: Attendees of the review.
@@ -2461,6 +4163,26 @@ slots:
     annotations:
       iso27001_clause: "9.3.2 g)"
 
+  interested_party_feedback:
+    description: Feedback from interested parties considered in the management review.
+    range: string
+    annotations:
+      iso27001_clause: "9.3.2 e)"
+
+  risk_treatment_status:
+    description: Status of the risk treatment plan considered in the management review.
+    range: string
+    annotations:
+      iso27001_clause: "9.3.2 f)"
+
+  risks_and_opportunities_changes:
+    description: >-
+      Changes in risks and opportunities considered in the management review,
+      per Clause 9.3.2 f).
+    range: string
+    annotations:
+      iso27001_clause: "9.3.2 f)"
+
   decisions:
     description: Decisions made in the review.
     range: string
@@ -2485,6 +4207,8 @@ slots:
     description: Nonconformities identified.
     range: Nonconformity
     multivalued: true
+    exact_mappings:
+      - iso42001:nonconformities
 
   nonconformity_source:
     description: Source of nonconformity detection.
@@ -2549,6 +4273,8 @@ slots:
     description: Corrective actions.
     range: CorrectiveAction
     multivalued: true
+    exact_mappings:
+      - iso42001:corrective_actions
 
   linked_nonconformity:
     description: Nonconformity this action addresses.
@@ -2589,11 +4315,15 @@ slots:
     range: string
     annotations:
       iso27001_clause: "10.2 e)"
+    close_mappings:
+      - iso42001:aims_changes_required
 
   improvements:
     description: Improvement opportunities tracked.
     range: ImprovementOpportunity
     multivalued: true
+    exact_mappings:
+      - iso42001:improvements
 
   improvement_source:
     description: Source of the improvement opportunity.
@@ -2666,10 +4396,14 @@ slots:
   event_datetime:
     description: Date and time of the event.
     range: datetime
+    close_mappings:
+      - ocsf:time
 
   reporter:
     description: Person who reported the event.
     range: string
+    close_mappings:
+      - ocsf:User
 
   event_description:
     description: Description of the event.
@@ -2693,15 +4427,22 @@ slots:
 
   incident_category:
     description: Category of incident.
-    range: string
+    range: SecurityIncidentCategory
+    close_mappings:
+      - ocsf:category_uid
+    annotations:
+      annex_a_reference: "A.5.24"
 
   severity:
-    description: Severity rating.
-    range: string
+    description: Severity rating of the incident.
+    range: RiskLevel
+    close_mappings:
+      - nvd:baseSeverity
+      - ocsf:severity_id
 
   affected_cia:
-    description: CIA properties affected.
-    range: string
+    description: CIA properties affected by the incident.
+    range: CIAProperty
     multivalued: true
 
   incident_description:
@@ -2711,6 +4452,8 @@ slots:
   detection_method:
     description: How the incident was detected.
     range: string
+    related_mappings:
+      - ocsf:observables
 
   response_actions:
     description: Actions taken in response.
@@ -2735,6 +4478,7 @@ slots:
   lessons_learned:
     description: Lessons learned from the incident.
     range: string
+    multivalued: true
     annotations:
       annex_a_control: "5.27"
 
@@ -2744,6 +4488,9 @@ slots:
     multivalued: true
     annotations:
       annex_a_control: "5.28"
+    related_mappings:
+      - ocsf:Evidences
+      - stix:ObservedData
 
   notification_required:
     description: Whether notification to authorities/parties was required.
@@ -2753,6 +4500,8 @@ slots:
     description: Notifications that were made.
     range: string
     multivalued: true
+    related_mappings:
+      - stix:Note
 
   closure_datetime:
     description: Date and time of incident closure.
@@ -2773,22 +4522,30 @@ slots:
       - value: "not_certified"
       - value: "in_progress"
       - value: "certified"
+    exact_mappings:
+      - iso42001:certification_status
 
   certification_body:
     description: Accredited certification body.
     range: string
+    exact_mappings:
+      - iso42001:certification_body
 
   certification_date:
     description: Date certification was achieved.
     range: date
+    exact_mappings:
+      - iso42001:certification_date
 
   recertification_date:
     description: Date recertification is due.
     range: date
 
-  # ---------------------
-  # Audit Programme Slots
-  # ---------------------
+    # ---------------------
+    # Audit Programme Slots
+    # ---------------------
+    exact_mappings:
+      - iso42001:recertification_date
 
   programme_period:
     description: Period covered by the audit programme.

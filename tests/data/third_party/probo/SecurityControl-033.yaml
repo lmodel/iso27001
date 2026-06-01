@@ -1,6 +1,6 @@
 id: iso27001:control-infra-github-tokens
 name: Plug your infrastructure & GitHub - avoid lifetime tokens
-control_id: "8.4"
+control_id: a_8_4
 control_title: Plug your infrastructure & GitHub - avoid lifetime tokens
 control_category: technological
 control_text: >-

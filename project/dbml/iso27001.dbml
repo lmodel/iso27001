@@ -1,0 +1,943 @@
+// DBML generated from LinkML schema
+
+Project {
+  name: 'iso27001'
+}
+
+Table NamedEntity {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+}
+
+Table DocumentedInformation {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+document_type varchar
+document_reference varchar
+author varchar
+owner varchar
+approved_by varchar
+approved_date date
+effective_date date
+review_date date
+status varchar
+classification varchar
+retention_period varchar
+distribution_controls varchar
+storage_and_preservation varchar
+change_control_method varchar
+external_origin boolean
+external_origin_source varchar
+}
+
+Table InformationSecurityManagementSystem {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+organization varchar
+top_management varchar
+governing_body varchar
+leadership_commitment_evidence varchar
+scope_statement varchar
+scope_boundaries varchar
+scope_exclusions varchar
+interfaces_and_dependencies varchar
+processes_and_interactions varchar
+context_internal_issues varchar
+context_external_issues varchar
+interested_parties varchar
+information_security_policy varchar
+objectives varchar
+risks_and_opportunities_actions varchar
+planned_changes varchar
+externally_provided_services varchar
+risk_assessment_process varchar
+risk_treatment_process varchar
+statement_of_applicability varchar
+controls varchar
+roles varchar
+resources varchar
+competence_records varchar
+awareness_program varchar
+communication_plan varchar
+documented_information_register varchar
+operational_procedures varchar
+risk_assessments varchar
+risk_treatment_plans varchar
+monitoring_program varchar
+internal_audits varchar
+management_reviews varchar
+nonconformities varchar
+corrective_actions varchar
+improvements varchar
+certification_status varchar
+certification_body varchar
+certification_date date
+recertification_date date
+}
+
+Table Organization {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+legal_name varchar
+trading_names varchar
+organization_type varchar
+industry_sector varchar
+size_category varchar
+employee_count varchar
+geographic_locations varchar
+regulatory_jurisdictions varchar
+parent_organization varchar
+subsidiaries varchar
+climate_change_relevant boolean
+}
+
+Table InterestedParty {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+party_type varchar
+relationship varchar
+requirements varchar
+addressed_requirements varchar
+climate_change_related_requirements varchar
+communication_needs varchar
+contact_information varchar
+}
+
+Table InformationSecurityPolicy {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+document_type varchar
+document_reference varchar
+author varchar
+owner varchar
+approved_by varchar
+approved_date date
+effective_date date
+review_date date
+status varchar
+classification varchar
+retention_period varchar
+distribution_controls varchar
+storage_and_preservation varchar
+change_control_method varchar
+external_origin boolean
+external_origin_source varchar
+policy_statement varchar
+policy_objectives_framework varchar
+commitment_statements varchar
+applicability_statement varchar
+communication_date date
+acknowledgment_required boolean
+last_policy_review_date date
+next_policy_review_date date
+related_topic_policies varchar
+integrated_management_systems varchar
+}
+
+Table TopicSpecificPolicy {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+document_type varchar
+document_reference varchar
+author varchar
+owner varchar
+approved_by varchar
+approved_date date
+effective_date date
+review_date date
+status varchar
+classification varchar
+retention_period varchar
+distribution_controls varchar
+storage_and_preservation varchar
+change_control_method varchar
+external_origin boolean
+external_origin_source varchar
+topic_area varchar
+parent_policy varchar
+applicable_controls varchar
+target_audience varchar
+}
+
+Table Role {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+role_type varchar
+responsibilities varchar
+authorities varchar
+accountability varchar
+assigned_to varchar
+delegation_rules varchar
+reporting_line varchar
+}
+
+Table InformationSecurityObjective {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+objective_statement varchar
+target_value varchar
+current_value varchar
+metric_definition varchar
+measurement_method varchar
+measurement_frequency varchar
+responsible_role varchar
+target_date date
+achievement_status varchar
+related_risks varchar
+related_controls varchar
+action_plan varchar
+objective_resources_required varchar
+}
+
+Table RiskAssessmentProcess {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+document_type varchar
+document_reference varchar
+author varchar
+owner varchar
+approved_by varchar
+approved_date date
+effective_date date
+review_date date
+status varchar
+classification varchar
+retention_period varchar
+distribution_controls varchar
+storage_and_preservation varchar
+change_control_method varchar
+external_origin boolean
+external_origin_source varchar
+risk_acceptance_criteria varchar
+assessment_criteria varchar
+assessment_methodology varchar
+likelihood_scale varchar
+impact_scale varchar
+risk_matrix varchar
+assessment_frequency varchar
+trigger_events varchar
+}
+
+Table RiskAssessment {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+document_type varchar
+document_reference varchar
+author varchar
+owner varchar
+approved_by varchar
+approved_date date
+effective_date date
+review_date date
+status varchar
+classification varchar
+retention_period varchar
+distribution_controls varchar
+storage_and_preservation varchar
+change_control_method varchar
+external_origin boolean
+external_origin_source varchar
+assessment_scope varchar
+assessment_date date
+assessor varchar
+methodology_used varchar
+risks_identified varchar
+summary_findings varchar
+recommendations varchar
+next_assessment_date date
+}
+
+Table Risk {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+risk_source varchar
+threat_description varchar
+vulnerability_description varchar
+affected_assets varchar
+affected_cia_properties varchar
+risk_owner varchar
+likelihood varchar
+impact varchar
+inherent_risk_level varchar
+existing_controls varchar
+residual_risk_level varchar
+risk_treatment_option varchar
+treatment_priority varchar
+related_treatment_plan varchar
+}
+
+Table RiskTreatmentProcess {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+document_type varchar
+document_reference varchar
+author varchar
+owner varchar
+approved_by varchar
+approved_date date
+effective_date date
+review_date date
+status varchar
+classification varchar
+retention_period varchar
+distribution_controls varchar
+storage_and_preservation varchar
+change_control_method varchar
+external_origin boolean
+external_origin_source varchar
+treatment_options_guidance varchar
+control_selection_criteria varchar
+annex_a_omission_verification varchar
+soa_template varchar
+approval_workflow varchar
+}
+
+Table RiskTreatmentPlan {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+document_type varchar
+document_reference varchar
+author varchar
+owner varchar
+approved_by varchar
+effective_date date
+review_date date
+status varchar
+classification varchar
+retention_period varchar
+distribution_controls varchar
+storage_and_preservation varchar
+change_control_method varchar
+external_origin boolean
+external_origin_source varchar
+plan_scope varchar
+risks_addressed varchar
+treatment_actions varchar
+controls_to_implement varchar
+resources_required varchar
+responsible_parties varchar
+implementation_timeline varchar
+risk_owner_approval varchar
+RiskTreatmentPlan_approved_date date
+residual_risk_acceptance varchar
+implementation_status varchar
+completion_date date
+approved_date date
+}
+
+Table StatementOfApplicability {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+document_type varchar
+document_reference varchar
+author varchar
+owner varchar
+approved_date date
+effective_date date
+review_date date
+status varchar
+classification varchar
+retention_period varchar
+distribution_controls varchar
+storage_and_preservation varchar
+change_control_method varchar
+external_origin boolean
+external_origin_source varchar
+soa_entries varchar
+total_controls varchar
+implemented_count varchar
+planned_count varchar
+not_applicable_count varchar
+last_review_date date
+approved_by varchar
+}
+
+Table SoAEntry {
+control_reference varchar
+is_applicable boolean
+inclusion_justification varchar
+exclusion_justification varchar
+implementation_status varchar
+implementation_evidence varchar
+responsible_role varchar
+target_implementation_date date
+}
+
+Table SecurityControl {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+control_id varchar
+control_title varchar
+control_category varchar
+control_text varchar
+implementation_guidance varchar
+related_controls varchar
+applicable_threats varchar
+applicable_assets varchar
+control_owner varchar
+implementation_status varchar
+implementation_date date
+effectiveness_rating varchar
+last_test_date date
+evidence_references varchar
+}
+
+Table Resource {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+resource_type varchar
+quantity varchar
+allocation_date date
+allocated_to varchar
+cost varchar
+availability_status varchar
+}
+
+Table CompetenceRecord {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+document_type varchar
+document_reference varchar
+author varchar
+owner varchar
+approved_by varchar
+approved_date date
+effective_date date
+review_date date
+status varchar
+classification varchar
+retention_period varchar
+distribution_controls varchar
+storage_and_preservation varchar
+change_control_method varchar
+external_origin boolean
+external_origin_source varchar
+person_name varchar
+person_role varchar
+required_competencies varchar
+education_records varchar
+training_records varchar
+experience_records varchar
+competency_assessment_date date
+competency_gaps varchar
+development_actions varchar
+}
+
+Table AwarenessProgram {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+document_type varchar
+document_reference varchar
+author varchar
+owner varchar
+approved_by varchar
+approved_date date
+effective_date date
+review_date date
+status varchar
+classification varchar
+retention_period varchar
+distribution_controls varchar
+storage_and_preservation varchar
+change_control_method varchar
+external_origin boolean
+external_origin_source varchar
+awareness_topics varchar
+delivery_methods varchar
+target_audience varchar
+frequency varchar
+completion_tracking varchar
+effectiveness_measures varchar
+}
+
+Table CommunicationPlan {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+document_type varchar
+document_reference varchar
+author varchar
+owner varchar
+approved_by varchar
+approved_date date
+effective_date date
+review_date date
+status varchar
+classification varchar
+retention_period varchar
+distribution_controls varchar
+storage_and_preservation varchar
+change_control_method varchar
+external_origin boolean
+external_origin_source varchar
+communication_items varchar
+}
+
+Table CommunicationItem {
+subject varchar
+purpose varchar
+audience varchar
+frequency varchar
+method varchar
+responsible_party varchar
+records_required boolean
+}
+
+Table OperationalProcedure {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+document_type varchar
+document_reference varchar
+author varchar
+owner varchar
+approved_by varchar
+approved_date date
+effective_date date
+review_date date
+status varchar
+classification varchar
+retention_period varchar
+distribution_controls varchar
+storage_and_preservation varchar
+change_control_method varchar
+external_origin boolean
+external_origin_source varchar
+procedure_scope varchar
+process_criteria varchar
+control_measures varchar
+responsible_roles varchar
+related_controls varchar
+change_control_requirements varchar
+}
+
+Table MonitoringProgram {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+document_type varchar
+document_reference varchar
+author varchar
+owner varchar
+approved_by varchar
+approved_date date
+effective_date date
+review_date date
+status varchar
+classification varchar
+retention_period varchar
+distribution_controls varchar
+storage_and_preservation varchar
+change_control_method varchar
+external_origin boolean
+external_origin_source varchar
+monitoring_items varchar
+}
+
+Table MonitoringItem {
+metric_name varchar
+metric_description varchar
+measurement_method varchar
+measurement_frequency varchar
+responsible_party varchar
+analysis_frequency varchar
+analyst varchar
+target_threshold varchar
+alert_threshold varchar
+current_value varchar
+trend varchar
+}
+
+Table InternalAudit {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+document_type varchar
+document_reference varchar
+author varchar
+owner varchar
+approved_by varchar
+approved_date date
+effective_date date
+review_date date
+status varchar
+classification varchar
+retention_period varchar
+distribution_controls varchar
+storage_and_preservation varchar
+change_control_method varchar
+external_origin boolean
+external_origin_source varchar
+audit_reference varchar
+audit_type varchar
+audit_scope varchar
+audit_criteria varchar
+audit_objectives varchar
+audit_period_start date
+audit_period_end date
+lead_auditor varchar
+audit_team varchar
+auditee_representatives varchar
+audit_plan varchar
+findings varchar
+positive_observations varchar
+audit_conclusion varchar
+report_date date
+report_distribution varchar
+}
+
+Table AuditProgramme {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+document_type varchar
+document_reference varchar
+author varchar
+owner varchar
+approved_by varchar
+approved_date date
+effective_date date
+review_date date
+status varchar
+classification varchar
+retention_period varchar
+distribution_controls varchar
+storage_and_preservation varchar
+change_control_method varchar
+external_origin boolean
+external_origin_source varchar
+programme_period varchar
+planned_audits varchar
+audit_frequency_rationale varchar
+resource_requirements varchar
+auditor_qualifications varchar
+programme_status varchar
+}
+
+Table AuditFinding {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+finding_type varchar
+clause_reference varchar
+control_reference varchar
+finding_description varchar
+objective_evidence varchar
+root_cause_analysis varchar
+risk_implication varchar
+recommended_action varchar
+auditee_response varchar
+linked_corrective_action varchar
+closure_status varchar
+closure_date date
+}
+
+Table ManagementReview {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+document_type varchar
+document_reference varchar
+author varchar
+owner varchar
+approved_by varchar
+approved_date date
+effective_date date
+status varchar
+classification varchar
+retention_period varchar
+distribution_controls varchar
+storage_and_preservation varchar
+change_control_method varchar
+external_origin boolean
+external_origin_source varchar
+ManagementReview_review_date date
+attendees varchar
+previous_actions_status varchar
+context_changes varchar
+interested_party_changes varchar
+interested_party_feedback varchar
+performance_trends varchar
+audit_results_summary varchar
+risk_assessment_results varchar
+risk_treatment_status varchar
+risks_and_opportunities_changes varchar
+improvement_opportunities varchar
+decisions varchar
+action_items varchar
+next_review_date date
+review_date date
+}
+
+Table Nonconformity {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+nonconformity_source varchar
+detection_date date
+detected_by varchar
+requirement_violated varchar
+nonconformity_description varchar
+immediate_actions varchar
+consequences_addressed varchar
+root_cause varchar
+similar_nonconformities_check varchar
+linked_corrective_actions varchar
+status varchar
+closure_date date
+closure_evidence varchar
+}
+
+Table CorrectiveAction {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+linked_nonconformity varchar
+action_description varchar
+root_cause_addressed varchar
+responsible_party varchar
+target_completion_date date
+actual_completion_date date
+resources_required varchar
+effectiveness_criteria varchar
+effectiveness_review_date date
+effectiveness_verified boolean
+isms_changes_required varchar
+status varchar
+}
+
+Table ImprovementOpportunity {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+improvement_source varchar
+identification_date date
+identified_by varchar
+improvement_description varchar
+expected_benefit varchar
+priority varchar
+implementation_plan varchar
+responsible_party varchar
+target_date date
+actual_completion_date date
+outcome_assessment varchar
+status varchar
+}
+
+Table Asset {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+asset_type varchar
+asset_owner varchar
+asset_custodian varchar
+classification varchar
+location varchar
+criticality varchar
+related_risks varchar
+applicable_controls varchar
+}
+
+Table InformationSecurityEvent {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+event_datetime datetime
+reporter varchar
+event_description varchar
+affected_assets varchar
+initial_assessment varchar
+categorized_as_incident boolean
+linked_incident varchar
+}
+
+Table InformationSecurityIncident {
+NamedEntity_id varchar [not null, primary key]
+name varchar [not null]
+description varchar
+created_date date
+modified_date date
+version varchar
+incident_datetime datetime
+incident_category varchar
+severity varchar
+affected_assets varchar
+affected_cia varchar
+incident_description varchar
+detection_method varchar
+response_actions varchar
+containment_actions varchar
+eradication_actions varchar
+recovery_actions varchar
+root_cause varchar
+lessons_learned varchar
+evidence_collected varchar
+notification_required boolean
+notifications_made varchar
+closure_datetime datetime
+post_incident_review varchar
+}
+
+Ref: InformationSecurityManagementSystem.organization > Organization.NamedEntity_id
+Ref: InformationSecurityManagementSystem.interested_parties > InterestedParty.NamedEntity_id
+Ref: InformationSecurityManagementSystem.information_security_policy > InformationSecurityPolicy.NamedEntity_id
+Ref: InformationSecurityManagementSystem.objectives > InformationSecurityObjective.NamedEntity_id
+Ref: InformationSecurityManagementSystem.risk_assessment_process > RiskAssessmentProcess.NamedEntity_id
+Ref: InformationSecurityManagementSystem.risk_treatment_process > RiskTreatmentProcess.NamedEntity_id
+Ref: InformationSecurityManagementSystem.statement_of_applicability > StatementOfApplicability.NamedEntity_id
+Ref: InformationSecurityManagementSystem.controls > SecurityControl.NamedEntity_id
+Ref: InformationSecurityManagementSystem.roles > Role.NamedEntity_id
+Ref: InformationSecurityManagementSystem.resources > Resource.NamedEntity_id
+Ref: InformationSecurityManagementSystem.competence_records > CompetenceRecord.NamedEntity_id
+Ref: InformationSecurityManagementSystem.awareness_program > AwarenessProgram.NamedEntity_id
+Ref: InformationSecurityManagementSystem.communication_plan > CommunicationPlan.NamedEntity_id
+Ref: InformationSecurityManagementSystem.documented_information_register > DocumentedInformation.NamedEntity_id
+Ref: InformationSecurityManagementSystem.operational_procedures > OperationalProcedure.NamedEntity_id
+Ref: InformationSecurityManagementSystem.risk_assessments > RiskAssessment.NamedEntity_id
+Ref: InformationSecurityManagementSystem.risk_treatment_plans > RiskTreatmentPlan.NamedEntity_id
+Ref: InformationSecurityManagementSystem.monitoring_program > MonitoringProgram.NamedEntity_id
+Ref: InformationSecurityManagementSystem.internal_audits > InternalAudit.NamedEntity_id
+Ref: InformationSecurityManagementSystem.management_reviews > ManagementReview.NamedEntity_id
+Ref: InformationSecurityManagementSystem.nonconformities > Nonconformity.NamedEntity_id
+Ref: InformationSecurityManagementSystem.corrective_actions > CorrectiveAction.NamedEntity_id
+Ref: InformationSecurityManagementSystem.improvements > ImprovementOpportunity.NamedEntity_id
+Ref: InformationSecurityPolicy.related_topic_policies > TopicSpecificPolicy.NamedEntity_id
+Ref: TopicSpecificPolicy.parent_policy > InformationSecurityPolicy.NamedEntity_id
+Ref: TopicSpecificPolicy.applicable_controls > SecurityControl.NamedEntity_id
+Ref: InformationSecurityObjective.responsible_role > Role.NamedEntity_id
+Ref: InformationSecurityObjective.related_risks > Risk.NamedEntity_id
+Ref: InformationSecurityObjective.related_controls > SecurityControl.NamedEntity_id
+Ref: RiskAssessment.risks_identified > Risk.NamedEntity_id
+Ref: Risk.affected_assets > Asset.NamedEntity_id
+Ref: Risk.existing_controls > SecurityControl.NamedEntity_id
+Ref: Risk.related_treatment_plan > RiskTreatmentPlan.NamedEntity_id
+Ref: RiskTreatmentPlan.risks_addressed > Risk.NamedEntity_id
+Ref: RiskTreatmentPlan.controls_to_implement > SecurityControl.NamedEntity_id
+Ref: SoAEntry.control_reference > SecurityControl.NamedEntity_id
+Ref: SoAEntry.responsible_role > Role.NamedEntity_id
+Ref: SecurityControl.related_controls > SecurityControl.NamedEntity_id
+Ref: OperationalProcedure.responsible_roles > Role.NamedEntity_id
+Ref: OperationalProcedure.related_controls > SecurityControl.NamedEntity_id
+Ref: InternalAudit.findings > AuditFinding.NamedEntity_id
+Ref: AuditProgramme.planned_audits > InternalAudit.NamedEntity_id
+Ref: AuditFinding.control_reference > SecurityControl.NamedEntity_id
+Ref: AuditFinding.linked_corrective_action > CorrectiveAction.NamedEntity_id
+Ref: Nonconformity.linked_corrective_actions > CorrectiveAction.NamedEntity_id
+Ref: CorrectiveAction.linked_nonconformity > Nonconformity.NamedEntity_id
+Ref: Asset.related_risks > Risk.NamedEntity_id
+Ref: Asset.applicable_controls > SecurityControl.NamedEntity_id
+Ref: InformationSecurityEvent.affected_assets > Asset.NamedEntity_id
+Ref: InformationSecurityEvent.linked_incident > InformationSecurityIncident.NamedEntity_id
+Ref: InformationSecurityIncident.affected_assets > Asset.NamedEntity_id

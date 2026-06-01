@@ -1,6 +1,6 @@
 id: iso27001:control-encrypt-your-data-storage
 name: Encrypt your data storage
-control_id: "8.11"
+control_id: a_8_11
 control_title: Encrypt your data storage
 control_category: technological
 control_text: >-

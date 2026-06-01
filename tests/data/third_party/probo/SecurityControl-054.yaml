@@ -1,6 +1,6 @@
 id: iso27001:control-synchronize-clock-on-infra
 name: Synchronize clock on infra
-control_id: "8.17"
+control_id: a_8_17
 control_title: Synchronize clock on infra
 control_category: technological
 control_text: >-

@@ -1,0 +1,28 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: CommunicationItem
+schema_generating: true
+description: A single communication requirement within the communication plan.
+display_name: CommunicationItem
+document_category: CommunicationItem
+weight: 20
+fields:
+- id: subject
+  description: Subject of the communication.
+  display_name: subject
+- id: purpose
+  description: Purpose of the communication.
+  display_name: purpose
+- id: audience
+  description: Target audience.
+  display_name: audience
+- id: frequency
+  description: Frequency of the activity.
+  display_name: frequency
+- id: method
+  description: Method of communication.
+  display_name: method
+- id: responsible_party
+  description: Party responsible for the activity.
+  display_name: responsible_party
+- id: records_required
+  description: Whether records are required.
+  display_name: records_required

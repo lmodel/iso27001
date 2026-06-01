@@ -1,6 +1,6 @@
 id: iso27001:control-have-distinct-coding-environment
 name: Have distinct coding environment
-control_id: "8.31"
+control_id: a_8_31
 control_title: Have distinct coding environment
 control_category: technological
 control_text: >-

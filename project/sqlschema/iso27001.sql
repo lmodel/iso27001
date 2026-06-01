@@ -17,6 +17,10 @@
 --     * Slot: status Description: Current status of the document or entity.
 --     * Slot: classification Description: Information classification level.
 --     * Slot: retention_period Description: Duration for which the document is retained.
+--     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
+--     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
+--     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
+--     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
 --     * Slot: id Description: Unique identifier for this entity instance.
 --     * Slot: name Description: Human-readable name or title.
 --     * Slot: description Description: Detailed description of the entity.
@@ -25,7 +29,10 @@
 --     * Slot: version Description: Version identifier for the entity.
 -- # Class: InformationSecurityManagementSystem Description: Top-level container representing an organization's complete ISMS per ISO 27001. Aggregates all components required to support the full ISMS lifecycle.
 --     * Slot: organization Description: Reference to the organization operating the ISMS.
+--     * Slot: top_management Description: The person or group of people who direct and control the organization at the highest level, accountable for the ISMS per Clause 5.1.
+--     * Slot: governing_body Description: The governing body to which top management reports, where applicable (e.g., board of directors). Referenced in ISO/IEC 27001:2022 Clause 5.1 NOTE.
 --     * Slot: scope_statement Description: Documented statement of ISMS scope per 4.3.
+--     * Slot: processes_and_interactions Description: Description of the processes needed for the ISMS and their interactions, per Clause 4.4.
 --     * Slot: information_security_policy Description: Reference to the information security policy.
 --     * Slot: risk_assessment_process Description: Reference to the risk assessment process.
 --     * Slot: risk_treatment_process Description: Reference to the risk treatment process.
@@ -74,6 +81,8 @@
 --     * Slot: applicability_statement Description: Statement of policy applicability.
 --     * Slot: communication_date Description: Date when the policy was communicated.
 --     * Slot: acknowledgment_required Description: Whether acknowledgment is required from personnel.
+--     * Slot: last_policy_review_date Description: Date of the most recent information security policy review.
+--     * Slot: next_policy_review_date Description: Planned date of the next information security policy review.
 --     * Slot: document_type Description: Classification of the documented information.
 --     * Slot: document_reference Description: Unique reference number for document control.
 --     * Slot: author Description: Person who created the document.
@@ -85,6 +94,10 @@
 --     * Slot: status Description: Current status of the document or entity.
 --     * Slot: classification Description: Information classification level.
 --     * Slot: retention_period Description: Duration for which the document is retained.
+--     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
+--     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
+--     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
+--     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
 --     * Slot: id Description: Unique identifier for this entity instance.
 --     * Slot: name Description: Human-readable name or title.
 --     * Slot: description Description: Detailed description of the entity.
@@ -106,6 +119,10 @@
 --     * Slot: status Description: Current status of the document or entity.
 --     * Slot: classification Description: Information classification level.
 --     * Slot: retention_period Description: Duration for which the document is retained.
+--     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
+--     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
+--     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
+--     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
 --     * Slot: id Description: Unique identifier for this entity instance.
 --     * Slot: name Description: Human-readable name or title.
 --     * Slot: description Description: Detailed description of the entity.
@@ -134,6 +151,7 @@
 --     * Slot: target_date Description: Target date for achieving the objective.
 --     * Slot: achievement_status Description: Current status of objective achievement.
 --     * Slot: action_plan Description: Plan for achieving the objective.
+--     * Slot: objective_resources_required Description: Resources required to achieve the information security objective.
 --     * Slot: id Description: Unique identifier for this entity instance.
 --     * Slot: name Description: Human-readable name or title.
 --     * Slot: description Description: Detailed description of the entity.
@@ -159,6 +177,10 @@
 --     * Slot: status Description: Current status of the document or entity.
 --     * Slot: classification Description: Information classification level.
 --     * Slot: retention_period Description: Duration for which the document is retained.
+--     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
+--     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
+--     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
+--     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
 --     * Slot: id Description: Unique identifier for this entity instance.
 --     * Slot: name Description: Human-readable name or title.
 --     * Slot: description Description: Detailed description of the entity.
@@ -183,6 +205,10 @@
 --     * Slot: status Description: Current status of the document or entity.
 --     * Slot: classification Description: Information classification level.
 --     * Slot: retention_period Description: Duration for which the document is retained.
+--     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
+--     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
+--     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
+--     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
 --     * Slot: id Description: Unique identifier for this entity instance.
 --     * Slot: name Description: Human-readable name or title.
 --     * Slot: description Description: Detailed description of the entity.
@@ -210,6 +236,7 @@
 -- # Class: RiskTreatmentProcess Description: The documented risk treatment process per Clause 6.1.3, defining how treatment options are selected and controls determined.
 --     * Slot: treatment_options_guidance Description: Guidance on selecting treatment options.
 --     * Slot: control_selection_criteria Description: Criteria for selecting controls.
+--     * Slot: annex_a_omission_verification Description: Description of how controls determined as necessary are compared with those in Annex A to verify that no necessary controls have been omitted, per Clause 6.1.3 c).
 --     * Slot: soa_template Description: Template used for Statement of Applicability.
 --     * Slot: approval_workflow Description: Workflow for approving risk treatment.
 --     * Slot: document_type Description: Classification of the documented information.
@@ -223,6 +250,10 @@
 --     * Slot: status Description: Current status of the document or entity.
 --     * Slot: classification Description: Information classification level.
 --     * Slot: retention_period Description: Duration for which the document is retained.
+--     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
+--     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
+--     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
+--     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
 --     * Slot: id Description: Unique identifier for this entity instance.
 --     * Slot: name Description: Human-readable name or title.
 --     * Slot: description Description: Detailed description of the entity.
@@ -248,6 +279,10 @@
 --     * Slot: status Description: Current status of the document or entity.
 --     * Slot: classification Description: Information classification level.
 --     * Slot: retention_period Description: Duration for which the document is retained.
+--     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
+--     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
+--     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
+--     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
 --     * Slot: id Description: Unique identifier for this entity instance.
 --     * Slot: name Description: Human-readable name or title.
 --     * Slot: description Description: Detailed description of the entity.
@@ -271,6 +306,10 @@
 --     * Slot: status Description: Current status of the document or entity.
 --     * Slot: classification Description: Information classification level.
 --     * Slot: retention_period Description: Duration for which the document is retained.
+--     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
+--     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
+--     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
+--     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
 --     * Slot: id Description: Unique identifier for this entity instance.
 --     * Slot: name Description: Human-readable name or title.
 --     * Slot: description Description: Detailed description of the entity.
@@ -288,7 +327,7 @@
 --     * Slot: responsible_role Description: Role responsible for the objective or control.
 --     * Slot: target_implementation_date Description: Target date for implementing the control.
 -- # Class: SecurityControl Description: A security control from Annex A of ISO/IEC 27001:2022, derived from ISO/IEC 27002:2022. Represents a measure that modifies risk.
---     * Slot: control_id Description: Control identifier from Annex A (e.g., 5.1, 8.24).
+--     * Slot: control_id Description: Control identifier from Annex A (e.g., a_5_1, a_8_24).
 --     * Slot: control_title Description: Title of the control.
 --     * Slot: control_category Description: Domain category of the control.
 --     * Slot: control_text Description: Organization-authored control statement or external control summary.
@@ -332,6 +371,10 @@
 --     * Slot: status Description: Current status of the document or entity.
 --     * Slot: classification Description: Information classification level.
 --     * Slot: retention_period Description: Duration for which the document is retained.
+--     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
+--     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
+--     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
+--     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
 --     * Slot: id Description: Unique identifier for this entity instance.
 --     * Slot: name Description: Human-readable name or title.
 --     * Slot: description Description: Detailed description of the entity.
@@ -354,6 +397,10 @@
 --     * Slot: status Description: Current status of the document or entity.
 --     * Slot: classification Description: Information classification level.
 --     * Slot: retention_period Description: Duration for which the document is retained.
+--     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
+--     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
+--     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
+--     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
 --     * Slot: id Description: Unique identifier for this entity instance.
 --     * Slot: name Description: Human-readable name or title.
 --     * Slot: description Description: Detailed description of the entity.
@@ -372,6 +419,10 @@
 --     * Slot: status Description: Current status of the document or entity.
 --     * Slot: classification Description: Information classification level.
 --     * Slot: retention_period Description: Duration for which the document is retained.
+--     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
+--     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
+--     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
+--     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
 --     * Slot: id Description: Unique identifier for this entity instance.
 --     * Slot: name Description: Human-readable name or title.
 --     * Slot: description Description: Detailed description of the entity.
@@ -402,6 +453,10 @@
 --     * Slot: status Description: Current status of the document or entity.
 --     * Slot: classification Description: Information classification level.
 --     * Slot: retention_period Description: Duration for which the document is retained.
+--     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
+--     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
+--     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
+--     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
 --     * Slot: id Description: Unique identifier for this entity instance.
 --     * Slot: name Description: Human-readable name or title.
 --     * Slot: description Description: Detailed description of the entity.
@@ -420,6 +475,10 @@
 --     * Slot: status Description: Current status of the document or entity.
 --     * Slot: classification Description: Information classification level.
 --     * Slot: retention_period Description: Duration for which the document is retained.
+--     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
+--     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
+--     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
+--     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
 --     * Slot: id Description: Unique identifier for this entity instance.
 --     * Slot: name Description: Human-readable name or title.
 --     * Slot: description Description: Detailed description of the entity.
@@ -441,7 +500,7 @@
 --     * Slot: trend Description: Current trend direction.
 -- # Class: InternalAudit Description: An internal audit instance per Clause 9.2, assessing ISMS conformance and effectiveness.
 --     * Slot: audit_reference Description: Reference identifier for the audit.
---     * Slot: audit_type Description: Type of audit.
+--     * Slot: audit_type Description: Type of audit per ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1.
 --     * Slot: audit_scope Description: Scope of the audit.
 --     * Slot: audit_period_start Description: Start date of audit period.
 --     * Slot: audit_period_end Description: End date of audit period.
@@ -460,6 +519,10 @@
 --     * Slot: status Description: Current status of the document or entity.
 --     * Slot: classification Description: Information classification level.
 --     * Slot: retention_period Description: Duration for which the document is retained.
+--     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
+--     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
+--     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
+--     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
 --     * Slot: id Description: Unique identifier for this entity instance.
 --     * Slot: name Description: Human-readable name or title.
 --     * Slot: description Description: Detailed description of the entity.
@@ -483,6 +546,10 @@
 --     * Slot: status Description: Current status of the document or entity.
 --     * Slot: classification Description: Information classification level.
 --     * Slot: retention_period Description: Duration for which the document is retained.
+--     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
+--     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
+--     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
+--     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
 --     * Slot: id Description: Unique identifier for this entity instance.
 --     * Slot: name Description: Human-readable name or title.
 --     * Slot: description Description: Detailed description of the entity.
@@ -513,9 +580,12 @@
 --     * Slot: previous_actions_status Description: Status of actions from previous reviews.
 --     * Slot: context_changes Description: Changes in context since last review.
 --     * Slot: interested_party_changes Description: Changes in interested party requirements.
+--     * Slot: interested_party_feedback Description: Feedback from interested parties considered in the management review.
 --     * Slot: performance_trends Description: Trends in information security performance.
 --     * Slot: audit_results_summary Description: Summary of audit results.
 --     * Slot: risk_assessment_results Description: Results of risk assessment.
+--     * Slot: risk_treatment_status Description: Status of the risk treatment plan considered in the management review.
+--     * Slot: risks_and_opportunities_changes Description: Changes in risks and opportunities considered in the management review, per Clause 9.3.2 f).
 --     * Slot: next_review_date Description: Planned date for next review.
 --     * Slot: document_type Description: Classification of the documented information.
 --     * Slot: document_reference Description: Unique reference number for document control.
@@ -527,6 +597,10 @@
 --     * Slot: status Description: Current status of the document or entity.
 --     * Slot: classification Description: Information classification level.
 --     * Slot: retention_period Description: Duration for which the document is retained.
+--     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
+--     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
+--     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
+--     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
 --     * Slot: id Description: Unique identifier for this entity instance.
 --     * Slot: name Description: Human-readable name or title.
 --     * Slot: description Description: Detailed description of the entity.
@@ -618,11 +692,10 @@
 -- # Class: InformationSecurityIncident Description: An information security incident per A.5.26, requiring response per documented procedures.
 --     * Slot: incident_datetime Description: Date and time the incident occurred or was detected.
 --     * Slot: incident_category Description: Category of incident.
---     * Slot: severity Description: Severity rating.
+--     * Slot: severity Description: Severity rating of the incident.
 --     * Slot: incident_description Description: Description of the incident.
 --     * Slot: detection_method Description: How the incident was detected.
 --     * Slot: root_cause Description: Root cause of the nonconformity.
---     * Slot: lessons_learned Description: Lessons learned from the incident.
 --     * Slot: notification_required Description: Whether notification to authorities/parties was required.
 --     * Slot: closure_datetime Description: Date and time of incident closure.
 --     * Slot: post_incident_review Description: Post-incident review findings.
@@ -632,12 +705,21 @@
 --     * Slot: created_date Description: Date when the entity was created.
 --     * Slot: modified_date Description: Date when the entity was last modified.
 --     * Slot: version Description: Version identifier for the entity.
+-- # Class: DocumentedInformation_distribution_controls
+--     * Slot: DocumentedInformation_id Description: Autocreated FK slot
+--     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
+-- # Class: InformationSecurityManagementSystem_leadership_commitment_evidence
+--     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
+--     * Slot: leadership_commitment_evidence Description: Evidence of leadership and commitment with respect to the ISMS as required by Clause 5.1 a-h).
 -- # Class: InformationSecurityManagementSystem_scope_boundaries
 --     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
 --     * Slot: scope_boundaries Description: Defined boundaries of the ISMS scope.
 -- # Class: InformationSecurityManagementSystem_scope_exclusions
 --     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
 --     * Slot: scope_exclusions Description: Any exclusions from scope with justification.
+-- # Class: InformationSecurityManagementSystem_interfaces_and_dependencies
+--     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
+--     * Slot: interfaces_and_dependencies Description: Interfaces and dependencies between activities performed by the organization and those performed by other organizations, considered when determining the ISMS scope per Clause 4.3 c).
 -- # Class: InformationSecurityManagementSystem_context_internal_issues
 --     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
 --     * Slot: context_internal_issues Description: Internal issues relevant to ISMS per 4.1.
@@ -650,6 +732,15 @@
 -- # Class: InformationSecurityManagementSystem_objectives
 --     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
 --     * Slot: objectives_id Description: Information security objectives.
+-- # Class: InformationSecurityManagementSystem_risks_and_opportunities_actions
+--     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
+--     * Slot: risks_and_opportunities_actions Description: Actions to address risks and opportunities determined per Clause 6.1.1, including how they are integrated into ISMS processes and how their effectiveness is evaluated.
+-- # Class: InformationSecurityManagementSystem_planned_changes
+--     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
+--     * Slot: planned_changes Description: Changes to the ISMS planned and controlled per Clause 6.3 and 8.1 (planning of changes; control of planned changes).
+-- # Class: InformationSecurityManagementSystem_externally_provided_services
+--     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
+--     * Slot: externally_provided_services Description: Externally provided processes, products or services relevant to the ISMS that are controlled per Clause 8.1.
 -- # Class: InformationSecurityManagementSystem_controls
 --     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
 --     * Slot: controls_id Description: Security controls applied in the ISMS.
@@ -704,15 +795,30 @@
 -- # Class: InterestedParty_requirements
 --     * Slot: InterestedParty_id Description: Autocreated FK slot
 --     * Slot: requirements Description: Requirements of the interested party.
+-- # Class: InterestedParty_addressed_requirements
+--     * Slot: InterestedParty_id Description: Autocreated FK slot
+--     * Slot: addressed_requirements Description: Requirements of the interested party that the organization has determined will be addressed through the ISMS, per Clause 4.2 c).
+-- # Class: InterestedParty_climate_change_related_requirements
+--     * Slot: InterestedParty_id Description: Autocreated FK slot
+--     * Slot: climate_change_related_requirements Description: Climate-change-related requirements of the interested party, per ISO/IEC 27001:2022 Clause 4.2 NOTE 2 as added by Amd. 1:2024.
 -- # Class: InformationSecurityPolicy_commitment_statements
 --     * Slot: InformationSecurityPolicy_id Description: Autocreated FK slot
 --     * Slot: commitment_statements Description: Statements of commitment included in the policy.
 -- # Class: InformationSecurityPolicy_related_topic_policies
 --     * Slot: InformationSecurityPolicy_id Description: Autocreated FK slot
 --     * Slot: related_topic_policies_id Description: Topic-specific policies supporting this policy.
+-- # Class: InformationSecurityPolicy_integrated_management_systems
+--     * Slot: InformationSecurityPolicy_id Description: Autocreated FK slot
+--     * Slot: integrated_management_systems Description: Other ISO/IEC management system standards with which the ISMS is integrated or aligned (per the harmonized structure of Annex SL).
+-- # Class: InformationSecurityPolicy_distribution_controls
+--     * Slot: InformationSecurityPolicy_id Description: Autocreated FK slot
+--     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
 -- # Class: TopicSpecificPolicy_applicable_controls
 --     * Slot: TopicSpecificPolicy_id Description: Autocreated FK slot
 --     * Slot: applicable_controls_id Description: Controls related to this policy.
+-- # Class: TopicSpecificPolicy_distribution_controls
+--     * Slot: TopicSpecificPolicy_id Description: Autocreated FK slot
+--     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
 -- # Class: Role_responsibilities
 --     * Slot: Role_id Description: Autocreated FK slot
 --     * Slot: responsibilities Description: Responsibilities assigned to the role.
@@ -731,12 +837,18 @@
 -- # Class: RiskAssessmentProcess_trigger_events
 --     * Slot: RiskAssessmentProcess_id Description: Autocreated FK slot
 --     * Slot: trigger_events Description: Events that trigger risk assessment outside planned schedule.
+-- # Class: RiskAssessmentProcess_distribution_controls
+--     * Slot: RiskAssessmentProcess_id Description: Autocreated FK slot
+--     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
 -- # Class: RiskAssessment_risks_identified
 --     * Slot: RiskAssessment_id Description: Autocreated FK slot
 --     * Slot: risks_identified_id Description: Risks identified in this assessment.
 -- # Class: RiskAssessment_recommendations
 --     * Slot: RiskAssessment_id Description: Autocreated FK slot
 --     * Slot: recommendations Description: Recommendations from the assessment.
+-- # Class: RiskAssessment_distribution_controls
+--     * Slot: RiskAssessment_id Description: Autocreated FK slot
+--     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
 -- # Class: Risk_affected_assets
 --     * Slot: Risk_id Description: Autocreated FK slot
 --     * Slot: affected_assets_id Description: Assets affected by this risk or incident.
@@ -746,6 +858,9 @@
 -- # Class: Risk_existing_controls
 --     * Slot: Risk_id Description: Autocreated FK slot
 --     * Slot: existing_controls_id Description: Controls currently in place affecting this risk.
+-- # Class: RiskTreatmentProcess_distribution_controls
+--     * Slot: RiskTreatmentProcess_id Description: Autocreated FK slot
+--     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
 -- # Class: RiskTreatmentPlan_risks_addressed
 --     * Slot: RiskTreatmentPlan_id Description: Autocreated FK slot
 --     * Slot: risks_addressed_id Description: Risks addressed by this plan.
@@ -758,9 +873,15 @@
 -- # Class: RiskTreatmentPlan_responsible_parties
 --     * Slot: RiskTreatmentPlan_id Description: Autocreated FK slot
 --     * Slot: responsible_parties Description: Parties responsible for implementation.
+-- # Class: RiskTreatmentPlan_distribution_controls
+--     * Slot: RiskTreatmentPlan_id Description: Autocreated FK slot
+--     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
 -- # Class: StatementOfApplicability_soa_entries
 --     * Slot: StatementOfApplicability_id Description: Autocreated FK slot
 --     * Slot: soa_entries_id Description: Individual control entries in the SoA.
+-- # Class: StatementOfApplicability_distribution_controls
+--     * Slot: StatementOfApplicability_id Description: Autocreated FK slot
+--     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
 -- # Class: SecurityControl_related_controls
 --     * Slot: SecurityControl_id Description: Autocreated FK slot
 --     * Slot: related_controls_id Description: Other controls related to this one.
@@ -791,15 +912,24 @@
 -- # Class: CompetenceRecord_development_actions
 --     * Slot: CompetenceRecord_id Description: Autocreated FK slot
 --     * Slot: development_actions Description: Actions to address competency gaps.
+-- # Class: CompetenceRecord_distribution_controls
+--     * Slot: CompetenceRecord_id Description: Autocreated FK slot
+--     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
 -- # Class: AwarenessProgram_awareness_topics
 --     * Slot: AwarenessProgram_id Description: Autocreated FK slot
 --     * Slot: awareness_topics Description: Topics covered in awareness program.
 -- # Class: AwarenessProgram_delivery_methods
 --     * Slot: AwarenessProgram_id Description: Autocreated FK slot
 --     * Slot: delivery_methods Description: Methods used to deliver awareness content.
+-- # Class: AwarenessProgram_distribution_controls
+--     * Slot: AwarenessProgram_id Description: Autocreated FK slot
+--     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
 -- # Class: CommunicationPlan_communication_items
 --     * Slot: CommunicationPlan_id Description: Autocreated FK slot
 --     * Slot: communication_items_id Description: Communication items in the plan.
+-- # Class: CommunicationPlan_distribution_controls
+--     * Slot: CommunicationPlan_id Description: Autocreated FK slot
+--     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
 -- # Class: OperationalProcedure_control_measures
 --     * Slot: OperationalProcedure_id Description: Autocreated FK slot
 --     * Slot: control_measures Description: Control measures implemented.
@@ -809,9 +939,15 @@
 -- # Class: OperationalProcedure_related_controls
 --     * Slot: OperationalProcedure_id Description: Autocreated FK slot
 --     * Slot: related_controls_id Description: Other controls related to this one.
+-- # Class: OperationalProcedure_distribution_controls
+--     * Slot: OperationalProcedure_id Description: Autocreated FK slot
+--     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
 -- # Class: MonitoringProgram_monitoring_items
 --     * Slot: MonitoringProgram_id Description: Autocreated FK slot
 --     * Slot: monitoring_items_id Description: Items to be monitored.
+-- # Class: MonitoringProgram_distribution_controls
+--     * Slot: MonitoringProgram_id Description: Autocreated FK slot
+--     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
 -- # Class: InternalAudit_audit_criteria
 --     * Slot: InternalAudit_id Description: Autocreated FK slot
 --     * Slot: audit_criteria Description: Criteria against which audit is conducted.
@@ -833,9 +969,15 @@
 -- # Class: InternalAudit_report_distribution
 --     * Slot: InternalAudit_id Description: Autocreated FK slot
 --     * Slot: report_distribution Description: Distribution list for the report.
+-- # Class: InternalAudit_distribution_controls
+--     * Slot: InternalAudit_id Description: Autocreated FK slot
+--     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
 -- # Class: AuditProgramme_planned_audits
 --     * Slot: AuditProgramme_id Description: Autocreated FK slot
 --     * Slot: planned_audits_id Description: Audits planned in this programme.
+-- # Class: AuditProgramme_distribution_controls
+--     * Slot: AuditProgramme_id Description: Autocreated FK slot
+--     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
 -- # Class: ManagementReview_attendees
 --     * Slot: ManagementReview_id Description: Autocreated FK slot
 --     * Slot: attendees Description: Attendees of the review.
@@ -848,6 +990,9 @@
 -- # Class: ManagementReview_action_items
 --     * Slot: ManagementReview_id Description: Autocreated FK slot
 --     * Slot: action_items Description: Action items from the review.
+-- # Class: ManagementReview_distribution_controls
+--     * Slot: ManagementReview_id Description: Autocreated FK slot
+--     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
 -- # Class: Nonconformity_immediate_actions
 --     * Slot: Nonconformity_id Description: Autocreated FK slot
 --     * Slot: immediate_actions Description: Immediate actions taken to control/correct.
@@ -868,7 +1013,7 @@
 --     * Slot: affected_assets_id Description: Assets affected by this risk or incident.
 -- # Class: InformationSecurityIncident_affected_cia
 --     * Slot: InformationSecurityIncident_id Description: Autocreated FK slot
---     * Slot: affected_cia Description: CIA properties affected.
+--     * Slot: affected_cia Description: CIA properties affected by the incident.
 -- # Class: InformationSecurityIncident_response_actions
 --     * Slot: InformationSecurityIncident_id Description: Autocreated FK slot
 --     * Slot: response_actions Description: Actions taken in response.
@@ -881,6 +1026,9 @@
 -- # Class: InformationSecurityIncident_recovery_actions
 --     * Slot: InformationSecurityIncident_id Description: Autocreated FK slot
 --     * Slot: recovery_actions Description: Actions to recover normal operations.
+-- # Class: InformationSecurityIncident_lessons_learned
+--     * Slot: InformationSecurityIncident_id Description: Autocreated FK slot
+--     * Slot: lessons_learned Description: Lessons learned from the incident.
 -- # Class: InformationSecurityIncident_evidence_collected
 --     * Slot: InformationSecurityIncident_id Description: Autocreated FK slot
 --     * Slot: evidence_collected Description: Evidence collected.
@@ -911,6 +1059,10 @@ CREATE TABLE "DocumentedInformation" (
 	status TEXT,
 	classification TEXT,
 	retention_period TEXT,
+	storage_and_preservation TEXT,
+	change_control_method TEXT,
+	external_origin BOOLEAN,
+	external_origin_source TEXT,
 	id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
@@ -960,6 +1112,8 @@ CREATE TABLE "InformationSecurityPolicy" (
 	applicability_statement TEXT,
 	communication_date DATE,
 	acknowledgment_required BOOLEAN,
+	last_policy_review_date DATE,
+	next_policy_review_date DATE,
 	document_type VARCHAR(9),
 	document_reference TEXT,
 	author TEXT,
@@ -971,6 +1125,10 @@ CREATE TABLE "InformationSecurityPolicy" (
 	status TEXT,
 	classification TEXT,
 	retention_period TEXT,
+	storage_and_preservation TEXT,
+	change_control_method TEXT,
+	external_origin BOOLEAN,
+	external_origin_source TEXT,
 	id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
@@ -1015,6 +1173,10 @@ CREATE TABLE "RiskAssessmentProcess" (
 	status TEXT,
 	classification TEXT,
 	retention_period TEXT,
+	storage_and_preservation TEXT,
+	change_control_method TEXT,
+	external_origin BOOLEAN,
+	external_origin_source TEXT,
 	id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
@@ -1043,6 +1205,10 @@ CREATE TABLE "RiskAssessment" (
 	status TEXT,
 	classification TEXT,
 	retention_period TEXT,
+	storage_and_preservation TEXT,
+	change_control_method TEXT,
+	external_origin BOOLEAN,
+	external_origin_source TEXT,
 	id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
@@ -1056,6 +1222,7 @@ CREATE INDEX "ix_RiskAssessment_id" ON "RiskAssessment" (id);
 CREATE TABLE "RiskTreatmentProcess" (
 	treatment_options_guidance TEXT,
 	control_selection_criteria TEXT,
+	annex_a_omission_verification TEXT,
 	soa_template TEXT,
 	approval_workflow TEXT,
 	document_type VARCHAR(9),
@@ -1069,6 +1236,10 @@ CREATE TABLE "RiskTreatmentProcess" (
 	status TEXT,
 	classification TEXT,
 	retention_period TEXT,
+	storage_and_preservation TEXT,
+	change_control_method TEXT,
+	external_origin BOOLEAN,
+	external_origin_source TEXT,
 	id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
@@ -1098,6 +1269,10 @@ CREATE TABLE "RiskTreatmentPlan" (
 	status TEXT,
 	classification TEXT,
 	retention_period TEXT,
+	storage_and_preservation TEXT,
+	change_control_method TEXT,
+	external_origin BOOLEAN,
+	external_origin_source TEXT,
 	id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
@@ -1125,6 +1300,10 @@ CREATE TABLE "StatementOfApplicability" (
 	status TEXT,
 	classification TEXT,
 	retention_period TEXT,
+	storage_and_preservation TEXT,
+	change_control_method TEXT,
+	external_origin BOOLEAN,
+	external_origin_source TEXT,
 	id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
@@ -1136,7 +1315,7 @@ CREATE TABLE "StatementOfApplicability" (
 CREATE INDEX "ix_StatementOfApplicability_id" ON "StatementOfApplicability" (id);
 
 CREATE TABLE "SecurityControl" (
-	control_id TEXT,
+	control_id VARCHAR(6),
 	control_title TEXT,
 	control_category VARCHAR(14),
 	control_text TEXT,
@@ -1188,6 +1367,10 @@ CREATE TABLE "CompetenceRecord" (
 	status TEXT,
 	classification TEXT,
 	retention_period TEXT,
+	storage_and_preservation TEXT,
+	change_control_method TEXT,
+	external_origin BOOLEAN,
+	external_origin_source TEXT,
 	id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
@@ -1214,6 +1397,10 @@ CREATE TABLE "AwarenessProgram" (
 	status TEXT,
 	classification TEXT,
 	retention_period TEXT,
+	storage_and_preservation TEXT,
+	change_control_method TEXT,
+	external_origin BOOLEAN,
+	external_origin_source TEXT,
 	id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
@@ -1236,6 +1423,10 @@ CREATE TABLE "CommunicationPlan" (
 	status TEXT,
 	classification TEXT,
 	retention_period TEXT,
+	storage_and_preservation TEXT,
+	change_control_method TEXT,
+	external_origin BOOLEAN,
+	external_origin_source TEXT,
 	id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
@@ -1274,6 +1465,10 @@ CREATE TABLE "OperationalProcedure" (
 	status TEXT,
 	classification TEXT,
 	retention_period TEXT,
+	storage_and_preservation TEXT,
+	change_control_method TEXT,
+	external_origin BOOLEAN,
+	external_origin_source TEXT,
 	id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
@@ -1296,6 +1491,10 @@ CREATE TABLE "MonitoringProgram" (
 	status TEXT,
 	classification TEXT,
 	retention_period TEXT,
+	storage_and_preservation TEXT,
+	change_control_method TEXT,
+	external_origin BOOLEAN,
+	external_origin_source TEXT,
 	id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
@@ -1325,7 +1524,7 @@ CREATE INDEX "ix_MonitoringItem_id" ON "MonitoringItem" (id);
 
 CREATE TABLE "InternalAudit" (
 	audit_reference TEXT,
-	audit_type TEXT,
+	audit_type VARCHAR(21),
 	audit_scope TEXT,
 	audit_period_start DATE,
 	audit_period_end DATE,
@@ -1344,6 +1543,10 @@ CREATE TABLE "InternalAudit" (
 	status TEXT,
 	classification TEXT,
 	retention_period TEXT,
+	storage_and_preservation TEXT,
+	change_control_method TEXT,
+	external_origin BOOLEAN,
+	external_origin_source TEXT,
 	id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
@@ -1371,6 +1574,10 @@ CREATE TABLE "AuditProgramme" (
 	status TEXT,
 	classification TEXT,
 	retention_period TEXT,
+	storage_and_preservation TEXT,
+	change_control_method TEXT,
+	external_origin BOOLEAN,
+	external_origin_source TEXT,
 	id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
@@ -1386,9 +1593,12 @@ CREATE TABLE "ManagementReview" (
 	previous_actions_status TEXT,
 	context_changes TEXT,
 	interested_party_changes TEXT,
+	interested_party_feedback TEXT,
 	performance_trends TEXT,
 	audit_results_summary TEXT,
 	risk_assessment_results TEXT,
+	risk_treatment_status TEXT,
+	risks_and_opportunities_changes TEXT,
 	next_review_date DATE,
 	document_type VARCHAR(9),
 	document_reference TEXT,
@@ -1400,6 +1610,10 @@ CREATE TABLE "ManagementReview" (
 	status TEXT,
 	classification TEXT,
 	retention_period TEXT,
+	storage_and_preservation TEXT,
+	change_control_method TEXT,
+	external_origin BOOLEAN,
+	external_origin_source TEXT,
 	id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
@@ -1474,12 +1688,11 @@ CREATE INDEX "ix_Asset_id" ON "Asset" (id);
 
 CREATE TABLE "InformationSecurityIncident" (
 	incident_datetime DATETIME,
-	incident_category TEXT,
-	severity TEXT,
+	incident_category VARCHAR(22),
+	severity VARCHAR(8),
 	incident_description TEXT,
 	detection_method TEXT,
 	root_cause TEXT,
-	lessons_learned TEXT,
 	notification_required BOOLEAN,
 	closure_datetime DATETIME,
 	post_incident_review TEXT,
@@ -1495,7 +1708,10 @@ CREATE INDEX "ix_InformationSecurityIncident_id" ON "InformationSecurityIncident
 
 CREATE TABLE "InformationSecurityManagementSystem" (
 	organization TEXT,
+	top_management TEXT,
+	governing_body TEXT,
 	scope_statement TEXT,
+	processes_and_interactions TEXT,
 	information_security_policy TEXT,
 	risk_assessment_process TEXT,
 	risk_treatment_process TEXT,
@@ -1540,6 +1756,10 @@ CREATE TABLE "TopicSpecificPolicy" (
 	status TEXT,
 	classification TEXT,
 	retention_period TEXT,
+	storage_and_preservation TEXT,
+	change_control_method TEXT,
+	external_origin BOOLEAN,
+	external_origin_source TEXT,
 	id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
@@ -1562,6 +1782,7 @@ CREATE TABLE "InformationSecurityObjective" (
 	target_date DATE,
 	achievement_status TEXT,
 	action_plan TEXT,
+	objective_resources_required TEXT,
 	id TEXT NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT,
@@ -1654,14 +1875,23 @@ CREATE TABLE "InformationSecurityEvent" (
 );
 CREATE INDEX "ix_InformationSecurityEvent_id" ON "InformationSecurityEvent" (id);
 
+CREATE TABLE "DocumentedInformation_distribution_controls" (
+	"DocumentedInformation_id" TEXT,
+	distribution_controls TEXT,
+	PRIMARY KEY ("DocumentedInformation_id", distribution_controls),
+	FOREIGN KEY("DocumentedInformation_id") REFERENCES "DocumentedInformation" (id)
+);
+CREATE INDEX "ix_DocumentedInformation_distribution_controls_DocumentedInformation_id" ON "DocumentedInformation_distribution_controls" ("DocumentedInformation_id");
+CREATE INDEX "ix_DocumentedInformation_distribution_controls_distribution_controls" ON "DocumentedInformation_distribution_controls" (distribution_controls);
+
 CREATE TABLE "Organization_trading_names" (
 	"Organization_id" TEXT,
 	trading_names TEXT,
 	PRIMARY KEY ("Organization_id", trading_names),
 	FOREIGN KEY("Organization_id") REFERENCES "Organization" (id)
 );
-CREATE INDEX "ix_Organization_trading_names_trading_names" ON "Organization_trading_names" (trading_names);
 CREATE INDEX "ix_Organization_trading_names_Organization_id" ON "Organization_trading_names" ("Organization_id");
+CREATE INDEX "ix_Organization_trading_names_trading_names" ON "Organization_trading_names" (trading_names);
 
 CREATE TABLE "Organization_geographic_locations" (
 	"Organization_id" TEXT,
@@ -1678,8 +1908,8 @@ CREATE TABLE "Organization_regulatory_jurisdictions" (
 	PRIMARY KEY ("Organization_id", regulatory_jurisdictions),
 	FOREIGN KEY("Organization_id") REFERENCES "Organization" (id)
 );
-CREATE INDEX "ix_Organization_regulatory_jurisdictions_regulatory_jurisdictions" ON "Organization_regulatory_jurisdictions" (regulatory_jurisdictions);
 CREATE INDEX "ix_Organization_regulatory_jurisdictions_Organization_id" ON "Organization_regulatory_jurisdictions" ("Organization_id");
+CREATE INDEX "ix_Organization_regulatory_jurisdictions_regulatory_jurisdictions" ON "Organization_regulatory_jurisdictions" (regulatory_jurisdictions);
 
 CREATE TABLE "Organization_subsidiaries" (
 	"Organization_id" TEXT,
@@ -1696,8 +1926,26 @@ CREATE TABLE "InterestedParty_requirements" (
 	PRIMARY KEY ("InterestedParty_id", requirements),
 	FOREIGN KEY("InterestedParty_id") REFERENCES "InterestedParty" (id)
 );
-CREATE INDEX "ix_InterestedParty_requirements_requirements" ON "InterestedParty_requirements" (requirements);
 CREATE INDEX "ix_InterestedParty_requirements_InterestedParty_id" ON "InterestedParty_requirements" ("InterestedParty_id");
+CREATE INDEX "ix_InterestedParty_requirements_requirements" ON "InterestedParty_requirements" (requirements);
+
+CREATE TABLE "InterestedParty_addressed_requirements" (
+	"InterestedParty_id" TEXT,
+	addressed_requirements TEXT,
+	PRIMARY KEY ("InterestedParty_id", addressed_requirements),
+	FOREIGN KEY("InterestedParty_id") REFERENCES "InterestedParty" (id)
+);
+CREATE INDEX "ix_InterestedParty_addressed_requirements_InterestedParty_id" ON "InterestedParty_addressed_requirements" ("InterestedParty_id");
+CREATE INDEX "ix_InterestedParty_addressed_requirements_addressed_requirements" ON "InterestedParty_addressed_requirements" (addressed_requirements);
+
+CREATE TABLE "InterestedParty_climate_change_related_requirements" (
+	"InterestedParty_id" TEXT,
+	climate_change_related_requirements TEXT,
+	PRIMARY KEY ("InterestedParty_id", climate_change_related_requirements),
+	FOREIGN KEY("InterestedParty_id") REFERENCES "InterestedParty" (id)
+);
+CREATE INDEX "ix_InterestedParty_climate_change_related_requirements_InterestedParty_id" ON "InterestedParty_climate_change_related_requirements" ("InterestedParty_id");
+CREATE INDEX "ix_InterestedParty_climate_change_related_requirements_climate_change_related_requirements" ON "InterestedParty_climate_change_related_requirements" (climate_change_related_requirements);
 
 CREATE TABLE "InformationSecurityPolicy_commitment_statements" (
 	"InformationSecurityPolicy_id" TEXT,
@@ -1705,8 +1953,26 @@ CREATE TABLE "InformationSecurityPolicy_commitment_statements" (
 	PRIMARY KEY ("InformationSecurityPolicy_id", commitment_statements),
 	FOREIGN KEY("InformationSecurityPolicy_id") REFERENCES "InformationSecurityPolicy" (id)
 );
-CREATE INDEX "ix_InformationSecurityPolicy_commitment_statements_InformationSecurityPolicy_id" ON "InformationSecurityPolicy_commitment_statements" ("InformationSecurityPolicy_id");
 CREATE INDEX "ix_InformationSecurityPolicy_commitment_statements_commitment_statements" ON "InformationSecurityPolicy_commitment_statements" (commitment_statements);
+CREATE INDEX "ix_InformationSecurityPolicy_commitment_statements_InformationSecurityPolicy_id" ON "InformationSecurityPolicy_commitment_statements" ("InformationSecurityPolicy_id");
+
+CREATE TABLE "InformationSecurityPolicy_integrated_management_systems" (
+	"InformationSecurityPolicy_id" TEXT,
+	integrated_management_systems VARCHAR(15),
+	PRIMARY KEY ("InformationSecurityPolicy_id", integrated_management_systems),
+	FOREIGN KEY("InformationSecurityPolicy_id") REFERENCES "InformationSecurityPolicy" (id)
+);
+CREATE INDEX "ix_InformationSecurityPolicy_integrated_management_systems_InformationSecurityPolicy_id" ON "InformationSecurityPolicy_integrated_management_systems" ("InformationSecurityPolicy_id");
+CREATE INDEX "ix_InformationSecurityPolicy_integrated_management_systems_integrated_management_systems" ON "InformationSecurityPolicy_integrated_management_systems" (integrated_management_systems);
+
+CREATE TABLE "InformationSecurityPolicy_distribution_controls" (
+	"InformationSecurityPolicy_id" TEXT,
+	distribution_controls TEXT,
+	PRIMARY KEY ("InformationSecurityPolicy_id", distribution_controls),
+	FOREIGN KEY("InformationSecurityPolicy_id") REFERENCES "InformationSecurityPolicy" (id)
+);
+CREATE INDEX "ix_InformationSecurityPolicy_distribution_controls_InformationSecurityPolicy_id" ON "InformationSecurityPolicy_distribution_controls" ("InformationSecurityPolicy_id");
+CREATE INDEX "ix_InformationSecurityPolicy_distribution_controls_distribution_controls" ON "InformationSecurityPolicy_distribution_controls" (distribution_controls);
 
 CREATE TABLE "Role_responsibilities" (
 	"Role_id" TEXT,
@@ -1723,8 +1989,8 @@ CREATE TABLE "Role_authorities" (
 	PRIMARY KEY ("Role_id", authorities),
 	FOREIGN KEY("Role_id") REFERENCES "Role" (id)
 );
-CREATE INDEX "ix_Role_authorities_authorities" ON "Role_authorities" (authorities);
 CREATE INDEX "ix_Role_authorities_Role_id" ON "Role_authorities" ("Role_id");
+CREATE INDEX "ix_Role_authorities_authorities" ON "Role_authorities" (authorities);
 
 CREATE TABLE "Role_assigned_to" (
 	"Role_id" TEXT,
@@ -1741,8 +2007,17 @@ CREATE TABLE "RiskAssessmentProcess_trigger_events" (
 	PRIMARY KEY ("RiskAssessmentProcess_id", trigger_events),
 	FOREIGN KEY("RiskAssessmentProcess_id") REFERENCES "RiskAssessmentProcess" (id)
 );
-CREATE INDEX "ix_RiskAssessmentProcess_trigger_events_trigger_events" ON "RiskAssessmentProcess_trigger_events" (trigger_events);
 CREATE INDEX "ix_RiskAssessmentProcess_trigger_events_RiskAssessmentProcess_id" ON "RiskAssessmentProcess_trigger_events" ("RiskAssessmentProcess_id");
+CREATE INDEX "ix_RiskAssessmentProcess_trigger_events_trigger_events" ON "RiskAssessmentProcess_trigger_events" (trigger_events);
+
+CREATE TABLE "RiskAssessmentProcess_distribution_controls" (
+	"RiskAssessmentProcess_id" TEXT,
+	distribution_controls TEXT,
+	PRIMARY KEY ("RiskAssessmentProcess_id", distribution_controls),
+	FOREIGN KEY("RiskAssessmentProcess_id") REFERENCES "RiskAssessmentProcess" (id)
+);
+CREATE INDEX "ix_RiskAssessmentProcess_distribution_controls_RiskAssessmentProcess_id" ON "RiskAssessmentProcess_distribution_controls" ("RiskAssessmentProcess_id");
+CREATE INDEX "ix_RiskAssessmentProcess_distribution_controls_distribution_controls" ON "RiskAssessmentProcess_distribution_controls" (distribution_controls);
 
 CREATE TABLE "RiskAssessment_recommendations" (
 	"RiskAssessment_id" TEXT,
@@ -1750,8 +2025,26 @@ CREATE TABLE "RiskAssessment_recommendations" (
 	PRIMARY KEY ("RiskAssessment_id", recommendations),
 	FOREIGN KEY("RiskAssessment_id") REFERENCES "RiskAssessment" (id)
 );
-CREATE INDEX "ix_RiskAssessment_recommendations_recommendations" ON "RiskAssessment_recommendations" (recommendations);
 CREATE INDEX "ix_RiskAssessment_recommendations_RiskAssessment_id" ON "RiskAssessment_recommendations" ("RiskAssessment_id");
+CREATE INDEX "ix_RiskAssessment_recommendations_recommendations" ON "RiskAssessment_recommendations" (recommendations);
+
+CREATE TABLE "RiskAssessment_distribution_controls" (
+	"RiskAssessment_id" TEXT,
+	distribution_controls TEXT,
+	PRIMARY KEY ("RiskAssessment_id", distribution_controls),
+	FOREIGN KEY("RiskAssessment_id") REFERENCES "RiskAssessment" (id)
+);
+CREATE INDEX "ix_RiskAssessment_distribution_controls_RiskAssessment_id" ON "RiskAssessment_distribution_controls" ("RiskAssessment_id");
+CREATE INDEX "ix_RiskAssessment_distribution_controls_distribution_controls" ON "RiskAssessment_distribution_controls" (distribution_controls);
+
+CREATE TABLE "RiskTreatmentProcess_distribution_controls" (
+	"RiskTreatmentProcess_id" TEXT,
+	distribution_controls TEXT,
+	PRIMARY KEY ("RiskTreatmentProcess_id", distribution_controls),
+	FOREIGN KEY("RiskTreatmentProcess_id") REFERENCES "RiskTreatmentProcess" (id)
+);
+CREATE INDEX "ix_RiskTreatmentProcess_distribution_controls_RiskTreatmentProcess_id" ON "RiskTreatmentProcess_distribution_controls" ("RiskTreatmentProcess_id");
+CREATE INDEX "ix_RiskTreatmentProcess_distribution_controls_distribution_controls" ON "RiskTreatmentProcess_distribution_controls" (distribution_controls);
 
 CREATE TABLE "RiskTreatmentPlan_treatment_actions" (
 	"RiskTreatmentPlan_id" TEXT,
@@ -1759,8 +2052,8 @@ CREATE TABLE "RiskTreatmentPlan_treatment_actions" (
 	PRIMARY KEY ("RiskTreatmentPlan_id", treatment_actions),
 	FOREIGN KEY("RiskTreatmentPlan_id") REFERENCES "RiskTreatmentPlan" (id)
 );
-CREATE INDEX "ix_RiskTreatmentPlan_treatment_actions_treatment_actions" ON "RiskTreatmentPlan_treatment_actions" (treatment_actions);
 CREATE INDEX "ix_RiskTreatmentPlan_treatment_actions_RiskTreatmentPlan_id" ON "RiskTreatmentPlan_treatment_actions" ("RiskTreatmentPlan_id");
+CREATE INDEX "ix_RiskTreatmentPlan_treatment_actions_treatment_actions" ON "RiskTreatmentPlan_treatment_actions" (treatment_actions);
 
 CREATE TABLE "RiskTreatmentPlan_controls_to_implement" (
 	"RiskTreatmentPlan_id" TEXT,
@@ -1769,8 +2062,8 @@ CREATE TABLE "RiskTreatmentPlan_controls_to_implement" (
 	FOREIGN KEY("RiskTreatmentPlan_id") REFERENCES "RiskTreatmentPlan" (id),
 	FOREIGN KEY(controls_to_implement_id) REFERENCES "SecurityControl" (id)
 );
-CREATE INDEX "ix_RiskTreatmentPlan_controls_to_implement_controls_to_implement_id" ON "RiskTreatmentPlan_controls_to_implement" (controls_to_implement_id);
 CREATE INDEX "ix_RiskTreatmentPlan_controls_to_implement_RiskTreatmentPlan_id" ON "RiskTreatmentPlan_controls_to_implement" ("RiskTreatmentPlan_id");
+CREATE INDEX "ix_RiskTreatmentPlan_controls_to_implement_controls_to_implement_id" ON "RiskTreatmentPlan_controls_to_implement" (controls_to_implement_id);
 
 CREATE TABLE "RiskTreatmentPlan_responsible_parties" (
 	"RiskTreatmentPlan_id" TEXT,
@@ -1778,8 +2071,26 @@ CREATE TABLE "RiskTreatmentPlan_responsible_parties" (
 	PRIMARY KEY ("RiskTreatmentPlan_id", responsible_parties),
 	FOREIGN KEY("RiskTreatmentPlan_id") REFERENCES "RiskTreatmentPlan" (id)
 );
-CREATE INDEX "ix_RiskTreatmentPlan_responsible_parties_RiskTreatmentPlan_id" ON "RiskTreatmentPlan_responsible_parties" ("RiskTreatmentPlan_id");
 CREATE INDEX "ix_RiskTreatmentPlan_responsible_parties_responsible_parties" ON "RiskTreatmentPlan_responsible_parties" (responsible_parties);
+CREATE INDEX "ix_RiskTreatmentPlan_responsible_parties_RiskTreatmentPlan_id" ON "RiskTreatmentPlan_responsible_parties" ("RiskTreatmentPlan_id");
+
+CREATE TABLE "RiskTreatmentPlan_distribution_controls" (
+	"RiskTreatmentPlan_id" TEXT,
+	distribution_controls TEXT,
+	PRIMARY KEY ("RiskTreatmentPlan_id", distribution_controls),
+	FOREIGN KEY("RiskTreatmentPlan_id") REFERENCES "RiskTreatmentPlan" (id)
+);
+CREATE INDEX "ix_RiskTreatmentPlan_distribution_controls_RiskTreatmentPlan_id" ON "RiskTreatmentPlan_distribution_controls" ("RiskTreatmentPlan_id");
+CREATE INDEX "ix_RiskTreatmentPlan_distribution_controls_distribution_controls" ON "RiskTreatmentPlan_distribution_controls" (distribution_controls);
+
+CREATE TABLE "StatementOfApplicability_distribution_controls" (
+	"StatementOfApplicability_id" TEXT,
+	distribution_controls TEXT,
+	PRIMARY KEY ("StatementOfApplicability_id", distribution_controls),
+	FOREIGN KEY("StatementOfApplicability_id") REFERENCES "StatementOfApplicability" (id)
+);
+CREATE INDEX "ix_StatementOfApplicability_distribution_controls_distribution_controls" ON "StatementOfApplicability_distribution_controls" (distribution_controls);
+CREATE INDEX "ix_StatementOfApplicability_distribution_controls_StatementOfApplicability_id" ON "StatementOfApplicability_distribution_controls" ("StatementOfApplicability_id");
 
 CREATE TABLE "SecurityControl_related_controls" (
 	"SecurityControl_id" TEXT,
@@ -1788,8 +2099,8 @@ CREATE TABLE "SecurityControl_related_controls" (
 	FOREIGN KEY("SecurityControl_id") REFERENCES "SecurityControl" (id),
 	FOREIGN KEY(related_controls_id) REFERENCES "SecurityControl" (id)
 );
-CREATE INDEX "ix_SecurityControl_related_controls_SecurityControl_id" ON "SecurityControl_related_controls" ("SecurityControl_id");
 CREATE INDEX "ix_SecurityControl_related_controls_related_controls_id" ON "SecurityControl_related_controls" (related_controls_id);
+CREATE INDEX "ix_SecurityControl_related_controls_SecurityControl_id" ON "SecurityControl_related_controls" ("SecurityControl_id");
 
 CREATE TABLE "SecurityControl_applicable_threats" (
 	"SecurityControl_id" TEXT,
@@ -1824,8 +2135,8 @@ CREATE TABLE "CompetenceRecord_required_competencies" (
 	PRIMARY KEY ("CompetenceRecord_id", required_competencies),
 	FOREIGN KEY("CompetenceRecord_id") REFERENCES "CompetenceRecord" (id)
 );
-CREATE INDEX "ix_CompetenceRecord_required_competencies_required_competencies" ON "CompetenceRecord_required_competencies" (required_competencies);
 CREATE INDEX "ix_CompetenceRecord_required_competencies_CompetenceRecord_id" ON "CompetenceRecord_required_competencies" ("CompetenceRecord_id");
+CREATE INDEX "ix_CompetenceRecord_required_competencies_required_competencies" ON "CompetenceRecord_required_competencies" (required_competencies);
 
 CREATE TABLE "CompetenceRecord_education_records" (
 	"CompetenceRecord_id" TEXT,
@@ -1842,8 +2153,8 @@ CREATE TABLE "CompetenceRecord_training_records" (
 	PRIMARY KEY ("CompetenceRecord_id", training_records),
 	FOREIGN KEY("CompetenceRecord_id") REFERENCES "CompetenceRecord" (id)
 );
-CREATE INDEX "ix_CompetenceRecord_training_records_CompetenceRecord_id" ON "CompetenceRecord_training_records" ("CompetenceRecord_id");
 CREATE INDEX "ix_CompetenceRecord_training_records_training_records" ON "CompetenceRecord_training_records" (training_records);
+CREATE INDEX "ix_CompetenceRecord_training_records_CompetenceRecord_id" ON "CompetenceRecord_training_records" ("CompetenceRecord_id");
 
 CREATE TABLE "CompetenceRecord_experience_records" (
 	"CompetenceRecord_id" TEXT,
@@ -1851,8 +2162,8 @@ CREATE TABLE "CompetenceRecord_experience_records" (
 	PRIMARY KEY ("CompetenceRecord_id", experience_records),
 	FOREIGN KEY("CompetenceRecord_id") REFERENCES "CompetenceRecord" (id)
 );
-CREATE INDEX "ix_CompetenceRecord_experience_records_experience_records" ON "CompetenceRecord_experience_records" (experience_records);
 CREATE INDEX "ix_CompetenceRecord_experience_records_CompetenceRecord_id" ON "CompetenceRecord_experience_records" ("CompetenceRecord_id");
+CREATE INDEX "ix_CompetenceRecord_experience_records_experience_records" ON "CompetenceRecord_experience_records" (experience_records);
 
 CREATE TABLE "CompetenceRecord_competency_gaps" (
 	"CompetenceRecord_id" TEXT,
@@ -1860,8 +2171,8 @@ CREATE TABLE "CompetenceRecord_competency_gaps" (
 	PRIMARY KEY ("CompetenceRecord_id", competency_gaps),
 	FOREIGN KEY("CompetenceRecord_id") REFERENCES "CompetenceRecord" (id)
 );
-CREATE INDEX "ix_CompetenceRecord_competency_gaps_competency_gaps" ON "CompetenceRecord_competency_gaps" (competency_gaps);
 CREATE INDEX "ix_CompetenceRecord_competency_gaps_CompetenceRecord_id" ON "CompetenceRecord_competency_gaps" ("CompetenceRecord_id");
+CREATE INDEX "ix_CompetenceRecord_competency_gaps_competency_gaps" ON "CompetenceRecord_competency_gaps" (competency_gaps);
 
 CREATE TABLE "CompetenceRecord_development_actions" (
 	"CompetenceRecord_id" TEXT,
@@ -1869,8 +2180,17 @@ CREATE TABLE "CompetenceRecord_development_actions" (
 	PRIMARY KEY ("CompetenceRecord_id", development_actions),
 	FOREIGN KEY("CompetenceRecord_id") REFERENCES "CompetenceRecord" (id)
 );
-CREATE INDEX "ix_CompetenceRecord_development_actions_development_actions" ON "CompetenceRecord_development_actions" (development_actions);
 CREATE INDEX "ix_CompetenceRecord_development_actions_CompetenceRecord_id" ON "CompetenceRecord_development_actions" ("CompetenceRecord_id");
+CREATE INDEX "ix_CompetenceRecord_development_actions_development_actions" ON "CompetenceRecord_development_actions" (development_actions);
+
+CREATE TABLE "CompetenceRecord_distribution_controls" (
+	"CompetenceRecord_id" TEXT,
+	distribution_controls TEXT,
+	PRIMARY KEY ("CompetenceRecord_id", distribution_controls),
+	FOREIGN KEY("CompetenceRecord_id") REFERENCES "CompetenceRecord" (id)
+);
+CREATE INDEX "ix_CompetenceRecord_distribution_controls_CompetenceRecord_id" ON "CompetenceRecord_distribution_controls" ("CompetenceRecord_id");
+CREATE INDEX "ix_CompetenceRecord_distribution_controls_distribution_controls" ON "CompetenceRecord_distribution_controls" (distribution_controls);
 
 CREATE TABLE "AwarenessProgram_awareness_topics" (
 	"AwarenessProgram_id" TEXT,
@@ -1890,6 +2210,15 @@ CREATE TABLE "AwarenessProgram_delivery_methods" (
 CREATE INDEX "ix_AwarenessProgram_delivery_methods_AwarenessProgram_id" ON "AwarenessProgram_delivery_methods" ("AwarenessProgram_id");
 CREATE INDEX "ix_AwarenessProgram_delivery_methods_delivery_methods" ON "AwarenessProgram_delivery_methods" (delivery_methods);
 
+CREATE TABLE "AwarenessProgram_distribution_controls" (
+	"AwarenessProgram_id" TEXT,
+	distribution_controls TEXT,
+	PRIMARY KEY ("AwarenessProgram_id", distribution_controls),
+	FOREIGN KEY("AwarenessProgram_id") REFERENCES "AwarenessProgram" (id)
+);
+CREATE INDEX "ix_AwarenessProgram_distribution_controls_AwarenessProgram_id" ON "AwarenessProgram_distribution_controls" ("AwarenessProgram_id");
+CREATE INDEX "ix_AwarenessProgram_distribution_controls_distribution_controls" ON "AwarenessProgram_distribution_controls" (distribution_controls);
+
 CREATE TABLE "CommunicationPlan_communication_items" (
 	"CommunicationPlan_id" TEXT,
 	communication_items_id INTEGER,
@@ -1900,14 +2229,23 @@ CREATE TABLE "CommunicationPlan_communication_items" (
 CREATE INDEX "ix_CommunicationPlan_communication_items_communication_items_id" ON "CommunicationPlan_communication_items" (communication_items_id);
 CREATE INDEX "ix_CommunicationPlan_communication_items_CommunicationPlan_id" ON "CommunicationPlan_communication_items" ("CommunicationPlan_id");
 
+CREATE TABLE "CommunicationPlan_distribution_controls" (
+	"CommunicationPlan_id" TEXT,
+	distribution_controls TEXT,
+	PRIMARY KEY ("CommunicationPlan_id", distribution_controls),
+	FOREIGN KEY("CommunicationPlan_id") REFERENCES "CommunicationPlan" (id)
+);
+CREATE INDEX "ix_CommunicationPlan_distribution_controls_distribution_controls" ON "CommunicationPlan_distribution_controls" (distribution_controls);
+CREATE INDEX "ix_CommunicationPlan_distribution_controls_CommunicationPlan_id" ON "CommunicationPlan_distribution_controls" ("CommunicationPlan_id");
+
 CREATE TABLE "OperationalProcedure_control_measures" (
 	"OperationalProcedure_id" TEXT,
 	control_measures TEXT,
 	PRIMARY KEY ("OperationalProcedure_id", control_measures),
 	FOREIGN KEY("OperationalProcedure_id") REFERENCES "OperationalProcedure" (id)
 );
-CREATE INDEX "ix_OperationalProcedure_control_measures_control_measures" ON "OperationalProcedure_control_measures" (control_measures);
 CREATE INDEX "ix_OperationalProcedure_control_measures_OperationalProcedure_id" ON "OperationalProcedure_control_measures" ("OperationalProcedure_id");
+CREATE INDEX "ix_OperationalProcedure_control_measures_control_measures" ON "OperationalProcedure_control_measures" (control_measures);
 
 CREATE TABLE "OperationalProcedure_responsible_roles" (
 	"OperationalProcedure_id" TEXT,
@@ -1916,8 +2254,8 @@ CREATE TABLE "OperationalProcedure_responsible_roles" (
 	FOREIGN KEY("OperationalProcedure_id") REFERENCES "OperationalProcedure" (id),
 	FOREIGN KEY(responsible_roles_id) REFERENCES "Role" (id)
 );
-CREATE INDEX "ix_OperationalProcedure_responsible_roles_OperationalProcedure_id" ON "OperationalProcedure_responsible_roles" ("OperationalProcedure_id");
 CREATE INDEX "ix_OperationalProcedure_responsible_roles_responsible_roles_id" ON "OperationalProcedure_responsible_roles" (responsible_roles_id);
+CREATE INDEX "ix_OperationalProcedure_responsible_roles_OperationalProcedure_id" ON "OperationalProcedure_responsible_roles" ("OperationalProcedure_id");
 
 CREATE TABLE "OperationalProcedure_related_controls" (
 	"OperationalProcedure_id" TEXT,
@@ -1926,8 +2264,17 @@ CREATE TABLE "OperationalProcedure_related_controls" (
 	FOREIGN KEY("OperationalProcedure_id") REFERENCES "OperationalProcedure" (id),
 	FOREIGN KEY(related_controls_id) REFERENCES "SecurityControl" (id)
 );
-CREATE INDEX "ix_OperationalProcedure_related_controls_OperationalProcedure_id" ON "OperationalProcedure_related_controls" ("OperationalProcedure_id");
 CREATE INDEX "ix_OperationalProcedure_related_controls_related_controls_id" ON "OperationalProcedure_related_controls" (related_controls_id);
+CREATE INDEX "ix_OperationalProcedure_related_controls_OperationalProcedure_id" ON "OperationalProcedure_related_controls" ("OperationalProcedure_id");
+
+CREATE TABLE "OperationalProcedure_distribution_controls" (
+	"OperationalProcedure_id" TEXT,
+	distribution_controls TEXT,
+	PRIMARY KEY ("OperationalProcedure_id", distribution_controls),
+	FOREIGN KEY("OperationalProcedure_id") REFERENCES "OperationalProcedure" (id)
+);
+CREATE INDEX "ix_OperationalProcedure_distribution_controls_distribution_controls" ON "OperationalProcedure_distribution_controls" (distribution_controls);
+CREATE INDEX "ix_OperationalProcedure_distribution_controls_OperationalProcedure_id" ON "OperationalProcedure_distribution_controls" ("OperationalProcedure_id");
 
 CREATE TABLE "MonitoringProgram_monitoring_items" (
 	"MonitoringProgram_id" TEXT,
@@ -1936,8 +2283,17 @@ CREATE TABLE "MonitoringProgram_monitoring_items" (
 	FOREIGN KEY("MonitoringProgram_id") REFERENCES "MonitoringProgram" (id),
 	FOREIGN KEY(monitoring_items_id) REFERENCES "MonitoringItem" (id)
 );
-CREATE INDEX "ix_MonitoringProgram_monitoring_items_monitoring_items_id" ON "MonitoringProgram_monitoring_items" (monitoring_items_id);
 CREATE INDEX "ix_MonitoringProgram_monitoring_items_MonitoringProgram_id" ON "MonitoringProgram_monitoring_items" ("MonitoringProgram_id");
+CREATE INDEX "ix_MonitoringProgram_monitoring_items_monitoring_items_id" ON "MonitoringProgram_monitoring_items" (monitoring_items_id);
+
+CREATE TABLE "MonitoringProgram_distribution_controls" (
+	"MonitoringProgram_id" TEXT,
+	distribution_controls TEXT,
+	PRIMARY KEY ("MonitoringProgram_id", distribution_controls),
+	FOREIGN KEY("MonitoringProgram_id") REFERENCES "MonitoringProgram" (id)
+);
+CREATE INDEX "ix_MonitoringProgram_distribution_controls_distribution_controls" ON "MonitoringProgram_distribution_controls" (distribution_controls);
+CREATE INDEX "ix_MonitoringProgram_distribution_controls_MonitoringProgram_id" ON "MonitoringProgram_distribution_controls" ("MonitoringProgram_id");
 
 CREATE TABLE "InternalAudit_audit_criteria" (
 	"InternalAudit_id" TEXT,
@@ -1945,8 +2301,8 @@ CREATE TABLE "InternalAudit_audit_criteria" (
 	PRIMARY KEY ("InternalAudit_id", audit_criteria),
 	FOREIGN KEY("InternalAudit_id") REFERENCES "InternalAudit" (id)
 );
-CREATE INDEX "ix_InternalAudit_audit_criteria_audit_criteria" ON "InternalAudit_audit_criteria" (audit_criteria);
 CREATE INDEX "ix_InternalAudit_audit_criteria_InternalAudit_id" ON "InternalAudit_audit_criteria" ("InternalAudit_id");
+CREATE INDEX "ix_InternalAudit_audit_criteria_audit_criteria" ON "InternalAudit_audit_criteria" (audit_criteria);
 
 CREATE TABLE "InternalAudit_audit_objectives" (
 	"InternalAudit_id" TEXT,
@@ -1963,8 +2319,8 @@ CREATE TABLE "InternalAudit_audit_team" (
 	PRIMARY KEY ("InternalAudit_id", audit_team),
 	FOREIGN KEY("InternalAudit_id") REFERENCES "InternalAudit" (id)
 );
-CREATE INDEX "ix_InternalAudit_audit_team_audit_team" ON "InternalAudit_audit_team" (audit_team);
 CREATE INDEX "ix_InternalAudit_audit_team_InternalAudit_id" ON "InternalAudit_audit_team" ("InternalAudit_id");
+CREATE INDEX "ix_InternalAudit_audit_team_audit_team" ON "InternalAudit_audit_team" (audit_team);
 
 CREATE TABLE "InternalAudit_auditee_representatives" (
 	"InternalAudit_id" TEXT,
@@ -1990,8 +2346,17 @@ CREATE TABLE "InternalAudit_report_distribution" (
 	PRIMARY KEY ("InternalAudit_id", report_distribution),
 	FOREIGN KEY("InternalAudit_id") REFERENCES "InternalAudit" (id)
 );
-CREATE INDEX "ix_InternalAudit_report_distribution_report_distribution" ON "InternalAudit_report_distribution" (report_distribution);
 CREATE INDEX "ix_InternalAudit_report_distribution_InternalAudit_id" ON "InternalAudit_report_distribution" ("InternalAudit_id");
+CREATE INDEX "ix_InternalAudit_report_distribution_report_distribution" ON "InternalAudit_report_distribution" (report_distribution);
+
+CREATE TABLE "InternalAudit_distribution_controls" (
+	"InternalAudit_id" TEXT,
+	distribution_controls TEXT,
+	PRIMARY KEY ("InternalAudit_id", distribution_controls),
+	FOREIGN KEY("InternalAudit_id") REFERENCES "InternalAudit" (id)
+);
+CREATE INDEX "ix_InternalAudit_distribution_controls_InternalAudit_id" ON "InternalAudit_distribution_controls" ("InternalAudit_id");
+CREATE INDEX "ix_InternalAudit_distribution_controls_distribution_controls" ON "InternalAudit_distribution_controls" (distribution_controls);
 
 CREATE TABLE "AuditProgramme_planned_audits" (
 	"AuditProgramme_id" TEXT,
@@ -2002,6 +2367,15 @@ CREATE TABLE "AuditProgramme_planned_audits" (
 );
 CREATE INDEX "ix_AuditProgramme_planned_audits_planned_audits_id" ON "AuditProgramme_planned_audits" (planned_audits_id);
 CREATE INDEX "ix_AuditProgramme_planned_audits_AuditProgramme_id" ON "AuditProgramme_planned_audits" ("AuditProgramme_id");
+
+CREATE TABLE "AuditProgramme_distribution_controls" (
+	"AuditProgramme_id" TEXT,
+	distribution_controls TEXT,
+	PRIMARY KEY ("AuditProgramme_id", distribution_controls),
+	FOREIGN KEY("AuditProgramme_id") REFERENCES "AuditProgramme" (id)
+);
+CREATE INDEX "ix_AuditProgramme_distribution_controls_distribution_controls" ON "AuditProgramme_distribution_controls" (distribution_controls);
+CREATE INDEX "ix_AuditProgramme_distribution_controls_AuditProgramme_id" ON "AuditProgramme_distribution_controls" ("AuditProgramme_id");
 
 CREATE TABLE "ManagementReview_attendees" (
 	"ManagementReview_id" TEXT,
@@ -2039,6 +2413,15 @@ CREATE TABLE "ManagementReview_action_items" (
 CREATE INDEX "ix_ManagementReview_action_items_ManagementReview_id" ON "ManagementReview_action_items" ("ManagementReview_id");
 CREATE INDEX "ix_ManagementReview_action_items_action_items" ON "ManagementReview_action_items" (action_items);
 
+CREATE TABLE "ManagementReview_distribution_controls" (
+	"ManagementReview_id" TEXT,
+	distribution_controls TEXT,
+	PRIMARY KEY ("ManagementReview_id", distribution_controls),
+	FOREIGN KEY("ManagementReview_id") REFERENCES "ManagementReview" (id)
+);
+CREATE INDEX "ix_ManagementReview_distribution_controls_ManagementReview_id" ON "ManagementReview_distribution_controls" ("ManagementReview_id");
+CREATE INDEX "ix_ManagementReview_distribution_controls_distribution_controls" ON "ManagementReview_distribution_controls" (distribution_controls);
+
 CREATE TABLE "Nonconformity_immediate_actions" (
 	"Nonconformity_id" TEXT,
 	immediate_actions TEXT,
@@ -2070,12 +2453,12 @@ CREATE INDEX "ix_InformationSecurityIncident_affected_assets_InformationSecurity
 
 CREATE TABLE "InformationSecurityIncident_affected_cia" (
 	"InformationSecurityIncident_id" TEXT,
-	affected_cia TEXT,
+	affected_cia VARCHAR(15),
 	PRIMARY KEY ("InformationSecurityIncident_id", affected_cia),
 	FOREIGN KEY("InformationSecurityIncident_id") REFERENCES "InformationSecurityIncident" (id)
 );
-CREATE INDEX "ix_InformationSecurityIncident_affected_cia_affected_cia" ON "InformationSecurityIncident_affected_cia" (affected_cia);
 CREATE INDEX "ix_InformationSecurityIncident_affected_cia_InformationSecurityIncident_id" ON "InformationSecurityIncident_affected_cia" ("InformationSecurityIncident_id");
+CREATE INDEX "ix_InformationSecurityIncident_affected_cia_affected_cia" ON "InformationSecurityIncident_affected_cia" (affected_cia);
 
 CREATE TABLE "InformationSecurityIncident_response_actions" (
 	"InformationSecurityIncident_id" TEXT,
@@ -2092,8 +2475,8 @@ CREATE TABLE "InformationSecurityIncident_containment_actions" (
 	PRIMARY KEY ("InformationSecurityIncident_id", containment_actions),
 	FOREIGN KEY("InformationSecurityIncident_id") REFERENCES "InformationSecurityIncident" (id)
 );
-CREATE INDEX "ix_InformationSecurityIncident_containment_actions_containment_actions" ON "InformationSecurityIncident_containment_actions" (containment_actions);
 CREATE INDEX "ix_InformationSecurityIncident_containment_actions_InformationSecurityIncident_id" ON "InformationSecurityIncident_containment_actions" ("InformationSecurityIncident_id");
+CREATE INDEX "ix_InformationSecurityIncident_containment_actions_containment_actions" ON "InformationSecurityIncident_containment_actions" (containment_actions);
 
 CREATE TABLE "InformationSecurityIncident_eradication_actions" (
 	"InformationSecurityIncident_id" TEXT,
@@ -2101,8 +2484,8 @@ CREATE TABLE "InformationSecurityIncident_eradication_actions" (
 	PRIMARY KEY ("InformationSecurityIncident_id", eradication_actions),
 	FOREIGN KEY("InformationSecurityIncident_id") REFERENCES "InformationSecurityIncident" (id)
 );
-CREATE INDEX "ix_InformationSecurityIncident_eradication_actions_eradication_actions" ON "InformationSecurityIncident_eradication_actions" (eradication_actions);
 CREATE INDEX "ix_InformationSecurityIncident_eradication_actions_InformationSecurityIncident_id" ON "InformationSecurityIncident_eradication_actions" ("InformationSecurityIncident_id");
+CREATE INDEX "ix_InformationSecurityIncident_eradication_actions_eradication_actions" ON "InformationSecurityIncident_eradication_actions" (eradication_actions);
 
 CREATE TABLE "InformationSecurityIncident_recovery_actions" (
 	"InformationSecurityIncident_id" TEXT,
@@ -2110,8 +2493,17 @@ CREATE TABLE "InformationSecurityIncident_recovery_actions" (
 	PRIMARY KEY ("InformationSecurityIncident_id", recovery_actions),
 	FOREIGN KEY("InformationSecurityIncident_id") REFERENCES "InformationSecurityIncident" (id)
 );
-CREATE INDEX "ix_InformationSecurityIncident_recovery_actions_recovery_actions" ON "InformationSecurityIncident_recovery_actions" (recovery_actions);
 CREATE INDEX "ix_InformationSecurityIncident_recovery_actions_InformationSecurityIncident_id" ON "InformationSecurityIncident_recovery_actions" ("InformationSecurityIncident_id");
+CREATE INDEX "ix_InformationSecurityIncident_recovery_actions_recovery_actions" ON "InformationSecurityIncident_recovery_actions" (recovery_actions);
+
+CREATE TABLE "InformationSecurityIncident_lessons_learned" (
+	"InformationSecurityIncident_id" TEXT,
+	lessons_learned TEXT,
+	PRIMARY KEY ("InformationSecurityIncident_id", lessons_learned),
+	FOREIGN KEY("InformationSecurityIncident_id") REFERENCES "InformationSecurityIncident" (id)
+);
+CREATE INDEX "ix_InformationSecurityIncident_lessons_learned_InformationSecurityIncident_id" ON "InformationSecurityIncident_lessons_learned" ("InformationSecurityIncident_id");
+CREATE INDEX "ix_InformationSecurityIncident_lessons_learned_lessons_learned" ON "InformationSecurityIncident_lessons_learned" (lessons_learned);
 
 CREATE TABLE "InformationSecurityIncident_evidence_collected" (
 	"InformationSecurityIncident_id" TEXT,
@@ -2128,8 +2520,8 @@ CREATE TABLE "InformationSecurityIncident_notifications_made" (
 	PRIMARY KEY ("InformationSecurityIncident_id", notifications_made),
 	FOREIGN KEY("InformationSecurityIncident_id") REFERENCES "InformationSecurityIncident" (id)
 );
-CREATE INDEX "ix_InformationSecurityIncident_notifications_made_notifications_made" ON "InformationSecurityIncident_notifications_made" (notifications_made);
 CREATE INDEX "ix_InformationSecurityIncident_notifications_made_InformationSecurityIncident_id" ON "InformationSecurityIncident_notifications_made" ("InformationSecurityIncident_id");
+CREATE INDEX "ix_InformationSecurityIncident_notifications_made_notifications_made" ON "InformationSecurityIncident_notifications_made" (notifications_made);
 
 CREATE TABLE "AuditFinding" (
 	finding_type VARCHAR(19),
@@ -2156,14 +2548,23 @@ CREATE TABLE "AuditFinding" (
 );
 CREATE INDEX "ix_AuditFinding_id" ON "AuditFinding" (id);
 
+CREATE TABLE "InformationSecurityManagementSystem_leadership_commitment_evidence" (
+	"InformationSecurityManagementSystem_id" TEXT,
+	leadership_commitment_evidence TEXT,
+	PRIMARY KEY ("InformationSecurityManagementSystem_id", leadership_commitment_evidence),
+	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id)
+);
+CREATE INDEX "ix_InformationSecurityManagementSystem_leadership_commitment_evidence_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_leadership_commitment_evidence" ("InformationSecurityManagementSystem_id");
+CREATE INDEX "ix_InformationSecurityManagementSystem_leadership_commitment_evidence_leadership_commitment_evidence" ON "InformationSecurityManagementSystem_leadership_commitment_evidence" (leadership_commitment_evidence);
+
 CREATE TABLE "InformationSecurityManagementSystem_scope_boundaries" (
 	"InformationSecurityManagementSystem_id" TEXT,
 	scope_boundaries TEXT,
 	PRIMARY KEY ("InformationSecurityManagementSystem_id", scope_boundaries),
 	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id)
 );
-CREATE INDEX "ix_InformationSecurityManagementSystem_scope_boundaries_scope_boundaries" ON "InformationSecurityManagementSystem_scope_boundaries" (scope_boundaries);
 CREATE INDEX "ix_InformationSecurityManagementSystem_scope_boundaries_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_scope_boundaries" ("InformationSecurityManagementSystem_id");
+CREATE INDEX "ix_InformationSecurityManagementSystem_scope_boundaries_scope_boundaries" ON "InformationSecurityManagementSystem_scope_boundaries" (scope_boundaries);
 
 CREATE TABLE "InformationSecurityManagementSystem_scope_exclusions" (
 	"InformationSecurityManagementSystem_id" TEXT,
@@ -2173,6 +2574,15 @@ CREATE TABLE "InformationSecurityManagementSystem_scope_exclusions" (
 );
 CREATE INDEX "ix_InformationSecurityManagementSystem_scope_exclusions_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_scope_exclusions" ("InformationSecurityManagementSystem_id");
 CREATE INDEX "ix_InformationSecurityManagementSystem_scope_exclusions_scope_exclusions" ON "InformationSecurityManagementSystem_scope_exclusions" (scope_exclusions);
+
+CREATE TABLE "InformationSecurityManagementSystem_interfaces_and_dependencies" (
+	"InformationSecurityManagementSystem_id" TEXT,
+	interfaces_and_dependencies TEXT,
+	PRIMARY KEY ("InformationSecurityManagementSystem_id", interfaces_and_dependencies),
+	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id)
+);
+CREATE INDEX "ix_InformationSecurityManagementSystem_interfaces_and_dependencies_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_interfaces_and_dependencies" ("InformationSecurityManagementSystem_id");
+CREATE INDEX "ix_InformationSecurityManagementSystem_interfaces_and_dependencies_interfaces_and_dependencies" ON "InformationSecurityManagementSystem_interfaces_and_dependencies" (interfaces_and_dependencies);
 
 CREATE TABLE "InformationSecurityManagementSystem_context_internal_issues" (
 	"InformationSecurityManagementSystem_id" TEXT,
@@ -2189,8 +2599,8 @@ CREATE TABLE "InformationSecurityManagementSystem_context_external_issues" (
 	PRIMARY KEY ("InformationSecurityManagementSystem_id", context_external_issues),
 	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id)
 );
-CREATE INDEX "ix_InformationSecurityManagementSystem_context_external_issues_context_external_issues" ON "InformationSecurityManagementSystem_context_external_issues" (context_external_issues);
 CREATE INDEX "ix_InformationSecurityManagementSystem_context_external_issues_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_context_external_issues" ("InformationSecurityManagementSystem_id");
+CREATE INDEX "ix_InformationSecurityManagementSystem_context_external_issues_context_external_issues" ON "InformationSecurityManagementSystem_context_external_issues" (context_external_issues);
 
 CREATE TABLE "InformationSecurityManagementSystem_interested_parties" (
 	"InformationSecurityManagementSystem_id" TEXT,
@@ -2209,8 +2619,35 @@ CREATE TABLE "InformationSecurityManagementSystem_objectives" (
 	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
 	FOREIGN KEY(objectives_id) REFERENCES "InformationSecurityObjective" (id)
 );
-CREATE INDEX "ix_InformationSecurityManagementSystem_objectives_objectives_id" ON "InformationSecurityManagementSystem_objectives" (objectives_id);
 CREATE INDEX "ix_InformationSecurityManagementSystem_objectives_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_objectives" ("InformationSecurityManagementSystem_id");
+CREATE INDEX "ix_InformationSecurityManagementSystem_objectives_objectives_id" ON "InformationSecurityManagementSystem_objectives" (objectives_id);
+
+CREATE TABLE "InformationSecurityManagementSystem_risks_and_opportunities_actions" (
+	"InformationSecurityManagementSystem_id" TEXT,
+	risks_and_opportunities_actions TEXT,
+	PRIMARY KEY ("InformationSecurityManagementSystem_id", risks_and_opportunities_actions),
+	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id)
+);
+CREATE INDEX "ix_InformationSecurityManagementSystem_risks_and_opportunities_actions_risks_and_opportunities_actions" ON "InformationSecurityManagementSystem_risks_and_opportunities_actions" (risks_and_opportunities_actions);
+CREATE INDEX "ix_InformationSecurityManagementSystem_risks_and_opportunities_actions_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_risks_and_opportunities_actions" ("InformationSecurityManagementSystem_id");
+
+CREATE TABLE "InformationSecurityManagementSystem_planned_changes" (
+	"InformationSecurityManagementSystem_id" TEXT,
+	planned_changes TEXT,
+	PRIMARY KEY ("InformationSecurityManagementSystem_id", planned_changes),
+	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id)
+);
+CREATE INDEX "ix_InformationSecurityManagementSystem_planned_changes_planned_changes" ON "InformationSecurityManagementSystem_planned_changes" (planned_changes);
+CREATE INDEX "ix_InformationSecurityManagementSystem_planned_changes_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_planned_changes" ("InformationSecurityManagementSystem_id");
+
+CREATE TABLE "InformationSecurityManagementSystem_externally_provided_services" (
+	"InformationSecurityManagementSystem_id" TEXT,
+	externally_provided_services TEXT,
+	PRIMARY KEY ("InformationSecurityManagementSystem_id", externally_provided_services),
+	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id)
+);
+CREATE INDEX "ix_InformationSecurityManagementSystem_externally_provided_services_externally_provided_services" ON "InformationSecurityManagementSystem_externally_provided_services" (externally_provided_services);
+CREATE INDEX "ix_InformationSecurityManagementSystem_externally_provided_services_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_externally_provided_services" ("InformationSecurityManagementSystem_id");
 
 CREATE TABLE "InformationSecurityManagementSystem_controls" (
 	"InformationSecurityManagementSystem_id" TEXT,
@@ -2259,8 +2696,8 @@ CREATE TABLE "InformationSecurityManagementSystem_documented_information_registe
 	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
 	FOREIGN KEY(documented_information_register_id) REFERENCES "DocumentedInformation" (id)
 );
-CREATE INDEX "ix_InformationSecurityManagementSystem_documented_information_register_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_documented_information_register" ("InformationSecurityManagementSystem_id");
 CREATE INDEX "ix_InformationSecurityManagementSystem_documented_information_register_documented_information_register_id" ON "InformationSecurityManagementSystem_documented_information_register" (documented_information_register_id);
+CREATE INDEX "ix_InformationSecurityManagementSystem_documented_information_register_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_documented_information_register" ("InformationSecurityManagementSystem_id");
 
 CREATE TABLE "InformationSecurityManagementSystem_operational_procedures" (
 	"InformationSecurityManagementSystem_id" TEXT,
@@ -2309,8 +2746,8 @@ CREATE TABLE "InformationSecurityManagementSystem_management_reviews" (
 	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
 	FOREIGN KEY(management_reviews_id) REFERENCES "ManagementReview" (id)
 );
-CREATE INDEX "ix_InformationSecurityManagementSystem_management_reviews_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_management_reviews" ("InformationSecurityManagementSystem_id");
 CREATE INDEX "ix_InformationSecurityManagementSystem_management_reviews_management_reviews_id" ON "InformationSecurityManagementSystem_management_reviews" (management_reviews_id);
+CREATE INDEX "ix_InformationSecurityManagementSystem_management_reviews_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_management_reviews" ("InformationSecurityManagementSystem_id");
 
 CREATE TABLE "InformationSecurityManagementSystem_nonconformities" (
 	"InformationSecurityManagementSystem_id" TEXT,
@@ -2319,8 +2756,8 @@ CREATE TABLE "InformationSecurityManagementSystem_nonconformities" (
 	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
 	FOREIGN KEY(nonconformities_id) REFERENCES "Nonconformity" (id)
 );
-CREATE INDEX "ix_InformationSecurityManagementSystem_nonconformities_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_nonconformities" ("InformationSecurityManagementSystem_id");
 CREATE INDEX "ix_InformationSecurityManagementSystem_nonconformities_nonconformities_id" ON "InformationSecurityManagementSystem_nonconformities" (nonconformities_id);
+CREATE INDEX "ix_InformationSecurityManagementSystem_nonconformities_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_nonconformities" ("InformationSecurityManagementSystem_id");
 
 CREATE TABLE "InformationSecurityManagementSystem_corrective_actions" (
 	"InformationSecurityManagementSystem_id" TEXT,
@@ -2329,8 +2766,8 @@ CREATE TABLE "InformationSecurityManagementSystem_corrective_actions" (
 	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
 	FOREIGN KEY(corrective_actions_id) REFERENCES "CorrectiveAction" (id)
 );
-CREATE INDEX "ix_InformationSecurityManagementSystem_corrective_actions_corrective_actions_id" ON "InformationSecurityManagementSystem_corrective_actions" (corrective_actions_id);
 CREATE INDEX "ix_InformationSecurityManagementSystem_corrective_actions_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_corrective_actions" ("InformationSecurityManagementSystem_id");
+CREATE INDEX "ix_InformationSecurityManagementSystem_corrective_actions_corrective_actions_id" ON "InformationSecurityManagementSystem_corrective_actions" (corrective_actions_id);
 
 CREATE TABLE "InformationSecurityManagementSystem_improvements" (
 	"InformationSecurityManagementSystem_id" TEXT,
@@ -2339,8 +2776,8 @@ CREATE TABLE "InformationSecurityManagementSystem_improvements" (
 	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
 	FOREIGN KEY(improvements_id) REFERENCES "ImprovementOpportunity" (id)
 );
-CREATE INDEX "ix_InformationSecurityManagementSystem_improvements_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_improvements" ("InformationSecurityManagementSystem_id");
 CREATE INDEX "ix_InformationSecurityManagementSystem_improvements_improvements_id" ON "InformationSecurityManagementSystem_improvements" (improvements_id);
+CREATE INDEX "ix_InformationSecurityManagementSystem_improvements_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_improvements" ("InformationSecurityManagementSystem_id");
 
 CREATE TABLE "InformationSecurityPolicy_related_topic_policies" (
 	"InformationSecurityPolicy_id" TEXT,
@@ -2349,8 +2786,8 @@ CREATE TABLE "InformationSecurityPolicy_related_topic_policies" (
 	FOREIGN KEY("InformationSecurityPolicy_id") REFERENCES "InformationSecurityPolicy" (id),
 	FOREIGN KEY(related_topic_policies_id) REFERENCES "TopicSpecificPolicy" (id)
 );
-CREATE INDEX "ix_InformationSecurityPolicy_related_topic_policies_InformationSecurityPolicy_id" ON "InformationSecurityPolicy_related_topic_policies" ("InformationSecurityPolicy_id");
 CREATE INDEX "ix_InformationSecurityPolicy_related_topic_policies_related_topic_policies_id" ON "InformationSecurityPolicy_related_topic_policies" (related_topic_policies_id);
+CREATE INDEX "ix_InformationSecurityPolicy_related_topic_policies_InformationSecurityPolicy_id" ON "InformationSecurityPolicy_related_topic_policies" ("InformationSecurityPolicy_id");
 
 CREATE TABLE "TopicSpecificPolicy_applicable_controls" (
 	"TopicSpecificPolicy_id" TEXT,
@@ -2362,6 +2799,15 @@ CREATE TABLE "TopicSpecificPolicy_applicable_controls" (
 CREATE INDEX "ix_TopicSpecificPolicy_applicable_controls_applicable_controls_id" ON "TopicSpecificPolicy_applicable_controls" (applicable_controls_id);
 CREATE INDEX "ix_TopicSpecificPolicy_applicable_controls_TopicSpecificPolicy_id" ON "TopicSpecificPolicy_applicable_controls" ("TopicSpecificPolicy_id");
 
+CREATE TABLE "TopicSpecificPolicy_distribution_controls" (
+	"TopicSpecificPolicy_id" TEXT,
+	distribution_controls TEXT,
+	PRIMARY KEY ("TopicSpecificPolicy_id", distribution_controls),
+	FOREIGN KEY("TopicSpecificPolicy_id") REFERENCES "TopicSpecificPolicy" (id)
+);
+CREATE INDEX "ix_TopicSpecificPolicy_distribution_controls_TopicSpecificPolicy_id" ON "TopicSpecificPolicy_distribution_controls" ("TopicSpecificPolicy_id");
+CREATE INDEX "ix_TopicSpecificPolicy_distribution_controls_distribution_controls" ON "TopicSpecificPolicy_distribution_controls" (distribution_controls);
+
 CREATE TABLE "InformationSecurityObjective_related_risks" (
 	"InformationSecurityObjective_id" TEXT,
 	related_risks_id TEXT,
@@ -2369,8 +2815,8 @@ CREATE TABLE "InformationSecurityObjective_related_risks" (
 	FOREIGN KEY("InformationSecurityObjective_id") REFERENCES "InformationSecurityObjective" (id),
 	FOREIGN KEY(related_risks_id) REFERENCES "Risk" (id)
 );
-CREATE INDEX "ix_InformationSecurityObjective_related_risks_related_risks_id" ON "InformationSecurityObjective_related_risks" (related_risks_id);
 CREATE INDEX "ix_InformationSecurityObjective_related_risks_InformationSecurityObjective_id" ON "InformationSecurityObjective_related_risks" ("InformationSecurityObjective_id");
+CREATE INDEX "ix_InformationSecurityObjective_related_risks_related_risks_id" ON "InformationSecurityObjective_related_risks" (related_risks_id);
 
 CREATE TABLE "InformationSecurityObjective_related_controls" (
 	"InformationSecurityObjective_id" TEXT,
@@ -2404,12 +2850,12 @@ CREATE INDEX "ix_Risk_affected_assets_Risk_id" ON "Risk_affected_assets" ("Risk_
 
 CREATE TABLE "Risk_affected_cia_properties" (
 	"Risk_id" TEXT,
-	affected_cia_properties TEXT,
+	affected_cia_properties VARCHAR(15),
 	PRIMARY KEY ("Risk_id", affected_cia_properties),
 	FOREIGN KEY("Risk_id") REFERENCES "Risk" (id)
 );
-CREATE INDEX "ix_Risk_affected_cia_properties_affected_cia_properties" ON "Risk_affected_cia_properties" (affected_cia_properties);
 CREATE INDEX "ix_Risk_affected_cia_properties_Risk_id" ON "Risk_affected_cia_properties" ("Risk_id");
+CREATE INDEX "ix_Risk_affected_cia_properties_affected_cia_properties" ON "Risk_affected_cia_properties" (affected_cia_properties);
 
 CREATE TABLE "Risk_existing_controls" (
 	"Risk_id" TEXT,
@@ -2438,8 +2884,8 @@ CREATE TABLE "StatementOfApplicability_soa_entries" (
 	FOREIGN KEY("StatementOfApplicability_id") REFERENCES "StatementOfApplicability" (id),
 	FOREIGN KEY(soa_entries_id) REFERENCES "SoAEntry" (id)
 );
-CREATE INDEX "ix_StatementOfApplicability_soa_entries_StatementOfApplicability_id" ON "StatementOfApplicability_soa_entries" ("StatementOfApplicability_id");
 CREATE INDEX "ix_StatementOfApplicability_soa_entries_soa_entries_id" ON "StatementOfApplicability_soa_entries" (soa_entries_id);
+CREATE INDEX "ix_StatementOfApplicability_soa_entries_StatementOfApplicability_id" ON "StatementOfApplicability_soa_entries" ("StatementOfApplicability_id");
 
 CREATE TABLE "Nonconformity_linked_corrective_actions" (
 	"Nonconformity_id" TEXT,

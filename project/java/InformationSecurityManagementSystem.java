@@ -1,7 +1,11 @@
 package None;
 
-/* metamodel_version: 1.7.0 */
+/* metamodel_version: 1.11.0 */
 /* version: 1.0.0 */
+import java.net.URI;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import lombok.*;
 
@@ -13,14 +17,22 @@ import lombok.*;
 public class InformationSecurityManagementSystem extends NamedEntity {
 
   private Organization organization;
+  private String topManagement;
+  private String governingBody;
+  private List<String> leadershipCommitmentEvidence;
   private String scopeStatement;
   private List<String> scopeBoundaries;
   private List<String> scopeExclusions;
+  private List<String> interfacesAndDependencies;
+  private String processesAndInteractions;
   private List<String> contextInternalIssues;
   private List<String> contextExternalIssues;
   private List<InterestedParty> interestedParties;
   private InformationSecurityPolicy informationSecurityPolicy;
   private List<InformationSecurityObjective> objectives;
+  private List<String> risksAndOpportunitiesActions;
+  private List<String> plannedChanges;
+  private List<String> externallyProvidedServices;
   private RiskAssessmentProcess riskAssessmentProcess;
   private RiskTreatmentProcess riskTreatmentProcess;
   private StatementOfApplicability statementOfApplicability;
@@ -44,5 +56,6 @@ public class InformationSecurityManagementSystem extends NamedEntity {
   private String certificationBody;
   private LocalDate certificationDate;
   private LocalDate recertificationDate;
+
 
 }

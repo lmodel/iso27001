@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """Convert Probo mitigations.json to iso27001 LinkML-compliant YAML test fixtures.
 
-Source: https://github.com/getprob/propo (MIT licence)
+Source: https://github.com/getprobo/probo (MIT licence)
 
 Output:
-  tests/data/third_party/probo/SecurityControl-NNN.yaml  — one per Annex A mitigation (61 entries)
+  tests/data/third_party/probo/SecurityControl-NNN.yaml  - one per Annex A mitigation (61 entries)
 
 Clause-level mitigations (references to main ISO 27001 clauses rather than Annex A
 controls) are written to a separate summary report and not converted to YAML fixtures
 because they describe ISMS governance activities that map to classes such as
-InformationSecurityObjective, ManagementReview, and AwarenessProgram — classes that
+InformationSecurityObjective, ManagementReview, and AwarenessProgram - classes that
 already have hand-authored fixtures covering their required fields.
 """
 
@@ -87,7 +87,7 @@ def yaml_scalar(value: str, indent: int = 0) -> str:
     if not value:
         return '""'
     if len(value) <= 90 and "\n" not in value:
-        # Inline — escape any problematic characters
+        # Inline - escape any problematic characters
         escaped = value.replace('"', '\\"')
         return f'"{escaped}"'
     # Block folded scalar
@@ -139,7 +139,7 @@ def convert() -> None:
         lines = [
             f'id: {slug_to_id(entry["id"])}',
             f'name: {entry["name"]}',
-            f'control_id: "{ctrl_id}"',
+            f'control_id: a_{ctrl_id.replace(".", "_")}',
             f'control_title: {entry["name"]}',
             f'control_category: {cat}',
         ]

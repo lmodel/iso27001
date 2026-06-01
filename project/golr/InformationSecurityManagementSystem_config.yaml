@@ -1,0 +1,180 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: InformationSecurityManagementSystem
+schema_generating: true
+description: Top-level container representing an organization's complete ISMS per
+  ISO 27001. Aggregates all components required to support the full ISMS lifecycle.
+display_name: InformationSecurityManagementSystem
+document_category: InformationSecurityManagementSystem
+weight: 20
+fields:
+- id: id
+  description: Unique identifier for this entity instance.
+  display_name: NamedEntity_id
+- id: name
+  description: Human-readable name or title.
+  display_name: name
+- id: description
+  description: Detailed description of the entity.
+  display_name: description
+- id: created_date
+  description: Date when the entity was created.
+  display_name: created_date
+- id: modified_date
+  description: Date when the entity was last modified.
+  display_name: modified_date
+- id: version
+  description: Version identifier for the entity.
+  display_name: version
+- id: organization
+  description: Reference to the organization operating the ISMS.
+  display_name: organization
+- id: top_management
+  description: The person or group of people who direct and control the organization
+    at the highest level, accountable for the ISMS per Clause 5.1.
+  display_name: top_management
+- id: governing_body
+  description: The governing body to which top management reports, where applicable
+    (e.g., board of directors). Referenced in ISO/IEC 27001:2022 Clause 5.1 NOTE.
+  display_name: governing_body
+- id: leadership_commitment_evidence
+  description: Evidence of leadership and commitment with respect to the ISMS as required
+    by Clause 5.1 a-h).
+  display_name: leadership_commitment_evidence
+  cardinality: multi
+- id: scope_statement
+  description: Documented statement of ISMS scope per 4.3.
+  display_name: scope_statement
+- id: scope_boundaries
+  description: Defined boundaries of the ISMS scope.
+  display_name: scope_boundaries
+  cardinality: multi
+- id: scope_exclusions
+  description: Any exclusions from scope with justification.
+  display_name: scope_exclusions
+  cardinality: multi
+- id: interfaces_and_dependencies
+  description: Interfaces and dependencies between activities performed by the organization
+    and those performed by other organizations, considered when determining the ISMS
+    scope per Clause 4.3 c).
+  display_name: interfaces_and_dependencies
+  cardinality: multi
+- id: processes_and_interactions
+  description: Description of the processes needed for the ISMS and their interactions,
+    per Clause 4.4.
+  display_name: processes_and_interactions
+- id: context_internal_issues
+  description: Internal issues relevant to ISMS per 4.1.
+  display_name: context_internal_issues
+  cardinality: multi
+- id: context_external_issues
+  description: External issues relevant to ISMS per 4.1.
+  display_name: context_external_issues
+  cardinality: multi
+- id: interested_parties
+  description: Stakeholders relevant to the ISMS.
+  display_name: interested_parties
+  cardinality: multi
+- id: information_security_policy
+  description: Reference to the information security policy.
+  display_name: information_security_policy
+- id: objectives
+  description: Information security objectives.
+  display_name: objectives
+  cardinality: multi
+- id: risks_and_opportunities_actions
+  description: Actions to address risks and opportunities determined per Clause 6.1.1,
+    including how they are integrated into ISMS processes and how their effectiveness
+    is evaluated.
+  display_name: risks_and_opportunities_actions
+  cardinality: multi
+- id: planned_changes
+  description: Changes to the ISMS planned and controlled per Clause 6.3 and 8.1 (planning
+    of changes; control of planned changes).
+  display_name: planned_changes
+  cardinality: multi
+- id: externally_provided_services
+  description: Externally provided processes, products or services relevant to the
+    ISMS that are controlled per Clause 8.1.
+  display_name: externally_provided_services
+  cardinality: multi
+- id: risk_assessment_process
+  description: Reference to the risk assessment process.
+  display_name: risk_assessment_process
+- id: risk_treatment_process
+  description: Reference to the risk treatment process.
+  display_name: risk_treatment_process
+- id: statement_of_applicability
+  description: Reference to the Statement of Applicability.
+  display_name: statement_of_applicability
+- id: controls
+  description: Security controls applied in the ISMS.
+  display_name: controls
+  cardinality: multi
+- id: roles
+  description: Information security roles defined in the ISMS.
+  display_name: roles
+  cardinality: multi
+- id: resources
+  description: Resources provided for the ISMS.
+  display_name: resources
+  cardinality: multi
+- id: competence_records
+  description: Competence records for personnel.
+  display_name: competence_records
+  cardinality: multi
+- id: awareness_program
+  description: Reference to the awareness program.
+  display_name: awareness_program
+- id: communication_plan
+  description: Reference to the communication plan.
+  display_name: communication_plan
+- id: documented_information_register
+  description: Register of documented information.
+  display_name: documented_information_register
+  cardinality: multi
+- id: operational_procedures
+  description: Operational procedures.
+  display_name: operational_procedures
+  cardinality: multi
+- id: risk_assessments
+  description: Risk assessment instances.
+  display_name: risk_assessments
+  cardinality: multi
+- id: risk_treatment_plans
+  description: Risk treatment plans.
+  display_name: risk_treatment_plans
+  cardinality: multi
+- id: monitoring_program
+  description: Reference to the monitoring program.
+  display_name: monitoring_program
+- id: internal_audits
+  description: Internal audit instances.
+  display_name: internal_audits
+  cardinality: multi
+- id: management_reviews
+  description: Management review instances.
+  display_name: management_reviews
+  cardinality: multi
+- id: nonconformities
+  description: Nonconformities identified.
+  display_name: nonconformities
+  cardinality: multi
+- id: corrective_actions
+  description: Corrective actions.
+  display_name: corrective_actions
+  cardinality: multi
+- id: improvements
+  description: Improvement opportunities tracked.
+  display_name: improvements
+  cardinality: multi
+- id: certification_status
+  description: Current certification status.
+  display_name: certification_status
+- id: certification_body
+  description: Accredited certification body.
+  display_name: certification_body
+- id: certification_date
+  description: Date certification was achieved.
+  display_name: certification_date
+- id: recertification_date
+  description: Date recertification is due.
+  display_name: recertification_date

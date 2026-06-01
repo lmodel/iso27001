@@ -1,0 +1,89 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: InformationSecurityIncident
+schema_generating: true
+description: An information security incident per A.5.26, requiring response per documented
+  procedures.
+display_name: InformationSecurityIncident
+document_category: InformationSecurityIncident
+weight: 20
+fields:
+- id: id
+  description: Unique identifier for this entity instance.
+  display_name: NamedEntity_id
+- id: name
+  description: Human-readable name or title.
+  display_name: name
+- id: description
+  description: Detailed description of the entity.
+  display_name: description
+- id: created_date
+  description: Date when the entity was created.
+  display_name: created_date
+- id: modified_date
+  description: Date when the entity was last modified.
+  display_name: modified_date
+- id: version
+  description: Version identifier for the entity.
+  display_name: version
+- id: incident_datetime
+  description: Date and time the incident occurred or was detected.
+  display_name: incident_datetime
+- id: incident_category
+  description: Category of incident.
+  display_name: incident_category
+- id: severity
+  description: Severity rating of the incident.
+  display_name: severity
+- id: affected_assets
+  description: Assets affected by this risk or incident.
+  display_name: affected_assets
+  cardinality: multi
+- id: affected_cia
+  description: CIA properties affected by the incident.
+  display_name: affected_cia
+  cardinality: multi
+- id: incident_description
+  description: Description of the incident.
+  display_name: incident_description
+- id: detection_method
+  description: How the incident was detected.
+  display_name: detection_method
+- id: response_actions
+  description: Actions taken in response.
+  display_name: response_actions
+  cardinality: multi
+- id: containment_actions
+  description: Actions to contain the incident.
+  display_name: containment_actions
+  cardinality: multi
+- id: eradication_actions
+  description: Actions to eradicate the cause.
+  display_name: eradication_actions
+  cardinality: multi
+- id: recovery_actions
+  description: Actions to recover normal operations.
+  display_name: recovery_actions
+  cardinality: multi
+- id: root_cause
+  description: Root cause of the nonconformity.
+  display_name: root_cause
+- id: lessons_learned
+  description: Lessons learned from the incident.
+  display_name: lessons_learned
+  cardinality: multi
+- id: evidence_collected
+  description: Evidence collected.
+  display_name: evidence_collected
+  cardinality: multi
+- id: notification_required
+  description: Whether notification to authorities/parties was required.
+  display_name: notification_required
+- id: notifications_made
+  description: Notifications that were made.
+  display_name: notifications_made
+  cardinality: multi
+- id: closure_datetime
+  description: Date and time of incident closure.
+  display_name: closure_datetime
+- id: post_incident_review
+  description: Post-incident review findings.
+  display_name: post_incident_review

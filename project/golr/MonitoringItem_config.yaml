@@ -1,0 +1,40 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: MonitoringItem
+schema_generating: true
+description: A single item to be monitored and measured per 9.1.
+display_name: MonitoringItem
+document_category: MonitoringItem
+weight: 20
+fields:
+- id: metric_name
+  description: Name of the metric.
+  display_name: metric_name
+- id: metric_description
+  description: Description of what is measured.
+  display_name: metric_description
+- id: measurement_method
+  description: Method used to measure the metric.
+  display_name: measurement_method
+- id: measurement_frequency
+  description: How often measurement is performed.
+  display_name: measurement_frequency
+- id: responsible_party
+  description: Party responsible for the activity.
+  display_name: responsible_party
+- id: analysis_frequency
+  description: How often analysis is performed.
+  display_name: analysis_frequency
+- id: analyst
+  description: Person performing analysis.
+  display_name: analyst
+- id: target_threshold
+  description: Target threshold value.
+  display_name: target_threshold
+- id: alert_threshold
+  description: Threshold triggering alerts.
+  display_name: alert_threshold
+- id: current_value
+  description: Current measured value.
+  display_name: current_value
+- id: trend
+  description: Current trend direction.
+  display_name: trend

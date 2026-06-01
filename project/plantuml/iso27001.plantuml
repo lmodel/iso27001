@@ -1,0 +1,883 @@
+@startuml
+skinparam nodesep 10
+hide circle
+hide empty members
+class "SoAEntry" [[{A single entry in the Statement of Applicability, documenting the applicability and implementation status of one control.}]] {
+    {field} is_applicable : boolean  
+    {field} inclusion_justification : string  
+    {field} exclusion_justification : string  
+    {field} implementation_status : ImplementationStatus  
+    {field} implementation_evidence : string  
+    {field} target_implementation_date : date  
+}
+class "Role" [[{An information security role with defined responsibilities and authorities per Clause 5.3.}]] {
+    {field} role_type : string  
+    {field} responsibilities : string  [0..*]
+    {field} authorities : string  [0..*]
+    {field} accountability : string  
+    {field} assigned_to : string  [0..*]
+    {field} delegation_rules : string  
+    {field} reporting_line : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "SecurityControl" [[{A security control from Annex A of ISO/IEC 27001:2022, derived from ISO/IEC 27002:2022. Represents a measure that modifies risk.}]] {
+    {field} control_id : AnnexAControlId  
+    {field} control_title : string  
+    {field} control_category : ControlCategory  
+    {field} control_text : string  
+    {field} implementation_guidance : string  
+    {field} applicable_threats : string  [0..*]
+    {field} applicable_assets : string  [0..*]
+    {field} control_owner : string  
+    {field} implementation_status : ImplementationStatus  
+    {field} implementation_date : date  
+    {field} effectiveness_rating : string  
+    {field} last_test_date : date  
+    {field} evidence_references : string  [0..*]
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "StatementOfApplicability" [[{The Statement of Applicability (SoA) recording which controls apply, their rationale, and current implementation state.}]] {
+    {field} total_controls : unsigned_short_type  
+    {field} implemented_count : unsigned_short_type  
+    {field} planned_count : unsigned_short_type  
+    {field} not_applicable_count : unsigned_short_type  
+    {field} last_review_date : date  
+    {field} document_type(i) : DocumentType  
+    {field} document_reference(i) : string  
+    {field} author(i) : string  
+    {field} owner(i) : string  
+    {field} approved_by(i) : string  
+    {field} approved_date(i) : date  
+    {field} effective_date(i) : date  
+    {field} review_date(i) : date  
+    {field} status(i) : string  
+    {field} classification(i) : string  
+    {field} retention_period(i) : duration_type  
+    {field} distribution_controls(i) : string  [0..*]
+    {field} storage_and_preservation(i) : string  
+    {field} change_control_method(i) : string  
+    {field} external_origin(i) : boolean  
+    {field} external_origin_source(i) : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+"SoAEntry" --> "0..1" "Role" : "responsible_role"
+"SoAEntry" --> "0..1" "SecurityControl" : "control_reference"
+"StatementOfApplicability" *--> "0..*" "SoAEntry" : "soa_entries"
+class "InformationSecurityManagementSystem" [[{Top-level container representing an organization's complete ISMS per ISO 27001. Aggregates all components required to support the full ISMS lifecycle.}]] {
+    {field} top_management : string  
+    {field} governing_body : string  
+    {field} leadership_commitment_evidence : string  [0..*]
+    {field} scope_statement : string  
+    {field} scope_boundaries : string  [0..*]
+    {field} scope_exclusions : string  [0..*]
+    {field} interfaces_and_dependencies : string  [0..*]
+    {field} processes_and_interactions : string  
+    {field} context_internal_issues : string  [0..*]
+    {field} context_external_issues : string  [0..*]
+    {field} risks_and_opportunities_actions : string  [0..*]
+    {field} planned_changes : string  [0..*]
+    {field} externally_provided_services : string  [0..*]
+    {field} certification_status : string  
+    {field} certification_body : string  
+    {field} certification_date : date  
+    {field} recertification_date : date  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+abstract "DocumentedInformation" [[{Abstract class for documented information per Clause 7.5. Captures metadata required for document control.}]] {
+    {field} document_type : DocumentType  
+    {field} document_reference : string  
+    {field} author : string  
+    {field} owner : string  
+    {field} approved_by : string  
+    {field} approved_date : date  
+    {field} effective_date : date  
+    {field} review_date : date  
+    {field} status : string  
+    {field} classification : string  
+    {field} retention_period : duration_type  
+    {field} distribution_controls : string  [0..*]
+    {field} storage_and_preservation : string  
+    {field} change_control_method : string  
+    {field} external_origin : boolean  
+    {field} external_origin_source : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+"InformationSecurityManagementSystem" --> "0..1" "StatementOfApplicability" : "statement_of_applicability"
+"DocumentedInformation" ^-- "StatementOfApplicability"
+class "TopicSpecificPolicy" [[{A policy addressing a specific information security topic, supporting the overarching information security policy.}]] {
+    {field} topic_area : string  
+    {field} target_audience : string  
+    {field} document_type(i) : DocumentType  
+    {field} document_reference(i) : string  
+    {field} author(i) : string  
+    {field} owner(i) : string  
+    {field} approved_by(i) : string  
+    {field} approved_date(i) : date  
+    {field} effective_date(i) : date  
+    {field} review_date(i) : date  
+    {field} status(i) : string  
+    {field} classification(i) : string  
+    {field} retention_period(i) : duration_type  
+    {field} distribution_controls(i) : string  [0..*]
+    {field} storage_and_preservation(i) : string  
+    {field} change_control_method(i) : string  
+    {field} external_origin(i) : boolean  
+    {field} external_origin_source(i) : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "Asset" [[{An information asset or associated asset requiring protection, per Annex A control 5.9.}]] {
+    {field} asset_type : string  
+    {field} asset_owner : string  
+    {field} asset_custodian : string  
+    {field} classification : string  
+    {field} location : string  
+    {field} criticality : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "AuditFinding" [[{A finding from an internal audit, including nonconformities, observations, and positive findings.}]] {
+    {field} finding_type : AuditFindingType  
+    {field} clause_reference : string  
+    {field} finding_description : string  
+    {field} objective_evidence : string  
+    {field} root_cause_analysis : string  
+    {field} risk_implication : string  
+    {field} recommended_action : string  
+    {field} auditee_response : string  
+    {field} closure_status : string  
+    {field} closure_date : date  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "RiskTreatmentPlan" [[{A risk treatment plan documenting planned actions to address identified risks through selected controls.}]] {
+    {field} plan_scope : string  
+    {field} treatment_actions : string  [0..*]
+    {field} resources_required : string  
+    {field} responsible_parties : string  [0..*]
+    {field} implementation_timeline : string  
+    {field} risk_owner_approval : string  
+    {field} approved_date : date  
+    {field} residual_risk_acceptance : string  
+    {field} implementation_status : ImplementationStatus  
+    {field} completion_date : date  
+    {field} document_type(i) : DocumentType  
+    {field} document_reference(i) : string  
+    {field} author(i) : string  
+    {field} owner(i) : string  
+    {field} approved_by(i) : string  
+    {field} effective_date(i) : date  
+    {field} review_date(i) : date  
+    {field} status(i) : string  
+    {field} classification(i) : string  
+    {field} retention_period(i) : duration_type  
+    {field} distribution_controls(i) : string  [0..*]
+    {field} storage_and_preservation(i) : string  
+    {field} change_control_method(i) : string  
+    {field} external_origin(i) : boolean  
+    {field} external_origin_source(i) : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "Risk" [[{An identified information security risk that may affect information security properties within the ISMS scope.}]] {
+    {field} risk_source : string  
+    {field} threat_description : string  
+    {field} vulnerability_description : string  
+    {field} affected_cia_properties : CIAProperty  [0..*]
+    {field} risk_owner : string  
+    {field} likelihood : LikelihoodRating  
+    {field} impact : ImpactRating  
+    {field} inherent_risk_level : RiskLevel  
+    {field} residual_risk_level : RiskLevel  
+    {field} risk_treatment_option : RiskTreatmentOption  
+    {field} treatment_priority : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+abstract "NamedEntity" [[{Abstract base class for all entities with an identifier, name, and description. Provides common identification and documentation slots.}]] {
+    {field} id : uriorcurie  
+    {field} name : string  
+    {field} description : string  
+    {field} created_date : date  
+    {field} modified_date : date  
+    {field} version : string  
+}
+"SecurityControl" --> "0..*" "SecurityControl" : "related_controls"
+"TopicSpecificPolicy" --> "0..*" "SecurityControl" : "applicable_controls"
+"Asset" --> "0..*" "SecurityControl" : "applicable_controls"
+"AuditFinding" --> "0..1" "SecurityControl" : "control_reference"
+"InformationSecurityManagementSystem" --> "0..*" "SecurityControl" : "controls"
+"RiskTreatmentPlan" --> "0..*" "SecurityControl" : "controls_to_implement"
+"Risk" --> "0..*" "SecurityControl" : "existing_controls"
+"NamedEntity" ^-- "SecurityControl"
+class "InformationSecurityPolicy" [[{The information security policy established by top management per Clause 5.2. Provides framework for setting objectives and demonstrates commitment.}]] {
+    {field} policy_statement : string  
+    {field} policy_objectives_framework : string  
+    {field} commitment_statements : string  [0..*]
+    {field} applicability_statement : string  
+    {field} communication_date : date  
+    {field} acknowledgment_required : boolean  
+    {field} last_policy_review_date : date  
+    {field} next_policy_review_date : date  
+    {field} integrated_management_systems : RelatedManagementSystem  [0..*]
+    {field} document_type(i) : DocumentType  
+    {field} document_reference(i) : string  
+    {field} author(i) : string  
+    {field} owner(i) : string  
+    {field} approved_by(i) : string  
+    {field} approved_date(i) : date  
+    {field} effective_date(i) : date  
+    {field} review_date(i) : date  
+    {field} status(i) : string  
+    {field} classification(i) : string  
+    {field} retention_period(i) : duration_type  
+    {field} distribution_controls(i) : string  [0..*]
+    {field} storage_and_preservation(i) : string  
+    {field} change_control_method(i) : string  
+    {field} external_origin(i) : boolean  
+    {field} external_origin_source(i) : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+"TopicSpecificPolicy" --> "0..1" "InformationSecurityPolicy" : "parent_policy"
+"InformationSecurityPolicy" --> "0..*" "TopicSpecificPolicy" : "related_topic_policies"
+"DocumentedInformation" ^-- "TopicSpecificPolicy"
+class "InformationSecurityObjective" [[{A measurable information security objective per Clause 6.2, established at relevant functions and levels of the organization.}]] {
+    {field} objective_statement : string  
+    {field} target_value : string  
+    {field} current_value : string  
+    {field} metric_definition : string  
+    {field} measurement_method : string  
+    {field} measurement_frequency : string  
+    {field} target_date : date  
+    {field} achievement_status : string  
+    {field} action_plan : string  
+    {field} objective_resources_required : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "OperationalProcedure" [[{A documented procedure for operational planning and control per Clause 8.1.}]] {
+    {field} procedure_scope : string  
+    {field} process_criteria : string  
+    {field} control_measures : string  [0..*]
+    {field} change_control_requirements : string  
+    {field} document_type(i) : DocumentType  
+    {field} document_reference(i) : string  
+    {field} author(i) : string  
+    {field} owner(i) : string  
+    {field} approved_by(i) : string  
+    {field} approved_date(i) : date  
+    {field} effective_date(i) : date  
+    {field} review_date(i) : date  
+    {field} status(i) : string  
+    {field} classification(i) : string  
+    {field} retention_period(i) : duration_type  
+    {field} distribution_controls(i) : string  [0..*]
+    {field} storage_and_preservation(i) : string  
+    {field} change_control_method(i) : string  
+    {field} external_origin(i) : boolean  
+    {field} external_origin_source(i) : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+"InformationSecurityObjective" --> "0..1" "Role" : "responsible_role"
+"OperationalProcedure" --> "0..*" "Role" : "responsible_roles"
+"InformationSecurityManagementSystem" --> "0..*" "Role" : "roles"
+"NamedEntity" ^-- "Role"
+"RiskTreatmentPlan" --> "0..*" "Risk" : "risks_addressed"
+"Risk" --> "0..1" "RiskTreatmentPlan" : "related_treatment_plan"
+"InformationSecurityManagementSystem" --> "0..*" "RiskTreatmentPlan" : "risk_treatment_plans"
+"DocumentedInformation" ^-- "RiskTreatmentPlan"
+class "RiskAssessment" [[{An instance of risk assessment performed per Clause 8.2, identifying and evaluating information security risks.}]] {
+    {field} assessment_scope : string  
+    {field} assessment_date : date  
+    {field} assessor : string  
+    {field} methodology_used : string  
+    {field} summary_findings : string  
+    {field} recommendations : string  [0..*]
+    {field} next_assessment_date : date  
+    {field} document_type(i) : DocumentType  
+    {field} document_reference(i) : string  
+    {field} author(i) : string  
+    {field} owner(i) : string  
+    {field} approved_by(i) : string  
+    {field} approved_date(i) : date  
+    {field} effective_date(i) : date  
+    {field} review_date(i) : date  
+    {field} status(i) : string  
+    {field} classification(i) : string  
+    {field} retention_period(i) : duration_type  
+    {field} distribution_controls(i) : string  [0..*]
+    {field} storage_and_preservation(i) : string  
+    {field} change_control_method(i) : string  
+    {field} external_origin(i) : boolean  
+    {field} external_origin_source(i) : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+"Risk" --> "0..*" "Asset" : "affected_assets"
+"InformationSecurityObjective" --> "0..*" "Risk" : "related_risks"
+"Asset" --> "0..*" "Risk" : "related_risks"
+"RiskAssessment" --> "0..*" "Risk" : "risks_identified"
+"NamedEntity" ^-- "Risk"
+"InformationSecurityManagementSystem" --> "0..*" "RiskAssessment" : "risk_assessments"
+"DocumentedInformation" ^-- "RiskAssessment"
+"InformationSecurityManagementSystem" --> "0..*" "OperationalProcedure" : "operational_procedures"
+"DocumentedInformation" ^-- "OperationalProcedure"
+class "Resource" [[{A resource provided for the ISMS per Clause 7.1, including personnel, infrastructure, technology, and budget.}]] {
+    {field} resource_type : string  
+    {field} quantity : string  
+    {field} allocation_date : date  
+    {field} allocated_to : string  
+    {field} cost : string  
+    {field} availability_status : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "Organization" [[{The organization establishing and operating the ISMS. Captures context needed for Clause 4.1 (understanding the organization).}]] {
+    {field} legal_name : string  
+    {field} trading_names : string  [0..*]
+    {field} organization_type : string  
+    {field} industry_sector : string  
+    {field} size_category : string  
+    {field} employee_count : positive_integer_type  
+    {field} geographic_locations : string  [0..*]
+    {field} regulatory_jurisdictions : string  [0..*]
+    {field} parent_organization : string  
+    {field} subsidiaries : string  [0..*]
+    {field} climate_change_relevant : boolean  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "Nonconformity" [[{A nonconformity identified per Clause 10.2, representing failure to fulfill a requirement.}]] {
+    {field} nonconformity_source : string  
+    {field} detection_date : date  
+    {field} detected_by : string  
+    {field} requirement_violated : string  
+    {field} nonconformity_description : string  
+    {field} immediate_actions : string  [0..*]
+    {field} consequences_addressed : string  
+    {field} root_cause : string  
+    {field} similar_nonconformities_check : string  
+    {field} status : string  
+    {field} closure_date : date  
+    {field} closure_evidence : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "InterestedParty" [[{A stakeholder whose needs and expectations are relevant to the ISMS per 4.2. Includes internal parties (employees, management) and external parties (customers, regulators, suppliers).}]] {
+    {field} party_type : string  
+    {field} relationship : string  
+    {field} requirements : string  [0..*]
+    {field} addressed_requirements : string  [0..*]
+    {field} climate_change_related_requirements : string  [0..*]
+    {field} communication_needs : string  
+    {field} contact_information : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "InformationSecurityIncident" [[{An information security incident per A.5.26, requiring response per documented procedures.}]] {
+    {field} incident_datetime : datetime  
+    {field} incident_category : SecurityIncidentCategory  
+    {field} severity : RiskLevel  
+    {field} affected_cia : CIAProperty  [0..*]
+    {field} incident_description : string  
+    {field} detection_method : string  
+    {field} response_actions : string  [0..*]
+    {field} containment_actions : string  [0..*]
+    {field} eradication_actions : string  [0..*]
+    {field} recovery_actions : string  [0..*]
+    {field} root_cause : string  
+    {field} lessons_learned : string  [0..*]
+    {field} evidence_collected : string  [0..*]
+    {field} notification_required : boolean  
+    {field} notifications_made : string  [0..*]
+    {field} closure_datetime : datetime  
+    {field} post_incident_review : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "InformationSecurityEvent" [[{An information security event per A.5.25, which may or may not be categorized as an incident.}]] {
+    {field} event_datetime : datetime  
+    {field} reporter : string  
+    {field} event_description : string  
+    {field} initial_assessment : string  
+    {field} categorized_as_incident : boolean  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "ImprovementOpportunity" [[{An opportunity for continual improvement per Clause 10.1, enhancing overall ISMS performance.}]] {
+    {field} improvement_source : string  
+    {field} identification_date : date  
+    {field} identified_by : string  
+    {field} improvement_description : string  
+    {field} expected_benefit : string  
+    {field} priority : string  
+    {field} implementation_plan : string  
+    {field} responsible_party : string  
+    {field} target_date : date  
+    {field} actual_completion_date : date  
+    {field} outcome_assessment : string  
+    {field} status : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "CorrectiveAction" [[{A corrective action per Clause 10.2 to address the root cause of a nonconformity and reduce the likelihood of recurrence.}]] {
+    {field} action_description : string  
+    {field} root_cause_addressed : string  
+    {field} responsible_party : string  
+    {field} target_completion_date : date  
+    {field} actual_completion_date : date  
+    {field} resources_required : string  
+    {field} effectiveness_criteria : string  
+    {field} effectiveness_review_date : date  
+    {field} effectiveness_verified : boolean  
+    {field} isms_changes_required : string  
+    {field} status : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+"NamedEntity" ^-- "Resource"
+"NamedEntity" ^-- "Organization"
+"NamedEntity" ^-- "Nonconformity"
+"NamedEntity" ^-- "InterestedParty"
+"NamedEntity" ^-- "InformationSecurityObjective"
+"NamedEntity" ^-- "InformationSecurityManagementSystem"
+"NamedEntity" ^-- "InformationSecurityIncident"
+"NamedEntity" ^-- "InformationSecurityEvent"
+"NamedEntity" ^-- "ImprovementOpportunity"
+"NamedEntity" ^-- "DocumentedInformation"
+"NamedEntity" ^-- "CorrectiveAction"
+"NamedEntity" ^-- "AuditFinding"
+"NamedEntity" ^-- "Asset"
+"InformationSecurityManagementSystem" --> "0..*" "Resource" : "resources"
+"InformationSecurityManagementSystem" --> "0..1" "Organization" : "organization"
+"Nonconformity" --> "0..*" "CorrectiveAction" : "linked_corrective_actions"
+"CorrectiveAction" --> "0..1" "Nonconformity" : "linked_nonconformity"
+"InformationSecurityManagementSystem" --> "0..*" "Nonconformity" : "nonconformities"
+class "MonitoringProgram" [[{The program for monitoring, measurement, analysis, and evaluation per Clause 9.1.}]] {
+    {field} document_type(i) : DocumentType  
+    {field} document_reference(i) : string  
+    {field} author(i) : string  
+    {field} owner(i) : string  
+    {field} approved_by(i) : string  
+    {field} approved_date(i) : date  
+    {field} effective_date(i) : date  
+    {field} review_date(i) : date  
+    {field} status(i) : string  
+    {field} classification(i) : string  
+    {field} retention_period(i) : duration_type  
+    {field} distribution_controls(i) : string  [0..*]
+    {field} storage_and_preservation(i) : string  
+    {field} change_control_method(i) : string  
+    {field} external_origin(i) : boolean  
+    {field} external_origin_source(i) : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "MonitoringItem" [[{A single item to be monitored and measured per 9.1.}]] {
+    {field} metric_name : string  
+    {field} metric_description : string  
+    {field} measurement_method : string  
+    {field} measurement_frequency : string  
+    {field} responsible_party : string  
+    {field} analysis_frequency : string  
+    {field} analyst : string  
+    {field} target_threshold : string  
+    {field} alert_threshold : string  
+    {field} current_value : string  
+    {field} trend : string  
+}
+"MonitoringProgram" *--> "0..*" "MonitoringItem" : "monitoring_items"
+"InformationSecurityManagementSystem" --> "0..1" "MonitoringProgram" : "monitoring_program"
+"DocumentedInformation" ^-- "MonitoringProgram"
+"InformationSecurityManagementSystem" --> "0..*" "InterestedParty" : "interested_parties"
+"InformationSecurityManagementSystem" --> "0..1" "InformationSecurityPolicy" : "information_security_policy"
+"DocumentedInformation" ^-- "InformationSecurityPolicy"
+"InformationSecurityManagementSystem" --> "0..*" "InformationSecurityObjective" : "objectives"
+class "ManagementReview" [[{A management review per Clause 9.3, conducted by top management to evaluate ongoing ISMS performance and fitness for purpose.}]] {
+    {field} review_date : date  
+    {field} attendees : string  [0..*]
+    {field} previous_actions_status : string  
+    {field} context_changes : string  
+    {field} interested_party_changes : string  
+    {field} interested_party_feedback : string  
+    {field} performance_trends : string  
+    {field} audit_results_summary : string  
+    {field} risk_assessment_results : string  
+    {field} risk_treatment_status : string  
+    {field} risks_and_opportunities_changes : string  
+    {field} improvement_opportunities : string  [0..*]
+    {field} decisions : string  [0..*]
+    {field} action_items : string  [0..*]
+    {field} next_review_date : date  
+    {field} document_type(i) : DocumentType  
+    {field} document_reference(i) : string  
+    {field} author(i) : string  
+    {field} owner(i) : string  
+    {field} approved_by(i) : string  
+    {field} approved_date(i) : date  
+    {field} effective_date(i) : date  
+    {field} status(i) : string  
+    {field} classification(i) : string  
+    {field} retention_period(i) : duration_type  
+    {field} distribution_controls(i) : string  [0..*]
+    {field} storage_and_preservation(i) : string  
+    {field} change_control_method(i) : string  
+    {field} external_origin(i) : boolean  
+    {field} external_origin_source(i) : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "InternalAudit" [[{An internal audit instance per Clause 9.2, assessing ISMS conformance and effectiveness.}]] {
+    {field} audit_reference : string  
+    {field} audit_type : AuditType  
+    {field} audit_scope : string  
+    {field} audit_criteria : string  [0..*]
+    {field} audit_objectives : string  [0..*]
+    {field} audit_period_start : date  
+    {field} audit_period_end : date  
+    {field} lead_auditor : string  
+    {field} audit_team : string  [0..*]
+    {field} auditee_representatives : string  [0..*]
+    {field} audit_plan : string  
+    {field} positive_observations : string  [0..*]
+    {field} audit_conclusion : string  
+    {field} report_date : date  
+    {field} report_distribution : string  [0..*]
+    {field} document_type(i) : DocumentType  
+    {field} document_reference(i) : string  
+    {field} author(i) : string  
+    {field} owner(i) : string  
+    {field} approved_by(i) : string  
+    {field} approved_date(i) : date  
+    {field} effective_date(i) : date  
+    {field} review_date(i) : date  
+    {field} status(i) : string  
+    {field} classification(i) : string  
+    {field} retention_period(i) : duration_type  
+    {field} distribution_controls(i) : string  [0..*]
+    {field} storage_and_preservation(i) : string  
+    {field} change_control_method(i) : string  
+    {field} external_origin(i) : boolean  
+    {field} external_origin_source(i) : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "CommunicationPlan" [[{Plan for internal and external communications relevant to the ISMS per Clause 7.4.}]] {
+    {field} document_type(i) : DocumentType  
+    {field} document_reference(i) : string  
+    {field} author(i) : string  
+    {field} owner(i) : string  
+    {field} approved_by(i) : string  
+    {field} approved_date(i) : date  
+    {field} effective_date(i) : date  
+    {field} review_date(i) : date  
+    {field} status(i) : string  
+    {field} classification(i) : string  
+    {field} retention_period(i) : duration_type  
+    {field} distribution_controls(i) : string  [0..*]
+    {field} storage_and_preservation(i) : string  
+    {field} change_control_method(i) : string  
+    {field} external_origin(i) : boolean  
+    {field} external_origin_source(i) : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "AwarenessProgram" [[{The awareness program ensuring personnel understand their information security responsibilities per Clause 7.3.}]] {
+    {field} awareness_topics : string  [0..*]
+    {field} delivery_methods : string  [0..*]
+    {field} target_audience : string  
+    {field} frequency : string  
+    {field} completion_tracking : string  
+    {field} effectiveness_measures : string  
+    {field} document_type(i) : DocumentType  
+    {field} document_reference(i) : string  
+    {field} author(i) : string  
+    {field} owner(i) : string  
+    {field} approved_by(i) : string  
+    {field} approved_date(i) : date  
+    {field} effective_date(i) : date  
+    {field} review_date(i) : date  
+    {field} status(i) : string  
+    {field} classification(i) : string  
+    {field} retention_period(i) : duration_type  
+    {field} distribution_controls(i) : string  [0..*]
+    {field} storage_and_preservation(i) : string  
+    {field} change_control_method(i) : string  
+    {field} external_origin(i) : boolean  
+    {field} external_origin_source(i) : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "CompetenceRecord" [[{Evidence of competence for personnel affecting information security performance per Clause 7.2 d).}]] {
+    {field} person_name : string  
+    {field} person_role : string  
+    {field} required_competencies : string  [0..*]
+    {field} education_records : string  [0..*]
+    {field} training_records : string  [0..*]
+    {field} experience_records : string  [0..*]
+    {field} competency_assessment_date : date  
+    {field} competency_gaps : string  [0..*]
+    {field} development_actions : string  [0..*]
+    {field} document_type(i) : DocumentType  
+    {field} document_reference(i) : string  
+    {field} author(i) : string  
+    {field} owner(i) : string  
+    {field} approved_by(i) : string  
+    {field} approved_date(i) : date  
+    {field} effective_date(i) : date  
+    {field} review_date(i) : date  
+    {field} status(i) : string  
+    {field} classification(i) : string  
+    {field} retention_period(i) : duration_type  
+    {field} distribution_controls(i) : string  [0..*]
+    {field} storage_and_preservation(i) : string  
+    {field} change_control_method(i) : string  
+    {field} external_origin(i) : boolean  
+    {field} external_origin_source(i) : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "RiskTreatmentProcess" [[{The documented risk treatment process per Clause 6.1.3, defining how treatment options are selected and controls determined.}]] {
+    {field} treatment_options_guidance : string  
+    {field} control_selection_criteria : string  
+    {field} annex_a_omission_verification : string  
+    {field} soa_template : string  
+    {field} approval_workflow : string  
+    {field} document_type(i) : DocumentType  
+    {field} document_reference(i) : string  
+    {field} author(i) : string  
+    {field} owner(i) : string  
+    {field} approved_by(i) : string  
+    {field} approved_date(i) : date  
+    {field} effective_date(i) : date  
+    {field} review_date(i) : date  
+    {field} status(i) : string  
+    {field} classification(i) : string  
+    {field} retention_period(i) : duration_type  
+    {field} distribution_controls(i) : string  [0..*]
+    {field} storage_and_preservation(i) : string  
+    {field} change_control_method(i) : string  
+    {field} external_origin(i) : boolean  
+    {field} external_origin_source(i) : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+class "RiskAssessmentProcess" [[{The documented risk assessment process per Clause 6.1.2, defining criteria and methodology for identifying, analyzing, and evaluating risks.}]] {
+    {field} risk_acceptance_criteria : string  
+    {field} assessment_criteria : string  
+    {field} assessment_methodology : string  
+    {field} likelihood_scale : string  
+    {field} impact_scale : string  
+    {field} risk_matrix : string  
+    {field} assessment_frequency : string  
+    {field} trigger_events : string  [0..*]
+    {field} document_type(i) : DocumentType  
+    {field} document_reference(i) : string  
+    {field} author(i) : string  
+    {field} owner(i) : string  
+    {field} approved_by(i) : string  
+    {field} approved_date(i) : date  
+    {field} effective_date(i) : date  
+    {field} review_date(i) : date  
+    {field} status(i) : string  
+    {field} classification(i) : string  
+    {field} retention_period(i) : duration_type  
+    {field} distribution_controls(i) : string  [0..*]
+    {field} storage_and_preservation(i) : string  
+    {field} change_control_method(i) : string  
+    {field} external_origin(i) : boolean  
+    {field} external_origin_source(i) : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+"InformationSecurityManagementSystem" --> "0..*" "ImprovementOpportunity" : "improvements"
+"InformationSecurityManagementSystem" --> "0..*" "CorrectiveAction" : "corrective_actions"
+"InformationSecurityManagementSystem" --> "0..*" "ManagementReview" : "management_reviews"
+"InformationSecurityManagementSystem" --> "0..*" "InternalAudit" : "internal_audits"
+"InformationSecurityManagementSystem" --> "0..*" "DocumentedInformation" : "documented_information_register"
+"InformationSecurityManagementSystem" --> "0..1" "CommunicationPlan" : "communication_plan"
+"InformationSecurityManagementSystem" --> "0..1" "AwarenessProgram" : "awareness_program"
+"InformationSecurityManagementSystem" --> "0..*" "CompetenceRecord" : "competence_records"
+"InformationSecurityManagementSystem" --> "0..1" "RiskTreatmentProcess" : "risk_treatment_process"
+"InformationSecurityManagementSystem" --> "0..1" "RiskAssessmentProcess" : "risk_assessment_process"
+"DocumentedInformation" ^-- "RiskTreatmentProcess"
+"DocumentedInformation" ^-- "RiskAssessmentProcess"
+"DocumentedInformation" ^-- "ManagementReview"
+class "AuditProgramme" [[{The internal audit programme per 9.2.2, planning audit activities over a defined period.}]] {
+    {field} programme_period : string  
+    {field} audit_frequency_rationale : string  
+    {field} resource_requirements : string  
+    {field} auditor_qualifications : string  
+    {field} programme_status : string  
+    {field} document_type(i) : DocumentType  
+    {field} document_reference(i) : string  
+    {field} author(i) : string  
+    {field} owner(i) : string  
+    {field} approved_by(i) : string  
+    {field} approved_date(i) : date  
+    {field} effective_date(i) : date  
+    {field} review_date(i) : date  
+    {field} status(i) : string  
+    {field} classification(i) : string  
+    {field} retention_period(i) : duration_type  
+    {field} distribution_controls(i) : string  [0..*]
+    {field} storage_and_preservation(i) : string  
+    {field} change_control_method(i) : string  
+    {field} external_origin(i) : boolean  
+    {field} external_origin_source(i) : string  
+    {field} id(i) : uriorcurie  
+    {field} name(i) : string  
+    {field} description(i) : string  
+    {field} created_date(i) : date  
+    {field} modified_date(i) : date  
+    {field} version(i) : string  
+}
+"InternalAudit" --> "0..*" "AuditFinding" : "findings"
+"AuditProgramme" --> "0..*" "InternalAudit" : "planned_audits"
+"DocumentedInformation" ^-- "InternalAudit"
+"InformationSecurityIncident" --> "0..*" "Asset" : "affected_assets"
+"InformationSecurityEvent" --> "0..1" "InformationSecurityIncident" : "linked_incident"
+"InformationSecurityEvent" --> "0..*" "Asset" : "affected_assets"
+"DocumentedInformation" ^-- "CompetenceRecord"
+"DocumentedInformation" ^-- "CommunicationPlan"
+"DocumentedInformation" ^-- "AwarenessProgram"
+"DocumentedInformation" ^-- "AuditProgramme"
+"AuditFinding" --> "0..1" "CorrectiveAction" : "linked_corrective_action"
+class "CommunicationItem" [[{A single communication requirement within the communication plan.}]] {
+    {field} subject : string  
+    {field} purpose : string  
+    {field} audience : string  
+    {field} frequency : string  
+    {field} method : string  
+    {field} responsible_party : string  
+    {field} records_required : boolean  
+}
+"CommunicationPlan" *--> "0..*" "CommunicationItem" : "communication_items"
+@enduml

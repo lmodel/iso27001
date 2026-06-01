@@ -1,6 +1,6 @@
 id: iso27001:control-password-manager
 name: Setup a password manager
-control_id: "8.5"
+control_id: a_8_5
 control_title: Setup a password manager
 control_category: technological
 control_text: >-

@@ -1,0 +1,62 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: ImprovementOpportunity
+schema_generating: true
+description: An opportunity for continual improvement per Clause 10.1, enhancing overall
+  ISMS performance.
+display_name: ImprovementOpportunity
+document_category: ImprovementOpportunity
+weight: 20
+fields:
+- id: id
+  description: Unique identifier for this entity instance.
+  display_name: NamedEntity_id
+- id: name
+  description: Human-readable name or title.
+  display_name: name
+- id: description
+  description: Detailed description of the entity.
+  display_name: description
+- id: created_date
+  description: Date when the entity was created.
+  display_name: created_date
+- id: modified_date
+  description: Date when the entity was last modified.
+  display_name: modified_date
+- id: version
+  description: Version identifier for the entity.
+  display_name: version
+- id: improvement_source
+  description: Source of the improvement opportunity.
+  display_name: improvement_source
+- id: identification_date
+  description: Date identified.
+  display_name: identification_date
+- id: identified_by
+  description: Person who identified it.
+  display_name: identified_by
+- id: improvement_description
+  description: Description of the improvement.
+  display_name: improvement_description
+- id: expected_benefit
+  description: Expected benefit from implementation.
+  display_name: expected_benefit
+- id: priority
+  description: Priority level.
+  display_name: priority
+- id: implementation_plan
+  description: Plan for implementing the improvement.
+  display_name: implementation_plan
+- id: responsible_party
+  description: Party responsible for the activity.
+  display_name: responsible_party
+- id: target_date
+  description: Target date for achieving the objective.
+  display_name: target_date
+- id: actual_completion_date
+  description: Actual date the action was completed.
+  display_name: actual_completion_date
+- id: outcome_assessment
+  description: Assessment of actual outcomes.
+  display_name: outcome_assessment
+- id: status
+  description: Current status of the document or entity.
+  display_name: status

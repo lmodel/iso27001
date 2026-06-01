@@ -4,15 +4,13 @@
 
 iso27001
 
+See [solution design](./docs/about.md), [value proposition](VALUE.md), and [NOTICE](./NOTICE).
+
 ## License And Standards Rights
 
 This repository's original code, schema structure, and documentation are licensed under Apache-2.0.
 
 ISO/IEC standards text is owned by ISO. This repository does not grant rights to reproduce or redistribute ISO text through the project license. If your workflow needs normative ISO/IEC text in distributed artifacts, obtain the appropriate license from ISO.
-
-## Value Proposition
-
-See [ISO27001 Schema Value proposition](VALUE.md).
 
 ## Documentation Website
 

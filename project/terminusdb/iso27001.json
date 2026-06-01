@@ -1,0 +1,4372 @@
+[
+  {
+    "@type": "@context",
+    "@documentation": {
+      "@title": "ISO 27001 / ISMS: LinkML Schema",
+      "@description": "A comprehensive LinkML schema modeling ISMS entities, workflows, and traceability links aligned to ISO/IEC 27001:2022 clause and Annex references. Designed for open data publication, automated validation, and integration with governance, risk, and compliance (GRC) systems.\nThis schema captures: - ISMS lifecycle (establish, implement, maintain, improve) - Risk assessment and treatment processes (Clause 6.1) - Annex A control catalog structures organized by domain - Audit, measurement, and continual improvement artifacts"
+    },
+    "@schema": "https://w3id.org/lmodel/iso27001#",
+    "@base": "https://w3id.org/lmodel/data/"
+  },
+  {
+    "@type": "Class",
+    "@id": "Asset",
+    "@documentation": {
+      "@comment": "An information asset or associated asset requiring protection, per Annex A control 5.9.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "asset_type": "Type of asset.",
+        "asset_owner": "Owner of the asset.",
+        "asset_custodian": "Custodian responsible for day-to-day protection.",
+        "classification": "Information classification level.",
+        "location": "Physical or logical location.",
+        "criticality": "Criticality rating of the asset.",
+        "related_risks": "Associated risks.",
+        "applicable_controls": "Controls related to this policy."
+      }
+    },
+    "@inherits": [
+      "NamedEntity"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "asset_type": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "asset_owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "asset_custodian": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "classification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "location": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "criticality": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "related_risks": {
+      "@type": "Set",
+      "@class": "Risk"
+    },
+    "applicable_controls": {
+      "@type": "Set",
+      "@class": "SecurityControl"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "AuditFinding",
+    "@documentation": {
+      "@comment": "A finding from an internal audit, including nonconformities, observations, and positive findings.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "finding_type": "Type of audit finding.",
+        "clause_reference": "Reference to standard clause.",
+        "control_reference": "Reference to the control (e.g., A.5.1).",
+        "finding_description": "Description of the finding.",
+        "objective_evidence": "Evidence supporting the finding.",
+        "root_cause_analysis": "Analysis of root cause.",
+        "risk_implication": "Risk implications of the finding.",
+        "recommended_action": "Recommended action to address finding.",
+        "auditee_response": "Response from the auditee.",
+        "linked_corrective_action": "Corrective action linked to this finding.",
+        "closure_status": "Status of finding closure.",
+        "closure_date": "Date the finding was closed."
+      }
+    },
+    "@inherits": [
+      "NamedEntity"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "finding_type": {
+      "@type": "Optional",
+      "@class": "AuditFindingType"
+    },
+    "clause_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "control_reference": {
+      "@type": "Optional",
+      "@class": "SecurityControl"
+    },
+    "finding_description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "objective_evidence": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "root_cause_analysis": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "risk_implication": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "recommended_action": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "auditee_response": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "linked_corrective_action": {
+      "@type": "Optional",
+      "@class": "CorrectiveAction"
+    },
+    "closure_status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "closure_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "AuditProgramme",
+    "@documentation": {
+      "@comment": "The internal audit programme per 9.2.2, planning audit activities over a defined period.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "document_type": "Classification of the documented information.",
+        "document_reference": "Unique reference number for document control.",
+        "author": "Person who created the document.",
+        "owner": "Person accountable for the document content and maintenance.",
+        "approved_by": "Person who approved the document.",
+        "approved_date": "Date when the document was approved.",
+        "effective_date": "Date when the document becomes effective.",
+        "review_date": "Date when the document is due for review.",
+        "status": "Current status of the document or entity.",
+        "classification": "Information classification level.",
+        "retention_period": "Duration for which the document is retained.",
+        "distribution_controls": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+        "storage_and_preservation": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+        "change_control_method": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+        "external_origin": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+        "external_origin_source": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+        "programme_period": "Period covered by the audit programme.",
+        "planned_audits": "Audits planned in this programme.",
+        "audit_frequency_rationale": "Rationale for audit frequency decisions.",
+        "resource_requirements": "Resource requirements for the programme.",
+        "auditor_qualifications": "Required qualifications for auditors.",
+        "programme_status": "Current status of the programme."
+      }
+    },
+    "@inherits": [
+      "DocumentedInformation"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "document_type": {
+      "@type": "Optional",
+      "@class": "DocumentType"
+    },
+    "document_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "author": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "effective_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "classification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "retention_period": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "distribution_controls": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "storage_and_preservation": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "change_control_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "external_origin": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "external_origin_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "programme_period": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "planned_audits": {
+      "@type": "Set",
+      "@class": "InternalAudit"
+    },
+    "audit_frequency_rationale": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "resource_requirements": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "auditor_qualifications": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "programme_status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "AwarenessProgram",
+    "@documentation": {
+      "@comment": "The awareness program ensuring personnel understand their information security responsibilities per Clause 7.3.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "document_type": "Classification of the documented information.",
+        "document_reference": "Unique reference number for document control.",
+        "author": "Person who created the document.",
+        "owner": "Person accountable for the document content and maintenance.",
+        "approved_by": "Person who approved the document.",
+        "approved_date": "Date when the document was approved.",
+        "effective_date": "Date when the document becomes effective.",
+        "review_date": "Date when the document is due for review.",
+        "status": "Current status of the document or entity.",
+        "classification": "Information classification level.",
+        "retention_period": "Duration for which the document is retained.",
+        "distribution_controls": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+        "storage_and_preservation": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+        "change_control_method": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+        "external_origin": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+        "external_origin_source": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+        "awareness_topics": "Topics covered in awareness program.",
+        "delivery_methods": "Methods used to deliver awareness content.",
+        "target_audience": "Intended audience for the policy or document.",
+        "frequency": "Frequency of the activity.",
+        "completion_tracking": "How completion is tracked.",
+        "effectiveness_measures": "How effectiveness is measured."
+      }
+    },
+    "@inherits": [
+      "DocumentedInformation"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "document_type": {
+      "@type": "Optional",
+      "@class": "DocumentType"
+    },
+    "document_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "author": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "effective_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "classification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "retention_period": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "distribution_controls": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "storage_and_preservation": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "change_control_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "external_origin": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "external_origin_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "awareness_topics": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "delivery_methods": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "target_audience": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "frequency": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "completion_tracking": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "effectiveness_measures": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "CommunicationItem",
+    "@documentation": {
+      "@comment": "A single communication requirement within the communication plan.",
+      "@properties": {
+        "subject": "Subject of the communication.",
+        "purpose": "Purpose of the communication.",
+        "audience": "Target audience.",
+        "frequency": "Frequency of the activity.",
+        "method": "Method of communication.",
+        "responsible_party": "Party responsible for the activity.",
+        "records_required": "Whether records are required."
+      }
+    },
+    "subject": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "purpose": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "audience": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "frequency": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "responsible_party": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "records_required": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "CommunicationPlan",
+    "@documentation": {
+      "@comment": "Plan for internal and external communications relevant to the ISMS per Clause 7.4.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "document_type": "Classification of the documented information.",
+        "document_reference": "Unique reference number for document control.",
+        "author": "Person who created the document.",
+        "owner": "Person accountable for the document content and maintenance.",
+        "approved_by": "Person who approved the document.",
+        "approved_date": "Date when the document was approved.",
+        "effective_date": "Date when the document becomes effective.",
+        "review_date": "Date when the document is due for review.",
+        "status": "Current status of the document or entity.",
+        "classification": "Information classification level.",
+        "retention_period": "Duration for which the document is retained.",
+        "distribution_controls": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+        "storage_and_preservation": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+        "change_control_method": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+        "external_origin": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+        "external_origin_source": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+        "communication_items": "Communication items in the plan."
+      }
+    },
+    "@inherits": [
+      "DocumentedInformation"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "document_type": {
+      "@type": "Optional",
+      "@class": "DocumentType"
+    },
+    "document_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "author": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "effective_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "classification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "retention_period": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "distribution_controls": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "storage_and_preservation": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "change_control_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "external_origin": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "external_origin_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "communication_items": {
+      "@type": "List",
+      "@class": "CommunicationItem"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "CompetenceRecord",
+    "@documentation": {
+      "@comment": "Evidence of competence for personnel affecting information security performance per Clause 7.2 d).",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "document_type": "Classification of the documented information.",
+        "document_reference": "Unique reference number for document control.",
+        "author": "Person who created the document.",
+        "owner": "Person accountable for the document content and maintenance.",
+        "approved_by": "Person who approved the document.",
+        "approved_date": "Date when the document was approved.",
+        "effective_date": "Date when the document becomes effective.",
+        "review_date": "Date when the document is due for review.",
+        "status": "Current status of the document or entity.",
+        "classification": "Information classification level.",
+        "retention_period": "Duration for which the document is retained.",
+        "distribution_controls": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+        "storage_and_preservation": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+        "change_control_method": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+        "external_origin": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+        "external_origin_source": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+        "person_name": "Name of the person.",
+        "person_role": "Role of the person.",
+        "required_competencies": "Competencies required for the role.",
+        "education_records": "Education qualifications.",
+        "training_records": "Training completed.",
+        "experience_records": "Relevant experience.",
+        "competency_assessment_date": "Date of last competency assessment.",
+        "competency_gaps": "Identified competency gaps.",
+        "development_actions": "Actions to address competency gaps."
+      }
+    },
+    "@inherits": [
+      "DocumentedInformation"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "document_type": {
+      "@type": "Optional",
+      "@class": "DocumentType"
+    },
+    "document_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "author": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "effective_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "classification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "retention_period": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "distribution_controls": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "storage_and_preservation": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "change_control_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "external_origin": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "external_origin_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "person_name": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "person_role": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "required_competencies": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "education_records": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "training_records": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "experience_records": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "competency_assessment_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "competency_gaps": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "development_actions": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "CorrectiveAction",
+    "@documentation": {
+      "@comment": "A corrective action per Clause 10.2 to address the root cause of a nonconformity and reduce the likelihood of recurrence.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "linked_nonconformity": "Nonconformity this action addresses.",
+        "action_description": "Description of the action.",
+        "root_cause_addressed": "Root cause this action addresses.",
+        "responsible_party": "Party responsible for the activity.",
+        "target_completion_date": "Target date for completing the action.",
+        "actual_completion_date": "Actual date the action was completed.",
+        "resources_required": "Resources required for implementation.",
+        "effectiveness_criteria": "Criteria for evaluating effectiveness.",
+        "effectiveness_review_date": "Date effectiveness was reviewed.",
+        "effectiveness_verified": "Whether effectiveness was verified.",
+        "isms_changes_required": "Changes to ISMS required as a result.",
+        "status": "Current status of the document or entity."
+      }
+    },
+    "@inherits": [
+      "NamedEntity"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "linked_nonconformity": {
+      "@type": "Optional",
+      "@class": "Nonconformity"
+    },
+    "action_description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "root_cause_addressed": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "responsible_party": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "target_completion_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "actual_completion_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "resources_required": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "effectiveness_criteria": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "effectiveness_review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "effectiveness_verified": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "isms_changes_required": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "DocumentedInformation",
+    "@documentation": {
+      "@comment": "Abstract class for documented information per Clause 7.5. Captures metadata required for document control.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "document_type": "Classification of the documented information.",
+        "document_reference": "Unique reference number for document control.",
+        "author": "Person who created the document.",
+        "owner": "Person accountable for the document content and maintenance.",
+        "approved_by": "Person who approved the document.",
+        "approved_date": "Date when the document was approved.",
+        "effective_date": "Date when the document becomes effective.",
+        "review_date": "Date when the document is due for review.",
+        "status": "Current status of the document or entity.",
+        "classification": "Information classification level.",
+        "retention_period": "Duration for which the document is retained.",
+        "distribution_controls": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+        "storage_and_preservation": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+        "change_control_method": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+        "external_origin": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+        "external_origin_source": "Source or provider of the externally originated documented information, per Clause 7.5.3."
+      }
+    },
+    "@inherits": [
+      "NamedEntity"
+    ],
+    "@abstract": [],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "document_type": {
+      "@type": "Optional",
+      "@class": "DocumentType"
+    },
+    "document_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "author": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "effective_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "classification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "retention_period": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "distribution_controls": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "storage_and_preservation": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "change_control_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "external_origin": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "external_origin_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "ImprovementOpportunity",
+    "@documentation": {
+      "@comment": "An opportunity for continual improvement per Clause 10.1, enhancing overall ISMS performance.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "improvement_source": "Source of the improvement opportunity.",
+        "identification_date": "Date identified.",
+        "identified_by": "Person who identified it.",
+        "improvement_description": "Description of the improvement.",
+        "expected_benefit": "Expected benefit from implementation.",
+        "priority": "Priority level.",
+        "implementation_plan": "Plan for implementing the improvement.",
+        "responsible_party": "Party responsible for the activity.",
+        "target_date": "Target date for achieving the objective.",
+        "actual_completion_date": "Actual date the action was completed.",
+        "outcome_assessment": "Assessment of actual outcomes.",
+        "status": "Current status of the document or entity."
+      }
+    },
+    "@inherits": [
+      "NamedEntity"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "improvement_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "identification_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "identified_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "improvement_description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "expected_benefit": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "priority": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "implementation_plan": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "responsible_party": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "target_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "actual_completion_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "outcome_assessment": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "InformationSecurityEvent",
+    "@documentation": {
+      "@comment": "An information security event per A.5.25, which may or may not be categorized as an incident.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "event_datetime": "Date and time of the event.",
+        "reporter": "Person who reported the event.",
+        "event_description": "Description of the event.",
+        "affected_assets": "Assets affected by this risk or incident.",
+        "initial_assessment": "Initial assessment of the event.",
+        "categorized_as_incident": "Whether the event was categorized as an incident.",
+        "linked_incident": "Linked incident if categorized."
+      }
+    },
+    "@inherits": [
+      "NamedEntity"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "event_datetime": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "reporter": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "event_description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "affected_assets": {
+      "@type": "Set",
+      "@class": "Asset"
+    },
+    "initial_assessment": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "categorized_as_incident": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "linked_incident": {
+      "@type": "Optional",
+      "@class": "InformationSecurityIncident"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "InformationSecurityIncident",
+    "@documentation": {
+      "@comment": "An information security incident per A.5.26, requiring response per documented procedures.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "incident_datetime": "Date and time the incident occurred or was detected.",
+        "incident_category": "Category of incident.",
+        "severity": "Severity rating of the incident.",
+        "affected_assets": "Assets affected by this risk or incident.",
+        "affected_cia": "CIA properties affected by the incident.",
+        "incident_description": "Description of the incident.",
+        "detection_method": "How the incident was detected.",
+        "response_actions": "Actions taken in response.",
+        "containment_actions": "Actions to contain the incident.",
+        "eradication_actions": "Actions to eradicate the cause.",
+        "recovery_actions": "Actions to recover normal operations.",
+        "root_cause": "Root cause of the nonconformity.",
+        "lessons_learned": "Lessons learned from the incident.",
+        "evidence_collected": "Evidence collected.",
+        "notification_required": "Whether notification to authorities/parties was required.",
+        "notifications_made": "Notifications that were made.",
+        "closure_datetime": "Date and time of incident closure.",
+        "post_incident_review": "Post-incident review findings."
+      }
+    },
+    "@inherits": [
+      "NamedEntity"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "incident_datetime": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "incident_category": {
+      "@type": "Optional",
+      "@class": "SecurityIncidentCategory"
+    },
+    "severity": {
+      "@type": "Optional",
+      "@class": "RiskLevel"
+    },
+    "affected_assets": {
+      "@type": "Set",
+      "@class": "Asset"
+    },
+    "affected_cia": {
+      "@type": "Set",
+      "@class": "CIAProperty"
+    },
+    "incident_description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "detection_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "response_actions": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "containment_actions": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "eradication_actions": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "recovery_actions": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "root_cause": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "lessons_learned": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "evidence_collected": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "notification_required": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "notifications_made": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "closure_datetime": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "post_incident_review": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "InformationSecurityManagementSystem",
+    "@documentation": {
+      "@comment": "Top-level container representing an organization's complete ISMS per ISO 27001. Aggregates all components required to support the full ISMS lifecycle.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "organization": "Reference to the organization operating the ISMS.",
+        "top_management": "The person or group of people who direct and control the organization at the highest level, accountable for the ISMS per Clause 5.1.",
+        "governing_body": "The governing body to which top management reports, where applicable (e.g., board of directors). Referenced in ISO/IEC 27001:2022 Clause 5.1 NOTE.",
+        "leadership_commitment_evidence": "Evidence of leadership and commitment with respect to the ISMS as required by Clause 5.1 a-h).",
+        "scope_statement": "Documented statement of ISMS scope per 4.3.",
+        "scope_boundaries": "Defined boundaries of the ISMS scope.",
+        "scope_exclusions": "Any exclusions from scope with justification.",
+        "interfaces_and_dependencies": "Interfaces and dependencies between activities performed by the organization and those performed by other organizations, considered when determining the ISMS scope per Clause 4.3 c).",
+        "processes_and_interactions": "Description of the processes needed for the ISMS and their interactions, per Clause 4.4.",
+        "context_internal_issues": "Internal issues relevant to ISMS per 4.1.",
+        "context_external_issues": "External issues relevant to ISMS per 4.1.",
+        "interested_parties": "Stakeholders relevant to the ISMS.",
+        "information_security_policy": "Reference to the information security policy.",
+        "objectives": "Information security objectives.",
+        "risks_and_opportunities_actions": "Actions to address risks and opportunities determined per Clause 6.1.1, including how they are integrated into ISMS processes and how their effectiveness is evaluated.",
+        "planned_changes": "Changes to the ISMS planned and controlled per Clause 6.3 and 8.1 (planning of changes; control of planned changes).",
+        "externally_provided_services": "Externally provided processes, products or services relevant to the ISMS that are controlled per Clause 8.1.",
+        "risk_assessment_process": "Reference to the risk assessment process.",
+        "risk_treatment_process": "Reference to the risk treatment process.",
+        "statement_of_applicability": "Reference to the Statement of Applicability.",
+        "controls": "Security controls applied in the ISMS.",
+        "roles": "Information security roles defined in the ISMS.",
+        "resources": "Resources provided for the ISMS.",
+        "competence_records": "Competence records for personnel.",
+        "awareness_program": "Reference to the awareness program.",
+        "communication_plan": "Reference to the communication plan.",
+        "documented_information_register": "Register of documented information.",
+        "operational_procedures": "Operational procedures.",
+        "risk_assessments": "Risk assessment instances.",
+        "risk_treatment_plans": "Risk treatment plans.",
+        "monitoring_program": "Reference to the monitoring program.",
+        "internal_audits": "Internal audit instances.",
+        "management_reviews": "Management review instances.",
+        "nonconformities": "Nonconformities identified.",
+        "corrective_actions": "Corrective actions.",
+        "improvements": "Improvement opportunities tracked.",
+        "certification_status": "Current certification status.",
+        "certification_body": "Accredited certification body.",
+        "certification_date": "Date certification was achieved.",
+        "recertification_date": "Date recertification is due."
+      }
+    },
+    "@inherits": [
+      "NamedEntity"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "organization": {
+      "@type": "Optional",
+      "@class": "Organization"
+    },
+    "top_management": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "governing_body": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "leadership_commitment_evidence": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "scope_statement": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "scope_boundaries": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "scope_exclusions": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "interfaces_and_dependencies": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "processes_and_interactions": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "context_internal_issues": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "context_external_issues": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "interested_parties": {
+      "@type": "Set",
+      "@class": "InterestedParty"
+    },
+    "information_security_policy": {
+      "@type": "Optional",
+      "@class": "InformationSecurityPolicy"
+    },
+    "objectives": {
+      "@type": "Set",
+      "@class": "InformationSecurityObjective"
+    },
+    "risks_and_opportunities_actions": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "planned_changes": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "externally_provided_services": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "risk_assessment_process": {
+      "@type": "Optional",
+      "@class": "RiskAssessmentProcess"
+    },
+    "risk_treatment_process": {
+      "@type": "Optional",
+      "@class": "RiskTreatmentProcess"
+    },
+    "statement_of_applicability": {
+      "@type": "Optional",
+      "@class": "StatementOfApplicability"
+    },
+    "controls": {
+      "@type": "Set",
+      "@class": "SecurityControl"
+    },
+    "roles": {
+      "@type": "Set",
+      "@class": "Role"
+    },
+    "resources": {
+      "@type": "Set",
+      "@class": "Resource"
+    },
+    "competence_records": {
+      "@type": "Set",
+      "@class": "CompetenceRecord"
+    },
+    "awareness_program": {
+      "@type": "Optional",
+      "@class": "AwarenessProgram"
+    },
+    "communication_plan": {
+      "@type": "Optional",
+      "@class": "CommunicationPlan"
+    },
+    "documented_information_register": {
+      "@type": "Set",
+      "@class": "DocumentedInformation"
+    },
+    "operational_procedures": {
+      "@type": "Set",
+      "@class": "OperationalProcedure"
+    },
+    "risk_assessments": {
+      "@type": "Set",
+      "@class": "RiskAssessment"
+    },
+    "risk_treatment_plans": {
+      "@type": "Set",
+      "@class": "RiskTreatmentPlan"
+    },
+    "monitoring_program": {
+      "@type": "Optional",
+      "@class": "MonitoringProgram"
+    },
+    "internal_audits": {
+      "@type": "Set",
+      "@class": "InternalAudit"
+    },
+    "management_reviews": {
+      "@type": "Set",
+      "@class": "ManagementReview"
+    },
+    "nonconformities": {
+      "@type": "Set",
+      "@class": "Nonconformity"
+    },
+    "corrective_actions": {
+      "@type": "Set",
+      "@class": "CorrectiveAction"
+    },
+    "improvements": {
+      "@type": "Set",
+      "@class": "ImprovementOpportunity"
+    },
+    "certification_status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "certification_body": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "certification_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "recertification_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "InformationSecurityObjective",
+    "@documentation": {
+      "@comment": "A measurable information security objective per Clause 6.2, established at relevant functions and levels of the organization.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "objective_statement": "Clear statement of the objective.",
+        "target_value": "Target value for the objective metric.",
+        "current_value": "Current measured value.",
+        "metric_definition": "Definition of how the objective is measured.",
+        "measurement_method": "Method used to measure the metric.",
+        "measurement_frequency": "How often measurement is performed.",
+        "responsible_role": "Role responsible for the objective or control.",
+        "target_date": "Target date for achieving the objective.",
+        "achievement_status": "Current status of objective achievement.",
+        "related_risks": "Associated risks.",
+        "related_controls": "Other controls related to this one.",
+        "action_plan": "Plan for achieving the objective.",
+        "objective_resources_required": "Resources required to achieve the information security objective."
+      }
+    },
+    "@inherits": [
+      "NamedEntity"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "objective_statement": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "target_value": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "current_value": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "metric_definition": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "measurement_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "measurement_frequency": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "responsible_role": {
+      "@type": "Optional",
+      "@class": "Role"
+    },
+    "target_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "achievement_status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "related_risks": {
+      "@type": "Set",
+      "@class": "Risk"
+    },
+    "related_controls": {
+      "@type": "Set",
+      "@class": "SecurityControl"
+    },
+    "action_plan": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "objective_resources_required": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "InformationSecurityPolicy",
+    "@documentation": {
+      "@comment": "The information security policy established by top management per Clause 5.2. Provides framework for setting objectives and demonstrates commitment.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "document_type": "Classification of the documented information.",
+        "document_reference": "Unique reference number for document control.",
+        "author": "Person who created the document.",
+        "owner": "Person accountable for the document content and maintenance.",
+        "approved_by": "Person who approved the document.",
+        "approved_date": "Date when the document was approved.",
+        "effective_date": "Date when the document becomes effective.",
+        "review_date": "Date when the document is due for review.",
+        "status": "Current status of the document or entity.",
+        "classification": "Information classification level.",
+        "retention_period": "Duration for which the document is retained.",
+        "distribution_controls": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+        "storage_and_preservation": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+        "change_control_method": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+        "external_origin": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+        "external_origin_source": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+        "policy_statement": "The core policy statement text.",
+        "policy_objectives_framework": "Framework for setting information security objectives.",
+        "commitment_statements": "Statements of commitment included in the policy.",
+        "applicability_statement": "Statement of policy applicability.",
+        "communication_date": "Date when the policy was communicated.",
+        "acknowledgment_required": "Whether acknowledgment is required from personnel.",
+        "last_policy_review_date": "Date of the most recent information security policy review.",
+        "next_policy_review_date": "Planned date of the next information security policy review.",
+        "related_topic_policies": "Topic-specific policies supporting this policy.",
+        "integrated_management_systems": "Other ISO/IEC management system standards with which the ISMS is integrated or aligned (per the harmonized structure of Annex SL)."
+      }
+    },
+    "@inherits": [
+      "DocumentedInformation"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "document_type": {
+      "@type": "Optional",
+      "@class": "DocumentType"
+    },
+    "document_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "author": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "effective_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "classification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "retention_period": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "distribution_controls": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "storage_and_preservation": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "change_control_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "external_origin": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "external_origin_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "policy_statement": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "policy_objectives_framework": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "commitment_statements": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "applicability_statement": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "communication_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "acknowledgment_required": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "last_policy_review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "next_policy_review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "related_topic_policies": {
+      "@type": "Set",
+      "@class": "TopicSpecificPolicy"
+    },
+    "integrated_management_systems": {
+      "@type": "Set",
+      "@class": "RelatedManagementSystem"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "InterestedParty",
+    "@documentation": {
+      "@comment": "A stakeholder whose needs and expectations are relevant to the ISMS per 4.2. Includes internal parties (employees, management) and external parties (customers, regulators, suppliers).",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "party_type": "Category of interested party.",
+        "relationship": "Nature of the relationship with the organization.",
+        "requirements": "Requirements of the interested party.",
+        "addressed_requirements": "Requirements of the interested party that the organization has determined will be addressed through the ISMS, per Clause 4.2 c).",
+        "climate_change_related_requirements": "Climate-change-related requirements of the interested party, per ISO/IEC 27001:2022 Clause 4.2 NOTE 2 as added by Amd. 1:2024.",
+        "communication_needs": "Communication requirements for this party.",
+        "contact_information": "Contact details for the party."
+      }
+    },
+    "@inherits": [
+      "NamedEntity"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "party_type": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "relationship": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "requirements": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "addressed_requirements": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "climate_change_related_requirements": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "communication_needs": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "contact_information": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "InternalAudit",
+    "@documentation": {
+      "@comment": "An internal audit instance per Clause 9.2, assessing ISMS conformance and effectiveness.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "document_type": "Classification of the documented information.",
+        "document_reference": "Unique reference number for document control.",
+        "author": "Person who created the document.",
+        "owner": "Person accountable for the document content and maintenance.",
+        "approved_by": "Person who approved the document.",
+        "approved_date": "Date when the document was approved.",
+        "effective_date": "Date when the document becomes effective.",
+        "review_date": "Date when the document is due for review.",
+        "status": "Current status of the document or entity.",
+        "classification": "Information classification level.",
+        "retention_period": "Duration for which the document is retained.",
+        "distribution_controls": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+        "storage_and_preservation": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+        "change_control_method": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+        "external_origin": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+        "external_origin_source": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+        "audit_reference": "Reference identifier for the audit.",
+        "audit_type": "Type of audit per ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1.",
+        "audit_scope": "Scope of the audit.",
+        "audit_criteria": "Criteria against which audit is conducted.",
+        "audit_objectives": "Objectives of the audit.",
+        "audit_period_start": "Start date of audit period.",
+        "audit_period_end": "End date of audit period.",
+        "lead_auditor": "Lead auditor for the audit.",
+        "audit_team": "Audit team members.",
+        "auditee_representatives": "Representatives from audited areas.",
+        "audit_plan": "Audit plan document reference.",
+        "findings": "Audit findings.",
+        "positive_observations": "Positive observations noted.",
+        "audit_conclusion": "Overall audit conclusion.",
+        "report_date": "Date the report was issued.",
+        "report_distribution": "Distribution list for the report."
+      }
+    },
+    "@inherits": [
+      "DocumentedInformation"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "document_type": {
+      "@type": "Optional",
+      "@class": "DocumentType"
+    },
+    "document_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "author": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "effective_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "classification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "retention_period": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "distribution_controls": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "storage_and_preservation": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "change_control_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "external_origin": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "external_origin_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "audit_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "audit_type": {
+      "@type": "Optional",
+      "@class": "AuditType"
+    },
+    "audit_scope": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "audit_criteria": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "audit_objectives": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "audit_period_start": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "audit_period_end": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "lead_auditor": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "audit_team": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "auditee_representatives": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "audit_plan": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "findings": {
+      "@type": "Set",
+      "@class": "AuditFinding"
+    },
+    "positive_observations": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "audit_conclusion": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "report_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "report_distribution": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "ManagementReview",
+    "@documentation": {
+      "@comment": "A management review per Clause 9.3, conducted by top management to evaluate ongoing ISMS performance and fitness for purpose.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "document_type": "Classification of the documented information.",
+        "document_reference": "Unique reference number for document control.",
+        "author": "Person who created the document.",
+        "owner": "Person accountable for the document content and maintenance.",
+        "approved_by": "Person who approved the document.",
+        "approved_date": "Date when the document was approved.",
+        "effective_date": "Date when the document becomes effective.",
+        "status": "Current status of the document or entity.",
+        "classification": "Information classification level.",
+        "retention_period": "Duration for which the document is retained.",
+        "distribution_controls": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+        "storage_and_preservation": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+        "change_control_method": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+        "external_origin": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+        "external_origin_source": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+        "review_date": "Date when the management review was conducted.",
+        "attendees": "Attendees of the review.",
+        "previous_actions_status": "Status of actions from previous reviews.",
+        "context_changes": "Changes in context since last review.",
+        "interested_party_changes": "Changes in interested party requirements.",
+        "interested_party_feedback": "Feedback from interested parties considered in the management review.",
+        "performance_trends": "Trends in information security performance.",
+        "audit_results_summary": "Summary of audit results.",
+        "risk_assessment_results": "Results of risk assessment.",
+        "risk_treatment_status": "Status of the risk treatment plan considered in the management review.",
+        "risks_and_opportunities_changes": "Changes in risks and opportunities considered in the management review, per Clause 9.3.2 f).",
+        "improvement_opportunities": "Opportunities for improvement identified.",
+        "decisions": "Decisions made in the review.",
+        "action_items": "Action items from the review.",
+        "next_review_date": "Planned date for next review."
+      }
+    },
+    "@inherits": [
+      "DocumentedInformation"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "document_type": {
+      "@type": "Optional",
+      "@class": "DocumentType"
+    },
+    "document_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "author": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "effective_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "classification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "retention_period": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "distribution_controls": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "storage_and_preservation": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "change_control_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "external_origin": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "external_origin_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "attendees": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "previous_actions_status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "context_changes": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "interested_party_changes": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "interested_party_feedback": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "performance_trends": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "audit_results_summary": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "risk_assessment_results": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "risk_treatment_status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "risks_and_opportunities_changes": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "improvement_opportunities": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "decisions": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "action_items": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "next_review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "MonitoringItem",
+    "@documentation": {
+      "@comment": "A single item to be monitored and measured per 9.1.",
+      "@properties": {
+        "metric_name": "Name of the metric.",
+        "metric_description": "Description of what is measured.",
+        "measurement_method": "Method used to measure the metric.",
+        "measurement_frequency": "How often measurement is performed.",
+        "responsible_party": "Party responsible for the activity.",
+        "analysis_frequency": "How often analysis is performed.",
+        "analyst": "Person performing analysis.",
+        "target_threshold": "Target threshold value.",
+        "alert_threshold": "Threshold triggering alerts.",
+        "current_value": "Current measured value.",
+        "trend": "Current trend direction."
+      }
+    },
+    "metric_name": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "metric_description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "measurement_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "measurement_frequency": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "responsible_party": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "analysis_frequency": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "analyst": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "target_threshold": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "alert_threshold": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "current_value": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "trend": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "MonitoringProgram",
+    "@documentation": {
+      "@comment": "The program for monitoring, measurement, analysis, and evaluation per Clause 9.1.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "document_type": "Classification of the documented information.",
+        "document_reference": "Unique reference number for document control.",
+        "author": "Person who created the document.",
+        "owner": "Person accountable for the document content and maintenance.",
+        "approved_by": "Person who approved the document.",
+        "approved_date": "Date when the document was approved.",
+        "effective_date": "Date when the document becomes effective.",
+        "review_date": "Date when the document is due for review.",
+        "status": "Current status of the document or entity.",
+        "classification": "Information classification level.",
+        "retention_period": "Duration for which the document is retained.",
+        "distribution_controls": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+        "storage_and_preservation": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+        "change_control_method": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+        "external_origin": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+        "external_origin_source": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+        "monitoring_items": "Items to be monitored."
+      }
+    },
+    "@inherits": [
+      "DocumentedInformation"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "document_type": {
+      "@type": "Optional",
+      "@class": "DocumentType"
+    },
+    "document_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "author": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "effective_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "classification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "retention_period": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "distribution_controls": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "storage_and_preservation": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "change_control_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "external_origin": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "external_origin_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "monitoring_items": {
+      "@type": "List",
+      "@class": "MonitoringItem"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "NamedEntity",
+    "@documentation": {
+      "@comment": "Abstract base class for all entities with an identifier, name, and description. Provides common identification and documentation slots.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity."
+      }
+    },
+    "@abstract": [],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "Nonconformity",
+    "@documentation": {
+      "@comment": "A nonconformity identified per Clause 10.2, representing failure to fulfill a requirement.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "nonconformity_source": "Source of nonconformity detection.",
+        "detection_date": "Date the nonconformity was detected.",
+        "detected_by": "Person or process that detected the nonconformity.",
+        "requirement_violated": "Requirement that was not fulfilled.",
+        "nonconformity_description": "Description of the nonconformity.",
+        "immediate_actions": "Immediate actions taken to control/correct.",
+        "consequences_addressed": "How consequences were dealt with.",
+        "root_cause": "Root cause of the nonconformity.",
+        "similar_nonconformities_check": "Check for similar nonconformities elsewhere.",
+        "linked_corrective_actions": "Corrective actions addressing this nonconformity.",
+        "status": "Current status of the document or entity.",
+        "closure_date": "Date the finding was closed.",
+        "closure_evidence": "Evidence supporting closure."
+      }
+    },
+    "@inherits": [
+      "NamedEntity"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "nonconformity_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "detection_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "detected_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "requirement_violated": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "nonconformity_description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "immediate_actions": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "consequences_addressed": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "root_cause": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "similar_nonconformities_check": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "linked_corrective_actions": {
+      "@type": "Set",
+      "@class": "CorrectiveAction"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "closure_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "closure_evidence": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "OperationalProcedure",
+    "@documentation": {
+      "@comment": "A documented procedure for operational planning and control per Clause 8.1.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "document_type": "Classification of the documented information.",
+        "document_reference": "Unique reference number for document control.",
+        "author": "Person who created the document.",
+        "owner": "Person accountable for the document content and maintenance.",
+        "approved_by": "Person who approved the document.",
+        "approved_date": "Date when the document was approved.",
+        "effective_date": "Date when the document becomes effective.",
+        "review_date": "Date when the document is due for review.",
+        "status": "Current status of the document or entity.",
+        "classification": "Information classification level.",
+        "retention_period": "Duration for which the document is retained.",
+        "distribution_controls": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+        "storage_and_preservation": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+        "change_control_method": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+        "external_origin": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+        "external_origin_source": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+        "procedure_scope": "Scope of the procedure.",
+        "process_criteria": "Criteria established for the process.",
+        "control_measures": "Control measures implemented.",
+        "responsible_roles": "Roles responsible for the procedure.",
+        "related_controls": "Other controls related to this one.",
+        "change_control_requirements": "Requirements for controlling changes."
+      }
+    },
+    "@inherits": [
+      "DocumentedInformation"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "document_type": {
+      "@type": "Optional",
+      "@class": "DocumentType"
+    },
+    "document_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "author": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "effective_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "classification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "retention_period": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "distribution_controls": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "storage_and_preservation": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "change_control_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "external_origin": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "external_origin_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "procedure_scope": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "process_criteria": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "control_measures": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "responsible_roles": {
+      "@type": "Set",
+      "@class": "Role"
+    },
+    "related_controls": {
+      "@type": "Set",
+      "@class": "SecurityControl"
+    },
+    "change_control_requirements": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "Organization",
+    "@documentation": {
+      "@comment": "The organization establishing and operating the ISMS. Captures context needed for Clause 4.1 (understanding the organization).",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "legal_name": "Legal registered name of the organization.",
+        "trading_names": "Names under which the organization conducts business.",
+        "organization_type": "Type of organization (e.g., corporation, government, nonprofit).",
+        "industry_sector": "Primary industry sector of the organization.",
+        "size_category": "Organization size classification.",
+        "employee_count": "Approximate number of employees.",
+        "geographic_locations": "Countries or regions where the organization operates.",
+        "regulatory_jurisdictions": "Jurisdictions whose regulations apply to the organization.",
+        "parent_organization": "Parent organization if applicable.",
+        "subsidiaries": "Subsidiary organizations if applicable.",
+        "climate_change_relevant": "Whether climate change has been determined to be a relevant issue for the organization's context, per Clause 4.1 as amended by Amd. 1:2024."
+      }
+    },
+    "@inherits": [
+      "NamedEntity"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "legal_name": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "trading_names": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "organization_type": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "industry_sector": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "size_category": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "employee_count": {
+      "@type": "Optional",
+      "@class": "xsd:positiveInteger"
+    },
+    "geographic_locations": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "regulatory_jurisdictions": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "parent_organization": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "subsidiaries": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "climate_change_relevant": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "Resource",
+    "@documentation": {
+      "@comment": "A resource provided for the ISMS per Clause 7.1, including personnel, infrastructure, technology, and budget.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "resource_type": "Type of resource.",
+        "quantity": "Quantity of the resource.",
+        "allocation_date": "Date the resource was allocated.",
+        "allocated_to": "What the resource is allocated to.",
+        "cost": "Cost of the resource.",
+        "availability_status": "Current availability of the resource."
+      }
+    },
+    "@inherits": [
+      "NamedEntity"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "resource_type": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "quantity": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "allocation_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "allocated_to": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "cost": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "availability_status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "Risk",
+    "@documentation": {
+      "@comment": "An identified information security risk that may affect information security properties within the ISMS scope.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "risk_source": "Source or origin of the risk.",
+        "threat_description": "Description of the threat exploiting the vulnerability.",
+        "vulnerability_description": "Description of the vulnerability that could be exploited.",
+        "affected_assets": "Assets affected by this risk or incident.",
+        "affected_cia_properties": "Which CIA properties are affected (confidentiality, integrity, availability).",
+        "risk_owner": "Person accountable for managing the risk.",
+        "likelihood": "Assessed likelihood of risk occurrence.",
+        "impact": "Assessed impact if risk materializes.",
+        "inherent_risk_level": "Risk level before controls are applied.",
+        "existing_controls": "Controls currently in place affecting this risk.",
+        "residual_risk_level": "Risk level after controls are applied.",
+        "risk_treatment_option": "Selected treatment option for the risk.",
+        "treatment_priority": "Priority for treating this risk.",
+        "related_treatment_plan": "Risk treatment plan addressing this risk."
+      }
+    },
+    "@inherits": [
+      "NamedEntity"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "risk_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "threat_description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "vulnerability_description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "affected_assets": {
+      "@type": "Set",
+      "@class": "Asset"
+    },
+    "affected_cia_properties": {
+      "@type": "Set",
+      "@class": "CIAProperty"
+    },
+    "risk_owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "likelihood": {
+      "@type": "Optional",
+      "@class": "LikelihoodRating"
+    },
+    "impact": {
+      "@type": "Optional",
+      "@class": "ImpactRating"
+    },
+    "inherent_risk_level": {
+      "@type": "Optional",
+      "@class": "RiskLevel"
+    },
+    "existing_controls": {
+      "@type": "Set",
+      "@class": "SecurityControl"
+    },
+    "residual_risk_level": {
+      "@type": "Optional",
+      "@class": "RiskLevel"
+    },
+    "risk_treatment_option": {
+      "@type": "Optional",
+      "@class": "RiskTreatmentOption"
+    },
+    "treatment_priority": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "related_treatment_plan": {
+      "@type": "Optional",
+      "@class": "RiskTreatmentPlan"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "RiskAssessment",
+    "@documentation": {
+      "@comment": "An instance of risk assessment performed per Clause 8.2, identifying and evaluating information security risks.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "document_type": "Classification of the documented information.",
+        "document_reference": "Unique reference number for document control.",
+        "author": "Person who created the document.",
+        "owner": "Person accountable for the document content and maintenance.",
+        "approved_by": "Person who approved the document.",
+        "approved_date": "Date when the document was approved.",
+        "effective_date": "Date when the document becomes effective.",
+        "review_date": "Date when the document is due for review.",
+        "status": "Current status of the document or entity.",
+        "classification": "Information classification level.",
+        "retention_period": "Duration for which the document is retained.",
+        "distribution_controls": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+        "storage_and_preservation": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+        "change_control_method": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+        "external_origin": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+        "external_origin_source": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+        "assessment_scope": "Scope of the assessment.",
+        "assessment_date": "Date the assessment was conducted.",
+        "assessor": "Person or team who conducted the assessment.",
+        "methodology_used": "Specific methodology applied in this assessment.",
+        "risks_identified": "Risks identified in this assessment.",
+        "summary_findings": "Summary of assessment findings.",
+        "recommendations": "Recommendations from the assessment.",
+        "next_assessment_date": "Planned date for next assessment."
+      }
+    },
+    "@inherits": [
+      "DocumentedInformation"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "document_type": {
+      "@type": "Optional",
+      "@class": "DocumentType"
+    },
+    "document_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "author": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "effective_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "classification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "retention_period": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "distribution_controls": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "storage_and_preservation": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "change_control_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "external_origin": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "external_origin_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "assessment_scope": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "assessment_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "assessor": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "methodology_used": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "risks_identified": {
+      "@type": "Set",
+      "@class": "Risk"
+    },
+    "summary_findings": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "recommendations": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "next_assessment_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "RiskAssessmentProcess",
+    "@documentation": {
+      "@comment": "The documented risk assessment process per Clause 6.1.2, defining criteria and methodology for identifying, analyzing, and evaluating risks.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "document_type": "Classification of the documented information.",
+        "document_reference": "Unique reference number for document control.",
+        "author": "Person who created the document.",
+        "owner": "Person accountable for the document content and maintenance.",
+        "approved_by": "Person who approved the document.",
+        "approved_date": "Date when the document was approved.",
+        "effective_date": "Date when the document becomes effective.",
+        "review_date": "Date when the document is due for review.",
+        "status": "Current status of the document or entity.",
+        "classification": "Information classification level.",
+        "retention_period": "Duration for which the document is retained.",
+        "distribution_controls": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+        "storage_and_preservation": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+        "change_control_method": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+        "external_origin": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+        "external_origin_source": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+        "risk_acceptance_criteria": "Criteria for accepting risks.",
+        "assessment_criteria": "Criteria for performing risk assessments.",
+        "assessment_methodology": "Methodology used for risk assessment.",
+        "likelihood_scale": "Scale used for likelihood rating.",
+        "impact_scale": "Scale used for impact rating.",
+        "risk_matrix": "Risk matrix or calculation method.",
+        "assessment_frequency": "Planned frequency of risk assessments.",
+        "trigger_events": "Events that trigger risk assessment outside planned schedule."
+      }
+    },
+    "@inherits": [
+      "DocumentedInformation"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "document_type": {
+      "@type": "Optional",
+      "@class": "DocumentType"
+    },
+    "document_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "author": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "effective_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "classification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "retention_period": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "distribution_controls": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "storage_and_preservation": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "change_control_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "external_origin": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "external_origin_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "risk_acceptance_criteria": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "assessment_criteria": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "assessment_methodology": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "likelihood_scale": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "impact_scale": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "risk_matrix": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "assessment_frequency": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "trigger_events": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "RiskTreatmentPlan",
+    "@documentation": {
+      "@comment": "A risk treatment plan documenting planned actions to address identified risks through selected controls.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "document_type": "Classification of the documented information.",
+        "document_reference": "Unique reference number for document control.",
+        "author": "Person who created the document.",
+        "owner": "Person accountable for the document content and maintenance.",
+        "approved_by": "Person who approved the document.",
+        "effective_date": "Date when the document becomes effective.",
+        "review_date": "Date when the document is due for review.",
+        "status": "Current status of the document or entity.",
+        "classification": "Information classification level.",
+        "retention_period": "Duration for which the document is retained.",
+        "distribution_controls": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+        "storage_and_preservation": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+        "change_control_method": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+        "external_origin": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+        "external_origin_source": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+        "plan_scope": "Scope of the plan.",
+        "risks_addressed": "Risks addressed by this plan.",
+        "treatment_actions": "Actions to be taken for treatment.",
+        "controls_to_implement": "Controls to be implemented as part of treatment.",
+        "resources_required": "Resources required for implementation.",
+        "responsible_parties": "Parties responsible for implementation.",
+        "implementation_timeline": "Timeline for implementation.",
+        "risk_owner_approval": "Risk owner who approved the plan.",
+        "approved_date": "Date when the risk treatment plan was approved.",
+        "residual_risk_acceptance": "Documentation of residual risk acceptance.",
+        "implementation_status": "Current implementation status.",
+        "completion_date": "Date when implementation was completed."
+      }
+    },
+    "@inherits": [
+      "DocumentedInformation"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "document_type": {
+      "@type": "Optional",
+      "@class": "DocumentType"
+    },
+    "document_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "author": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "effective_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "classification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "retention_period": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "distribution_controls": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "storage_and_preservation": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "change_control_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "external_origin": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "external_origin_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "plan_scope": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "risks_addressed": {
+      "@type": "Set",
+      "@class": "Risk"
+    },
+    "treatment_actions": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "controls_to_implement": {
+      "@type": "Set",
+      "@class": "SecurityControl"
+    },
+    "resources_required": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "responsible_parties": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "implementation_timeline": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "risk_owner_approval": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "residual_risk_acceptance": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "implementation_status": {
+      "@type": "Optional",
+      "@class": "ImplementationStatus"
+    },
+    "completion_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "RiskTreatmentProcess",
+    "@documentation": {
+      "@comment": "The documented risk treatment process per Clause 6.1.3, defining how treatment options are selected and controls determined.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "document_type": "Classification of the documented information.",
+        "document_reference": "Unique reference number for document control.",
+        "author": "Person who created the document.",
+        "owner": "Person accountable for the document content and maintenance.",
+        "approved_by": "Person who approved the document.",
+        "approved_date": "Date when the document was approved.",
+        "effective_date": "Date when the document becomes effective.",
+        "review_date": "Date when the document is due for review.",
+        "status": "Current status of the document or entity.",
+        "classification": "Information classification level.",
+        "retention_period": "Duration for which the document is retained.",
+        "distribution_controls": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+        "storage_and_preservation": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+        "change_control_method": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+        "external_origin": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+        "external_origin_source": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+        "treatment_options_guidance": "Guidance on selecting treatment options.",
+        "control_selection_criteria": "Criteria for selecting controls.",
+        "annex_a_omission_verification": "Description of how controls determined as necessary are compared with those in Annex A to verify that no necessary controls have been omitted, per Clause 6.1.3 c).",
+        "soa_template": "Template used for Statement of Applicability.",
+        "approval_workflow": "Workflow for approving risk treatment."
+      }
+    },
+    "@inherits": [
+      "DocumentedInformation"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "document_type": {
+      "@type": "Optional",
+      "@class": "DocumentType"
+    },
+    "document_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "author": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "effective_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "classification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "retention_period": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "distribution_controls": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "storage_and_preservation": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "change_control_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "external_origin": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "external_origin_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "treatment_options_guidance": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "control_selection_criteria": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "annex_a_omission_verification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "soa_template": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approval_workflow": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "Role",
+    "@documentation": {
+      "@comment": "An information security role with defined responsibilities and authorities per Clause 5.3.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "role_type": "Category of the role.",
+        "responsibilities": "Responsibilities assigned to the role.",
+        "authorities": "Authorities granted to the role.",
+        "accountability": "What the role is accountable for.",
+        "assigned_to": "Person(s) assigned to this role.",
+        "delegation_rules": "Rules for delegating responsibilities.",
+        "reporting_line": "To whom this role reports."
+      }
+    },
+    "@inherits": [
+      "NamedEntity"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "role_type": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "responsibilities": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "authorities": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "accountability": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "assigned_to": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "delegation_rules": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "reporting_line": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "SecurityControl",
+    "@documentation": {
+      "@comment": "A security control from Annex A of ISO/IEC 27001:2022, derived from ISO/IEC 27002:2022. Represents a measure that modifies risk.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "control_id": "Control identifier from Annex A (e.g., a_5_1, a_8_24).",
+        "control_title": "Title of the control.",
+        "control_category": "Domain category of the control.",
+        "control_text": "Organization-authored control statement or external control summary.",
+        "implementation_guidance": "Organization-authored implementation notes for the control.",
+        "related_controls": "Other controls related to this one.",
+        "applicable_threats": "Threats this control addresses.",
+        "applicable_assets": "Asset types this control applies to.",
+        "control_owner": "Person responsible for the control.",
+        "implementation_status": "Current implementation status.",
+        "implementation_date": "Date the control was implemented.",
+        "effectiveness_rating": "Rating of control effectiveness.",
+        "last_test_date": "Date the control was last tested.",
+        "evidence_references": "References to evidence of implementation."
+      }
+    },
+    "@inherits": [
+      "NamedEntity"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "control_id": {
+      "@type": "Optional",
+      "@class": "AnnexAControlId"
+    },
+    "control_title": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "control_category": {
+      "@type": "Optional",
+      "@class": "ControlCategory"
+    },
+    "control_text": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "implementation_guidance": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "related_controls": {
+      "@type": "Set",
+      "@class": "SecurityControl"
+    },
+    "applicable_threats": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "applicable_assets": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "control_owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "implementation_status": {
+      "@type": "Optional",
+      "@class": "ImplementationStatus"
+    },
+    "implementation_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "effectiveness_rating": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "last_test_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "evidence_references": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "SoAEntry",
+    "@documentation": {
+      "@comment": "A single entry in the Statement of Applicability, documenting the applicability and implementation status of one control.",
+      "@properties": {
+        "control_reference": "Reference to the control (e.g., A.5.1).",
+        "is_applicable": "Whether the control is applicable.",
+        "inclusion_justification": "Justification for including the control.",
+        "exclusion_justification": "Justification for excluding the control.",
+        "implementation_status": "Current implementation status.",
+        "implementation_evidence": "Evidence of control implementation.",
+        "responsible_role": "Role responsible for the objective or control.",
+        "target_implementation_date": "Target date for implementing the control."
+      }
+    },
+    "control_reference": {
+      "@type": "Optional",
+      "@class": "SecurityControl"
+    },
+    "is_applicable": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "inclusion_justification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "exclusion_justification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "implementation_status": {
+      "@type": "Optional",
+      "@class": "ImplementationStatus"
+    },
+    "implementation_evidence": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "responsible_role": {
+      "@type": "Optional",
+      "@class": "Role"
+    },
+    "target_implementation_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "StatementOfApplicability",
+    "@documentation": {
+      "@comment": "The Statement of Applicability (SoA) recording which controls apply, their rationale, and current implementation state.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "document_type": "Classification of the documented information.",
+        "document_reference": "Unique reference number for document control.",
+        "author": "Person who created the document.",
+        "owner": "Person accountable for the document content and maintenance.",
+        "approved_date": "Date when the document was approved.",
+        "effective_date": "Date when the document becomes effective.",
+        "review_date": "Date when the document is due for review.",
+        "status": "Current status of the document or entity.",
+        "classification": "Information classification level.",
+        "retention_period": "Duration for which the document is retained.",
+        "distribution_controls": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+        "storage_and_preservation": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+        "change_control_method": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+        "external_origin": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+        "external_origin_source": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+        "soa_entries": "Individual control entries in the SoA.",
+        "total_controls": "Total number of controls in scope.",
+        "implemented_count": "Number of implemented controls.",
+        "planned_count": "Number of controls planned for implementation.",
+        "not_applicable_count": "Number of controls marked not applicable.",
+        "last_review_date": "Date of last review.",
+        "approved_by": "Person who approved the document."
+      }
+    },
+    "@inherits": [
+      "DocumentedInformation"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "document_type": {
+      "@type": "Optional",
+      "@class": "DocumentType"
+    },
+    "document_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "author": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "effective_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "classification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "retention_period": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "distribution_controls": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "storage_and_preservation": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "change_control_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "external_origin": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "external_origin_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "soa_entries": {
+      "@type": "List",
+      "@class": "SoAEntry"
+    },
+    "total_controls": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "implemented_count": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "planned_count": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "not_applicable_count": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "last_review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "approved_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Class",
+    "@id": "TopicSpecificPolicy",
+    "@documentation": {
+      "@comment": "A policy addressing a specific information security topic, supporting the overarching information security policy.",
+      "@properties": {
+        "id": "Unique identifier for this entity instance.",
+        "name": "Human-readable name or title.",
+        "description": "Detailed description of the entity.",
+        "created_date": "Date when the entity was created.",
+        "modified_date": "Date when the entity was last modified.",
+        "version": "Version identifier for the entity.",
+        "document_type": "Classification of the documented information.",
+        "document_reference": "Unique reference number for document control.",
+        "author": "Person who created the document.",
+        "owner": "Person accountable for the document content and maintenance.",
+        "approved_by": "Person who approved the document.",
+        "approved_date": "Date when the document was approved.",
+        "effective_date": "Date when the document becomes effective.",
+        "review_date": "Date when the document is due for review.",
+        "status": "Current status of the document or entity.",
+        "classification": "Information classification level.",
+        "retention_period": "Duration for which the document is retained.",
+        "distribution_controls": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+        "storage_and_preservation": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+        "change_control_method": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+        "external_origin": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+        "external_origin_source": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+        "topic_area": "The specific topic addressed by the policy.",
+        "parent_policy": "The parent policy this topic-specific policy supports.",
+        "applicable_controls": "Controls related to this policy.",
+        "target_audience": "Intended audience for the policy or document."
+      }
+    },
+    "@inherits": [
+      "DocumentedInformation"
+    ],
+    "id": "xsd:anyURI",
+    "name": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "created_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "modified_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "version": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "document_type": {
+      "@type": "Optional",
+      "@class": "DocumentType"
+    },
+    "document_reference": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "author": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "owner": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_by": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "approved_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "effective_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "review_date": {
+      "@type": "Optional",
+      "@class": "xsd:dateTime"
+    },
+    "status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "classification": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "retention_period": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "distribution_controls": {
+      "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "storage_and_preservation": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "change_control_method": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "external_origin": {
+      "@type": "Optional",
+      "@class": "xsd:boolean"
+    },
+    "external_origin_source": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "topic_area": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "parent_policy": {
+      "@type": "Optional",
+      "@class": "InformationSecurityPolicy"
+    },
+    "applicable_controls": {
+      "@type": "Set",
+      "@class": "SecurityControl"
+    },
+    "target_audience": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    }
+  },
+  {
+    "@type": "Enum",
+    "@id": "ControlCategory",
+    "@value": [
+      "organizational",
+      "people",
+      "physical",
+      "technological"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "ImplementationStatus",
+    "@value": [
+      "not_started",
+      "planned",
+      "in_progress",
+      "implemented",
+      "not_applicable"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "RiskTreatmentOption",
+    "@value": [
+      "modify",
+      "accept",
+      "avoid",
+      "share"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "RiskLevel",
+    "@value": [
+      "very_low",
+      "low",
+      "medium",
+      "high",
+      "critical"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "DocumentType",
+    "@value": [
+      "policy",
+      "procedure",
+      "standard",
+      "guideline",
+      "record",
+      "plan",
+      "report"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "AuditFindingType",
+    "@value": [
+      "major_nonconformity",
+      "minor_nonconformity",
+      "observation",
+      "positive_finding"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "LikelihoodRating",
+    "@value": [
+      "rare",
+      "unlikely",
+      "possible",
+      "likely",
+      "almost_certain"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "CIAProperty",
+    "@value": [
+      "confidentiality",
+      "integrity",
+      "availability"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "AuditType",
+    "@value": [
+      "internal",
+      "external_second_party",
+      "external_third_party",
+      "surveillance",
+      "recertification",
+      "combined"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "AnnexAControlId",
+    "@value": [
+      "a_5_1",
+      "a_5_2",
+      "a_5_3",
+      "a_5_4",
+      "a_5_5",
+      "a_5_6",
+      "a_5_7",
+      "a_5_8",
+      "a_5_9",
+      "a_5_10",
+      "a_5_11",
+      "a_5_12",
+      "a_5_13",
+      "a_5_14",
+      "a_5_15",
+      "a_5_16",
+      "a_5_17",
+      "a_5_18",
+      "a_5_19",
+      "a_5_20",
+      "a_5_21",
+      "a_5_22",
+      "a_5_23",
+      "a_5_24",
+      "a_5_25",
+      "a_5_26",
+      "a_5_27",
+      "a_5_28",
+      "a_5_29",
+      "a_5_30",
+      "a_5_31",
+      "a_5_32",
+      "a_5_33",
+      "a_5_34",
+      "a_5_35",
+      "a_5_36",
+      "a_5_37",
+      "a_6_1",
+      "a_6_2",
+      "a_6_3",
+      "a_6_4",
+      "a_6_5",
+      "a_6_6",
+      "a_6_7",
+      "a_6_8",
+      "a_7_1",
+      "a_7_2",
+      "a_7_3",
+      "a_7_4",
+      "a_7_5",
+      "a_7_6",
+      "a_7_7",
+      "a_7_8",
+      "a_7_9",
+      "a_7_10",
+      "a_7_11",
+      "a_7_12",
+      "a_7_13",
+      "a_7_14",
+      "a_8_1",
+      "a_8_2",
+      "a_8_3",
+      "a_8_4",
+      "a_8_5",
+      "a_8_6",
+      "a_8_7",
+      "a_8_8",
+      "a_8_9",
+      "a_8_10",
+      "a_8_11",
+      "a_8_12",
+      "a_8_13",
+      "a_8_14",
+      "a_8_15",
+      "a_8_16",
+      "a_8_17",
+      "a_8_18",
+      "a_8_19",
+      "a_8_20",
+      "a_8_21",
+      "a_8_22",
+      "a_8_23",
+      "a_8_24",
+      "a_8_25",
+      "a_8_26",
+      "a_8_27",
+      "a_8_28",
+      "a_8_29",
+      "a_8_30",
+      "a_8_31",
+      "a_8_32",
+      "a_8_33",
+      "a_8_34"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "SecurityIncidentCategory",
+    "@value": [
+      "malware",
+      "ransomware",
+      "phishing",
+      "social_engineering",
+      "unauthorized_access",
+      "account_compromise",
+      "privilege_misuse",
+      "data_breach",
+      "data_loss",
+      "denial_of_service",
+      "web_application_attack",
+      "supply_chain",
+      "insider_threat",
+      "physical_security",
+      "configuration_error",
+      "cryptographic_failure",
+      "policy_violation",
+      "other"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "RelatedManagementSystem",
+    "@value": [
+      "iso_iec_27001",
+      "iso_iec_27701",
+      "iso_iec_27017",
+      "iso_iec_27018",
+      "iso_iec_42001",
+      "iso_9001",
+      "iso_14001",
+      "iso_22301",
+      "iso_iec_20000_1",
+      "iso_31000"
+    ]
+  },
+  {
+    "@type": "Enum",
+    "@id": "ImpactRating",
+    "@value": [
+      "negligible",
+      "minor",
+      "moderate",
+      "major",
+      "severe"
+    ]
+  }
+]
+

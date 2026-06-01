@@ -1,6 +1,6 @@
 id: iso27001:control-keep-an-history-of-all-your-changes
 name: Keep an history of all your changes
-control_id: "8.9"
+control_id: a_8_9
 control_title: Keep an history of all your changes
 control_category: technological
 control_text: >-

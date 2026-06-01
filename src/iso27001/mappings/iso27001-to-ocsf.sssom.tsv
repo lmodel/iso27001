@@ -1,0 +1,29 @@
+# mapping_set_id: https://w3id.org/lmodel/iso27001/mappings/iso27001_to_ocsf
+# mapping_set_version: 0.1.0
+# mapping_set_title: ISO/IEC 27001:2022 to OCSF Mappings
+# mapping_set_description: Schema-level mappings between ISO/IEC 27001:2022 ISMS LinkML classes and Open Cybersecurity Schema Framework (OCSF) event classes and objects. Enables zero-translation ingestion of SIEM alerts (in OCSF format) into ISMS incident records.
+# license: https://creativecommons.org/licenses/by/4.0/
+# subject_source: https://w3id.org/lmodel/iso27001
+# object_source: https://w3id.org/lmodel/ocsf
+# mapping_date: 2026-06-01
+# curie_map:
+#   iso27001: https://w3id.org/lmodel/iso27001/
+#   ocsf: https://w3id.org/lmodel/ocsf/
+#   owl: http://www.w3.org/2002/07/owl#
+#   semapv: https://w3id.org/semapv/vocab/
+#   skos: http://www.w3.org/2004/02/skos/core#
+subject_id	subject_label	subject_category	predicate_id	predicate_label	object_id	object_label	object_category	mapping_justification	comment
+iso27001:InformationSecurityEvent	InformationSecurityEvent	owl:Class	skos:closeMatch	close match	ocsf:SecurityFinding	SecurityFinding	owl:Class	semapv:LLMBasedMatching	OCSF security finding aligns with ISMS event record
+iso27001:InformationSecurityIncident	InformationSecurityIncident	owl:Class	skos:closeMatch	close match	ocsf:IncidentFinding	IncidentFinding	owl:Class	semapv:LLMBasedMatching	OCSF incident-finding category aligns with ISMS incident
+iso27001:Asset	Asset	owl:Class	skos:closeMatch	close match	ocsf:Device	Device	owl:Class	semapv:LLMBasedMatching	Asset of type device aligns with OCSF device object
+iso27001:Organization	Organization	owl:Class	skos:closeMatch	close match	ocsf:Organization	Organization	owl:Class	semapv:LLMBasedMatching	Organization object
+iso27001:Role	Role	owl:Class	skos:closeMatch	close match	ocsf:User	User	owl:Class	semapv:LLMBasedMatching	Role often realised as OCSF user object with role attribute
+iso27001:Risk	Risk	owl:Class	skos:relatedMatch	related match	ocsf:VulnerabilityDetails	VulnerabilityDetails	owl:Class	semapv:LLMBasedMatching	Risk references vulnerabilities tracked as OCSF objects
+iso27001:SecurityControl	SecurityControl	owl:Class	skos:relatedMatch	related match	ocsf:Compliance	Compliance	owl:Class	semapv:LLMBasedMatching	OCSF compliance object references control identifiers
+iso27001:event_datetime	event_datetime	owl:DatatypeProperty	skos:closeMatch	close match	ocsf:time	time	owl:DatatypeProperty	semapv:LLMBasedMatching	Event timestamp slot maps to OCSF time
+iso27001:detection_method	detection_method	owl:DatatypeProperty	skos:relatedMatch	related match	ocsf:observables	observables	owl:ObjectProperty	semapv:LLMBasedMatching	Detection method informed by OCSF observables
+iso27001:severity	severity	owl:DatatypeProperty	skos:closeMatch	close match	ocsf:severity_id	severity_id	owl:DatatypeProperty	semapv:LLMBasedMatching	Severity slot aligns with OCSF severity enum
+iso27001:incident_category	incident_category	owl:DatatypeProperty	skos:closeMatch	close match	ocsf:category_uid	category_uid	owl:DatatypeProperty	semapv:LLMBasedMatching	Incident category corresponds to OCSF category_uid
+iso27001:affected_assets	affected_assets	owl:ObjectProperty	skos:relatedMatch	related match	ocsf:Device	Device	owl:Class	semapv:LLMBasedMatching	Affected assets often referenced as OCSF device objects
+iso27001:reporter	reporter	owl:DatatypeProperty	skos:closeMatch	close match	ocsf:User	User	owl:Class	semapv:LLMBasedMatching	Reporter as OCSF user object
+iso27001:evidence_collected	evidence_collected	owl:ObjectProperty	skos:relatedMatch	related match	ocsf:Evidences	Evidences	owl:Class	semapv:LLMBasedMatching	Evidence collection aligns with OCSF evidences object

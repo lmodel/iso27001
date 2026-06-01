@@ -1,0 +1,67 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: Nonconformity
+schema_generating: true
+description: A nonconformity identified per Clause 10.2, representing failure to fulfill
+  a requirement.
+display_name: Nonconformity
+document_category: Nonconformity
+weight: 20
+fields:
+- id: id
+  description: Unique identifier for this entity instance.
+  display_name: NamedEntity_id
+- id: name
+  description: Human-readable name or title.
+  display_name: name
+- id: description
+  description: Detailed description of the entity.
+  display_name: description
+- id: created_date
+  description: Date when the entity was created.
+  display_name: created_date
+- id: modified_date
+  description: Date when the entity was last modified.
+  display_name: modified_date
+- id: version
+  description: Version identifier for the entity.
+  display_name: version
+- id: nonconformity_source
+  description: Source of nonconformity detection.
+  display_name: nonconformity_source
+- id: detection_date
+  description: Date the nonconformity was detected.
+  display_name: detection_date
+- id: detected_by
+  description: Person or process that detected the nonconformity.
+  display_name: detected_by
+- id: requirement_violated
+  description: Requirement that was not fulfilled.
+  display_name: requirement_violated
+- id: nonconformity_description
+  description: Description of the nonconformity.
+  display_name: nonconformity_description
+- id: immediate_actions
+  description: Immediate actions taken to control/correct.
+  display_name: immediate_actions
+  cardinality: multi
+- id: consequences_addressed
+  description: How consequences were dealt with.
+  display_name: consequences_addressed
+- id: root_cause
+  description: Root cause of the nonconformity.
+  display_name: root_cause
+- id: similar_nonconformities_check
+  description: Check for similar nonconformities elsewhere.
+  display_name: similar_nonconformities_check
+- id: linked_corrective_actions
+  description: Corrective actions addressing this nonconformity.
+  display_name: linked_corrective_actions
+  cardinality: multi
+- id: status
+  description: Current status of the document or entity.
+  display_name: status
+- id: closure_date
+  description: Date the finding was closed.
+  display_name: closure_date
+- id: closure_evidence
+  description: Evidence supporting closure.
+  display_name: closure_evidence

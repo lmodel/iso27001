@@ -1,6 +1,6 @@
 id: iso27001:control-external-support
 name: External support available
-control_id: "5.19"
+control_id: a_5_19
 control_title: External support available
 control_category: organizational
 control_text: >-

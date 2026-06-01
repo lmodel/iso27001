@@ -1,6 +1,6 @@
 id: iso27001:control-setup-slack-channel-for-access-request
 name: Setup an access request process
-control_id: "5.17"
+control_id: a_5_17
 control_title: Setup an access request process
 control_category: organizational
 control_text: >-

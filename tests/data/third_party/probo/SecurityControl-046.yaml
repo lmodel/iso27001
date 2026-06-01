@@ -1,6 +1,6 @@
 id: iso27001:control-prove-customer-data-is-deleted-upon-request
 name: Prove customer data is deleted upon request
-control_id: "8.10"
+control_id: a_8_10
 control_title: Prove customer data is deleted upon request
 control_category: technological
 control_text: >-

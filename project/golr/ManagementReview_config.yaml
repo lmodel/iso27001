@@ -1,0 +1,128 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: ManagementReview
+schema_generating: true
+description: A management review per Clause 9.3, conducted by top management to evaluate
+  ongoing ISMS performance and fitness for purpose.
+display_name: ManagementReview
+document_category: ManagementReview
+weight: 20
+fields:
+- id: id
+  description: Unique identifier for this entity instance.
+  display_name: NamedEntity_id
+- id: name
+  description: Human-readable name or title.
+  display_name: name
+- id: description
+  description: Detailed description of the entity.
+  display_name: description
+- id: created_date
+  description: Date when the entity was created.
+  display_name: created_date
+- id: modified_date
+  description: Date when the entity was last modified.
+  display_name: modified_date
+- id: version
+  description: Version identifier for the entity.
+  display_name: version
+- id: document_type
+  description: Classification of the documented information.
+  display_name: document_type
+- id: document_reference
+  description: Unique reference number for document control.
+  display_name: document_reference
+- id: author
+  description: Person who created the document.
+  display_name: author
+- id: owner
+  description: Person accountable for the document content and maintenance.
+  display_name: owner
+- id: approved_by
+  description: Person who approved the document.
+  display_name: approved_by
+- id: approved_date
+  description: Date when the document was approved.
+  display_name: approved_date
+- id: effective_date
+  description: Date when the document becomes effective.
+  display_name: effective_date
+- id: status
+  description: Current status of the document or entity.
+  display_name: status
+- id: classification
+  description: Information classification level.
+  display_name: classification
+- id: retention_period
+  description: Duration for which the document is retained.
+  display_name: retention_period
+- id: distribution_controls
+  description: Controls governing distribution, access, retrieval and use of the documented
+    information, per Clause 7.5.3 c).
+  display_name: distribution_controls
+  cardinality: multi
+- id: storage_and_preservation
+  description: Arrangements for storage and preservation (including preservation of
+    legibility) of the documented information, per Clause 7.5.3 d).
+  display_name: storage_and_preservation
+- id: change_control_method
+  description: Method used for control of changes (e.g., version control) of the documented
+    information, per Clause 7.5.3 e).
+  display_name: change_control_method
+- id: external_origin
+  description: Whether the documented information is of external origin and has been
+    identified as necessary for the planning and operation of the ISMS, per Clause
+    7.5.3.
+  display_name: external_origin
+- id: external_origin_source
+  description: Source or provider of the externally originated documented information,
+    per Clause 7.5.3.
+  display_name: external_origin_source
+- id: review_date
+  description: Date when the management review was conducted.
+  display_name: ManagementReview_review_date
+- id: attendees
+  description: Attendees of the review.
+  display_name: attendees
+  cardinality: multi
+- id: previous_actions_status
+  description: Status of actions from previous reviews.
+  display_name: previous_actions_status
+- id: context_changes
+  description: Changes in context since last review.
+  display_name: context_changes
+- id: interested_party_changes
+  description: Changes in interested party requirements.
+  display_name: interested_party_changes
+- id: interested_party_feedback
+  description: Feedback from interested parties considered in the management review.
+  display_name: interested_party_feedback
+- id: performance_trends
+  description: Trends in information security performance.
+  display_name: performance_trends
+- id: audit_results_summary
+  description: Summary of audit results.
+  display_name: audit_results_summary
+- id: risk_assessment_results
+  description: Results of risk assessment.
+  display_name: risk_assessment_results
+- id: risk_treatment_status
+  description: Status of the risk treatment plan considered in the management review.
+  display_name: risk_treatment_status
+- id: risks_and_opportunities_changes
+  description: Changes in risks and opportunities considered in the management review,
+    per Clause 9.3.2 f).
+  display_name: risks_and_opportunities_changes
+- id: improvement_opportunities
+  description: Opportunities for improvement identified.
+  display_name: improvement_opportunities
+  cardinality: multi
+- id: decisions
+  description: Decisions made in the review.
+  display_name: decisions
+  cardinality: multi
+- id: action_items
+  description: Action items from the review.
+  display_name: action_items
+  cardinality: multi
+- id: next_review_date
+  description: Planned date for next review.
+  display_name: next_review_date

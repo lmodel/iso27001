@@ -1,6 +1,6 @@
 id: iso27001:control-define-bcdr-objectives
 name: Define BCDR objectives
-control_id: "5.3"
+control_id: a_5_3
 control_title: Define BCDR objectives
 control_category: organizational
 control_text: >-

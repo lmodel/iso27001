@@ -18,7 +18,8 @@ eradication_actions:
 recovery_actions:
   - Reconfirm user account MFA enrollment.
 root_cause: External phishing campaign targeted a finance distribution list.
-lessons_learned: Finance-targeted simulations should continue quarterly.
+lessons_learned:
+  - Finance-targeted simulations should continue quarterly.
 evidence_collected:
   - Email headers
   - Gateway quarantine record

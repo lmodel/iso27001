@@ -1,0 +1,67 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: InformationSecurityObjective
+schema_generating: true
+description: A measurable information security objective per Clause 6.2, established
+  at relevant functions and levels of the organization.
+display_name: InformationSecurityObjective
+document_category: InformationSecurityObjective
+weight: 20
+fields:
+- id: id
+  description: Unique identifier for this entity instance.
+  display_name: NamedEntity_id
+- id: name
+  description: Human-readable name or title.
+  display_name: name
+- id: description
+  description: Detailed description of the entity.
+  display_name: description
+- id: created_date
+  description: Date when the entity was created.
+  display_name: created_date
+- id: modified_date
+  description: Date when the entity was last modified.
+  display_name: modified_date
+- id: version
+  description: Version identifier for the entity.
+  display_name: version
+- id: objective_statement
+  description: Clear statement of the objective.
+  display_name: objective_statement
+- id: target_value
+  description: Target value for the objective metric.
+  display_name: target_value
+- id: current_value
+  description: Current measured value.
+  display_name: current_value
+- id: metric_definition
+  description: Definition of how the objective is measured.
+  display_name: metric_definition
+- id: measurement_method
+  description: Method used to measure the metric.
+  display_name: measurement_method
+- id: measurement_frequency
+  description: How often measurement is performed.
+  display_name: measurement_frequency
+- id: responsible_role
+  description: Role responsible for the objective or control.
+  display_name: responsible_role
+- id: target_date
+  description: Target date for achieving the objective.
+  display_name: target_date
+- id: achievement_status
+  description: Current status of objective achievement.
+  display_name: achievement_status
+- id: related_risks
+  description: Associated risks.
+  display_name: related_risks
+  cardinality: multi
+- id: related_controls
+  description: Other controls related to this one.
+  display_name: related_controls
+  cardinality: multi
+- id: action_plan
+  description: Plan for achieving the objective.
+  display_name: action_plan
+- id: objective_resources_required
+  description: Resources required to achieve the information security objective.
+  display_name: objective_resources_required

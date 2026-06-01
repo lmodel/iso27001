@@ -1,0 +1,136 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: InternalAudit
+schema_generating: true
+description: An internal audit instance per Clause 9.2, assessing ISMS conformance
+  and effectiveness.
+display_name: InternalAudit
+document_category: InternalAudit
+weight: 20
+fields:
+- id: id
+  description: Unique identifier for this entity instance.
+  display_name: NamedEntity_id
+- id: name
+  description: Human-readable name or title.
+  display_name: name
+- id: description
+  description: Detailed description of the entity.
+  display_name: description
+- id: created_date
+  description: Date when the entity was created.
+  display_name: created_date
+- id: modified_date
+  description: Date when the entity was last modified.
+  display_name: modified_date
+- id: version
+  description: Version identifier for the entity.
+  display_name: version
+- id: document_type
+  description: Classification of the documented information.
+  display_name: document_type
+- id: document_reference
+  description: Unique reference number for document control.
+  display_name: document_reference
+- id: author
+  description: Person who created the document.
+  display_name: author
+- id: owner
+  description: Person accountable for the document content and maintenance.
+  display_name: owner
+- id: approved_by
+  description: Person who approved the document.
+  display_name: approved_by
+- id: approved_date
+  description: Date when the document was approved.
+  display_name: approved_date
+- id: effective_date
+  description: Date when the document becomes effective.
+  display_name: effective_date
+- id: review_date
+  description: Date when the document is due for review.
+  display_name: review_date
+- id: status
+  description: Current status of the document or entity.
+  display_name: status
+- id: classification
+  description: Information classification level.
+  display_name: classification
+- id: retention_period
+  description: Duration for which the document is retained.
+  display_name: retention_period
+- id: distribution_controls
+  description: Controls governing distribution, access, retrieval and use of the documented
+    information, per Clause 7.5.3 c).
+  display_name: distribution_controls
+  cardinality: multi
+- id: storage_and_preservation
+  description: Arrangements for storage and preservation (including preservation of
+    legibility) of the documented information, per Clause 7.5.3 d).
+  display_name: storage_and_preservation
+- id: change_control_method
+  description: Method used for control of changes (e.g., version control) of the documented
+    information, per Clause 7.5.3 e).
+  display_name: change_control_method
+- id: external_origin
+  description: Whether the documented information is of external origin and has been
+    identified as necessary for the planning and operation of the ISMS, per Clause
+    7.5.3.
+  display_name: external_origin
+- id: external_origin_source
+  description: Source or provider of the externally originated documented information,
+    per Clause 7.5.3.
+  display_name: external_origin_source
+- id: audit_reference
+  description: Reference identifier for the audit.
+  display_name: audit_reference
+- id: audit_type
+  description: Type of audit per ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1.
+  display_name: audit_type
+- id: audit_scope
+  description: Scope of the audit.
+  display_name: audit_scope
+- id: audit_criteria
+  description: Criteria against which audit is conducted.
+  display_name: audit_criteria
+  cardinality: multi
+- id: audit_objectives
+  description: Objectives of the audit.
+  display_name: audit_objectives
+  cardinality: multi
+- id: audit_period_start
+  description: Start date of audit period.
+  display_name: audit_period_start
+- id: audit_period_end
+  description: End date of audit period.
+  display_name: audit_period_end
+- id: lead_auditor
+  description: Lead auditor for the audit.
+  display_name: lead_auditor
+- id: audit_team
+  description: Audit team members.
+  display_name: audit_team
+  cardinality: multi
+- id: auditee_representatives
+  description: Representatives from audited areas.
+  display_name: auditee_representatives
+  cardinality: multi
+- id: audit_plan
+  description: Audit plan document reference.
+  display_name: audit_plan
+- id: findings
+  description: Audit findings.
+  display_name: findings
+  cardinality: multi
+- id: positive_observations
+  description: Positive observations noted.
+  display_name: positive_observations
+  cardinality: multi
+- id: audit_conclusion
+  description: Overall audit conclusion.
+  display_name: audit_conclusion
+- id: report_date
+  description: Date the report was issued.
+  display_name: report_date
+- id: report_distribution
+  description: Distribution list for the report.
+  display_name: report_distribution
+  cardinality: multi

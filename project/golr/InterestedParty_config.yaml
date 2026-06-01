@@ -1,0 +1,53 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: InterestedParty
+schema_generating: true
+description: A stakeholder whose needs and expectations are relevant to the ISMS per
+  4.2. Includes internal parties (employees, management) and external parties (customers,
+  regulators, suppliers).
+display_name: InterestedParty
+document_category: InterestedParty
+weight: 20
+fields:
+- id: id
+  description: Unique identifier for this entity instance.
+  display_name: NamedEntity_id
+- id: name
+  description: Human-readable name or title.
+  display_name: name
+- id: description
+  description: Detailed description of the entity.
+  display_name: description
+- id: created_date
+  description: Date when the entity was created.
+  display_name: created_date
+- id: modified_date
+  description: Date when the entity was last modified.
+  display_name: modified_date
+- id: version
+  description: Version identifier for the entity.
+  display_name: version
+- id: party_type
+  description: Category of interested party.
+  display_name: party_type
+- id: relationship
+  description: Nature of the relationship with the organization.
+  display_name: relationship
+- id: requirements
+  description: Requirements of the interested party.
+  display_name: requirements
+  cardinality: multi
+- id: addressed_requirements
+  description: Requirements of the interested party that the organization has determined
+    will be addressed through the ISMS, per Clause 4.2 c).
+  display_name: addressed_requirements
+  cardinality: multi
+- id: climate_change_related_requirements
+  description: Climate-change-related requirements of the interested party, per ISO/IEC
+    27001:2022 Clause 4.2 NOTE 2 as added by Amd. 1:2024.
+  display_name: climate_change_related_requirements
+  cardinality: multi
+- id: communication_needs
+  description: Communication requirements for this party.
+  display_name: communication_needs
+- id: contact_information
+  description: Contact details for the party.
+  display_name: contact_information

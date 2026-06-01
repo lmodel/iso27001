@@ -1,0 +1,83 @@
+PREFIX linkml: <https://w3id.org/linkml/>
+PREFIX iso27001: <https://w3id.org/lmodel/iso27001/>
+PREFIX iso27002: <https://w3id.org/lmodel/iso27002/>
+PREFIX iso: <https://www.iso.org/standard/>
+PREFIX schema: <http://schema.org/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX cis_controls: <https://w3id.org/lmodel/cis-controls/>
+PREFIX oscal: <https://w3id.org/lmodel/oscal/>
+PREFIX nist_sp_800_53: <https://w3id.org/lmodel/nist-sp-800-53/>
+PREFIX nist_csf_v2: <https://w3id.org/lmodel/nist-csf-v2/>
+PREFIX nist_sp_800_171: <https://w3id.org/lmodel/nist-sp-800-171/>
+PREFIX nist_sp_800_218: <https://w3id.org/lmodel/nist-sp-800-218/>
+PREFIX attack: <https://w3id.org/lmodel/attack/>
+PREFIX d3f: <https://d3fend.mitre.org/ontologies/d3fend.owl#>
+PREFIX slsa: <https://w3id.org/lmodel/slsa/>
+PREFIX stix: <https://w3id.org/lmodel/stix/>
+PREFIX ocsf: <https://w3id.org/lmodel/ocsf/>
+PREFIX spdx: <https://w3id.org/lmodel/spdx/>
+PREFIX capec: <https://w3id.org/lmodel/capec/>
+PREFIX cwe: <https://w3id.org/lmodel/cwe/>
+PREFIX cve: <https://w3id.org/lmodel/cve/>
+PREFIX nvd: <https://w3id.org/lmodel/nist-nvd/>
+PREFIX kev_catalog: <https://w3id.org/lmodel/kev-catalog/>
+PREFIX iso29100: <https://w3id.org/lmodel/iso29100/>
+PREFIX semapv: <https://w3id.org/semapv/vocab/>
+PREFIX iso42001: <https://w3id.org/lmodel/iso42001/>
+
+SELECT ?g ?s ?p WHERE {
+ GRAPH ?g {
+  ?s rdf:type iso27001:ImprovementOpportunity ;
+     ?p ?o .
+  FILTER ( ?p NOT IN (
+   iso27001:improvement_source,
+   iso27001:identification_date,
+   iso27001:identified_by,
+   iso27001:improvement_description,
+   iso27001:expected_benefit,
+   iso27001:priority,
+   iso27001:implementation_plan,
+   iso27001:responsible_party,
+   iso27001:target_date,
+   iso27001:actual_completion_date,
+   iso27001:outcome_assessment,
+   iso27001:status,
+   iso27001:id,
+   iso27001:name,
+   iso27001:description,
+   iso27001:created_date,
+   iso27001:modified_date,
+   iso27001:version,
+   rdf:type ))
+ }
+ 
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

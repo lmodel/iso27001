@@ -1,6 +1,6 @@
 id: iso27001:control-create-test-your-disaster-recovery-plan
 name: Create & test your disaster recovery plan
-control_id: "8.14"
+control_id: a_8_14
 control_title: Create & test your disaster recovery plan
 control_category: technological
 control_text: >-

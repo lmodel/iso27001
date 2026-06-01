@@ -1,6 +1,6 @@
 id: iso27001:control-define-roles-responsibilities-for-isms
 name: Define roles & responsibilities for ISMS
-control_id: "5.2"
+control_id: a_5_2
 control_title: Define roles & responsibilities for ISMS
 control_category: organizational
 control_text: >-

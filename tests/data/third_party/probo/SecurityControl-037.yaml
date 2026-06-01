@@ -1,6 +1,6 @@
 id: iso27001:control-enable-autoscaling
 name: Enable autoscaling
-control_id: "8.6"
+control_id: a_8_6
 control_title: Enable autoscaling
 control_category: technological
 control_text: >-

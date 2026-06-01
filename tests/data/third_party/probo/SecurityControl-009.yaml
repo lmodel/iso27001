@@ -1,6 +1,6 @@
 id: iso27001:control-data-inventory
 name: Data inventory
-control_id: "5.13"
+control_id: a_5_13
 control_title: Data inventory
 control_category: organizational
 control_text: >-

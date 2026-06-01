@@ -1,6 +1,6 @@
 id: iso27001:control-enable-code-scanning
 name: Enable code scanning
-control_id: "8.8"
+control_id: a_8_8
 control_title: Enable code scanning
 control_category: technological
 control_text: >-

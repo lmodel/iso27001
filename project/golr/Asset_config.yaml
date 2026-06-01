@@ -1,0 +1,52 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: Asset
+schema_generating: true
+description: An information asset or associated asset requiring protection, per Annex
+  A control 5.9.
+display_name: Asset
+document_category: Asset
+weight: 20
+fields:
+- id: id
+  description: Unique identifier for this entity instance.
+  display_name: NamedEntity_id
+- id: name
+  description: Human-readable name or title.
+  display_name: name
+- id: description
+  description: Detailed description of the entity.
+  display_name: description
+- id: created_date
+  description: Date when the entity was created.
+  display_name: created_date
+- id: modified_date
+  description: Date when the entity was last modified.
+  display_name: modified_date
+- id: version
+  description: Version identifier for the entity.
+  display_name: version
+- id: asset_type
+  description: Type of asset.
+  display_name: asset_type
+- id: asset_owner
+  description: Owner of the asset.
+  display_name: asset_owner
+- id: asset_custodian
+  description: Custodian responsible for day-to-day protection.
+  display_name: asset_custodian
+- id: classification
+  description: Information classification level.
+  display_name: classification
+- id: location
+  description: Physical or logical location.
+  display_name: location
+- id: criticality
+  description: Criticality rating of the asset.
+  display_name: criticality
+- id: related_risks
+  description: Associated risks.
+  display_name: related_risks
+  cardinality: multi
+- id: applicable_controls
+  description: Controls related to this policy.
+  display_name: applicable_controls
+  cardinality: multi

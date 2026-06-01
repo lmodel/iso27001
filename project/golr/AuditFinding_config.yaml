@@ -1,0 +1,62 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: AuditFinding
+schema_generating: true
+description: A finding from an internal audit, including nonconformities, observations,
+  and positive findings.
+display_name: AuditFinding
+document_category: AuditFinding
+weight: 20
+fields:
+- id: id
+  description: Unique identifier for this entity instance.
+  display_name: NamedEntity_id
+- id: name
+  description: Human-readable name or title.
+  display_name: name
+- id: description
+  description: Detailed description of the entity.
+  display_name: description
+- id: created_date
+  description: Date when the entity was created.
+  display_name: created_date
+- id: modified_date
+  description: Date when the entity was last modified.
+  display_name: modified_date
+- id: version
+  description: Version identifier for the entity.
+  display_name: version
+- id: finding_type
+  description: Type of audit finding.
+  display_name: finding_type
+- id: clause_reference
+  description: Reference to standard clause.
+  display_name: clause_reference
+- id: control_reference
+  description: Reference to the control (e.g., A.5.1).
+  display_name: control_reference
+- id: finding_description
+  description: Description of the finding.
+  display_name: finding_description
+- id: objective_evidence
+  description: Evidence supporting the finding.
+  display_name: objective_evidence
+- id: root_cause_analysis
+  description: Analysis of root cause.
+  display_name: root_cause_analysis
+- id: risk_implication
+  description: Risk implications of the finding.
+  display_name: risk_implication
+- id: recommended_action
+  description: Recommended action to address finding.
+  display_name: recommended_action
+- id: auditee_response
+  description: Response from the auditee.
+  display_name: auditee_response
+- id: linked_corrective_action
+  description: Corrective action linked to this finding.
+  display_name: linked_corrective_action
+- id: closure_status
+  description: Status of finding closure.
+  display_name: closure_status
+- id: closure_date
+  description: Date the finding was closed.
+  display_name: closure_date

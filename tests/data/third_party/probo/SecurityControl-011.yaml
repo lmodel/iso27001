@@ -1,6 +1,6 @@
 id: iso27001:control-database-auth
 name: Implement IAM for database authentication
-control_id: "5.15"
+control_id: a_5_15
 control_title: Implement IAM for database authentication
 control_category: organizational
 control_text: >-

@@ -1,6 +1,6 @@
 id: iso27001:control-physical-perimeter
 name: Physical Security Perimeter Control
-control_id: "7.1"
+control_id: a_7_1
 control_title: Define and Enforce Physical Security Perimeters
 control_category: physical
 control_text: The organization defines and enforces physical security perimeters for all areas containing sensitive information and processing facilities.

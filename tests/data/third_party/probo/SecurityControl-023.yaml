@@ -1,6 +1,6 @@
 id: iso27001:control-vpn-remote-access
 name: Use VPNs to secure access for remote devices
-control_id: "6.7"
+control_id: a_6_7
 control_title: Use VPNs to secure access for remote devices
 control_category: people
 control_text: >-

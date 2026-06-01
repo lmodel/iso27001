@@ -1,6 +1,6 @@
 id: iso27001:control-insert-security-clause-in-third-party-contracts
 name: Insert security clause in third-party contracts
-control_id: "5.20"
+control_id: a_5_20
 control_title: Insert security clause in third-party contracts
 control_category: organizational
 control_text: >-

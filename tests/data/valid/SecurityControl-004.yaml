@@ -1,6 +1,6 @@
 id: iso27001:control-security-awareness-training
 name: Security Awareness Education and Training
-control_id: "6.3"
+control_id: a_6_3
 control_title: Deliver Information Security Awareness and Training Programme
 control_category: people
 control_text: The organization delivers information security awareness, education, and training to all personnel relevant to their job function.

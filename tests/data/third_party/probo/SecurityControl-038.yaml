@@ -1,6 +1,6 @@
 id: iso27001:control-email-filtering
 name: Implement email filtering and warning system
-control_id: "8.7"
+control_id: a_8_7
 control_title: Implement email filtering and warning system
 control_category: technological
 control_text: >-

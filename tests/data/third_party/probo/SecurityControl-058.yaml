@@ -1,6 +1,6 @@
 id: iso27001:control-document-your-development-lifecycle
 name: Document your development lifecycle
-control_id: "8.25"
+control_id: a_8_25
 control_title: Document your development lifecycle
 control_category: technological
 control_text: >-

@@ -1,6 +1,6 @@
 id: iso27001:control-manage-your-service-accounts
 name: Manage your service accounts
-control_id: "8.9"
+control_id: a_8_9
 control_title: Manage your service accounts
 control_category: technological
 control_text: >-

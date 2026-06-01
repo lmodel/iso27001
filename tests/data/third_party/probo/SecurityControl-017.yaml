@@ -1,6 +1,6 @@
 id: iso27001:control-maintain-history-of-incident-review
 name: Maintain history of incident review
-control_id: "5.28"
+control_id: a_5_28
 control_title: Maintain history of incident review
 control_category: organizational
 control_text: >-

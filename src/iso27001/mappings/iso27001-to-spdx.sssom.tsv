@@ -1,0 +1,24 @@
+# mapping_set_id: https://w3id.org/lmodel/iso27001/mappings/iso27001_to_spdx
+# mapping_set_version: 0.1.0
+# mapping_set_title: ISO/IEC 27001:2022 to SPDX 3.0 Mappings
+# mapping_set_description: Schema-level mappings between ISO/IEC 27001:2022 ISMS classes (Asset, SecurityControl, Risk) and SPDX 3.0 software-bill-of-materials objects. Enables SBOM-driven asset inventory and vulnerability correlation against Annex A controls.
+# license: https://creativecommons.org/licenses/by/4.0/
+# subject_source: https://w3id.org/lmodel/iso27001
+# object_source: https://w3id.org/lmodel/spdx
+# mapping_date: 2026-06-01
+# curie_map:
+#   iso27001: https://w3id.org/lmodel/iso27001/
+#   spdx: https://w3id.org/lmodel/spdx/
+#   owl: http://www.w3.org/2002/07/owl#
+#   semapv: https://w3id.org/semapv/vocab/
+#   skos: http://www.w3.org/2004/02/skos/core#
+subject_id	subject_label	subject_category	predicate_id	predicate_label	object_id	object_label	object_category	mapping_justification	comment
+iso27001:Asset	Asset	owl:Class	skos:closeMatch	close match	spdx:Package	Package	owl:Class	semapv:LLMBasedMatching	Software asset corresponds to SPDX package
+iso27001:Organization	Organization	owl:Class	skos:closeMatch	close match	spdx:Organization	Organization	owl:Class	semapv:LLMBasedMatching	Supplier or owner organization
+iso27001:DocumentedInformation	DocumentedInformation	owl:Class	skos:relatedMatch	related match	spdx:SpdxDocument	SpdxDocument	owl:Class	semapv:LLMBasedMatching	SBOM as documented information
+iso27001:AnnexAControlId#a_5_9	A.5.9 Inventory of information and other associated assets	skos:Concept	skos:closeMatch	close match	spdx:SpdxDocument	SpdxDocument	owl:Class	semapv:LLMBasedMatching	Software inventory via SBOM
+iso27001:AnnexAControlId#a_5_21	A.5.21 Managing information security in the ICT supply chain	skos:Concept	skos:closeMatch	close match	spdx:Relationship	Relationship	owl:Class	semapv:LLMBasedMatching	Supply chain relationships captured in SBOM
+iso27001:AnnexAControlId#a_8_8	A.8.8 Management of technical vulnerabilities	skos:Concept	skos:closeMatch	close match	spdx:Package	Package	owl:Class	semapv:LLMBasedMatching	Vulnerability management correlates against SBOM packages
+iso27001:AnnexAControlId#a_8_19	A.8.19 Installation of software on operational systems	skos:Concept	skos:relatedMatch	related match	spdx:Package	Package	owl:Class	semapv:LLMBasedMatching	Approved software inventory tracking
+iso27001:AnnexAControlId#a_8_25	A.8.25 Secure development life cycle	skos:Concept	skos:relatedMatch	related match	spdx:Build	Build	owl:Class	semapv:LLMBasedMatching	SDLC artefact build records
+iso27001:AnnexAControlId#a_8_30	A.8.30 Outsourced development	skos:Concept	skos:relatedMatch	related match	spdx:Package	Package	owl:Class	semapv:LLMBasedMatching	Outsourced components tracked in SBOM

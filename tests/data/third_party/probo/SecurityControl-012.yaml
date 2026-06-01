@@ -1,6 +1,6 @@
 id: iso27001:control-enforce-sso
 name: Enforce SSO when possible
-control_id: "5.16"
+control_id: a_5_16
 control_title: Enforce SSO when possible
 control_category: organizational
 control_text: >-

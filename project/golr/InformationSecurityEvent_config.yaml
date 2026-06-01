@@ -1,0 +1,48 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: InformationSecurityEvent
+schema_generating: true
+description: An information security event per A.5.25, which may or may not be categorized
+  as an incident.
+display_name: InformationSecurityEvent
+document_category: InformationSecurityEvent
+weight: 20
+fields:
+- id: id
+  description: Unique identifier for this entity instance.
+  display_name: NamedEntity_id
+- id: name
+  description: Human-readable name or title.
+  display_name: name
+- id: description
+  description: Detailed description of the entity.
+  display_name: description
+- id: created_date
+  description: Date when the entity was created.
+  display_name: created_date
+- id: modified_date
+  description: Date when the entity was last modified.
+  display_name: modified_date
+- id: version
+  description: Version identifier for the entity.
+  display_name: version
+- id: event_datetime
+  description: Date and time of the event.
+  display_name: event_datetime
+- id: reporter
+  description: Person who reported the event.
+  display_name: reporter
+- id: event_description
+  description: Description of the event.
+  display_name: event_description
+- id: affected_assets
+  description: Assets affected by this risk or incident.
+  display_name: affected_assets
+  cardinality: multi
+- id: initial_assessment
+  description: Initial assessment of the event.
+  display_name: initial_assessment
+- id: categorized_as_incident
+  description: Whether the event was categorized as an incident.
+  display_name: categorized_as_incident
+- id: linked_incident
+  description: Linked incident if categorized.
+  display_name: linked_incident

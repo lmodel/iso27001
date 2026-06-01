@@ -1,0 +1,36 @@
+# mapping_set_id: https://w3id.org/lmodel/iso27001/mappings/iso27001_to_d3fend
+# mapping_set_version: 0.1.0
+# mapping_set_title: ISO/IEC 27001:2022 to MITRE D3FEND Mappings
+# mapping_set_description: Mappings between ISO/IEC 27001:2022 Annex A technological controls and MITRE D3FEND defensive countermeasure concepts. D3FEND is published as an OWL ontology under https://d3fend.mitre.org/ontologies/d3fend.owl#; the d3f prefix is used. Predicates - skos:closeMatch where one D3FEND countermeasure substantively implements an Annex A control objective; skos:relatedMatch where D3FEND coverage is partial or technology-specific. These mappings enable the chain ATT&CK technique → D3FEND countermeasure → iso27001 SecurityControl for automated gap analysis.
+# license: https://creativecommons.org/licenses/by/4.0/
+# subject_source: https://w3id.org/lmodel/iso27001
+# object_source: https://d3fend.mitre.org/ontologies/d3fend.owl
+# mapping_date: 2026-06-01
+# curie_map:
+#   iso27001: https://w3id.org/lmodel/iso27001/
+#   d3f: https://d3fend.mitre.org/ontologies/d3fend.owl#
+#   owl: http://www.w3.org/2002/07/owl#
+#   semapv: https://w3id.org/semapv/vocab/
+#   skos: http://www.w3.org/2004/02/skos/core#
+subject_id	subject_label	subject_category	predicate_id	predicate_label	object_id	object_label	object_category	mapping_justification	comment
+iso27001:SecurityControl	SecurityControl	owl:Class	skos:relatedMatch	related match	d3f:DefensiveTechnique	DefensiveTechnique	owl:Class	semapv:LLMBasedMatching	Annex A technological controls correspond to D3FEND defensive techniques
+iso27001:AnnexAControlId#a_5_15	A.5.15 Access control	skos:Concept	skos:closeMatch	close match	d3f:AccessControl	AccessControl	owl:Class	semapv:LLMBasedMatching	Access control countermeasure
+iso27001:AnnexAControlId#a_5_17	A.5.17 Authentication information	skos:Concept	skos:closeMatch	close match	d3f:MultifactorAuthentication	MultifactorAuthentication	owl:Class	semapv:LLMBasedMatching	MFA countermeasure
+iso27001:AnnexAControlId#a_8_2	A.8.2 Privileged access rights	skos:Concept	skos:closeMatch	close match	d3f:PrivilegedAccountUsageAnalysis	PrivilegedAccountUsageAnalysis	owl:Class	semapv:LLMBasedMatching	Privileged account usage analysis
+iso27001:AnnexAControlId#a_8_5	A.8.5 Secure authentication	skos:Concept	skos:closeMatch	close match	d3f:MultifactorAuthentication	MultifactorAuthentication	owl:Class	semapv:LLMBasedMatching	Secure authentication via MFA
+iso27001:AnnexAControlId#a_8_7	A.8.7 Protection against malware	skos:Concept	skos:closeMatch	close match	d3f:FileAnalysis	FileAnalysis	owl:Class	semapv:LLMBasedMatching	Malware detection through file analysis
+iso27001:AnnexAControlId#a_8_8	A.8.8 Management of technical vulnerabilities	skos:Concept	skos:closeMatch	close match	d3f:ApplicationHardening	ApplicationHardening	owl:Class	semapv:LLMBasedMatching	Vulnerability mitigation through hardening
+iso27001:AnnexAControlId#a_8_9	A.8.9 Configuration management	skos:Concept	skos:closeMatch	close match	d3f:SystemConfigurationPermissions	SystemConfigurationPermissions	owl:Class	semapv:LLMBasedMatching	Secure configuration enforcement
+iso27001:AnnexAControlId#a_8_11	A.8.11 Data masking	skos:Concept	skos:closeMatch	close match	d3f:Encryption	Encryption	owl:Class	semapv:LLMBasedMatching	Data masking through encryption
+iso27001:AnnexAControlId#a_8_12	A.8.12 Data leakage prevention	skos:Concept	skos:closeMatch	close match	d3f:OutboundTrafficFiltering	OutboundTrafficFiltering	owl:Class	semapv:LLMBasedMatching	DLP through outbound filtering
+iso27001:AnnexAControlId#a_8_13	A.8.13 Information backup	skos:Concept	skos:relatedMatch	related match	d3f:DataInventoryMapping	DataInventoryMapping	owl:Class	semapv:LLMBasedMatching	Backup planning requires data inventory
+iso27001:AnnexAControlId#a_8_15	A.8.15 Logging	skos:Concept	skos:closeMatch	close match	d3f:SystemCallAnalysis	SystemCallAnalysis	owl:Class	semapv:LLMBasedMatching	Logging supports system call analysis
+iso27001:AnnexAControlId#a_8_16	A.8.16 Monitoring activities	skos:Concept	skos:closeMatch	close match	d3f:NetworkTrafficAnalysis	NetworkTrafficAnalysis	owl:Class	semapv:LLMBasedMatching	Network monitoring countermeasure
+iso27001:AnnexAControlId#a_8_19	A.8.19 Installation of software on operational systems	skos:Concept	skos:closeMatch	close match	d3f:ExecutableAllowlisting	ExecutableAllowlisting	owl:Class	semapv:LLMBasedMatching	Software allowlisting countermeasure
+iso27001:AnnexAControlId#a_8_20	A.8.20 Networks security	skos:Concept	skos:closeMatch	close match	d3f:NetworkIsolation	NetworkIsolation	owl:Class	semapv:LLMBasedMatching	Network isolation countermeasure
+iso27001:AnnexAControlId#a_8_22	A.8.22 Segregation of networks	skos:Concept	skos:closeMatch	close match	d3f:NetworkIsolation	NetworkIsolation	owl:Class	semapv:LLMBasedMatching	Network segmentation through isolation
+iso27001:AnnexAControlId#a_8_23	A.8.23 Web filtering	skos:Concept	skos:closeMatch	close match	d3f:DNSDenylisting	DNSDenylisting	owl:Class	semapv:LLMBasedMatching	Web filtering via DNS denylisting
+iso27001:AnnexAControlId#a_8_24	A.8.24 Use of cryptography	skos:Concept	skos:closeMatch	close match	d3f:Encryption	Encryption	owl:Class	semapv:LLMBasedMatching	Cryptography countermeasure
+iso27001:AnnexAControlId#a_8_25	A.8.25 Secure development life cycle	skos:Concept	skos:closeMatch	close match	d3f:ApplicationHardening	ApplicationHardening	owl:Class	semapv:LLMBasedMatching	Secure SDLC produces hardened applications
+iso27001:AnnexAControlId#a_8_28	A.8.28 Secure coding	skos:Concept	skos:closeMatch	close match	d3f:ApplicationHardening	ApplicationHardening	owl:Class	semapv:LLMBasedMatching	Secure coding countermeasure
+iso27001:AnnexAControlId#a_8_31	A.8.31 Separation of development, test and production environments	skos:Concept	skos:closeMatch	close match	d3f:NetworkIsolation	NetworkIsolation	owl:Class	semapv:LLMBasedMatching	Environment separation via isolation

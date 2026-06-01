@@ -1,6 +1,6 @@
 id: iso27001:control-configure-logs-and-implement-real-time-monitoring
 name: Configure logs and implement real-time monitoring
-control_id: "8.15"
+control_id: a_8_15
 control_title: Configure logs and implement real-time monitoring
 control_category: technological
 control_text: >-

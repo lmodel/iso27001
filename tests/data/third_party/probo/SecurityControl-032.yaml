@@ -1,6 +1,6 @@
 id: iso27001:control-setup-role-based-access
 name: Setup role based access
-control_id: "8.2"
+control_id: a_8_2
 control_title: Setup role based access
 control_category: technological
 control_text: >-

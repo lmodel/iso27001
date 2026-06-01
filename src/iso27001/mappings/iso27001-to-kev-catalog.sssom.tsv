@@ -1,0 +1,21 @@
+# mapping_set_id: https://w3id.org/lmodel/iso27001/mappings/iso27001_to_kev_catalog
+# mapping_set_version: 0.1.0
+# mapping_set_title: ISO/IEC 27001:2022 to CISA KEV Catalog Mappings
+# mapping_set_description: Schema-level mappings between ISO/IEC 27001:2022 vulnerability-management controls and the CISA Known Exploited Vulnerabilities (KEV) catalog. KEV entries provide prioritisation signals for Annex A 8.8 (management of technical vulnerabilities) and incident-response triggers.
+# license: https://creativecommons.org/licenses/by/4.0/
+# subject_source: https://w3id.org/lmodel/iso27001
+# object_source: https://w3id.org/lmodel/kev-catalog
+# mapping_date: 2026-06-01
+# curie_map:
+#   iso27001: https://w3id.org/lmodel/iso27001/
+#   kev_catalog: https://w3id.org/lmodel/kev-catalog/
+#   owl: http://www.w3.org/2002/07/owl#
+#   semapv: https://w3id.org/semapv/vocab/
+#   skos: http://www.w3.org/2004/02/skos/core#
+subject_id	subject_label	subject_category	predicate_id	predicate_label	object_id	object_label	object_category	mapping_justification	comment
+iso27001:Risk	Risk	owl:Class	skos:closeMatch	close match	kev_catalog:KevVulnerability	KevVulnerability	owl:Class	semapv:LLMBasedMatching	Risk arising from a KEV entry
+iso27001:vulnerability_description	vulnerability_description	owl:DatatypeProperty	skos:closeMatch	close match	kev_catalog:shortDescription	shortDescription	owl:DatatypeProperty	semapv:LLMBasedMatching	KEV short description aligns with vulnerability description
+iso27001:AnnexAControlId#a_8_8	A.8.8 Management of technical vulnerabilities	skos:Concept	skos:closeMatch	close match	kev_catalog:KevVulnerability	KevVulnerability	owl:Class	semapv:LLMBasedMatching	KEV catalog drives prioritised vuln management
+iso27001:AnnexAControlId#a_5_7	A.5.7 Threat intelligence	skos:Concept	skos:closeMatch	close match	kev_catalog:KevCatalog	KevCatalog	owl:Class	semapv:LLMBasedMatching	KEV catalog as authoritative exploited-vuln intelligence feed
+iso27001:AnnexAControlId#a_5_24	A.5.24 Information security incident management planning and preparation	skos:Concept	skos:relatedMatch	related match	kev_catalog:KevVulnerability	KevVulnerability	owl:Class	semapv:LLMBasedMatching	Incident preparation informed by KEV trends
+iso27001:AnnexAControlId#a_6_8	A.6.8 Information security event reporting	skos:Concept	skos:relatedMatch	related match	kev_catalog:knownRansomwareCampaignUse	knownRansomwareCampaignUse	owl:DatatypeProperty	semapv:LLMBasedMatching	Event reporting triggered by ransomware-linked KEV entries

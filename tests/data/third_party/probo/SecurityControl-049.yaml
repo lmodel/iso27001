@@ -1,6 +1,6 @@
 id: iso27001:control-automated-backup
 name: Automated backup
-control_id: "8.13"
+control_id: a_8_13
 control_title: Automated backup
 control_category: technological
 control_text: >-

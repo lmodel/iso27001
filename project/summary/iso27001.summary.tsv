@@ -1,0 +1,392 @@
+Class Name	Parent Class	YAML Class Name	Description	Flags	Slot Name	YAML Slot Name	Range	Card	Slot Description	URI
+Asset	NamedEntity	Asset	An information asset or associated asset requiring protection, per Annex A control 5.9.							
+					asset_type		str	0..1	Type of asset.	iso27001:asset_type
+					asset_owner		str	0..1	Owner of the asset.	iso27001:asset_owner
+					asset_custodian		str	0..1	Custodian responsible for day-to-day protection.	iso27001:asset_custodian
+					classification		str	0..1	Information classification level.	iso27001:classification
+					location		str	0..1	Physical or logical location.	iso27001:location
+					criticality		str	0..1	Criticality rating of the asset.	iso27001:criticality
+					related_risks		*Risk	0..*	Associated risks.	iso27001:related_risks
+					applicable_controls		*SecurityControl	0..*	Controls related to this policy.	iso27001:applicable_controls
+AuditFinding	NamedEntity	AuditFinding	A finding from an internal audit, including nonconformities, observations, and positive findings.							
+					finding_type		AuditFindingType	0..1	Type of audit finding.	iso27001:finding_type
+					clause_reference		str	0..1	Reference to standard clause.	iso27001:clause_reference
+					control_reference		*SecurityControl	0..1	Reference to the control (e.g., A.5.1).	iso27001:control_reference
+					finding_description		str	0..1	Description of the finding.	iso27001:finding_description
+					objective_evidence		str	0..1	Evidence supporting the finding.	iso27001:objective_evidence
+					root_cause_analysis		str	0..1	Analysis of root cause.	iso27001:root_cause_analysis
+					risk_implication		str	0..1	Risk implications of the finding.	iso27001:risk_implication
+					recommended_action		str	0..1	Recommended action to address finding.	iso27001:recommended_action
+					auditee_response		str	0..1	Response from the auditee.	iso27001:auditee_response
+					linked_corrective_action		*CorrectiveAction	0..1	Corrective action linked to this finding.	iso27001:linked_corrective_action
+					closure_status		str	0..1	Status of finding closure.	iso27001:closure_status
+					closure_date		XSDDate	0..1	Date the finding was closed.	iso27001:closure_date
+AuditProgramme	DocumentedInformation	AuditProgramme	The internal audit programme per 9.2.2, planning audit activities over a defined period.							
+					programme_period		str	0..1	Period covered by the audit programme.	iso27001:programme_period
+					planned_audits		*InternalAudit	0..*	Audits planned in this programme.	iso27001:planned_audits
+					audit_frequency_rationale		str	0..1	Rationale for audit frequency decisions.	iso27001:audit_frequency_rationale
+					resource_requirements		str	0..1	Resource requirements for the programme.	iso27001:resource_requirements
+					auditor_qualifications		str	0..1	Required qualifications for auditors.	iso27001:auditor_qualifications
+					programme_status		str	0..1	Current status of the programme.	iso27001:programme_status
+AwarenessProgram	DocumentedInformation	AwarenessProgram	The awareness program ensuring personnel understand their information security responsibilities per Clause 7.3.							
+					awareness_topics		str	0..*	Topics covered in awareness program.	iso27001:awareness_topics
+					delivery_methods		str	0..*	Methods used to deliver awareness content.	iso27001:delivery_methods
+					target_audience		str	0..1	Intended audience for the policy or document.	iso27001:target_audience
+					frequency		str	0..1	Frequency of the activity.	iso27001:frequency
+					completion_tracking		str	0..1	How completion is tracked.	iso27001:completion_tracking
+					effectiveness_measures		str	0..1	How effectiveness is measured.	iso27001:effectiveness_measures
+CommunicationItem		CommunicationItem	A single communication requirement within the communication plan.							
+					subject		str	0..1	Subject of the communication.	iso27001:subject
+					purpose		str	0..1	Purpose of the communication.	iso27001:purpose
+					audience		str	0..1	Target audience.	iso27001:audience
+					frequency		str	0..1	Frequency of the activity.	iso27001:frequency
+					method		str	0..1	Method of communication.	iso27001:method
+					responsible_party		str	0..1	Party responsible for the activity.	iso27001:responsible_party
+					records_required		Bool	0..1	Whether records are required.	iso27001:records_required
+CommunicationPlan	DocumentedInformation	CommunicationPlan	Plan for internal and external communications relevant to the ISMS per Clause 7.4.							
+					communication_items		CommunicationItem	0..*	Communication items in the plan.	iso27001:communication_items
+CompetenceRecord	DocumentedInformation	CompetenceRecord	Evidence of competence for personnel affecting information security performance per Clause 7.2 d).							
+					person_name		str	0..1	Name of the person.	iso27001:person_name
+					person_role		str	0..1	Role of the person.	iso27001:person_role
+					required_competencies		str	0..*	Competencies required for the role.	iso27001:required_competencies
+					education_records		str	0..*	Education qualifications.	iso27001:education_records
+					training_records		str	0..*	Training completed.	iso27001:training_records
+					experience_records		str	0..*	Relevant experience.	iso27001:experience_records
+					competency_assessment_date		XSDDate	0..1	Date of last competency assessment.	iso27001:competency_assessment_date
+					competency_gaps		str	0..*	Identified competency gaps.	iso27001:competency_gaps
+					development_actions		str	0..*	Actions to address competency gaps.	iso27001:development_actions
+CorrectiveAction	NamedEntity	CorrectiveAction	A corrective action per Clause 10.2 to address the root cause of a nonconformity and reduce the likelihood of recurrence.							
+					linked_nonconformity		*Nonconformity	0..1	Nonconformity this action addresses.	iso27001:linked_nonconformity
+					action_description		str	0..1	Description of the action.	iso27001:action_description
+					root_cause_addressed		str	0..1	Root cause this action addresses.	iso27001:root_cause_addressed
+					responsible_party		str	0..1	Party responsible for the activity.	iso27001:responsible_party
+					target_completion_date		XSDDate	0..1	Target date for completing the action.	iso27001:target_completion_date
+					actual_completion_date		XSDDate	0..1	Actual date the action was completed.	iso27001:actual_completion_date
+					resources_required		str	0..1	Resources required for implementation.	iso27001:resources_required
+					effectiveness_criteria		str	0..1	Criteria for evaluating effectiveness.	iso27001:effectiveness_criteria
+					effectiveness_review_date		XSDDate	0..1	Date effectiveness was reviewed.	iso27001:effectiveness_review_date
+					effectiveness_verified		Bool	0..1	Whether effectiveness was verified.	iso27001:effectiveness_verified
+					isms_changes_required		str	0..1	Changes to ISMS required as a result.	iso27001:isms_changes_required
+					status		str	0..1	Current status of the document or entity.	iso27001:status
+DocumentedInformation	NamedEntity	DocumentedInformation	Abstract class for documented information per Clause 7.5. Captures metadata required for document control.							
+					document_type		DocumentType	0..1	Classification of the documented information.	iso27001:document_type
+					document_reference		str	0..1	Unique reference number for document control.	iso27001:document_reference
+					author		str	0..1	Person who created the document.	iso27001:author
+					owner		str	0..1	Person accountable for the document content and maintenance.	iso27001:owner
+					approved_by		str	0..1	Person who approved the document.	iso27001:approved_by
+					approved_date		XSDDate	0..1	Date when the document was approved.	iso27001:approved_date
+					effective_date		XSDDate	0..1	Date when the document becomes effective.	iso27001:effective_date
+					review_date		XSDDate	0..1	Date when the document is due for review.	iso27001:review_date
+					status		str	0..1	Current status of the document or entity.	iso27001:status
+					classification		str	0..1	Information classification level.	iso27001:classification
+					retention_period		DurationType	0..1	Duration for which the document is retained.	iso27001:retention_period
+					distribution_controls		str	0..*	Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).	iso27001:distribution_controls
+					storage_and_preservation		str	0..1	Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).	iso27001:storage_and_preservation
+					change_control_method		str	0..1	Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).	iso27001:change_control_method
+					external_origin		Bool	0..1	Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.	iso27001:external_origin
+					external_origin_source		str	0..1	Source or provider of the externally originated documented information, per Clause 7.5.3.	iso27001:external_origin_source
+ImprovementOpportunity	NamedEntity	ImprovementOpportunity	An opportunity for continual improvement per Clause 10.1, enhancing overall ISMS performance.							
+					improvement_source		str	0..1	Source of the improvement opportunity.	iso27001:improvement_source
+					identification_date		XSDDate	0..1	Date identified.	iso27001:identification_date
+					identified_by		str	0..1	Person who identified it.	iso27001:identified_by
+					improvement_description		str	0..1	Description of the improvement.	iso27001:improvement_description
+					expected_benefit		str	0..1	Expected benefit from implementation.	iso27001:expected_benefit
+					priority		str	0..1	Priority level.	iso27001:priority
+					implementation_plan		str	0..1	Plan for implementing the improvement.	iso27001:implementation_plan
+					responsible_party		str	0..1	Party responsible for the activity.	iso27001:responsible_party
+					target_date		XSDDate	0..1	Target date for achieving the objective.	iso27001:target_date
+					actual_completion_date		XSDDate	0..1	Actual date the action was completed.	iso27001:actual_completion_date
+					outcome_assessment		str	0..1	Assessment of actual outcomes.	iso27001:outcome_assessment
+					status		str	0..1	Current status of the document or entity.	iso27001:status
+InformationSecurityEvent	NamedEntity	InformationSecurityEvent	An information security event per A.5.25, which may or may not be categorized as an incident.							
+					event_datetime		XSDDateTime	0..1	Date and time of the event.	iso27001:event_datetime
+					reporter		str	0..1	Person who reported the event.	iso27001:reporter
+					event_description		str	0..1	Description of the event.	iso27001:event_description
+					affected_assets		*Asset	0..*	Assets affected by this risk or incident.	iso27001:affected_assets
+					initial_assessment		str	0..1	Initial assessment of the event.	iso27001:initial_assessment
+					categorized_as_incident		Bool	0..1	Whether the event was categorized as an incident.	iso27001:categorized_as_incident
+					linked_incident		*InformationSecurityIncident	0..1	Linked incident if categorized.	iso27001:linked_incident
+InformationSecurityIncident	NamedEntity	InformationSecurityIncident	An information security incident per A.5.26, requiring response per documented procedures.							
+					incident_datetime		XSDDateTime	0..1	Date and time the incident occurred or was detected.	iso27001:incident_datetime
+					incident_category		SecurityIncidentCategory	0..1	Category of incident.	iso27001:incident_category
+					severity		RiskLevel	0..1	Severity rating of the incident.	iso27001:severity
+					affected_assets		*Asset	0..*	Assets affected by this risk or incident.	iso27001:affected_assets
+					affected_cia		CIAProperty	0..*	CIA properties affected by the incident.	iso27001:affected_cia
+					incident_description		str	0..1	Description of the incident.	iso27001:incident_description
+					detection_method		str	0..1	How the incident was detected.	iso27001:detection_method
+					response_actions		str	0..*	Actions taken in response.	iso27001:response_actions
+					containment_actions		str	0..*	Actions to contain the incident.	iso27001:containment_actions
+					eradication_actions		str	0..*	Actions to eradicate the cause.	iso27001:eradication_actions
+					recovery_actions		str	0..*	Actions to recover normal operations.	iso27001:recovery_actions
+					root_cause		str	0..1	Root cause of the nonconformity.	iso27001:root_cause
+					lessons_learned		str	0..*	Lessons learned from the incident.	iso27001:lessons_learned
+					evidence_collected		str	0..*	Evidence collected.	iso27001:evidence_collected
+					notification_required		Bool	0..1	Whether notification to authorities/parties was required.	iso27001:notification_required
+					notifications_made		str	0..*	Notifications that were made.	iso27001:notifications_made
+					closure_datetime		XSDDateTime	0..1	Date and time of incident closure.	iso27001:closure_datetime
+					post_incident_review		str	0..1	Post-incident review findings.	iso27001:post_incident_review
+InformationSecurityManagementSystem	NamedEntity	InformationSecurityManagementSystem	Top-level container representing an organization's complete ISMS per ISO 27001. Aggregates all components required to support the full ISMS lifecycle.							
+					organization		*Organization	0..1	Reference to the organization operating the ISMS.	iso27001:organization
+					top_management		str	0..1	The person or group of people who direct and control the organization at the highest level, accountable for the ISMS per Clause 5.1.	iso27001:top_management
+					governing_body		str	0..1	The governing body to which top management reports, where applicable (e.g., board of directors). Referenced in ISO/IEC 27001:2022 Clause 5.1 NOTE.	iso27001:governing_body
+					leadership_commitment_evidence		str	0..*	Evidence of leadership and commitment with respect to the ISMS as required by Clause 5.1 a-h).	iso27001:leadership_commitment_evidence
+					scope_statement		str	0..1	Documented statement of ISMS scope per 4.3.	iso27001:scope_statement
+					scope_boundaries		str	0..*	Defined boundaries of the ISMS scope.	iso27001:scope_boundaries
+					scope_exclusions		str	0..*	Any exclusions from scope with justification.	iso27001:scope_exclusions
+					interfaces_and_dependencies		str	0..*	Interfaces and dependencies between activities performed by the organization and those performed by other organizations, considered when determining the ISMS scope per Clause 4.3 c).	iso27001:interfaces_and_dependencies
+					processes_and_interactions		str	0..1	Description of the processes needed for the ISMS and their interactions, per Clause 4.4.	iso27001:processes_and_interactions
+					context_internal_issues		str	0..*	Internal issues relevant to ISMS per 4.1.	iso27001:context_internal_issues
+					context_external_issues		str	0..*	External issues relevant to ISMS per 4.1.	iso27001:context_external_issues
+					interested_parties		*InterestedParty	0..*	Stakeholders relevant to the ISMS.	iso27001:interested_parties
+					information_security_policy		*InformationSecurityPolicy	0..1	Reference to the information security policy.	iso27001:information_security_policy
+					objectives		*InformationSecurityObjective	0..*	Information security objectives.	iso27001:objectives
+					risks_and_opportunities_actions		str	0..*	Actions to address risks and opportunities determined per Clause 6.1.1, including how they are integrated into ISMS processes and how their effectiveness is evaluated.	iso27001:risks_and_opportunities_actions
+					planned_changes		str	0..*	Changes to the ISMS planned and controlled per Clause 6.3 and 8.1 (planning of changes; control of planned changes).	iso27001:planned_changes
+					externally_provided_services		str	0..*	Externally provided processes, products or services relevant to the ISMS that are controlled per Clause 8.1.	iso27001:externally_provided_services
+					risk_assessment_process		*RiskAssessmentProcess	0..1	Reference to the risk assessment process.	iso27001:risk_assessment_process
+					risk_treatment_process		*RiskTreatmentProcess	0..1	Reference to the risk treatment process.	iso27001:risk_treatment_process
+					statement_of_applicability		*StatementOfApplicability	0..1	Reference to the Statement of Applicability.	iso27001:statement_of_applicability
+					controls		*SecurityControl	0..*	Security controls applied in the ISMS.	iso27001:controls
+					roles		*Role	0..*	Information security roles defined in the ISMS.	iso27001:roles
+					resources		*Resource	0..*	Resources provided for the ISMS.	iso27001:resources
+					competence_records		*CompetenceRecord	0..*	Competence records for personnel.	iso27001:competence_records
+					awareness_program		*AwarenessProgram	0..1	Reference to the awareness program.	iso27001:awareness_program
+					communication_plan		*CommunicationPlan	0..1	Reference to the communication plan.	iso27001:communication_plan
+					documented_information_register		*DocumentedInformation	0..*	Register of documented information.	iso27001:documented_information_register
+					operational_procedures		*OperationalProcedure	0..*	Operational procedures.	iso27001:operational_procedures
+					risk_assessments		*RiskAssessment	0..*	Risk assessment instances.	iso27001:risk_assessments
+					risk_treatment_plans		*RiskTreatmentPlan	0..*	Risk treatment plans.	iso27001:risk_treatment_plans
+					monitoring_program		*MonitoringProgram	0..1	Reference to the monitoring program.	iso27001:monitoring_program
+					internal_audits		*InternalAudit	0..*	Internal audit instances.	iso27001:internal_audits
+					management_reviews		*ManagementReview	0..*	Management review instances.	iso27001:management_reviews
+					nonconformities		*Nonconformity	0..*	Nonconformities identified.	iso27001:nonconformities
+					corrective_actions		*CorrectiveAction	0..*	Corrective actions.	iso27001:corrective_actions
+					improvements		*ImprovementOpportunity	0..*	Improvement opportunities tracked.	iso27001:improvements
+					certification_status		str	0..1	Current certification status.	iso27001:certification_status
+					certification_body		str	0..1	Accredited certification body.	iso27001:certification_body
+					certification_date		XSDDate	0..1	Date certification was achieved.	iso27001:certification_date
+					recertification_date		XSDDate	0..1	Date recertification is due.	iso27001:recertification_date
+InformationSecurityObjective	NamedEntity	InformationSecurityObjective	A measurable information security objective per Clause 6.2, established at relevant functions and levels of the organization.							
+					objective_statement		str	0..1	Clear statement of the objective.	iso27001:objective_statement
+					target_value		str	0..1	Target value for the objective metric.	iso27001:target_value
+					current_value		str	0..1	Current measured value.	iso27001:current_value
+					metric_definition		str	0..1	Definition of how the objective is measured.	iso27001:metric_definition
+					measurement_method		str	0..1	Method used to measure the metric.	iso27001:measurement_method
+					measurement_frequency		str	0..1	How often measurement is performed.	iso27001:measurement_frequency
+					responsible_role		*Role	0..1	Role responsible for the objective or control.	iso27001:responsible_role
+					target_date		XSDDate	0..1	Target date for achieving the objective.	iso27001:target_date
+					achievement_status		str	0..1	Current status of objective achievement.	iso27001:achievement_status
+					related_risks		*Risk	0..*	Associated risks.	iso27001:related_risks
+					related_controls		*SecurityControl	0..*	Other controls related to this one.	iso27001:related_controls
+					action_plan		str	0..1	Plan for achieving the objective.	iso27001:action_plan
+					objective_resources_required		str	0..1	Resources required to achieve the information security objective.	iso27001:objective_resources_required
+InformationSecurityPolicy	DocumentedInformation	InformationSecurityPolicy	The information security policy established by top management per Clause 5.2. Provides framework for setting objectives and demonstrates commitment.							
+					policy_statement		str	0..1	The core policy statement text.	iso27001:policy_statement
+					policy_objectives_framework		str	0..1	Framework for setting information security objectives.	iso27001:policy_objectives_framework
+					commitment_statements		str	0..*	Statements of commitment included in the policy.	iso27001:commitment_statements
+					applicability_statement		str	0..1	Statement of policy applicability.	iso27001:applicability_statement
+					communication_date		XSDDate	0..1	Date when the policy was communicated.	iso27001:communication_date
+					acknowledgment_required		Bool	0..1	Whether acknowledgment is required from personnel.	iso27001:acknowledgment_required
+					last_policy_review_date		XSDDate	0..1	Date of the most recent information security policy review.	iso27001:last_policy_review_date
+					next_policy_review_date		XSDDate	0..1	Planned date of the next information security policy review.	iso27001:next_policy_review_date
+					related_topic_policies		*TopicSpecificPolicy	0..*	Topic-specific policies supporting this policy.	iso27001:related_topic_policies
+					integrated_management_systems		RelatedManagementSystem	0..*	Other ISO/IEC management system standards with which the ISMS is integrated or aligned (per the harmonized structure of Annex SL).	iso27001:integrated_management_systems
+InterestedParty	NamedEntity	InterestedParty	A stakeholder whose needs and expectations are relevant to the ISMS per 4.2. Includes internal parties (employees, management) and external parties (customers, regulators, suppliers).							
+					party_type		str	0..1	Category of interested party.	iso27001:party_type
+					relationship		str	0..1	Nature of the relationship with the organization.	iso27001:relationship
+					requirements		str	0..*	Requirements of the interested party.	iso27001:requirements
+					addressed_requirements		str	0..*	Requirements of the interested party that the organization has determined will be addressed through the ISMS, per Clause 4.2 c).	iso27001:addressed_requirements
+					climate_change_related_requirements		str	0..*	Climate-change-related requirements of the interested party, per ISO/IEC 27001:2022 Clause 4.2 NOTE 2 as added by Amd. 1:2024.	iso27001:climate_change_related_requirements
+					communication_needs		str	0..1	Communication requirements for this party.	iso27001:communication_needs
+					contact_information		str	0..1	Contact details for the party.	iso27001:contact_information
+InternalAudit	DocumentedInformation	InternalAudit	An internal audit instance per Clause 9.2, assessing ISMS conformance and effectiveness.							
+					audit_reference		str	0..1	Reference identifier for the audit.	iso27001:audit_reference
+					audit_type		AuditType	0..1	Type of audit per ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1.	iso27001:audit_type
+					audit_scope		str	0..1	Scope of the audit.	iso27001:audit_scope
+					audit_criteria		str	0..*	Criteria against which audit is conducted.	iso27001:audit_criteria
+					audit_objectives		str	0..*	Objectives of the audit.	iso27001:audit_objectives
+					audit_period_start		XSDDate	0..1	Start date of audit period.	iso27001:audit_period_start
+					audit_period_end		XSDDate	0..1	End date of audit period.	iso27001:audit_period_end
+					lead_auditor		str	0..1	Lead auditor for the audit.	iso27001:lead_auditor
+					audit_team		str	0..*	Audit team members.	iso27001:audit_team
+					auditee_representatives		str	0..*	Representatives from audited areas.	iso27001:auditee_representatives
+					audit_plan		str	0..1	Audit plan document reference.	iso27001:audit_plan
+					findings		*AuditFinding	0..*	Audit findings.	iso27001:findings
+					positive_observations		str	0..*	Positive observations noted.	iso27001:positive_observations
+					audit_conclusion		str	0..1	Overall audit conclusion.	iso27001:audit_conclusion
+					report_date		XSDDate	0..1	Date the report was issued.	iso27001:report_date
+					report_distribution		str	0..*	Distribution list for the report.	iso27001:report_distribution
+ManagementReview	DocumentedInformation	ManagementReview	A management review per Clause 9.3, conducted by top management to evaluate ongoing ISMS performance and fitness for purpose.							
+					review_date	ManagementReview_review_date	XSDDate	0..1	Date when the management review was conducted.	iso27001:review_date
+					attendees		str	0..*	Attendees of the review.	iso27001:attendees
+					previous_actions_status		str	0..1	Status of actions from previous reviews.	iso27001:previous_actions_status
+					context_changes		str	0..1	Changes in context since last review.	iso27001:context_changes
+					interested_party_changes		str	0..1	Changes in interested party requirements.	iso27001:interested_party_changes
+					interested_party_feedback		str	0..1	Feedback from interested parties considered in the management review.	iso27001:interested_party_feedback
+					performance_trends		str	0..1	Trends in information security performance.	iso27001:performance_trends
+					audit_results_summary		str	0..1	Summary of audit results.	iso27001:audit_results_summary
+					risk_assessment_results		str	0..1	Results of risk assessment.	iso27001:risk_assessment_results
+					risk_treatment_status		str	0..1	Status of the risk treatment plan considered in the management review.	iso27001:risk_treatment_status
+					risks_and_opportunities_changes		str	0..1	Changes in risks and opportunities considered in the management review, per Clause 9.3.2 f).	iso27001:risks_and_opportunities_changes
+					improvement_opportunities		str	0..*	Opportunities for improvement identified.	iso27001:improvement_opportunities
+					decisions		str	0..*	Decisions made in the review.	iso27001:decisions
+					action_items		str	0..*	Action items from the review.	iso27001:action_items
+					next_review_date		XSDDate	0..1	Planned date for next review.	iso27001:next_review_date
+MonitoringItem		MonitoringItem	A single item to be monitored and measured per 9.1.							
+					metric_name		str	0..1	Name of the metric.	iso27001:metric_name
+					metric_description		str	0..1	Description of what is measured.	iso27001:metric_description
+					measurement_method		str	0..1	Method used to measure the metric.	iso27001:measurement_method
+					measurement_frequency		str	0..1	How often measurement is performed.	iso27001:measurement_frequency
+					responsible_party		str	0..1	Party responsible for the activity.	iso27001:responsible_party
+					analysis_frequency		str	0..1	How often analysis is performed.	iso27001:analysis_frequency
+					analyst		str	0..1	Person performing analysis.	iso27001:analyst
+					target_threshold		str	0..1	Target threshold value.	iso27001:target_threshold
+					alert_threshold		str	0..1	Threshold triggering alerts.	iso27001:alert_threshold
+					current_value		str	0..1	Current measured value.	iso27001:current_value
+					trend		str	0..1	Current trend direction.	iso27001:trend
+MonitoringProgram	DocumentedInformation	MonitoringProgram	The program for monitoring, measurement, analysis, and evaluation per Clause 9.1.							
+					monitoring_items		MonitoringItem	0..*	Items to be monitored.	iso27001:monitoring_items
+NamedEntity		NamedEntity	Abstract base class for all entities with an identifier, name, and description. Provides common identification and documentation slots.							
+				I	id	NamedEntity_id	URIorCURIE	1..1	Unique identifier for this entity instance.	iso27001:id
+					name		str	1..1	Human-readable name or title.	iso27001:name
+					description		str	0..1	Detailed description of the entity.	iso27001:description
+					created_date		XSDDate	0..1	Date when the entity was created.	iso27001:created_date
+					modified_date		XSDDate	0..1	Date when the entity was last modified.	iso27001:modified_date
+					version		str	0..1	Version identifier for the entity.	iso27001:version
+Nonconformity	NamedEntity	Nonconformity	A nonconformity identified per Clause 10.2, representing failure to fulfill a requirement.							
+					nonconformity_source		str	0..1	Source of nonconformity detection.	iso27001:nonconformity_source
+					detection_date		XSDDate	0..1	Date the nonconformity was detected.	iso27001:detection_date
+					detected_by		str	0..1	Person or process that detected the nonconformity.	iso27001:detected_by
+					requirement_violated		str	0..1	Requirement that was not fulfilled.	iso27001:requirement_violated
+					nonconformity_description		str	0..1	Description of the nonconformity.	iso27001:nonconformity_description
+					immediate_actions		str	0..*	Immediate actions taken to control/correct.	iso27001:immediate_actions
+					consequences_addressed		str	0..1	How consequences were dealt with.	iso27001:consequences_addressed
+					root_cause		str	0..1	Root cause of the nonconformity.	iso27001:root_cause
+					similar_nonconformities_check		str	0..1	Check for similar nonconformities elsewhere.	iso27001:similar_nonconformities_check
+					linked_corrective_actions		*CorrectiveAction	0..*	Corrective actions addressing this nonconformity.	iso27001:linked_corrective_actions
+					status		str	0..1	Current status of the document or entity.	iso27001:status
+					closure_date		XSDDate	0..1	Date the finding was closed.	iso27001:closure_date
+					closure_evidence		str	0..1	Evidence supporting closure.	iso27001:closure_evidence
+OperationalProcedure	DocumentedInformation	OperationalProcedure	A documented procedure for operational planning and control per Clause 8.1.							
+					procedure_scope		str	0..1	Scope of the procedure.	iso27001:procedure_scope
+					process_criteria		str	0..1	Criteria established for the process.	iso27001:process_criteria
+					control_measures		str	0..*	Control measures implemented.	iso27001:control_measures
+					responsible_roles		*Role	0..*	Roles responsible for the procedure.	iso27001:responsible_roles
+					related_controls		*SecurityControl	0..*	Other controls related to this one.	iso27001:related_controls
+					change_control_requirements		str	0..1	Requirements for controlling changes.	iso27001:change_control_requirements
+Organization	NamedEntity	Organization	The organization establishing and operating the ISMS. Captures context needed for Clause 4.1 (understanding the organization).							
+					legal_name		str	0..1	Legal registered name of the organization.	iso27001:legal_name
+					trading_names		str	0..*	Names under which the organization conducts business.	iso27001:trading_names
+					organization_type		str	0..1	Type of organization (e.g., corporation, government, nonprofit).	iso27001:organization_type
+					industry_sector		str	0..1	Primary industry sector of the organization.	iso27001:industry_sector
+					size_category		str	0..1	Organization size classification.	iso27001:size_category
+					employee_count		PositiveIntegerType	0..1	Approximate number of employees.	iso27001:employee_count
+					geographic_locations		str	0..*	Countries or regions where the organization operates.	iso27001:geographic_locations
+					regulatory_jurisdictions		str	0..*	Jurisdictions whose regulations apply to the organization.	iso27001:regulatory_jurisdictions
+					parent_organization		str	0..1	Parent organization if applicable.	iso27001:parent_organization
+					subsidiaries		str	0..*	Subsidiary organizations if applicable.	iso27001:subsidiaries
+					climate_change_relevant		Bool	0..1	Whether climate change has been determined to be a relevant issue for the organization's context, per Clause 4.1 as amended by Amd. 1:2024.	iso27001:climate_change_relevant
+Resource	NamedEntity	Resource	A resource provided for the ISMS per Clause 7.1, including personnel, infrastructure, technology, and budget.							
+					resource_type		str	0..1	Type of resource.	iso27001:resource_type
+					quantity		str	0..1	Quantity of the resource.	iso27001:quantity
+					allocation_date		XSDDate	0..1	Date the resource was allocated.	iso27001:allocation_date
+					allocated_to		str	0..1	What the resource is allocated to.	iso27001:allocated_to
+					cost		str	0..1	Cost of the resource.	iso27001:cost
+					availability_status		str	0..1	Current availability of the resource.	iso27001:availability_status
+Risk	NamedEntity	Risk	An identified information security risk that may affect information security properties within the ISMS scope.							
+					risk_source		str	0..1	Source or origin of the risk.	iso27001:risk_source
+					threat_description		str	0..1	Description of the threat exploiting the vulnerability.	iso27001:threat_description
+					vulnerability_description		str	0..1	Description of the vulnerability that could be exploited.	iso27001:vulnerability_description
+					affected_assets		*Asset	0..*	Assets affected by this risk or incident.	iso27001:affected_assets
+					affected_cia_properties		CIAProperty	0..*	Which CIA properties are affected (confidentiality, integrity, availability).	iso27001:affected_cia_properties
+					risk_owner		str	0..1	Person accountable for managing the risk.	iso27001:risk_owner
+					likelihood		LikelihoodRating	0..1	Assessed likelihood of risk occurrence.	iso27001:likelihood
+					impact		ImpactRating	0..1	Assessed impact if risk materializes.	iso27001:impact
+					inherent_risk_level		RiskLevel	0..1	Risk level before controls are applied.	iso27001:inherent_risk_level
+					existing_controls		*SecurityControl	0..*	Controls currently in place affecting this risk.	iso27001:existing_controls
+					residual_risk_level		RiskLevel	0..1	Risk level after controls are applied.	iso27001:residual_risk_level
+					risk_treatment_option		RiskTreatmentOption	0..1	Selected treatment option for the risk.	iso27001:risk_treatment_option
+					treatment_priority		str	0..1	Priority for treating this risk.	iso27001:treatment_priority
+					related_treatment_plan		*RiskTreatmentPlan	0..1	Risk treatment plan addressing this risk.	iso27001:related_treatment_plan
+RiskAssessment	DocumentedInformation	RiskAssessment	An instance of risk assessment performed per Clause 8.2, identifying and evaluating information security risks.							
+					assessment_scope		str	0..1	Scope of the assessment.	iso27001:assessment_scope
+					assessment_date		XSDDate	0..1	Date the assessment was conducted.	iso27001:assessment_date
+					assessor		str	0..1	Person or team who conducted the assessment.	iso27001:assessor
+					methodology_used		str	0..1	Specific methodology applied in this assessment.	iso27001:methodology_used
+					risks_identified		*Risk	0..*	Risks identified in this assessment.	iso27001:risks_identified
+					summary_findings		str	0..1	Summary of assessment findings.	iso27001:summary_findings
+					recommendations		str	0..*	Recommendations from the assessment.	iso27001:recommendations
+					next_assessment_date		XSDDate	0..1	Planned date for next assessment.	iso27001:next_assessment_date
+RiskAssessmentProcess	DocumentedInformation	RiskAssessmentProcess	The documented risk assessment process per Clause 6.1.2, defining criteria and methodology for identifying, analyzing, and evaluating risks.							
+					risk_acceptance_criteria		str	0..1	Criteria for accepting risks.	iso27001:risk_acceptance_criteria
+					assessment_criteria		str	0..1	Criteria for performing risk assessments.	iso27001:assessment_criteria
+					assessment_methodology		str	0..1	Methodology used for risk assessment.	iso27001:assessment_methodology
+					likelihood_scale		str	0..1	Scale used for likelihood rating.	iso27001:likelihood_scale
+					impact_scale		str	0..1	Scale used for impact rating.	iso27001:impact_scale
+					risk_matrix		str	0..1	Risk matrix or calculation method.	iso27001:risk_matrix
+					assessment_frequency		str	0..1	Planned frequency of risk assessments.	iso27001:assessment_frequency
+					trigger_events		str	0..*	Events that trigger risk assessment outside planned schedule.	iso27001:trigger_events
+RiskTreatmentPlan	DocumentedInformation	RiskTreatmentPlan	A risk treatment plan documenting planned actions to address identified risks through selected controls.							
+					plan_scope		str	0..1	Scope of the plan.	iso27001:plan_scope
+					risks_addressed		*Risk	0..*	Risks addressed by this plan.	iso27001:risks_addressed
+					treatment_actions		str	0..*	Actions to be taken for treatment.	iso27001:treatment_actions
+					controls_to_implement		*SecurityControl	0..*	Controls to be implemented as part of treatment.	iso27001:controls_to_implement
+					resources_required		str	0..1	Resources required for implementation.	iso27001:resources_required
+					responsible_parties		str	0..*	Parties responsible for implementation.	iso27001:responsible_parties
+					implementation_timeline		str	0..1	Timeline for implementation.	iso27001:implementation_timeline
+					risk_owner_approval		str	0..1	Risk owner who approved the plan.	iso27001:risk_owner_approval
+					approved_date	RiskTreatmentPlan_approved_date	XSDDate	0..1	Date when the risk treatment plan was approved.	iso27001:approved_date
+					residual_risk_acceptance		str	0..1	Documentation of residual risk acceptance.	iso27001:residual_risk_acceptance
+					implementation_status		ImplementationStatus	0..1	Current implementation status.	iso27001:implementation_status
+					completion_date		XSDDate	0..1	Date when implementation was completed.	iso27001:completion_date
+RiskTreatmentProcess	DocumentedInformation	RiskTreatmentProcess	The documented risk treatment process per Clause 6.1.3, defining how treatment options are selected and controls determined.							
+					treatment_options_guidance		str	0..1	Guidance on selecting treatment options.	iso27001:treatment_options_guidance
+					control_selection_criteria		str	0..1	Criteria for selecting controls.	iso27001:control_selection_criteria
+					annex_a_omission_verification		str	0..1	Description of how controls determined as necessary are compared with those in Annex A to verify that no necessary controls have been omitted, per Clause 6.1.3 c).	iso27001:annex_a_omission_verification
+					soa_template		str	0..1	Template used for Statement of Applicability.	iso27001:soa_template
+					approval_workflow		str	0..1	Workflow for approving risk treatment.	iso27001:approval_workflow
+Role	NamedEntity	Role	An information security role with defined responsibilities and authorities per Clause 5.3.							
+					role_type		str	0..1	Category of the role.	iso27001:role_type
+					responsibilities		str	0..*	Responsibilities assigned to the role.	iso27001:responsibilities
+					authorities		str	0..*	Authorities granted to the role.	iso27001:authorities
+					accountability		str	0..1	What the role is accountable for.	iso27001:accountability
+					assigned_to		str	0..*	Person(s) assigned to this role.	iso27001:assigned_to
+					delegation_rules		str	0..1	Rules for delegating responsibilities.	iso27001:delegation_rules
+					reporting_line		str	0..1	To whom this role reports.	iso27001:reporting_line
+SecurityControl	NamedEntity	SecurityControl	A security control from Annex A of ISO/IEC 27001:2022, derived from ISO/IEC 27002:2022. Represents a measure that modifies risk.							
+					control_id		AnnexAControlId	0..1	Control identifier from Annex A (e.g., a_5_1, a_8_24).	iso27001:control_id
+					control_title		str	0..1	Title of the control.	iso27001:control_title
+					control_category		ControlCategory	0..1	Domain category of the control.	iso27001:control_category
+					control_text		str	0..1	Organization-authored control statement or external control summary.	iso27001:control_text
+					implementation_guidance		str	0..1	Organization-authored implementation notes for the control.	iso27001:implementation_guidance
+					related_controls		*SecurityControl	0..*	Other controls related to this one.	iso27001:related_controls
+					applicable_threats		str	0..*	Threats this control addresses.	iso27001:applicable_threats
+					applicable_assets		str	0..*	Asset types this control applies to.	iso27001:applicable_assets
+					control_owner		str	0..1	Person responsible for the control.	iso27001:control_owner
+					implementation_status		ImplementationStatus	0..1	Current implementation status.	iso27001:implementation_status
+					implementation_date		XSDDate	0..1	Date the control was implemented.	iso27001:implementation_date
+					effectiveness_rating		str	0..1	Rating of control effectiveness.	iso27001:effectiveness_rating
+					last_test_date		XSDDate	0..1	Date the control was last tested.	iso27001:last_test_date
+					evidence_references		str	0..*	References to evidence of implementation.	iso27001:evidence_references
+SoAEntry		SoAEntry	A single entry in the Statement of Applicability, documenting the applicability and implementation status of one control.							
+					control_reference		*SecurityControl	0..1	Reference to the control (e.g., A.5.1).	iso27001:control_reference
+					is_applicable		Bool	0..1	Whether the control is applicable.	iso27001:is_applicable
+					inclusion_justification		str	0..1	Justification for including the control.	iso27001:inclusion_justification
+					exclusion_justification		str	0..1	Justification for excluding the control.	iso27001:exclusion_justification
+					implementation_status		ImplementationStatus	0..1	Current implementation status.	iso27001:implementation_status
+					implementation_evidence		str	0..1	Evidence of control implementation.	iso27001:implementation_evidence
+					responsible_role		*Role	0..1	Role responsible for the objective or control.	iso27001:responsible_role
+					target_implementation_date		XSDDate	0..1	Target date for implementing the control.	iso27001:target_implementation_date
+StatementOfApplicability	DocumentedInformation	StatementOfApplicability	The Statement of Applicability (SoA) recording which controls apply, their rationale, and current implementation state.							
+					soa_entries		SoAEntry	0..*	Individual control entries in the SoA.	iso27001:soa_entries
+					total_controls		UnsignedShortType	0..1	Total number of controls in scope.	iso27001:total_controls
+					implemented_count		UnsignedShortType	0..1	Number of implemented controls.	iso27001:implemented_count
+					planned_count		UnsignedShortType	0..1	Number of controls planned for implementation.	iso27001:planned_count
+					not_applicable_count		UnsignedShortType	0..1	Number of controls marked not applicable.	iso27001:not_applicable_count
+					last_review_date		XSDDate	0..1	Date of last review.	iso27001:last_review_date
+TopicSpecificPolicy	DocumentedInformation	TopicSpecificPolicy	A policy addressing a specific information security topic, supporting the overarching information security policy.							
+					topic_area		str	0..1	The specific topic addressed by the policy.	iso27001:topic_area
+					parent_policy		*InformationSecurityPolicy	0..1	The parent policy this topic-specific policy supports.	iso27001:parent_policy
+					applicable_controls		*SecurityControl	0..*	Controls related to this policy.	iso27001:applicable_controls
+					target_audience		str	0..1	Intended audience for the policy or document.	iso27001:target_audience
+

@@ -1,6 +1,6 @@
 id: iso27001:control-protect-your-employees-devices
 name: Protect your employees devices
-control_id: "8.1"
+control_id: a_8_1
 control_title: Protect your employees devices
 control_category: technological
 control_text: >-

@@ -1,4 +1,4 @@
-# metamodel_version: 1.7.0
+# metamodel_version: 1.11.0
 # version: 1.0.0
 BASE <https://w3id.org/lmodel/iso27001/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -199,7 +199,12 @@ linkml:Sparqlpath xsd:string
           <review_date> @linkml:Date ? ;
           <status> @linkml:String ? ;
           <classification> @linkml:String ? ;
-          <retention_period> @<DurationType> ?
+          <retention_period> @<DurationType> ? ;
+          <distribution_controls> @linkml:String * ;
+          <storage_and_preservation> @linkml:String ? ;
+          <change_control_method> @linkml:String ? ;
+          <external_origin> @linkml:Boolean ? ;
+          <external_origin_source> @linkml:String ?
        ) ;
        rdf:type [ <DocumentedInformation> ]
     )
@@ -244,10 +249,31 @@ linkml:Sparqlpath xsd:string
     (  $<InformationSecurityIncident_tes> (  &<NamedEntity_tes> ;
           rdf:type [ <NamedEntity> ] ? ;
           <incident_datetime> @linkml:Datetime ? ;
-          <incident_category> @linkml:String ? ;
-          <severity> @linkml:String ? ;
+          <incident_category> [ <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#malware>
+             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#ransomware>
+             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#phishing>
+             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#social_engineering>
+             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#unauthorized_access>
+             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#account_compromise>
+             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#privilege_misuse>
+             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#data_breach>
+             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#data_loss>
+             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#denial_of_service>
+             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#web_application_attack>
+             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#supply_chain>
+             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#insider_threat>
+             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#physical_security>
+             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#configuration_error>
+             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#cryptographic_failure>
+             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#policy_violation>
+             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#other> ] ? ;
+          <severity> [ <https://w3id.org/lmodel/iso27001/RiskLevel#very_low> <https://w3id.org/lmodel/iso27001/RiskLevel#low>
+             <https://w3id.org/lmodel/iso27001/RiskLevel#medium> <https://w3id.org/lmodel/iso27001/RiskLevel#high>
+             <https://w3id.org/lmodel/iso27001/RiskLevel#critical> ] ? ;
           <affected_assets> @<Asset> * ;
-          <affected_cia> @linkml:String * ;
+          <affected_cia> [ <https://w3id.org/lmodel/iso27001/CIAProperty#confidentiality>
+             <https://w3id.org/lmodel/iso27001/CIAProperty#integrity> <https://w3id.org/lmodel/iso27001/CIAProperty#availability> ]
+          * ;
           <incident_description> @linkml:String ? ;
           <detection_method> @linkml:String ? ;
           <response_actions> @linkml:String * ;
@@ -255,7 +281,7 @@ linkml:Sparqlpath xsd:string
           <eradication_actions> @linkml:String * ;
           <recovery_actions> @linkml:String * ;
           <root_cause> @linkml:String ? ;
-          <lessons_learned> @linkml:String ? ;
+          <lessons_learned> @linkml:String * ;
           <evidence_collected> @linkml:String * ;
           <notification_required> @linkml:Boolean ? ;
           <notifications_made> @linkml:String * ;
@@ -270,14 +296,22 @@ linkml:Sparqlpath xsd:string
     (  $<InformationSecurityManagementSystem_tes> (  &<NamedEntity_tes> ;
           rdf:type [ <NamedEntity> ] ? ;
           <organization> @<Organization> ? ;
+          <top_management> @linkml:String ? ;
+          <governing_body> @linkml:String ? ;
+          <leadership_commitment_evidence> @linkml:String * ;
           <scope_statement> @linkml:String ? ;
           <scope_boundaries> @linkml:String * ;
           <scope_exclusions> @linkml:String * ;
+          <interfaces_and_dependencies> @linkml:String * ;
+          <processes_and_interactions> @linkml:String ? ;
           <context_internal_issues> @linkml:String * ;
           <context_external_issues> @linkml:String * ;
           <interested_parties> @<InterestedParty> * ;
           <information_security_policy> @<InformationSecurityPolicy> ? ;
           <objectives> @<InformationSecurityObjective> * ;
+          <risks_and_opportunities_actions> @linkml:String * ;
+          <planned_changes> @linkml:String * ;
+          <externally_provided_services> @linkml:String * ;
           <risk_assessment_process> @<RiskAssessmentProcess> ? ;
           <risk_treatment_process> @<RiskTreatmentProcess> ? ;
           <statement_of_applicability> @<StatementOfApplicability> ? ;
@@ -320,7 +354,8 @@ linkml:Sparqlpath xsd:string
           <achievement_status> @linkml:String ? ;
           <related_risks> @<Risk> * ;
           <related_controls> @<SecurityControl> * ;
-          <action_plan> @linkml:String ?
+          <action_plan> @linkml:String ? ;
+          <objective_resources_required> @linkml:String ?
        ) ;
        rdf:type [ <InformationSecurityObjective> ]
     )
@@ -335,7 +370,19 @@ linkml:Sparqlpath xsd:string
           <applicability_statement> @linkml:String ? ;
           <communication_date> @linkml:Date ? ;
           <acknowledgment_required> @linkml:Boolean ? ;
-          <related_topic_policies> @<TopicSpecificPolicy> *
+          <last_policy_review_date> @linkml:Date ? ;
+          <next_policy_review_date> @linkml:Date ? ;
+          <related_topic_policies> @<TopicSpecificPolicy> * ;
+          <integrated_management_systems> [ <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_iec_27001>
+             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_iec_27701>
+             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_iec_27017>
+             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_iec_27018>
+             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_iec_42001>
+             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_9001>
+             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_14001>
+             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_22301>
+             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_iec_20000_1>
+             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_31000> ] *
        ) ;
        rdf:type [ <InformationSecurityPolicy> ]
     )
@@ -347,6 +394,8 @@ linkml:Sparqlpath xsd:string
           <party_type> @linkml:String ? ;
           <relationship> @linkml:String ? ;
           <requirements> @linkml:String * ;
+          <addressed_requirements> @linkml:String * ;
+          <climate_change_related_requirements> @linkml:String * ;
           <communication_needs> @linkml:String ? ;
           <contact_information> @linkml:String ?
        ) ;
@@ -358,7 +407,11 @@ linkml:Sparqlpath xsd:string
     (  $<InternalAudit_tes> (  &<DocumentedInformation_tes> ;
           rdf:type [ <DocumentedInformation> ] ? ;
           <audit_reference> @linkml:String ? ;
-          <audit_type> @linkml:String ? ;
+          <audit_type> [ <https://w3id.org/lmodel/iso27001/AuditType#internal>
+             <https://w3id.org/lmodel/iso27001/AuditType#external_second_party>
+             <https://w3id.org/lmodel/iso27001/AuditType#external_third_party>
+             <https://w3id.org/lmodel/iso27001/AuditType#surveillance> <https://w3id.org/lmodel/iso27001/AuditType#recertification>
+             <https://w3id.org/lmodel/iso27001/AuditType#combined> ] ? ;
           <audit_scope> @linkml:String ? ;
           <audit_criteria> @linkml:String * ;
           <audit_objectives> @linkml:String * ;
@@ -386,9 +439,12 @@ linkml:Sparqlpath xsd:string
           <previous_actions_status> @linkml:String ? ;
           <context_changes> @linkml:String ? ;
           <interested_party_changes> @linkml:String ? ;
+          <interested_party_feedback> @linkml:String ? ;
           <performance_trends> @linkml:String ? ;
           <audit_results_summary> @linkml:String ? ;
           <risk_assessment_results> @linkml:String ? ;
+          <risk_treatment_status> @linkml:String ? ;
+          <risks_and_opportunities_changes> @linkml:String ? ;
           <improvement_opportunities> @linkml:String * ;
           <decisions> @linkml:String * ;
           <action_items> @linkml:String * ;
@@ -517,7 +573,9 @@ linkml:Sparqlpath xsd:string
           <threat_description> @linkml:String ? ;
           <vulnerability_description> @linkml:String ? ;
           <affected_assets> @<Asset> * ;
-          <affected_cia_properties> @linkml:String * ;
+          <affected_cia_properties> [ <https://w3id.org/lmodel/iso27001/CIAProperty#confidentiality>
+             <https://w3id.org/lmodel/iso27001/CIAProperty#integrity> <https://w3id.org/lmodel/iso27001/CIAProperty#availability> ]
+          * ;
           <risk_owner> @linkml:String ? ;
           <likelihood> [ <https://w3id.org/lmodel/iso27001/LikelihoodRating#rare>
              <https://w3id.org/lmodel/iso27001/LikelihoodRating#unlikely>
@@ -606,6 +664,7 @@ linkml:Sparqlpath xsd:string
           rdf:type [ <DocumentedInformation> ] ? ;
           <treatment_options_guidance> @linkml:String ? ;
           <control_selection_criteria> @linkml:String ? ;
+          <annex_a_omission_verification> @linkml:String ? ;
           <soa_template> @linkml:String ? ;
           <approval_workflow> @linkml:String ?
        ) ;
@@ -631,7 +690,54 @@ linkml:Sparqlpath xsd:string
 <SecurityControl> CLOSED {
     (  $<SecurityControl_tes> (  &<NamedEntity_tes> ;
           rdf:type [ <NamedEntity> ] ? ;
-          <control_id> @linkml:String ? ;
+          <control_id> [ <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_1>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_2> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_3>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_4> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_5>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_6> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_7>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_8> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_9>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_10> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_11>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_12> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_13>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_14> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_15>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_16> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_17>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_18> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_19>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_20> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_21>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_22> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_23>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_24> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_25>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_26> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_27>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_28> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_29>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_30> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_31>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_32> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_33>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_34> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_35>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_36> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_37>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_6_1> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_6_2>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_6_3> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_6_4>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_6_5> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_6_6>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_6_7> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_6_8>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_1> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_2>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_3> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_4>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_5> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_6>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_7> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_8>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_9> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_10>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_11> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_12>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_13> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_14>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_1> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_2>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_3> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_4>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_5> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_6>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_7> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_8>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_9> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_10>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_11> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_12>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_13> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_14>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_15> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_16>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_17> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_18>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_19> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_20>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_21> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_22>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_23> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_24>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_25> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_26>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_27> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_28>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_29> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_30>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_31> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_32>
+             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_33> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_34> ]
+          ? ;
           <control_title> @linkml:String ? ;
           <control_category> [ <https://w3id.org/lmodel/iso27001/ControlCategory#organizational>
              <https://w3id.org/lmodel/iso27001/ControlCategory#people> <https://w3id.org/lmodel/iso27001/ControlCategory#physical>

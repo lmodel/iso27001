@@ -1,0 +1,71 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: Risk
+schema_generating: true
+description: An identified information security risk that may affect information security
+  properties within the ISMS scope.
+display_name: Risk
+document_category: Risk
+weight: 20
+fields:
+- id: id
+  description: Unique identifier for this entity instance.
+  display_name: NamedEntity_id
+- id: name
+  description: Human-readable name or title.
+  display_name: name
+- id: description
+  description: Detailed description of the entity.
+  display_name: description
+- id: created_date
+  description: Date when the entity was created.
+  display_name: created_date
+- id: modified_date
+  description: Date when the entity was last modified.
+  display_name: modified_date
+- id: version
+  description: Version identifier for the entity.
+  display_name: version
+- id: risk_source
+  description: Source or origin of the risk.
+  display_name: risk_source
+- id: threat_description
+  description: Description of the threat exploiting the vulnerability.
+  display_name: threat_description
+- id: vulnerability_description
+  description: Description of the vulnerability that could be exploited.
+  display_name: vulnerability_description
+- id: affected_assets
+  description: Assets affected by this risk or incident.
+  display_name: affected_assets
+  cardinality: multi
+- id: affected_cia_properties
+  description: Which CIA properties are affected (confidentiality, integrity, availability).
+  display_name: affected_cia_properties
+  cardinality: multi
+- id: risk_owner
+  description: Person accountable for managing the risk.
+  display_name: risk_owner
+- id: likelihood
+  description: Assessed likelihood of risk occurrence.
+  display_name: likelihood
+- id: impact
+  description: Assessed impact if risk materializes.
+  display_name: impact
+- id: inherent_risk_level
+  description: Risk level before controls are applied.
+  display_name: inherent_risk_level
+- id: existing_controls
+  description: Controls currently in place affecting this risk.
+  display_name: existing_controls
+  cardinality: multi
+- id: residual_risk_level
+  description: Risk level after controls are applied.
+  display_name: residual_risk_level
+- id: risk_treatment_option
+  description: Selected treatment option for the risk.
+  display_name: risk_treatment_option
+- id: treatment_priority
+  description: Priority for treating this risk.
+  display_name: treatment_priority
+- id: related_treatment_plan
+  description: Risk treatment plan addressing this risk.
+  display_name: related_treatment_plan

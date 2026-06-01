@@ -44,6 +44,7 @@
   - [Supply Chain and Software Integrity](#supply-chain-and-software-integrity)
   - [Linked Data Infrastructure](#linked-data-infrastructure)
 - [Summary Assessment](#summary-assessment)
+- [Implementation Status](#implementation-status)
 
 ## LinkML
 
@@ -181,7 +182,7 @@ systems, LMS platforms, and SIEM logs.
 
 #### Multi-Framework Mapping
 
-The `iso27001_clause` and `annex_a_control` annotations on every class are extension points. Annotations for ISO 27002 control guidance references, NIST CSF subcategory mappings, SOC 2 criteria, or NIS2 obligations can be added alongside the existing clause references. A single ISMS record can carry alignment metadata for multiple frameworks simultaneously.
+Classes in the schema carry `iso27001_clause` and `annex_a_controls` annotations that anchor each construct to the source standard and act as extension points. Annotations for ISO 27002 control guidance references, NIST CSF subcategory mappings, SOC 2 criteria, or NIS2 obligations can be added alongside the existing clause references. A single ISMS record can carry alignment metadata for multiple frameworks simultaneously.
 
 #### Documented Information Inventory
 
@@ -210,7 +211,7 @@ The `iso27001_clause` and `annex_a_control` annotations on every class are exten
 
 #### Linked Data and Knowledge Graph
 
-All entity identifiers are URIs under `https://w3id.org/lmodel/iso-iec-27001/`.
+All entity identifiers are URIs under `https://w3id.org/lmodel/iso27001/`.
 `project/jsonld/iso27001.jsonld` and `project/owl/iso27001.owl.ttl` enable ISMS data to participate in enterprise knowledge graphs alongside asset inventories, identity systems, and vulnerability databases - with SPARQL as the query layer.
 
 #### GRC Platform Data Exchange
@@ -250,10 +251,10 @@ The five slots carry distinct semantic precision:
 | `narrow_mappings` | External concept is narrower | `SecurityControl` -> a specific CIS Control sub-control or NIST SP 800-53 control enhancement |
 | `related_mappings` | Loosely associated | `AuditFinding` -> PROV-O `Activity`; `applicable_threats` values -> MITRE ATT&CK technique IDs |
 
-**NIST Cybersecurity Framework alignment.** Adding `exact_mappings` or `close_mappings` from `SecurityControl` instances to NIST CSF subcategory URIs (e.g., `PR.AC-1`, `DE.CM-7`) allows a single control record to simultaneously satisfy ISO 27001 Annex A and CSF reporting requirements. Tools that consume the JSON-LD output resolve both identifiers without any additional mapping layer.
+**NIST Cybersecurity Framework alignment.** Adding `exact_mappings` or `close_mappings` from `SecurityControl` instances to NIST CSF v2 subcategory URIs (e.g., `PR.AA-01` identity-management, `DE.CM-01` network monitoring) allows a single control record to simultaneously satisfy ISO 27001 Annex A and CSF reporting requirements. Tools that consume the JSON-LD output resolve both identifiers without any additional mapping layer.
 
 **MITRE ATT&CK threat linkage.** The `applicable_threats` slot on `SecurityControl` and
-`threat_description` on `Risk` can carry `related_mappings` to ATT&CK technique or tactic URIs. This connects the ISMS risk register directly to the threat intelligence vocabulary, enabling automated correlation between SIEM detections (tagged with ATT&CK IDs) and the controls designed to address them.
+`threat_description` on `Risk` can carry `related_mappings` to ATT&CK technique, tactic, or mitigation URIs. The current `iso27001-to-attack.sssom.tsv` set attaches Annex A controls to ATT&CK *Mitigation* identifiers (e.g. M1041, M1032) and incident categories to *Tactic* identifiers (TA0001, TA0040). This connects the ISMS risk register directly to the threat intelligence vocabulary, enabling automated correlation between SIEM detections (tagged with ATT&CK IDs) and the controls designed to address them.
 
 **STIX/TAXII incident interoperability.** `InformationSecurityIncident` mapped via `close_mappings` to the STIX 2.1 `Incident` object type lets incident records be exported as STIX bundles for sharing via TAXII feeds, or enriched from incoming threat intelligence without field-by-field translation.
 
@@ -303,12 +304,10 @@ The UCO (Unified Cyber Ontology) family provides a modular foundational ontology
 | **uco-action** | `Action` with `performer`, `result`, and `location` aligns with `CorrectiveAction` and `OperationalProcedure.procedure_steps`. |
 | **uco-analysis** | `Analysis` and `AnalyticResult` align with `RiskAssessment` and `AuditFinding`; supports interoperability with CASE-based forensic tooling. |
 | **uco-identity** | `Identity` and `Organization` align with ISMS `Organization` and `Role`; exact URI mappings enable federated identity queries across UCO-consuming tools. |
-| **uco-role** | `Role` concept aligns with iso27001 `Role`; `responsibilities` and `authorities` slot semantics match. |
 | **uco-location** | `Location` with geospatial properties aligns with `Asset.location`; combining with GeoSPARQL enables spatial asset queries for OT zone modelling. |
-| **uco-victim** | `Victim` concept aligns with `affected_assets` and incident impact scope; relevant for regulatory incident notification evidence. |
 | **uco-marking** | Data marking definitions align with `DocumentedInformation.classification`; enables machine-readable sensitivity labels compatible with STIX Traffic Light Protocol. |
-| **uco-configuration** | `Configuration` objects align with OT/ICS asset configuration records; relevant for Annex A 8.8 (management of technical vulnerabilities) in OT environments. |
-| **uco-pattern** | `Pattern` concept aligns with monitoring criteria in `SecurityControl`; supports detection rule linkage for SIEM and SOAR enrichment. |
+| **uco-tool** | `Tool` objects align with `Asset` subtype software-tooling references; relevant for evidence-of-control implementation. |
+| **uco-vocabulary** | Controlled vocabularies underpin enum-to-URI alignment patterns shared by iso27001 enums (e.g. `ImplementationStatus`). |
 
 
 ### Supply Chain and Software Integrity
@@ -317,7 +316,7 @@ These schemas directly address the supply chain risk scoring weakness identified
 
 | Schema | Relevance |
 |---|---|
-| **slsa** | Supply-chain Levels for Software Artefacts (SLSA). Provides a structured vocabulary for build integrity levels (`SLSA_L0`–`SLSA_L3`). A proposed `SupplierAssessment` class extension (see Summary Assessment) can carry a `slsa_level` slot with `close_mappings` to SLSA provenance requirement URIs, satisfying Annex A 5.19–5.22 supplier relationship controls with machine-verifiable build provenance. |
+| **slsa** | Supply-chain Levels for Software Artefacts (SLSA). Provides a structured vocabulary for build integrity levels (SLSA v1.0 Build track `L1`–`L3`). A proposed `SupplierAssessment` class extension (see Summary Assessment) can carry a `slsa_level` slot with `close_mappings` to SLSA provenance requirement URIs, satisfying Annex A 5.19–5.23 supplier relationship controls with machine-verifiable build provenance. |
 | **spdx** | Software Package Data Exchange (SPDX). Software Bill of Materials (SBOM) format. `Asset` instances of type `software` can carry `related_mappings` to SPDX `Package` URIs, linking the ISMS asset inventory to the SBOM for automated vulnerability correlation (Annex A 8.8). |
 | **nist-sp-800-218** | SSDF practices map onto software supplier assessment criteria; combined with SLSA levels provides a two-axis (practice maturity × build integrity) supplier scoring rubric. |
 
@@ -326,7 +325,7 @@ These schemas directly address the supply chain risk scoring weakness identified
 
 | Schema | Relevance |
 |---|---|
-| **void** | Vocabulary of Interlinked Datasets. A VoID dataset descriptor for the iso27001 knowledge graph enables discoverability by linked data crawlers and SPARQL federation clients. Organisations publishing ISMS data as linked open data should include a VoID description referencing this schema's base URI (`https://w3id.org/lmodel/iso-iec-27001/`). |
+| **void** | Vocabulary of Interlinked Datasets. A VoID dataset descriptor for the iso27001 knowledge graph enables discoverability by linked data crawlers and SPARQL federation clients. Organisations publishing ISMS data as linked open data should include a VoID description referencing this schema's base URI (`https://w3id.org/lmodel/iso27001/`). |
 | **geosparql** | OGC GeoSPARQL. `Asset.location` can be expressed as GeoSPARQL `Feature` and `Geometry` objects, enabling spatial queries over asset inventories - particularly relevant for OT zone and physical perimeter modelling. |
 | **datatype** | LinkML datatype library. Ensures consistent XSD-aligned type usage across the schema (dates, URIs, integers); reduces datatype impedance mismatches when round-tripping through JSON-Schema, SQL, and RDF serialisations. |
 | **collections** | LinkML collections primitives. Supports typed list and set slots in generated Python, TypeScript, and SQL artefacts; underpins multi-valued slots such as `applicable_threats`, `evidence_references`, and `procedure_steps`. |
@@ -334,34 +333,94 @@ These schemas directly address the supply chain risk scoring weakness identified
 
 ### Additional Schemas to Target
 
-The following schemas are not yet in the lmodel catalogue but represent high-value alignment targets for the use cases and weaknesses identified in this document.
+The following schemas remain high-value alignment targets that are not yet published as SSSOM mapping sets. (Targets that have since been published - `cwe`, `cve`/`nvd`, `ocsf`, `cis-controls`, `iso29100` - moved into the Implementation Status section.)
 
-| Schema | Rationale |
-|---|---|
-| **cwe** | MITRE Common Weakness Enumeration. `close_mappings` on `Risk.vulnerability_description` to CWE IDs links ISMS vulnerabilities to the structured weakness taxonomy, enabling automated correlation with static analysis tool output. |
-| **cve / nvd** | CVE / NIST NVD vulnerability records. `related_mappings` on `Risk` and `Asset` instances to CVE URIs creates a live bridge between the ISMS risk register and the vulnerability database for automated risk re-scoring when new CVEs are published. |
-| **ocsf** | Open Cybersecurity Schema Framework. A vendor-neutral event schema used by AWS Security Hub, Splunk, and others. Mapping `InformationSecurityEvent` slots to OCSF event classes enables zero-translation ingestion of SIEM alerts into ISMS incident records. |
-| **prov-o** | W3C PROV Ontology. `exact_mappings` from `AuditFinding` and `CorrectiveAction` to PROV-O `Entity` and `Activity` make ISMS audit trails consumable by any W3C PROV-aware tool - useful for regulatory submissions requiring machine-readable provenance chains. |
-| **iec-62443** | IEC 62443 OT/ICS security standard. Zone and conduit model, security levels (SL-1–SL-4), and component requirement sets provide the domain-specific vocabulary needed for OT asset subclasses and threat modelling beyond what ATT&CK for ICS covers alone. |
-| **schema-org** | Schema.org. `Organization`, `Person`, and `Event` exact mappings improve discoverability of ISMS entities in general-purpose knowledge graphs and search engine structured data. |
-| **dublin-core** | Dublin Core Metadata Initiative. `DocumentedInformation` slot mappings to `dc:title`, `dc:creator`, `dc:date`, and `dc:identifier` allow the ISMS document inventory to be harvested by enterprise content management systems and institutional repositories. |
-| **iso31000** | ISO 31000 risk management vocabulary. `exact_mappings` or `close_mappings` from `Risk`, `RiskAssessment`, and `RiskTreatmentPlan` to ISO 31000 terms ensures interoperability with enterprise-wide risk frameworks that are not information-security-specific. |
-| **gdpr** | General Data Protection Regulation articles as linked data. `related_mappings` from `InformationSecurityIncident.notification_required` and `InformationSecurityPolicy` to GDPR article URIs surfaces ISMS–GDPR overlaps in the JSON-LD output without a separate compliance mapping exercise. |
-| **cis-controls-v8** | CIS Controls v8 safeguards. `close_mappings` from `SecurityControl` to CIS safeguard URIs provides a third control framework axis alongside NIST SP 800-53 and CSF, relevant for organisations using the CIS benchmarks as implementation guidance. |
-| **soc2** | AICPA SOC 2 Trust Service Criteria. `close_mappings` from `SecurityControl` and `AuditFinding` to TSC criterion URIs satisfies SOC 2 reporting alongside ISO 27001 certification from the same structured ISMS records. |
+| Schema | Rationale | Notes |
+|---|---|---|
+| **prov-o** | W3C PROV Ontology. `exact_mappings` from `AuditFinding` and `CorrectiveAction` to PROV-O `Entity` and `Activity` make ISMS audit trails consumable by any W3C PROV-aware tool. | Stable W3C URIs available; straightforward to publish. |
+| **iec-62443** | IEC 62443 OT/ICS security standard. Zone-and-conduit model, security levels (SL-1–SL-4), and component requirement sets provide the OT vocabulary that ATT&CK for ICS alone does not cover. | No public canonical URI scheme; an lmodel placeholder namespace would be required. |
+| **schema-org** | Schema.org. `Organization`, `Person`, and `Event` exact mappings improve discoverability of ISMS entities in general-purpose knowledge graphs. | Stable `https://schema.org/` URIs. |
+| **dublin-core** | Dublin Core Metadata Initiative. `DocumentedInformation` slot mappings to `dc:title`, `dc:creator`, `dc:date`, `dc:identifier`. | Stable DCMI URIs; small mapping set. |
+| **iso31000** | ISO 31000 risk management vocabulary. `exact_mappings` from `Risk`, `RiskAssessment`, `RiskTreatmentPlan` to ISO 31000 terms. | ISO does not publish stable concept URIs; an lmodel placeholder namespace would be required. |
+| **gdpr** | GDPR articles as linked data. `related_mappings` from `InformationSecurityIncident.notification_required` and `InformationSecurityPolicy` to article URIs. | Several community URI schemes exist (e.g. ELI, DPV); choice affects portability. |
+| **soc2** | AICPA SOC 2 Trust Service Criteria. `close_mappings` from `SecurityControl` and `AuditFinding` to TSC criterion URIs. | AICPA does not publish canonical URIs; lmodel placeholder namespace required. |
 
 
 ## Summary Assessment
 
-The schema's primary differentiator over commercial GRC tools is that it externalises the data model as a vendor-neutral, open, version-controlled artifact. This means:
+The schema's primary differentiators over commercial GRC tools are LinkML-specific:
 
-  - **Compliance data becomes queryable** (SPARQL, SQL, JSON-Schema validators) rather than locked in a SaaS product.
-  - **Evidence is machine-verifiable** at the CI/CD layer, not just auditor-visible.
-  - **Cross-framework alignment** is an annotation problem, not a re-implementation.
-  - **Integration is schema-first** - any system that speaks JSON, RDF, or SQL can participate without proprietary connectors.
+- **One source, many targets.** A single YAML compiles to Python dataclasses, Pydantic models, JSON-Schema, SHACL/ShEx, SQL DDL, JSON-LD context, OWL, GraphQL and Protobuf - keeping validators, application code, database schema, and RDF representation in lockstep.
 
-The weakest current coverage is operational technology (OT/ICS) asset types and supply chain risk scoring - areas where Annex A 5.19–5.22 are represented structurally but without domain-specific slots for OT-specific threat modelling or supplier scoring rubrics.
+- **First-class semantic mapping slots.** `exact_mappings`/`close_mappings`/`broad_mappings`/`narrow_mappings`/`related_mappings` carry external vocabulary alignments inside the schema itself, where they flow into every generated artefact rather than living in a separate translation layer.
+
+- **Addressable enum values.** Permissible values (e.g. the 93 `AnnexAControlId` controls) have their own URIs and can therefore be SSSOM subjects, JSON-LD nodes, and OWL named individuals without auxiliary classes.
+
+- **Version-controlled, vendor-neutral artefact.** Compliance data becomes queryable in SPARQL/SQL/JSON-Schema validators rather than locked in a SaaS product.
+
+**What this is not.** A LinkML schema does not provide a workflow engine, evidence-collection UI, ticketing integration, row-level access control, or change-data-capture audit log. Commercial GRC products differentiate on operational automation; this schema differentiates on the data substrate beneath that automation.
+
+**Caveat on "annotation, not re-implementation".** The claim that cross-framework alignment is an annotation change holds only when the target framework publishes stable concept URIs. ISO standards, AICPA SOC 2 Trust Service Criteria, and (in part) IEC 62443 do not. For those, an lmodel placeholder namespace is required first, which is itself a small re-implementation step.
+
+**Coverage gaps.** Structural-class gaps remain in operational technology (OT/ICS) and supplier assessment. Annex A 5.19–5.23 and 8.25–8.34 are now backed by SSSOM mappings to SLSA, NIST SSDF, SP 800-171, SPDX, CVE/NVD and KEV (see Implementation Status), but the dedicated `OTAsset` and `SupplierAssessment` classes - and the slots that would let those mappings attach to first-class records - are not yet in the schema.
 
 **Addressing the OT/ICS gap.** An `OTAsset` subclass of `Asset` carrying a `purdue_level` slot (enumeration `L0`–`L4` for field devices through enterprise network) and `related_mappings` to ATT&CK for ICS technique URIs and IEC 62443 security-level URIs would provide the domain-specific vocabulary that Annex A 7.x physical controls and Annex A 8.x technological controls require for OT environments. `Asset.location` combined with GeoSPARQL geometries can then express OT zone and conduit topology in a spatially queryable form.
 
-**Addressing the supply chain gap.** A `SupplierAssessment` class and a `SupplierRisk` subclass of `Risk` would give Annex A 5.19–5.22 structured slots for supplier scoring: `slsa_level` (SLSA `L0`–`L3` build integrity), `ssdf_maturity` (NIST SP 800-218 practice maturity), `spdx_sbom_reference` (link to SPDX SBOM for each supplied software asset), and `supplier_criticality`. These additions transform the current structural coverage of supply chain controls into machine-verifiable supplier risk records that can feed automated re-assessment workflows when upstream CVEs or SLSA provenance violations are detected.
+**Addressing the supplier-class gap.** A `SupplierAssessment` class and a `SupplierRisk` subclass of `Risk` would give Annex A 5.19–5.23 structured slots for supplier scoring: `slsa_level` (SLSA v1.0 Build track `L1`–`L3` build integrity), `ssdf_maturity` (NIST SP 800-218 practice maturity), `spdx_sbom_reference` (link to SPDX SBOM for each supplied software asset), and `supplier_criticality`. These additions would let the existing SLSA / SSDF / SPDX / CVE / KEV SSSOM mappings attach directly to supplier records, enabling automated re-assessment workflows when upstream CVEs or SLSA provenance violations are detected.
+
+## Implementation Status
+
+The cross-framework alignment described above is now partially implemented as a curated suite of 18 SSSOM/TSV mapping sets under [`src/iso27001/mappings/`](src/iso27001/mappings/). All files validate with `sssom-py` and conform to the 10-column SSSOM convention with embedded YAML metadata. Subjects use the PV-based CURIE pattern `iso27001:AnnexAControlId#a_X_Y` so each of the 93 Annex A controls is a first-class SSSOM subject.
+
+**Schema enabler.** The `control_id` slot was retyped from a free-form `string` to range `AnnexAControlId`, and the `AnnexAControlId` enum now carries all 93 Annex A 2022 controls. 19 framework-target prefixes were added to the schema (oscal, nist_sp_800_53, nist_csf_v2, nist_sp_800_171, nist_sp_800_218, attack, d3f, cis_controls, slsa, stix, ocsf, spdx, capec, cwe, cve, nvd, kev_catalog, iso29100, semapv).
+
+### Tier 1 - published (349 rows)
+
+| Mapping set | Rows | Notes |
+|---|---|---|
+| `iso27001-to-oscal.sssom.tsv` | 21 | Class-level: SecurityControl↔control, SoA↔SystemSecurityPlan, InternalAudit↔AssessmentResults, CorrectiveAction↔poam-item, etc. |
+| `iso27001-to-nist-sp-800-53.sssom.tsv` | 95 | All 93 Annex A controls mapped to SP 800-53 Rev 5 control IDs. |
+| `iso27001-to-nist-csf-v2.sssom.tsv` | 72 | Annex A → CSF v2 subcategory CURIEs (e.g. `pr.aa-05`). |
+| `iso27001-to-attack.sssom.tsv` | 40 | Annex A → ATT&CK Mitigations (M-IDs); SecurityIncidentCategory → Tactics. |
+| `iso27001-to-d3fend.sssom.tsv` | 21 | Annex A → D3FEND defensive countermeasures. |
+| `iso27001-to-cis-controls.sssom.tsv` | 67 | Annex A → CIS Controls v8 safeguards; back-propagated as inline `close_mappings`/`related_mappings` on enum PVs. |
+| `iso27001-to-slsa.sssom.tsv` | 15 | Addresses the named supply-chain gap (Annex A 5.19–5.23, 8.25–8.32). |
+| `iso27001-to-nist-sp-800-218.sssom.tsv` | 18 | SSDF practices (PO/PS/PW/RV) for secure-development controls. |
+
+### Tier 2 - published (124 rows)
+
+| Mapping set | Rows |
+|---|---|
+| `iso27001-to-stix.sssom.tsv` | 15 |
+| `iso27001-to-ocsf.sssom.tsv` | 14 |
+| `iso27001-to-nist-sp-800-171.sssom.tsv` | 29 |
+| `iso27001-to-spdx.sssom.tsv` | 9 |
+| `iso27001-to-capec.sssom.tsv` | 15 |
+| `iso27001-to-cwe.sssom.tsv` | 12 |
+| `iso27001-to-cve__nist-nvd.sssom.tsv` | 9 |
+| `iso27001-to-kev-catalog.sssom.tsv` | 6 |
+| `iso27001-to-iso29100.sssom.tsv` | 15 |
+
+### Sibling alignment
+
+| Mapping set | Rows |
+|---|---|
+| `iso27001-to-iso42001.sssom.tsv` | 102 |
+
+**Total: 575 mapping rows across 18 mapping sets.**
+
+### Caveats and remaining work
+
+- Mapping justification across all 18 mapping files is `semapv:LLMBasedMatching`; rows should be reviewed and promoted to `semapv:ManualMappingCuration` by domain experts.
+- Back-propagation of every SSSOM row into inline schema `exact_mappings` / `close_mappings` / `narrow_mappings` / `broad_mappings` / `related_mappings` on the relevant class, slot, enum, or permissible value is now complete across all 18 mapping sets via [`scripts/apply_sssom_overlay.py`](scripts/apply_sssom_overlay.py). The overlay is schema-independent, idempotent, uses `ruamel.yaml` round-trip mode to preserve comments and folded scalars, and promotes the first `exact_mappings` CURIE on a permissible value to the LinkML [`meaning`](https://linkml.io/linkml-model/latest/docs/meaning/) slot (per the LinkML PermissibleValue model).
+- The named gaps - `OTAsset` / `SupplierAssessment` classes, `purdue_level` and `slsa_level` slots, IEC 62443 schema - are not yet addressed. SLSA and SSDF mappings provide the external vocabulary; the class-level scaffolding remains pending.
+- The PROV-O, Dublin Core, schema.org, ISO 31000, GDPR, SOC 2, IEC 62443, and UCO mappings called out above are not yet published; the prefix scaffolding for them has not been added.
+- A pre-existing `iso` and a new `semapv` canonical-prefix advisory warning are reported by `linkml-lint`; no errors.
+
+### Tooling, testing, and generated artefacts
+
+- **Schema-independent SSSOM overlay tool.** [`scripts/apply_sssom_overlay.py`](scripts/apply_sssom_overlay.py) auto-discovers subject-side prefixes from each schema's `default_prefix` / `name`, accepts repeatable `--subject-prefix` filters, and is reusable across the sibling iso42001 / iso22989 schemas without code changes. It fails gracefully with actionable install instructions when `ruamel.yaml` is missing.
+- **Unit tests.** 83 pytest cases (`uv run pytest tests/` / `just test`) cover class/slot resolution, fixture round-trips, enum integrity, and mapping format checks. The `just test` target also runs the valid/invalid example pipeline and the third-party Probo fixtures.
+- **Third-party validation corpus.** 61 `SecurityControl` fixtures under [`tests/data/third_party/probo/`](tests/data/third_party/probo/) are generated from the MIT-licensed [Probo](https://github.com/getprobo/probo) ISMS mitigation catalogue. The converter maps Probo's `ISO27001:2022-A.X.Y` references onto the `AnnexAControlId` permissible values (`a_X_Y`) so every fixture validates against the schema's enum without manual editing.
+- **Standard generator targets** (`just gen-project`): Pydantic / Python dataclasses, JSON Schema, ShEx, SHACL, OWL/TTL, GraphQL, Protobuf, JSON-LD context, SQLDDL, Java POJOs, TypeScript, Excel.
+- **Extended generator targets** (`just gen-project-extended`): all standard targets plus `project/cpp/iso27001.h` (C++ header), `project/pandera/iso27001_pandera.py` (Pandera-on-Polars dataframe schema for tabular validation pipelines), `project/markdown-datadict/iso27001.md` (human-readable data dictionary), and `project/golr/` (GOLR Solr-index views). These targets use small patched wrappers under `scripts/` to work around upstream generator quirks; the schema's custom types declare `typeof` so the panderagen TYPE_MAP fallback chain resolves cleanly.

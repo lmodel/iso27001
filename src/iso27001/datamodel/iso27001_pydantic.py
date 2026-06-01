@@ -29,7 +29,7 @@ from pydantic import (
 )
 
 
-metamodel_version = "1.7.0"
+metamodel_version = "1.11.0"
 version = "1.0.0"
 
 
@@ -99,7 +99,7 @@ linkml_meta = LinkMLMeta({'annotations': {'aligned_standard': {'tag': 'aligned_s
                      'standard_title': {'tag': 'standard_title',
                                         'value': 'Information security, '
                                                  'cybersecurity and privacy '
-                                                 'protection -  Information '
+                                                 'protection - Information '
                                                  'security management systems - '
                                                  'Requirements'}},
      'default_prefix': 'iso27001',
@@ -118,8 +118,18 @@ linkml_meta = LinkMLMeta({'annotations': {'aligned_standard': {'tag': 'aligned_s
      'imports': ['linkml:types'],
      'license': 'https://www.apache.org/licenses/LICENSE-2.0',
      'name': 'iso27001',
-     'prefixes': {'cis_controls': {'prefix_prefix': 'cis_controls',
+     'prefixes': {'attack': {'prefix_prefix': 'attack',
+                             'prefix_reference': 'https://w3id.org/lmodel/attack/'},
+                  'capec': {'prefix_prefix': 'capec',
+                            'prefix_reference': 'https://w3id.org/lmodel/capec/'},
+                  'cis_controls': {'prefix_prefix': 'cis_controls',
                                    'prefix_reference': 'https://w3id.org/lmodel/cis-controls/'},
+                  'cve': {'prefix_prefix': 'cve',
+                          'prefix_reference': 'https://w3id.org/lmodel/cve/'},
+                  'cwe': {'prefix_prefix': 'cwe',
+                          'prefix_reference': 'https://w3id.org/lmodel/cwe/'},
+                  'd3f': {'prefix_prefix': 'd3f',
+                          'prefix_reference': 'https://d3fend.mitre.org/ontologies/d3fend.owl#'},
                   'dcterms': {'prefix_prefix': 'dcterms',
                               'prefix_reference': 'http://purl.org/dc/terms/'},
                   'iso': {'prefix_prefix': 'iso',
@@ -128,14 +138,42 @@ linkml_meta = LinkMLMeta({'annotations': {'aligned_standard': {'tag': 'aligned_s
                                'prefix_reference': 'https://w3id.org/lmodel/iso27001/'},
                   'iso27002': {'prefix_prefix': 'iso27002',
                                'prefix_reference': 'https://w3id.org/lmodel/iso27002/'},
+                  'iso29100': {'prefix_prefix': 'iso29100',
+                               'prefix_reference': 'https://w3id.org/lmodel/iso29100/'},
+                  'iso42001': {'prefix_prefix': 'iso42001',
+                               'prefix_reference': 'https://w3id.org/lmodel/iso42001/'},
+                  'kev_catalog': {'prefix_prefix': 'kev_catalog',
+                                  'prefix_reference': 'https://w3id.org/lmodel/kev-catalog/'},
                   'linkml': {'prefix_prefix': 'linkml',
                              'prefix_reference': 'https://w3id.org/linkml/'},
+                  'nist_csf_v2': {'prefix_prefix': 'nist_csf_v2',
+                                  'prefix_reference': 'https://w3id.org/lmodel/nist-csf-v2/'},
+                  'nist_sp_800_171': {'prefix_prefix': 'nist_sp_800_171',
+                                      'prefix_reference': 'https://w3id.org/lmodel/nist-sp-800-171/'},
+                  'nist_sp_800_218': {'prefix_prefix': 'nist_sp_800_218',
+                                      'prefix_reference': 'https://w3id.org/lmodel/nist-sp-800-218/'},
+                  'nist_sp_800_53': {'prefix_prefix': 'nist_sp_800_53',
+                                     'prefix_reference': 'https://w3id.org/lmodel/nist-sp-800-53/'},
+                  'nvd': {'prefix_prefix': 'nvd',
+                          'prefix_reference': 'https://w3id.org/lmodel/nist-nvd/'},
+                  'ocsf': {'prefix_prefix': 'ocsf',
+                           'prefix_reference': 'https://w3id.org/lmodel/ocsf/'},
+                  'oscal': {'prefix_prefix': 'oscal',
+                            'prefix_reference': 'https://w3id.org/lmodel/oscal/'},
                   'prov': {'prefix_prefix': 'prov',
                            'prefix_reference': 'http://www.w3.org/ns/prov#'},
                   'schema': {'prefix_prefix': 'schema',
                              'prefix_reference': 'http://schema.org/'},
+                  'semapv': {'prefix_prefix': 'semapv',
+                             'prefix_reference': 'https://w3id.org/semapv/vocab/'},
                   'skos': {'prefix_prefix': 'skos',
-                           'prefix_reference': 'http://www.w3.org/2004/02/skos/core#'}},
+                           'prefix_reference': 'http://www.w3.org/2004/02/skos/core#'},
+                  'slsa': {'prefix_prefix': 'slsa',
+                           'prefix_reference': 'https://w3id.org/lmodel/slsa/'},
+                  'spdx': {'prefix_prefix': 'spdx',
+                           'prefix_reference': 'https://w3id.org/lmodel/spdx/'},
+                  'stix': {'prefix_prefix': 'stix',
+                           'prefix_reference': 'https://w3id.org/lmodel/stix/'}},
      'source_file': 'src/iso27001/schema/iso27001.yaml',
      'subsets': {'annex_a_controls': {'annotations': {'control_count': {'tag': 'control_count',
                                                                         'value': '93'}},
@@ -219,6 +257,7 @@ linkml_meta = LinkMLMeta({'annotations': {'aligned_standard': {'tag': 'aligned_s
                                                 'P1Y, P30D, or PT4H',
                                  'from_schema': 'https://w3id.org/lmodel/iso27001',
                                  'name': 'duration type',
+                                 'typeof': 'string',
                                  'uri': 'xsd:duration'},
                'positive integer type': {'base': 'int',
                                          'description': 'integer greater than '
@@ -227,6 +266,7 @@ linkml_meta = LinkMLMeta({'annotations': {'aligned_standard': {'tag': 'aligned_s
                                          'exact_mappings': ['wikidata:Q28920044'],
                                          'from_schema': 'https://w3id.org/lmodel/iso27001',
                                          'name': 'positive integer type',
+                                         'typeof': 'integer',
                                          'uri': 'xsd:positiveInteger'},
                'unsigned short type': {'base': 'int',
                                        'description': 'data type for non-negative '
@@ -235,6 +275,7 @@ linkml_meta = LinkMLMeta({'annotations': {'aligned_standard': {'tag': 'aligned_s
                                        'exact_mappings': ['wikidata:Q110650833'],
                                        'from_schema': 'https://w3id.org/lmodel/iso27001',
                                        'name': 'unsigned short type',
+                                       'typeof': 'integer',
                                        'uri': 'xsd:unsignedShort'}}} )
 
 class ControlCategory(str, Enum):
@@ -415,6 +456,277 @@ class LikelihoodRating(str, Enum):
     """
 
 
+class CIAProperty(str, Enum):
+    """
+    Information security properties whose loss is considered when identifying risks per ISO/IEC 27001:2022 Clause 6.1.2 c) 1).
+    """
+    confidentiality = "confidentiality"
+    """
+    Property of information not being made available or disclosed to unauthorized entities.
+    """
+    integrity = "integrity"
+    """
+    Property of accuracy and completeness of information.
+    """
+    availability = "availability"
+    """
+    Property of being accessible and usable on demand by an authorized entity.
+    """
+
+
+class AuditType(str, Enum):
+    """
+    Classification of audits referenced by ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1 (audit programmes).
+    """
+    internal = "internal"
+    """
+    First-party audit conducted by the organization itself per 9.2.
+    """
+    external_second_party = "external_second_party"
+    """
+    Audit conducted by a party with an interest in the organization (e.g., customer).
+    """
+    external_third_party = "external_third_party"
+    """
+    Independent audit by a certification body or other third party.
+    """
+    surveillance = "surveillance"
+    """
+    Periodic third-party audit between certification and recertification.
+    """
+    recertification = "recertification"
+    """
+    Third-party audit conducted to renew certification.
+    """
+    combined = "combined"
+    """
+    Audit performed jointly against two or more management system standards.
+    """
+
+
+class AnnexAControlId(str, Enum):
+    """
+    Identifiers of the 93 reference information security controls listed in ISO/IEC 27001:2022 Annex A (as also titled in ISO/IEC 27002:2022). Control text and titles are normative ISO content and are not reproduced here.
+    """
+    a_5_1 = "a_5_1"
+    a_5_2 = "a_5_2"
+    a_5_3 = "a_5_3"
+    a_5_4 = "a_5_4"
+    a_5_5 = "a_5_5"
+    a_5_6 = "a_5_6"
+    a_5_7 = "a_5_7"
+    a_5_8 = "a_5_8"
+    a_5_9 = "a_5_9"
+    a_5_10 = "a_5_10"
+    a_5_11 = "a_5_11"
+    a_5_12 = "a_5_12"
+    a_5_13 = "a_5_13"
+    a_5_14 = "a_5_14"
+    a_5_15 = "a_5_15"
+    a_5_16 = "a_5_16"
+    a_5_17 = "a_5_17"
+    a_5_18 = "a_5_18"
+    a_5_19 = "a_5_19"
+    a_5_20 = "a_5_20"
+    a_5_21 = "a_5_21"
+    a_5_22 = "a_5_22"
+    a_5_23 = "a_5_23"
+    a_5_24 = "a_5_24"
+    a_5_25 = "a_5_25"
+    a_5_26 = "a_5_26"
+    a_5_27 = "a_5_27"
+    a_5_28 = "a_5_28"
+    a_5_29 = "a_5_29"
+    a_5_30 = "a_5_30"
+    a_5_31 = "a_5_31"
+    a_5_32 = "a_5_32"
+    a_5_33 = "a_5_33"
+    a_5_34 = "a_5_34"
+    a_5_35 = "a_5_35"
+    a_5_36 = "a_5_36"
+    a_5_37 = "a_5_37"
+    a_6_1 = "a_6_1"
+    a_6_2 = "a_6_2"
+    a_6_3 = "a_6_3"
+    a_6_4 = "a_6_4"
+    a_6_5 = "a_6_5"
+    a_6_6 = "a_6_6"
+    a_6_7 = "a_6_7"
+    a_6_8 = "a_6_8"
+    a_7_1 = "a_7_1"
+    a_7_2 = "a_7_2"
+    a_7_3 = "a_7_3"
+    a_7_4 = "a_7_4"
+    a_7_5 = "a_7_5"
+    a_7_6 = "a_7_6"
+    a_7_7 = "a_7_7"
+    a_7_8 = "a_7_8"
+    a_7_9 = "a_7_9"
+    a_7_10 = "a_7_10"
+    a_7_11 = "a_7_11"
+    a_7_12 = "a_7_12"
+    a_7_13 = "a_7_13"
+    a_7_14 = "a_7_14"
+    a_8_1 = "a_8_1"
+    a_8_2 = "a_8_2"
+    a_8_3 = "a_8_3"
+    a_8_4 = "a_8_4"
+    a_8_5 = "a_8_5"
+    a_8_6 = "a_8_6"
+    a_8_7 = "a_8_7"
+    a_8_8 = "a_8_8"
+    a_8_9 = "a_8_9"
+    a_8_10 = "a_8_10"
+    a_8_11 = "a_8_11"
+    a_8_12 = "a_8_12"
+    a_8_13 = "a_8_13"
+    a_8_14 = "a_8_14"
+    a_8_15 = "a_8_15"
+    a_8_16 = "a_8_16"
+    a_8_17 = "a_8_17"
+    a_8_18 = "a_8_18"
+    a_8_19 = "a_8_19"
+    a_8_20 = "a_8_20"
+    a_8_21 = "a_8_21"
+    a_8_22 = "a_8_22"
+    a_8_23 = "a_8_23"
+    a_8_24 = "a_8_24"
+    a_8_25 = "a_8_25"
+    a_8_26 = "a_8_26"
+    a_8_27 = "a_8_27"
+    a_8_28 = "a_8_28"
+    a_8_29 = "a_8_29"
+    a_8_30 = "a_8_30"
+    a_8_31 = "a_8_31"
+    a_8_32 = "a_8_32"
+    a_8_33 = "a_8_33"
+    a_8_34 = "a_8_34"
+
+
+class SecurityIncidentCategory(str, Enum):
+    """
+    Categories of information security incident used to classify events and incidents per ISO/IEC 27001:2022 Annex A controls A.5.24-A.5.28 and ISO/IEC 27035 incident management guidance.
+    """
+    malware = "malware"
+    """
+    Malicious software, including viruses, worms, trojans, and ransomware.
+    """
+    ransomware = "ransomware"
+    """
+    Malware encrypting or exfiltrating data for extortion.
+    """
+    phishing = "phishing"
+    """
+    Social-engineering attempt to obtain credentials or trigger malicious action.
+    """
+    social_engineering = "social_engineering"
+    """
+    Manipulation of people to disclose information or perform unsafe actions.
+    """
+    unauthorized_access = "unauthorized_access"
+    """
+    Access to systems or data by a party without authorization.
+    """
+    account_compromise = "account_compromise"
+    """
+    Unauthorized control of a legitimate user or service account.
+    """
+    privilege_misuse = "privilege_misuse"
+    """
+    Authorized user exceeding or misusing their granted privileges.
+    """
+    data_breach = "data_breach"
+    """
+    Confirmed disclosure of confidential or personal information.
+    """
+    data_loss = "data_loss"
+    """
+    Loss of integrity or availability of information, including accidental deletion.
+    """
+    denial_of_service = "denial_of_service"
+    """
+    Disruption of availability through volumetric, protocol, or application attacks.
+    """
+    web_application_attack = "web_application_attack"
+    """
+    Attack targeting a web application (e.g., injection, XSS, broken auth).
+    """
+    supply_chain = "supply_chain"
+    """
+    Incident originating from a supplier, partner, or third-party component.
+    """
+    insider_threat = "insider_threat"
+    """
+    Malicious or negligent action by an internal party.
+    """
+    physical_security = "physical_security"
+    """
+    Theft, loss, or damage of physical assets or unauthorized physical access.
+    """
+    configuration_error = "configuration_error"
+    """
+    Misconfiguration leading to security exposure.
+    """
+    cryptographic_failure = "cryptographic_failure"
+    """
+    Weak, broken, or misused cryptography.
+    """
+    policy_violation = "policy_violation"
+    """
+    Failure to comply with information security policies or procedures.
+    """
+    other = "other"
+    """
+    Other incident type not covered by the listed categories.
+    """
+
+
+class RelatedManagementSystem(str, Enum):
+    """
+    Other ISO/IEC management system standards with which the ISMS may be integrated or aligned (e.g., harmonized structure of Annex SL).
+    """
+    iso_iec_27001 = "iso_iec_27001"
+    """
+    Information security management systems.
+    """
+    iso_iec_27701 = "iso_iec_27701"
+    """
+    Privacy information management systems (PIMS).
+    """
+    iso_iec_27017 = "iso_iec_27017"
+    """
+    Information security for cloud services.
+    """
+    iso_iec_27018 = "iso_iec_27018"
+    """
+    Protection of personally identifiable information in public clouds.
+    """
+    iso_iec_42001 = "iso_iec_42001"
+    """
+    Artificial intelligence management systems.
+    """
+    iso_9001 = "iso_9001"
+    """
+    Quality management systems.
+    """
+    iso_14001 = "iso_14001"
+    """
+    Environmental management systems.
+    """
+    iso_22301 = "iso_22301"
+    """
+    Business continuity management systems.
+    """
+    iso_iec_20000_1 = "iso_iec_20000_1"
+    """
+    IT service management systems.
+    """
+    iso_31000 = "iso_31000"
+    """
+    Risk management - guidelines.
+    """
+
+
 class ImpactRating(str, Enum):
     """
     Qualitative impact scale for risk assessment.
@@ -449,6 +761,7 @@ class NamedEntity(ConfiguredBaseModel):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'comments': ['All concrete classes should inherit from this or a subclass',
                       'Ensures consistent identification across the schema'],
+         'exact_mappings': ['iso42001:NamedEntity'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'slot_usage': {'id': {'description': 'Unique identifier for this entity '
                                               'instance.',
@@ -458,16 +771,19 @@ class NamedEntity(ConfiguredBaseModel):
 
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -477,11 +793,14 @@ class DocumentedInformation(NamedEntity):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '7.5'}},
+         'close_mappings': ['oscal:OscalDocument'],
          'comments': ['Supports identification and control metadata for managed '
                       'documents',
                       'Supports lifecycle, protection, and retention tracking'],
+         'exact_mappings': ['iso42001:DocumentedInformation'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['documented_information']})
+         'in_subset': ['documented_information'],
+         'related_mappings': ['spdx:SpdxDocument']})
 
     document_type: Optional[DocumentType] = Field(default=None, description="""Classification of the documented information.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DocumentedInformation'],
          'in_subset': ['documented_information']} })
@@ -509,18 +828,36 @@ class DocumentedInformation(NamedEntity):
     retention_period: Optional[str] = Field(default=None, description="""Duration for which the document is retained.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 7.5.3 f) retention and disposition',
                       'Use ISO 8601 duration notation such as P1Y or P90D'],
          'domain_of': ['DocumentedInformation']} })
+    distribution_controls: Optional[list[str]] = Field(default=None, description="""Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    storage_and_preservation: Optional[str] = Field(default=None, description="""Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    change_control_method: Optional[str] = Field(default=None, description="""Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin: Optional[bool] = Field(default=None, description="""Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin_source: Optional[str] = Field(default=None, description="""Source or provider of the externally originated documented information, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -530,6 +867,7 @@ class InformationSecurityManagementSystem(NamedEntity):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '4.4'},
                          'mandatory': {'tag': 'mandatory', 'value': 'true'}},
+         'close_mappings': ['iso42001:AIManagementSystem', 'oscal:SystemSecurityPlan'],
          'comments': ['This is the root entity for any ISMS conformance dataset',
                       'Aggregates ISMS processes and their relationships',
                       'Includes explicit scope metadata and related governance '
@@ -538,59 +876,119 @@ class InformationSecurityManagementSystem(NamedEntity):
                       'text is copyright ISO - not reproduced here.'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_core'],
-         'related_mappings': ['cis_controls:CISControlsDocument']})
+         'related_mappings': ['cis_controls:CISControlsDocument',
+                              'iso29100:PrivacyFramework',
+                              'nist_csf_v2:CSFDocument']})
 
-    organization: Optional[str] = Field(default=None, description="""Reference to the organization operating the ISMS.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
+    organization: Optional[str] = Field(default=None, description="""Reference to the organization operating the ISMS.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:organization']} })
+    top_management: Optional[str] = Field(default=None, description="""The person or group of people who direct and control the organization at the highest level, accountable for the ISMS per Clause 5.1.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '5.1'}},
+         'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:top_management']} })
+    governing_body: Optional[str] = Field(default=None, description="""The governing body to which top management reports, where applicable (e.g., board of directors). Referenced in ISO/IEC 27001:2022 Clause 5.1 NOTE.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '5.1 NOTE'}},
+         'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:governing_body']} })
+    leadership_commitment_evidence: Optional[list[str]] = Field(default=None, description="""Evidence of leadership and commitment with respect to the ISMS as required by Clause 5.1 a-h).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '5.1'}},
+         'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:leadership_commitment_evidence']} })
     scope_statement: Optional[str] = Field(default=None, description="""Documented statement of ISMS scope per 4.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '4.3'}},
          'comments': ['Available as documented information'],
+         'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:scope_statement']} })
+    scope_boundaries: Optional[list[str]] = Field(default=None, description="""Defined boundaries of the ISMS scope.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:scope_boundaries']} })
+    scope_exclusions: Optional[list[str]] = Field(default=None, description="""Any exclusions from scope with justification.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:scope_exclusions']} })
+    interfaces_and_dependencies: Optional[list[str]] = Field(default=None, description="""Interfaces and dependencies between activities performed by the organization and those performed by other organizations, considered when determining the ISMS scope per Clause 4.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '4.3 c)'}},
          'domain_of': ['InformationSecurityManagementSystem']} })
-    scope_boundaries: Optional[list[str]] = Field(default=None, description="""Defined boundaries of the ISMS scope.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    scope_exclusions: Optional[list[str]] = Field(default=None, description="""Any exclusions from scope with justification.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    context_internal_issues: Optional[list[str]] = Field(default=None, description="""Internal issues relevant to ISMS per 4.1.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    context_external_issues: Optional[list[str]] = Field(default=None, description="""External issues relevant to ISMS per 4.1.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
+    processes_and_interactions: Optional[str] = Field(default=None, description="""Description of the processes needed for the ISMS and their interactions, per Clause 4.4.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '4.4'}},
+         'domain_of': ['InformationSecurityManagementSystem']} })
+    context_internal_issues: Optional[list[str]] = Field(default=None, description="""Internal issues relevant to ISMS per 4.1.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:context_internal_issues']} })
+    context_external_issues: Optional[list[str]] = Field(default=None, description="""External issues relevant to ISMS per 4.1.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:context_external_issues']} })
     interested_parties: Optional[list[str]] = Field(default=None, description="""Stakeholders relevant to the ISMS.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '4.2'}},
-         'domain_of': ['InformationSecurityManagementSystem']} })
+         'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:interested_parties']} })
     information_security_policy: Optional[str] = Field(default=None, description="""Reference to the information security policy.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '5.2'}},
+         'close_mappings': ['iso42001:ai_policy'],
          'domain_of': ['InformationSecurityManagementSystem']} })
-    objectives: Optional[list[str]] = Field(default=None, description="""Information security objectives.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    risk_assessment_process: Optional[str] = Field(default=None, description="""Reference to the risk assessment process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    risk_treatment_process: Optional[str] = Field(default=None, description="""Reference to the risk treatment process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    statement_of_applicability: Optional[str] = Field(default=None, description="""Reference to the Statement of Applicability.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
+    objectives: Optional[list[str]] = Field(default=None, description="""Information security objectives.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['iso42001:ai_objectives'],
+         'domain_of': ['InformationSecurityManagementSystem']} })
+    risks_and_opportunities_actions: Optional[list[str]] = Field(default=None, description="""Actions to address risks and opportunities determined per Clause 6.1.1, including how they are integrated into ISMS processes and how their effectiveness is evaluated.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '6.1.1'}},
+         'domain_of': ['InformationSecurityManagementSystem']} })
+    planned_changes: Optional[list[str]] = Field(default=None, description="""Changes to the ISMS planned and controlled per Clause 6.3 and 8.1 (planning of changes; control of planned changes).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '6.3 / 8.1'}},
+         'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:planned_changes']} })
+    externally_provided_services: Optional[list[str]] = Field(default=None, description="""Externally provided processes, products or services relevant to the ISMS that are controlled per Clause 8.1.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '8.1'}},
+         'domain_of': ['InformationSecurityManagementSystem']} })
+    risk_assessment_process: Optional[str] = Field(default=None, description="""Reference to the risk assessment process.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['iso42001:ai_risk_assessment_process'],
+         'domain_of': ['InformationSecurityManagementSystem']} })
+    risk_treatment_process: Optional[str] = Field(default=None, description="""Reference to the risk treatment process.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['iso42001:ai_risk_treatment_process'],
+         'domain_of': ['InformationSecurityManagementSystem']} })
+    statement_of_applicability: Optional[str] = Field(default=None, description="""Reference to the Statement of Applicability.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:statement_of_applicability']} })
     controls: Optional[list[str]] = Field(default=None, description="""Security controls applied in the ISMS.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    roles: Optional[list[str]] = Field(default=None, description="""Information security roles defined in the ISMS.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    resources: Optional[list[str]] = Field(default=None, description="""Resources provided for the ISMS.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    competence_records: Optional[list[str]] = Field(default=None, description="""Competence records for personnel.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    awareness_program: Optional[str] = Field(default=None, description="""Reference to the awareness program.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    communication_plan: Optional[str] = Field(default=None, description="""Reference to the communication plan.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    documented_information_register: Optional[list[str]] = Field(default=None, description="""Register of documented information.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    operational_procedures: Optional[list[str]] = Field(default=None, description="""Operational procedures.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    risk_assessments: Optional[list[str]] = Field(default=None, description="""Risk assessment instances.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    risk_treatment_plans: Optional[list[str]] = Field(default=None, description="""Risk treatment plans.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    monitoring_program: Optional[str] = Field(default=None, description="""Reference to the monitoring program.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    internal_audits: Optional[list[str]] = Field(default=None, description="""Internal audit instances.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    management_reviews: Optional[list[str]] = Field(default=None, description="""Management review instances.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    nonconformities: Optional[list[str]] = Field(default=None, description="""Nonconformities identified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    corrective_actions: Optional[list[str]] = Field(default=None, description="""Corrective actions.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    improvements: Optional[list[str]] = Field(default=None, description="""Improvement opportunities tracked.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
+    roles: Optional[list[str]] = Field(default=None, description="""Information security roles defined in the ISMS.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['iso42001:ai_roles'],
+         'domain_of': ['InformationSecurityManagementSystem']} })
+    resources: Optional[list[str]] = Field(default=None, description="""Resources provided for the ISMS.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:resources']} })
+    competence_records: Optional[list[str]] = Field(default=None, description="""Competence records for personnel.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:competence_records']} })
+    awareness_program: Optional[str] = Field(default=None, description="""Reference to the awareness program.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:awareness_program']} })
+    communication_plan: Optional[str] = Field(default=None, description="""Reference to the communication plan.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:communication_plan']} })
+    documented_information_register: Optional[list[str]] = Field(default=None, description="""Register of documented information.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:documented_information_register']} })
+    operational_procedures: Optional[list[str]] = Field(default=None, description="""Operational procedures.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:operational_procedures']} })
+    risk_assessments: Optional[list[str]] = Field(default=None, description="""Risk assessment instances.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['iso42001:ai_risk_assessments'],
+         'domain_of': ['InformationSecurityManagementSystem']} })
+    risk_treatment_plans: Optional[list[str]] = Field(default=None, description="""Risk treatment plans.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['iso42001:ai_risk_treatment_plans'],
+         'domain_of': ['InformationSecurityManagementSystem']} })
+    monitoring_program: Optional[str] = Field(default=None, description="""Reference to the monitoring program.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:monitoring_program']} })
+    internal_audits: Optional[list[str]] = Field(default=None, description="""Internal audit instances.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:internal_audits']} })
+    management_reviews: Optional[list[str]] = Field(default=None, description="""Management review instances.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:management_reviews']} })
+    nonconformities: Optional[list[str]] = Field(default=None, description="""Nonconformities identified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:nonconformities']} })
+    corrective_actions: Optional[list[str]] = Field(default=None, description="""Corrective actions.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:corrective_actions']} })
+    improvements: Optional[list[str]] = Field(default=None, description="""Improvement opportunities tracked.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:improvements']} })
     certification_status: Optional[str] = Field(default=None, description="""Current certification status.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:certification_status'],
          'examples': [{'value': 'not_certified'},
                       {'value': 'in_progress'},
                       {'value': 'certified'}]} })
-    certification_body: Optional[str] = Field(default=None, description="""Accredited certification body.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    certification_date: Optional[date] = Field(default=None, description="""Date certification was achieved.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
-    recertification_date: Optional[date] = Field(default=None, description="""Date recertification is due.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem']} })
+    certification_body: Optional[str] = Field(default=None, description="""Accredited certification body.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:certification_body']} })
+    certification_date: Optional[date] = Field(default=None, description="""Date certification was achieved.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:certification_date']} })
+    recertification_date: Optional[date] = Field(default=None, description="""Date recertification is due.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityManagementSystem'],
+         'exact_mappings': ['iso42001:recertification_date']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -601,13 +999,19 @@ class Organization(NamedEntity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_amendment': {'tag': 'iso27001_amendment',
                                                 'value': 'Amd. 1:2024'},
                          'iso27001_clause': {'tag': 'iso27001_clause', 'value': '4.1'}},
+         'close_mappings': ['ocsf:Organization',
+                            'oscal:Party',
+                            'spdx:Organization',
+                            'stix:Identity'],
          'comments': ['Context determination per 4.1 feeds into ISMS planning',
                       'Climate change relevance determination added by Amd. 1:2024 to '
                       'Clause 4.1',
                       'Reference: ISO/IEC 27001:2022 Clause 4.1 and Amd. 1:2024. '
                       'ISO/IEC standards text is copyright ISO - not reproduced here.'],
+         'exact_mappings': ['iso42001:Organization'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['isms_core']})
+         'in_subset': ['isms_core'],
+         'related_mappings': ['iso29100:PIIController', 'iso29100:PIIProcessor']})
 
     legal_name: Optional[str] = Field(default=None, description="""Legal registered name of the organization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Organization']} })
     trading_names: Optional[list[str]] = Field(default=None, description="""Names under which the organization conducts business.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Organization']} })
@@ -630,19 +1034,23 @@ class Organization(NamedEntity):
                       'or internal issue',
                       'When true, capture details in context_external_issues or '
                       'context_internal_issues'],
-         'domain_of': ['Organization']} })
+         'domain_of': ['Organization'],
+         'exact_mappings': ['iso42001:climate_change_relevant']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -653,6 +1061,7 @@ class InterestedParty(NamedEntity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_amendment': {'tag': 'iso27001_amendment',
                                                 'value': 'Amd. 1:2024'},
                          'iso27001_clause': {'tag': 'iso27001_clause', 'value': '4.2'}},
+         'close_mappings': ['oscal:ResponsibleParty', 'stix:Identity'],
          'comments': ['Captures stakeholder needs and expectations relevant to ISMS '
                       'scope',
                       'Requirements may include legal, regulatory, and contractual '
@@ -661,8 +1070,13 @@ class InterestedParty(NamedEntity):
                       'climate change (Amd. 1:2024 Clause 4.2 Note 2)',
                       'Reference: ISO/IEC 27001:2022 Clause 4.2 and Amd. 1:2024. '
                       'ISO/IEC standards text is copyright ISO - not reproduced here.'],
+         'exact_mappings': ['iso42001:InterestedParty'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['isms_core']})
+         'in_subset': ['isms_core'],
+         'related_mappings': ['iso29100:PIIPrincipal',
+                              'iso42001:CustomerRelationship',
+                              'iso42001:SupplierRelationship',
+                              'iso42001:ThirdPartyRelationship']})
 
     party_type: Optional[str] = Field(default=None, description="""Category of interested party.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InterestedParty'],
          'examples': [{'value': 'internal'},
@@ -671,20 +1085,30 @@ class InterestedParty(NamedEntity):
     relationship: Optional[str] = Field(default=None, description="""Nature of the relationship with the organization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InterestedParty']} })
     requirements: Optional[list[str]] = Field(default=None, description="""Requirements of the interested party.""", json_schema_extra = { "linkml_meta": {'comments': ['May include legal, regulatory, and contractual requirements'],
          'domain_of': ['InterestedParty']} })
+    addressed_requirements: Optional[list[str]] = Field(default=None, description="""Requirements of the interested party that the organization has determined will be addressed through the ISMS, per Clause 4.2 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '4.2'}},
+         'comments': ['Subset of requirements that the ISMS commits to address'],
+         'domain_of': ['InterestedParty']} })
+    climate_change_related_requirements: Optional[list[str]] = Field(default=None, description="""Climate-change-related requirements of the interested party, per ISO/IEC 27001:2022 Clause 4.2 NOTE 2 as added by Amd. 1:2024.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_amendment': {'tag': 'iso27001_amendment',
+                                                'value': 'Amd. 1:2024'},
+                         'iso27001_clause': {'tag': 'iso27001_clause', 'value': '4.2'}},
+         'domain_of': ['InterestedParty']} })
     communication_needs: Optional[str] = Field(default=None, description="""Communication requirements for this party.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InterestedParty']} })
     contact_information: Optional[str] = Field(default=None, description="""Contact details for the party.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InterestedParty']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -694,6 +1118,7 @@ class InformationSecurityPolicy(DocumentedInformation):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '5.2'},
                          'mandatory': {'tag': 'mandatory', 'value': 'true'}},
+         'close_mappings': ['iso42001:AIPolicy'],
          'comments': ['Captures policy intent and governance commitments',
                       'Supports communication and acknowledgement tracking',
                       'Reference: ISO/IEC 27001:2022 Clause 5.2. ISO/IEC standards '
@@ -709,7 +1134,18 @@ class InformationSecurityPolicy(DocumentedInformation):
     applicability_statement: Optional[str] = Field(default=None, description="""Statement of policy applicability.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityPolicy']} })
     communication_date: Optional[date] = Field(default=None, description="""Date when the policy was communicated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityPolicy']} })
     acknowledgment_required: Optional[bool] = Field(default=None, description="""Whether acknowledgment is required from personnel.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityPolicy']} })
-    related_topic_policies: Optional[list[str]] = Field(default=None, description="""Topic-specific policies supporting this policy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityPolicy']} })
+    last_policy_review_date: Optional[date] = Field(default=None, description="""Date of the most recent information security policy review.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '5.2 / 9.3'}},
+         'domain_of': ['InformationSecurityPolicy'],
+         'exact_mappings': ['iso42001:last_policy_review_date']} })
+    next_policy_review_date: Optional[date] = Field(default=None, description="""Planned date of the next information security policy review.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '5.2 / 9.3'}},
+         'domain_of': ['InformationSecurityPolicy'],
+         'exact_mappings': ['iso42001:next_policy_review_date']} })
+    related_topic_policies: Optional[list[str]] = Field(default=None, description="""Topic-specific policies supporting this policy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityPolicy'],
+         'exact_mappings': ['iso42001:related_topic_policies']} })
+    integrated_management_systems: Optional[list[RelatedManagementSystem]] = Field(default=None, description="""Other ISO/IEC management system standards with which the ISMS is integrated or aligned (per the harmonized structure of Annex SL).""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityPolicy'],
+         'exact_mappings': ['iso42001:integrated_management_systems']} })
     document_type: Optional[DocumentType] = Field(default=None, description="""Classification of the documented information.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DocumentedInformation'],
          'in_subset': ['documented_information']} })
     document_reference: Optional[str] = Field(default=None, description="""Unique reference number for document control.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 7.5.2 a) identification and description'],
@@ -736,18 +1172,36 @@ class InformationSecurityPolicy(DocumentedInformation):
     retention_period: Optional[str] = Field(default=None, description="""Duration for which the document is retained.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 7.5.3 f) retention and disposition',
                       'Use ISO 8601 duration notation such as P1Y or P90D'],
          'domain_of': ['DocumentedInformation']} })
+    distribution_controls: Optional[list[str]] = Field(default=None, description="""Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    storage_and_preservation: Optional[str] = Field(default=None, description="""Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    change_control_method: Optional[str] = Field(default=None, description="""Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin: Optional[bool] = Field(default=None, description="""Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin_source: Optional[str] = Field(default=None, description="""Source or provider of the externally originated documented information, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -760,6 +1214,7 @@ class TopicSpecificPolicy(DocumentedInformation):
          'comments': ['Examples include access control policy, cryptography policy, '
                       'backup policy',
                       'Referenced throughout Annex A controls'],
+         'exact_mappings': ['iso42001:TopicSpecificPolicy'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['documented_information']})
 
@@ -796,18 +1251,36 @@ class TopicSpecificPolicy(DocumentedInformation):
     retention_period: Optional[str] = Field(default=None, description="""Duration for which the document is retained.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 7.5.3 f) retention and disposition',
                       'Use ISO 8601 duration notation such as P1Y or P90D'],
          'domain_of': ['DocumentedInformation']} })
+    distribution_controls: Optional[list[str]] = Field(default=None, description="""Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    storage_and_preservation: Optional[str] = Field(default=None, description="""Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    change_control_method: Optional[str] = Field(default=None, description="""Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin: Optional[bool] = Field(default=None, description="""Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin_source: Optional[str] = Field(default=None, description="""Source or provider of the externally originated documented information, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -816,11 +1289,13 @@ class Role(NamedEntity):
     An information security role with defined responsibilities and authorities per Clause 5.3.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '5.3'}},
+         'close_mappings': ['ocsf:User', 'oscal:Role'],
          'comments': ['Used to assign ISMS responsibilities, authorities, and '
                       'accountability',
                       'Supports reporting-line and delegation modeling',
                       'Reference: ISO/IEC 27001:2022 Clause 5.3. ISO/IEC standards '
                       'text is copyright ISO - not reproduced here.'],
+         'exact_mappings': ['iso42001:Role'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_core']})
 
@@ -837,16 +1312,19 @@ class Role(NamedEntity):
     reporting_line: Optional[str] = Field(default=None, description="""To whom this role reports.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Role']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -855,6 +1333,7 @@ class InformationSecurityObjective(NamedEntity):
     A measurable information security objective per Clause 6.2, established at relevant functions and levels of the organization.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '6.2'}},
+         'close_mappings': ['iso42001:AIObjective'],
          'comments': ['Designed for measurable objective tracking and periodic review',
                       'Links objectives to related risks, controls, and action plans',
                       'Reference: ISO/IEC 27001:2022 Clause 6.2. ISO/IEC standards '
@@ -878,18 +1357,24 @@ class InformationSecurityObjective(NamedEntity):
                        'OperationalProcedure']} })
     action_plan: Optional[str] = Field(default=None, description="""Plan for achieving the objective.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 6.2 h-l) planning to achieve objectives'],
          'domain_of': ['InformationSecurityObjective']} })
+    objective_resources_required: Optional[str] = Field(default=None, description="""Resources required to achieve the information security objective.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '6.2 i)'}},
+         'domain_of': ['InformationSecurityObjective']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -900,13 +1385,15 @@ class RiskAssessmentProcess(DocumentedInformation):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '6.1.2'},
                          'mandatory': {'tag': 'mandatory', 'value': 'true'}},
+         'close_mappings': ['iso42001:AIRiskAssessmentProcess'],
          'comments': ['Defines reusable criteria, scales, and methods for risk '
                       'assessments',
                       'Supports repeatable assessment execution over time',
                       'Reference: ISO/IEC 27001:2022 Clause 6.1.2. ISO/IEC standards '
                       'text is copyright ISO - not reproduced here.'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['risk_management', 'documented_information']})
+         'in_subset': ['risk_management', 'documented_information'],
+         'related_mappings': ['iso42001:AISystemImpactAssessmentProcess']})
 
     risk_acceptance_criteria: Optional[str] = Field(default=None, description="""Criteria for accepting risks.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '6.1.2 a) 1)'}},
@@ -949,18 +1436,36 @@ class RiskAssessmentProcess(DocumentedInformation):
     retention_period: Optional[str] = Field(default=None, description="""Duration for which the document is retained.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 7.5.3 f) retention and disposition',
                       'Use ISO 8601 duration notation such as P1Y or P90D'],
          'domain_of': ['DocumentedInformation']} })
+    distribution_controls: Optional[list[str]] = Field(default=None, description="""Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    storage_and_preservation: Optional[str] = Field(default=None, description="""Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    change_control_method: Optional[str] = Field(default=None, description="""Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin: Optional[bool] = Field(default=None, description="""Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin_source: Optional[str] = Field(default=None, description="""Source or provider of the externally originated documented information, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -969,13 +1474,16 @@ class RiskAssessment(DocumentedInformation):
     An instance of risk assessment performed per Clause 8.2, identifying and evaluating information security risks.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '8.2'}},
+         'close_mappings': ['iso42001:AIRiskAssessment'],
          'comments': ['Performed at planned intervals or when significant changes '
                       'occur',
                       'Results are retained as documented information',
                       'Reference: ISO/IEC 27001:2022 Clause 8.2. ISO/IEC standards '
                       'text is copyright ISO - not reproduced here.'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['risk_management']})
+         'in_subset': ['risk_management'],
+         'related_mappings': ['iso42001:AISystemImpactAssessment',
+                              'oscal:AssessmentPlan']})
 
     assessment_scope: Optional[str] = Field(default=None, description="""Scope of the assessment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RiskAssessment']} })
     assessment_date: Optional[date] = Field(default=None, description="""Date the assessment was conducted.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RiskAssessment']} })
@@ -1011,18 +1519,36 @@ class RiskAssessment(DocumentedInformation):
     retention_period: Optional[str] = Field(default=None, description="""Duration for which the document is retained.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 7.5.3 f) retention and disposition',
                       'Use ISO 8601 duration notation such as P1Y or P90D'],
          'domain_of': ['DocumentedInformation']} })
+    distribution_controls: Optional[list[str]] = Field(default=None, description="""Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    storage_and_preservation: Optional[str] = Field(default=None, description="""Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    change_control_method: Optional[str] = Field(default=None, description="""Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin: Optional[bool] = Field(default=None, description="""Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin_source: Optional[str] = Field(default=None, description="""Source or provider of the externally originated documented information, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -1032,6 +1558,10 @@ class Risk(NamedEntity):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '6.1.2'}},
+         'close_mappings': ['cve:CveRecord',
+                            'iso42001:AIRisk',
+                            'kev_catalog:KevVulnerability',
+                            'nvd:CveItem'],
          'comments': ['Links threat, vulnerability, and affected assets to risk '
                       'ownership',
                       'Supports likelihood, impact, treatment, and residual risk '
@@ -1039,15 +1569,27 @@ class Risk(NamedEntity):
                       'Reference: ISO/IEC 27001:2022 Clause 6.1.2. ISO/IEC standards '
                       'text is copyright ISO - not reproduced here.'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['risk_management']})
+         'in_subset': ['risk_management'],
+         'related_mappings': ['attack:AttackTechnique',
+                              'capec:AttackPattern',
+                              'cwe:Weakness',
+                              'iso29100:PrivacyRisk',
+                              'ocsf:VulnerabilityDetails',
+                              'stix:ThreatActor']})
 
     risk_source: Optional[str] = Field(default=None, description="""Source or origin of the risk.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Risk']} })
     threat_description: Optional[str] = Field(default=None, description="""Description of the threat exploiting the vulnerability.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Risk']} })
-    vulnerability_description: Optional[str] = Field(default=None, description="""Description of the vulnerability that could be exploited.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Risk']} })
-    affected_assets: Optional[list[str]] = Field(default=None, description="""Assets affected by this risk or incident.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Risk',
+    vulnerability_description: Optional[str] = Field(default=None, description="""Description of the vulnerability that could be exploited.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['cve:description', 'kev_catalog:shortDescription'],
+         'domain_of': ['Risk'],
+         'related_mappings': ['cwe:Weakness', 'stix:Vulnerability']} })
+    affected_assets: Optional[list[str]] = Field(default=None, description="""Assets affected by this risk or incident.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['iso42001:affected_ai_systems'],
+         'domain_of': ['Risk',
                        'InformationSecurityEvent',
-                       'InformationSecurityIncident']} })
-    affected_cia_properties: Optional[list[str]] = Field(default=None, description="""Which CIA properties are affected (confidentiality, integrity, availability).""", json_schema_extra = { "linkml_meta": {'comments': ['Per 6.1.2 c) 1) risks associated with loss of CIA'],
+                       'InformationSecurityIncident'],
+         'related_mappings': ['ocsf:Device']} })
+    affected_cia_properties: Optional[list[CIAProperty]] = Field(default=None, description="""Which CIA properties are affected (confidentiality, integrity, availability).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '6.1.2 c) 1)'}},
+         'comments': ['Per 6.1.2 c) 1) risks associated with loss of CIA'],
          'domain_of': ['Risk']} })
     risk_owner: Optional[str] = Field(default=None, description="""Person accountable for managing the risk.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '6.1.2 c) 2)'}},
@@ -1066,16 +1608,19 @@ class Risk(NamedEntity):
     related_treatment_plan: Optional[str] = Field(default=None, description="""Risk treatment plan addressing this risk.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Risk']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -1086,6 +1631,7 @@ class RiskTreatmentProcess(DocumentedInformation):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '6.1.3'},
                          'mandatory': {'tag': 'mandatory', 'value': 'true'}},
+         'close_mappings': ['iso42001:AIRiskTreatmentProcess'],
          'comments': ['Defines how treatment options and controls are selected',
                       'Supports Statement of Applicability generation workflows',
                       'Reference: ISO/IEC 27001:2022 Clause 6.1.3. ISO/IEC standards '
@@ -1095,6 +1641,11 @@ class RiskTreatmentProcess(DocumentedInformation):
 
     treatment_options_guidance: Optional[str] = Field(default=None, description="""Guidance on selecting treatment options.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RiskTreatmentProcess']} })
     control_selection_criteria: Optional[str] = Field(default=None, description="""Criteria for selecting controls.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RiskTreatmentProcess']} })
+    annex_a_omission_verification: Optional[str] = Field(default=None, description="""Description of how controls determined as necessary are compared with those in Annex A to verify that no necessary controls have been omitted, per Clause 6.1.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '6.1.3'}},
+         'comments': ['Document the comparison procedure and any gap-analysis '
+                      'outcomes'],
+         'domain_of': ['RiskTreatmentProcess']} })
     soa_template: Optional[str] = Field(default=None, description="""Template used for Statement of Applicability.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RiskTreatmentProcess']} })
     approval_workflow: Optional[str] = Field(default=None, description="""Workflow for approving risk treatment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RiskTreatmentProcess']} })
     document_type: Optional[DocumentType] = Field(default=None, description="""Classification of the documented information.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DocumentedInformation'],
@@ -1123,18 +1674,36 @@ class RiskTreatmentProcess(DocumentedInformation):
     retention_period: Optional[str] = Field(default=None, description="""Duration for which the document is retained.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 7.5.3 f) retention and disposition',
                       'Use ISO 8601 duration notation such as P1Y or P90D'],
          'domain_of': ['DocumentedInformation']} })
+    distribution_controls: Optional[list[str]] = Field(default=None, description="""Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    storage_and_preservation: Optional[str] = Field(default=None, description="""Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    change_control_method: Optional[str] = Field(default=None, description="""Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin: Optional[bool] = Field(default=None, description="""Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin_source: Optional[str] = Field(default=None, description="""Source or provider of the externally originated documented information, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -1144,6 +1713,8 @@ class RiskTreatmentPlan(DocumentedInformation):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '6.1.3'}},
+         'close_mappings': ['iso42001:AIRiskTreatmentPlan',
+                            'oscal:PlanOfActionAndMilestones'],
          'comments': ['Captures treatment execution plans with approval and acceptance '
                       'metadata',
                       'Supports implementation status and completion tracking',
@@ -1169,7 +1740,8 @@ class RiskTreatmentPlan(DocumentedInformation):
     residual_risk_acceptance: Optional[str] = Field(default=None, description="""Documentation of residual risk acceptance.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '6.1.3 f)'}},
          'domain_of': ['RiskTreatmentPlan']} })
-    implementation_status: Optional[ImplementationStatus] = Field(default=None, description="""Current implementation status.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RiskTreatmentPlan', 'SoAEntry', 'SecurityControl']} })
+    implementation_status: Optional[ImplementationStatus] = Field(default=None, description="""Current implementation status.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['oscal:ImplementationStatus'],
+         'domain_of': ['RiskTreatmentPlan', 'SoAEntry', 'SecurityControl']} })
     completion_date: Optional[date] = Field(default=None, description="""Date when implementation was completed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RiskTreatmentPlan']} })
     document_type: Optional[DocumentType] = Field(default=None, description="""Classification of the documented information.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DocumentedInformation'],
          'in_subset': ['documented_information']} })
@@ -1196,18 +1768,36 @@ class RiskTreatmentPlan(DocumentedInformation):
     retention_period: Optional[str] = Field(default=None, description="""Duration for which the document is retained.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 7.5.3 f) retention and disposition',
                       'Use ISO 8601 duration notation such as P1Y or P90D'],
          'domain_of': ['DocumentedInformation']} })
+    distribution_controls: Optional[list[str]] = Field(default=None, description="""Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    storage_and_preservation: Optional[str] = Field(default=None, description="""Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    change_control_method: Optional[str] = Field(default=None, description="""Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin: Optional[bool] = Field(default=None, description="""Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin_source: Optional[str] = Field(default=None, description="""Source or provider of the externally originated documented information, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -1218,11 +1808,14 @@ class StatementOfApplicability(DocumentedInformation):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '6.1.3 d)'},
                          'mandatory': {'tag': 'mandatory', 'value': 'true'}},
+         'close_mappings': ['nist_sp_800_53:ProfileDocument',
+                            'oscal:SspControlImplementation'],
          'comments': ['Records control applicability and implementation state',
                       'Captures inclusion or exclusion rationale for each control '
                       'entry',
                       'Reference: ISO/IEC 27001:2022 Clause 6.1.3 d). ISO/IEC '
                       'standards text is copyright ISO - not reproduced here.'],
+         'exact_mappings': ['iso42001:StatementOfApplicability'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_core', 'annex_a_controls', 'documented_information']})
 
@@ -1258,18 +1851,36 @@ class StatementOfApplicability(DocumentedInformation):
     retention_period: Optional[str] = Field(default=None, description="""Duration for which the document is retained.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 7.5.3 f) retention and disposition',
                       'Use ISO 8601 duration notation such as P1Y or P90D'],
          'domain_of': ['DocumentedInformation']} })
+    distribution_controls: Optional[list[str]] = Field(default=None, description="""Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    storage_and_preservation: Optional[str] = Field(default=None, description="""Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    change_control_method: Optional[str] = Field(default=None, description="""Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin: Optional[bool] = Field(default=None, description="""Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin_source: Optional[str] = Field(default=None, description="""Source or provider of the externally originated documented information, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -1277,8 +1888,10 @@ class SoAEntry(ConfiguredBaseModel):
     """
     A single entry in the Statement of Applicability, documenting the applicability and implementation status of one control.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'comments': ['Each Annex A control should have a corresponding SoA entry',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['oscal:SspImplementedRequirement'],
+         'comments': ['Each Annex A control should have a corresponding SoA entry',
                       'Exclusions require documented justification'],
+         'exact_mappings': ['iso42001:SoAEntry'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['annex_a_controls']})
 
@@ -1290,7 +1903,8 @@ class SoAEntry(ConfiguredBaseModel):
     exclusion_justification: Optional[str] = Field(default=None, description="""Justification for excluding the control.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '6.1.3 d)'}},
          'domain_of': ['SoAEntry']} })
-    implementation_status: Optional[ImplementationStatus] = Field(default=None, description="""Current implementation status.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RiskTreatmentPlan', 'SoAEntry', 'SecurityControl']} })
+    implementation_status: Optional[ImplementationStatus] = Field(default=None, description="""Current implementation status.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['oscal:ImplementationStatus'],
+         'domain_of': ['RiskTreatmentPlan', 'SoAEntry', 'SecurityControl']} })
     implementation_evidence: Optional[str] = Field(default=None, description="""Evidence of control implementation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SoAEntry']} })
     responsible_role: Optional[str] = Field(default=None, description="""Role responsible for the objective or control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityObjective', 'SoAEntry']} })
     target_implementation_date: Optional[date] = Field(default=None, description="""Target date for implementing the control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SoAEntry']} })
@@ -1304,6 +1918,11 @@ class SecurityControl(NamedEntity):
                                              'value': 'Annex A'},
                          'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '6.1.3'}},
+         'close_mappings': ['iso42001:AIReferenceControl',
+                            'nist_csf_v2:CSFSubcategory',
+                            'nist_sp_800_53:Control',
+                            'oscal:Control',
+                            'stix:CourseOfAction'],
          'comments': ['93 controls organized in four domains (organizational, people, '
                       'physical, technological)',
                       'Controls are referenced in risk treatment and SoA',
@@ -1316,9 +1935,18 @@ class SecurityControl(NamedEntity):
                       'content only, not ISO standards text.'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['annex_a_controls'],
-         'related_mappings': ['cis_controls:Safeguard']})
+         'related_mappings': ['cis_controls:Safeguard',
+                              'attack:AttackMitigation',
+                              'capec:Mitigation',
+                              'd3f:DefensiveTechnique',
+                              'nist_sp_800_171:Requirement',
+                              'nist_sp_800_218:CatalogElement',
+                              'ocsf:Compliance',
+                              'slsa:BuildLevelEnum']})
 
-    control_id: Optional[str] = Field(default=None, description="""Control identifier from Annex A (e.g., 5.1, 8.24).""", json_schema_extra = { "linkml_meta": {'comments': ['Format matches Annex A numbering'],
+    control_id: Optional[AnnexAControlId] = Field(default=None, description="""Control identifier from Annex A (e.g., a_5_1, a_8_24).""", json_schema_extra = { "linkml_meta": {'close_mappings': ['oscal:Control'],
+         'comments': ['Enumerated permissible values mirror the 93 Annex A controls',
+                      'Provides stable per-control IRIs for SSSOM mapping subjects'],
          'domain_of': ['SecurityControl']} })
     control_title: Optional[str] = Field(default=None, description="""Title of the control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SecurityControl']} })
     control_category: Optional[ControlCategory] = Field(default=None, description="""Domain category of the control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SecurityControl']} })
@@ -1329,40 +1957,34 @@ class SecurityControl(NamedEntity):
     related_controls: Optional[list[str]] = Field(default=None, description="""Other controls related to this one.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityObjective',
                        'SecurityControl',
                        'OperationalProcedure']} })
-    applicable_threats: Optional[list[str]] = Field(default=None, description="""Threats this control addresses.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SecurityControl']} })
+    applicable_threats: Optional[list[str]] = Field(default=None, description="""Threats this control addresses.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SecurityControl'],
+         'related_mappings': ['attack:AttackTechnique',
+                              'capec:AttackPattern',
+                              'stix:AttackPattern']} })
     applicable_assets: Optional[list[str]] = Field(default=None, description="""Asset types this control applies to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SecurityControl']} })
     control_owner: Optional[str] = Field(default=None, description="""Person responsible for the control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SecurityControl']} })
-    implementation_status: Optional[ImplementationStatus] = Field(default=None, description="""Current implementation status.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RiskTreatmentPlan', 'SoAEntry', 'SecurityControl']} })
+    implementation_status: Optional[ImplementationStatus] = Field(default=None, description="""Current implementation status.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['oscal:ImplementationStatus'],
+         'domain_of': ['RiskTreatmentPlan', 'SoAEntry', 'SecurityControl']} })
     implementation_date: Optional[date] = Field(default=None, description="""Date the control was implemented.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SecurityControl']} })
     effectiveness_rating: Optional[str] = Field(default=None, description="""Rating of control effectiveness.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SecurityControl']} })
     last_test_date: Optional[date] = Field(default=None, description="""Date the control was last tested.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SecurityControl']} })
     evidence_references: Optional[list[str]] = Field(default=None, description="""References to evidence of implementation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SecurityControl']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
-
-    @field_validator('control_id')
-    def pattern_control_id(cls, v):
-        pattern=re.compile(r"^[5-8]\.[0-9]{1,2}$")
-        if isinstance(v, list):
-            for element in v:
-                if isinstance(element, str) and not pattern.match(element):
-                    err_msg = f"Invalid control_id format: {element}"
-                    raise ValueError(err_msg)
-        elif isinstance(v, str) and not pattern.match(v):
-            err_msg = f"Invalid control_id format: {v}"
-            raise ValueError(err_msg)
-        return v
 
 
 class Resource(NamedEntity):
@@ -1372,6 +1994,7 @@ class Resource(NamedEntity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '7.1'}},
          'comments': ['Reference: ISO/IEC 27001:2022 Clause 7.1. ISO/IEC standards '
                       'text is copyright ISO - not reproduced here.'],
+         'exact_mappings': ['iso42001:Resource'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_core']})
 
@@ -1387,16 +2010,19 @@ class Resource(NamedEntity):
     availability_status: Optional[str] = Field(default=None, description="""Current availability of the resource.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Resource']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -1409,8 +2035,10 @@ class CompetenceRecord(DocumentedInformation):
                       'Actions to acquire competence are evaluated for effectiveness',
                       'Reference: ISO/IEC 27001:2022 Clause 7.2. ISO/IEC standards '
                       'text is copyright ISO - not reproduced here.'],
+         'exact_mappings': ['iso42001:CompetenceRecord'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['isms_core', 'documented_information']})
+         'in_subset': ['isms_core', 'documented_information'],
+         'related_mappings': ['oscal:Party']})
 
     person_name: Optional[str] = Field(default=None, description="""Name of the person.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CompetenceRecord']} })
     person_role: Optional[str] = Field(default=None, description="""Role of the person.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CompetenceRecord']} })
@@ -1447,18 +2075,36 @@ class CompetenceRecord(DocumentedInformation):
     retention_period: Optional[str] = Field(default=None, description="""Duration for which the document is retained.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 7.5.3 f) retention and disposition',
                       'Use ISO 8601 duration notation such as P1Y or P90D'],
          'domain_of': ['DocumentedInformation']} })
+    distribution_controls: Optional[list[str]] = Field(default=None, description="""Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    storage_and_preservation: Optional[str] = Field(default=None, description="""Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    change_control_method: Optional[str] = Field(default=None, description="""Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin: Optional[bool] = Field(default=None, description="""Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin_source: Optional[str] = Field(default=None, description="""Source or provider of the externally originated documented information, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -1471,6 +2117,7 @@ class AwarenessProgram(DocumentedInformation):
                       'completion records',
                       'Reference: ISO/IEC 27001:2022 Clause 7.3. ISO/IEC standards '
                       'text is copyright ISO - not reproduced here.'],
+         'exact_mappings': ['iso42001:AwarenessProgram'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_core']})
 
@@ -1506,18 +2153,36 @@ class AwarenessProgram(DocumentedInformation):
     retention_period: Optional[str] = Field(default=None, description="""Duration for which the document is retained.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 7.5.3 f) retention and disposition',
                       'Use ISO 8601 duration notation such as P1Y or P90D'],
          'domain_of': ['DocumentedInformation']} })
+    distribution_controls: Optional[list[str]] = Field(default=None, description="""Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    storage_and_preservation: Optional[str] = Field(default=None, description="""Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    change_control_method: Optional[str] = Field(default=None, description="""Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin: Optional[bool] = Field(default=None, description="""Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin_source: Optional[str] = Field(default=None, description="""Source or provider of the externally originated documented information, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -1529,6 +2194,7 @@ class CommunicationPlan(DocumentedInformation):
          'comments': ['Captures communication scope, timing, audience, and channels',
                       'Reference: ISO/IEC 27001:2022 Clause 7.4. ISO/IEC standards '
                       'text is copyright ISO - not reproduced here.'],
+         'exact_mappings': ['iso42001:CommunicationPlan'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_core', 'documented_information']})
 
@@ -1559,18 +2225,36 @@ class CommunicationPlan(DocumentedInformation):
     retention_period: Optional[str] = Field(default=None, description="""Duration for which the document is retained.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 7.5.3 f) retention and disposition',
                       'Use ISO 8601 duration notation such as P1Y or P90D'],
          'domain_of': ['DocumentedInformation']} })
+    distribution_controls: Optional[list[str]] = Field(default=None, description="""Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    storage_and_preservation: Optional[str] = Field(default=None, description="""Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    change_control_method: Optional[str] = Field(default=None, description="""Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin: Optional[bool] = Field(default=None, description="""Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin_source: Optional[str] = Field(default=None, description="""Source or provider of the externally originated documented information, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -1579,6 +2263,7 @@ class CommunicationItem(ConfiguredBaseModel):
     A single communication requirement within the communication plan.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '7.4'}},
+         'exact_mappings': ['iso42001:CommunicationItem'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_core']})
 
@@ -1599,11 +2284,14 @@ class OperationalProcedure(DocumentedInformation):
     A documented procedure for operational planning and control per Clause 8.1.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '8.1'}},
+         'close_mappings': ['oscal:Activity'],
          'comments': ['Captures process criteria, controls, and accountable roles',
                       'Reference: ISO/IEC 27001:2022 Clause 8.1. ISO/IEC standards '
                       'text is copyright ISO - not reproduced here.'],
+         'exact_mappings': ['iso42001:OperationalProcedure'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['documented_information']})
+         'in_subset': ['documented_information'],
+         'related_mappings': ['nist_sp_800_218:CatalogElement']})
 
     procedure_scope: Optional[str] = Field(default=None, description="""Scope of the procedure.""", json_schema_extra = { "linkml_meta": {'domain_of': ['OperationalProcedure']} })
     process_criteria: Optional[str] = Field(default=None, description="""Criteria established for the process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['OperationalProcedure']} })
@@ -1639,18 +2327,36 @@ class OperationalProcedure(DocumentedInformation):
     retention_period: Optional[str] = Field(default=None, description="""Duration for which the document is retained.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 7.5.3 f) retention and disposition',
                       'Use ISO 8601 duration notation such as P1Y or P90D'],
          'domain_of': ['DocumentedInformation']} })
+    distribution_controls: Optional[list[str]] = Field(default=None, description="""Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    storage_and_preservation: Optional[str] = Field(default=None, description="""Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    change_control_method: Optional[str] = Field(default=None, description="""Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin: Optional[bool] = Field(default=None, description="""Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin_source: Optional[str] = Field(default=None, description="""Source or provider of the externally originated documented information, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -1663,6 +2369,7 @@ class MonitoringProgram(DocumentedInformation):
                       'Supports reproducible monitoring and evaluation records',
                       'Reference: ISO/IEC 27001:2022 Clause 9.1. ISO/IEC standards '
                       'text is copyright ISO - not reproduced here.'],
+         'exact_mappings': ['iso42001:MonitoringProgram'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['performance_evaluation', 'documented_information']})
 
@@ -1693,18 +2400,36 @@ class MonitoringProgram(DocumentedInformation):
     retention_period: Optional[str] = Field(default=None, description="""Duration for which the document is retained.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 7.5.3 f) retention and disposition',
                       'Use ISO 8601 duration notation such as P1Y or P90D'],
          'domain_of': ['DocumentedInformation']} })
+    distribution_controls: Optional[list[str]] = Field(default=None, description="""Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    storage_and_preservation: Optional[str] = Field(default=None, description="""Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    change_control_method: Optional[str] = Field(default=None, description="""Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin: Optional[bool] = Field(default=None, description="""Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin_source: Optional[str] = Field(default=None, description="""Source or provider of the externally originated documented information, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -1713,6 +2438,7 @@ class MonitoringItem(ConfiguredBaseModel):
     A single item to be monitored and measured per 9.1.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '9.1'}},
+         'exact_mappings': ['iso42001:MonitoringItem'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['performance_evaluation']})
 
@@ -1737,17 +2463,19 @@ class InternalAudit(DocumentedInformation):
     An internal audit instance per Clause 9.2, assessing ISMS conformance and effectiveness.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '9.2'}},
+         'close_mappings': ['oscal:AssessmentPlan'],
          'comments': ['Captures audit scope, criteria, findings, and conclusions',
                       'Supports periodic conformance and effectiveness assessment '
                       'records',
                       'Reference: ISO/IEC 27001:2022 Clause 9.2. ISO/IEC standards '
                       'text is copyright ISO - not reproduced here.'],
+         'exact_mappings': ['iso42001:InternalAudit'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['performance_evaluation', 'documented_information']})
 
     audit_reference: Optional[str] = Field(default=None, description="""Reference identifier for the audit.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InternalAudit']} })
-    audit_type: Optional[str] = Field(default=None, description="""Type of audit.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InternalAudit'],
-         'examples': [{'value': 'full'}, {'value': 'partial'}, {'value': 'follow-up'}]} })
+    audit_type: Optional[AuditType] = Field(default=None, description="""Type of audit per ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '9.2'}},
+         'domain_of': ['InternalAudit']} })
     audit_scope: Optional[str] = Field(default=None, description="""Scope of the audit.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InternalAudit']} })
     audit_criteria: Optional[list[str]] = Field(default=None, description="""Criteria against which audit is conducted.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InternalAudit']} })
     audit_objectives: Optional[list[str]] = Field(default=None, description="""Objectives of the audit.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InternalAudit']} })
@@ -1788,18 +2516,36 @@ class InternalAudit(DocumentedInformation):
     retention_period: Optional[str] = Field(default=None, description="""Duration for which the document is retained.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 7.5.3 f) retention and disposition',
                       'Use ISO 8601 duration notation such as P1Y or P90D'],
          'domain_of': ['DocumentedInformation']} })
+    distribution_controls: Optional[list[str]] = Field(default=None, description="""Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    storage_and_preservation: Optional[str] = Field(default=None, description="""Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    change_control_method: Optional[str] = Field(default=None, description="""Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin: Optional[bool] = Field(default=None, description="""Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin_source: Optional[str] = Field(default=None, description="""Source or provider of the externally originated documented information, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -1814,8 +2560,10 @@ class AuditProgramme(DocumentedInformation):
                       'metadata',
                       'Reference: ISO/IEC 27001:2022 Clause 9.2.2. ISO/IEC standards '
                       'text is copyright ISO - not reproduced here.'],
+         'exact_mappings': ['iso42001:AuditProgramme'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['performance_evaluation', 'documented_information']})
+         'in_subset': ['performance_evaluation', 'documented_information'],
+         'related_mappings': ['oscal:AssessmentPlan']})
 
     programme_period: Optional[str] = Field(default=None, description="""Period covered by the audit programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AuditProgramme']} })
     planned_audits: Optional[list[str]] = Field(default=None, description="""Audits planned in this programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AuditProgramme']} })
@@ -1849,18 +2597,36 @@ class AuditProgramme(DocumentedInformation):
     retention_period: Optional[str] = Field(default=None, description="""Duration for which the document is retained.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 7.5.3 f) retention and disposition',
                       'Use ISO 8601 duration notation such as P1Y or P90D'],
          'domain_of': ['DocumentedInformation']} })
+    distribution_controls: Optional[list[str]] = Field(default=None, description="""Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    storage_and_preservation: Optional[str] = Field(default=None, description="""Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    change_control_method: Optional[str] = Field(default=None, description="""Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin: Optional[bool] = Field(default=None, description="""Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin_source: Optional[str] = Field(default=None, description="""Source or provider of the externally originated documented information, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -1869,6 +2635,8 @@ class AuditFinding(NamedEntity):
     A finding from an internal audit, including nonconformities, observations, and positive findings.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '9.2'}},
+         'close_mappings': ['oscal:RelatedFinding'],
+         'exact_mappings': ['iso42001:AuditFinding'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['performance_evaluation']})
 
@@ -1886,16 +2654,19 @@ class AuditFinding(NamedEntity):
     closure_date: Optional[date] = Field(default=None, description="""Date the finding was closed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AuditFinding', 'Nonconformity']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -1908,6 +2679,7 @@ class ManagementReview(DocumentedInformation):
                       'follow-up actions',
                       'Reference: ISO/IEC 27001:2022 Clause 9.3. ISO/IEC standards '
                       'text is copyright ISO - not reproduced here.'],
+         'exact_mappings': ['iso42001:ManagementReview'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['performance_evaluation', 'documented_information'],
          'slot_usage': {'review_date': {'description': 'Date when the management '
@@ -1925,6 +2697,9 @@ class ManagementReview(DocumentedInformation):
     interested_party_changes: Optional[str] = Field(default=None, description="""Changes in interested party requirements.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '9.3.2 c)'}},
          'domain_of': ['ManagementReview']} })
+    interested_party_feedback: Optional[str] = Field(default=None, description="""Feedback from interested parties considered in the management review.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '9.3.2 e)'}},
+         'domain_of': ['ManagementReview']} })
     performance_trends: Optional[str] = Field(default=None, description="""Trends in information security performance.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '9.3.2 d)'}},
          'domain_of': ['ManagementReview']} })
@@ -1932,6 +2707,12 @@ class ManagementReview(DocumentedInformation):
                                              'value': '9.3.2 d) 3)'}},
          'domain_of': ['ManagementReview']} })
     risk_assessment_results: Optional[str] = Field(default=None, description="""Results of risk assessment.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '9.3.2 f)'}},
+         'domain_of': ['ManagementReview']} })
+    risk_treatment_status: Optional[str] = Field(default=None, description="""Status of the risk treatment plan considered in the management review.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '9.3.2 f)'}},
+         'domain_of': ['ManagementReview']} })
+    risks_and_opportunities_changes: Optional[str] = Field(default=None, description="""Changes in risks and opportunities considered in the management review, per Clause 9.3.2 f).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '9.3.2 f)'}},
          'domain_of': ['ManagementReview']} })
     improvement_opportunities: Optional[list[str]] = Field(default=None, description="""Opportunities for improvement identified.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
@@ -1967,18 +2748,36 @@ class ManagementReview(DocumentedInformation):
     retention_period: Optional[str] = Field(default=None, description="""Duration for which the document is retained.""", json_schema_extra = { "linkml_meta": {'comments': ['Per 7.5.3 f) retention and disposition',
                       'Use ISO 8601 duration notation such as P1Y or P90D'],
          'domain_of': ['DocumentedInformation']} })
+    distribution_controls: Optional[list[str]] = Field(default=None, description="""Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    storage_and_preservation: Optional[str] = Field(default=None, description="""Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    change_control_method: Optional[str] = Field(default=None, description="""Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin: Optional[bool] = Field(default=None, description="""Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
+    external_origin_source: Optional[str] = Field(default=None, description="""Source or provider of the externally originated documented information, per Clause 7.5.3.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
+                                             'value': '7.5.3'}},
+         'domain_of': ['DocumentedInformation']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -1988,12 +2787,15 @@ class Nonconformity(NamedEntity):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '10.2'}},
+         'close_mappings': ['oscal:RelatedFinding'],
          'comments': ['Captures detection, correction, consequence handling, and '
                       'root-cause data',
                       'Reference: ISO/IEC 27001:2022 Clause 10.2. ISO/IEC standards '
                       'text is copyright ISO - not reproduced here.'],
+         'exact_mappings': ['iso42001:Nonconformity'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['continual_improvement']})
+         'in_subset': ['continual_improvement'],
+         'related_mappings': ['iso42001:ConcernReport']})
 
     nonconformity_source: Optional[str] = Field(default=None, description="""Source of nonconformity detection.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Nonconformity'],
          'examples': [{'value': 'internal_audit'},
@@ -2026,16 +2828,19 @@ class Nonconformity(NamedEntity):
     closure_evidence: Optional[str] = Field(default=None, description="""Evidence supporting closure.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Nonconformity']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -2045,11 +2850,13 @@ class CorrectiveAction(NamedEntity):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '10.2'}},
+         'close_mappings': ['oscal:PoamItem'],
          'comments': ['Tracks actions intended to prevent recurrence of '
                       'nonconformities',
                       'Supports effectiveness review and related ISMS change tracking',
                       'Reference: ISO/IEC 27001:2022 Clause 10.2. ISO/IEC standards '
                       'text is copyright ISO - not reproduced here.'],
+         'exact_mappings': ['iso42001:CorrectiveAction'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['continual_improvement']})
 
@@ -2070,6 +2877,7 @@ class CorrectiveAction(NamedEntity):
     effectiveness_verified: Optional[bool] = Field(default=None, description="""Whether effectiveness was verified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CorrectiveAction']} })
     isms_changes_required: Optional[str] = Field(default=None, description="""Changes to ISMS required as a result.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '10.2 e)'}},
+         'close_mappings': ['iso42001:aims_changes_required'],
          'domain_of': ['CorrectiveAction']} })
     status: Optional[str] = Field(default=None, description="""Current status of the document or entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Examples include draft, approved, active, superseded, archived'],
          'domain_of': ['DocumentedInformation',
@@ -2078,16 +2886,19 @@ class CorrectiveAction(NamedEntity):
                        'ImprovementOpportunity']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -2102,6 +2913,7 @@ class ImprovementOpportunity(NamedEntity):
                       'Distinct from corrective actions (proactive vs. reactive)',
                       'Reference: ISO/IEC 27001:2022 Clause 10.1. ISO/IEC standards '
                       'text is copyright ISO - not reproduced here.'],
+         'exact_mappings': ['iso42001:ImprovementOpportunity'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['continual_improvement']})
 
@@ -2126,16 +2938,19 @@ class ImprovementOpportunity(NamedEntity):
                        'ImprovementOpportunity']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -2144,13 +2959,23 @@ class Asset(NamedEntity):
     An information asset or associated asset requiring protection, per Annex A control 5.9.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'annex_a_control': {'tag': 'annex_a_control', 'value': '5.9'}},
+         'broad_mappings': ['iso42001:ComputingResource',
+                            'iso42001:DataResource',
+                            'iso42001:HumanResource',
+                            'iso42001:ToolingResource'],
+         'close_mappings': ['ocsf:Device', 'oscal:SspInventoryItem', 'spdx:Package'],
          'comments': ['Supports asset inventory, ownership, classification, and '
                       'related controls',
                       'Reference: ISO/IEC 27001:2022 Annex A control 5.9; ISO/IEC '
                       '27002:2022 Clause 5.9. ISO/IEC standards text is copyright ISO '
                       '- not reproduced here.'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['annex_a_controls']})
+         'in_subset': ['annex_a_controls'],
+         'related_mappings': ['iso29100:PII',
+                              'iso42001:AISystem',
+                              'nvd:CpeMatch',
+                              'slsa:ResourceDescriptor',
+                              'stix:Infrastructure']})
 
     asset_type: Optional[str] = Field(default=None, description="""Type of asset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Asset'],
          'examples': [{'value': 'information'},
@@ -2173,16 +2998,19 @@ class Asset(NamedEntity):
     applicable_controls: Optional[list[str]] = Field(default=None, description="""Controls related to this policy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TopicSpecificPolicy', 'Asset']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -2192,33 +3020,41 @@ class InformationSecurityEvent(NamedEntity):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'annex_a_control': {'tag': 'annex_a_control',
                                              'value': '5.25'}},
+         'close_mappings': ['iso42001:AISystemEvent',
+                            'ocsf:SecurityFinding',
+                            'stix:Sighting'],
          'comments': ['Reference: ISO/IEC 27001:2022 Annex A control 5.25; ISO/IEC '
                       '27002:2022 Clause 5.25. ISO/IEC standards text is copyright ISO '
                       '- not reproduced here.'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['annex_a_controls']})
 
-    event_datetime: Optional[datetime ] = Field(default=None, description="""Date and time of the event.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityEvent']} })
-    reporter: Optional[str] = Field(default=None, description="""Person who reported the event.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityEvent']} })
+    event_datetime: Optional[datetime ] = Field(default=None, description="""Date and time of the event.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['ocsf:time'], 'domain_of': ['InformationSecurityEvent']} })
+    reporter: Optional[str] = Field(default=None, description="""Person who reported the event.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['ocsf:User'], 'domain_of': ['InformationSecurityEvent']} })
     event_description: Optional[str] = Field(default=None, description="""Description of the event.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityEvent']} })
-    affected_assets: Optional[list[str]] = Field(default=None, description="""Assets affected by this risk or incident.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Risk',
+    affected_assets: Optional[list[str]] = Field(default=None, description="""Assets affected by this risk or incident.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['iso42001:affected_ai_systems'],
+         'domain_of': ['Risk',
                        'InformationSecurityEvent',
-                       'InformationSecurityIncident']} })
+                       'InformationSecurityIncident'],
+         'related_mappings': ['ocsf:Device']} })
     initial_assessment: Optional[str] = Field(default=None, description="""Initial assessment of the event.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityEvent']} })
     categorized_as_incident: Optional[bool] = Field(default=None, description="""Whether the event was categorized as an incident.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityEvent']} })
     linked_incident: Optional[str] = Field(default=None, description="""Linked incident if categorized.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityEvent']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 
@@ -2228,23 +3064,34 @@ class InformationSecurityIncident(NamedEntity):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'annex_a_control': {'tag': 'annex_a_control',
                                              'value': '5.26'}},
+         'close_mappings': ['iso42001:AIIncident',
+                            'ocsf:IncidentFinding',
+                            'stix:Incident'],
          'comments': ['Captures response lifecycle, evidence references, and lessons '
                       'learned',
                       'Reference: ISO/IEC 27001:2022 Annex A control 5.26; ISO/IEC '
                       '27002:2022 Clause 5.26. ISO/IEC standards text is copyright ISO '
                       '- not reproduced here.'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['annex_a_controls']})
+         'in_subset': ['annex_a_controls'],
+         'related_mappings': ['oscal:PoamItem']})
 
     incident_datetime: Optional[datetime ] = Field(default=None, description="""Date and time the incident occurred or was detected.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityIncident']} })
-    incident_category: Optional[str] = Field(default=None, description="""Category of incident.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityIncident']} })
-    severity: Optional[str] = Field(default=None, description="""Severity rating.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityIncident']} })
-    affected_assets: Optional[list[str]] = Field(default=None, description="""Assets affected by this risk or incident.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Risk',
+    incident_category: Optional[SecurityIncidentCategory] = Field(default=None, description="""Category of incident.""", json_schema_extra = { "linkml_meta": {'annotations': {'annex_a_reference': {'tag': 'annex_a_reference',
+                                               'value': 'A.5.24'}},
+         'close_mappings': ['ocsf:category_uid'],
+         'domain_of': ['InformationSecurityIncident']} })
+    severity: Optional[RiskLevel] = Field(default=None, description="""Severity rating of the incident.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['nvd:baseSeverity', 'ocsf:severity_id'],
+         'domain_of': ['InformationSecurityIncident']} })
+    affected_assets: Optional[list[str]] = Field(default=None, description="""Assets affected by this risk or incident.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['iso42001:affected_ai_systems'],
+         'domain_of': ['Risk',
                        'InformationSecurityEvent',
-                       'InformationSecurityIncident']} })
-    affected_cia: Optional[list[str]] = Field(default=None, description="""CIA properties affected.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityIncident']} })
+                       'InformationSecurityIncident'],
+         'related_mappings': ['ocsf:Device']} })
+    affected_cia: Optional[list[CIAProperty]] = Field(default=None, description="""CIA properties affected by the incident.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityIncident']} })
     incident_description: Optional[str] = Field(default=None, description="""Description of the incident.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityIncident']} })
-    detection_method: Optional[str] = Field(default=None, description="""How the incident was detected.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityIncident']} })
+    detection_method: Optional[str] = Field(default=None, description="""How the incident was detected.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityIncident'],
+         'related_mappings': ['ocsf:observables']} })
     response_actions: Optional[list[str]] = Field(default=None, description="""Actions taken in response.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityIncident']} })
     containment_actions: Optional[list[str]] = Field(default=None, description="""Actions to contain the incident.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityIncident']} })
     eradication_actions: Optional[list[str]] = Field(default=None, description="""Actions to eradicate the cause.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityIncident']} })
@@ -2252,28 +3099,33 @@ class InformationSecurityIncident(NamedEntity):
     root_cause: Optional[str] = Field(default=None, description="""Root cause of the nonconformity.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '10.2 b) 2)'}},
          'domain_of': ['Nonconformity', 'InformationSecurityIncident']} })
-    lessons_learned: Optional[str] = Field(default=None, description="""Lessons learned from the incident.""", json_schema_extra = { "linkml_meta": {'annotations': {'annex_a_control': {'tag': 'annex_a_control',
+    lessons_learned: Optional[list[str]] = Field(default=None, description="""Lessons learned from the incident.""", json_schema_extra = { "linkml_meta": {'annotations': {'annex_a_control': {'tag': 'annex_a_control',
                                              'value': '5.27'}},
          'domain_of': ['InformationSecurityIncident']} })
     evidence_collected: Optional[list[str]] = Field(default=None, description="""Evidence collected.""", json_schema_extra = { "linkml_meta": {'annotations': {'annex_a_control': {'tag': 'annex_a_control',
                                              'value': '5.28'}},
-         'domain_of': ['InformationSecurityIncident']} })
+         'domain_of': ['InformationSecurityIncident'],
+         'related_mappings': ['ocsf:Evidences', 'stix:ObservedData']} })
     notification_required: Optional[bool] = Field(default=None, description="""Whether notification to authorities/parties was required.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityIncident']} })
-    notifications_made: Optional[list[str]] = Field(default=None, description="""Notifications that were made.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityIncident']} })
+    notifications_made: Optional[list[str]] = Field(default=None, description="""Notifications that were made.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityIncident'],
+         'related_mappings': ['stix:Note']} })
     closure_datetime: Optional[datetime ] = Field(default=None, description="""Date and time of incident closure.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityIncident']} })
     post_incident_review: Optional[str] = Field(default=None, description="""Post-incident review findings.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InformationSecurityIncident']} })
     id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'comments': ['Should use consistent URI/CURIE format across the dataset'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:id'],
          'examples': [{'value': 'iso27001:risk-001'},
                       {'value': 'iso27001:control-5.1'}]} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
+    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'exact_mappings': ['iso42001:name']} })
     description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
                       'external reference'],
-         'domain_of': ['NamedEntity']} })
+         'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:description']} })
     created_date: Optional[date] = Field(default=None, description="""Date when the entity was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     modified_date: Optional[date] = Field(default=None, description="""Date when the entity was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity']} })
     version: Optional[str] = Field(default=None, description="""Version identifier for the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Supports document control requirements per 7.5.3 e)'],
          'domain_of': ['NamedEntity'],
+         'exact_mappings': ['iso42001:version'],
          'examples': [{'value': '1.0'}, {'value': '2.3.1'}]} })
 
 

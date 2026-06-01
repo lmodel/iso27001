@@ -1,0 +1,30 @@
+# mapping_set_id: https://w3id.org/lmodel/iso27001/mappings/iso27001_to_stix
+# mapping_set_version: 0.1.0
+# mapping_set_title: ISO/IEC 27001:2022 to STIX 2.1 Mappings
+# mapping_set_description: Schema-level mappings between ISO/IEC 27001:2022 ISMS LinkML classes and STIX 2.1 Domain Objects. Enables export of ISMS incident records as STIX bundles for TAXII sharing, and enrichment of risk records from incoming threat intelligence.
+# license: https://creativecommons.org/licenses/by/4.0/
+# subject_source: https://w3id.org/lmodel/iso27001
+# object_source: https://w3id.org/lmodel/stix
+# mapping_date: 2026-06-01
+# curie_map:
+#   iso27001: https://w3id.org/lmodel/iso27001/
+#   stix: https://w3id.org/lmodel/stix/
+#   owl: http://www.w3.org/2002/07/owl#
+#   semapv: https://w3id.org/semapv/vocab/
+#   skos: http://www.w3.org/2004/02/skos/core#
+subject_id	subject_label	subject_category	predicate_id	predicate_label	object_id	object_label	object_category	mapping_justification	comment
+iso27001:InformationSecurityIncident	InformationSecurityIncident	owl:Class	skos:closeMatch	close match	stix:Incident	Incident	owl:Class	semapv:LLMBasedMatching	STIX 2.1 Incident object aligns with ISMS incident record
+iso27001:InformationSecurityEvent	InformationSecurityEvent	owl:Class	skos:closeMatch	close match	stix:Sighting	Sighting	owl:Class	semapv:LLMBasedMatching	Security event corresponds to STIX sighting of observable
+iso27001:Risk	Risk	owl:Class	skos:relatedMatch	related match	stix:ThreatActor	ThreatActor	owl:Class	semapv:LLMBasedMatching	Risk involves threat actor exploiting vulnerability
+iso27001:SecurityControl	SecurityControl	owl:Class	skos:closeMatch	close match	stix:CourseOfAction	CourseOfAction	owl:Class	semapv:LLMBasedMatching	Annex A control aligns with STIX course-of-action object
+iso27001:Asset	Asset	owl:Class	skos:relatedMatch	related match	stix:Infrastructure	Infrastructure	owl:Class	semapv:LLMBasedMatching	ISMS asset corresponds to STIX infrastructure object
+iso27001:Organization	Organization	owl:Class	skos:closeMatch	close match	stix:Identity	Identity	owl:Class	semapv:LLMBasedMatching	Organisation as STIX Identity (class=organization)
+iso27001:InterestedParty	InterestedParty	owl:Class	skos:closeMatch	close match	stix:Identity	Identity	owl:Class	semapv:LLMBasedMatching	Interested party as STIX identity
+iso27001:applicable_threats	applicable_threats	owl:ObjectProperty	skos:relatedMatch	related match	stix:AttackPattern	AttackPattern	owl:Class	semapv:LLMBasedMatching	Applicable threats reference STIX attack patterns
+iso27001:vulnerability_description	vulnerability_description	owl:DatatypeProperty	skos:relatedMatch	related match	stix:Vulnerability	Vulnerability	owl:Class	semapv:LLMBasedMatching	Vulnerability description aligns with STIX vulnerability object
+iso27001:SecurityIncidentCategory#malware	malware	skos:Concept	skos:closeMatch	close match	stix:Malware	Malware	owl:Class	semapv:LLMBasedMatching	Malware category corresponds to STIX Malware SDO
+iso27001:SecurityIncidentCategory#ransomware	ransomware	skos:Concept	skos:relatedMatch	related match	stix:Malware	Malware	owl:Class	semapv:LLMBasedMatching	Ransomware is a malware sub-type in STIX
+iso27001:SecurityIncidentCategory#phishing	phishing	skos:Concept	skos:relatedMatch	related match	stix:AttackPattern	AttackPattern	owl:Class	semapv:LLMBasedMatching	Phishing as STIX attack pattern
+iso27001:SecurityIncidentCategory#insider_threat	insider_threat	skos:Concept	skos:relatedMatch	related match	stix:ThreatActor	ThreatActor	owl:Class	semapv:LLMBasedMatching	Insider threat actor
+iso27001:notifications_made	notifications_made	owl:ObjectProperty	skos:relatedMatch	related match	stix:Note	Note	owl:Class	semapv:LLMBasedMatching	Incident notifications as STIX notes
+iso27001:evidence_collected	evidence_collected	owl:ObjectProperty	skos:relatedMatch	related match	stix:ObservedData	ObservedData	owl:Class	semapv:LLMBasedMatching	Collected evidence as STIX observed data

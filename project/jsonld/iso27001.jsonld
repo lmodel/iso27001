@@ -19,7 +19,7 @@
     },
     {
       "tag": "standard_title",
-      "value": "Information security, cybersecurity and privacy protection -  Information security management systems - Requirements"
+      "value": "Information security, cybersecurity and privacy protection - Information security management systems - Requirements"
     },
     {
       "tag": "standard_edition",
@@ -98,6 +98,82 @@
     {
       "prefix_prefix": "cis_controls",
       "prefix_reference": "https://w3id.org/lmodel/cis-controls/"
+    },
+    {
+      "prefix_prefix": "oscal",
+      "prefix_reference": "https://w3id.org/lmodel/oscal/"
+    },
+    {
+      "prefix_prefix": "nist_sp_800_53",
+      "prefix_reference": "https://w3id.org/lmodel/nist-sp-800-53/"
+    },
+    {
+      "prefix_prefix": "nist_csf_v2",
+      "prefix_reference": "https://w3id.org/lmodel/nist-csf-v2/"
+    },
+    {
+      "prefix_prefix": "nist_sp_800_171",
+      "prefix_reference": "https://w3id.org/lmodel/nist-sp-800-171/"
+    },
+    {
+      "prefix_prefix": "nist_sp_800_218",
+      "prefix_reference": "https://w3id.org/lmodel/nist-sp-800-218/"
+    },
+    {
+      "prefix_prefix": "attack",
+      "prefix_reference": "https://w3id.org/lmodel/attack/"
+    },
+    {
+      "prefix_prefix": "d3f",
+      "prefix_reference": "https://d3fend.mitre.org/ontologies/d3fend.owl#"
+    },
+    {
+      "prefix_prefix": "slsa",
+      "prefix_reference": "https://w3id.org/lmodel/slsa/"
+    },
+    {
+      "prefix_prefix": "stix",
+      "prefix_reference": "https://w3id.org/lmodel/stix/"
+    },
+    {
+      "prefix_prefix": "ocsf",
+      "prefix_reference": "https://w3id.org/lmodel/ocsf/"
+    },
+    {
+      "prefix_prefix": "spdx",
+      "prefix_reference": "https://w3id.org/lmodel/spdx/"
+    },
+    {
+      "prefix_prefix": "capec",
+      "prefix_reference": "https://w3id.org/lmodel/capec/"
+    },
+    {
+      "prefix_prefix": "cwe",
+      "prefix_reference": "https://w3id.org/lmodel/cwe/"
+    },
+    {
+      "prefix_prefix": "cve",
+      "prefix_reference": "https://w3id.org/lmodel/cve/"
+    },
+    {
+      "prefix_prefix": "nvd",
+      "prefix_reference": "https://w3id.org/lmodel/nist-nvd/"
+    },
+    {
+      "prefix_prefix": "kev_catalog",
+      "prefix_reference": "https://w3id.org/lmodel/kev-catalog/"
+    },
+    {
+      "prefix_prefix": "iso29100",
+      "prefix_reference": "https://w3id.org/lmodel/iso29100/"
+    },
+    {
+      "prefix_prefix": "semapv",
+      "prefix_reference": "https://w3id.org/semapv/vocab/"
+    },
+    {
+      "prefix_prefix": "iso42001",
+      "prefix_reference": "https://w3id.org/lmodel/iso42001/"
     }
   ],
   "default_prefix": "iso27001",
@@ -186,6 +262,7 @@
       "exact_mappings": [
         "wikidata:Q28920044"
       ],
+      "typeof": "integer",
       "base": "int",
       "uri": "http://www.w3.org/2001/XMLSchema#positiveInteger",
       "@type": "TypeDefinition"
@@ -198,6 +275,7 @@
       "exact_mappings": [
         "wikidata:Q110650833"
       ],
+      "typeof": "integer",
       "base": "int",
       "uri": "http://www.w3.org/2001/XMLSchema#unsignedShort",
       "@type": "TypeDefinition"
@@ -207,6 +285,7 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/DurationType",
       "description": "ISO 8601 duration value such as P1Y, P30D, or PT4H",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "typeof": "string",
       "base": "str",
       "uri": "http://www.w3.org/2001/XMLSchema#duration",
       "@type": "TypeDefinition"
@@ -216,7 +295,7 @@
       "definition_uri": "https://w3id.org/linkml/String",
       "description": "A character string",
       "notes": [
-        "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string.   If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"."
+        "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"."
       ],
       "from_schema": "https://w3id.org/linkml/types",
       "imported_from": "linkml:types",
@@ -602,6 +681,9 @@
         "annex_a_controls"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:ImplementationStatus"
+      ],
       "permissible_values": [
         {
           "text": "not_started",
@@ -642,6 +724,9 @@
         "risk_management"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:RiskTreatmentOption"
+      ],
       "permissible_values": [
         {
           "text": "modify",
@@ -682,6 +767,9 @@
         "risk_management"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:RiskLevel"
+      ],
       "permissible_values": [
         {
           "text": "very_low",
@@ -713,6 +801,9 @@
         "documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:DocumentType"
+      ],
       "permissible_values": [
         {
           "text": "policy",
@@ -752,6 +843,9 @@
         "performance_evaluation"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:AuditFindingType"
+      ],
       "permissible_values": [
         {
           "text": "major_nonconformity",
@@ -782,6 +876,9 @@
         "risk_management"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:LikelihoodRating"
+      ],
       "permissible_values": [
         {
           "text": "rare",
@@ -836,6 +933,2137 @@
       ]
     },
     {
+      "name": "CIAProperty",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/CIAProperty",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "6.1.2 c) 1)"
+        }
+      ],
+      "description": "Information security properties whose loss is considered when identifying risks per ISO/IEC 27001:2022 Clause 6.1.2 c) 1).",
+      "in_subset": [
+        "risk_management"
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "permissible_values": [
+        {
+          "text": "confidentiality",
+          "description": "Property of information not being made available or disclosed to unauthorized entities."
+        },
+        {
+          "text": "integrity",
+          "description": "Property of accuracy and completeness of information."
+        },
+        {
+          "text": "availability",
+          "description": "Property of being accessible and usable on demand by an authorized entity."
+        }
+      ]
+    },
+    {
+      "name": "AuditType",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/AuditType",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "9.2"
+        }
+      ],
+      "description": "Classification of audits referenced by ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1 (audit programmes).",
+      "in_subset": [
+        "performance_evaluation"
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:AuditType"
+      ],
+      "permissible_values": [
+        {
+          "text": "internal",
+          "description": "First-party audit conducted by the organization itself per 9.2."
+        },
+        {
+          "text": "external_second_party",
+          "description": "Audit conducted by a party with an interest in the organization (e.g., customer)."
+        },
+        {
+          "text": "external_third_party",
+          "description": "Independent audit by a certification body or other third party."
+        },
+        {
+          "text": "surveillance",
+          "description": "Periodic third-party audit between certification and recertification."
+        },
+        {
+          "text": "recertification",
+          "description": "Third-party audit conducted to renew certification."
+        },
+        {
+          "text": "combined",
+          "description": "Audit performed jointly against two or more management system standards."
+        }
+      ]
+    },
+    {
+      "name": "AnnexAControlId",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/AnnexAControlId",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "Annex A"
+        },
+        {
+          "tag": "annex_a_reference",
+          "value": "Table A.1"
+        }
+      ],
+      "description": "Identifiers of the 93 reference information security controls listed in ISO/IEC 27001:2022 Annex A (as also titled in ISO/IEC 27002:2022). Control text and titles are normative ISO content and are not reproduced here.",
+      "in_subset": [
+        "annex_a_controls"
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "iso42001:AnnexAControlId"
+      ],
+      "permissible_values": [
+        {
+          "text": "a_5_1",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.1"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_14_1",
+            "nist_csf_v2:subcategory_gv_pomg_01",
+            "nist_sp_800_53:control_pm_1"
+          ]
+        },
+        {
+          "text": "a_5_2",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.2"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_14_9",
+            "nist_csf_v2:subcategory_gv_rr_02",
+            "nist_sp_800_218:practice_po_2_1",
+            "nist_sp_800_53:control_pm_2"
+          ]
+        },
+        {
+          "text": "a_5_3",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.3"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_6_8",
+            "nist_csf_v2:subcategory_pr_aa_05",
+            "nist_sp_800_53:control_ac_5"
+          ]
+        },
+        {
+          "text": "a_5_4",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.4"
+            }
+          ],
+          "close_mappings": [
+            "nist_csf_v2:subcategory_gv_rr_01",
+            "nist_sp_800_53:control_ps_7"
+          ]
+        },
+        {
+          "text": "a_5_5",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.5"
+            }
+          ],
+          "close_mappings": [
+            "nist_csf_v2:subcategory_rs_co_02",
+            "nist_sp_800_53:control_ir_6"
+          ]
+        },
+        {
+          "text": "a_5_6",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.6"
+            }
+          ],
+          "close_mappings": [
+            "nist_sp_800_53:control_pm_15"
+          ],
+          "related_mappings": [
+            "nist_csf_v2:subcategory_id_im_03"
+          ]
+        },
+        {
+          "text": "a_5_7",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.7"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:control_13",
+            "attack:AttackTechnique",
+            "kev_catalog:KevCatalog",
+            "nist_csf_v2:subcategory_id_ra_02",
+            "nist_sp_800_218:practice_rv_1_2",
+            "nist_sp_800_53:control_pm_16"
+          ],
+          "related_mappings": [
+            "nvd:CveItem"
+          ]
+        },
+        {
+          "text": "a_5_8",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.8"
+            }
+          ],
+          "close_mappings": [
+            "nist_csf_v2:subcategory_gv_sc_07",
+            "nist_sp_800_53:control_sa_3"
+          ],
+          "related_mappings": [
+            "cis_controls:safeguard_16_1"
+          ]
+        },
+        {
+          "text": "a_5_9",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.9"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:control_1",
+            "nist_csf_v2:subcategory_id_am_01",
+            "nist_sp_800_53:control_cm_8",
+            "spdx:SpdxDocument"
+          ],
+          "related_mappings": [
+            "nvd:CpeMatch"
+          ]
+        },
+        {
+          "text": "a_5_10",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.10"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_5_1",
+            "nist_csf_v2:subcategory_pr_at_01",
+            "nist_sp_800_53:control_pl_4"
+          ]
+        },
+        {
+          "text": "a_5_11",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.11"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_5_3",
+            "nist_csf_v2:subcategory_id_am_08",
+            "nist_sp_800_53:control_ps_4"
+          ]
+        },
+        {
+          "text": "a_5_12",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.12"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_3_7",
+            "nist_csf_v2:subcategory_id_am_05",
+            "nist_sp_800_53:control_ra_2"
+          ]
+        },
+        {
+          "text": "a_5_13",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.13"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_3_7",
+            "nist_csf_v2:subcategory_id_am_05",
+            "nist_sp_800_53:control_mp_3"
+          ]
+        },
+        {
+          "text": "a_5_14",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.14"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_3_10",
+            "nist_csf_v2:subcategory_pr_ds_02",
+            "nist_sp_800_53:control_ac_4"
+          ],
+          "related_mappings": [
+            "iso29100:PrivacyPrinciple#openness_transparency_notice"
+          ]
+        },
+        {
+          "text": "a_5_15",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.15"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:control_6",
+            "attack:mitigation_m1018",
+            "d3f:AccessControl",
+            "nist_csf_v2:subcategory_pr_aa_01",
+            "nist_sp_800_171:requirement_03_01_01",
+            "nist_sp_800_53:control_ac_1"
+          ]
+        },
+        {
+          "text": "a_5_16",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.16"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:control_5",
+            "attack:mitigation_m1018",
+            "nist_csf_v2:subcategory_pr_aa_01",
+            "nist_sp_800_171:requirement_03_05_01",
+            "nist_sp_800_53:control_ia_4"
+          ]
+        },
+        {
+          "text": "a_5_17",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.17"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_6_5",
+            "attack:mitigation_m1032",
+            "d3f:MultifactorAuthentication",
+            "nist_csf_v2:subcategory_pr_aa_03",
+            "nist_sp_800_171:requirement_03_05_07",
+            "nist_sp_800_53:control_ia_5"
+          ],
+          "related_mappings": [
+            "capec:capec_560"
+          ]
+        },
+        {
+          "text": "a_5_18",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.18"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_6_2",
+            "attack:mitigation_m1018",
+            "nist_csf_v2:subcategory_pr_aa_05",
+            "nist_sp_800_171:requirement_03_01_02",
+            "nist_sp_800_53:control_ac_2"
+          ]
+        },
+        {
+          "text": "a_5_19",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.19"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:control_15",
+            "nist_csf_v2:subcategory_gv_sc_01",
+            "nist_sp_800_218:practice_po_1_3",
+            "nist_sp_800_53:control_sa_9",
+            "slsa:SlsaDocument"
+          ],
+          "related_mappings": [
+            "iso29100:PIIProcessor"
+          ]
+        },
+        {
+          "text": "a_5_20",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.20"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_15_4",
+            "nist_csf_v2:subcategory_gv_sc_05",
+            "nist_sp_800_218:practice_po_1_3",
+            "nist_sp_800_53:control_sa_4",
+            "slsa:BuildLevelEnum"
+          ],
+          "related_mappings": [
+            "iso29100:PIIProcessor"
+          ]
+        },
+        {
+          "text": "a_5_21",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.21"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_15_5",
+            "attack:mitigation_m1051",
+            "nist_csf_v2:subcategory_gv_sc_07",
+            "nist_sp_800_218:practice_ps_3_2",
+            "nist_sp_800_53:control_sr_3",
+            "slsa:BuildProvenance",
+            "spdx:Relationship"
+          ]
+        },
+        {
+          "text": "a_5_22",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.22"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_15_6",
+            "nist_csf_v2:subcategory_gv_sc_09",
+            "nist_sp_800_53:control_sa_9",
+            "slsa:VerificationResultEnum"
+          ]
+        },
+        {
+          "text": "a_5_23",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.23"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_15_7",
+            "nist_csf_v2:subcategory_gv_sc_06",
+            "nist_sp_800_53:control_sa_9"
+          ],
+          "related_mappings": [
+            "attack:mitigation_m1041",
+            "slsa:SourceLevelEnum"
+          ]
+        },
+        {
+          "text": "a_5_24",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.24"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_17_1",
+            "nist_csf_v2:subcategory_rs_mar_01",
+            "nist_sp_800_171:requirement_03_06_01",
+            "nist_sp_800_53:control_ir_1"
+          ],
+          "related_mappings": [
+            "attack:AttackTactic",
+            "kev_catalog:KevVulnerability"
+          ]
+        },
+        {
+          "text": "a_5_25",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.25"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_17_4",
+            "nist_csf_v2:subcategory_de_ae_02",
+            "nist_sp_800_171:requirement_03_06_02",
+            "nist_sp_800_53:control_ir_4"
+          ]
+        },
+        {
+          "text": "a_5_26",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.26"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_17_4",
+            "nist_csf_v2:subcategory_rs_mar_02",
+            "nist_sp_800_171:requirement_03_06_01",
+            "nist_sp_800_53:control_ir_4"
+          ]
+        },
+        {
+          "text": "a_5_27",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.27"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_17_8",
+            "nist_csf_v2:subcategory_id_im_04",
+            "nist_sp_800_53:control_ir_4"
+          ]
+        },
+        {
+          "text": "a_5_28",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.28"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_17_9",
+            "nist_csf_v2:subcategory_rs_an_07",
+            "nist_sp_800_53:control_au_11"
+          ]
+        },
+        {
+          "text": "a_5_29",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.29"
+            }
+          ],
+          "close_mappings": [
+            "nist_csf_v2:subcategory_rc_rp_01",
+            "nist_sp_800_53:control_cp_2"
+          ],
+          "related_mappings": [
+            "cis_controls:control_11"
+          ]
+        },
+        {
+          "text": "a_5_30",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.30"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_11_1",
+            "nist_csf_v2:subcategory_rc_rp_01",
+            "nist_sp_800_53:control_cp_2"
+          ]
+        },
+        {
+          "text": "a_5_31",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.31"
+            }
+          ],
+          "close_mappings": [
+            "nist_csf_v2:subcategory_gv_oc_03",
+            "nist_sp_800_53:control_pm_8"
+          ]
+        },
+        {
+          "text": "a_5_32",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.32"
+            }
+          ],
+          "close_mappings": [
+            "nist_sp_800_53:control_cm_10"
+          ]
+        },
+        {
+          "text": "a_5_33",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.33"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:control_3",
+            "nist_csf_v2:subcategory_pr_ds_01",
+            "nist_sp_800_53:control_si_12"
+          ],
+          "related_mappings": [
+            "iso29100:PrivacyPrinciple#information_security"
+          ]
+        },
+        {
+          "text": "a_5_34",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.34"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_3_1",
+            "iso29100:PrivacyPrinciple",
+            "nist_csf_v2:subcategory_gv_oc_01",
+            "nist_sp_800_53:control_pt_1"
+          ]
+        },
+        {
+          "text": "a_5_35",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.35"
+            }
+          ],
+          "close_mappings": [
+            "nist_csf_v2:subcategory_id_im_02",
+            "nist_sp_800_53:control_ca_2"
+          ]
+        },
+        {
+          "text": "a_5_36",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.36"
+            }
+          ],
+          "close_mappings": [
+            "nist_csf_v2:subcategory_gv_ov_01",
+            "nist_sp_800_53:control_ca_7"
+          ]
+        },
+        {
+          "text": "a_5_37",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "organizational"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.5.37"
+            }
+          ],
+          "close_mappings": [
+            "nist_sp_800_53:control_cm_1"
+          ],
+          "related_mappings": [
+            "cis_controls:safeguard_17_4"
+          ]
+        },
+        {
+          "text": "a_6_1",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "people"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.6.1"
+            }
+          ],
+          "close_mappings": [
+            "nist_csf_v2:subcategory_pr_aa_04",
+            "nist_sp_800_53:control_ps_3"
+          ]
+        },
+        {
+          "text": "a_6_2",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "people"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.6.2"
+            }
+          ],
+          "close_mappings": [
+            "nist_sp_800_53:control_ps_6"
+          ]
+        },
+        {
+          "text": "a_6_3",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "people"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.6.3"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:control_14",
+            "nist_csf_v2:subcategory_pr_at_01",
+            "nist_sp_800_171:requirement_03_02_01",
+            "nist_sp_800_53:control_at_2"
+          ],
+          "related_mappings": [
+            "iso29100:PrivacyPrinciple#accountability"
+          ]
+        },
+        {
+          "text": "a_6_4",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "people"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.6.4"
+            }
+          ],
+          "close_mappings": [
+            "nist_sp_800_53:control_ps_8"
+          ]
+        },
+        {
+          "text": "a_6_5",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "people"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.6.5"
+            }
+          ],
+          "close_mappings": [
+            "nist_sp_800_53:control_ps_4"
+          ]
+        },
+        {
+          "text": "a_6_6",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "people"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.6.6"
+            }
+          ],
+          "close_mappings": [
+            "nist_csf_v2:subcategory_gv_rr_03",
+            "nist_sp_800_53:control_ps_6"
+          ]
+        },
+        {
+          "text": "a_6_7",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "people"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.6.7"
+            }
+          ],
+          "close_mappings": [
+            "nist_csf_v2:subcategory_pr_aa_06",
+            "nist_sp_800_53:control_ac_17"
+          ]
+        },
+        {
+          "text": "a_6_8",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "people"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.6.8"
+            }
+          ],
+          "close_mappings": [
+            "nist_csf_v2:subcategory_de_ae_03",
+            "nist_sp_800_53:control_ir_6"
+          ],
+          "related_mappings": [
+            "kev_catalog:knownRansomwareCampaignUse"
+          ]
+        },
+        {
+          "text": "a_7_1",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "physical"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.7.1"
+            }
+          ],
+          "close_mappings": [
+            "nist_csf_v2:subcategory_pr_aa_06",
+            "nist_sp_800_171:requirement_03_10_01",
+            "nist_sp_800_53:control_pe_3"
+          ]
+        },
+        {
+          "text": "a_7_2",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "physical"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.7.2"
+            }
+          ],
+          "close_mappings": [
+            "nist_csf_v2:subcategory_pr_aa_06",
+            "nist_sp_800_171:requirement_03_10_02",
+            "nist_sp_800_53:control_pe_3"
+          ]
+        },
+        {
+          "text": "a_7_3",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "physical"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.7.3"
+            }
+          ],
+          "close_mappings": [
+            "nist_sp_800_53:control_pe_5"
+          ]
+        },
+        {
+          "text": "a_7_4",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "physical"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.7.4"
+            }
+          ],
+          "close_mappings": [
+            "nist_csf_v2:subcategory_de_cm_02",
+            "nist_sp_800_53:control_pe_6"
+          ]
+        },
+        {
+          "text": "a_7_5",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "physical"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.7.5"
+            }
+          ],
+          "close_mappings": [
+            "nist_sp_800_53:control_pe_18"
+          ]
+        },
+        {
+          "text": "a_7_6",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "physical"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.7.6"
+            }
+          ],
+          "close_mappings": [
+            "nist_sp_800_53:control_pe_3"
+          ]
+        },
+        {
+          "text": "a_7_7",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "physical"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.7.7"
+            }
+          ],
+          "close_mappings": [
+            "nist_sp_800_53:control_mp_2"
+          ]
+        },
+        {
+          "text": "a_7_8",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "physical"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.7.8"
+            }
+          ],
+          "close_mappings": [
+            "nist_sp_800_53:control_pe_18"
+          ]
+        },
+        {
+          "text": "a_7_9",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "physical"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.7.9"
+            }
+          ],
+          "close_mappings": [
+            "nist_sp_800_53:control_mp_5"
+          ]
+        },
+        {
+          "text": "a_7_10",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "physical"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.7.10"
+            }
+          ],
+          "close_mappings": [
+            "nist_csf_v2:subcategory_pr_ds_01",
+            "nist_sp_800_171:requirement_03_08_01",
+            "nist_sp_800_53:control_mp_4"
+          ]
+        },
+        {
+          "text": "a_7_11",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "physical"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.7.11"
+            }
+          ],
+          "close_mappings": [
+            "nist_sp_800_53:control_pe_9"
+          ]
+        },
+        {
+          "text": "a_7_12",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "physical"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.7.12"
+            }
+          ],
+          "close_mappings": [
+            "nist_sp_800_53:control_pe_4"
+          ]
+        },
+        {
+          "text": "a_7_13",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "physical"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.7.13"
+            }
+          ],
+          "close_mappings": [
+            "nist_sp_800_53:control_ma_2"
+          ]
+        },
+        {
+          "text": "a_7_14",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "physical"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.7.14"
+            }
+          ],
+          "close_mappings": [
+            "nist_csf_v2:subcategory_id_am_08",
+            "nist_sp_800_53:control_mp_6"
+          ]
+        },
+        {
+          "text": "a_8_1",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.1"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:control_4",
+            "nist_csf_v2:subcategory_pr_ps_06",
+            "nist_sp_800_53:control_ac_19"
+          ]
+        },
+        {
+          "text": "a_8_2",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.2"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_5_4",
+            "attack:mitigation_m1026",
+            "d3f:PrivilegedAccountUsageAnalysis",
+            "nist_csf_v2:subcategory_pr_aa_05",
+            "nist_sp_800_171:requirement_03_01_05",
+            "nist_sp_800_53:control_ac_6"
+          ]
+        },
+        {
+          "text": "a_8_3",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.3"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_3_3",
+            "nist_csf_v2:subcategory_pr_aa_05",
+            "nist_sp_800_171:requirement_03_01_02",
+            "nist_sp_800_53:control_ac_3"
+          ],
+          "related_mappings": [
+            "cwe:cwe_284"
+          ]
+        },
+        {
+          "text": "a_8_4",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.4"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_16_4",
+            "nist_sp_800_218:practice_ps_1_1",
+            "nist_sp_800_53:control_cm_5",
+            "slsa:SourceLevelEnum"
+          ]
+        },
+        {
+          "text": "a_8_5",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.5"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_6_3",
+            "attack:mitigation_m1032",
+            "d3f:MultifactorAuthentication",
+            "nist_csf_v2:subcategory_pr_aa_03",
+            "nist_sp_800_171:requirement_03_05_03",
+            "nist_sp_800_53:control_ia_2"
+          ],
+          "related_mappings": [
+            "capec:capec_49",
+            "cwe:cwe_287"
+          ]
+        },
+        {
+          "text": "a_8_6",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.6"
+            }
+          ],
+          "close_mappings": [
+            "nist_sp_800_53:control_sc_5"
+          ],
+          "related_mappings": [
+            "cis_controls:control_8"
+          ]
+        },
+        {
+          "text": "a_8_7",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.7"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:control_10",
+            "attack:mitigation_m1049",
+            "d3f:FileAnalysis",
+            "nist_csf_v2:subcategory_de_cm_09",
+            "nist_sp_800_171:requirement_03_14_02",
+            "nist_sp_800_53:control_si_3"
+          ],
+          "related_mappings": [
+            "capec:capec_542"
+          ]
+        },
+        {
+          "text": "a_8_8",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.8"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:control_7",
+            "attack:mitigation_m1051",
+            "cve:CveRecord",
+            "d3f:ApplicationHardening",
+            "kev_catalog:KevVulnerability",
+            "nist_csf_v2:subcategory_id_ra_01",
+            "nist_sp_800_171:requirement_03_11_02",
+            "nist_sp_800_218:practice_rv_1_1",
+            "nist_sp_800_53:control_ra_5",
+            "nvd:CveItem",
+            "spdx:Package"
+          ],
+          "related_mappings": [
+            "capec:capec_310",
+            "cwe:cwe_1395"
+          ]
+        },
+        {
+          "text": "a_8_9",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.9"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:control_4",
+            "attack:mitigation_m1047",
+            "d3f:SystemConfigurationPermissions",
+            "nist_csf_v2:subcategory_pr_ps_01",
+            "nist_sp_800_171:requirement_03_04_01",
+            "nist_sp_800_53:control_cm_2"
+          ],
+          "related_mappings": [
+            "cwe:cwe_16"
+          ]
+        },
+        {
+          "text": "a_8_10",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.10"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_3_5",
+            "nist_csf_v2:subcategory_pr_ds_02",
+            "nist_sp_800_171:requirement_03_08_03",
+            "nist_sp_800_53:control_mp_6"
+          ],
+          "related_mappings": [
+            "iso29100:PrivacyPrinciple#use_retention_disclosure_limitation"
+          ]
+        },
+        {
+          "text": "a_8_11",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.11"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_3_11",
+            "attack:mitigation_m1041",
+            "d3f:Encryption",
+            "nist_csf_v2:subcategory_pr_ds_01",
+            "nist_sp_800_53:control_sc_28"
+          ],
+          "related_mappings": [
+            "iso29100:PrivacyPrinciple#data_minimization",
+            "nist_sp_800_171:requirement_03_13_11"
+          ]
+        },
+        {
+          "text": "a_8_12",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.12"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_3_13",
+            "attack:mitigation_m1057",
+            "d3f:OutboundTrafficFiltering",
+            "nist_csf_v2:subcategory_pr_ds_02",
+            "nist_sp_800_171:requirement_03_13_01",
+            "nist_sp_800_53:control_sc_7"
+          ],
+          "related_mappings": [
+            "capec:capec_116",
+            "cwe:cwe_200",
+            "iso29100:PrivacyPrinciple#information_security"
+          ]
+        },
+        {
+          "text": "a_8_13",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.13"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_11_2",
+            "attack:mitigation_m1053",
+            "nist_csf_v2:subcategory_pr_ds_11",
+            "nist_sp_800_171:requirement_03_08_09",
+            "nist_sp_800_53:control_cp_9"
+          ],
+          "related_mappings": [
+            "d3f:DataInventoryMapping"
+          ]
+        },
+        {
+          "text": "a_8_14",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.14"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_11_3",
+            "nist_csf_v2:subcategory_pr_ir_03",
+            "nist_sp_800_53:control_cp_7"
+          ]
+        },
+        {
+          "text": "a_8_15",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.15"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:control_8",
+            "attack:mitigation_m1047",
+            "d3f:SystemCallAnalysis",
+            "nist_csf_v2:subcategory_pr_ps_04",
+            "nist_sp_800_171:requirement_03_03_01",
+            "nist_sp_800_53:control_au_2"
+          ]
+        },
+        {
+          "text": "a_8_16",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.16"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:control_13",
+            "attack:mitigation_m1047",
+            "d3f:NetworkTrafficAnalysis",
+            "nist_csf_v2:subcategory_de_cm_01",
+            "nist_sp_800_171:requirement_03_14_06",
+            "nist_sp_800_53:control_si_4"
+          ]
+        },
+        {
+          "text": "a_8_17",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.17"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_8_4",
+            "nist_sp_800_53:control_au_8"
+          ]
+        },
+        {
+          "text": "a_8_18",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.18"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_5_4",
+            "nist_sp_800_53:control_ac_6"
+          ]
+        },
+        {
+          "text": "a_8_19",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.19"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_2_5",
+            "attack:mitigation_m1038",
+            "d3f:ExecutableAllowlisting",
+            "nist_sp_800_53:control_cm_11"
+          ],
+          "related_mappings": [
+            "spdx:Package"
+          ]
+        },
+        {
+          "text": "a_8_20",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.20"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:control_12",
+            "attack:mitigation_m1030",
+            "d3f:NetworkIsolation",
+            "nist_csf_v2:subcategory_pr_ir_01",
+            "nist_sp_800_171:requirement_03_13_01",
+            "nist_sp_800_53:control_sc_7"
+          ]
+        },
+        {
+          "text": "a_8_21",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.21"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_12_2",
+            "attack:mitigation_m1041",
+            "nist_sp_800_53:control_sc_8"
+          ],
+          "related_mappings": [
+            "capec:capec_117"
+          ]
+        },
+        {
+          "text": "a_8_22",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.22"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_12_2",
+            "attack:mitigation_m1030",
+            "d3f:NetworkIsolation",
+            "nist_csf_v2:subcategory_pr_ir_01",
+            "nist_sp_800_171:requirement_03_13_05",
+            "nist_sp_800_53:control_sc_7"
+          ],
+          "related_mappings": [
+            "capec:capec_169"
+          ]
+        },
+        {
+          "text": "a_8_23",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.23"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:control_9",
+            "attack:mitigation_m1021",
+            "d3f:DNSDenylisting",
+            "nist_csf_v2:subcategory_pr_ir_01",
+            "nist_sp_800_53:control_sc_7"
+          ],
+          "related_mappings": [
+            "capec:capec_98"
+          ]
+        },
+        {
+          "text": "a_8_24",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.24"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_3_11",
+            "attack:mitigation_m1041",
+            "d3f:Encryption",
+            "nist_csf_v2:subcategory_pr_ds_01",
+            "nist_sp_800_171:requirement_03_13_11",
+            "nist_sp_800_53:control_sc_13"
+          ],
+          "related_mappings": [
+            "cwe:cwe_327"
+          ]
+        },
+        {
+          "text": "a_8_25",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.25"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:control_16",
+            "attack:mitigation_m1048",
+            "d3f:ApplicationHardening",
+            "nist_csf_v2:subcategory_pr_ps_06",
+            "nist_sp_800_218:practice_po_3_1",
+            "nist_sp_800_53:control_sa_3",
+            "slsa:BuildDefinition"
+          ],
+          "related_mappings": [
+            "spdx:Build"
+          ]
+        },
+        {
+          "text": "a_8_26",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.26"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_16_1",
+            "nist_csf_v2:subcategory_pr_ps_06",
+            "nist_sp_800_218:practice_pw_1_1",
+            "nist_sp_800_53:control_sa_8"
+          ],
+          "related_mappings": [
+            "cwe:cwe_710",
+            "slsa:BuildLevelEnum"
+          ]
+        },
+        {
+          "text": "a_8_27",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.27"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_16_10",
+            "nist_csf_v2:subcategory_pr_ps_06",
+            "nist_sp_800_218:practice_pw_1_2",
+            "nist_sp_800_53:control_sa_8"
+          ],
+          "related_mappings": [
+            "cwe:cwe_1008",
+            "slsa:BuildEnvLevelEnum"
+          ]
+        },
+        {
+          "text": "a_8_28",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.28"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_16_11",
+            "cwe:cwe_1006",
+            "d3f:ApplicationHardening",
+            "nist_csf_v2:subcategory_pr_ps_06",
+            "nist_sp_800_171:requirement_03_14_02",
+            "nist_sp_800_218:practice_pw_5_1",
+            "nist_sp_800_53:control_sa_15"
+          ],
+          "related_mappings": [
+            "capec:capec_66",
+            "slsa:SourceLevelEnum"
+          ]
+        },
+        {
+          "text": "a_8_29",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.29"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_16_13",
+            "nist_csf_v2:subcategory_pr_ps_06",
+            "nist_sp_800_218:practice_pw_8_2",
+            "nist_sp_800_53:control_sa_11"
+          ],
+          "related_mappings": [
+            "attack:AttackTechnique",
+            "capec:capec_115",
+            "cwe:cwe_1008"
+          ]
+        },
+        {
+          "text": "a_8_30",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.30"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_15_4",
+            "nist_sp_800_218:practice_po_1_3",
+            "nist_sp_800_53:control_sa_4",
+            "slsa:BuildLevelEnum"
+          ],
+          "related_mappings": [
+            "spdx:Package"
+          ]
+        },
+        {
+          "text": "a_8_31",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.31"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_16_8",
+            "d3f:NetworkIsolation",
+            "nist_csf_v2:subcategory_pr_ps_06",
+            "nist_sp_800_218:practice_po_5_1",
+            "nist_sp_800_53:control_cm_4",
+            "slsa:BuildEnvLevelEnum"
+          ]
+        },
+        {
+          "text": "a_8_32",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.32"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_4_2",
+            "nist_csf_v2:subcategory_pr_ps_01",
+            "nist_sp_800_171:requirement_03_04_03",
+            "nist_sp_800_218:practice_ps_3_1",
+            "nist_sp_800_53:control_cm_3",
+            "slsa:Statement"
+          ]
+        },
+        {
+          "text": "a_8_33",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.33"
+            }
+          ],
+          "close_mappings": [
+            "cis_controls:safeguard_16_13",
+            "nist_sp_800_218:practice_pw_8_1",
+            "nist_sp_800_53:control_sa_15"
+          ]
+        },
+        {
+          "text": "a_8_34",
+          "annotations": [
+            {
+              "tag": "control_category",
+              "value": "technological"
+            },
+            {
+              "tag": "annex_a_reference",
+              "value": "A.8.34"
+            }
+          ],
+          "close_mappings": [
+            "nist_sp_800_53:control_ca_8"
+          ],
+          "related_mappings": [
+            "cis_controls:safeguard_18_5"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SecurityIncidentCategory",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/SecurityIncidentCategory",
+      "annotations": [
+        {
+          "tag": "annex_a_reference",
+          "value": "A.5.24 / A.5.25"
+        }
+      ],
+      "description": "Categories of information security incident used to classify events and incidents per ISO/IEC 27001:2022 Annex A controls A.5.24-A.5.28 and ISO/IEC 27035 incident management guidance.",
+      "in_subset": [
+        "annex_a_controls"
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "iso42001:AIIncidentCategory"
+      ],
+      "related_mappings": [
+        "attack:AttackTactic"
+      ],
+      "permissible_values": [
+        {
+          "text": "malware",
+          "description": "Malicious software, including viruses, worms, trojans, and ransomware.",
+          "close_mappings": [
+            "stix:Malware"
+          ],
+          "related_mappings": [
+            "attack:tactic_ta0002"
+          ]
+        },
+        {
+          "text": "ransomware",
+          "description": "Malware encrypting or exfiltrating data for extortion.",
+          "related_mappings": [
+            "attack:tactic_ta0040",
+            "stix:Malware"
+          ]
+        },
+        {
+          "text": "phishing",
+          "description": "Social-engineering attempt to obtain credentials or trigger malicious action.",
+          "close_mappings": [
+            "capec:capec_98"
+          ],
+          "related_mappings": [
+            "attack:tactic_ta0001",
+            "stix:AttackPattern"
+          ]
+        },
+        {
+          "text": "social_engineering",
+          "description": "Manipulation of people to disclose information or perform unsafe actions."
+        },
+        {
+          "text": "unauthorized_access",
+          "description": "Access to systems or data by a party without authorization.",
+          "related_mappings": [
+            "attack:tactic_ta0001"
+          ]
+        },
+        {
+          "text": "account_compromise",
+          "description": "Unauthorized control of a legitimate user or service account.",
+          "related_mappings": [
+            "attack:tactic_ta0006"
+          ]
+        },
+        {
+          "text": "privilege_misuse",
+          "description": "Authorized user exceeding or misusing their granted privileges.",
+          "related_mappings": [
+            "attack:tactic_ta0004"
+          ]
+        },
+        {
+          "text": "data_breach",
+          "description": "Confirmed disclosure of confidential or personal information.",
+          "related_mappings": [
+            "attack:tactic_ta0010"
+          ]
+        },
+        {
+          "text": "data_loss",
+          "description": "Loss of integrity or availability of information, including accidental deletion."
+        },
+        {
+          "text": "denial_of_service",
+          "description": "Disruption of availability through volumetric, protocol, or application attacks.",
+          "close_mappings": [
+            "capec:capec_125"
+          ],
+          "related_mappings": [
+            "attack:tactic_ta0040"
+          ]
+        },
+        {
+          "text": "web_application_attack",
+          "description": "Attack targeting a web application (e.g., injection, XSS, broken auth)."
+        },
+        {
+          "text": "supply_chain",
+          "description": "Incident originating from a supplier, partner, or third-party component.",
+          "related_mappings": [
+            "attack:technique_t1195"
+          ]
+        },
+        {
+          "text": "insider_threat",
+          "description": "Malicious or negligent action by an internal party.",
+          "related_mappings": [
+            "attack:tactic_ta0004",
+            "stix:ThreatActor"
+          ]
+        },
+        {
+          "text": "physical_security",
+          "description": "Theft, loss, or damage of physical assets or unauthorized physical access."
+        },
+        {
+          "text": "configuration_error",
+          "description": "Misconfiguration leading to security exposure."
+        },
+        {
+          "text": "cryptographic_failure",
+          "description": "Weak, broken, or misused cryptography."
+        },
+        {
+          "text": "policy_violation",
+          "description": "Failure to comply with information security policies or procedures."
+        },
+        {
+          "text": "other",
+          "description": "Other incident type not covered by the listed categories."
+        }
+      ]
+    },
+    {
+      "name": "RelatedManagementSystem",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/RelatedManagementSystem",
+      "description": "Other ISO/IEC management system standards with which the ISMS may be integrated or aligned (e.g., harmonized structure of Annex SL).",
+      "in_subset": [
+        "isms_core"
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:RelatedManagementSystem"
+      ],
+      "permissible_values": [
+        {
+          "text": "iso_iec_27001",
+          "description": "Information security management systems."
+        },
+        {
+          "text": "iso_iec_27701",
+          "description": "Privacy information management systems (PIMS)."
+        },
+        {
+          "text": "iso_iec_27017",
+          "description": "Information security for cloud services."
+        },
+        {
+          "text": "iso_iec_27018",
+          "description": "Protection of personally identifiable information in public clouds."
+        },
+        {
+          "text": "iso_iec_42001",
+          "description": "Artificial intelligence management systems."
+        },
+        {
+          "text": "iso_9001",
+          "description": "Quality management systems."
+        },
+        {
+          "text": "iso_14001",
+          "description": "Environmental management systems."
+        },
+        {
+          "text": "iso_22301",
+          "description": "Business continuity management systems."
+        },
+        {
+          "text": "iso_iec_20000_1",
+          "description": "IT service management systems."
+        },
+        {
+          "text": "iso_31000",
+          "description": "Risk management - guidelines."
+        }
+      ]
+    },
+    {
       "name": "ImpactRating",
       "definition_uri": "https://w3id.org/lmodel/iso27001/ImpactRating",
       "description": "Qualitative impact scale for risk assessment.",
@@ -843,6 +3071,9 @@
         "risk_management"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:ImpactRating"
+      ],
       "permissible_values": [
         {
           "text": "negligible",
@@ -916,6 +3147,9 @@
         }
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/id"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/id",
       "identifier": true,
       "owner": "NamedEntity",
@@ -931,6 +3165,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/name",
       "description": "Human-readable name or title.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/name"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/name",
       "owner": "NamedEntity",
       "domain_of": [
@@ -948,6 +3185,9 @@
         "Should provide sufficient detail for understanding without external reference"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/description"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/description",
       "owner": "NamedEntity",
       "domain_of": [
@@ -974,6 +3214,9 @@
         }
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/version"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/version",
       "owner": "NamedEntity",
       "domain_of": [
@@ -1202,10 +3445,114 @@
       "@type": "SlotDefinition"
     },
     {
+      "name": "distribution_controls",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/distribution_controls",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "7.5.3",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "slot_uri": "https://w3id.org/lmodel/iso27001/distribution_controls",
+      "owner": "DocumentedInformation",
+      "domain_of": [
+        "DocumentedInformation"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "storage_and_preservation",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/storage_and_preservation",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "7.5.3",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "slot_uri": "https://w3id.org/lmodel/iso27001/storage_and_preservation",
+      "owner": "DocumentedInformation",
+      "domain_of": [
+        "DocumentedInformation"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "change_control_method",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/change_control_method",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "7.5.3",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "slot_uri": "https://w3id.org/lmodel/iso27001/change_control_method",
+      "owner": "DocumentedInformation",
+      "domain_of": [
+        "DocumentedInformation"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "external_origin",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/external_origin",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "7.5.3",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "slot_uri": "https://w3id.org/lmodel/iso27001/external_origin",
+      "owner": "DocumentedInformation",
+      "domain_of": [
+        "DocumentedInformation"
+      ],
+      "range": "boolean",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "external_origin_source",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/external_origin_source",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "7.5.3",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "slot_uri": "https://w3id.org/lmodel/iso27001/external_origin_source",
+      "owner": "DocumentedInformation",
+      "domain_of": [
+        "DocumentedInformation"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "organization",
       "definition_uri": "https://w3id.org/lmodel/iso27001/organization",
       "description": "Reference to the organization operating the ISMS.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/organization"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/organization",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -1387,6 +3734,9 @@
         "Available as documented information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/scope_statement"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/scope_statement",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -1400,6 +3750,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/scope_boundaries",
       "description": "Defined boundaries of the ISMS scope.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/scope_boundaries"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/scope_boundaries",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -1414,6 +3767,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/scope_exclusions",
       "description": "Any exclusions from scope with justification.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/scope_exclusions"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/scope_exclusions",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -1428,6 +3784,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/context_internal_issues",
       "description": "Internal issues relevant to ISMS per 4.1.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/context_internal_issues"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/context_internal_issues",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -1442,6 +3801,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/context_external_issues",
       "description": "External issues relevant to ISMS per 4.1.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/context_external_issues"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/context_external_issues",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -1472,6 +3834,9 @@
         "When true, capture details in context_external_issues or context_internal_issues"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/climate_change_relevant"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/climate_change_relevant",
       "owner": "Organization",
       "domain_of": [
@@ -1492,6 +3857,9 @@
       ],
       "description": "Stakeholders relevant to the ISMS.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/interested_parties"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/interested_parties",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -1559,6 +3927,30 @@
       "@type": "SlotDefinition"
     },
     {
+      "name": "addressed_requirements",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/addressed_requirements",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "4.2",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Requirements of the interested party that the organization has determined will be addressed through the ISMS, per Clause 4.2 c).",
+      "comments": [
+        "Subset of requirements that the ISMS commits to address"
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "slot_uri": "https://w3id.org/lmodel/iso27001/addressed_requirements",
+      "owner": "InterestedParty",
+      "domain_of": [
+        "InterestedParty"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "communication_needs",
       "definition_uri": "https://w3id.org/lmodel/iso27001/communication_needs",
       "description": "Communication requirements for this party.",
@@ -1585,6 +3977,32 @@
       "@type": "SlotDefinition"
     },
     {
+      "name": "climate_change_related_requirements",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/climate_change_related_requirements",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "4.2",
+          "@type": "Annotation"
+        },
+        {
+          "tag": "iso27001_amendment",
+          "value": "Amd. 1:2024",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Climate-change-related requirements of the interested party, per ISO/IEC 27001:2022 Clause 4.2 NOTE 2 as added by Amd. 1:2024.",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "slot_uri": "https://w3id.org/lmodel/iso27001/climate_change_related_requirements",
+      "owner": "InterestedParty",
+      "domain_of": [
+        "InterestedParty"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "information_security_policy",
       "definition_uri": "https://w3id.org/lmodel/iso27001/information_security_policy",
       "annotations": [
@@ -1596,6 +4014,9 @@
       ],
       "description": "Reference to the information security policy.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "https://w3id.org/lmodel/iso42001/ai_policy"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/information_security_policy",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -1691,10 +4112,76 @@
       "@type": "SlotDefinition"
     },
     {
+      "name": "last_policy_review_date",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/last_policy_review_date",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "5.2 / 9.3",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Date of the most recent information security policy review.",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/last_policy_review_date"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/iso27001/last_policy_review_date",
+      "owner": "InformationSecurityPolicy",
+      "domain_of": [
+        "InformationSecurityPolicy"
+      ],
+      "range": "date",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "next_policy_review_date",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/next_policy_review_date",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "5.2 / 9.3",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Planned date of the next information security policy review.",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/next_policy_review_date"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/iso27001/next_policy_review_date",
+      "owner": "InformationSecurityPolicy",
+      "domain_of": [
+        "InformationSecurityPolicy"
+      ],
+      "range": "date",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "integrated_management_systems",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/integrated_management_systems",
+      "description": "Other ISO/IEC management system standards with which the ISMS is integrated or aligned (per the harmonized structure of Annex SL).",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/integrated_management_systems"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/iso27001/integrated_management_systems",
+      "owner": "InformationSecurityPolicy",
+      "domain_of": [
+        "InformationSecurityPolicy"
+      ],
+      "range": "RelatedManagementSystem",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "related_topic_policies",
       "definition_uri": "https://w3id.org/lmodel/iso27001/related_topic_policies",
       "description": "Topic-specific policies supporting this policy.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/related_topic_policies"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/related_topic_policies",
       "owner": "InformationSecurityPolicy",
       "domain_of": [
@@ -1778,6 +4265,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/roles",
       "description": "Information security roles defined in the ISMS.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "https://w3id.org/lmodel/iso42001/ai_roles"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/roles",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -1904,6 +4394,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/objectives",
       "description": "Information security objectives.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "https://w3id.org/lmodel/iso42001/ai_objectives"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/objectives",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -2055,10 +4548,210 @@
       "@type": "SlotDefinition"
     },
     {
+      "name": "objective_resources_required",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/objective_resources_required",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "6.2 i)",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Resources required to achieve the information security objective.",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "slot_uri": "https://w3id.org/lmodel/iso27001/objective_resources_required",
+      "owner": "InformationSecurityObjective",
+      "domain_of": [
+        "InformationSecurityObjective"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "top_management",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/top_management",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "5.1",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "The person or group of people who direct and control the organization at the highest level, accountable for the ISMS per Clause 5.1.",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/top_management"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/iso27001/top_management",
+      "owner": "InformationSecurityManagementSystem",
+      "domain_of": [
+        "InformationSecurityManagementSystem"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "governing_body",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/governing_body",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "5.1 NOTE",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "The governing body to which top management reports, where applicable (e.g., board of directors). Referenced in ISO/IEC 27001:2022 Clause 5.1 NOTE.",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/governing_body"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/iso27001/governing_body",
+      "owner": "InformationSecurityManagementSystem",
+      "domain_of": [
+        "InformationSecurityManagementSystem"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "leadership_commitment_evidence",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/leadership_commitment_evidence",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "5.1",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Evidence of leadership and commitment with respect to the ISMS as required by Clause 5.1 a-h).",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/leadership_commitment_evidence"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/iso27001/leadership_commitment_evidence",
+      "owner": "InformationSecurityManagementSystem",
+      "domain_of": [
+        "InformationSecurityManagementSystem"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "processes_and_interactions",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/processes_and_interactions",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "4.4",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Description of the processes needed for the ISMS and their interactions, per Clause 4.4.",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "slot_uri": "https://w3id.org/lmodel/iso27001/processes_and_interactions",
+      "owner": "InformationSecurityManagementSystem",
+      "domain_of": [
+        "InformationSecurityManagementSystem"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "interfaces_and_dependencies",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/interfaces_and_dependencies",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "4.3 c)",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Interfaces and dependencies between activities performed by the organization and those performed by other organizations, considered when determining the ISMS scope per Clause 4.3 c).",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "slot_uri": "https://w3id.org/lmodel/iso27001/interfaces_and_dependencies",
+      "owner": "InformationSecurityManagementSystem",
+      "domain_of": [
+        "InformationSecurityManagementSystem"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "planned_changes",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/planned_changes",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "6.3 / 8.1",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Changes to the ISMS planned and controlled per Clause 6.3 and 8.1 (planning of changes; control of planned changes).",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/planned_changes"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/iso27001/planned_changes",
+      "owner": "InformationSecurityManagementSystem",
+      "domain_of": [
+        "InformationSecurityManagementSystem"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "externally_provided_services",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/externally_provided_services",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "8.1",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Externally provided processes, products or services relevant to the ISMS that are controlled per Clause 8.1.",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "slot_uri": "https://w3id.org/lmodel/iso27001/externally_provided_services",
+      "owner": "InformationSecurityManagementSystem",
+      "domain_of": [
+        "InformationSecurityManagementSystem"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "risks_and_opportunities_actions",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/risks_and_opportunities_actions",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "6.1.1",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Actions to address risks and opportunities determined per Clause 6.1.1, including how they are integrated into ISMS processes and how their effectiveness is evaluated.",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "slot_uri": "https://w3id.org/lmodel/iso27001/risks_and_opportunities_actions",
+      "owner": "InformationSecurityManagementSystem",
+      "domain_of": [
+        "InformationSecurityManagementSystem"
+      ],
+      "range": "string",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "risk_assessment_process",
       "definition_uri": "https://w3id.org/lmodel/iso27001/risk_assessment_process",
       "description": "Reference to the risk assessment process.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "https://w3id.org/lmodel/iso42001/ai_risk_assessment_process"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/risk_assessment_process",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -2197,6 +4890,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/risk_assessments",
       "description": "Risk assessment instances.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "https://w3id.org/lmodel/iso42001/ai_risk_assessments"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/risk_assessments",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -2358,6 +5054,14 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/vulnerability_description",
       "description": "Description of the vulnerability that could be exploited.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "https://w3id.org/lmodel/cve/description",
+        "https://w3id.org/lmodel/kev-catalog/shortDescription"
+      ],
+      "related_mappings": [
+        "https://w3id.org/lmodel/cwe/Weakness",
+        "https://w3id.org/lmodel/stix/Vulnerability"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/vulnerability_description",
       "owner": "Risk",
       "domain_of": [
@@ -2371,6 +5075,12 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/affected_assets",
       "description": "Assets affected by this risk or incident.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "https://w3id.org/lmodel/iso42001/affected_ai_systems"
+      ],
+      "related_mappings": [
+        "https://w3id.org/lmodel/ocsf/Device"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/affected_assets",
       "owner": "InformationSecurityIncident",
       "domain_of": [
@@ -2385,6 +5095,13 @@
     {
       "name": "affected_cia_properties",
       "definition_uri": "https://w3id.org/lmodel/iso27001/affected_cia_properties",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "6.1.2 c) 1)",
+          "@type": "Annotation"
+        }
+      ],
       "description": "Which CIA properties are affected (confidentiality, integrity, availability).",
       "comments": [
         "Per 6.1.2 c) 1) risks associated with loss of CIA"
@@ -2395,7 +5112,7 @@
       "domain_of": [
         "Risk"
       ],
-      "range": "string",
+      "range": "CIAProperty",
       "multivalued": true,
       "@type": "SlotDefinition"
     },
@@ -2543,6 +5260,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/risk_treatment_process",
       "description": "Reference to the risk treatment process.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "https://w3id.org/lmodel/iso42001/ai_risk_treatment_process"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/risk_treatment_process",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -2591,6 +5311,29 @@
       "@type": "SlotDefinition"
     },
     {
+      "name": "annex_a_omission_verification",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/annex_a_omission_verification",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "6.1.3",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Description of how controls determined as necessary are compared with those in Annex A to verify that no necessary controls have been omitted, per Clause 6.1.3 c).",
+      "comments": [
+        "Document the comparison procedure and any gap-analysis outcomes"
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "slot_uri": "https://w3id.org/lmodel/iso27001/annex_a_omission_verification",
+      "owner": "RiskTreatmentProcess",
+      "domain_of": [
+        "RiskTreatmentProcess"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "approval_workflow",
       "definition_uri": "https://w3id.org/lmodel/iso27001/approval_workflow",
       "description": "Workflow for approving risk treatment.",
@@ -2608,6 +5351,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/risk_treatment_plans",
       "description": "Risk treatment plans.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "https://w3id.org/lmodel/iso42001/ai_risk_treatment_plans"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/risk_treatment_plans",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -2758,6 +5504,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/implementation_status",
       "description": "Current implementation status.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "https://w3id.org/lmodel/oscal/ImplementationStatus"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/implementation_status",
       "owner": "SecurityControl",
       "domain_of": [
@@ -2786,6 +5535,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/statement_of_applicability",
       "description": "Reference to the Statement of Applicability.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/statement_of_applicability"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/statement_of_applicability",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -2985,18 +5737,21 @@
     {
       "name": "control_id",
       "definition_uri": "https://w3id.org/lmodel/iso27001/control_id",
-      "description": "Control identifier from Annex A (e.g., 5.1, 8.24).",
+      "description": "Control identifier from Annex A (e.g., a_5_1, a_8_24).",
       "comments": [
-        "Format matches Annex A numbering"
+        "Enumerated permissible values mirror the 93 Annex A controls",
+        "Provides stable per-control IRIs for SSSOM mapping subjects"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "https://w3id.org/lmodel/oscal/Control"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/control_id",
       "owner": "SecurityControl",
       "domain_of": [
         "SecurityControl"
       ],
-      "range": "string",
-      "pattern": "^[5-8]\\.[0-9]{1,2}$",
+      "range": "AnnexAControlId",
       "@type": "SlotDefinition"
     },
     {
@@ -3075,6 +5830,11 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/applicable_threats",
       "description": "Threats this control addresses.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "related_mappings": [
+        "https://w3id.org/lmodel/attack/AttackTechnique",
+        "https://w3id.org/lmodel/capec/AttackPattern",
+        "https://w3id.org/lmodel/stix/AttackPattern"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/applicable_threats",
       "owner": "SecurityControl",
       "domain_of": [
@@ -3169,6 +5929,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/resources",
       "description": "Resources provided for the ISMS.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/resources"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/resources",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -3279,6 +6042,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/competence_records",
       "description": "Competence records for personnel.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/competence_records"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/competence_records",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -3416,6 +6182,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/awareness_program",
       "description": "Reference to the awareness program.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/awareness_program"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/awareness_program",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -3497,6 +6266,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/communication_plan",
       "description": "Reference to the communication plan.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/communication_plan"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/communication_plan",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -3607,6 +6379,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/documented_information_register",
       "description": "Register of documented information.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/documented_information_register"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/documented_information_register",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -3621,6 +6396,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/operational_procedures",
       "description": "Operational procedures.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/operational_procedures"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/operational_procedures",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -3702,6 +6480,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/monitoring_program",
       "description": "Reference to the monitoring program.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/monitoring_program"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/monitoring_program",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -3822,6 +6603,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/internal_audits",
       "description": "Internal audit instances.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/internal_audits"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/internal_audits",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -3847,28 +6631,21 @@
     {
       "name": "audit_type",
       "definition_uri": "https://w3id.org/lmodel/iso27001/audit_type",
-      "description": "Type of audit.",
-      "examples": [
+      "annotations": [
         {
-          "value": "full",
-          "@type": "Example"
-        },
-        {
-          "value": "partial",
-          "@type": "Example"
-        },
-        {
-          "value": "follow-up",
-          "@type": "Example"
+          "tag": "iso27001_clause",
+          "value": "9.2",
+          "@type": "Annotation"
         }
       ],
+      "description": "Type of audit per ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
       "slot_uri": "https://w3id.org/lmodel/iso27001/audit_type",
       "owner": "InternalAudit",
       "domain_of": [
         "InternalAudit"
       ],
-      "range": "string",
+      "range": "AuditType",
       "@type": "SlotDefinition"
     },
     {
@@ -4209,6 +6986,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/management_reviews",
       "description": "Management review instances.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/management_reviews"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/management_reviews",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -4374,6 +7154,66 @@
       "@type": "SlotDefinition"
     },
     {
+      "name": "interested_party_feedback",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/interested_party_feedback",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "9.3.2 e)",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Feedback from interested parties considered in the management review.",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "slot_uri": "https://w3id.org/lmodel/iso27001/interested_party_feedback",
+      "owner": "ManagementReview",
+      "domain_of": [
+        "ManagementReview"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "risk_treatment_status",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/risk_treatment_status",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "9.3.2 f)",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Status of the risk treatment plan considered in the management review.",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "slot_uri": "https://w3id.org/lmodel/iso27001/risk_treatment_status",
+      "owner": "ManagementReview",
+      "domain_of": [
+        "ManagementReview"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "risks_and_opportunities_changes",
+      "definition_uri": "https://w3id.org/lmodel/iso27001/risks_and_opportunities_changes",
+      "annotations": [
+        {
+          "tag": "iso27001_clause",
+          "value": "9.3.2 f)",
+          "@type": "Annotation"
+        }
+      ],
+      "description": "Changes in risks and opportunities considered in the management review, per Clause 9.3.2 f).",
+      "from_schema": "https://w3id.org/lmodel/iso27001",
+      "slot_uri": "https://w3id.org/lmodel/iso27001/risks_and_opportunities_changes",
+      "owner": "ManagementReview",
+      "domain_of": [
+        "ManagementReview"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "decisions",
       "definition_uri": "https://w3id.org/lmodel/iso27001/decisions",
       "annotations": [
@@ -4426,6 +7266,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/nonconformities",
       "description": "Nonconformities identified.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/nonconformities"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/nonconformities",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -4632,6 +7475,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/corrective_actions",
       "description": "Corrective actions.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/corrective_actions"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/corrective_actions",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -4765,6 +7611,9 @@
       ],
       "description": "Changes to ISMS required as a result.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "https://w3id.org/lmodel/iso42001/aims_changes_required"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/isms_changes_required",
       "owner": "CorrectiveAction",
       "domain_of": [
@@ -4778,6 +7627,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/improvements",
       "description": "Improvement opportunities tracked.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/improvements"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/improvements",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -4990,6 +7842,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/event_datetime",
       "description": "Date and time of the event.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "https://w3id.org/lmodel/ocsf/time"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/event_datetime",
       "owner": "InformationSecurityEvent",
       "domain_of": [
@@ -5003,6 +7858,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/reporter",
       "description": "Person who reported the event.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "https://w3id.org/lmodel/ocsf/User"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/reporter",
       "owner": "InformationSecurityEvent",
       "domain_of": [
@@ -5079,40 +7937,54 @@
     {
       "name": "incident_category",
       "definition_uri": "https://w3id.org/lmodel/iso27001/incident_category",
+      "annotations": [
+        {
+          "tag": "annex_a_reference",
+          "value": "A.5.24",
+          "@type": "Annotation"
+        }
+      ],
       "description": "Category of incident.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "https://w3id.org/lmodel/ocsf/category_uid"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/incident_category",
       "owner": "InformationSecurityIncident",
       "domain_of": [
         "InformationSecurityIncident"
       ],
-      "range": "string",
+      "range": "SecurityIncidentCategory",
       "@type": "SlotDefinition"
     },
     {
       "name": "severity",
       "definition_uri": "https://w3id.org/lmodel/iso27001/severity",
-      "description": "Severity rating.",
+      "description": "Severity rating of the incident.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "https://w3id.org/lmodel/nist-nvd/baseSeverity",
+        "https://w3id.org/lmodel/ocsf/severity_id"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/severity",
       "owner": "InformationSecurityIncident",
       "domain_of": [
         "InformationSecurityIncident"
       ],
-      "range": "string",
+      "range": "RiskLevel",
       "@type": "SlotDefinition"
     },
     {
       "name": "affected_cia",
       "definition_uri": "https://w3id.org/lmodel/iso27001/affected_cia",
-      "description": "CIA properties affected.",
+      "description": "CIA properties affected by the incident.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
       "slot_uri": "https://w3id.org/lmodel/iso27001/affected_cia",
       "owner": "InformationSecurityIncident",
       "domain_of": [
         "InformationSecurityIncident"
       ],
-      "range": "string",
+      "range": "CIAProperty",
       "multivalued": true,
       "@type": "SlotDefinition"
     },
@@ -5134,6 +8006,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/detection_method",
       "description": "How the incident was detected.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "related_mappings": [
+        "https://w3id.org/lmodel/ocsf/observables"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/detection_method",
       "owner": "InformationSecurityIncident",
       "domain_of": [
@@ -5216,6 +8091,7 @@
         "InformationSecurityIncident"
       ],
       "range": "string",
+      "multivalued": true,
       "@type": "SlotDefinition"
     },
     {
@@ -5230,6 +8106,10 @@
       ],
       "description": "Evidence collected.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "related_mappings": [
+        "https://w3id.org/lmodel/ocsf/Evidences",
+        "https://w3id.org/lmodel/stix/ObservedData"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/evidence_collected",
       "owner": "InformationSecurityIncident",
       "domain_of": [
@@ -5257,6 +8137,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/notifications_made",
       "description": "Notifications that were made.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "related_mappings": [
+        "https://w3id.org/lmodel/stix/Note"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/notifications_made",
       "owner": "InformationSecurityIncident",
       "domain_of": [
@@ -5311,6 +8194,9 @@
         }
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/certification_status"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/certification_status",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -5324,6 +8210,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/certification_body",
       "description": "Accredited certification body.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/certification_body"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/certification_body",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -5337,6 +8226,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/certification_date",
       "description": "Date certification was achieved.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/certification_date"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/certification_date",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -5350,6 +8242,9 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/recertification_date",
       "description": "Date recertification is due.",
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/recertification_date"
+      ],
       "slot_uri": "https://w3id.org/lmodel/iso27001/recertification_date",
       "owner": "InformationSecurityManagementSystem",
       "domain_of": [
@@ -5455,6 +8350,9 @@
         }
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "https://w3id.org/lmodel/iso42001/id"
+      ],
       "is_a": "id",
       "domain": "NamedEntity",
       "slot_uri": "https://w3id.org/lmodel/iso27001/id",
@@ -5517,6 +8415,9 @@
         "Ensures consistent identification across the schema"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:NamedEntity"
+      ],
       "abstract": true,
       "slots": [
         "NamedEntity_id",
@@ -5549,6 +8450,15 @@
         "documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:DocumentedInformation"
+      ],
+      "close_mappings": [
+        "oscal:OscalDocument"
+      ],
+      "related_mappings": [
+        "spdx:SpdxDocument"
+      ],
       "is_a": "NamedEntity",
       "abstract": true,
       "slots": [
@@ -5568,7 +8478,12 @@
         "review_date",
         "status",
         "classification",
-        "retention_period"
+        "retention_period",
+        "distribution_controls",
+        "storage_and_preservation",
+        "change_control_method",
+        "external_origin",
+        "external_origin_source"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/iso27001/DocumentedInformation",
@@ -5600,8 +8515,14 @@
         "isms_core"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "iso42001:AIManagementSystem",
+        "oscal:SystemSecurityPlan"
+      ],
       "related_mappings": [
-        "cis_controls:CISControlsDocument"
+        "cis_controls:CISControlsDocument",
+        "iso29100:PrivacyFramework",
+        "nist_csf_v2:CSFDocument"
       ],
       "is_a": "NamedEntity",
       "slots": [
@@ -5612,14 +8533,22 @@
         "modified_date",
         "version",
         "organization",
+        "top_management",
+        "governing_body",
+        "leadership_commitment_evidence",
         "scope_statement",
         "scope_boundaries",
         "scope_exclusions",
+        "interfaces_and_dependencies",
+        "processes_and_interactions",
         "context_internal_issues",
         "context_external_issues",
         "interested_parties",
         "information_security_policy",
         "objectives",
+        "risks_and_opportunities_actions",
+        "planned_changes",
+        "externally_provided_services",
         "risk_assessment_process",
         "risk_treatment_process",
         "statement_of_applicability",
@@ -5673,6 +8602,19 @@
         "isms_core"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:Organization"
+      ],
+      "close_mappings": [
+        "ocsf:Organization",
+        "oscal:Party",
+        "spdx:Organization",
+        "stix:Identity"
+      ],
+      "related_mappings": [
+        "iso29100:PIIController",
+        "iso29100:PIIProcessor"
+      ],
       "is_a": "NamedEntity",
       "slots": [
         "NamedEntity_id",
@@ -5723,6 +8665,19 @@
         "isms_core"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:InterestedParty"
+      ],
+      "close_mappings": [
+        "oscal:ResponsibleParty",
+        "stix:Identity"
+      ],
+      "related_mappings": [
+        "iso29100:PIIPrincipal",
+        "iso42001:CustomerRelationship",
+        "iso42001:SupplierRelationship",
+        "iso42001:ThirdPartyRelationship"
+      ],
       "is_a": "NamedEntity",
       "slots": [
         "NamedEntity_id",
@@ -5734,6 +8689,8 @@
         "party_type",
         "relationship",
         "requirements",
+        "addressed_requirements",
+        "climate_change_related_requirements",
         "communication_needs",
         "contact_information"
       ],
@@ -5767,6 +8724,9 @@
         "documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "iso42001:AIPolicy"
+      ],
       "is_a": "DocumentedInformation",
       "slots": [
         "NamedEntity_id",
@@ -5786,13 +8746,21 @@
         "status",
         "classification",
         "retention_period",
+        "distribution_controls",
+        "storage_and_preservation",
+        "change_control_method",
+        "external_origin",
+        "external_origin_source",
         "policy_statement",
         "policy_objectives_framework",
         "commitment_statements",
         "applicability_statement",
         "communication_date",
         "acknowledgment_required",
-        "related_topic_policies"
+        "last_policy_review_date",
+        "next_policy_review_date",
+        "related_topic_policies",
+        "integrated_management_systems"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/iso27001/InformationSecurityPolicy",
@@ -5817,6 +8785,9 @@
         "documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:TopicSpecificPolicy"
+      ],
       "is_a": "DocumentedInformation",
       "slots": [
         "NamedEntity_id",
@@ -5836,6 +8807,11 @@
         "status",
         "classification",
         "retention_period",
+        "distribution_controls",
+        "storage_and_preservation",
+        "change_control_method",
+        "external_origin",
+        "external_origin_source",
         "topic_area",
         "parent_policy",
         "applicable_controls",
@@ -5865,6 +8841,13 @@
         "isms_core"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:Role"
+      ],
+      "close_mappings": [
+        "ocsf:User",
+        "oscal:Role"
+      ],
       "is_a": "NamedEntity",
       "slots": [
         "NamedEntity_id",
@@ -5905,6 +8888,9 @@
         "isms_core"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "iso42001:AIObjective"
+      ],
       "is_a": "NamedEntity",
       "slots": [
         "NamedEntity_id",
@@ -5924,7 +8910,8 @@
         "achievement_status",
         "related_risks",
         "related_controls",
-        "action_plan"
+        "action_plan",
+        "objective_resources_required"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/iso27001/InformationSecurityObjective",
@@ -5956,6 +8943,12 @@
         "documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "iso42001:AIRiskAssessmentProcess"
+      ],
+      "related_mappings": [
+        "iso42001:AISystemImpactAssessmentProcess"
+      ],
       "is_a": "DocumentedInformation",
       "slots": [
         "NamedEntity_id",
@@ -5975,6 +8968,11 @@
         "status",
         "classification",
         "retention_period",
+        "distribution_controls",
+        "storage_and_preservation",
+        "change_control_method",
+        "external_origin",
+        "external_origin_source",
         "risk_acceptance_criteria",
         "assessment_criteria",
         "assessment_methodology",
@@ -6008,6 +9006,13 @@
         "risk_management"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "iso42001:AIRiskAssessment"
+      ],
+      "related_mappings": [
+        "iso42001:AISystemImpactAssessment",
+        "oscal:AssessmentPlan"
+      ],
       "is_a": "DocumentedInformation",
       "slots": [
         "NamedEntity_id",
@@ -6027,6 +9032,11 @@
         "status",
         "classification",
         "retention_period",
+        "distribution_controls",
+        "storage_and_preservation",
+        "change_control_method",
+        "external_origin",
+        "external_origin_source",
         "assessment_scope",
         "assessment_date",
         "assessor",
@@ -6060,6 +9070,20 @@
         "risk_management"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "cve:CveRecord",
+        "iso42001:AIRisk",
+        "kev_catalog:KevVulnerability",
+        "nvd:CveItem"
+      ],
+      "related_mappings": [
+        "attack:AttackTechnique",
+        "capec:AttackPattern",
+        "cwe:Weakness",
+        "iso29100:PrivacyRisk",
+        "ocsf:VulnerabilityDetails",
+        "stix:ThreatActor"
+      ],
       "is_a": "NamedEntity",
       "slots": [
         "NamedEntity_id",
@@ -6113,6 +9137,9 @@
         "documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "iso42001:AIRiskTreatmentProcess"
+      ],
       "is_a": "DocumentedInformation",
       "slots": [
         "NamedEntity_id",
@@ -6132,8 +9159,14 @@
         "status",
         "classification",
         "retention_period",
+        "distribution_controls",
+        "storage_and_preservation",
+        "change_control_method",
+        "external_origin",
+        "external_origin_source",
         "treatment_options_guidance",
         "control_selection_criteria",
+        "annex_a_omission_verification",
         "soa_template",
         "approval_workflow"
       ],
@@ -6162,6 +9195,10 @@
         "documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "iso42001:AIRiskTreatmentPlan",
+        "oscal:PlanOfActionAndMilestones"
+      ],
       "is_a": "DocumentedInformation",
       "slots": [
         "NamedEntity_id",
@@ -6180,6 +9217,11 @@
         "status",
         "classification",
         "retention_period",
+        "distribution_controls",
+        "storage_and_preservation",
+        "change_control_method",
+        "external_origin",
+        "external_origin_source",
         "plan_scope",
         "risks_addressed",
         "treatment_actions",
@@ -6224,6 +9266,13 @@
         "documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:StatementOfApplicability"
+      ],
+      "close_mappings": [
+        "nist_sp_800_53:ProfileDocument",
+        "oscal:SspControlImplementation"
+      ],
       "is_a": "DocumentedInformation",
       "slots": [
         "NamedEntity_id",
@@ -6242,6 +9291,11 @@
         "status",
         "classification",
         "retention_period",
+        "distribution_controls",
+        "storage_and_preservation",
+        "change_control_method",
+        "external_origin",
+        "external_origin_source",
         "soa_entries",
         "total_controls",
         "implemented_count",
@@ -6266,6 +9320,12 @@
         "annex_a_controls"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:SoAEntry"
+      ],
+      "close_mappings": [
+        "oscal:SspImplementedRequirement"
+      ],
       "slots": [
         "control_reference",
         "is_applicable",
@@ -6307,8 +9367,22 @@
         "annex_a_controls"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "iso42001:AIReferenceControl",
+        "nist_csf_v2:CSFSubcategory",
+        "nist_sp_800_53:Control",
+        "oscal:Control",
+        "stix:CourseOfAction"
+      ],
       "related_mappings": [
-        "cis_controls:Safeguard"
+        "cis_controls:Safeguard",
+        "attack:AttackMitigation",
+        "capec:Mitigation",
+        "d3f:DefensiveTechnique",
+        "nist_sp_800_171:Requirement",
+        "nist_sp_800_218:CatalogElement",
+        "ocsf:Compliance",
+        "slsa:BuildLevelEnum"
       ],
       "is_a": "NamedEntity",
       "slots": [
@@ -6355,6 +9429,9 @@
         "isms_core"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:Resource"
+      ],
       "is_a": "NamedEntity",
       "slots": [
         "NamedEntity_id",
@@ -6395,6 +9472,12 @@
         "documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:CompetenceRecord"
+      ],
+      "related_mappings": [
+        "oscal:Party"
+      ],
       "is_a": "DocumentedInformation",
       "slots": [
         "NamedEntity_id",
@@ -6414,6 +9497,11 @@
         "status",
         "classification",
         "retention_period",
+        "distribution_controls",
+        "storage_and_preservation",
+        "change_control_method",
+        "external_origin",
+        "external_origin_source",
         "person_name",
         "person_role",
         "required_competencies",
@@ -6447,6 +9535,9 @@
         "isms_core"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:AwarenessProgram"
+      ],
       "is_a": "DocumentedInformation",
       "slots": [
         "NamedEntity_id",
@@ -6466,6 +9557,11 @@
         "status",
         "classification",
         "retention_period",
+        "distribution_controls",
+        "storage_and_preservation",
+        "change_control_method",
+        "external_origin",
+        "external_origin_source",
         "awareness_topics",
         "delivery_methods",
         "target_audience",
@@ -6497,6 +9593,9 @@
         "documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:CommunicationPlan"
+      ],
       "is_a": "DocumentedInformation",
       "slots": [
         "NamedEntity_id",
@@ -6516,6 +9615,11 @@
         "status",
         "classification",
         "retention_period",
+        "distribution_controls",
+        "storage_and_preservation",
+        "change_control_method",
+        "external_origin",
+        "external_origin_source",
         "communication_items"
       ],
       "slot_usage": {},
@@ -6537,6 +9641,9 @@
         "isms_core"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:CommunicationItem"
+      ],
       "slots": [
         "subject",
         "purpose",
@@ -6569,6 +9676,15 @@
         "documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:OperationalProcedure"
+      ],
+      "close_mappings": [
+        "oscal:Activity"
+      ],
+      "related_mappings": [
+        "nist_sp_800_218:CatalogElement"
+      ],
       "is_a": "DocumentedInformation",
       "slots": [
         "NamedEntity_id",
@@ -6588,6 +9704,11 @@
         "status",
         "classification",
         "retention_period",
+        "distribution_controls",
+        "storage_and_preservation",
+        "change_control_method",
+        "external_origin",
+        "external_origin_source",
         "procedure_scope",
         "process_criteria",
         "control_measures",
@@ -6620,6 +9741,9 @@
         "documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:MonitoringProgram"
+      ],
       "is_a": "DocumentedInformation",
       "slots": [
         "NamedEntity_id",
@@ -6639,6 +9763,11 @@
         "status",
         "classification",
         "retention_period",
+        "distribution_controls",
+        "storage_and_preservation",
+        "change_control_method",
+        "external_origin",
+        "external_origin_source",
         "monitoring_items"
       ],
       "slot_usage": {},
@@ -6660,6 +9789,9 @@
         "performance_evaluation"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:MonitoringItem"
+      ],
       "slots": [
         "metric_name",
         "metric_description",
@@ -6698,6 +9830,12 @@
         "documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:InternalAudit"
+      ],
+      "close_mappings": [
+        "oscal:AssessmentPlan"
+      ],
       "is_a": "DocumentedInformation",
       "slots": [
         "NamedEntity_id",
@@ -6717,6 +9855,11 @@
         "status",
         "classification",
         "retention_period",
+        "distribution_controls",
+        "storage_and_preservation",
+        "change_control_method",
+        "external_origin",
+        "external_origin_source",
         "audit_reference",
         "audit_type",
         "audit_scope",
@@ -6759,6 +9902,12 @@
         "documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:AuditProgramme"
+      ],
+      "related_mappings": [
+        "oscal:AssessmentPlan"
+      ],
       "is_a": "DocumentedInformation",
       "slots": [
         "NamedEntity_id",
@@ -6778,6 +9927,11 @@
         "status",
         "classification",
         "retention_period",
+        "distribution_controls",
+        "storage_and_preservation",
+        "change_control_method",
+        "external_origin",
+        "external_origin_source",
         "programme_period",
         "planned_audits",
         "audit_frequency_rationale",
@@ -6804,6 +9958,12 @@
         "performance_evaluation"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:AuditFinding"
+      ],
+      "close_mappings": [
+        "oscal:RelatedFinding"
+      ],
       "is_a": "NamedEntity",
       "slots": [
         "NamedEntity_id",
@@ -6849,6 +10009,9 @@
         "documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:ManagementReview"
+      ],
       "is_a": "DocumentedInformation",
       "slots": [
         "NamedEntity_id",
@@ -6867,14 +10030,22 @@
         "status",
         "classification",
         "retention_period",
+        "distribution_controls",
+        "storage_and_preservation",
+        "change_control_method",
+        "external_origin",
+        "external_origin_source",
         "ManagementReview_review_date",
         "attendees",
         "previous_actions_status",
         "context_changes",
         "interested_party_changes",
+        "interested_party_feedback",
         "performance_trends",
         "audit_results_summary",
         "risk_assessment_results",
+        "risk_treatment_status",
+        "risks_and_opportunities_changes",
         "improvement_opportunities",
         "decisions",
         "action_items",
@@ -6903,6 +10074,15 @@
         "continual_improvement"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:Nonconformity"
+      ],
+      "close_mappings": [
+        "oscal:RelatedFinding"
+      ],
+      "related_mappings": [
+        "iso42001:ConcernReport"
+      ],
       "is_a": "NamedEntity",
       "slots": [
         "NamedEntity_id",
@@ -6949,6 +10129,12 @@
         "continual_improvement"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:CorrectiveAction"
+      ],
+      "close_mappings": [
+        "oscal:PoamItem"
+      ],
       "is_a": "NamedEntity",
       "slots": [
         "NamedEntity_id",
@@ -6994,6 +10180,9 @@
         "continual_improvement"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "exact_mappings": [
+        "iso42001:ImprovementOpportunity"
+      ],
       "is_a": "NamedEntity",
       "slots": [
         "NamedEntity_id",
@@ -7038,6 +10227,24 @@
         "annex_a_controls"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "ocsf:Device",
+        "oscal:SspInventoryItem",
+        "spdx:Package"
+      ],
+      "related_mappings": [
+        "iso29100:PII",
+        "iso42001:AISystem",
+        "nvd:CpeMatch",
+        "slsa:ResourceDescriptor",
+        "stix:Infrastructure"
+      ],
+      "broad_mappings": [
+        "iso42001:ComputingResource",
+        "iso42001:DataResource",
+        "iso42001:HumanResource",
+        "iso42001:ToolingResource"
+      ],
       "is_a": "NamedEntity",
       "slots": [
         "NamedEntity_id",
@@ -7077,6 +10284,11 @@
         "annex_a_controls"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "iso42001:AISystemEvent",
+        "ocsf:SecurityFinding",
+        "stix:Sighting"
+      ],
       "is_a": "NamedEntity",
       "slots": [
         "NamedEntity_id",
@@ -7116,6 +10328,14 @@
         "annex_a_controls"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
+      "close_mappings": [
+        "iso42001:AIIncident",
+        "ocsf:IncidentFinding",
+        "stix:Incident"
+      ],
+      "related_mappings": [
+        "oscal:PoamItem"
+      ],
       "is_a": "NamedEntity",
       "slots": [
         "NamedEntity_id",
@@ -7148,11 +10368,11 @@
       "@type": "ClassDefinition"
     }
   ],
-  "metamodel_version": "1.7.0",
+  "metamodel_version": "1.11.0",
   "source_file": "iso27001.yaml",
-  "source_file_date": "2026-04-15T23:07:08",
-  "source_file_size": 78035,
-  "generation_date": "2026-04-15T23:07:18",
+  "source_file_date": "2026-06-01T19:09:16",
+  "source_file_size": 130080,
+  "generation_date": "2026-06-01T19:30:10",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/iso27001.context.jsonld",

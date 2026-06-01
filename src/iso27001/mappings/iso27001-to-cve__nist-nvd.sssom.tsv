@@ -1,0 +1,25 @@
+# mapping_set_id: https://w3id.org/lmodel/iso27001/mappings/iso27001_to_cve_nist_nvd
+# mapping_set_version: 0.1.0
+# mapping_set_title: ISO/IEC 27001:2022 to CVE and NIST NVD Mappings
+# mapping_set_description: Schema-level mappings between ISO/IEC 27001:2022 Risk and Asset classes and the CVE record schema (cve:) plus the NIST National Vulnerability Database enrichment schema (nvd:). Combined in one file because NVD entries are CVE records enriched with CVSS, CWE references and CPE applicability statements. Enables vulnerability-management workflows (Annex A 8.8) to consume CVE/NVD feeds.
+# license: https://creativecommons.org/licenses/by/4.0/
+# subject_source: https://w3id.org/lmodel/iso27001
+# object_source: https://w3id.org/lmodel/cve
+# mapping_date: 2026-06-01
+# curie_map:
+#   iso27001: https://w3id.org/lmodel/iso27001/
+#   cve: https://w3id.org/lmodel/cve/
+#   nvd: https://w3id.org/lmodel/nist-nvd/
+#   owl: http://www.w3.org/2002/07/owl#
+#   semapv: https://w3id.org/semapv/vocab/
+#   skos: http://www.w3.org/2004/02/skos/core#
+subject_id	subject_label	subject_category	predicate_id	predicate_label	object_id	object_label	object_category	mapping_justification	comment
+iso27001:Risk	Risk	owl:Class	skos:closeMatch	close match	cve:CveRecord	CveRecord	owl:Class	semapv:LLMBasedMatching	Risk record corresponds to a CVE record when arising from a published vulnerability
+iso27001:Risk	Risk	owl:Class	skos:closeMatch	close match	nvd:CveItem	CveItem	owl:Class	semapv:LLMBasedMatching	NVD-enriched CVE entry aligned with risk record
+iso27001:vulnerability_description	vulnerability_description	owl:DatatypeProperty	skos:closeMatch	close match	cve:description	description	owl:DatatypeProperty	semapv:LLMBasedMatching	Vulnerability description text
+iso27001:severity	severity	owl:DatatypeProperty	skos:closeMatch	close match	nvd:baseSeverity	baseSeverity	owl:DatatypeProperty	semapv:LLMBasedMatching	Severity rating from NVD CVSS
+iso27001:Asset	Asset	owl:Class	skos:relatedMatch	related match	nvd:CpeMatch	CpeMatch	owl:Class	semapv:LLMBasedMatching	Asset CPE used in NVD applicability statements
+iso27001:AnnexAControlId#a_5_9	A.5.9 Inventory of information and other associated assets	skos:Concept	skos:relatedMatch	related match	nvd:CpeMatch	CpeMatch	owl:Class	semapv:LLMBasedMatching	Asset inventory used to correlate CPE matches
+iso27001:AnnexAControlId#a_8_8	A.8.8 Management of technical vulnerabilities	skos:Concept	skos:closeMatch	close match	cve:CveRecord	CveRecord	owl:Class	semapv:LLMBasedMatching	Vulnerability management consumes CVE feed
+iso27001:AnnexAControlId#a_8_8	A.8.8 Management of technical vulnerabilities	skos:Concept	skos:closeMatch	close match	nvd:CveItem	CveItem	owl:Class	semapv:LLMBasedMatching	Vulnerability management consumes NVD feed
+iso27001:AnnexAControlId#a_5_7	A.5.7 Threat intelligence	skos:Concept	skos:relatedMatch	related match	nvd:CveItem	CveItem	owl:Class	semapv:LLMBasedMatching	NVD feed as threat-intelligence source

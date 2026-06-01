@@ -1,0 +1,36 @@
+# mapping_set_id: https://w3id.org/lmodel/iso27001/mappings/iso27001_to_oscal
+# mapping_set_version: 0.1.0
+# mapping_set_title: ISO/IEC 27001:2022 to NIST OSCAL Mappings
+# mapping_set_description: Schema-level mappings between ISO/IEC 27001:2022 ISMS LinkML classes and NIST OSCAL (Open Security Controls Assessment Language) document model classes. OSCAL is the highest-priority interop target identified in iso27001/VALUE.md; mappings here cover the catalog, profile, system-security-plan (SSP), assessment-plan, assessment-results and POA&M layers. Predicates - skos:closeMatch where ISO27001 and OSCAL classes model the same governance artefact at comparable granularity; skos:relatedMatch where the OSCAL concept is OSCAL-specific (e.g. Party, Role, ResponsibleParty) and only partially overlaps; skos:broadMatch where the OSCAL document type subsumes multiple ISO 27001 entities.
+# license: https://creativecommons.org/licenses/by/4.0/
+# subject_source: https://w3id.org/lmodel/iso27001
+# object_source: https://w3id.org/lmodel/oscal
+# mapping_date: 2026-06-01
+# curie_map:
+#   iso27001: https://w3id.org/lmodel/iso27001/
+#   oscal: https://w3id.org/lmodel/oscal/
+#   owl: http://www.w3.org/2002/07/owl#
+#   semapv: https://w3id.org/semapv/vocab/
+#   skos: http://www.w3.org/2004/02/skos/core#
+subject_id	subject_label	subject_category	predicate_id	predicate_label	object_id	object_label	object_category	mapping_justification	comment
+iso27001:InformationSecurityManagementSystem	InformationSecurityManagementSystem	owl:Class	skos:closeMatch	close match	oscal:SystemSecurityPlan	SystemSecurityPlan	owl:Class	semapv:LLMBasedMatching	OSCAL SSP is the closest OSCAL artefact to an ISMS root container
+iso27001:SecurityControl	SecurityControl	owl:Class	skos:closeMatch	close match	oscal:Control	Control	owl:Class	semapv:LLMBasedMatching	OSCAL Control corresponds to Annex A control instance
+iso27001:StatementOfApplicability	StatementOfApplicability	owl:Class	skos:closeMatch	close match	oscal:SspControlImplementation	SspControlImplementation	owl:Class	semapv:LLMBasedMatching	SoA aggregate corresponds to OSCAL SSP control-implementation block
+iso27001:SoAEntry	SoAEntry	owl:Class	skos:closeMatch	close match	oscal:SspImplementedRequirement	SspImplementedRequirement	owl:Class	semapv:LLMBasedMatching	Per-control SoA entry corresponds to OSCAL implemented-requirement
+iso27001:RiskTreatmentPlan	RiskTreatmentPlan	owl:Class	skos:closeMatch	close match	oscal:PlanOfActionAndMilestones	PlanOfActionAndMilestones	owl:Class	semapv:LLMBasedMatching	Risk treatment plan is analogous to OSCAL POA&M document
+iso27001:CorrectiveAction	CorrectiveAction	owl:Class	skos:closeMatch	close match	oscal:PoamItem	PoamItem	owl:Class	semapv:LLMBasedMatching	Corrective action corresponds to a POA&M item
+iso27001:Nonconformity	Nonconformity	owl:Class	skos:closeMatch	close match	oscal:RelatedFinding	RelatedFinding	owl:Class	semapv:LLMBasedMatching	Nonconformity corresponds to an OSCAL POA&M related finding
+iso27001:InternalAudit	InternalAudit	owl:Class	skos:closeMatch	close match	oscal:AssessmentPlan	AssessmentPlan	owl:Class	semapv:LLMBasedMatching	Internal audit corresponds to OSCAL assessment plan instance
+iso27001:AuditProgramme	AuditProgramme	owl:Class	skos:relatedMatch	related match	oscal:AssessmentPlan	AssessmentPlan	owl:Class	semapv:LLMBasedMatching	Audit programme schedules multiple OSCAL assessment plans
+iso27001:AuditFinding	AuditFinding	owl:Class	skos:closeMatch	close match	oscal:RelatedFinding	RelatedFinding	owl:Class	semapv:LLMBasedMatching	Audit finding corresponds to OSCAL related-finding entry
+iso27001:Role	Role	owl:Class	skos:closeMatch	close match	oscal:Role	Role	owl:Class	semapv:LLMBasedMatching	Both define an organisational role with responsibilities and authorities
+iso27001:Organization	Organization	owl:Class	skos:closeMatch	close match	oscal:Party	Party	owl:Class	semapv:LLMBasedMatching	OSCAL Party with party-type organisation corresponds to ISO 27001 Organization
+iso27001:InterestedParty	InterestedParty	owl:Class	skos:closeMatch	close match	oscal:ResponsibleParty	ResponsibleParty	owl:Class	semapv:LLMBasedMatching	Interested party with assigned role aligns with OSCAL responsible-party concept
+iso27001:Asset	Asset	owl:Class	skos:closeMatch	close match	oscal:SspInventoryItem	SspInventoryItem	owl:Class	semapv:LLMBasedMatching	ISMS asset corresponds to OSCAL SSP inventory item
+iso27001:DocumentedInformation	DocumentedInformation	owl:Class	skos:closeMatch	close match	oscal:OscalDocument	OscalDocument	owl:Class	semapv:LLMBasedMatching	OSCAL document base aligns with documented-information abstraction
+iso27001:RiskAssessment	RiskAssessment	owl:Class	skos:relatedMatch	related match	oscal:AssessmentPlan	AssessmentPlan	owl:Class	semapv:LLMBasedMatching	Risk assessment is partially analogous to OSCAL assessment-plan/results pair
+iso27001:OperationalProcedure	OperationalProcedure	owl:Class	skos:closeMatch	close match	oscal:Activity	Activity	owl:Class	semapv:LLMBasedMatching	Operational procedure aligns with OSCAL assessment-plan activity
+iso27001:InformationSecurityIncident	InformationSecurityIncident	owl:Class	skos:relatedMatch	related match	oscal:PoamItem	PoamItem	owl:Class	semapv:LLMBasedMatching	Incident-triggered remediation aligns with POA&M item lifecycle
+iso27001:CompetenceRecord	CompetenceRecord	owl:Class	skos:relatedMatch	related match	oscal:Party	Party	owl:Class	semapv:LLMBasedMatching	Competence record describes a party's qualifications
+iso27001:control_id	control_id	owl:ObjectProperty	skos:closeMatch	close match	oscal:Control	Control	owl:Class	semapv:LLMBasedMatching	Control identifier slot points at the OSCAL Control entity
+iso27001:implementation_status	implementation_status	owl:DatatypeProperty	skos:closeMatch	close match	oscal:ImplementationStatus	ImplementationStatus	owl:Class	semapv:LLMBasedMatching	Implementation status enumeration aligns with OSCAL implementation-status object

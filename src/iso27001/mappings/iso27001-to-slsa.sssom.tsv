@@ -1,0 +1,30 @@
+# mapping_set_id: https://w3id.org/lmodel/iso27001/mappings/iso27001_to_slsa
+# mapping_set_version: 0.1.0
+# mapping_set_title: ISO/IEC 27001:2022 to SLSA (Supply-chain Levels for Software Artefacts) Mappings
+# mapping_set_description: Mappings between ISO/IEC 27001:2022 ISMS supplier-relationship and secure-development controls (Annex A 5.19-5.23, 8.25-8.31) and SLSA framework concepts (BuildLevel, BuildProvenance, ResourceDescriptor). VALUE.md identifies SLSA as the targeted alignment for the named supply-chain risk gap. Predicates - skos:closeMatch where SLSA provides a structured representation of an Annex A objective; skos:relatedMatch where SLSA constructs partially satisfy an Annex A control.
+# license: https://creativecommons.org/licenses/by/4.0/
+# subject_source: https://w3id.org/lmodel/iso27001
+# object_source: https://w3id.org/lmodel/slsa
+# mapping_date: 2026-06-01
+# curie_map:
+#   iso27001: https://w3id.org/lmodel/iso27001/
+#   slsa: https://w3id.org/lmodel/slsa/
+#   owl: http://www.w3.org/2002/07/owl#
+#   semapv: https://w3id.org/semapv/vocab/
+#   skos: http://www.w3.org/2004/02/skos/core#
+subject_id	subject_label	subject_category	predicate_id	predicate_label	object_id	object_label	object_category	mapping_justification	comment
+iso27001:SecurityControl	SecurityControl	owl:Class	skos:relatedMatch	related match	slsa:BuildLevelEnum	BuildLevelEnum	owl:Class	semapv:LLMBasedMatching	Supplier security control level expressed via SLSA build level
+iso27001:Asset	Asset	owl:Class	skos:relatedMatch	related match	slsa:ResourceDescriptor	ResourceDescriptor	owl:Class	semapv:LLMBasedMatching	Software asset described by SLSA resource descriptor
+iso27001:AnnexAControlId#a_5_19	A.5.19 Information security in supplier relationships	skos:Concept	skos:closeMatch	close match	slsa:SlsaDocument	SlsaDocument	owl:Class	semapv:LLMBasedMatching	Supplier security governance evidenced via SLSA attestations
+iso27001:AnnexAControlId#a_5_20	A.5.20 Addressing information security within supplier agreements	skos:Concept	skos:closeMatch	close match	slsa:BuildLevelEnum	BuildLevelEnum	owl:Class	semapv:LLMBasedMatching	Supplier contractual SLSA build-level requirement
+iso27001:AnnexAControlId#a_5_21	A.5.21 Managing information security in the ICT supply chain	skos:Concept	skos:closeMatch	close match	slsa:BuildProvenance	BuildProvenance	owl:Class	semapv:LLMBasedMatching	ICT supply chain integrity through build provenance
+iso27001:AnnexAControlId#a_5_22	A.5.22 Monitoring, review and change management of supplier services	skos:Concept	skos:closeMatch	close match	slsa:VerificationResultEnum	VerificationResultEnum	owl:Class	semapv:LLMBasedMatching	Continuous verification of supplier SLSA compliance
+iso27001:AnnexAControlId#a_5_23	A.5.23 Information security for use of cloud services	skos:Concept	skos:relatedMatch	related match	slsa:SourceLevelEnum	SourceLevelEnum	owl:Class	semapv:LLMBasedMatching	Cloud provider source-integrity requirements
+iso27001:AnnexAControlId#a_8_25	A.8.25 Secure development life cycle	skos:Concept	skos:closeMatch	close match	slsa:BuildDefinition	BuildDefinition	owl:Class	semapv:LLMBasedMatching	Secure SDLC produces SLSA-compliant build definitions
+iso27001:AnnexAControlId#a_8_26	A.8.26 Application security requirements	skos:Concept	skos:relatedMatch	related match	slsa:BuildLevelEnum	BuildLevelEnum	owl:Class	semapv:LLMBasedMatching	Application build-integrity requirement
+iso27001:AnnexAControlId#a_8_27	A.8.27 Secure system architecture and engineering principles	skos:Concept	skos:relatedMatch	related match	slsa:BuildEnvLevelEnum	BuildEnvLevelEnum	owl:Class	semapv:LLMBasedMatching	Secure build environment level
+iso27001:AnnexAControlId#a_8_28	A.8.28 Secure coding	skos:Concept	skos:relatedMatch	related match	slsa:SourceLevelEnum	SourceLevelEnum	owl:Class	semapv:LLMBasedMatching	Source-level integrity supporting secure coding
+iso27001:AnnexAControlId#a_8_30	A.8.30 Outsourced development	skos:Concept	skos:closeMatch	close match	slsa:BuildLevelEnum	BuildLevelEnum	owl:Class	semapv:LLMBasedMatching	Outsourced development contractual SLSA build-level
+iso27001:AnnexAControlId#a_8_31	A.8.31 Separation of development, test and production environments	skos:Concept	skos:closeMatch	close match	slsa:BuildEnvLevelEnum	BuildEnvLevelEnum	owl:Class	semapv:LLMBasedMatching	Hermetic build environment separation
+iso27001:AnnexAControlId#a_8_32	A.8.32 Change management	skos:Concept	skos:closeMatch	close match	slsa:Statement	Statement	owl:Class	semapv:LLMBasedMatching	Change management captured in SLSA statement/attestation
+iso27001:AnnexAControlId#a_8_4	A.8.4 Access to source code	skos:Concept	skos:closeMatch	close match	slsa:SourceLevelEnum	SourceLevelEnum	owl:Class	semapv:LLMBasedMatching	Source code access control as SLSA source-level requirement

@@ -1,0 +1,118 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: RiskTreatmentPlan
+schema_generating: true
+description: A risk treatment plan documenting planned actions to address identified
+  risks through selected controls.
+display_name: RiskTreatmentPlan
+document_category: RiskTreatmentPlan
+weight: 20
+fields:
+- id: id
+  description: Unique identifier for this entity instance.
+  display_name: NamedEntity_id
+- id: name
+  description: Human-readable name or title.
+  display_name: name
+- id: description
+  description: Detailed description of the entity.
+  display_name: description
+- id: created_date
+  description: Date when the entity was created.
+  display_name: created_date
+- id: modified_date
+  description: Date when the entity was last modified.
+  display_name: modified_date
+- id: version
+  description: Version identifier for the entity.
+  display_name: version
+- id: document_type
+  description: Classification of the documented information.
+  display_name: document_type
+- id: document_reference
+  description: Unique reference number for document control.
+  display_name: document_reference
+- id: author
+  description: Person who created the document.
+  display_name: author
+- id: owner
+  description: Person accountable for the document content and maintenance.
+  display_name: owner
+- id: approved_by
+  description: Person who approved the document.
+  display_name: approved_by
+- id: effective_date
+  description: Date when the document becomes effective.
+  display_name: effective_date
+- id: review_date
+  description: Date when the document is due for review.
+  display_name: review_date
+- id: status
+  description: Current status of the document or entity.
+  display_name: status
+- id: classification
+  description: Information classification level.
+  display_name: classification
+- id: retention_period
+  description: Duration for which the document is retained.
+  display_name: retention_period
+- id: distribution_controls
+  description: Controls governing distribution, access, retrieval and use of the documented
+    information, per Clause 7.5.3 c).
+  display_name: distribution_controls
+  cardinality: multi
+- id: storage_and_preservation
+  description: Arrangements for storage and preservation (including preservation of
+    legibility) of the documented information, per Clause 7.5.3 d).
+  display_name: storage_and_preservation
+- id: change_control_method
+  description: Method used for control of changes (e.g., version control) of the documented
+    information, per Clause 7.5.3 e).
+  display_name: change_control_method
+- id: external_origin
+  description: Whether the documented information is of external origin and has been
+    identified as necessary for the planning and operation of the ISMS, per Clause
+    7.5.3.
+  display_name: external_origin
+- id: external_origin_source
+  description: Source or provider of the externally originated documented information,
+    per Clause 7.5.3.
+  display_name: external_origin_source
+- id: plan_scope
+  description: Scope of the plan.
+  display_name: plan_scope
+- id: risks_addressed
+  description: Risks addressed by this plan.
+  display_name: risks_addressed
+  cardinality: multi
+- id: treatment_actions
+  description: Actions to be taken for treatment.
+  display_name: treatment_actions
+  cardinality: multi
+- id: controls_to_implement
+  description: Controls to be implemented as part of treatment.
+  display_name: controls_to_implement
+  cardinality: multi
+- id: resources_required
+  description: Resources required for implementation.
+  display_name: resources_required
+- id: responsible_parties
+  description: Parties responsible for implementation.
+  display_name: responsible_parties
+  cardinality: multi
+- id: implementation_timeline
+  description: Timeline for implementation.
+  display_name: implementation_timeline
+- id: risk_owner_approval
+  description: Risk owner who approved the plan.
+  display_name: risk_owner_approval
+- id: approved_date
+  description: Date when the risk treatment plan was approved.
+  display_name: RiskTreatmentPlan_approved_date
+- id: residual_risk_acceptance
+  description: Documentation of residual risk acceptance.
+  display_name: residual_risk_acceptance
+- id: implementation_status
+  description: Current implementation status.
+  display_name: implementation_status
+- id: completion_date
+  description: Date when implementation was completed.
+  display_name: completion_date

@@ -1,6 +1,6 @@
 id: iso27001:control-run-a-penetration-test
 name: Run a penetration test
-control_id: "8.29"
+control_id: a_8_29
 control_title: Run a penetration test
 control_category: technological
 control_text: >-

@@ -1,6 +1,6 @@
 id: iso27001:control-be-automatically-notified-of-issues
 name: Be automatically notified of issues
-control_id: "8.15"
+control_id: a_8_15
 control_title: Be automatically notified of issues
 control_category: technological
 control_text: >-

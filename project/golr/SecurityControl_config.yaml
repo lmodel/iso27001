@@ -1,0 +1,72 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: SecurityControl
+schema_generating: true
+description: A security control from Annex A of ISO/IEC 27001:2022, derived from ISO/IEC
+  27002:2022. Represents a measure that modifies risk.
+display_name: SecurityControl
+document_category: SecurityControl
+weight: 20
+fields:
+- id: id
+  description: Unique identifier for this entity instance.
+  display_name: NamedEntity_id
+- id: name
+  description: Human-readable name or title.
+  display_name: name
+- id: description
+  description: Detailed description of the entity.
+  display_name: description
+- id: created_date
+  description: Date when the entity was created.
+  display_name: created_date
+- id: modified_date
+  description: Date when the entity was last modified.
+  display_name: modified_date
+- id: version
+  description: Version identifier for the entity.
+  display_name: version
+- id: control_id
+  description: Control identifier from Annex A (e.g., a_5_1, a_8_24).
+  display_name: control_id
+- id: control_title
+  description: Title of the control.
+  display_name: control_title
+- id: control_category
+  description: Domain category of the control.
+  display_name: control_category
+- id: control_text
+  description: Organization-authored control statement or external control summary.
+  display_name: control_text
+- id: implementation_guidance
+  description: Organization-authored implementation notes for the control.
+  display_name: implementation_guidance
+- id: related_controls
+  description: Other controls related to this one.
+  display_name: related_controls
+  cardinality: multi
+- id: applicable_threats
+  description: Threats this control addresses.
+  display_name: applicable_threats
+  cardinality: multi
+- id: applicable_assets
+  description: Asset types this control applies to.
+  display_name: applicable_assets
+  cardinality: multi
+- id: control_owner
+  description: Person responsible for the control.
+  display_name: control_owner
+- id: implementation_status
+  description: Current implementation status.
+  display_name: implementation_status
+- id: implementation_date
+  description: Date the control was implemented.
+  display_name: implementation_date
+- id: effectiveness_rating
+  description: Rating of control effectiveness.
+  display_name: effectiveness_rating
+- id: last_test_date
+  description: Date the control was last tested.
+  display_name: last_test_date
+- id: evidence_references
+  description: References to evidence of implementation.
+  display_name: evidence_references
+  cardinality: multi

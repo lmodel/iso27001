@@ -1,0 +1,64 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: Organization
+schema_generating: true
+description: The organization establishing and operating the ISMS. Captures context
+  needed for Clause 4.1 (understanding the organization).
+display_name: Organization
+document_category: Organization
+weight: 20
+fields:
+- id: id
+  description: Unique identifier for this entity instance.
+  display_name: NamedEntity_id
+- id: name
+  description: Human-readable name or title.
+  display_name: name
+- id: description
+  description: Detailed description of the entity.
+  display_name: description
+- id: created_date
+  description: Date when the entity was created.
+  display_name: created_date
+- id: modified_date
+  description: Date when the entity was last modified.
+  display_name: modified_date
+- id: version
+  description: Version identifier for the entity.
+  display_name: version
+- id: legal_name
+  description: Legal registered name of the organization.
+  display_name: legal_name
+- id: trading_names
+  description: Names under which the organization conducts business.
+  display_name: trading_names
+  cardinality: multi
+- id: organization_type
+  description: Type of organization (e.g., corporation, government, nonprofit).
+  display_name: organization_type
+- id: industry_sector
+  description: Primary industry sector of the organization.
+  display_name: industry_sector
+- id: size_category
+  description: Organization size classification.
+  display_name: size_category
+- id: employee_count
+  description: Approximate number of employees.
+  display_name: employee_count
+- id: geographic_locations
+  description: Countries or regions where the organization operates.
+  display_name: geographic_locations
+  cardinality: multi
+- id: regulatory_jurisdictions
+  description: Jurisdictions whose regulations apply to the organization.
+  display_name: regulatory_jurisdictions
+  cardinality: multi
+- id: parent_organization
+  description: Parent organization if applicable.
+  display_name: parent_organization
+- id: subsidiaries
+  description: Subsidiary organizations if applicable.
+  display_name: subsidiaries
+  cardinality: multi
+- id: climate_change_relevant
+  description: Whether climate change has been determined to be a relevant issue for
+    the organization's context, per Clause 4.1 as amended by Amd. 1:2024.
+  display_name: climate_change_relevant

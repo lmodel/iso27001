@@ -1,7 +1,11 @@
 package None;
 
-/* metamodel_version: 1.7.0 */
+/* metamodel_version: 1.11.0 */
 /* version: 1.0.0 */
+import java.net.URI;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import lombok.*;
 
@@ -17,7 +21,11 @@ public class InformationSecurityPolicy extends DocumentedInformation {
   private List<String> commitmentStatements;
   private String applicabilityStatement;
   private LocalDate communicationDate;
-  private boolean acknowledgmentRequired;
+  private Boolean acknowledgmentRequired;
+  private LocalDate lastPolicyReviewDate;
+  private LocalDate nextPolicyReviewDate;
   private List<TopicSpecificPolicy> relatedTopicPolicies;
+  private List<String> integratedManagementSystems;
+
 
 }

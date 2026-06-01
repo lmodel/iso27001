@@ -1,5 +1,105 @@
 {
     "$defs": {
+        "AnnexAControlId": {
+            "description": "Identifiers of the 93 reference information security controls listed in ISO/IEC 27001:2022 Annex A (as also titled in ISO/IEC 27002:2022). Control text and titles are normative ISO content and are not reproduced here.",
+            "enum": [
+                "a_5_1",
+                "a_5_2",
+                "a_5_3",
+                "a_5_4",
+                "a_5_5",
+                "a_5_6",
+                "a_5_7",
+                "a_5_8",
+                "a_5_9",
+                "a_5_10",
+                "a_5_11",
+                "a_5_12",
+                "a_5_13",
+                "a_5_14",
+                "a_5_15",
+                "a_5_16",
+                "a_5_17",
+                "a_5_18",
+                "a_5_19",
+                "a_5_20",
+                "a_5_21",
+                "a_5_22",
+                "a_5_23",
+                "a_5_24",
+                "a_5_25",
+                "a_5_26",
+                "a_5_27",
+                "a_5_28",
+                "a_5_29",
+                "a_5_30",
+                "a_5_31",
+                "a_5_32",
+                "a_5_33",
+                "a_5_34",
+                "a_5_35",
+                "a_5_36",
+                "a_5_37",
+                "a_6_1",
+                "a_6_2",
+                "a_6_3",
+                "a_6_4",
+                "a_6_5",
+                "a_6_6",
+                "a_6_7",
+                "a_6_8",
+                "a_7_1",
+                "a_7_2",
+                "a_7_3",
+                "a_7_4",
+                "a_7_5",
+                "a_7_6",
+                "a_7_7",
+                "a_7_8",
+                "a_7_9",
+                "a_7_10",
+                "a_7_11",
+                "a_7_12",
+                "a_7_13",
+                "a_7_14",
+                "a_8_1",
+                "a_8_2",
+                "a_8_3",
+                "a_8_4",
+                "a_8_5",
+                "a_8_6",
+                "a_8_7",
+                "a_8_8",
+                "a_8_9",
+                "a_8_10",
+                "a_8_11",
+                "a_8_12",
+                "a_8_13",
+                "a_8_14",
+                "a_8_15",
+                "a_8_16",
+                "a_8_17",
+                "a_8_18",
+                "a_8_19",
+                "a_8_20",
+                "a_8_21",
+                "a_8_22",
+                "a_8_23",
+                "a_8_24",
+                "a_8_25",
+                "a_8_26",
+                "a_8_27",
+                "a_8_28",
+                "a_8_29",
+                "a_8_30",
+                "a_8_31",
+                "a_8_32",
+                "a_8_33",
+                "a_8_34"
+            ],
+            "title": "AnnexAControlId",
+            "type": "string"
+        },
         "Asset": {
             "additionalProperties": false,
             "description": "An information asset or associated asset requiring protection, per Annex A control 5.9.",
@@ -295,6 +395,13 @@
                         "null"
                     ]
                 },
+                "change_control_method": {
+                    "description": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "classification": {
                     "description": "Information classification level.",
                     "type": [
@@ -317,6 +424,16 @@
                         "null"
                     ]
                 },
+                "distribution_controls": {
+                    "description": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "document_reference": {
                     "description": "Unique reference number for document control.",
                     "type": [
@@ -331,6 +448,20 @@
                 "effective_date": {
                     "description": "Date when the document becomes effective.",
                     "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "external_origin": {
+                    "description": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "external_origin_source": {
+                    "description": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
                     "type": [
                         "string",
                         "null"
@@ -412,6 +543,13 @@
                         "null"
                     ]
                 },
+                "storage_and_preservation": {
+                    "description": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "version": {
                     "description": "Version identifier for the entity.",
                     "type": [
@@ -426,6 +564,19 @@
             ],
             "title": "AuditProgramme",
             "type": "object"
+        },
+        "AuditType": {
+            "description": "Classification of audits referenced by ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1 (audit programmes).",
+            "enum": [
+                "internal",
+                "external_second_party",
+                "external_third_party",
+                "surveillance",
+                "recertification",
+                "combined"
+            ],
+            "title": "AuditType",
+            "type": "string"
         },
         "AwarenessProgram": {
             "additionalProperties": false,
@@ -460,6 +611,13 @@
                     },
                     "type": [
                         "array",
+                        "null"
+                    ]
+                },
+                "change_control_method": {
+                    "description": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+                    "type": [
+                        "string",
                         "null"
                     ]
                 },
@@ -502,6 +660,16 @@
                         "null"
                     ]
                 },
+                "distribution_controls": {
+                    "description": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "document_reference": {
                     "description": "Unique reference number for document control.",
                     "type": [
@@ -523,6 +691,20 @@
                 },
                 "effectiveness_measures": {
                     "description": "How effectiveness is measured.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "external_origin": {
+                    "description": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "external_origin_source": {
+                    "description": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
                     "type": [
                         "string",
                         "null"
@@ -580,6 +762,13 @@
                         "null"
                     ]
                 },
+                "storage_and_preservation": {
+                    "description": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "target_audience": {
                     "description": "Intended audience for the policy or document.",
                     "type": [
@@ -601,6 +790,16 @@
             ],
             "title": "AwarenessProgram",
             "type": "object"
+        },
+        "CIAProperty": {
+            "description": "Information security properties whose loss is considered when identifying risks per ISO/IEC 27001:2022 Clause 6.1.2 c) 1).",
+            "enum": [
+                "confidentiality",
+                "integrity",
+                "availability"
+            ],
+            "title": "CIAProperty",
+            "type": "string"
         },
         "CommunicationItem": {
             "additionalProperties": false,
@@ -685,6 +884,13 @@
                         "null"
                     ]
                 },
+                "change_control_method": {
+                    "description": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "classification": {
                     "description": "Information classification level.",
                     "type": [
@@ -717,6 +923,16 @@
                         "null"
                     ]
                 },
+                "distribution_controls": {
+                    "description": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "document_reference": {
                     "description": "Unique reference number for document control.",
                     "type": [
@@ -731,6 +947,20 @@
                 "effective_date": {
                     "description": "Date when the document becomes effective.",
                     "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "external_origin": {
+                    "description": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "external_origin_source": {
+                    "description": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
                     "type": [
                         "string",
                         "null"
@@ -781,6 +1011,13 @@
                         "null"
                     ]
                 },
+                "storage_and_preservation": {
+                    "description": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "version": {
                     "description": "Version identifier for the entity.",
                     "type": [
@@ -817,6 +1054,13 @@
                 },
                 "author": {
                     "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "change_control_method": {
+                    "description": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
                     "type": [
                         "string",
                         "null"
@@ -872,6 +1116,16 @@
                         "null"
                     ]
                 },
+                "distribution_controls": {
+                    "description": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "document_reference": {
                     "description": "Unique reference number for document control.",
                     "type": [
@@ -908,6 +1162,20 @@
                     },
                     "type": [
                         "array",
+                        "null"
+                    ]
+                },
+                "external_origin": {
+                    "description": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "external_origin_source": {
+                    "description": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+                    "type": [
+                        "string",
                         "null"
                     ]
                 },
@@ -975,6 +1243,13 @@
                 },
                 "status": {
                     "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "storage_and_preservation": {
+                    "description": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
                     "type": [
                         "string",
                         "null"
@@ -1166,6 +1441,171 @@
             ],
             "title": "DocumentType",
             "type": "string"
+        },
+        "DocumentedInformation": {
+            "additionalProperties": false,
+            "description": "Abstract class for documented information per Clause 7.5. Captures metadata required for document control.",
+            "properties": {
+                "approved_by": {
+                    "description": "Person who approved the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "approved_date": {
+                    "description": "Date when the document was approved.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "author": {
+                    "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "change_control_method": {
+                    "description": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "classification": {
+                    "description": "Information classification level.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "distribution_controls": {
+                    "description": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "document_reference": {
+                    "description": "Unique reference number for document control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "document_type": {
+                    "$ref": "#/$defs/DocumentType",
+                    "description": "Classification of the documented information."
+                },
+                "effective_date": {
+                    "description": "Date when the document becomes effective.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "external_origin": {
+                    "description": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "external_origin_source": {
+                    "description": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "owner": {
+                    "description": "Person accountable for the document content and maintenance.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "retention_period": {
+                    "description": "Duration for which the document is retained.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "review_date": {
+                    "description": "Date when the document is due for review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "storage_and_preservation": {
+                    "description": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "DocumentedInformation",
+            "type": "object"
         },
         "ImpactRating": {
             "description": "Qualitative impact scale for risk assessment.",
@@ -1446,9 +1886,9 @@
                     ]
                 },
                 "affected_cia": {
-                    "description": "CIA properties affected.",
+                    "description": "CIA properties affected by the incident.",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/CIAProperty"
                     },
                     "type": [
                         "array",
@@ -1520,11 +1960,8 @@
                     "type": "string"
                 },
                 "incident_category": {
-                    "description": "Category of incident.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "$ref": "#/$defs/SecurityIncidentCategory",
+                    "description": "Category of incident."
                 },
                 "incident_datetime": {
                     "description": "Date and time the incident occurred or was detected.",
@@ -1543,8 +1980,11 @@
                 },
                 "lessons_learned": {
                     "description": "Lessons learned from the incident.",
+                    "items": {
+                        "type": "string"
+                    },
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },
@@ -1612,11 +2052,8 @@
                     ]
                 },
                 "severity": {
-                    "description": "Severity rating.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "$ref": "#/$defs/RiskLevel",
+                    "description": "Severity rating of the incident."
                 },
                 "version": {
                     "description": "Version identifier for the entity.",
@@ -1748,6 +2185,23 @@
                         "null"
                     ]
                 },
+                "externally_provided_services": {
+                    "description": "Externally provided processes, products or services relevant to the ISMS that are controlled per Clause 8.1.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "governing_body": {
+                    "description": "The governing body to which top management reports, where applicable (e.g., board of directors). Referenced in ISO/IEC 27001:2022 Clause 5.1 NOTE.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "id": {
                     "description": "Unique identifier for this entity instance.",
                     "type": "string"
@@ -1779,8 +2233,28 @@
                         "null"
                     ]
                 },
+                "interfaces_and_dependencies": {
+                    "description": "Interfaces and dependencies between activities performed by the organization and those performed by other organizations, considered when determining the ISMS scope per Clause 4.3 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "internal_audits": {
                     "description": "Internal audit instances.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "leadership_commitment_evidence": {
+                    "description": "Evidence of leadership and commitment with respect to the ISMS as required by Clause 5.1 a-h).",
                     "items": {
                         "type": "string"
                     },
@@ -1855,6 +2329,23 @@
                         "null"
                     ]
                 },
+                "planned_changes": {
+                    "description": "Changes to the ISMS planned and controlled per Clause 6.3 and 8.1 (planning of changes; control of planned changes).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "processes_and_interactions": {
+                    "description": "Description of the processes needed for the ISMS and their interactions, per Clause 4.4.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "recertification_date": {
                     "description": "Date recertification is due.",
                     "format": "date",
@@ -1907,6 +2398,16 @@
                         "null"
                     ]
                 },
+                "risks_and_opportunities_actions": {
+                    "description": "Actions to address risks and opportunities determined per Clause 6.1.1, including how they are integrated into ISMS processes and how their effectiveness is evaluated.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "roles": {
                     "description": "Information security roles defined in the ISMS.",
                     "items": {
@@ -1946,6 +2447,13 @@
                 },
                 "statement_of_applicability": {
                     "description": "Reference to the Statement of Applicability.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "top_management": {
+                    "description": "The person or group of people who direct and control the organization at the highest level, accountable for the ISMS per Clause 5.1.",
                     "type": [
                         "string",
                         "null"
@@ -2042,6 +2550,13 @@
                 "name": {
                     "description": "Human-readable name or title.",
                     "type": "string"
+                },
+                "objective_resources_required": {
+                    "description": "Resources required to achieve the information security objective.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "objective_statement": {
                     "description": "Clear statement of the objective.",
@@ -2147,6 +2662,13 @@
                         "null"
                     ]
                 },
+                "change_control_method": {
+                    "description": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "classification": {
                     "description": "Information classification level.",
                     "type": [
@@ -2187,6 +2709,16 @@
                         "null"
                     ]
                 },
+                "distribution_controls": {
+                    "description": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "document_reference": {
                     "description": "Unique reference number for document control.",
                     "type": [
@@ -2206,9 +2738,41 @@
                         "null"
                     ]
                 },
+                "external_origin": {
+                    "description": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "external_origin_source": {
+                    "description": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "id": {
                     "description": "Unique identifier for this entity instance.",
                     "type": "string"
+                },
+                "integrated_management_systems": {
+                    "description": "Other ISO/IEC management system standards with which the ISMS is integrated or aligned (per the harmonized structure of Annex SL).",
+                    "items": {
+                        "$ref": "#/$defs/RelatedManagementSystem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "last_policy_review_date": {
+                    "description": "Date of the most recent information security policy review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "modified_date": {
                     "description": "Date when the entity was last modified.",
@@ -2221,6 +2785,14 @@
                 "name": {
                     "description": "Human-readable name or title.",
                     "type": "string"
+                },
+                "next_policy_review_date": {
+                    "description": "Planned date of the next information security policy review.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "owner": {
                     "description": "Person accountable for the document content and maintenance.",
@@ -2275,6 +2847,13 @@
                         "null"
                     ]
                 },
+                "storage_and_preservation": {
+                    "description": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "version": {
                     "description": "Version identifier for the entity.",
                     "type": [
@@ -2294,6 +2873,26 @@
             "additionalProperties": false,
             "description": "A stakeholder whose needs and expectations are relevant to the ISMS per 4.2. Includes internal parties (employees, management) and external parties (customers, regulators, suppliers).",
             "properties": {
+                "addressed_requirements": {
+                    "description": "Requirements of the interested party that the organization has determined will be addressed through the ISMS, per Clause 4.2 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "climate_change_related_requirements": {
+                    "description": "Climate-change-related requirements of the interested party, per ISO/IEC 27001:2022 Clause 4.2 NOTE 2 as added by Amd. 1:2024.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "communication_needs": {
                     "description": "Communication requirements for this party.",
                     "type": [
@@ -2472,11 +3071,8 @@
                     ]
                 },
                 "audit_type": {
-                    "description": "Type of audit.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "$ref": "#/$defs/AuditType",
+                    "description": "Type of audit per ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1."
                 },
                 "auditee_representatives": {
                     "description": "Representatives from audited areas.",
@@ -2490,6 +3086,13 @@
                 },
                 "author": {
                     "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "change_control_method": {
+                    "description": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
                     "type": [
                         "string",
                         "null"
@@ -2517,6 +3120,16 @@
                         "null"
                     ]
                 },
+                "distribution_controls": {
+                    "description": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "document_reference": {
                     "description": "Unique reference number for document control.",
                     "type": [
@@ -2531,6 +3144,20 @@
                 "effective_date": {
                     "description": "Date when the document becomes effective.",
                     "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "external_origin": {
+                    "description": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "external_origin_source": {
+                    "description": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
                     "type": [
                         "string",
                         "null"
@@ -2626,6 +3253,13 @@
                         "null"
                     ]
                 },
+                "storage_and_preservation": {
+                    "description": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "version": {
                     "description": "Version identifier for the entity.",
                     "type": [
@@ -2706,6 +3340,13 @@
                         "null"
                     ]
                 },
+                "change_control_method": {
+                    "description": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "classification": {
                     "description": "Information classification level.",
                     "type": [
@@ -2745,6 +3386,16 @@
                         "null"
                     ]
                 },
+                "distribution_controls": {
+                    "description": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "document_reference": {
                     "description": "Unique reference number for document control.",
                     "type": [
@@ -2759,6 +3410,20 @@
                 "effective_date": {
                     "description": "Date when the document becomes effective.",
                     "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "external_origin": {
+                    "description": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "external_origin_source": {
+                    "description": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
                     "type": [
                         "string",
                         "null"
@@ -2780,6 +3445,13 @@
                 },
                 "interested_party_changes": {
                     "description": "Changes in interested party requirements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "interested_party_feedback": {
+                    "description": "Feedback from interested parties considered in the management review.",
                     "type": [
                         "string",
                         "null"
@@ -2848,8 +3520,29 @@
                         "null"
                     ]
                 },
+                "risk_treatment_status": {
+                    "description": "Status of the risk treatment plan considered in the management review.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "risks_and_opportunities_changes": {
+                    "description": "Changes in risks and opportunities considered in the management review, per Clause 9.3.2 f).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "status": {
                     "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "storage_and_preservation": {
+                    "description": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
                     "type": [
                         "string",
                         "null"
@@ -2981,6 +3674,13 @@
                         "null"
                     ]
                 },
+                "change_control_method": {
+                    "description": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "classification": {
                     "description": "Information classification level.",
                     "type": [
@@ -3003,6 +3703,16 @@
                         "null"
                     ]
                 },
+                "distribution_controls": {
+                    "description": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "document_reference": {
                     "description": "Unique reference number for document control.",
                     "type": [
@@ -3017,6 +3727,20 @@
                 "effective_date": {
                     "description": "Date when the document becomes effective.",
                     "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "external_origin": {
+                    "description": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "external_origin_source": {
+                    "description": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
                     "type": [
                         "string",
                         "null"
@@ -3077,6 +3801,13 @@
                         "null"
                     ]
                 },
+                "storage_and_preservation": {
+                    "description": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "version": {
                     "description": "Version identifier for the entity.",
                     "type": [
@@ -3090,6 +3821,56 @@
                 "name"
             ],
             "title": "MonitoringProgram",
+            "type": "object"
+        },
+        "NamedEntity": {
+            "additionalProperties": false,
+            "description": "Abstract base class for all entities with an identifier, name, and description. Provides common identification and documentation slots.",
+            "properties": {
+                "created_date": {
+                    "description": "Date when the entity was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "version": {
+                    "description": "Version identifier for the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "NamedEntity",
             "type": "object"
         },
         "Nonconformity": {
@@ -3267,6 +4048,13 @@
                         "null"
                     ]
                 },
+                "change_control_method": {
+                    "description": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "change_control_requirements": {
                     "description": "Requirements for controlling changes.",
                     "type": [
@@ -3306,6 +4094,16 @@
                         "null"
                     ]
                 },
+                "distribution_controls": {
+                    "description": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "document_reference": {
                     "description": "Unique reference number for document control.",
                     "type": [
@@ -3320,6 +4118,20 @@
                 "effective_date": {
                     "description": "Date when the document becomes effective.",
                     "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "external_origin": {
+                    "description": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "external_origin_source": {
+                    "description": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
                     "type": [
                         "string",
                         "null"
@@ -3399,6 +4211,13 @@
                 },
                 "status": {
                     "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "storage_and_preservation": {
+                    "description": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
                     "type": [
                         "string",
                         "null"
@@ -3558,6 +4377,23 @@
             "title": "Organization",
             "type": "object"
         },
+        "RelatedManagementSystem": {
+            "description": "Other ISO/IEC management system standards with which the ISMS may be integrated or aligned (e.g., harmonized structure of Annex SL).",
+            "enum": [
+                "iso_iec_27001",
+                "iso_iec_27701",
+                "iso_iec_27017",
+                "iso_iec_27018",
+                "iso_iec_42001",
+                "iso_9001",
+                "iso_14001",
+                "iso_22301",
+                "iso_iec_20000_1",
+                "iso_31000"
+            ],
+            "title": "RelatedManagementSystem",
+            "type": "string"
+        },
         "Resource": {
             "additionalProperties": false,
             "description": "A resource provided for the ISMS per Clause 7.1, including personnel, infrastructure, technology, and budget.",
@@ -3668,7 +4504,7 @@
                 "affected_cia_properties": {
                     "description": "Which CIA properties are affected (confidentiality, integrity, availability).",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/CIAProperty"
                     },
                     "type": [
                         "array",
@@ -3841,6 +4677,13 @@
                         "null"
                     ]
                 },
+                "change_control_method": {
+                    "description": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "classification": {
                     "description": "Information classification level.",
                     "type": [
@@ -3863,6 +4706,16 @@
                         "null"
                     ]
                 },
+                "distribution_controls": {
+                    "description": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "document_reference": {
                     "description": "Unique reference number for document control.",
                     "type": [
@@ -3877,6 +4730,20 @@
                 "effective_date": {
                     "description": "Date when the document becomes effective.",
                     "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "external_origin": {
+                    "description": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "external_origin_source": {
+                    "description": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
                     "type": [
                         "string",
                         "null"
@@ -3962,6 +4829,13 @@
                         "null"
                     ]
                 },
+                "storage_and_preservation": {
+                    "description": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "summary_findings": {
                     "description": "Summary of assessment findings.",
                     "type": [
@@ -4031,6 +4905,13 @@
                         "null"
                     ]
                 },
+                "change_control_method": {
+                    "description": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "classification": {
                     "description": "Information classification level.",
                     "type": [
@@ -4053,6 +4934,16 @@
                         "null"
                     ]
                 },
+                "distribution_controls": {
+                    "description": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "document_reference": {
                     "description": "Unique reference number for document control.",
                     "type": [
@@ -4067,6 +4958,20 @@
                 "effective_date": {
                     "description": "Date when the document becomes effective.",
                     "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "external_origin": {
+                    "description": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "external_origin_source": {
+                    "description": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
                     "type": [
                         "string",
                         "null"
@@ -4140,6 +5045,13 @@
                 },
                 "status": {
                     "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "storage_and_preservation": {
+                    "description": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
                     "type": [
                         "string",
                         "null"
@@ -4219,6 +5131,13 @@
                         "null"
                     ]
                 },
+                "change_control_method": {
+                    "description": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "classification": {
                     "description": "Information classification level.",
                     "type": [
@@ -4259,6 +5178,16 @@
                         "null"
                     ]
                 },
+                "distribution_controls": {
+                    "description": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "document_reference": {
                     "description": "Unique reference number for document control.",
                     "type": [
@@ -4273,6 +5202,20 @@
                 "effective_date": {
                     "description": "Date when the document becomes effective.",
                     "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "external_origin": {
+                    "description": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "external_origin_source": {
+                    "description": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
                     "type": [
                         "string",
                         "null"
@@ -4382,6 +5325,13 @@
                         "null"
                     ]
                 },
+                "storage_and_preservation": {
+                    "description": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "treatment_actions": {
                     "description": "Actions to be taken for treatment.",
                     "items": {
@@ -4411,6 +5361,13 @@
             "additionalProperties": false,
             "description": "The documented risk treatment process per Clause 6.1.3, defining how treatment options are selected and controls determined.",
             "properties": {
+                "annex_a_omission_verification": {
+                    "description": "Description of how controls determined as necessary are compared with those in Annex A to verify that no necessary controls have been omitted, per Clause 6.1.3 c).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "approval_workflow": {
                     "description": "Workflow for approving risk treatment.",
                     "type": [
@@ -4435,6 +5392,13 @@
                 },
                 "author": {
                     "description": "Person who created the document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "change_control_method": {
+                    "description": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
                     "type": [
                         "string",
                         "null"
@@ -4469,6 +5433,16 @@
                         "null"
                     ]
                 },
+                "distribution_controls": {
+                    "description": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "document_reference": {
                     "description": "Unique reference number for document control.",
                     "type": [
@@ -4483,6 +5457,20 @@
                 "effective_date": {
                     "description": "Date when the document becomes effective.",
                     "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "external_origin": {
+                    "description": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "external_origin_source": {
+                    "description": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
                     "type": [
                         "string",
                         "null"
@@ -4535,6 +5523,13 @@
                 },
                 "status": {
                     "description": "Current status of the document or entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "storage_and_preservation": {
+                    "description": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
                     "type": [
                         "string",
                         "null"
@@ -4699,12 +5694,8 @@
                     "description": "Domain category of the control."
                 },
                 "control_id": {
-                    "description": "Control identifier from Annex A (e.g., 5.1, 8.24).",
-                    "pattern": "^[5-8]\\.[0-9]{1,2}$",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "$ref": "#/$defs/AnnexAControlId",
+                    "description": "Control identifier from Annex A (e.g., a_5_1, a_8_24)."
                 },
                 "control_owner": {
                     "description": "Person responsible for the control.",
@@ -4827,6 +5818,31 @@
             "title": "SecurityControl",
             "type": "object"
         },
+        "SecurityIncidentCategory": {
+            "description": "Categories of information security incident used to classify events and incidents per ISO/IEC 27001:2022 Annex A controls A.5.24-A.5.28 and ISO/IEC 27035 incident management guidance.",
+            "enum": [
+                "malware",
+                "ransomware",
+                "phishing",
+                "social_engineering",
+                "unauthorized_access",
+                "account_compromise",
+                "privilege_misuse",
+                "data_breach",
+                "data_loss",
+                "denial_of_service",
+                "web_application_attack",
+                "supply_chain",
+                "insider_threat",
+                "physical_security",
+                "configuration_error",
+                "cryptographic_failure",
+                "policy_violation",
+                "other"
+            ],
+            "title": "SecurityIncidentCategory",
+            "type": "string"
+        },
         "SoAEntry": {
             "additionalProperties": false,
             "description": "A single entry in the Statement of Applicability, documenting the applicability and implementation status of one control.",
@@ -4915,6 +5931,13 @@
                         "null"
                     ]
                 },
+                "change_control_method": {
+                    "description": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "classification": {
                     "description": "Information classification level.",
                     "type": [
@@ -4937,6 +5960,16 @@
                         "null"
                     ]
                 },
+                "distribution_controls": {
+                    "description": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "document_reference": {
                     "description": "Unique reference number for document control.",
                     "type": [
@@ -4951,6 +5984,20 @@
                 "effective_date": {
                     "description": "Date when the document becomes effective.",
                     "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "external_origin": {
+                    "description": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "external_origin_source": {
+                    "description": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
                     "type": [
                         "string",
                         "null"
@@ -5040,6 +6087,13 @@
                         "null"
                     ]
                 },
+                "storage_and_preservation": {
+                    "description": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "total_controls": {
                     "description": "Total number of controls in scope.",
                     "type": [
@@ -5098,6 +6152,13 @@
                         "null"
                     ]
                 },
+                "change_control_method": {
+                    "description": "Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "classification": {
                     "description": "Information classification level.",
                     "type": [
@@ -5120,6 +6181,16 @@
                         "null"
                     ]
                 },
+                "distribution_controls": {
+                    "description": "Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "document_reference": {
                     "description": "Unique reference number for document control.",
                     "type": [
@@ -5134,6 +6205,20 @@
                 "effective_date": {
                     "description": "Date when the document becomes effective.",
                     "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "external_origin": {
+                    "description": "Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "external_origin_source": {
+                    "description": "Source or provider of the externally originated documented information, per Clause 7.5.3.",
                     "type": [
                         "string",
                         "null"
@@ -5191,6 +6276,13 @@
                         "null"
                     ]
                 },
+                "storage_and_preservation": {
+                    "description": "Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "target_audience": {
                     "description": "Intended audience for the policy or document.",
                     "type": [
@@ -5224,7 +6316,7 @@
     "$id": "https://w3id.org/lmodel/iso27001",
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": true,
-    "metamodel_version": "1.7.0",
+    "metamodel_version": "1.11.0",
     "title": "iso27001",
     "type": "object",
     "version": "1.0.0"

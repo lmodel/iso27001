@@ -120,6 +120,26 @@ test: _test-schema _test-python _test-examples
 lint:
   uv run linkml-lint {{source_schema_dir}}
 
+# Regenerate the empty overlay scaffold from the public schema.
+# Safe to commit - contains no copyrighted text. See src/iso27001/schema/OVERLAY.md
+[group('overlay')]
+create-empty-overlay:
+  uv run python scripts/create_overlay_template.py \
+    --public {{source_schema_path}} \
+    --output {{source_schema_dir}}/{{schema_name}}-overlay.template.yaml
+
+# Deep-merge the license-holder's local overlay onto the public schema.
+# Requires src/iso27001/schema/iso27001-overlay.yaml (git-ignored).
+# Output is written to tmp/iso27001-merged.yaml (also git-ignored).
+[group('overlay')]
+overlay-licensed-text:
+  mkdir -p tmp
+  uv run python scripts/overlay_populated_text.py \
+    --public  {{source_schema_path}} \
+    --overlay {{source_schema_dir}}/{{schema_name}}-overlay.yaml \
+    --output  tmp/{{schema_name}}-merged.yaml
+  uv run linkml-lint tmp/{{schema_name}}-merged.yaml || true
+
 # Generate md documentation for the schema and add artifacts
 [group('model development')]
 gen-doc: _gen-yaml && _add-artifacts
@@ -136,7 +156,7 @@ gen-python:
 
 # Generate project files including Python data model
 [group('model development')]
-gen-project:
+gen-project:  apply-sssom-overlay
   uv run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
   mv {{dest}}/*.py {{pymodel}}
   uv run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py

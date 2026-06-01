@@ -1,6 +1,6 @@
 id: iso27001:control-list-of-your-assets
 name: List of your assets
-control_id: "5.9"
+control_id: a_5_9
 control_title: List of your assets
 control_category: organizational
 control_text: >-

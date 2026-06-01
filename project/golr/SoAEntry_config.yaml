@@ -1,0 +1,32 @@
+# metamodel_version: 1.11.0# version: 1.0.0id: SoAEntry
+schema_generating: true
+description: A single entry in the Statement of Applicability, documenting the applicability
+  and implementation status of one control.
+display_name: SoAEntry
+document_category: SoAEntry
+weight: 20
+fields:
+- id: control_reference
+  description: Reference to the control (e.g., A.5.1).
+  display_name: control_reference
+- id: is_applicable
+  description: Whether the control is applicable.
+  display_name: is_applicable
+- id: inclusion_justification
+  description: Justification for including the control.
+  display_name: inclusion_justification
+- id: exclusion_justification
+  description: Justification for excluding the control.
+  display_name: exclusion_justification
+- id: implementation_status
+  description: Current implementation status.
+  display_name: implementation_status
+- id: implementation_evidence
+  description: Evidence of control implementation.
+  display_name: implementation_evidence
+- id: responsible_role
+  description: Role responsible for the objective or control.
+  display_name: responsible_role
+- id: target_implementation_date
+  description: Target date for implementing the control.
+  display_name: target_implementation_date

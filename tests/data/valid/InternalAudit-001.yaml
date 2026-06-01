@@ -2,7 +2,7 @@ id: iso27001:audit-2026-001
 name: Access Governance Internal Audit
 document_type: report
 audit_reference: IA-2026-001
-audit_type: partial
+audit_type: internal
 audit_scope: Access governance and privileged access reviews
 audit_criteria:
   - ISO 27001 Clause 9.2

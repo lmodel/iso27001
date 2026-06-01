@@ -1,11 +1,125 @@
-# metamodel_version: 1.7.0
+# metamodel_version: 1.11.0
 # version: 1.0.0
+enum AnnexAControlId
+  {
+    a_5_1
+    a_5_2
+    a_5_3
+    a_5_4
+    a_5_5
+    a_5_6
+    a_5_7
+    a_5_8
+    a_5_9
+    a_5_10
+    a_5_11
+    a_5_12
+    a_5_13
+    a_5_14
+    a_5_15
+    a_5_16
+    a_5_17
+    a_5_18
+    a_5_19
+    a_5_20
+    a_5_21
+    a_5_22
+    a_5_23
+    a_5_24
+    a_5_25
+    a_5_26
+    a_5_27
+    a_5_28
+    a_5_29
+    a_5_30
+    a_5_31
+    a_5_32
+    a_5_33
+    a_5_34
+    a_5_35
+    a_5_36
+    a_5_37
+    a_6_1
+    a_6_2
+    a_6_3
+    a_6_4
+    a_6_5
+    a_6_6
+    a_6_7
+    a_6_8
+    a_7_1
+    a_7_2
+    a_7_3
+    a_7_4
+    a_7_5
+    a_7_6
+    a_7_7
+    a_7_8
+    a_7_9
+    a_7_10
+    a_7_11
+    a_7_12
+    a_7_13
+    a_7_14
+    a_8_1
+    a_8_2
+    a_8_3
+    a_8_4
+    a_8_5
+    a_8_6
+    a_8_7
+    a_8_8
+    a_8_9
+    a_8_10
+    a_8_11
+    a_8_12
+    a_8_13
+    a_8_14
+    a_8_15
+    a_8_16
+    a_8_17
+    a_8_18
+    a_8_19
+    a_8_20
+    a_8_21
+    a_8_22
+    a_8_23
+    a_8_24
+    a_8_25
+    a_8_26
+    a_8_27
+    a_8_28
+    a_8_29
+    a_8_30
+    a_8_31
+    a_8_32
+    a_8_33
+    a_8_34
+  }
+
 enum AuditFindingType
   {
     major_nonconformity
     minor_nonconformity
     observation
     positive_finding
+  }
+
+enum AuditType
+  {
+    internal
+    external_second_party
+    external_third_party
+    surveillance
+    recertification
+    combined
+  }
+
+enum CIAProperty
+  {
+    confidentiality
+    integrity
+    availability
   }
 
 enum ControlCategory
@@ -54,6 +168,20 @@ enum LikelihoodRating
     almost_certain
   }
 
+enum RelatedManagementSystem
+  {
+    iso_iec_27001
+    iso_iec_27701
+    iso_iec_27017
+    iso_iec_27018
+    iso_iec_42001
+    iso_9001
+    iso_14001
+    iso_22301
+    iso_iec_20000_1
+    iso_31000
+  }
+
 enum RiskLevel
   {
     very_low
@@ -69,6 +197,28 @@ enum RiskTreatmentOption
     accept
     avoid
     share
+  }
+
+enum SecurityIncidentCategory
+  {
+    malware
+    ransomware
+    phishing
+    social_engineering
+    unauthorized_access
+    account_compromise
+    privilege_misuse
+    data_breach
+    data_loss
+    denial_of_service
+    web_application_attack
+    supply_chain
+    insider_threat
+    physical_security
+    configuration_error
+    cryptographic_failure
+    policy_violation
+    other
   }
 
 type Asset
@@ -130,6 +280,11 @@ type AuditProgramme
     status: String
     classification: String
     retentionPeriod: DurationType
+    distributionControls: [String]
+    storageAndPreservation: String
+    changeControlMethod: String
+    externalOrigin: Boolean
+    externalOriginSource: String
     programmePeriod: String
     plannedAudits: [InternalAudit]
     auditFrequencyRationale: String
@@ -157,6 +312,11 @@ type AwarenessProgram
     status: String
     classification: String
     retentionPeriod: DurationType
+    distributionControls: [String]
+    storageAndPreservation: String
+    changeControlMethod: String
+    externalOrigin: Boolean
+    externalOriginSource: String
     awarenessTopics: [String]
     deliveryMethods: [String]
     targetAudience: String
@@ -195,6 +355,11 @@ type CommunicationPlan
     status: String
     classification: String
     retentionPeriod: DurationType
+    distributionControls: [String]
+    storageAndPreservation: String
+    changeControlMethod: String
+    externalOrigin: Boolean
+    externalOriginSource: String
     communicationItems: [CommunicationItem]
   }
 
@@ -217,6 +382,11 @@ type CompetenceRecord
     status: String
     classification: String
     retentionPeriod: DurationType
+    distributionControls: [String]
+    storageAndPreservation: String
+    changeControlMethod: String
+    externalOrigin: Boolean
+    externalOriginSource: String
     personName: String
     personRole: String
     requiredCompetencies: [String]
@@ -269,6 +439,11 @@ interface DocumentedInformation
     status: String
     classification: String
     retentionPeriod: DurationType
+    distributionControls: [String]
+    storageAndPreservation: String
+    changeControlMethod: String
+    externalOrigin: Boolean
+    externalOriginSource: String
   }
 
 type ImprovementOpportunity
@@ -319,10 +494,10 @@ type InformationSecurityIncident
     modifiedDate: String
     version: String
     incidentDatetime: String
-    incidentCategory: String
-    severity: String
+    incidentCategory: SecurityIncidentCategory
+    severity: RiskLevel
     affectedAssets: [Asset]
-    affectedCia: [String]
+    affectedCia: [CIAProperty]
     incidentDescription: String
     detectionMethod: String
     responseActions: [String]
@@ -330,7 +505,7 @@ type InformationSecurityIncident
     eradicationActions: [String]
     recoveryActions: [String]
     rootCause: String
-    lessonsLearned: String
+    lessonsLearned: [String]
     evidenceCollected: [String]
     notificationRequired: Boolean
     notificationsMade: [String]
@@ -347,14 +522,22 @@ type InformationSecurityManagementSystem
     modifiedDate: String
     version: String
     organization: Organization
+    topManagement: String
+    governingBody: String
+    leadershipCommitmentEvidence: [String]
     scopeStatement: String
     scopeBoundaries: [String]
     scopeExclusions: [String]
+    interfacesAndDependencies: [String]
+    processesAndInteractions: String
     contextInternalIssues: [String]
     contextExternalIssues: [String]
     interestedParties: [InterestedParty]
     informationSecurityPolicy: InformationSecurityPolicy
     objectives: [InformationSecurityObjective]
+    risksAndOpportunitiesActions: [String]
+    plannedChanges: [String]
+    externallyProvidedServices: [String]
     riskAssessmentProcess: RiskAssessmentProcess
     riskTreatmentProcess: RiskTreatmentProcess
     statementOfApplicability: StatementOfApplicability
@@ -400,6 +583,7 @@ type InformationSecurityObjective
     relatedRisks: [Risk]
     relatedControls: [SecurityControl]
     actionPlan: String
+    objectiveResourcesRequired: String
   }
 
 type InformationSecurityPolicy
@@ -421,13 +605,21 @@ type InformationSecurityPolicy
     status: String
     classification: String
     retentionPeriod: DurationType
+    distributionControls: [String]
+    storageAndPreservation: String
+    changeControlMethod: String
+    externalOrigin: Boolean
+    externalOriginSource: String
     policyStatement: String
     policyObjectivesFramework: String
     commitmentStatements: [String]
     applicabilityStatement: String
     communicationDate: String
     acknowledgmentRequired: Boolean
+    lastPolicyReviewDate: String
+    nextPolicyReviewDate: String
     relatedTopicPolicies: [TopicSpecificPolicy]
+    integratedManagementSystems: [RelatedManagementSystem]
   }
 
 type InterestedParty
@@ -441,6 +633,8 @@ type InterestedParty
     partyType: String
     relationship: String
     requirements: [String]
+    addressedRequirements: [String]
+    climateChangeRelatedRequirements: [String]
     communicationNeeds: String
     contactInformation: String
   }
@@ -464,8 +658,13 @@ type InternalAudit
     status: String
     classification: String
     retentionPeriod: DurationType
+    distributionControls: [String]
+    storageAndPreservation: String
+    changeControlMethod: String
+    externalOrigin: Boolean
+    externalOriginSource: String
     auditReference: String
-    auditType: String
+    auditType: AuditType
     auditScope: String
     auditCriteria: [String]
     auditObjectives: [String]
@@ -500,14 +699,22 @@ type ManagementReview
     status: String
     classification: String
     retentionPeriod: DurationType
+    distributionControls: [String]
+    storageAndPreservation: String
+    changeControlMethod: String
+    externalOrigin: Boolean
+    externalOriginSource: String
     reviewDate: String
     attendees: [String]
     previousActionsStatus: String
     contextChanges: String
     interestedPartyChanges: String
+    interestedPartyFeedback: String
     performanceTrends: String
     auditResultsSummary: String
     riskAssessmentResults: String
+    riskTreatmentStatus: String
+    risksAndOpportunitiesChanges: String
     improvementOpportunities: [String]
     decisions: [String]
     actionItems: [String]
@@ -548,6 +755,11 @@ type MonitoringProgram
     status: String
     classification: String
     retentionPeriod: DurationType
+    distributionControls: [String]
+    storageAndPreservation: String
+    changeControlMethod: String
+    externalOrigin: Boolean
+    externalOriginSource: String
     monitoringItems: [MonitoringItem]
   }
 
@@ -603,6 +815,11 @@ type OperationalProcedure
     status: String
     classification: String
     retentionPeriod: DurationType
+    distributionControls: [String]
+    storageAndPreservation: String
+    changeControlMethod: String
+    externalOrigin: Boolean
+    externalOriginSource: String
     procedureScope: String
     processCriteria: String
     controlMeasures: [String]
@@ -660,7 +877,7 @@ type Risk
     threatDescription: String
     vulnerabilityDescription: String
     affectedAssets: [Asset]
-    affectedCiaProperties: [String]
+    affectedCiaProperties: [CIAProperty]
     riskOwner: String
     likelihood: LikelihoodRating
     impact: ImpactRating
@@ -691,6 +908,11 @@ type RiskAssessment
     status: String
     classification: String
     retentionPeriod: DurationType
+    distributionControls: [String]
+    storageAndPreservation: String
+    changeControlMethod: String
+    externalOrigin: Boolean
+    externalOriginSource: String
     assessmentScope: String
     assessmentDate: String
     assessor: String
@@ -720,6 +942,11 @@ type RiskAssessmentProcess
     status: String
     classification: String
     retentionPeriod: DurationType
+    distributionControls: [String]
+    storageAndPreservation: String
+    changeControlMethod: String
+    externalOrigin: Boolean
+    externalOriginSource: String
     riskAcceptanceCriteria: String
     assessmentCriteria: String
     assessmentMethodology: String
@@ -748,6 +975,11 @@ type RiskTreatmentPlan
     status: String
     classification: String
     retentionPeriod: DurationType
+    distributionControls: [String]
+    storageAndPreservation: String
+    changeControlMethod: String
+    externalOrigin: Boolean
+    externalOriginSource: String
     planScope: String
     risksAddressed: [Risk]
     treatmentActions: [String]
@@ -781,8 +1013,14 @@ type RiskTreatmentProcess
     status: String
     classification: String
     retentionPeriod: DurationType
+    distributionControls: [String]
+    storageAndPreservation: String
+    changeControlMethod: String
+    externalOrigin: Boolean
+    externalOriginSource: String
     treatmentOptionsGuidance: String
     controlSelectionCriteria: String
+    annexAOmissionVerification: String
     soaTemplate: String
     approvalWorkflow: String
   }
@@ -812,7 +1050,7 @@ type SecurityControl
     createdDate: String
     modifiedDate: String
     version: String
-    controlId: String
+    controlId: AnnexAControlId
     controlTitle: String
     controlCategory: ControlCategory
     controlText: String
@@ -858,6 +1096,11 @@ type StatementOfApplicability
     status: String
     classification: String
     retentionPeriod: DurationType
+    distributionControls: [String]
+    storageAndPreservation: String
+    changeControlMethod: String
+    externalOrigin: Boolean
+    externalOriginSource: String
     soaEntries: [SoAEntry]
     totalControls: UnsignedShortType
     implementedCount: UnsignedShortType
@@ -886,6 +1129,11 @@ type TopicSpecificPolicy
     status: String
     classification: String
     retentionPeriod: DurationType
+    distributionControls: [String]
+    storageAndPreservation: String
+    changeControlMethod: String
+    externalOrigin: Boolean
+    externalOriginSource: String
     topicArea: String
     parentPolicy: InformationSecurityPolicy
     applicableControls: [SecurityControl]

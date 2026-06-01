@@ -1,0 +1,27 @@
+# mapping_set_id: https://w3id.org/lmodel/iso27001/mappings/iso27001_to_cwe
+# mapping_set_version: 0.1.0
+# mapping_set_title: ISO/IEC 27001:2022 to CWE Mappings
+# mapping_set_description: Mappings between ISO/IEC 27001:2022 Annex A secure-development controls and MITRE CWE (Common Weakness Enumeration) weakness categories and entries. Enables source-code-analysis findings (categorised by CWE) to roll up to Annex A control gaps.
+# license: https://creativecommons.org/licenses/by/4.0/
+# subject_source: https://w3id.org/lmodel/iso27001
+# object_source: https://w3id.org/lmodel/cwe
+# mapping_date: 2026-06-01
+# curie_map:
+#   iso27001: https://w3id.org/lmodel/iso27001/
+#   cwe: https://w3id.org/lmodel/cwe/
+#   owl: http://www.w3.org/2002/07/owl#
+#   semapv: https://w3id.org/semapv/vocab/
+#   skos: http://www.w3.org/2004/02/skos/core#
+subject_id	subject_label	subject_category	predicate_id	predicate_label	object_id	object_label	object_category	mapping_justification	comment
+iso27001:Risk	Risk	owl:Class	skos:relatedMatch	related match	cwe:Weakness	Weakness	owl:Class	semapv:LLMBasedMatching	Risk may reference underlying CWE weaknesses
+iso27001:vulnerability_description	vulnerability_description	owl:DatatypeProperty	skos:relatedMatch	related match	cwe:Weakness	Weakness	owl:Class	semapv:LLMBasedMatching	Vulnerability description classified by CWE
+iso27001:AnnexAControlId#a_8_5	A.8.5 Secure authentication	skos:Concept	skos:relatedMatch	related match	cwe:cwe_287	CWE-287 Improper Authentication	skos:Concept	semapv:LLMBasedMatching	Authentication weaknesses
+iso27001:AnnexAControlId#a_8_3	A.8.3 Information access restriction	skos:Concept	skos:relatedMatch	related match	cwe:cwe_284	CWE-284 Improper Access Control	skos:Concept	semapv:LLMBasedMatching	Access control weaknesses
+iso27001:AnnexAControlId#a_8_24	A.8.24 Use of cryptography	skos:Concept	skos:relatedMatch	related match	cwe:cwe_327	CWE-327 Use of Broken or Risky Cryptographic Algorithm	skos:Concept	semapv:LLMBasedMatching	Cryptography weaknesses
+iso27001:AnnexAControlId#a_8_28	A.8.28 Secure coding	skos:Concept	skos:closeMatch	close match	cwe:cwe_1006	CWE-1006 Bad Coding Practices	skos:Concept	semapv:LLMBasedMatching	Secure coding addresses bad coding practices
+iso27001:AnnexAControlId#a_8_29	A.8.29 Security testing in development and acceptance	skos:Concept	skos:relatedMatch	related match	cwe:cwe_1008	CWE-1008 Architectural Concepts	skos:Concept	semapv:LLMBasedMatching	Architectural weaknesses found during testing
+iso27001:AnnexAControlId#a_8_27	A.8.27 Secure system architecture and engineering principles	skos:Concept	skos:relatedMatch	related match	cwe:cwe_1008	CWE-1008 Architectural Concepts	skos:Concept	semapv:LLMBasedMatching	Architectural design weaknesses
+iso27001:AnnexAControlId#a_8_26	A.8.26 Application security requirements	skos:Concept	skos:relatedMatch	related match	cwe:cwe_710	CWE-710 Improper Adherence to Coding Standards	skos:Concept	semapv:LLMBasedMatching	Requirements drive coding standards
+iso27001:AnnexAControlId#a_8_12	A.8.12 Data leakage prevention	skos:Concept	skos:relatedMatch	related match	cwe:cwe_200	CWE-200 Exposure of Sensitive Information	skos:Concept	semapv:LLMBasedMatching	Information exposure prevention
+iso27001:AnnexAControlId#a_8_9	A.8.9 Configuration management	skos:Concept	skos:relatedMatch	related match	cwe:cwe_16	CWE-16 Configuration	skos:Concept	semapv:LLMBasedMatching	Configuration weaknesses
+iso27001:AnnexAControlId#a_8_8	A.8.8 Management of technical vulnerabilities	skos:Concept	skos:relatedMatch	related match	cwe:cwe_1395	CWE-1395 Dependency on Vulnerable Third-Party Component	skos:Concept	semapv:LLMBasedMatching	Vulnerability management of third-party deps

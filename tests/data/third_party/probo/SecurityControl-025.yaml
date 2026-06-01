@@ -1,6 +1,6 @@
 id: iso27001:control-implement-visitor-access-policies
 name: Keep track of visitors
-control_id: "7.2"
+control_id: a_7_2
 control_title: Keep track of visitors
 control_category: physical
 control_text: >-

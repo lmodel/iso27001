@@ -1,6 +1,6 @@
 id: iso27001:control-privileged-access
 name: Privileged Access Rights Control
-control_id: "8.2"
+control_id: a_8_2
 control_title: Restrict and Monitor Privileged Access
 control_category: technological
 control_text: The organization restricts and monitors the allocation and use of privileged access rights to identity and directory systems.

@@ -1,6 +1,6 @@
 id: iso27001:control-set-up-dependancy-vulnerability-alerts
 name: Set-up dependancy vulnerability alerts
-control_id: "8.8"
+control_id: a_8_8
 control_title: Set-up dependancy vulnerability alerts
 control_category: technological
 control_text: >-

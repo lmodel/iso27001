@@ -1,6 +1,6 @@
 id: iso27001:control-require-signed-nda-with-critical-third-parties
 name: Require signed NDA with critical third parties
-control_id: "6.6"
+control_id: a_6_6
 control_title: Require signed NDA with critical third parties
 control_category: people
 control_text: >-

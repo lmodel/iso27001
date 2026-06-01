@@ -1,6 +1,6 @@
 id: iso27001:control-email-authentication
 name: Implement email authentication (DMARC)
-control_id: "8.7"
+control_id: a_8_7
 control_title: Implement email authentication (DMARC)
 control_category: technological
 control_text: >-

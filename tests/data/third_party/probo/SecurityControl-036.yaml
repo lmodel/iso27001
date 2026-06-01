@@ -1,6 +1,6 @@
 id: iso27001:control-enable-2fa-on-critical-services
 name: Enable 2FA on critical services
-control_id: "8.5"
+control_id: a_8_5
 control_title: Enable 2FA on critical services
 control_category: technological
 control_text: >-
