@@ -385,97 +385,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#permissible-values" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Permissible Values
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#slots" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Slots
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#in-subsets" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        In Subsets
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#identifier-and-mapping-information" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Identifier and Mapping Information
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Identifier and Mapping Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#annotations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Annotations
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#schema-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Schema Source
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#linkml-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        LinkML Source
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -497,79 +406,67 @@
 
 <h1 id="enum-risktreatmentoption">Enum: RiskTreatmentOption</h1>
 <p><em>Standard risk treatment options per ISO 31000 and ISO 27005.</em></p>
-<p>URI: <a href="https://w3id.org/lmodel/iso27001/RiskTreatmentOption">iso27001:RiskTreatmentOption</a></p>
-<h2 id="permissible-values">Permissible Values</h2>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Meaning</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>modify</td>
-<td>None</td>
-<td>Apply controls to change the risk level (reduce likelihood or impact)</td>
-</tr>
-<tr>
-<td>accept</td>
-<td>None</td>
-<td>Accept the risk without further treatment, within risk appetite</td>
-</tr>
-<tr>
-<td>avoid</td>
-<td>None</td>
-<td>Eliminate the risk by removing the activity or asset that creates it</td>
-</tr>
-<tr>
-<td>share</td>
-<td>None</td>
-<td>Transfer or share risk with external parties (e</td>
-</tr>
-</tbody>
-</table>
-<h2 id="slots">Slots</h2>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../risk_treatment_option/">risk_treatment_option</a></td>
-<td>Selected treatment option for the risk</td>
-</tr>
-</tbody>
-</table>
-<h2 id="in-subsets">In Subsets</h2>
-<ul>
-<li><a href="../RiskManagement/">RiskManagement</a></li>
-</ul>
-<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
-<h3 id="annotations">Annotations</h3>
-<table>
-<thead>
-<tr>
-<th>property</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>iso31000_reference</td>
-<td>Clause 6.5</td>
-</tr>
-</tbody>
-</table>
-<h3 id="schema-source">Schema Source</h3>
-<ul>
-<li>from schema: https://w3id.org/lmodel/iso27001</li>
-</ul>
-<h2 id="linkml-source">LinkML Source</h2>
+<div data-search-exclude markdown="1">
+
+URI: [iso27001:RiskTreatmentOption](https://w3id.org/lmodel/iso27001/RiskTreatmentOption)
+
+## Permissible Values
+| Value | Meaning | Description |
+| --- | --- | --- |
+| modify | None | Apply controls to change the risk level (reduce likelihood or impact) |
+| accept | None | Accept the risk without further treatment, within risk appetite |
+| avoid | None | Eliminate the risk by removing the activity or asset that creates it |
+| share | None | Transfer or share risk with external parties (e |
+
+
+
+
+## Slots
+
+| Name | Description |
+| ---  | --- |
+| [risk_treatment_option](risk_treatment_option.md) | Selected treatment option for the risk |
+
+
+
+
+
+
+## In Subsets
+
+
+* [RiskManagement](RiskManagement.md)
+
+
+
+
+
+
+## Identifier and Mapping Information
+
+
+
+### Annotations
+
+| property | value |
+| --- | --- |
+| iso31000_reference | Clause 6.5 |
+
+
+
+
+### Schema Source
+
+
+* from schema: https://w3id.org/lmodel/iso27001
+
+
+
+
+
+
+## LinkML Source
+
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RiskTreatmentOption</span>
 <span class="nt">annotations</span><span class="p">:</span>
@@ -580,6 +477,8 @@
 <span class="nt">in_subset</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">risk_management</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/iso27001</span>
+<span class="nt">exact_mappings</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iso42001:RiskTreatmentOption</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">permissible_values</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">modify</span><span class="p">:</span>
@@ -608,11 +507,16 @@
 </code></pre></div>
 </details>
 
+</div>
 
 
 
 
 
+
+
+  
+  
 
 
 

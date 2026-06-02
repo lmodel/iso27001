@@ -385,86 +385,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#permissible-values" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Permissible Values
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#slots" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Slots
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#in-subsets" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        In Subsets
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#identifier-and-mapping-information" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Identifier and Mapping Information
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Identifier and Mapping Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#schema-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Schema Source
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#linkml-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        LinkML Source
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -486,75 +406,69 @@
 
 <h1 id="enum-impactrating">Enum: ImpactRating</h1>
 <p><em>Qualitative impact scale for risk assessment.</em></p>
-<p>URI: <a href="https://w3id.org/lmodel/iso27001/ImpactRating">iso27001:ImpactRating</a></p>
-<h2 id="permissible-values">Permissible Values</h2>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Meaning</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>negligible</td>
-<td>None</td>
-<td>No significant impact on operations or objectives</td>
-</tr>
-<tr>
-<td>minor</td>
-<td>None</td>
-<td>Limited impact, easily absorbed by normal operations</td>
-</tr>
-<tr>
-<td>moderate</td>
-<td>None</td>
-<td>Noticeable impact requiring management intervention</td>
-</tr>
-<tr>
-<td>major</td>
-<td>None</td>
-<td>Serious impact on objectives, reputation, or compliance</td>
-</tr>
-<tr>
-<td>severe</td>
-<td>None</td>
-<td>Catastrophic impact threatening organizational viability</td>
-</tr>
-</tbody>
-</table>
-<h2 id="slots">Slots</h2>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../impact/">impact</a></td>
-<td>Assessed impact if risk materializes</td>
-</tr>
-</tbody>
-</table>
-<h2 id="in-subsets">In Subsets</h2>
-<ul>
-<li><a href="../RiskManagement/">RiskManagement</a></li>
-</ul>
-<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
-<h3 id="schema-source">Schema Source</h3>
-<ul>
-<li>from schema: https://w3id.org/lmodel/iso27001</li>
-</ul>
-<h2 id="linkml-source">LinkML Source</h2>
+<div data-search-exclude markdown="1">
+
+URI: [iso27001:ImpactRating](https://w3id.org/lmodel/iso27001/ImpactRating)
+
+## Permissible Values
+| Value | Meaning | Description |
+| --- | --- | --- |
+| negligible | None | No significant impact on operations or objectives |
+| minor | None | Limited impact, easily absorbed by normal operations |
+| moderate | None | Noticeable impact requiring management intervention |
+| major | None | Serious impact on objectives, reputation, or compliance |
+| severe | None | Catastrophic impact threatening organizational viability |
+
+
+
+
+## Slots
+
+| Name | Description |
+| ---  | --- |
+| [impact](impact.md) | Assessed impact if risk materializes |
+
+
+
+
+
+
+## In Subsets
+
+
+* [RiskManagement](RiskManagement.md)
+
+
+
+
+
+
+## Identifier and Mapping Information
+
+
+
+
+
+### Schema Source
+
+
+* from schema: https://w3id.org/lmodel/iso27001
+
+
+
+
+
+
+## LinkML Source
+
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ImpactRating</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Qualitative impact scale for risk assessment.</span>
 <span class="nt">in_subset</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">risk_management</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/iso27001</span>
+<span class="nt">exact_mappings</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iso42001:ImpactRating</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">permissible_values</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">negligible</span><span class="p">:</span>
@@ -595,11 +509,16 @@
 </code></pre></div>
 </details>
 
+</div>
 
 
 
 
 
+
+
+  
+  
 
 
 

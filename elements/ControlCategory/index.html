@@ -385,97 +385,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#permissible-values" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Permissible Values
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#slots" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Slots
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#in-subsets" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        In Subsets
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#identifier-and-mapping-information" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Identifier and Mapping Information
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Identifier and Mapping Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#annotations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Annotations
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#schema-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Schema Source
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#linkml-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        LinkML Source
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -497,79 +406,67 @@
 
 <h1 id="enum-controlcategory">Enum: ControlCategory</h1>
 <p><em>The four control domains defined in ISO/IEC 27001:2022 Annex A, corresponding to Clauses 5-8 of ISO/IEC 27002:2022.</em></p>
-<p>URI: <a href="https://w3id.org/lmodel/iso27001/ControlCategory">iso27001:ControlCategory</a></p>
-<h2 id="permissible-values">Permissible Values</h2>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Meaning</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>organizational</td>
-<td>None</td>
-<td>Organizational controls (Annex A</td>
-</tr>
-<tr>
-<td>people</td>
-<td>None</td>
-<td>People controls (Annex A</td>
-</tr>
-<tr>
-<td>physical</td>
-<td>None</td>
-<td>Physical controls (Annex A</td>
-</tr>
-<tr>
-<td>technological</td>
-<td>None</td>
-<td>Technological controls (Annex A</td>
-</tr>
-</tbody>
-</table>
-<h2 id="slots">Slots</h2>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../control_category/">control_category</a></td>
-<td>Domain category of the control</td>
-</tr>
-</tbody>
-</table>
-<h2 id="in-subsets">In Subsets</h2>
-<ul>
-<li><a href="../AnnexAControls/">AnnexAControls</a></li>
-</ul>
-<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
-<h3 id="annotations">Annotations</h3>
-<table>
-<thead>
-<tr>
-<th>property</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>iso27002_mapping</td>
-<td>Clauses 5-8</td>
-</tr>
-</tbody>
-</table>
-<h3 id="schema-source">Schema Source</h3>
-<ul>
-<li>from schema: https://w3id.org/lmodel/iso27001</li>
-</ul>
-<h2 id="linkml-source">LinkML Source</h2>
+<div data-search-exclude markdown="1">
+
+URI: [iso27001:ControlCategory](https://w3id.org/lmodel/iso27001/ControlCategory)
+
+## Permissible Values
+| Value | Meaning | Description |
+| --- | --- | --- |
+| organizational | None | Organizational controls (Annex A |
+| people | None | People controls (Annex A |
+| physical | None | Physical controls (Annex A |
+| technological | None | Technological controls (Annex A |
+
+
+
+
+## Slots
+
+| Name | Description |
+| ---  | --- |
+| [control_category](control_category.md) | Domain category of the control |
+
+
+
+
+
+
+## In Subsets
+
+
+* [AnnexAControls](AnnexAControls.md)
+
+
+
+
+
+
+## Identifier and Mapping Information
+
+
+
+### Annotations
+
+| property | value |
+| --- | --- |
+| iso27002_mapping | Clauses 5-8 |
+
+
+
+
+### Schema Source
+
+
+* from schema: https://w3id.org/lmodel/iso27001
+
+
+
+
+
+
+## LinkML Source
+
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ControlCategory</span>
 <span class="nt">annotations</span><span class="p">:</span>
@@ -630,11 +527,16 @@
 </code></pre></div>
 </details>
 
+</div>
 
 
 
 
 
+
+
+  
+  
 
 
 

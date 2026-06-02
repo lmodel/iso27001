@@ -385,86 +385,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#permissible-values" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Permissible Values
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#slots" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Slots
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#in-subsets" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        In Subsets
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#identifier-and-mapping-information" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Identifier and Mapping Information
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Identifier and Mapping Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#schema-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Schema Source
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#linkml-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        LinkML Source
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -486,70 +406,68 @@
 
 <h1 id="enum-auditfindingtype">Enum: AuditFindingType</h1>
 <p><em>Classification of internal audit findings.</em></p>
-<p>URI: <a href="https://w3id.org/lmodel/iso27001/AuditFindingType">iso27001:AuditFindingType</a></p>
-<h2 id="permissible-values">Permissible Values</h2>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Meaning</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>major_nonconformity</td>
-<td>None</td>
-<td>Significant failure to fulfill a requirement that affects ISMS capability to ...</td>
-</tr>
-<tr>
-<td>minor_nonconformity</td>
-<td>None</td>
-<td>Isolated lapse that does not significantly affect ISMS effectiveness</td>
-</tr>
-<tr>
-<td>observation</td>
-<td>None</td>
-<td>Noted condition that could lead to nonconformity if not addressed</td>
-</tr>
-<tr>
-<td>positive_finding</td>
-<td>None</td>
-<td>Evidence of effective implementation exceeding requirements</td>
-</tr>
-</tbody>
-</table>
-<h2 id="slots">Slots</h2>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../finding_type/">finding_type</a></td>
-<td>Type of audit finding</td>
-</tr>
-</tbody>
-</table>
-<h2 id="in-subsets">In Subsets</h2>
-<ul>
-<li><a href="../PerformanceEvaluation/">PerformanceEvaluation</a></li>
-</ul>
-<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
-<h3 id="schema-source">Schema Source</h3>
-<ul>
-<li>from schema: https://w3id.org/lmodel/iso27001</li>
-</ul>
-<h2 id="linkml-source">LinkML Source</h2>
+<div data-search-exclude markdown="1">
+
+URI: [iso27001:AuditFindingType](https://w3id.org/lmodel/iso27001/AuditFindingType)
+
+## Permissible Values
+| Value | Meaning | Description |
+| --- | --- | --- |
+| major_nonconformity | None | Significant failure to fulfill a requirement that affects ISMS capability to ... |
+| minor_nonconformity | None | Isolated lapse that does not significantly affect ISMS effectiveness |
+| observation | None | Noted condition that could lead to nonconformity if not addressed |
+| positive_finding | None | Evidence of effective implementation exceeding requirements |
+
+
+
+
+## Slots
+
+| Name | Description |
+| ---  | --- |
+| [finding_type](finding_type.md) | Type of audit finding |
+
+
+
+
+
+
+## In Subsets
+
+
+* [PerformanceEvaluation](PerformanceEvaluation.md)
+
+
+
+
+
+
+## Identifier and Mapping Information
+
+
+
+
+
+### Schema Source
+
+
+* from schema: https://w3id.org/lmodel/iso27001
+
+
+
+
+
+
+## LinkML Source
+
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AuditFindingType</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Classification of internal audit findings.</span>
 <span class="nt">in_subset</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">performance_evaluation</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/iso27001</span>
+<span class="nt">exact_mappings</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iso42001:AuditFindingType</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">permissible_values</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">major_nonconformity</span><span class="p">:</span>
@@ -570,11 +488,16 @@
 </code></pre></div>
 </details>
 
+</div>
 
 
 
 
 
+
+
+  
+  
 
 
 

@@ -385,86 +385,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#permissible-values" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Permissible Values
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#slots" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Slots
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#in-subsets" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        In Subsets
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#identifier-and-mapping-information" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Identifier and Mapping Information
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Identifier and Mapping Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#schema-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Schema Source
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#linkml-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        LinkML Source
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -486,85 +406,71 @@
 
 <h1 id="enum-documenttype">Enum: DocumentType</h1>
 <p><em>Categories of documented information required or recommended by ISO 27001.</em></p>
-<p>URI: <a href="https://w3id.org/lmodel/iso27001/DocumentType">iso27001:DocumentType</a></p>
-<h2 id="permissible-values">Permissible Values</h2>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Meaning</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>policy</td>
-<td>None</td>
-<td>High-level statement of intent and direction (e</td>
-</tr>
-<tr>
-<td>procedure</td>
-<td>None</td>
-<td>Documented steps for performing activities consistently</td>
-</tr>
-<tr>
-<td>standard</td>
-<td>None</td>
-<td>Mandatory requirements for specific technologies or processes</td>
-</tr>
-<tr>
-<td>guideline</td>
-<td>None</td>
-<td>Recommended practices that support policies and procedures</td>
-</tr>
-<tr>
-<td>record</td>
-<td>None</td>
-<td>Evidence of activities performed or results achieved</td>
-</tr>
-<tr>
-<td>plan</td>
-<td>None</td>
-<td>Documented approach for achieving objectives (e</td>
-</tr>
-<tr>
-<td>report</td>
-<td>None</td>
-<td>Formal output of assessment, audit, or review activities</td>
-</tr>
-</tbody>
-</table>
-<h2 id="slots">Slots</h2>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../document_type/">document_type</a></td>
-<td>Classification of the documented information</td>
-</tr>
-</tbody>
-</table>
-<h2 id="in-subsets">In Subsets</h2>
-<ul>
-<li><a href="../DocumentedInformation/">DocumentedInformation</a></li>
-</ul>
-<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
-<h3 id="schema-source">Schema Source</h3>
-<ul>
-<li>from schema: https://w3id.org/lmodel/iso27001</li>
-</ul>
-<h2 id="linkml-source">LinkML Source</h2>
+<div data-search-exclude markdown="1">
+
+URI: [iso27001:DocumentType](https://w3id.org/lmodel/iso27001/DocumentType)
+
+## Permissible Values
+| Value | Meaning | Description |
+| --- | --- | --- |
+| policy | None | High-level statement of intent and direction (e |
+| procedure | None | Documented steps for performing activities consistently |
+| standard | None | Mandatory requirements for specific technologies or processes |
+| guideline | None | Recommended practices that support policies and procedures |
+| record | None | Evidence of activities performed or results achieved |
+| plan | None | Documented approach for achieving objectives (e |
+| report | None | Formal output of assessment, audit, or review activities |
+
+
+
+
+## Slots
+
+| Name | Description |
+| ---  | --- |
+| [document_type](document_type.md) | Classification of the documented information |
+
+
+
+
+
+
+## In Subsets
+
+
+* [DocumentedInformation](DocumentedInformation.md)
+
+
+
+
+
+
+## Identifier and Mapping Information
+
+
+
+
+
+### Schema Source
+
+
+* from schema: https://w3id.org/lmodel/iso27001
+
+
+
+
+
+
+## LinkML Source
+
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DocumentType</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Categories of documented information required or recommended by ISO 27001.</span>
 <span class="nt">in_subset</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">documented_information</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/iso27001</span>
+<span class="nt">exact_mappings</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iso42001:DocumentType</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">permissible_values</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">policy</span><span class="p">:</span>
@@ -593,11 +499,16 @@
 </code></pre></div>
 </details>
 
+</div>
 
 
 
 
 
+
+
+  
+  
 
 
 
