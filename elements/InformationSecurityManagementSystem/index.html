@@ -196,6 +196,119 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inheritance">
+<span class="md-ellipsis">
+      
+        Inheritance
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#slots">
+<span class="md-ellipsis">
+      
+        Slots
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#in-subsets">
+<span class="md-ellipsis">
+      
+        In Subsets
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#comments">
+<span class="md-ellipsis">
+      
+        Comments
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#identifier-and-mapping-information">
+<span class="md-ellipsis">
+      
+        Identifier and Mapping Information
+      
+    </span>
+</a>
+<nav aria-label="Identifier and Mapping Information" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#annotations">
+<span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schema-source">
+<span class="md-ellipsis">
+      
+        Schema Source
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mappings">
+<span class="md-ellipsis">
+      
+        Mappings
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#linkml-source">
+<span class="md-ellipsis">
+      
+        LinkML Source
+      
+    </span>
+</a>
+<nav aria-label="LinkML Source" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#direct">
+<span class="md-ellipsis">
+      
+        Direct
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#induced">
+<span class="md-ellipsis">
+      
+        Induced
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -204,16 +317,8 @@
 <article class="md-content__inner md-typeset">
 <h1 id="class-informationsecuritymanagementsystem">Class: InformationSecurityManagementSystem</h1>
 <p><em>Top-level container representing an organization's complete ISMS per ISO 27001. Aggregates all components required to support the full ISMS lifecycle.</em></p>
-<div data-search-exclude="" markdown="1">
-
-
-
-URI: [iso27001:InformationSecurityManagementSystem](https://w3id.org/lmodel/iso27001/InformationSecurityManagementSystem)
-
-
-
-
-
+<div>
+<p>URI: <a href="https://w3id.org/lmodel/iso27001/InformationSecurityManagementSystem">iso27001:InformationSecurityManagementSystem</a></p>
 <pre class="mermaid"><code> classDiagram
     class InformationSecurityManagementSystem
     click InformationSecurityManagementSystem href "../InformationSecurityManagementSystem/"
@@ -520,136 +625,367 @@ URI: [iso27001:InformationSecurityManagementSystem](https://w3id.org/lmodel/iso2
       InformationSecurityManagementSystem : version
 
 </code></pre>
-
-
-
-
-
-## Inheritance
-* [NamedEntity](NamedEntity.md)
-    * **InformationSecurityManagementSystem**
-
-
-## Slots
-
-| Name | Cardinality and Range | Description | Inheritance |
-| ---  | --- | --- | --- |
-| [organization](organization.md) | 0..1 <br/> [Organization](Organization.md) | Reference to the organization operating the ISMS | direct |
-| [top_management](top_management.md) | 0..1 <br/> [String](String.md) | The person or group of people who direct and control the organization at the ... | direct |
-| [governing_body](governing_body.md) | 0..1 <br/> [String](String.md) | The governing body to which top management reports, where applicable (e | direct |
-| [leadership_commitment_evidence](leadership_commitment_evidence.md) | * <br/> [String](String.md) | Evidence of leadership and commitment with respect to the ISMS as required by... | direct |
-| [scope_statement](scope_statement.md) | 0..1 <br/> [String](String.md) | Documented statement of ISMS scope per 4 | direct |
-| [scope_boundaries](scope_boundaries.md) | * <br/> [String](String.md) | Defined boundaries of the ISMS scope | direct |
-| [scope_exclusions](scope_exclusions.md) | * <br/> [String](String.md) | Any exclusions from scope with justification | direct |
-| [interfaces_and_dependencies](interfaces_and_dependencies.md) | * <br/> [String](String.md) | Interfaces and dependencies between activities performed by the organization ... | direct |
-| [processes_and_interactions](processes_and_interactions.md) | 0..1 <br/> [String](String.md) | Description of the processes needed for the ISMS and their interactions, per ... | direct |
-| [context_internal_issues](context_internal_issues.md) | * <br/> [String](String.md) | Internal issues relevant to ISMS per 4 | direct |
-| [context_external_issues](context_external_issues.md) | * <br/> [String](String.md) | External issues relevant to ISMS per 4 | direct |
-| [interested_parties](interested_parties.md) | * <br/> [InterestedParty](InterestedParty.md) | Stakeholders relevant to the ISMS | direct |
-| [information_security_policy](information_security_policy.md) | 0..1 <br/> [InformationSecurityPolicy](InformationSecurityPolicy.md) | Reference to the information security policy | direct |
-| [objectives](objectives.md) | * <br/> [InformationSecurityObjective](InformationSecurityObjective.md) | Information security objectives | direct |
-| [risks_and_opportunities_actions](risks_and_opportunities_actions.md) | * <br/> [String](String.md) | Actions to address risks and opportunities determined per Clause 6 | direct |
-| [planned_changes](planned_changes.md) | * <br/> [String](String.md) | Changes to the ISMS planned and controlled per Clause 6 | direct |
-| [externally_provided_services](externally_provided_services.md) | * <br/> [String](String.md) | Externally provided processes, products or services relevant to the ISMS that... | direct |
-| [risk_assessment_process](risk_assessment_process.md) | 0..1 <br/> [RiskAssessmentProcess](RiskAssessmentProcess.md) | Reference to the risk assessment process | direct |
-| [risk_treatment_process](risk_treatment_process.md) | 0..1 <br/> [RiskTreatmentProcess](RiskTreatmentProcess.md) | Reference to the risk treatment process | direct |
-| [statement_of_applicability](statement_of_applicability.md) | 0..1 <br/> [StatementOfApplicability](StatementOfApplicability.md) | Reference to the Statement of Applicability | direct |
-| [controls](controls.md) | * <br/> [SecurityControl](SecurityControl.md) | Security controls applied in the ISMS | direct |
-| [roles](roles.md) | * <br/> [Role](Role.md) | Information security roles defined in the ISMS | direct |
-| [resources](resources.md) | * <br/> [Resource](Resource.md) | Resources provided for the ISMS | direct |
-| [competence_records](competence_records.md) | * <br/> [CompetenceRecord](CompetenceRecord.md) | Competence records for personnel | direct |
-| [awareness_program](awareness_program.md) | 0..1 <br/> [AwarenessProgram](AwarenessProgram.md) | Reference to the awareness program | direct |
-| [communication_plan](communication_plan.md) | 0..1 <br/> [CommunicationPlan](CommunicationPlan.md) | Reference to the communication plan | direct |
-| [documented_information_register](documented_information_register.md) | * <br/> [DocumentedInformation](DocumentedInformation.md) | Register of documented information | direct |
-| [operational_procedures](operational_procedures.md) | * <br/> [OperationalProcedure](OperationalProcedure.md) | Operational procedures | direct |
-| [risk_assessments](risk_assessments.md) | * <br/> [RiskAssessment](RiskAssessment.md) | Risk assessment instances | direct |
-| [risk_treatment_plans](risk_treatment_plans.md) | * <br/> [RiskTreatmentPlan](RiskTreatmentPlan.md) | Risk treatment plans | direct |
-| [monitoring_program](monitoring_program.md) | 0..1 <br/> [MonitoringProgram](MonitoringProgram.md) | Reference to the monitoring program | direct |
-| [internal_audits](internal_audits.md) | * <br/> [InternalAudit](InternalAudit.md) | Internal audit instances | direct |
-| [management_reviews](management_reviews.md) | * <br/> [ManagementReview](ManagementReview.md) | Management review instances | direct |
-| [nonconformities](nonconformities.md) | * <br/> [Nonconformity](Nonconformity.md) | Nonconformities identified | direct |
-| [corrective_actions](corrective_actions.md) | * <br/> [CorrectiveAction](CorrectiveAction.md) | Corrective actions | direct |
-| [improvements](improvements.md) | * <br/> [ImprovementOpportunity](ImprovementOpportunity.md) | Improvement opportunities tracked | direct |
-| [certification_status](certification_status.md) | 0..1 <br/> [String](String.md) | Current certification status | direct |
-| [certification_body](certification_body.md) | 0..1 <br/> [String](String.md) | Accredited certification body | direct |
-| [certification_date](certification_date.md) | 0..1 <br/> [Date](Date.md) | Date certification was achieved | direct |
-| [recertification_date](recertification_date.md) | 0..1 <br/> [Date](Date.md) | Date recertification is due | direct |
-| [id](id.md) | 1 <br/> [Uriorcurie](Uriorcurie.md) | Unique identifier for this entity instance | [NamedEntity](NamedEntity.md) |
-| [name](name.md) | 1 <br/> [String](String.md) | Human-readable name or title | [NamedEntity](NamedEntity.md) |
-| [description](description.md) | 0..1 <br/> [String](String.md) | Detailed description of the entity | [NamedEntity](NamedEntity.md) |
-| [created_date](created_date.md) | 0..1 <br/> [Date](Date.md) | Date when the entity was created | [NamedEntity](NamedEntity.md) |
-| [modified_date](modified_date.md) | 0..1 <br/> [Date](Date.md) | Date when the entity was last modified | [NamedEntity](NamedEntity.md) |
-| [version](version.md) | 0..1 <br/> [String](String.md) | Version identifier for the entity | [NamedEntity](NamedEntity.md) |
-
-
-
-
-
-
-
-
-
-
-
-## In Subsets
-
-
-* [IsmsCore](IsmsCore.md)
-
-
-
-
-## Comments
-
-* This is the root entity for any ISMS conformance dataset
-* Aggregates ISMS processes and their relationships
-* Includes explicit scope metadata and related governance artifacts
-* Reference: ISO/IEC 27001:2022 Clause 4.4. ISO/IEC standards text is copyright ISO - not reproduced here.
-
-
-
-## Identifier and Mapping Information
-
-
-
-### Annotations
-
-| property | value |
-| --- | --- |
-| iso27001_clause | 4.4 |
-| mandatory | true |
-
-
-
-
-### Schema Source
-
-
-* from schema: https://w3id.org/lmodel/iso27001
-
-
-
-
-## Mappings
-
-| Mapping Type | Mapped Value |
-| ---  | ---  |
-| self | iso27001:InformationSecurityManagementSystem |
-| native | iso27001:InformationSecurityManagementSystem |
-| related | cis_controls:CISControlsDocument, iso29100:PrivacyFramework, nist_csf_v2:CSFDocument |
-| close | iso42001:AIManagementSystem, oscal:SystemSecurityPlan |
-
-
-
-
-
-
-## LinkML Source
-
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../NamedEntity/">NamedEntity</a><ul>
+<li><strong>InformationSecurityManagementSystem</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Cardinality and Range</th>
+<th>Description</th>
+<th>Inheritance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../organization/">organization</a></td>
+<td>0..1 <br/> <a href="../Organization/">Organization</a></td>
+<td>Reference to the organization operating the ISMS</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../top_management/">top_management</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The person or group of people who direct and control the organization at the ...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../governing_body/">governing_body</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The governing body to which top management reports, where applicable (e</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../leadership_commitment_evidence/">leadership_commitment_evidence</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Evidence of leadership and commitment with respect to the ISMS as required by...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../scope_statement/">scope_statement</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Documented statement of ISMS scope per 4</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../scope_boundaries/">scope_boundaries</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Defined boundaries of the ISMS scope</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../scope_exclusions/">scope_exclusions</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Any exclusions from scope with justification</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../interfaces_and_dependencies/">interfaces_and_dependencies</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Interfaces and dependencies between activities performed by the organization ...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../processes_and_interactions/">processes_and_interactions</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Description of the processes needed for the ISMS and their interactions, per ...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../context_internal_issues/">context_internal_issues</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Internal issues relevant to ISMS per 4</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../context_external_issues/">context_external_issues</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>External issues relevant to ISMS per 4</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../interested_parties/">interested_parties</a></td>
+<td>* <br/> <a href="../InterestedParty/">InterestedParty</a></td>
+<td>Stakeholders relevant to the ISMS</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../information_security_policy/">information_security_policy</a></td>
+<td>0..1 <br/> <a href="../InformationSecurityPolicy/">InformationSecurityPolicy</a></td>
+<td>Reference to the information security policy</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../objectives/">objectives</a></td>
+<td>* <br/> <a href="../InformationSecurityObjective/">InformationSecurityObjective</a></td>
+<td>Information security objectives</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../risks_and_opportunities_actions/">risks_and_opportunities_actions</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Actions to address risks and opportunities determined per Clause 6</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../planned_changes/">planned_changes</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Changes to the ISMS planned and controlled per Clause 6</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../externally_provided_services/">externally_provided_services</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Externally provided processes, products or services relevant to the ISMS that...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../risk_assessment_process/">risk_assessment_process</a></td>
+<td>0..1 <br/> <a href="../RiskAssessmentProcess/">RiskAssessmentProcess</a></td>
+<td>Reference to the risk assessment process</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../risk_treatment_process/">risk_treatment_process</a></td>
+<td>0..1 <br/> <a href="../RiskTreatmentProcess/">RiskTreatmentProcess</a></td>
+<td>Reference to the risk treatment process</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../statement_of_applicability/">statement_of_applicability</a></td>
+<td>0..1 <br/> <a href="../StatementOfApplicability/">StatementOfApplicability</a></td>
+<td>Reference to the Statement of Applicability</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../controls/">controls</a></td>
+<td>* <br/> <a href="../SecurityControl/">SecurityControl</a></td>
+<td>Security controls applied in the ISMS</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../roles/">roles</a></td>
+<td>* <br/> <a href="../Role/">Role</a></td>
+<td>Information security roles defined in the ISMS</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../resources/">resources</a></td>
+<td>* <br/> <a href="../Resource/">Resource</a></td>
+<td>Resources provided for the ISMS</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../competence_records/">competence_records</a></td>
+<td>* <br/> <a href="../CompetenceRecord/">CompetenceRecord</a></td>
+<td>Competence records for personnel</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../awareness_program/">awareness_program</a></td>
+<td>0..1 <br/> <a href="../AwarenessProgram/">AwarenessProgram</a></td>
+<td>Reference to the awareness program</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../communication_plan/">communication_plan</a></td>
+<td>0..1 <br/> <a href="../CommunicationPlan/">CommunicationPlan</a></td>
+<td>Reference to the communication plan</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../documented_information_register/">documented_information_register</a></td>
+<td>* <br/> <a href="../DocumentedInformation/">DocumentedInformation</a></td>
+<td>Register of documented information</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../operational_procedures/">operational_procedures</a></td>
+<td>* <br/> <a href="../OperationalProcedure/">OperationalProcedure</a></td>
+<td>Operational procedures</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../risk_assessments/">risk_assessments</a></td>
+<td>* <br/> <a href="../RiskAssessment/">RiskAssessment</a></td>
+<td>Risk assessment instances</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../risk_treatment_plans/">risk_treatment_plans</a></td>
+<td>* <br/> <a href="../RiskTreatmentPlan/">RiskTreatmentPlan</a></td>
+<td>Risk treatment plans</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../monitoring_program/">monitoring_program</a></td>
+<td>0..1 <br/> <a href="../MonitoringProgram/">MonitoringProgram</a></td>
+<td>Reference to the monitoring program</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../internal_audits/">internal_audits</a></td>
+<td>* <br/> <a href="../InternalAudit/">InternalAudit</a></td>
+<td>Internal audit instances</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../management_reviews/">management_reviews</a></td>
+<td>* <br/> <a href="../ManagementReview/">ManagementReview</a></td>
+<td>Management review instances</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../nonconformities/">nonconformities</a></td>
+<td>* <br/> <a href="../Nonconformity/">Nonconformity</a></td>
+<td>Nonconformities identified</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../corrective_actions/">corrective_actions</a></td>
+<td>* <br/> <a href="../CorrectiveAction/">CorrectiveAction</a></td>
+<td>Corrective actions</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../improvements/">improvements</a></td>
+<td>* <br/> <a href="../ImprovementOpportunity/">ImprovementOpportunity</a></td>
+<td>Improvement opportunities tracked</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../certification_status/">certification_status</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Current certification status</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../certification_body/">certification_body</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Accredited certification body</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../certification_date/">certification_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date certification was achieved</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../recertification_date/">recertification_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date recertification is due</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../id/">id</a></td>
+<td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>Unique identifier for this entity instance</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../name/">name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Human-readable name or title</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../description/">description</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Detailed description of the entity</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../created_date/">created_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the entity was created</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../modified_date/">modified_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the entity was last modified</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../version/">version</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Version identifier for the entity</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-subsets">In Subsets</h2>
+<ul>
+<li><a href="../IsmsCore/">IsmsCore</a></li>
+</ul>
+<h2 id="comments">Comments</h2>
+<ul>
+<li>This is the root entity for any ISMS conformance dataset</li>
+<li>Aggregates ISMS processes and their relationships</li>
+<li>Includes explicit scope metadata and related governance artifacts</li>
+<li>Reference: ISO/IEC 27001:2022 Clause 4.4. ISO/IEC standards text is copyright ISO - not reproduced here.</li>
+</ul>
+<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="annotations">Annotations</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iso27001_clause</td>
+<td>4.4</td>
+</tr>
+<tr>
+<td>mandatory</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://w3id.org/lmodel/iso27001</li>
+</ul>
+<h2 id="mappings">Mappings</h2>
+<table>
+<thead>
+<tr>
+<th>Mapping Type</th>
+<th>Mapped Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>iso27001:InformationSecurityManagementSystem</td>
+</tr>
+<tr>
+<td>native</td>
+<td>iso27001:InformationSecurityManagementSystem</td>
+</tr>
+<tr>
+<td>related</td>
+<td>cis_controls:CISControlsDocument, iso29100:PrivacyFramework, nist_csf_v2:CSFDocument</td>
+</tr>
+<tr>
+<td>close</td>
+<td>iso42001:AIManagementSystem, oscal:SystemSecurityPlan</td>
+</tr>
+</tbody>
+</table>
+<h2 id="linkml-source">LinkML Source</h2>
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
-
-### Direct
-
+<h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InformationSecurityManagementSystem</span>
 <span class="nt">annotations</span><span class="p">:</span>
@@ -721,9 +1057,7 @@ URI: [iso27001:InformationSecurityManagementSystem](https://w3id.org/lmodel/iso2
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">recertification_date</span>
 </code></pre></div>
 </details>
-
-### Induced
-
+<h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InformationSecurityManagementSystem</span>
 <span class="nt">annotations</span><span class="p">:</span>
@@ -1345,7 +1679,8 @@ URI: [iso27001:InformationSecurityManagementSystem](https://w3id.org/lmodel/iso2
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
-</details></div>
+</details>
+</div>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>

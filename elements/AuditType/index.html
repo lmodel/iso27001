@@ -385,6 +385,97 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#permissible-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permissible Values
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slots
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-subsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In Subsets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifier-and-mapping-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identifier and Mapping Information
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identifier and Mapping Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Source
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linkml-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LinkML Source
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -406,69 +497,90 @@
 
 <h1 id="enum-audittype">Enum: AuditType</h1>
 <p><em>Classification of audits referenced by ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1 (audit programmes).</em></p>
-<div data-search-exclude markdown="1">
-
-URI: [iso27001:AuditType](https://w3id.org/lmodel/iso27001/AuditType)
-
-## Permissible Values
-| Value | Meaning | Description |
-| --- | --- | --- |
-| internal | None | First-party audit conducted by the organization itself per 9 |
-| external_second_party | None | Audit conducted by a party with an interest in the organization (e |
-| external_third_party | None | Independent audit by a certification body or other third party |
-| surveillance | None | Periodic third-party audit between certification and recertification |
-| recertification | None | Third-party audit conducted to renew certification |
-| combined | None | Audit performed jointly against two or more management system standards |
-
-
-
-
-## Slots
-
-| Name | Description |
-| ---  | --- |
-| [audit_type](audit_type.md) | Type of audit per ISO/IEC 27001:2022 Clause 9 |
-
-
-
-
-
-
-## In Subsets
-
-
-* [PerformanceEvaluation](PerformanceEvaluation.md)
-
-
-
-
-
-
-## Identifier and Mapping Information
-
-
-
-### Annotations
-
-| property | value |
-| --- | --- |
-| iso27001_clause | 9.2 |
-
-
-
-
-### Schema Source
-
-
-* from schema: https://w3id.org/lmodel/iso27001
-
-
-
-
-
-
-## LinkML Source
-
+<div>
+<p>URI: <a href="https://w3id.org/lmodel/iso27001/AuditType">iso27001:AuditType</a></p>
+<h2 id="permissible-values">Permissible Values</h2>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>internal</td>
+<td>None</td>
+<td>First-party audit conducted by the organization itself per 9</td>
+</tr>
+<tr>
+<td>external_second_party</td>
+<td>None</td>
+<td>Audit conducted by a party with an interest in the organization (e</td>
+</tr>
+<tr>
+<td>external_third_party</td>
+<td>None</td>
+<td>Independent audit by a certification body or other third party</td>
+</tr>
+<tr>
+<td>surveillance</td>
+<td>None</td>
+<td>Periodic third-party audit between certification and recertification</td>
+</tr>
+<tr>
+<td>recertification</td>
+<td>None</td>
+<td>Third-party audit conducted to renew certification</td>
+</tr>
+<tr>
+<td>combined</td>
+<td>None</td>
+<td>Audit performed jointly against two or more management system standards</td>
+</tr>
+</tbody>
+</table>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../audit_type/">audit_type</a></td>
+<td>Type of audit per ISO/IEC 27001:2022 Clause 9</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-subsets">In Subsets</h2>
+<ul>
+<li><a href="../PerformanceEvaluation/">PerformanceEvaluation</a></li>
+</ul>
+<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="annotations">Annotations</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iso27001_clause</td>
+<td>9.2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://w3id.org/lmodel/iso27001</li>
+</ul>
+<h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AuditType</span>
 <span class="nt">annotations</span><span class="p">:</span>
@@ -505,7 +617,6 @@ URI: [iso27001:AuditType](https://w3id.org/lmodel/iso27001/AuditType)
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Audit performed jointly against two or more management system standards.</span>
 </code></pre></div>
 </details>
-
 </div>
 
 

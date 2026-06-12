@@ -196,6 +196,128 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inheritance">
+<span class="md-ellipsis">
+      
+        Inheritance
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#slots">
+<span class="md-ellipsis">
+      
+        Slots
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#usages">
+<span class="md-ellipsis">
+      
+        Usages
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#in-subsets">
+<span class="md-ellipsis">
+      
+        In Subsets
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#comments">
+<span class="md-ellipsis">
+      
+        Comments
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#identifier-and-mapping-information">
+<span class="md-ellipsis">
+      
+        Identifier and Mapping Information
+      
+    </span>
+</a>
+<nav aria-label="Identifier and Mapping Information" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#annotations">
+<span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schema-source">
+<span class="md-ellipsis">
+      
+        Schema Source
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mappings">
+<span class="md-ellipsis">
+      
+        Mappings
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#linkml-source">
+<span class="md-ellipsis">
+      
+        LinkML Source
+      
+    </span>
+</a>
+<nav aria-label="LinkML Source" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#direct">
+<span class="md-ellipsis">
+      
+        Direct
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#induced">
+<span class="md-ellipsis">
+      
+        Induced
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -204,16 +326,8 @@
 <article class="md-content__inner md-typeset">
 <h1 id="class-communicationplan">Class: CommunicationPlan</h1>
 <p><em>Plan for internal and external communications relevant to the ISMS per Clause 7.4.</em></p>
-<div data-search-exclude="" markdown="1">
-
-
-
-URI: [iso27001:CommunicationPlan](https://w3id.org/lmodel/iso27001/CommunicationPlan)
-
-
-
-
-
+<div>
+<p>URI: <a href="https://w3id.org/lmodel/iso27001/CommunicationPlan">iso27001:CommunicationPlan</a></p>
 <pre class="mermaid"><code> classDiagram
     class CommunicationPlan
     click CommunicationPlan href "../CommunicationPlan/"
@@ -285,118 +399,242 @@ URI: [iso27001:CommunicationPlan](https://w3id.org/lmodel/iso27001/Communication
       CommunicationPlan : version
 
 </code></pre>
-
-
-
-
-
-## Inheritance
-* [NamedEntity](NamedEntity.md)
-    * [DocumentedInformation](DocumentedInformation.md)
-        * **CommunicationPlan**
-
-
-## Slots
-
-| Name | Cardinality and Range | Description | Inheritance |
-| ---  | --- | --- | --- |
-| [communication_items](communication_items.md) | * <br/> [CommunicationItem](CommunicationItem.md) | Communication items in the plan | direct |
-| [document_type](document_type.md) | 0..1 <br/> [DocumentType](DocumentType.md) | Classification of the documented information | [DocumentedInformation](DocumentedInformation.md) |
-| [document_reference](document_reference.md) | 0..1 <br/> [String](String.md) | Unique reference number for document control | [DocumentedInformation](DocumentedInformation.md) |
-| [author](author.md) | 0..1 <br/> [String](String.md) | Person who created the document | [DocumentedInformation](DocumentedInformation.md) |
-| [owner](owner.md) | 0..1 <br/> [String](String.md) | Person accountable for the document content and maintenance | [DocumentedInformation](DocumentedInformation.md) |
-| [approved_by](approved_by.md) | 0..1 <br/> [String](String.md) | Person who approved the document | [DocumentedInformation](DocumentedInformation.md) |
-| [approved_date](approved_date.md) | 0..1 <br/> [Date](Date.md) | Date when the document was approved | [DocumentedInformation](DocumentedInformation.md) |
-| [effective_date](effective_date.md) | 0..1 <br/> [Date](Date.md) | Date when the document becomes effective | [DocumentedInformation](DocumentedInformation.md) |
-| [review_date](review_date.md) | 0..1 <br/> [Date](Date.md) | Date when the document is due for review | [DocumentedInformation](DocumentedInformation.md) |
-| [status](status.md) | 0..1 <br/> [String](String.md) | Current status of the document or entity | [DocumentedInformation](DocumentedInformation.md) |
-| [classification](classification.md) | 0..1 <br/> [String](String.md) | Information classification level | [DocumentedInformation](DocumentedInformation.md) |
-| [retention_period](retention_period.md) | 0..1 <br/> [DurationType](DurationType.md) | Duration for which the document is retained | [DocumentedInformation](DocumentedInformation.md) |
-| [distribution_controls](distribution_controls.md) | * <br/> [String](String.md) | Controls governing distribution, access, retrieval and use of the documented ... | [DocumentedInformation](DocumentedInformation.md) |
-| [storage_and_preservation](storage_and_preservation.md) | 0..1 <br/> [String](String.md) | Arrangements for storage and preservation (including preservation of legibili... | [DocumentedInformation](DocumentedInformation.md) |
-| [change_control_method](change_control_method.md) | 0..1 <br/> [String](String.md) | Method used for control of changes (e | [DocumentedInformation](DocumentedInformation.md) |
-| [external_origin](external_origin.md) | 0..1 <br/> [Boolean](Boolean.md) | Whether the documented information is of external origin and has been identif... | [DocumentedInformation](DocumentedInformation.md) |
-| [external_origin_source](external_origin_source.md) | 0..1 <br/> [String](String.md) | Source or provider of the externally originated documented information, per C... | [DocumentedInformation](DocumentedInformation.md) |
-| [id](id.md) | 1 <br/> [Uriorcurie](Uriorcurie.md) | Unique identifier for this entity instance | [NamedEntity](NamedEntity.md) |
-| [name](name.md) | 1 <br/> [String](String.md) | Human-readable name or title | [NamedEntity](NamedEntity.md) |
-| [description](description.md) | 0..1 <br/> [String](String.md) | Detailed description of the entity | [NamedEntity](NamedEntity.md) |
-| [created_date](created_date.md) | 0..1 <br/> [Date](Date.md) | Date when the entity was created | [NamedEntity](NamedEntity.md) |
-| [modified_date](modified_date.md) | 0..1 <br/> [Date](Date.md) | Date when the entity was last modified | [NamedEntity](NamedEntity.md) |
-| [version](version.md) | 0..1 <br/> [String](String.md) | Version identifier for the entity | [NamedEntity](NamedEntity.md) |
-
-
-
-
-
-## Usages
-
-| used by | used in | type | used |
-| ---  | --- | --- | --- |
-| [InformationSecurityManagementSystem](InformationSecurityManagementSystem.md) | [communication_plan](communication_plan.md) | range | [CommunicationPlan](CommunicationPlan.md) |
-
-
-
-
-
-
-
-
-## In Subsets
-
-
-* [IsmsCore](IsmsCore.md)
-* [DocumentedInformation](DocumentedInformation.md)
-
-
-
-
-## Comments
-
-* Captures communication scope, timing, audience, and channels
-* Reference: ISO/IEC 27001:2022 Clause 7.4. ISO/IEC standards text is copyright ISO - not reproduced here.
-
-
-
-## Identifier and Mapping Information
-
-
-
-### Annotations
-
-| property | value |
-| --- | --- |
-| iso27001_clause | 7.4 |
-
-
-
-
-### Schema Source
-
-
-* from schema: https://w3id.org/lmodel/iso27001
-
-
-
-
-## Mappings
-
-| Mapping Type | Mapped Value |
-| ---  | ---  |
-| self | iso27001:CommunicationPlan |
-| native | iso27001:CommunicationPlan |
-| exact | iso42001:CommunicationPlan |
-
-
-
-
-
-
-## LinkML Source
-
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../NamedEntity/">NamedEntity</a><ul>
+<li><a href="../DocumentedInformation/">DocumentedInformation</a><ul>
+<li><strong>CommunicationPlan</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Cardinality and Range</th>
+<th>Description</th>
+<th>Inheritance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../communication_items/">communication_items</a></td>
+<td>* <br/> <a href="../CommunicationItem/">CommunicationItem</a></td>
+<td>Communication items in the plan</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../document_type/">document_type</a></td>
+<td>0..1 <br/> <a href="../DocumentType/">DocumentType</a></td>
+<td>Classification of the documented information</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../document_reference/">document_reference</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Unique reference number for document control</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../author/">author</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Person who created the document</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../owner/">owner</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Person accountable for the document content and maintenance</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../approved_by/">approved_by</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Person who approved the document</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../approved_date/">approved_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the document was approved</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../effective_date/">effective_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the document becomes effective</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../review_date/">review_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the document is due for review</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../status/">status</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Current status of the document or entity</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../classification/">classification</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Information classification level</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../retention_period/">retention_period</a></td>
+<td>0..1 <br/> <a href="../DurationType/">DurationType</a></td>
+<td>Duration for which the document is retained</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../distribution_controls/">distribution_controls</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Controls governing distribution, access, retrieval and use of the documented ...</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../storage_and_preservation/">storage_and_preservation</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Arrangements for storage and preservation (including preservation of legibili...</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../change_control_method/">change_control_method</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Method used for control of changes (e</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../external_origin/">external_origin</a></td>
+<td>0..1 <br/> <a href="../Boolean/">Boolean</a></td>
+<td>Whether the documented information is of external origin and has been identif...</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../external_origin_source/">external_origin_source</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Source or provider of the externally originated documented information, per C...</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../id/">id</a></td>
+<td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>Unique identifier for this entity instance</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../name/">name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Human-readable name or title</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../description/">description</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Detailed description of the entity</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../created_date/">created_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the entity was created</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../modified_date/">modified_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the entity was last modified</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../version/">version</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Version identifier for the entity</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="usages">Usages</h2>
+<table>
+<thead>
+<tr>
+<th>used by</th>
+<th>used in</th>
+<th>type</th>
+<th>used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../InformationSecurityManagementSystem/">InformationSecurityManagementSystem</a></td>
+<td><a href="../communication_plan/">communication_plan</a></td>
+<td>range</td>
+<td><a href="./">CommunicationPlan</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-subsets">In Subsets</h2>
+<ul>
+<li><a href="../IsmsCore/">IsmsCore</a></li>
+<li><a href="../DocumentedInformation/">DocumentedInformation</a></li>
+</ul>
+<h2 id="comments">Comments</h2>
+<ul>
+<li>Captures communication scope, timing, audience, and channels</li>
+<li>Reference: ISO/IEC 27001:2022 Clause 7.4. ISO/IEC standards text is copyright ISO - not reproduced here.</li>
+</ul>
+<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="annotations">Annotations</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iso27001_clause</td>
+<td>7.4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://w3id.org/lmodel/iso27001</li>
+</ul>
+<h2 id="mappings">Mappings</h2>
+<table>
+<thead>
+<tr>
+<th>Mapping Type</th>
+<th>Mapped Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>iso27001:CommunicationPlan</td>
+</tr>
+<tr>
+<td>native</td>
+<td>iso27001:CommunicationPlan</td>
+</tr>
+<tr>
+<td>exact</td>
+<td>iso42001:CommunicationPlan</td>
+</tr>
+</tbody>
+</table>
+<h2 id="linkml-source">LinkML Source</h2>
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
-
-### Direct
-
+<h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommunicationPlan</span>
 <span class="nt">annotations</span><span class="p">:</span>
@@ -420,9 +658,7 @@ URI: [iso27001:CommunicationPlan](https://w3id.org/lmodel/iso27001/Communication
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">communication_items</span>
 </code></pre></div>
 </details>
-
-### Induced
-
+<h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CommunicationPlan</span>
 <span class="nt">annotations</span><span class="p">:</span>
@@ -729,7 +965,8 @@ URI: [iso27001:CommunicationPlan](https://w3id.org/lmodel/iso27001/Communication
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
-</details></div>
+</details>
+</div>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>

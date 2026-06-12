@@ -196,6 +196,128 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inheritance">
+<span class="md-ellipsis">
+      
+        Inheritance
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#slots">
+<span class="md-ellipsis">
+      
+        Slots
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#usages">
+<span class="md-ellipsis">
+      
+        Usages
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#in-subsets">
+<span class="md-ellipsis">
+      
+        In Subsets
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#comments">
+<span class="md-ellipsis">
+      
+        Comments
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#identifier-and-mapping-information">
+<span class="md-ellipsis">
+      
+        Identifier and Mapping Information
+      
+    </span>
+</a>
+<nav aria-label="Identifier and Mapping Information" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#annotations">
+<span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schema-source">
+<span class="md-ellipsis">
+      
+        Schema Source
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mappings">
+<span class="md-ellipsis">
+      
+        Mappings
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#linkml-source">
+<span class="md-ellipsis">
+      
+        LinkML Source
+      
+    </span>
+</a>
+<nav aria-label="LinkML Source" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#direct">
+<span class="md-ellipsis">
+      
+        Direct
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#induced">
+<span class="md-ellipsis">
+      
+        Induced
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -204,16 +326,8 @@
 <article class="md-content__inner md-typeset">
 <h1 id="class-securitycontrol">Class: SecurityControl</h1>
 <p><em>A security control from Annex A of ISO/IEC 27001:2022, derived from ISO/IEC 27002:2022. Represents a measure that modifies risk.</em></p>
-<div data-search-exclude="" markdown="1">
-
-
-
-URI: [iso27001:SecurityControl](https://w3id.org/lmodel/iso27001/SecurityControl)
-
-
-
-
-
+<div>
+<p>URI: <a href="https://w3id.org/lmodel/iso27001/SecurityControl">iso27001:SecurityControl</a></p>
 <pre class="mermaid"><code> classDiagram
     class SecurityControl
     click SecurityControl href "../SecurityControl/"
@@ -297,127 +411,285 @@ URI: [iso27001:SecurityControl](https://w3id.org/lmodel/iso27001/SecurityControl
       SecurityControl : version
 
 </code></pre>
-
-
-
-
-
-## Inheritance
-* [NamedEntity](NamedEntity.md)
-    * **SecurityControl**
-
-
-## Slots
-
-| Name | Cardinality and Range | Description | Inheritance |
-| ---  | --- | --- | --- |
-| [control_id](control_id.md) | 0..1 <br/> [AnnexAControlId](AnnexAControlId.md) | Control identifier from Annex A (e | direct |
-| [control_title](control_title.md) | 0..1 <br/> [String](String.md) | Title of the control | direct |
-| [control_category](control_category.md) | 0..1 <br/> [ControlCategory](ControlCategory.md) | Domain category of the control | direct |
-| [control_text](control_text.md) | 0..1 <br/> [String](String.md) | Organization-authored control statement or external control summary | direct |
-| [implementation_guidance](implementation_guidance.md) | 0..1 <br/> [String](String.md) | Organization-authored implementation notes for the control | direct |
-| [related_controls](related_controls.md) | * <br/> [SecurityControl](SecurityControl.md) | Other controls related to this one | direct |
-| [applicable_threats](applicable_threats.md) | * <br/> [String](String.md) | Threats this control addresses | direct |
-| [applicable_assets](applicable_assets.md) | * <br/> [String](String.md) | Asset types this control applies to | direct |
-| [control_owner](control_owner.md) | 0..1 <br/> [String](String.md) | Person responsible for the control | direct |
-| [implementation_status](implementation_status.md) | 0..1 <br/> [ImplementationStatus](ImplementationStatus.md) | Current implementation status | direct |
-| [implementation_date](implementation_date.md) | 0..1 <br/> [Date](Date.md) | Date the control was implemented | direct |
-| [effectiveness_rating](effectiveness_rating.md) | 0..1 <br/> [String](String.md) | Rating of control effectiveness | direct |
-| [last_test_date](last_test_date.md) | 0..1 <br/> [Date](Date.md) | Date the control was last tested | direct |
-| [evidence_references](evidence_references.md) | * <br/> [String](String.md) | References to evidence of implementation | direct |
-| [id](id.md) | 1 <br/> [Uriorcurie](Uriorcurie.md) | Unique identifier for this entity instance | [NamedEntity](NamedEntity.md) |
-| [name](name.md) | 1 <br/> [String](String.md) | Human-readable name or title | [NamedEntity](NamedEntity.md) |
-| [description](description.md) | 0..1 <br/> [String](String.md) | Detailed description of the entity | [NamedEntity](NamedEntity.md) |
-| [created_date](created_date.md) | 0..1 <br/> [Date](Date.md) | Date when the entity was created | [NamedEntity](NamedEntity.md) |
-| [modified_date](modified_date.md) | 0..1 <br/> [Date](Date.md) | Date when the entity was last modified | [NamedEntity](NamedEntity.md) |
-| [version](version.md) | 0..1 <br/> [String](String.md) | Version identifier for the entity | [NamedEntity](NamedEntity.md) |
-
-
-
-
-
-## Usages
-
-| used by | used in | type | used |
-| ---  | --- | --- | --- |
-| [InformationSecurityManagementSystem](InformationSecurityManagementSystem.md) | [controls](controls.md) | range | [SecurityControl](SecurityControl.md) |
-| [TopicSpecificPolicy](TopicSpecificPolicy.md) | [applicable_controls](applicable_controls.md) | range | [SecurityControl](SecurityControl.md) |
-| [InformationSecurityObjective](InformationSecurityObjective.md) | [related_controls](related_controls.md) | range | [SecurityControl](SecurityControl.md) |
-| [Risk](Risk.md) | [existing_controls](existing_controls.md) | range | [SecurityControl](SecurityControl.md) |
-| [RiskTreatmentPlan](RiskTreatmentPlan.md) | [controls_to_implement](controls_to_implement.md) | range | [SecurityControl](SecurityControl.md) |
-| [SoAEntry](SoAEntry.md) | [control_reference](control_reference.md) | range | [SecurityControl](SecurityControl.md) |
-| [SecurityControl](SecurityControl.md) | [related_controls](related_controls.md) | range | [SecurityControl](SecurityControl.md) |
-| [OperationalProcedure](OperationalProcedure.md) | [related_controls](related_controls.md) | range | [SecurityControl](SecurityControl.md) |
-| [AuditFinding](AuditFinding.md) | [control_reference](control_reference.md) | range | [SecurityControl](SecurityControl.md) |
-| [Asset](Asset.md) | [applicable_controls](applicable_controls.md) | range | [SecurityControl](SecurityControl.md) |
-
-
-
-
-
-
-
-
-## In Subsets
-
-
-* [AnnexAControls](AnnexAControls.md)
-
-
-
-
-## Comments
-
-* 93 controls organized in four domains (organizational, people, physical, technological)
-* Controls are referenced in risk treatment and SoA
-* Supports organization-authored control statements and evidence links
-* Reference: ISO/IEC 27001:2022 Annex A; ISO/IEC 27002:2022 Clauses 5-8. ISO/IEC standards text is copyright ISO - not reproduced here.
-* The control_text slot must contain organization-authored content only, not ISO standards text.
-
-
-
-## Identifier and Mapping Information
-
-
-
-### Annotations
-
-| property | value |
-| --- | --- |
-| iso27001_clause | 6.1.3 |
-| annex_reference | Annex A |
-
-
-
-
-### Schema Source
-
-
-* from schema: https://w3id.org/lmodel/iso27001
-
-
-
-
-## Mappings
-
-| Mapping Type | Mapped Value |
-| ---  | ---  |
-| self | iso27001:SecurityControl |
-| native | iso27001:SecurityControl |
-| related | cis_controls:Safeguard, attack:AttackMitigation, capec:Mitigation, d3f:DefensiveTechnique, nist_sp_800_171:Requirement, nist_sp_800_218:CatalogElement, ocsf:Compliance, slsa:BuildLevelEnum |
-| close | iso42001:AIReferenceControl, nist_csf_v2:CSFSubcategory, nist_sp_800_53:Control, oscal:Control, stix:CourseOfAction |
-
-
-
-
-
-
-## LinkML Source
-
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../NamedEntity/">NamedEntity</a><ul>
+<li><strong>SecurityControl</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Cardinality and Range</th>
+<th>Description</th>
+<th>Inheritance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../control_id/">control_id</a></td>
+<td>0..1 <br/> <a href="../AnnexAControlId/">AnnexAControlId</a></td>
+<td>Control identifier from Annex A (e</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../control_title/">control_title</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Title of the control</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../control_category/">control_category</a></td>
+<td>0..1 <br/> <a href="../ControlCategory/">ControlCategory</a></td>
+<td>Domain category of the control</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../control_text/">control_text</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Organization-authored control statement or external control summary</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../implementation_guidance/">implementation_guidance</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Organization-authored implementation notes for the control</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../related_controls/">related_controls</a></td>
+<td>* <br/> <a href="./">SecurityControl</a></td>
+<td>Other controls related to this one</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../applicable_threats/">applicable_threats</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Threats this control addresses</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../applicable_assets/">applicable_assets</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Asset types this control applies to</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../control_owner/">control_owner</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Person responsible for the control</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../implementation_status/">implementation_status</a></td>
+<td>0..1 <br/> <a href="../ImplementationStatus/">ImplementationStatus</a></td>
+<td>Current implementation status</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../implementation_date/">implementation_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date the control was implemented</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../effectiveness_rating/">effectiveness_rating</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Rating of control effectiveness</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../last_test_date/">last_test_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date the control was last tested</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../evidence_references/">evidence_references</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>References to evidence of implementation</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../id/">id</a></td>
+<td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>Unique identifier for this entity instance</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../name/">name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Human-readable name or title</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../description/">description</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Detailed description of the entity</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../created_date/">created_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the entity was created</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../modified_date/">modified_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the entity was last modified</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../version/">version</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Version identifier for the entity</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="usages">Usages</h2>
+<table>
+<thead>
+<tr>
+<th>used by</th>
+<th>used in</th>
+<th>type</th>
+<th>used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../InformationSecurityManagementSystem/">InformationSecurityManagementSystem</a></td>
+<td><a href="../controls/">controls</a></td>
+<td>range</td>
+<td><a href="./">SecurityControl</a></td>
+</tr>
+<tr>
+<td><a href="../TopicSpecificPolicy/">TopicSpecificPolicy</a></td>
+<td><a href="../applicable_controls/">applicable_controls</a></td>
+<td>range</td>
+<td><a href="./">SecurityControl</a></td>
+</tr>
+<tr>
+<td><a href="../InformationSecurityObjective/">InformationSecurityObjective</a></td>
+<td><a href="../related_controls/">related_controls</a></td>
+<td>range</td>
+<td><a href="./">SecurityControl</a></td>
+</tr>
+<tr>
+<td><a href="../Risk/">Risk</a></td>
+<td><a href="../existing_controls/">existing_controls</a></td>
+<td>range</td>
+<td><a href="./">SecurityControl</a></td>
+</tr>
+<tr>
+<td><a href="../RiskTreatmentPlan/">RiskTreatmentPlan</a></td>
+<td><a href="../controls_to_implement/">controls_to_implement</a></td>
+<td>range</td>
+<td><a href="./">SecurityControl</a></td>
+</tr>
+<tr>
+<td><a href="../SoAEntry/">SoAEntry</a></td>
+<td><a href="../control_reference/">control_reference</a></td>
+<td>range</td>
+<td><a href="./">SecurityControl</a></td>
+</tr>
+<tr>
+<td><a href="./">SecurityControl</a></td>
+<td><a href="../related_controls/">related_controls</a></td>
+<td>range</td>
+<td><a href="./">SecurityControl</a></td>
+</tr>
+<tr>
+<td><a href="../OperationalProcedure/">OperationalProcedure</a></td>
+<td><a href="../related_controls/">related_controls</a></td>
+<td>range</td>
+<td><a href="./">SecurityControl</a></td>
+</tr>
+<tr>
+<td><a href="../AuditFinding/">AuditFinding</a></td>
+<td><a href="../control_reference/">control_reference</a></td>
+<td>range</td>
+<td><a href="./">SecurityControl</a></td>
+</tr>
+<tr>
+<td><a href="../Asset/">Asset</a></td>
+<td><a href="../applicable_controls/">applicable_controls</a></td>
+<td>range</td>
+<td><a href="./">SecurityControl</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-subsets">In Subsets</h2>
+<ul>
+<li><a href="../AnnexAControls/">AnnexAControls</a></li>
+</ul>
+<h2 id="comments">Comments</h2>
+<ul>
+<li>93 controls organized in four domains (organizational, people, physical, technological)</li>
+<li>Controls are referenced in risk treatment and SoA</li>
+<li>Supports organization-authored control statements and evidence links</li>
+<li>Reference: ISO/IEC 27001:2022 Annex A; ISO/IEC 27002:2022 Clauses 5-8. ISO/IEC standards text is copyright ISO - not reproduced here.</li>
+<li>The control_text slot must contain organization-authored content only, not ISO standards text.</li>
+</ul>
+<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="annotations">Annotations</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iso27001_clause</td>
+<td>6.1.3</td>
+</tr>
+<tr>
+<td>annex_reference</td>
+<td>Annex A</td>
+</tr>
+</tbody>
+</table>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://w3id.org/lmodel/iso27001</li>
+</ul>
+<h2 id="mappings">Mappings</h2>
+<table>
+<thead>
+<tr>
+<th>Mapping Type</th>
+<th>Mapped Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>iso27001:SecurityControl</td>
+</tr>
+<tr>
+<td>native</td>
+<td>iso27001:SecurityControl</td>
+</tr>
+<tr>
+<td>related</td>
+<td>cis_controls:Safeguard, attack:AttackMitigation, capec:Mitigation, d3f:DefensiveTechnique, nist_sp_800_171:Requirement, nist_sp_800_218:CatalogElement, ocsf:Compliance, slsa:BuildLevelEnum</td>
+</tr>
+<tr>
+<td>close</td>
+<td>iso42001:AIReferenceControl, nist_csf_v2:CSFSubcategory, nist_sp_800_53:Control, oscal:Control, stix:CourseOfAction</td>
+</tr>
+</tbody>
+</table>
+<h2 id="linkml-source">LinkML Source</h2>
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
-
-### Direct
-
+<h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SecurityControl</span>
 <span class="nt">annotations</span><span class="p">:</span>
@@ -473,9 +745,7 @@ URI: [iso27001:SecurityControl](https://w3id.org/lmodel/iso27001/SecurityControl
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">evidence_references</span>
 </code></pre></div>
 </details>
-
-### Induced
-
+<h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SecurityControl</span>
 <span class="nt">annotations</span><span class="p">:</span>
@@ -740,7 +1010,8 @@ URI: [iso27001:SecurityControl](https://w3id.org/lmodel/iso27001/SecurityControl
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
-</details></div>
+</details>
+</div>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>

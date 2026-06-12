@@ -385,6 +385,86 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#permissible-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permissible Values
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slots
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-subsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In Subsets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifier-and-mapping-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identifier and Mapping Information
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identifier and Mapping Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Source
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linkml-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LinkML Source
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -406,61 +486,70 @@
 
 <h1 id="enum-implementationstatus">Enum: ImplementationStatus</h1>
 <p><em>Lifecycle status of a security control, used in Statement of Applicability and control tracking.</em></p>
-<div data-search-exclude markdown="1">
-
-URI: [iso27001:ImplementationStatus](https://w3id.org/lmodel/iso27001/ImplementationStatus)
-
-## Permissible Values
-| Value | Meaning | Description |
-| --- | --- | --- |
-| not_started | None | Control identified but no implementation activities begun |
-| planned | None | Control scheduled for implementation with defined timeline |
-| in_progress | None | Implementation actively underway but not yet complete |
-| implemented | None | Control fully implemented and operational |
-| not_applicable | None | Control excluded from scope with documented justification per 6 |
-
-
-
-
-## Slots
-
-| Name | Description |
-| ---  | --- |
-| [implementation_status](implementation_status.md) | Current implementation status |
-
-
-
-
-
-
-## In Subsets
-
-
-* [AnnexAControls](AnnexAControls.md)
-
-
-
-
-
-
-## Identifier and Mapping Information
-
-
-
-
-
-### Schema Source
-
-
-* from schema: https://w3id.org/lmodel/iso27001
-
-
-
-
-
-
-## LinkML Source
-
+<div>
+<p>URI: <a href="https://w3id.org/lmodel/iso27001/ImplementationStatus">iso27001:ImplementationStatus</a></p>
+<h2 id="permissible-values">Permissible Values</h2>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>not_started</td>
+<td>None</td>
+<td>Control identified but no implementation activities begun</td>
+</tr>
+<tr>
+<td>planned</td>
+<td>None</td>
+<td>Control scheduled for implementation with defined timeline</td>
+</tr>
+<tr>
+<td>in_progress</td>
+<td>None</td>
+<td>Implementation actively underway but not yet complete</td>
+</tr>
+<tr>
+<td>implemented</td>
+<td>None</td>
+<td>Control fully implemented and operational</td>
+</tr>
+<tr>
+<td>not_applicable</td>
+<td>None</td>
+<td>Control excluded from scope with documented justification per 6</td>
+</tr>
+</tbody>
+</table>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../implementation_status/">implementation_status</a></td>
+<td>Current implementation status</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-subsets">In Subsets</h2>
+<ul>
+<li><a href="../AnnexAControls/">AnnexAControls</a></li>
+</ul>
+<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://w3id.org/lmodel/iso27001</li>
+</ul>
+<h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ImplementationStatus</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lifecycle status of a security control, used in Statement of Applicability</span>
@@ -492,7 +581,6 @@ URI: [iso27001:ImplementationStatus](https://w3id.org/lmodel/iso27001/Implementa
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Requires justification in Statement of Applicability</span>
 </code></pre></div>
 </details>
-
 </div>
 
 

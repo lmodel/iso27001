@@ -385,6 +385,97 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#permissible-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permissible Values
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slots
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-subsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In Subsets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifier-and-mapping-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identifier and Mapping Information
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identifier and Mapping Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Source
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linkml-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LinkML Source
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -406,81 +497,150 @@
 
 <h1 id="enum-securityincidentcategory">Enum: SecurityIncidentCategory</h1>
 <p><em>Categories of information security incident used to classify events and incidents per ISO/IEC 27001:2022 Annex A controls A.5.24-A.5.28 and ISO/IEC 27035 incident management guidance.</em></p>
-<div data-search-exclude markdown="1">
-
-URI: [iso27001:SecurityIncidentCategory](https://w3id.org/lmodel/iso27001/SecurityIncidentCategory)
-
-## Permissible Values
-| Value | Meaning | Description |
-| --- | --- | --- |
-| malware | None | Malicious software, including viruses, worms, trojans, and ransomware |
-| ransomware | None | Malware encrypting or exfiltrating data for extortion |
-| phishing | None | Social-engineering attempt to obtain credentials or trigger malicious action |
-| social_engineering | None | Manipulation of people to disclose information or perform unsafe actions |
-| unauthorized_access | None | Access to systems or data by a party without authorization |
-| account_compromise | None | Unauthorized control of a legitimate user or service account |
-| privilege_misuse | None | Authorized user exceeding or misusing their granted privileges |
-| data_breach | None | Confirmed disclosure of confidential or personal information |
-| data_loss | None | Loss of integrity or availability of information, including accidental deleti... |
-| denial_of_service | None | Disruption of availability through volumetric, protocol, or application attac... |
-| web_application_attack | None | Attack targeting a web application (e |
-| supply_chain | None | Incident originating from a supplier, partner, or third-party component |
-| insider_threat | None | Malicious or negligent action by an internal party |
-| physical_security | None | Theft, loss, or damage of physical assets or unauthorized physical access |
-| configuration_error | None | Misconfiguration leading to security exposure |
-| cryptographic_failure | None | Weak, broken, or misused cryptography |
-| policy_violation | None | Failure to comply with information security policies or procedures |
-| other | None | Other incident type not covered by the listed categories |
-
-
-
-
-## Slots
-
-| Name | Description |
-| ---  | --- |
-| [incident_category](incident_category.md) | Category of incident |
-
-
-
-
-
-
-## In Subsets
-
-
-* [AnnexAControls](AnnexAControls.md)
-
-
-
-
-
-
-## Identifier and Mapping Information
-
-
-
-### Annotations
-
-| property | value |
-| --- | --- |
-| annex_a_reference | A.5.24 / A.5.25 |
-
-
-
-
-### Schema Source
-
-
-* from schema: https://w3id.org/lmodel/iso27001
-
-
-
-
-
-
-## LinkML Source
-
+<div>
+<p>URI: <a href="https://w3id.org/lmodel/iso27001/SecurityIncidentCategory">iso27001:SecurityIncidentCategory</a></p>
+<h2 id="permissible-values">Permissible Values</h2>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>malware</td>
+<td>None</td>
+<td>Malicious software, including viruses, worms, trojans, and ransomware</td>
+</tr>
+<tr>
+<td>ransomware</td>
+<td>None</td>
+<td>Malware encrypting or exfiltrating data for extortion</td>
+</tr>
+<tr>
+<td>phishing</td>
+<td>None</td>
+<td>Social-engineering attempt to obtain credentials or trigger malicious action</td>
+</tr>
+<tr>
+<td>social_engineering</td>
+<td>None</td>
+<td>Manipulation of people to disclose information or perform unsafe actions</td>
+</tr>
+<tr>
+<td>unauthorized_access</td>
+<td>None</td>
+<td>Access to systems or data by a party without authorization</td>
+</tr>
+<tr>
+<td>account_compromise</td>
+<td>None</td>
+<td>Unauthorized control of a legitimate user or service account</td>
+</tr>
+<tr>
+<td>privilege_misuse</td>
+<td>None</td>
+<td>Authorized user exceeding or misusing their granted privileges</td>
+</tr>
+<tr>
+<td>data_breach</td>
+<td>None</td>
+<td>Confirmed disclosure of confidential or personal information</td>
+</tr>
+<tr>
+<td>data_loss</td>
+<td>None</td>
+<td>Loss of integrity or availability of information, including accidental deleti...</td>
+</tr>
+<tr>
+<td>denial_of_service</td>
+<td>None</td>
+<td>Disruption of availability through volumetric, protocol, or application attac...</td>
+</tr>
+<tr>
+<td>web_application_attack</td>
+<td>None</td>
+<td>Attack targeting a web application (e</td>
+</tr>
+<tr>
+<td>supply_chain</td>
+<td>None</td>
+<td>Incident originating from a supplier, partner, or third-party component</td>
+</tr>
+<tr>
+<td>insider_threat</td>
+<td>None</td>
+<td>Malicious or negligent action by an internal party</td>
+</tr>
+<tr>
+<td>physical_security</td>
+<td>None</td>
+<td>Theft, loss, or damage of physical assets or unauthorized physical access</td>
+</tr>
+<tr>
+<td>configuration_error</td>
+<td>None</td>
+<td>Misconfiguration leading to security exposure</td>
+</tr>
+<tr>
+<td>cryptographic_failure</td>
+<td>None</td>
+<td>Weak, broken, or misused cryptography</td>
+</tr>
+<tr>
+<td>policy_violation</td>
+<td>None</td>
+<td>Failure to comply with information security policies or procedures</td>
+</tr>
+<tr>
+<td>other</td>
+<td>None</td>
+<td>Other incident type not covered by the listed categories</td>
+</tr>
+</tbody>
+</table>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../incident_category/">incident_category</a></td>
+<td>Category of incident</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-subsets">In Subsets</h2>
+<ul>
+<li><a href="../AnnexAControls/">AnnexAControls</a></li>
+</ul>
+<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="annotations">Annotations</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>annex_a_reference</td>
+<td>A.5.24 / A.5.25</td>
+</tr>
+</tbody>
+</table>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://w3id.org/lmodel/iso27001</li>
+</ul>
+<h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SecurityIncidentCategory</span>
 <span class="nt">annotations</span><span class="p">:</span>
@@ -590,7 +750,6 @@ URI: [iso27001:SecurityIncidentCategory](https://w3id.org/lmodel/iso27001/Securi
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Other incident type not covered by the listed categories.</span>
 </code></pre></div>
 </details>
-
 </div>
 
 

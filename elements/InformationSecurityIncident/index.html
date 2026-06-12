@@ -196,6 +196,128 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inheritance">
+<span class="md-ellipsis">
+      
+        Inheritance
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#slots">
+<span class="md-ellipsis">
+      
+        Slots
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#usages">
+<span class="md-ellipsis">
+      
+        Usages
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#in-subsets">
+<span class="md-ellipsis">
+      
+        In Subsets
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#comments">
+<span class="md-ellipsis">
+      
+        Comments
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#identifier-and-mapping-information">
+<span class="md-ellipsis">
+      
+        Identifier and Mapping Information
+      
+    </span>
+</a>
+<nav aria-label="Identifier and Mapping Information" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#annotations">
+<span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schema-source">
+<span class="md-ellipsis">
+      
+        Schema Source
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mappings">
+<span class="md-ellipsis">
+      
+        Mappings
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#linkml-source">
+<span class="md-ellipsis">
+      
+        LinkML Source
+      
+    </span>
+</a>
+<nav aria-label="LinkML Source" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#direct">
+<span class="md-ellipsis">
+      
+        Direct
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#induced">
+<span class="md-ellipsis">
+      
+        Induced
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -204,16 +326,8 @@
 <article class="md-content__inner md-typeset">
 <h1 id="class-informationsecurityincident">Class: InformationSecurityIncident</h1>
 <p><em>An information security incident per A.5.26, requiring response per documented procedures.</em></p>
-<div data-search-exclude="" markdown="1">
-
-
-
-URI: [iso27001:InformationSecurityIncident](https://w3id.org/lmodel/iso27001/InformationSecurityIncident)
-
-
-
-
-
+<div>
+<p>URI: <a href="https://w3id.org/lmodel/iso27001/InformationSecurityIncident">iso27001:InformationSecurityIncident</a></p>
 <pre class="mermaid"><code> classDiagram
     class InformationSecurityIncident
     click InformationSecurityIncident href "../InformationSecurityIncident/"
@@ -305,118 +419,248 @@ URI: [iso27001:InformationSecurityIncident](https://w3id.org/lmodel/iso27001/Inf
       InformationSecurityIncident : version
 
 </code></pre>
-
-
-
-
-
-## Inheritance
-* [NamedEntity](NamedEntity.md)
-    * **InformationSecurityIncident**
-
-
-## Slots
-
-| Name | Cardinality and Range | Description | Inheritance |
-| ---  | --- | --- | --- |
-| [incident_datetime](incident_datetime.md) | 0..1 <br/> [Datetime](Datetime.md) | Date and time the incident occurred or was detected | direct |
-| [incident_category](incident_category.md) | 0..1 <br/> [SecurityIncidentCategory](SecurityIncidentCategory.md) | Category of incident | direct |
-| [severity](severity.md) | 0..1 <br/> [RiskLevel](RiskLevel.md) | Severity rating of the incident | direct |
-| [affected_assets](affected_assets.md) | * <br/> [Asset](Asset.md) | Assets affected by this risk or incident | direct |
-| [affected_cia](affected_cia.md) | * <br/> [CIAProperty](CIAProperty.md) | CIA properties affected by the incident | direct |
-| [incident_description](incident_description.md) | 0..1 <br/> [String](String.md) | Description of the incident | direct |
-| [detection_method](detection_method.md) | 0..1 <br/> [String](String.md) | How the incident was detected | direct |
-| [response_actions](response_actions.md) | * <br/> [String](String.md) | Actions taken in response | direct |
-| [containment_actions](containment_actions.md) | * <br/> [String](String.md) | Actions to contain the incident | direct |
-| [eradication_actions](eradication_actions.md) | * <br/> [String](String.md) | Actions to eradicate the cause | direct |
-| [recovery_actions](recovery_actions.md) | * <br/> [String](String.md) | Actions to recover normal operations | direct |
-| [root_cause](root_cause.md) | 0..1 <br/> [String](String.md) | Root cause of the nonconformity | direct |
-| [lessons_learned](lessons_learned.md) | * <br/> [String](String.md) | Lessons learned from the incident | direct |
-| [evidence_collected](evidence_collected.md) | * <br/> [String](String.md) | Evidence collected | direct |
-| [notification_required](notification_required.md) | 0..1 <br/> [Boolean](Boolean.md) | Whether notification to authorities/parties was required | direct |
-| [notifications_made](notifications_made.md) | * <br/> [String](String.md) | Notifications that were made | direct |
-| [closure_datetime](closure_datetime.md) | 0..1 <br/> [Datetime](Datetime.md) | Date and time of incident closure | direct |
-| [post_incident_review](post_incident_review.md) | 0..1 <br/> [String](String.md) | Post-incident review findings | direct |
-| [id](id.md) | 1 <br/> [Uriorcurie](Uriorcurie.md) | Unique identifier for this entity instance | [NamedEntity](NamedEntity.md) |
-| [name](name.md) | 1 <br/> [String](String.md) | Human-readable name or title | [NamedEntity](NamedEntity.md) |
-| [description](description.md) | 0..1 <br/> [String](String.md) | Detailed description of the entity | [NamedEntity](NamedEntity.md) |
-| [created_date](created_date.md) | 0..1 <br/> [Date](Date.md) | Date when the entity was created | [NamedEntity](NamedEntity.md) |
-| [modified_date](modified_date.md) | 0..1 <br/> [Date](Date.md) | Date when the entity was last modified | [NamedEntity](NamedEntity.md) |
-| [version](version.md) | 0..1 <br/> [String](String.md) | Version identifier for the entity | [NamedEntity](NamedEntity.md) |
-
-
-
-
-
-## Usages
-
-| used by | used in | type | used |
-| ---  | --- | --- | --- |
-| [InformationSecurityEvent](InformationSecurityEvent.md) | [linked_incident](linked_incident.md) | range | [InformationSecurityIncident](InformationSecurityIncident.md) |
-
-
-
-
-
-
-
-
-## In Subsets
-
-
-* [AnnexAControls](AnnexAControls.md)
-
-
-
-
-## Comments
-
-* Captures response lifecycle, evidence references, and lessons learned
-* Reference: ISO/IEC 27001:2022 Annex A control 5.26; ISO/IEC 27002:2022 Clause 5.26. ISO/IEC standards text is copyright ISO - not reproduced here.
-
-
-
-## Identifier and Mapping Information
-
-
-
-### Annotations
-
-| property | value |
-| --- | --- |
-| annex_a_control | 5.26 |
-
-
-
-
-### Schema Source
-
-
-* from schema: https://w3id.org/lmodel/iso27001
-
-
-
-
-## Mappings
-
-| Mapping Type | Mapped Value |
-| ---  | ---  |
-| self | iso27001:InformationSecurityIncident |
-| native | iso27001:InformationSecurityIncident |
-| related | oscal:PoamItem |
-| close | iso42001:AIIncident, ocsf:IncidentFinding, stix:Incident |
-
-
-
-
-
-
-## LinkML Source
-
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../NamedEntity/">NamedEntity</a><ul>
+<li><strong>InformationSecurityIncident</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Cardinality and Range</th>
+<th>Description</th>
+<th>Inheritance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../incident_datetime/">incident_datetime</a></td>
+<td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
+<td>Date and time the incident occurred or was detected</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../incident_category/">incident_category</a></td>
+<td>0..1 <br/> <a href="../SecurityIncidentCategory/">SecurityIncidentCategory</a></td>
+<td>Category of incident</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../severity/">severity</a></td>
+<td>0..1 <br/> <a href="../RiskLevel/">RiskLevel</a></td>
+<td>Severity rating of the incident</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../affected_assets/">affected_assets</a></td>
+<td>* <br/> <a href="../Asset/">Asset</a></td>
+<td>Assets affected by this risk or incident</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../affected_cia/">affected_cia</a></td>
+<td>* <br/> <a href="../CIAProperty/">CIAProperty</a></td>
+<td>CIA properties affected by the incident</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../incident_description/">incident_description</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Description of the incident</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../detection_method/">detection_method</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>How the incident was detected</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../response_actions/">response_actions</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Actions taken in response</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../containment_actions/">containment_actions</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Actions to contain the incident</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../eradication_actions/">eradication_actions</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Actions to eradicate the cause</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../recovery_actions/">recovery_actions</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Actions to recover normal operations</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../root_cause/">root_cause</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Root cause of the nonconformity</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../lessons_learned/">lessons_learned</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Lessons learned from the incident</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../evidence_collected/">evidence_collected</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Evidence collected</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../notification_required/">notification_required</a></td>
+<td>0..1 <br/> <a href="../Boolean/">Boolean</a></td>
+<td>Whether notification to authorities/parties was required</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../notifications_made/">notifications_made</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Notifications that were made</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../closure_datetime/">closure_datetime</a></td>
+<td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
+<td>Date and time of incident closure</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../post_incident_review/">post_incident_review</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Post-incident review findings</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../id/">id</a></td>
+<td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>Unique identifier for this entity instance</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../name/">name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Human-readable name or title</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../description/">description</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Detailed description of the entity</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../created_date/">created_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the entity was created</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../modified_date/">modified_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the entity was last modified</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../version/">version</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Version identifier for the entity</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="usages">Usages</h2>
+<table>
+<thead>
+<tr>
+<th>used by</th>
+<th>used in</th>
+<th>type</th>
+<th>used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../InformationSecurityEvent/">InformationSecurityEvent</a></td>
+<td><a href="../linked_incident/">linked_incident</a></td>
+<td>range</td>
+<td><a href="./">InformationSecurityIncident</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-subsets">In Subsets</h2>
+<ul>
+<li><a href="../AnnexAControls/">AnnexAControls</a></li>
+</ul>
+<h2 id="comments">Comments</h2>
+<ul>
+<li>Captures response lifecycle, evidence references, and lessons learned</li>
+<li>Reference: ISO/IEC 27001:2022 Annex A control 5.26; ISO/IEC 27002:2022 Clause 5.26. ISO/IEC standards text is copyright ISO - not reproduced here.</li>
+</ul>
+<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="annotations">Annotations</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>annex_a_control</td>
+<td>5.26</td>
+</tr>
+</tbody>
+</table>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://w3id.org/lmodel/iso27001</li>
+</ul>
+<h2 id="mappings">Mappings</h2>
+<table>
+<thead>
+<tr>
+<th>Mapping Type</th>
+<th>Mapped Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>iso27001:InformationSecurityIncident</td>
+</tr>
+<tr>
+<td>native</td>
+<td>iso27001:InformationSecurityIncident</td>
+</tr>
+<tr>
+<td>related</td>
+<td>oscal:PoamItem</td>
+</tr>
+<tr>
+<td>close</td>
+<td>iso42001:AIIncident, ocsf:IncidentFinding, stix:Incident</td>
+</tr>
+</tbody>
+</table>
+<h2 id="linkml-source">LinkML Source</h2>
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
-
-### Direct
-
+<h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InformationSecurityIncident</span>
 <span class="nt">annotations</span><span class="p">:</span>
@@ -460,9 +704,7 @@ URI: [iso27001:InformationSecurityIncident](https://w3id.org/lmodel/iso27001/Inf
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">post_incident_review</span>
 </code></pre></div>
 </details>
-
-### Induced
-
+<h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InformationSecurityIncident</span>
 <span class="nt">annotations</span><span class="p">:</span>
@@ -770,7 +1012,8 @@ URI: [iso27001:InformationSecurityIncident](https://w3id.org/lmodel/iso27001/Inf
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
-</details></div>
+</details>
+</div>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>

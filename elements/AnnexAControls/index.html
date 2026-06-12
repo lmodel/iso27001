@@ -385,6 +385,86 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifier-and-mapping-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identifier and Mapping Information
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identifier and Mapping Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Source
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes-in-subset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classes in subset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumerations-in-subset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enumerations in subset
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -406,474 +486,95 @@
 
 <h1 id="subset-annexacontrols">Subset: AnnexAControls</h1>
 <p><em>Classes and enumerations representing the 93 controls in Annex A, organized into four domains: organizational, people, physical, technological.</em></p>
-<div data-search-exclude markdown="1">
-
-URI: [AnnexAControls](AnnexAControls.md)
-
-
-
-
-
-
-## Comments
-
-* Derived from ISO/IEC 27002:2022 Clauses 5-8
-* Used in Statement of Applicability (SoA) generation
-
-
-
-## Identifier and Mapping Information
-
-
-
-### Annotations
-
-| property | value |
-| --- | --- |
-| control_count | 93 |
-
-
-
-
-### Schema Source
-
-
-* from schema: https://w3id.org/lmodel/iso27001
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Classes in subset
-
-| Class | Description |
-| --- | --- |
-| [Asset](Asset.md) | An information asset or associated asset requiring protection, per Annex A co... |
-| [InformationSecurityEvent](InformationSecurityEvent.md) | An information security event per A |
-| [InformationSecurityIncident](InformationSecurityIncident.md) | An information security incident per A |
-| [SecurityControl](SecurityControl.md) | A security control from Annex A of ISO/IEC 27001:2022, derived from ISO/IEC 2... |
-| [SoAEntry](SoAEntry.md) | A single entry in the Statement of Applicability, documenting the applicabili... |
-| [StatementOfApplicability](StatementOfApplicability.md) | The Statement of Applicability (SoA) recording which controls apply, their ra... |
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Enumerations in subset
-
-| Enumeration | Description |
-| --- | --- |
-| [AnnexAControlId](AnnexAControlId.md) | Identifiers of the 93 reference information security controls listed in ISO/I... |
-| [ControlCategory](ControlCategory.md) | The four control domains defined in ISO/IEC 27001:2022 Annex A, corresponding... |
-| [ImplementationStatus](ImplementationStatus.md) | Lifecycle status of a security control, used in Statement of Applicability an... |
-| [SecurityIncidentCategory](SecurityIncidentCategory.md) | Categories of information security incident used to classify events and incid... |
-
-
+<div>
+<p>URI: <a href="./">AnnexAControls</a></p>
+<h2 id="comments">Comments</h2>
+<ul>
+<li>Derived from ISO/IEC 27002:2022 Clauses 5-8</li>
+<li>Used in Statement of Applicability (SoA) generation</li>
+</ul>
+<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="annotations">Annotations</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>control_count</td>
+<td>93</td>
+</tr>
+</tbody>
+</table>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://w3id.org/lmodel/iso27001</li>
+</ul>
+<h2 id="classes-in-subset">Classes in subset</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Asset/">Asset</a></td>
+<td>An information asset or associated asset requiring protection, per Annex A co...</td>
+</tr>
+<tr>
+<td><a href="../InformationSecurityEvent/">InformationSecurityEvent</a></td>
+<td>An information security event per A</td>
+</tr>
+<tr>
+<td><a href="../InformationSecurityIncident/">InformationSecurityIncident</a></td>
+<td>An information security incident per A</td>
+</tr>
+<tr>
+<td><a href="../SecurityControl/">SecurityControl</a></td>
+<td>A security control from Annex A of ISO/IEC 27001:2022, derived from ISO/IEC 2...</td>
+</tr>
+<tr>
+<td><a href="../SoAEntry/">SoAEntry</a></td>
+<td>A single entry in the Statement of Applicability, documenting the applicabili...</td>
+</tr>
+<tr>
+<td><a href="../StatementOfApplicability/">StatementOfApplicability</a></td>
+<td>The Statement of Applicability (SoA) recording which controls apply, their ra...</td>
+</tr>
+</tbody>
+</table>
+<h2 id="enumerations-in-subset">Enumerations in subset</h2>
+<table>
+<thead>
+<tr>
+<th>Enumeration</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../AnnexAControlId/">AnnexAControlId</a></td>
+<td>Identifiers of the 93 reference information security controls listed in ISO/I...</td>
+</tr>
+<tr>
+<td><a href="../ControlCategory/">ControlCategory</a></td>
+<td>The four control domains defined in ISO/IEC 27001:2022 Annex A, corresponding...</td>
+</tr>
+<tr>
+<td><a href="../ImplementationStatus/">ImplementationStatus</a></td>
+<td>Lifecycle status of a security control, used in Statement of Applicability an...</td>
+</tr>
+<tr>
+<td><a href="../SecurityIncidentCategory/">SecurityIncidentCategory</a></td>
+<td>Categories of information security incident used to classify events and incid...</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 

@@ -196,6 +196,128 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inheritance">
+<span class="md-ellipsis">
+      
+        Inheritance
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#slots">
+<span class="md-ellipsis">
+      
+        Slots
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#usages">
+<span class="md-ellipsis">
+      
+        Usages
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#in-subsets">
+<span class="md-ellipsis">
+      
+        In Subsets
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#comments">
+<span class="md-ellipsis">
+      
+        Comments
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#identifier-and-mapping-information">
+<span class="md-ellipsis">
+      
+        Identifier and Mapping Information
+      
+    </span>
+</a>
+<nav aria-label="Identifier and Mapping Information" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#annotations">
+<span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schema-source">
+<span class="md-ellipsis">
+      
+        Schema Source
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mappings">
+<span class="md-ellipsis">
+      
+        Mappings
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#linkml-source">
+<span class="md-ellipsis">
+      
+        LinkML Source
+      
+    </span>
+</a>
+<nav aria-label="LinkML Source" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#direct">
+<span class="md-ellipsis">
+      
+        Direct
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#induced">
+<span class="md-ellipsis">
+      
+        Induced
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -204,16 +326,8 @@
 <article class="md-content__inner md-typeset">
 <h1 id="class-internalaudit">Class: InternalAudit</h1>
 <p><em>An internal audit instance per Clause 9.2, assessing ISMS conformance and effectiveness.</em></p>
-<div data-search-exclude="" markdown="1">
-
-
-
-URI: [iso27001:InternalAudit](https://w3id.org/lmodel/iso27001/InternalAudit)
-
-
-
-
-
+<div>
+<p>URI: <a href="https://w3id.org/lmodel/iso27001/InternalAudit">iso27001:InternalAudit</a></p>
 <pre class="mermaid"><code> classDiagram
     class InternalAudit
     click InternalAudit href "../InternalAudit/"
@@ -324,136 +438,343 @@ URI: [iso27001:InternalAudit](https://w3id.org/lmodel/iso27001/InternalAudit)
       InternalAudit : version
 
 </code></pre>
-
-
-
-
-
-## Inheritance
-* [NamedEntity](NamedEntity.md)
-    * [DocumentedInformation](DocumentedInformation.md)
-        * **InternalAudit**
-
-
-## Slots
-
-| Name | Cardinality and Range | Description | Inheritance |
-| ---  | --- | --- | --- |
-| [audit_reference](audit_reference.md) | 0..1 <br/> [String](String.md) | Reference identifier for the audit | direct |
-| [audit_type](audit_type.md) | 0..1 <br/> [AuditType](AuditType.md) | Type of audit per ISO/IEC 27001:2022 Clause 9 | direct |
-| [audit_scope](audit_scope.md) | 0..1 <br/> [String](String.md) | Scope of the audit | direct |
-| [audit_criteria](audit_criteria.md) | * <br/> [String](String.md) | Criteria against which audit is conducted | direct |
-| [audit_objectives](audit_objectives.md) | * <br/> [String](String.md) | Objectives of the audit | direct |
-| [audit_period_start](audit_period_start.md) | 0..1 <br/> [Date](Date.md) | Start date of audit period | direct |
-| [audit_period_end](audit_period_end.md) | 0..1 <br/> [Date](Date.md) | End date of audit period | direct |
-| [lead_auditor](lead_auditor.md) | 0..1 <br/> [String](String.md) | Lead auditor for the audit | direct |
-| [audit_team](audit_team.md) | * <br/> [String](String.md) | Audit team members | direct |
-| [auditee_representatives](auditee_representatives.md) | * <br/> [String](String.md) | Representatives from audited areas | direct |
-| [audit_plan](audit_plan.md) | 0..1 <br/> [String](String.md) | Audit plan document reference | direct |
-| [findings](findings.md) | * <br/> [AuditFinding](AuditFinding.md) | Audit findings | direct |
-| [positive_observations](positive_observations.md) | * <br/> [String](String.md) | Positive observations noted | direct |
-| [audit_conclusion](audit_conclusion.md) | 0..1 <br/> [String](String.md) | Overall audit conclusion | direct |
-| [report_date](report_date.md) | 0..1 <br/> [Date](Date.md) | Date the report was issued | direct |
-| [report_distribution](report_distribution.md) | * <br/> [String](String.md) | Distribution list for the report | direct |
-| [document_type](document_type.md) | 0..1 <br/> [DocumentType](DocumentType.md) | Classification of the documented information | [DocumentedInformation](DocumentedInformation.md) |
-| [document_reference](document_reference.md) | 0..1 <br/> [String](String.md) | Unique reference number for document control | [DocumentedInformation](DocumentedInformation.md) |
-| [author](author.md) | 0..1 <br/> [String](String.md) | Person who created the document | [DocumentedInformation](DocumentedInformation.md) |
-| [owner](owner.md) | 0..1 <br/> [String](String.md) | Person accountable for the document content and maintenance | [DocumentedInformation](DocumentedInformation.md) |
-| [approved_by](approved_by.md) | 0..1 <br/> [String](String.md) | Person who approved the document | [DocumentedInformation](DocumentedInformation.md) |
-| [approved_date](approved_date.md) | 0..1 <br/> [Date](Date.md) | Date when the document was approved | [DocumentedInformation](DocumentedInformation.md) |
-| [effective_date](effective_date.md) | 0..1 <br/> [Date](Date.md) | Date when the document becomes effective | [DocumentedInformation](DocumentedInformation.md) |
-| [review_date](review_date.md) | 0..1 <br/> [Date](Date.md) | Date when the document is due for review | [DocumentedInformation](DocumentedInformation.md) |
-| [status](status.md) | 0..1 <br/> [String](String.md) | Current status of the document or entity | [DocumentedInformation](DocumentedInformation.md) |
-| [classification](classification.md) | 0..1 <br/> [String](String.md) | Information classification level | [DocumentedInformation](DocumentedInformation.md) |
-| [retention_period](retention_period.md) | 0..1 <br/> [DurationType](DurationType.md) | Duration for which the document is retained | [DocumentedInformation](DocumentedInformation.md) |
-| [distribution_controls](distribution_controls.md) | * <br/> [String](String.md) | Controls governing distribution, access, retrieval and use of the documented ... | [DocumentedInformation](DocumentedInformation.md) |
-| [storage_and_preservation](storage_and_preservation.md) | 0..1 <br/> [String](String.md) | Arrangements for storage and preservation (including preservation of legibili... | [DocumentedInformation](DocumentedInformation.md) |
-| [change_control_method](change_control_method.md) | 0..1 <br/> [String](String.md) | Method used for control of changes (e | [DocumentedInformation](DocumentedInformation.md) |
-| [external_origin](external_origin.md) | 0..1 <br/> [Boolean](Boolean.md) | Whether the documented information is of external origin and has been identif... | [DocumentedInformation](DocumentedInformation.md) |
-| [external_origin_source](external_origin_source.md) | 0..1 <br/> [String](String.md) | Source or provider of the externally originated documented information, per C... | [DocumentedInformation](DocumentedInformation.md) |
-| [id](id.md) | 1 <br/> [Uriorcurie](Uriorcurie.md) | Unique identifier for this entity instance | [NamedEntity](NamedEntity.md) |
-| [name](name.md) | 1 <br/> [String](String.md) | Human-readable name or title | [NamedEntity](NamedEntity.md) |
-| [description](description.md) | 0..1 <br/> [String](String.md) | Detailed description of the entity | [NamedEntity](NamedEntity.md) |
-| [created_date](created_date.md) | 0..1 <br/> [Date](Date.md) | Date when the entity was created | [NamedEntity](NamedEntity.md) |
-| [modified_date](modified_date.md) | 0..1 <br/> [Date](Date.md) | Date when the entity was last modified | [NamedEntity](NamedEntity.md) |
-| [version](version.md) | 0..1 <br/> [String](String.md) | Version identifier for the entity | [NamedEntity](NamedEntity.md) |
-
-
-
-
-
-## Usages
-
-| used by | used in | type | used |
-| ---  | --- | --- | --- |
-| [InformationSecurityManagementSystem](InformationSecurityManagementSystem.md) | [internal_audits](internal_audits.md) | range | [InternalAudit](InternalAudit.md) |
-| [AuditProgramme](AuditProgramme.md) | [planned_audits](planned_audits.md) | range | [InternalAudit](InternalAudit.md) |
-
-
-
-
-
-
-
-
-## In Subsets
-
-
-* [PerformanceEvaluation](PerformanceEvaluation.md)
-* [DocumentedInformation](DocumentedInformation.md)
-
-
-
-
-## Comments
-
-* Captures audit scope, criteria, findings, and conclusions
-* Supports periodic conformance and effectiveness assessment records
-* Reference: ISO/IEC 27001:2022 Clause 9.2. ISO/IEC standards text is copyright ISO - not reproduced here.
-
-
-
-## Identifier and Mapping Information
-
-
-
-### Annotations
-
-| property | value |
-| --- | --- |
-| iso27001_clause | 9.2 |
-
-
-
-
-### Schema Source
-
-
-* from schema: https://w3id.org/lmodel/iso27001
-
-
-
-
-## Mappings
-
-| Mapping Type | Mapped Value |
-| ---  | ---  |
-| self | iso27001:InternalAudit |
-| native | iso27001:InternalAudit |
-| exact | iso42001:InternalAudit |
-| close | oscal:AssessmentPlan |
-
-
-
-
-
-
-## LinkML Source
-
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../NamedEntity/">NamedEntity</a><ul>
+<li><a href="../DocumentedInformation/">DocumentedInformation</a><ul>
+<li><strong>InternalAudit</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Cardinality and Range</th>
+<th>Description</th>
+<th>Inheritance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../audit_reference/">audit_reference</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Reference identifier for the audit</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../audit_type/">audit_type</a></td>
+<td>0..1 <br/> <a href="../AuditType/">AuditType</a></td>
+<td>Type of audit per ISO/IEC 27001:2022 Clause 9</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../audit_scope/">audit_scope</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Scope of the audit</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../audit_criteria/">audit_criteria</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Criteria against which audit is conducted</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../audit_objectives/">audit_objectives</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Objectives of the audit</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../audit_period_start/">audit_period_start</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Start date of audit period</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../audit_period_end/">audit_period_end</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>End date of audit period</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../lead_auditor/">lead_auditor</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Lead auditor for the audit</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../audit_team/">audit_team</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Audit team members</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../auditee_representatives/">auditee_representatives</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Representatives from audited areas</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../audit_plan/">audit_plan</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Audit plan document reference</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../findings/">findings</a></td>
+<td>* <br/> <a href="../AuditFinding/">AuditFinding</a></td>
+<td>Audit findings</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../positive_observations/">positive_observations</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Positive observations noted</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../audit_conclusion/">audit_conclusion</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Overall audit conclusion</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../report_date/">report_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date the report was issued</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../report_distribution/">report_distribution</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Distribution list for the report</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../document_type/">document_type</a></td>
+<td>0..1 <br/> <a href="../DocumentType/">DocumentType</a></td>
+<td>Classification of the documented information</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../document_reference/">document_reference</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Unique reference number for document control</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../author/">author</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Person who created the document</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../owner/">owner</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Person accountable for the document content and maintenance</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../approved_by/">approved_by</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Person who approved the document</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../approved_date/">approved_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the document was approved</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../effective_date/">effective_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the document becomes effective</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../review_date/">review_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the document is due for review</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../status/">status</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Current status of the document or entity</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../classification/">classification</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Information classification level</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../retention_period/">retention_period</a></td>
+<td>0..1 <br/> <a href="../DurationType/">DurationType</a></td>
+<td>Duration for which the document is retained</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../distribution_controls/">distribution_controls</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Controls governing distribution, access, retrieval and use of the documented ...</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../storage_and_preservation/">storage_and_preservation</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Arrangements for storage and preservation (including preservation of legibili...</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../change_control_method/">change_control_method</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Method used for control of changes (e</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../external_origin/">external_origin</a></td>
+<td>0..1 <br/> <a href="../Boolean/">Boolean</a></td>
+<td>Whether the documented information is of external origin and has been identif...</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../external_origin_source/">external_origin_source</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Source or provider of the externally originated documented information, per C...</td>
+<td><a href="../DocumentedInformation/">DocumentedInformation</a></td>
+</tr>
+<tr>
+<td><a href="../id/">id</a></td>
+<td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>Unique identifier for this entity instance</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../name/">name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Human-readable name or title</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../description/">description</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Detailed description of the entity</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../created_date/">created_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the entity was created</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../modified_date/">modified_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the entity was last modified</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../version/">version</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Version identifier for the entity</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="usages">Usages</h2>
+<table>
+<thead>
+<tr>
+<th>used by</th>
+<th>used in</th>
+<th>type</th>
+<th>used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../InformationSecurityManagementSystem/">InformationSecurityManagementSystem</a></td>
+<td><a href="../internal_audits/">internal_audits</a></td>
+<td>range</td>
+<td><a href="./">InternalAudit</a></td>
+</tr>
+<tr>
+<td><a href="../AuditProgramme/">AuditProgramme</a></td>
+<td><a href="../planned_audits/">planned_audits</a></td>
+<td>range</td>
+<td><a href="./">InternalAudit</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-subsets">In Subsets</h2>
+<ul>
+<li><a href="../PerformanceEvaluation/">PerformanceEvaluation</a></li>
+<li><a href="../DocumentedInformation/">DocumentedInformation</a></li>
+</ul>
+<h2 id="comments">Comments</h2>
+<ul>
+<li>Captures audit scope, criteria, findings, and conclusions</li>
+<li>Supports periodic conformance and effectiveness assessment records</li>
+<li>Reference: ISO/IEC 27001:2022 Clause 9.2. ISO/IEC standards text is copyright ISO - not reproduced here.</li>
+</ul>
+<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="annotations">Annotations</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iso27001_clause</td>
+<td>9.2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://w3id.org/lmodel/iso27001</li>
+</ul>
+<h2 id="mappings">Mappings</h2>
+<table>
+<thead>
+<tr>
+<th>Mapping Type</th>
+<th>Mapped Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>iso27001:InternalAudit</td>
+</tr>
+<tr>
+<td>native</td>
+<td>iso27001:InternalAudit</td>
+</tr>
+<tr>
+<td>exact</td>
+<td>iso42001:InternalAudit</td>
+</tr>
+<tr>
+<td>close</td>
+<td>oscal:AssessmentPlan</td>
+</tr>
+</tbody>
+</table>
+<h2 id="linkml-source">LinkML Source</h2>
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
-
-### Direct
-
+<h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InternalAudit</span>
 <span class="nt">annotations</span><span class="p">:</span>
@@ -495,9 +816,7 @@ URI: [iso27001:InternalAudit](https://w3id.org/lmodel/iso27001/InternalAudit)
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">report_distribution</span>
 </code></pre></div>
 </details>
-
-### Induced
-
+<h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InternalAudit</span>
 <span class="nt">annotations</span><span class="p">:</span>
@@ -952,7 +1271,8 @@ URI: [iso27001:InternalAudit](https://w3id.org/lmodel/iso27001/InternalAudit)
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
-</details></div>
+</details>
+</div>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>

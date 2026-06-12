@@ -7951,7 +7951,7 @@ classes:
     class_uri: iso27001:InformationSecurityIncident
 metamodel_version: 1.11.0
 source_file: iso27001.yaml
-source_file_date: '2026-06-02T00:43:11'
+source_file_date: '2026-06-12T15:26:40'
 source_file_size: 130080
-generation_date: '2026-06-02T00:43:23'
+generation_date: '2026-06-12T15:26:53'
 

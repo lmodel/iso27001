@@ -385,6 +385,97 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#permissible-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permissible Values
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slots
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-subsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In Subsets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifier-and-mapping-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identifier and Mapping Information
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identifier and Mapping Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Source
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linkml-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LinkML Source
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -406,67 +497,79 @@
 
 <h1 id="enum-ciaproperty">Enum: CIAProperty</h1>
 <p><em>Information security properties whose loss is considered when identifying risks per ISO/IEC 27001:2022 Clause 6.1.2 c) 1).</em></p>
-<div data-search-exclude markdown="1">
-
-URI: [iso27001:CIAProperty](https://w3id.org/lmodel/iso27001/CIAProperty)
-
-## Permissible Values
-| Value | Meaning | Description |
-| --- | --- | --- |
-| confidentiality | None | Property of information not being made available or disclosed to unauthorized... |
-| integrity | None | Property of accuracy and completeness of information |
-| availability | None | Property of being accessible and usable on demand by an authorized entity |
-
-
-
-
-## Slots
-
-| Name | Description |
-| ---  | --- |
-| [affected_cia_properties](affected_cia_properties.md) | Which CIA properties are affected (confidentiality, integrity, availability) |
-| [affected_cia](affected_cia.md) | CIA properties affected by the incident |
-
-
-
-
-
-
-## In Subsets
-
-
-* [RiskManagement](RiskManagement.md)
-
-
-
-
-
-
-## Identifier and Mapping Information
-
-
-
-### Annotations
-
-| property | value |
-| --- | --- |
-| iso27001_clause | 6.1.2 c) 1) |
-
-
-
-
-### Schema Source
-
-
-* from schema: https://w3id.org/lmodel/iso27001
-
-
-
-
-
-
-## LinkML Source
-
+<div>
+<p>URI: <a href="https://w3id.org/lmodel/iso27001/CIAProperty">iso27001:CIAProperty</a></p>
+<h2 id="permissible-values">Permissible Values</h2>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>confidentiality</td>
+<td>None</td>
+<td>Property of information not being made available or disclosed to unauthorized...</td>
+</tr>
+<tr>
+<td>integrity</td>
+<td>None</td>
+<td>Property of accuracy and completeness of information</td>
+</tr>
+<tr>
+<td>availability</td>
+<td>None</td>
+<td>Property of being accessible and usable on demand by an authorized entity</td>
+</tr>
+</tbody>
+</table>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../affected_cia_properties/">affected_cia_properties</a></td>
+<td>Which CIA properties are affected (confidentiality, integrity, availability)</td>
+</tr>
+<tr>
+<td><a href="../affected_cia/">affected_cia</a></td>
+<td>CIA properties affected by the incident</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-subsets">In Subsets</h2>
+<ul>
+<li><a href="../RiskManagement/">RiskManagement</a></li>
+</ul>
+<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="annotations">Annotations</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iso27001_clause</td>
+<td>6.1.2 c) 1)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://w3id.org/lmodel/iso27001</li>
+</ul>
+<h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CIAProperty</span>
 <span class="nt">annotations</span><span class="p">:</span>
@@ -493,7 +596,6 @@ URI: [iso27001:CIAProperty](https://w3id.org/lmodel/iso27001/CIAProperty)
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">entity.</span>
 </code></pre></div>
 </details>
-
 </div>
 
 

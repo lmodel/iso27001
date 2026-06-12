@@ -196,6 +196,128 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inheritance">
+<span class="md-ellipsis">
+      
+        Inheritance
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#slots">
+<span class="md-ellipsis">
+      
+        Slots
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#usages">
+<span class="md-ellipsis">
+      
+        Usages
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#in-subsets">
+<span class="md-ellipsis">
+      
+        In Subsets
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#comments">
+<span class="md-ellipsis">
+      
+        Comments
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#identifier-and-mapping-information">
+<span class="md-ellipsis">
+      
+        Identifier and Mapping Information
+      
+    </span>
+</a>
+<nav aria-label="Identifier and Mapping Information" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#annotations">
+<span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schema-source">
+<span class="md-ellipsis">
+      
+        Schema Source
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mappings">
+<span class="md-ellipsis">
+      
+        Mappings
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#linkml-source">
+<span class="md-ellipsis">
+      
+        LinkML Source
+      
+    </span>
+</a>
+<nav aria-label="LinkML Source" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#direct">
+<span class="md-ellipsis">
+      
+        Direct
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#induced">
+<span class="md-ellipsis">
+      
+        Induced
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -204,16 +326,8 @@
 <article class="md-content__inner md-typeset">
 <h1 id="class-informationsecurityobjective">Class: InformationSecurityObjective</h1>
 <p><em>A measurable information security objective per Clause 6.2, established at relevant functions and levels of the organization.</em></p>
-<div data-search-exclude="" markdown="1">
-
-
-
-URI: [iso27001:InformationSecurityObjective](https://w3id.org/lmodel/iso27001/InformationSecurityObjective)
-
-
-
-
-
+<div>
+<p>URI: <a href="https://w3id.org/lmodel/iso27001/InformationSecurityObjective">iso27001:InformationSecurityObjective</a></p>
 <pre class="mermaid"><code> classDiagram
     class InformationSecurityObjective
     click InformationSecurityObjective href "../InformationSecurityObjective/"
@@ -286,113 +400,215 @@ URI: [iso27001:InformationSecurityObjective](https://w3id.org/lmodel/iso27001/In
       InformationSecurityObjective : version
 
 </code></pre>
-
-
-
-
-
-## Inheritance
-* [NamedEntity](NamedEntity.md)
-    * **InformationSecurityObjective**
-
-
-## Slots
-
-| Name | Cardinality and Range | Description | Inheritance |
-| ---  | --- | --- | --- |
-| [objective_statement](objective_statement.md) | 0..1 <br/> [String](String.md) | Clear statement of the objective | direct |
-| [target_value](target_value.md) | 0..1 <br/> [String](String.md) | Target value for the objective metric | direct |
-| [current_value](current_value.md) | 0..1 <br/> [String](String.md) | Current measured value | direct |
-| [metric_definition](metric_definition.md) | 0..1 <br/> [String](String.md) | Definition of how the objective is measured | direct |
-| [measurement_method](measurement_method.md) | 0..1 <br/> [String](String.md) | Method used to measure the metric | direct |
-| [measurement_frequency](measurement_frequency.md) | 0..1 <br/> [String](String.md) | How often measurement is performed | direct |
-| [responsible_role](responsible_role.md) | 0..1 <br/> [Role](Role.md) | Role responsible for the objective or control | direct |
-| [target_date](target_date.md) | 0..1 <br/> [Date](Date.md) | Target date for achieving the objective | direct |
-| [achievement_status](achievement_status.md) | 0..1 <br/> [String](String.md) | Current status of objective achievement | direct |
-| [related_risks](related_risks.md) | * <br/> [Risk](Risk.md) | Associated risks | direct |
-| [related_controls](related_controls.md) | * <br/> [SecurityControl](SecurityControl.md) | Other controls related to this one | direct |
-| [action_plan](action_plan.md) | 0..1 <br/> [String](String.md) | Plan for achieving the objective | direct |
-| [objective_resources_required](objective_resources_required.md) | 0..1 <br/> [String](String.md) | Resources required to achieve the information security objective | direct |
-| [id](id.md) | 1 <br/> [Uriorcurie](Uriorcurie.md) | Unique identifier for this entity instance | [NamedEntity](NamedEntity.md) |
-| [name](name.md) | 1 <br/> [String](String.md) | Human-readable name or title | [NamedEntity](NamedEntity.md) |
-| [description](description.md) | 0..1 <br/> [String](String.md) | Detailed description of the entity | [NamedEntity](NamedEntity.md) |
-| [created_date](created_date.md) | 0..1 <br/> [Date](Date.md) | Date when the entity was created | [NamedEntity](NamedEntity.md) |
-| [modified_date](modified_date.md) | 0..1 <br/> [Date](Date.md) | Date when the entity was last modified | [NamedEntity](NamedEntity.md) |
-| [version](version.md) | 0..1 <br/> [String](String.md) | Version identifier for the entity | [NamedEntity](NamedEntity.md) |
-
-
-
-
-
-## Usages
-
-| used by | used in | type | used |
-| ---  | --- | --- | --- |
-| [InformationSecurityManagementSystem](InformationSecurityManagementSystem.md) | [objectives](objectives.md) | range | [InformationSecurityObjective](InformationSecurityObjective.md) |
-
-
-
-
-
-
-
-
-## In Subsets
-
-
-* [IsmsCore](IsmsCore.md)
-
-
-
-
-## Comments
-
-* Designed for measurable objective tracking and periodic review
-* Links objectives to related risks, controls, and action plans
-* Reference: ISO/IEC 27001:2022 Clause 6.2. ISO/IEC standards text is copyright ISO - not reproduced here.
-
-
-
-## Identifier and Mapping Information
-
-
-
-### Annotations
-
-| property | value |
-| --- | --- |
-| iso27001_clause | 6.2 |
-
-
-
-
-### Schema Source
-
-
-* from schema: https://w3id.org/lmodel/iso27001
-
-
-
-
-## Mappings
-
-| Mapping Type | Mapped Value |
-| ---  | ---  |
-| self | iso27001:InformationSecurityObjective |
-| native | iso27001:InformationSecurityObjective |
-| close | iso42001:AIObjective |
-
-
-
-
-
-
-## LinkML Source
-
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../NamedEntity/">NamedEntity</a><ul>
+<li><strong>InformationSecurityObjective</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Cardinality and Range</th>
+<th>Description</th>
+<th>Inheritance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../objective_statement/">objective_statement</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Clear statement of the objective</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../target_value/">target_value</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Target value for the objective metric</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../current_value/">current_value</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Current measured value</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../metric_definition/">metric_definition</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Definition of how the objective is measured</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../measurement_method/">measurement_method</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Method used to measure the metric</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../measurement_frequency/">measurement_frequency</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>How often measurement is performed</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../responsible_role/">responsible_role</a></td>
+<td>0..1 <br/> <a href="../Role/">Role</a></td>
+<td>Role responsible for the objective or control</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../target_date/">target_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Target date for achieving the objective</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../achievement_status/">achievement_status</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Current status of objective achievement</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../related_risks/">related_risks</a></td>
+<td>* <br/> <a href="../Risk/">Risk</a></td>
+<td>Associated risks</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../related_controls/">related_controls</a></td>
+<td>* <br/> <a href="../SecurityControl/">SecurityControl</a></td>
+<td>Other controls related to this one</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../action_plan/">action_plan</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Plan for achieving the objective</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../objective_resources_required/">objective_resources_required</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Resources required to achieve the information security objective</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../id/">id</a></td>
+<td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>Unique identifier for this entity instance</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../name/">name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Human-readable name or title</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../description/">description</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Detailed description of the entity</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../created_date/">created_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the entity was created</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../modified_date/">modified_date</a></td>
+<td>0..1 <br/> <a href="../Date/">Date</a></td>
+<td>Date when the entity was last modified</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+<tr>
+<td><a href="../version/">version</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Version identifier for the entity</td>
+<td><a href="../NamedEntity/">NamedEntity</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="usages">Usages</h2>
+<table>
+<thead>
+<tr>
+<th>used by</th>
+<th>used in</th>
+<th>type</th>
+<th>used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../InformationSecurityManagementSystem/">InformationSecurityManagementSystem</a></td>
+<td><a href="../objectives/">objectives</a></td>
+<td>range</td>
+<td><a href="./">InformationSecurityObjective</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-subsets">In Subsets</h2>
+<ul>
+<li><a href="../IsmsCore/">IsmsCore</a></li>
+</ul>
+<h2 id="comments">Comments</h2>
+<ul>
+<li>Designed for measurable objective tracking and periodic review</li>
+<li>Links objectives to related risks, controls, and action plans</li>
+<li>Reference: ISO/IEC 27001:2022 Clause 6.2. ISO/IEC standards text is copyright ISO - not reproduced here.</li>
+</ul>
+<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="annotations">Annotations</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iso27001_clause</td>
+<td>6.2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://w3id.org/lmodel/iso27001</li>
+</ul>
+<h2 id="mappings">Mappings</h2>
+<table>
+<thead>
+<tr>
+<th>Mapping Type</th>
+<th>Mapped Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>iso27001:InformationSecurityObjective</td>
+</tr>
+<tr>
+<td>native</td>
+<td>iso27001:InformationSecurityObjective</td>
+</tr>
+<tr>
+<td>close</td>
+<td>iso42001:AIObjective</td>
+</tr>
+</tbody>
+</table>
+<h2 id="linkml-source">LinkML Source</h2>
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
-
-### Direct
-
+<h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InformationSecurityObjective</span>
 <span class="nt">annotations</span><span class="p">:</span>
@@ -428,9 +644,7 @@ URI: [iso27001:InformationSecurityObjective](https://w3id.org/lmodel/iso27001/In
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_resources_required</span>
 </code></pre></div>
 </details>
-
-### Induced
-
+<h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InformationSecurityObjective</span>
 <span class="nt">annotations</span><span class="p">:</span>
@@ -664,7 +878,8 @@ URI: [iso27001:InformationSecurityObjective](https://w3id.org/lmodel/iso27001/In
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedEntity</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
-</details></div>
+</details>
+</div>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
