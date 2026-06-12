@@ -32,6 +32,10 @@ plugins:
     # https://pypi.org/project/mkdocs-pymdownx-material-extras
 
 markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html       # render markdown (tables) inside <div markdown="1"> blocks
+  - tables
   - pymdownx.superfences:
       # https://mkdocs-mermaid2.readthedocs.io/en/latest/superfences
       # custom code highlighting rules
