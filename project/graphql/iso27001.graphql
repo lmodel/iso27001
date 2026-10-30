@@ -1,6 +1,6 @@
-# metamodel_version: 1.11.0
-# version: 1.0.0
-enum AnnexAControlId
+# metamodel_version: 1.12.0
+# version: 2022/Amd 1:2024
+enum IsmsAnnexAControl
   {
     a_5_1
     a_5_2
@@ -97,7 +97,7 @@ enum AnnexAControlId
     a_8_34
   }
 
-enum AuditFindingType
+enum IsmsAuditFindingType
   {
     major_nonconformity
     minor_nonconformity
@@ -105,24 +105,14 @@ enum AuditFindingType
     positive_finding
   }
 
-enum AuditType
+enum IsmsAuditType
   {
-    internal
-    external_second_party
-    external_third_party
-    surveillance
-    recertification
-    combined
+    first_party
+    second_party
+    third_party
   }
 
-enum CIAProperty
-  {
-    confidentiality
-    integrity
-    availability
-  }
-
-enum ControlCategory
+enum IsmsControlTheme
   {
     organizational
     people
@@ -130,9 +120,8 @@ enum ControlCategory
     technological
   }
 
-enum DocumentType
+enum IsmsDocumentKind
   {
-    policy
     procedure
     standard
     guideline
@@ -141,7 +130,7 @@ enum DocumentType
     report
   }
 
-enum ImpactRating
+enum IsmsImpact
   {
     negligible
     minor
@@ -150,56 +139,15 @@ enum ImpactRating
     severe
   }
 
-enum ImplementationStatus
+enum IsmsImplementationStatus
   {
     not_started
     planned
     in_progress
     implemented
-    not_applicable
   }
 
-enum LikelihoodRating
-  {
-    rare
-    unlikely
-    possible
-    likely
-    almost_certain
-  }
-
-enum RelatedManagementSystem
-  {
-    iso_iec_27001
-    iso_iec_27701
-    iso_iec_27017
-    iso_iec_27018
-    iso_iec_42001
-    iso_9001
-    iso_14001
-    iso_22301
-    iso_iec_20000_1
-    iso_31000
-  }
-
-enum RiskLevel
-  {
-    very_low
-    low
-    medium
-    high
-    critical
-  }
-
-enum RiskTreatmentOption
-  {
-    modify
-    accept
-    avoid
-    share
-  }
-
-enum SecurityIncidentCategory
+enum IsmsIncidentCategory
   {
     malware
     ransomware
@@ -221,921 +169,910 @@ enum SecurityIncidentCategory
     other
   }
 
-type Asset
+enum IsmsLikelihood
   {
-    id: String!
-    name: String!
+    rare
+    unlikely
+    possible
+    likely
+    almost_certain
+  }
+
+enum IsmsManagementSystemStandard
+  {
+    iso_iec_27001
+    iso_iec_27701
+    iso_iec_42001
+    iso_9001
+    iso_14001
+    iso_22301
+    iso_iec_20000_1
+  }
+
+enum IsmsRiskLevel
+  {
+    very_low
+    low
+    medium
+    high
+    critical
+  }
+
+enum IsmsRiskTreatmentOption
+  {
+    modify
+    retain
+    avoid
+    share
+  }
+
+enum IsmsSecurityProperty
+  {
+    confidentiality
+    integrity
+    availability
+  }
+
+interface IsmsApplicabilityEntry
+  {
+    entryAnnexAControl: IsmsAnnexAControl
+    entryType: String
+    entryJustification: String!
+  }
+
+type IsmsAsset
+  {
+    ismsId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    assetType: String
+    relevantControls: [IsmsControl]
+    assetCategory: String
     assetOwner: String
     assetCustodian: String
-    classification: String
-    location: String
-    criticality: String
-    relatedRisks: [Risk]
-    applicableControls: [SecurityControl]
+    assetClassification: String
+    assetLocation: String
+    assetCriticality: String
   }
 
-type AuditFinding
+type IsmsAudit implements IsmsDocumentControlMixin
   {
-    id: String!
-    name: String!
+    ismsId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    findingType: AuditFindingType
-    clauseReference: String
-    controlReference: SecurityControl
-    findingDescription: String
-    objectiveEvidence: String
-    rootCauseAnalysis: String
-    riskImplication: String
-    recommendedAction: String
-    auditeeResponse: String
-    linkedCorrectiveAction: CorrectiveAction
-    closureStatus: String
-    closureDate: String
-  }
-
-type AuditProgramme
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    documentType: DocumentType
-    documentReference: String
-    author: String
-    owner: String
-    approvedBy: String
-    approvedDate: String
-    effectiveDate: String
-    reviewDate: String
-    status: String
-    classification: String
-    retentionPeriod: DurationType
-    distributionControls: [String]
-    storageAndPreservation: String
-    changeControlMethod: String
-    externalOrigin: Boolean
-    externalOriginSource: String
-    programmePeriod: String
-    plannedAudits: [InternalAudit]
-    auditFrequencyRationale: String
-    resourceRequirements: String
-    auditorQualifications: String
-    programmeStatus: String
-  }
-
-type AwarenessProgram
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    documentType: DocumentType
-    documentReference: String
-    author: String
-    owner: String
-    approvedBy: String
-    approvedDate: String
-    effectiveDate: String
-    reviewDate: String
-    status: String
-    classification: String
-    retentionPeriod: DurationType
-    distributionControls: [String]
-    storageAndPreservation: String
-    changeControlMethod: String
-    externalOrigin: Boolean
-    externalOriginSource: String
-    awarenessTopics: [String]
-    deliveryMethods: [String]
-    targetAudience: String
-    frequency: String
-    completionTracking: String
-    effectivenessMeasures: String
-  }
-
-type CommunicationItem
-  {
-    subject: String
-    purpose: String
-    audience: String
-    frequency: String
-    method: String
-    responsibleParty: String
-    recordsRequired: Boolean
-  }
-
-type CommunicationPlan
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    documentType: DocumentType
-    documentReference: String
-    author: String
-    owner: String
-    approvedBy: String
-    approvedDate: String
-    effectiveDate: String
-    reviewDate: String
-    status: String
-    classification: String
-    retentionPeriod: DurationType
-    distributionControls: [String]
-    storageAndPreservation: String
-    changeControlMethod: String
-    externalOrigin: Boolean
-    externalOriginSource: String
-    communicationItems: [CommunicationItem]
-  }
-
-type CompetenceRecord
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    documentType: DocumentType
-    documentReference: String
-    author: String
-    owner: String
-    approvedBy: String
-    approvedDate: String
-    effectiveDate: String
-    reviewDate: String
-    status: String
-    classification: String
-    retentionPeriod: DurationType
-    distributionControls: [String]
-    storageAndPreservation: String
-    changeControlMethod: String
-    externalOrigin: Boolean
-    externalOriginSource: String
-    personName: String
-    personRole: String
-    requiredCompetencies: [String]
-    educationRecords: [String]
-    trainingRecords: [String]
-    experienceRecords: [String]
-    competencyAssessmentDate: String
-    competencyGaps: [String]
-    developmentActions: [String]
-  }
-
-type CorrectiveAction
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    linkedNonconformity: Nonconformity
-    actionDescription: String
-    rootCauseAddressed: String
-    responsibleParty: String
-    targetCompletionDate: String
-    actualCompletionDate: String
-    resourcesRequired: String
-    effectivenessCriteria: String
-    effectivenessReviewDate: String
-    effectivenessVerified: Boolean
-    ismsChangesRequired: String
-    status: String
-  }
-
-interface DocumentedInformation
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    documentType: DocumentType
-    documentReference: String
-    author: String
-    owner: String
-    approvedBy: String
-    approvedDate: String
-    effectiveDate: String
-    reviewDate: String
-    status: String
-    classification: String
-    retentionPeriod: DurationType
-    distributionControls: [String]
-    storageAndPreservation: String
-    changeControlMethod: String
-    externalOrigin: Boolean
-    externalOriginSource: String
-  }
-
-type ImprovementOpportunity
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    improvementSource: String
-    identificationDate: String
-    identifiedBy: String
-    improvementDescription: String
-    expectedBenefit: String
-    priority: String
-    implementationPlan: String
-    responsibleParty: String
-    targetDate: String
-    actualCompletionDate: String
-    outcomeAssessment: String
-    status: String
-  }
-
-type InformationSecurityEvent
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    eventDatetime: String
-    reporter: String
-    eventDescription: String
-    affectedAssets: [Asset]
-    initialAssessment: String
-    categorizedAsIncident: Boolean
-    linkedIncident: InformationSecurityIncident
-  }
-
-type InformationSecurityIncident
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    incidentDatetime: String
-    incidentCategory: SecurityIncidentCategory
-    severity: RiskLevel
-    affectedAssets: [Asset]
-    affectedCia: [CIAProperty]
-    incidentDescription: String
-    detectionMethod: String
-    responseActions: [String]
-    containmentActions: [String]
-    eradicationActions: [String]
-    recoveryActions: [String]
-    rootCause: String
-    lessonsLearned: [String]
-    evidenceCollected: [String]
-    notificationRequired: Boolean
-    notificationsMade: [String]
-    closureDatetime: String
-    postIncidentReview: String
-  }
-
-type InformationSecurityManagementSystem
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    organization: Organization
-    topManagement: String
-    governingBody: String
-    leadershipCommitmentEvidence: [String]
-    scopeStatement: String
-    scopeBoundaries: [String]
-    scopeExclusions: [String]
-    interfacesAndDependencies: [String]
-    processesAndInteractions: String
-    contextInternalIssues: [String]
-    contextExternalIssues: [String]
-    interestedParties: [InterestedParty]
-    informationSecurityPolicy: InformationSecurityPolicy
-    objectives: [InformationSecurityObjective]
-    risksAndOpportunitiesActions: [String]
-    plannedChanges: [String]
-    externallyProvidedServices: [String]
-    riskAssessmentProcess: RiskAssessmentProcess
-    riskTreatmentProcess: RiskTreatmentProcess
-    statementOfApplicability: StatementOfApplicability
-    controls: [SecurityControl]
-    roles: [Role]
-    resources: [Resource]
-    competenceRecords: [CompetenceRecord]
-    awarenessProgram: AwarenessProgram
-    communicationPlan: CommunicationPlan
-    documentedInformationRegister: [DocumentedInformation]
-    operationalProcedures: [OperationalProcedure]
-    riskAssessments: [RiskAssessment]
-    riskTreatmentPlans: [RiskTreatmentPlan]
-    monitoringProgram: MonitoringProgram
-    internalAudits: [InternalAudit]
-    managementReviews: [ManagementReview]
-    nonconformities: [Nonconformity]
-    correctiveActions: [CorrectiveAction]
-    improvements: [ImprovementOpportunity]
-    certificationStatus: String
-    certificationBody: String
-    certificationDate: String
-    recertificationDate: String
-  }
-
-type InformationSecurityObjective
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    objectiveStatement: String
-    targetValue: String
-    currentValue: String
-    metricDefinition: String
-    measurementMethod: String
-    measurementFrequency: String
-    responsibleRole: Role
-    targetDate: String
-    achievementStatus: String
-    relatedRisks: [Risk]
-    relatedControls: [SecurityControl]
-    actionPlan: String
-    objectiveResourcesRequired: String
-  }
-
-type InformationSecurityPolicy
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    documentType: DocumentType
-    documentReference: String
-    author: String
-    owner: String
-    approvedBy: String
-    approvedDate: String
-    effectiveDate: String
-    reviewDate: String
-    status: String
-    classification: String
-    retentionPeriod: DurationType
-    distributionControls: [String]
-    storageAndPreservation: String
-    changeControlMethod: String
-    externalOrigin: Boolean
-    externalOriginSource: String
-    policyStatement: String
-    policyObjectivesFramework: String
-    commitmentStatements: [String]
-    applicabilityStatement: String
-    communicationDate: String
-    acknowledgmentRequired: Boolean
-    lastPolicyReviewDate: String
-    nextPolicyReviewDate: String
-    relatedTopicPolicies: [TopicSpecificPolicy]
-    integratedManagementSystems: [RelatedManagementSystem]
-  }
-
-type InterestedParty
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    partyType: String
-    relationship: String
-    requirements: [String]
-    addressedRequirements: [String]
-    climateChangeRelatedRequirements: [String]
-    communicationNeeds: String
-    contactInformation: String
-  }
-
-type InternalAudit
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    documentType: DocumentType
-    documentReference: String
-    author: String
-    owner: String
-    approvedBy: String
-    approvedDate: String
-    effectiveDate: String
-    reviewDate: String
-    status: String
-    classification: String
-    retentionPeriod: DurationType
-    distributionControls: [String]
-    storageAndPreservation: String
-    changeControlMethod: String
-    externalOrigin: Boolean
-    externalOriginSource: String
-    auditReference: String
-    auditType: AuditType
+    auditType: IsmsAuditType!
+    auditStandards: [IsmsManagementSystemStandard]
     auditScope: String
     auditCriteria: [String]
     auditObjectives: [String]
     auditPeriodStart: String
     auditPeriodEnd: String
-    leadAuditor: String
+    auditLead: String
     auditTeam: [String]
-    auditeeRepresentatives: [String]
-    auditPlan: String
-    findings: [AuditFinding]
-    positiveObservations: [String]
+    auditAuditees: [String]
+    auditPlan: IsmsDocumentedInformation
+    auditFindings: [IsmsAuditFinding]
     auditConclusion: String
-    reportDate: String
-    reportDistribution: [String]
-  }
-
-type ManagementReview
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    documentType: DocumentType
+    auditReportDate: String
+    auditReportDistribution: [String]
     documentReference: String
-    author: String
-    owner: String
-    approvedBy: String
-    approvedDate: String
-    effectiveDate: String
-    status: String
-    classification: String
-    retentionPeriod: DurationType
-    distributionControls: [String]
-    storageAndPreservation: String
-    changeControlMethod: String
-    externalOrigin: Boolean
-    externalOriginSource: String
-    reviewDate: String
-    attendees: [String]
-    previousActionsStatus: String
-    contextChanges: String
-    interestedPartyChanges: String
-    interestedPartyFeedback: String
-    performanceTrends: String
-    auditResultsSummary: String
-    riskAssessmentResults: String
-    riskTreatmentStatus: String
-    risksAndOpportunitiesChanges: String
-    improvementOpportunities: [String]
-    decisions: [String]
-    actionItems: [String]
-    nextReviewDate: String
+    documentVersion: String
+    documentAuthor: String
+    documentOwner: String
+    documentApprover: String
+    documentApprovalDate: String
+    documentEffectiveDate: String
+    documentLastReviewDate: String
+    documentNextReviewDate: String
+    documentStatus: String
+    documentClassification: String
+    documentRetention: IsmsDuration
+    documentDistribution: [String]
+    documentStorage: String
+    documentChangeControl: String
+    documentExternalOrigin: Boolean
+    documentExternalSource: String
   }
 
-type MonitoringItem
+type IsmsAuditFinding
   {
-    metricName: String
-    metricDescription: String
-    measurementMethod: String
-    measurementFrequency: String
-    responsibleParty: String
-    analysisFrequency: String
-    analyst: String
-    targetThreshold: String
-    alertThreshold: String
-    currentValue: String
-    trend: String
-  }
-
-type MonitoringProgram
-  {
-    id: String!
-    name: String!
+    ismsId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    documentType: DocumentType
+    findingType: IsmsAuditFindingType!
+    findingRequirement: IsmsRequirementReference
+    findingControl: IsmsControl
+    findingEvidence: String
+    findingRootCause: String
+    findingRisk: String
+    findingRecommendation: String
+    findingAuditeeResponse: String
+    findingCorrectiveAction: IsmsCorrectiveAction
+    findingClosureStatus: String
+    findingClosureDate: String
+  }
+
+type IsmsAuditProgramme implements IsmsDocumentControlMixin
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    programmePeriod: String
+    programmeAudits: [IsmsAudit]
+    programmeFrequencyRationale: String
+    programmeResources: String
+    programmeAuditorQualifications: String
+    programmeStatus: String
     documentReference: String
-    author: String
-    owner: String
-    approvedBy: String
-    approvedDate: String
-    effectiveDate: String
-    reviewDate: String
-    status: String
-    classification: String
-    retentionPeriod: DurationType
-    distributionControls: [String]
-    storageAndPreservation: String
-    changeControlMethod: String
-    externalOrigin: Boolean
-    externalOriginSource: String
-    monitoringItems: [MonitoringItem]
+    documentVersion: String
+    documentAuthor: String
+    documentOwner: String
+    documentApprover: String
+    documentApprovalDate: String
+    documentEffectiveDate: String
+    documentLastReviewDate: String
+    documentNextReviewDate: String
+    documentStatus: String
+    documentClassification: String
+    documentRetention: IsmsDuration
+    documentDistribution: [String]
+    documentStorage: String
+    documentChangeControl: String
+    documentExternalOrigin: Boolean
+    documentExternalSource: String
   }
 
-interface NamedEntity
+type IsmsAwarenessProgramme implements IsmsDocumentControlMixin
   {
-    id: String!
-    name: String!
+    ismsId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
+    awarenessTopics: [String]
+    awarenessMethods: [String]
+    awarenessAudience: String
+    awarenessFrequency: String
+    awarenessCompletionTracking: String
+    awarenessEffectiveness: String
+    documentReference: String
+    documentVersion: String
+    documentAuthor: String
+    documentOwner: String
+    documentApprover: String
+    documentApprovalDate: String
+    documentEffectiveDate: String
+    documentLastReviewDate: String
+    documentNextReviewDate: String
+    documentStatus: String
+    documentClassification: String
+    documentRetention: IsmsDuration
+    documentDistribution: [String]
+    documentStorage: String
+    documentChangeControl: String
+    documentExternalOrigin: Boolean
+    documentExternalSource: String
   }
 
-type Nonconformity
+type IsmsCommunication
   {
-    id: String!
-    name: String!
+    responsibleRole: IsmsRole
+    communicationSubject: String!
+    communicationPurpose: String
+    communicationAudience: String
+    communicationFrequency: String
+    communicationMethod: String
+    communicationRecordsRequired: Boolean
+  }
+
+type IsmsCommunicationPlan implements IsmsDocumentControlMixin
+  {
+    ismsId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
+    communicationItems: [IsmsCommunication]
+    documentReference: String
+    documentVersion: String
+    documentAuthor: String
+    documentOwner: String
+    documentApprover: String
+    documentApprovalDate: String
+    documentEffectiveDate: String
+    documentLastReviewDate: String
+    documentNextReviewDate: String
+    documentStatus: String
+    documentClassification: String
+    documentRetention: IsmsDuration
+    documentDistribution: [String]
+    documentStorage: String
+    documentChangeControl: String
+    documentExternalOrigin: Boolean
+    documentExternalSource: String
+  }
+
+type IsmsCompetenceRecord implements IsmsDocumentControlMixin
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    competencePerson: String
+    competenceRole: IsmsRole
+    competenceRequired: [String]
+    competenceEducation: [String]
+    competenceTraining: [String]
+    competenceExperience: [String]
+    competenceAssessmentDate: String
+    competenceGaps: [String]
+    competenceActions: [String]
+    documentReference: String
+    documentVersion: String
+    documentAuthor: String
+    documentOwner: String
+    documentApprover: String
+    documentApprovalDate: String
+    documentEffectiveDate: String
+    documentLastReviewDate: String
+    documentNextReviewDate: String
+    documentStatus: String
+    documentClassification: String
+    documentRetention: IsmsDuration
+    documentDistribution: [String]
+    documentStorage: String
+    documentChangeControl: String
+    documentExternalOrigin: Boolean
+    documentExternalSource: String
+  }
+
+type IsmsControl
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    relevantControls: [IsmsControl]
+    implementationState: IsmsImplementationStatus
+    controlAnnexAControls: [IsmsAnnexAControl]
+    controlTheme: IsmsControlTheme
+    controlText: String
+    controlGuidance: String
+    controlThreats: [String]
+    controlAssetTypes: [String]
+    controlOwner: String
+    controlImplementationDate: String
+    controlEffectiveness: String
+    controlLastTested: String
+    controlEvidence: [String]
+  }
+
+type IsmsCorrectiveAction
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    responsibleRole: IsmsRole
+    actionNonconformities: [IsmsNonconformity]
+    actionRootCause: String
+    actionTargetDate: String
+    actionCompletionDate: String
+    actionResources: String
+    actionEffectivenessCriteria: String
+    actionEffectivenessReviewDate: String
+    actionEffective: Boolean
+    actionIsmsChanges: String
+    actionStatus: String
+  }
+
+interface IsmsDocumentControlMixin
+  {
+    documentReference: String
+    documentVersion: String
+    documentAuthor: String
+    documentOwner: String
+    documentApprover: String
+    documentApprovalDate: String
+    documentEffectiveDate: String
+    documentLastReviewDate: String
+    documentNextReviewDate: String
+    documentStatus: String
+    documentClassification: String
+    documentRetention: IsmsDuration
+    documentDistribution: [String]
+    documentStorage: String
+    documentChangeControl: String
+    documentExternalOrigin: Boolean
+    documentExternalSource: String
+  }
+
+type IsmsDocumentedInformation implements IsmsDocumentControlMixin
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    documentKind: IsmsDocumentKind!
+    documentReference: String
+    documentVersion: String
+    documentAuthor: String
+    documentOwner: String
+    documentApprover: String
+    documentApprovalDate: String
+    documentEffectiveDate: String
+    documentLastReviewDate: String
+    documentNextReviewDate: String
+    documentStatus: String
+    documentClassification: String
+    documentRetention: IsmsDuration
+    documentDistribution: [String]
+    documentStorage: String
+    documentChangeControl: String
+    documentExternalOrigin: Boolean
+    documentExternalSource: String
+  }
+
+type IsmsExcludedControl
+  {
+    entryType: String
+    entryJustification: String!
+    entryAnnexAControl: IsmsAnnexAControl!
+  }
+
+type IsmsImprovementOpportunity
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    responsibleRole: IsmsRole
+    improvementSource: String
+    improvementIdentifiedOn: String
+    improvementIdentifiedBy: String
+    improvementBenefit: String
+    improvementPriority: String
+    improvementPlan: String
+    improvementTargetDate: String
+    improvementCompletionDate: String
+    improvementOutcome: String
+    improvementStatus: String
+  }
+
+type IsmsIncludedControl
+  {
+    entryAnnexAControl: IsmsAnnexAControl
+    entryType: String
+    entryJustification: String!
+    implementationState: IsmsImplementationStatus!
+    responsibleRole: IsmsRole
+    includedControl: IsmsControl
+    includedEvidence: String
+    includedTargetDate: String
+  }
+
+type IsmsInterestedParty
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    partyCategory: String
+    partyRelationship: String
+    partyRequirements: [String]
+    partyAddressedRequirements: [String]
+    partyClimateChangeRequirements: [String]
+    partyCommunicationNeeds: String
+    partyContact: String
+  }
+
+type IsmsManagementReview implements IsmsDocumentControlMixin
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    reviewHeldOn: String!
+    reviewAttendees: [String]
+    reviewPreviousActions: String
+    reviewContextChanges: String
+    reviewInterestedPartyChanges: String
+    reviewInterestedPartyFeedback: String
+    reviewPerformanceTrends: String
+    reviewAuditResults: String
+    reviewRiskAssessmentResults: String
+    reviewRiskTreatmentStatus: String
+    reviewRisksAndOpportunities: String
+    reviewImprovementOpportunities: [String]
+    reviewDecisions: [String]
+    reviewActions: [String]
+    reviewNextDate: String
+    documentReference: String
+    documentVersion: String
+    documentAuthor: String
+    documentOwner: String
+    documentApprover: String
+    documentApprovalDate: String
+    documentEffectiveDate: String
+    documentLastReviewDate: String
+    documentNextReviewDate: String
+    documentStatus: String
+    documentClassification: String
+    documentRetention: IsmsDuration
+    documentDistribution: [String]
+    documentStorage: String
+    documentChangeControl: String
+    documentExternalOrigin: Boolean
+    documentExternalSource: String
+  }
+
+type IsmsManagementSystem
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    ismsOrganization: IsmsOrganization
+    ismsTopManagement: String
+    ismsGoverningBody: String
+    ismsLeadershipEvidence: [String]
+    ismsScope: String
+    ismsScopeBoundaries: [String]
+    ismsScopeExclusions: [String]
+    ismsInterfaces: [String]
+    ismsProcesses: String
+    ismsInternalIssues: [String]
+    ismsExternalIssues: [String]
+    ismsRiskAndOpportunityActions: [String]
+    ismsPlannedChanges: [String]
+    ismsExternalServices: [String]
+    ismsCertificationStatus: String
+    ismsCertificationBody: String
+    ismsCertificationDate: String
+    ismsRecertificationDate: String
+    ismsInterestedParties: [IsmsInterestedParty]
+    ismsPolicy: IsmsPolicy
+    ismsTopicSpecificPolicies: [IsmsTopicSpecificPolicy]
+    ismsRoles: [IsmsRole]
+    ismsObjectives: [IsmsObjective]
+    ismsRiskAssessmentProcess: IsmsRiskAssessmentProcess
+    ismsRiskTreatmentProcess: IsmsRiskTreatmentProcess
+    ismsRiskAssessments: [IsmsRiskAssessment]
+    ismsRisks: [IsmsRisk]
+    ismsRiskTreatmentPlans: [IsmsRiskTreatmentPlan]
+    ismsStatementOfApplicability: IsmsStatementOfApplicability
+    ismsControls: [IsmsControl]
+    ismsAssets: [IsmsAsset]
+    ismsResources: [IsmsResource]
+    ismsCompetenceRecords: [IsmsCompetenceRecord]
+    ismsAwarenessProgramme: IsmsAwarenessProgramme
+    ismsCommunicationPlan: IsmsCommunicationPlan
+    ismsDocumentedInformation: [IsmsDocumentedInformation]
+    ismsOperationalProcedures: [IsmsOperationalProcedure]
+    ismsMonitoringProgramme: IsmsMonitoringProgramme
+    ismsAuditProgrammes: [IsmsAuditProgramme]
+    ismsAudits: [IsmsAudit]
+    ismsManagementReviews: [IsmsManagementReview]
+    ismsNonconformities: [IsmsNonconformity]
+    ismsCorrectiveActions: [IsmsCorrectiveAction]
+    ismsImprovements: [IsmsImprovementOpportunity]
+    ismsSecurityEvents: [IsmsSecurityEvent]
+  }
+
+type IsmsMonitoringItem
+  {
+    responsibleRole: IsmsRole
+    monitoringMetric: String!
+    monitoringDescription: String
+    monitoringMethod: String
+    monitoringFrequency: String
+    monitoringAnalysisFrequency: String
+    monitoringAnalyst: String
+    monitoringTarget: String
+    monitoringAlertThreshold: String
+    monitoringCurrentValue: String
+    monitoringTrend: String
+  }
+
+type IsmsMonitoringProgramme implements IsmsDocumentControlMixin
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    monitoringItems: [IsmsMonitoringItem]
+    documentReference: String
+    documentVersion: String
+    documentAuthor: String
+    documentOwner: String
+    documentApprover: String
+    documentApprovalDate: String
+    documentEffectiveDate: String
+    documentLastReviewDate: String
+    documentNextReviewDate: String
+    documentStatus: String
+    documentClassification: String
+    documentRetention: IsmsDuration
+    documentDistribution: [String]
+    documentStorage: String
+    documentChangeControl: String
+    documentExternalOrigin: Boolean
+    documentExternalSource: String
+  }
+
+type IsmsNonconformity
+  {
+    ismsId: String!
+    title: String!
+    description: String
     nonconformitySource: String
-    detectionDate: String
-    detectedBy: String
-    requirementViolated: String
-    nonconformityDescription: String
-    immediateActions: [String]
-    consequencesAddressed: String
-    rootCause: String
-    similarNonconformitiesCheck: String
-    linkedCorrectiveActions: [CorrectiveAction]
-    status: String
-    closureDate: String
-    closureEvidence: String
+    nonconformityDetectedOn: String
+    nonconformityDetectedBy: String
+    nonconformityRequirement: String
+    nonconformityImmediateActions: [String]
+    nonconformityConsequences: String
+    nonconformityRootCause: String
+    nonconformitySimilarCheck: String
+    nonconformityStatus: String
+    nonconformityClosureDate: String
+    nonconformityClosureEvidence: String
   }
 
-type OperationalProcedure
+type IsmsObjective
   {
-    id: String!
-    name: String!
+    ismsId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    documentType: DocumentType
-    documentReference: String
-    author: String
-    owner: String
-    approvedBy: String
-    approvedDate: String
-    effectiveDate: String
-    reviewDate: String
-    status: String
-    classification: String
-    retentionPeriod: DurationType
-    distributionControls: [String]
-    storageAndPreservation: String
-    changeControlMethod: String
-    externalOrigin: Boolean
-    externalOriginSource: String
+    responsibleRole: IsmsRole
+    relevantControls: [IsmsControl]
+    objectiveStatement: String
+    objectiveTarget: String
+    objectiveCurrentValue: String
+    objectiveMetric: String
+    objectiveMeasurementMethod: String
+    objectiveMeasurementFrequency: String
+    objectiveTargetDate: String
+    objectiveAchievement: String
+    objectiveRisks: [IsmsRisk]
+    objectiveActionPlan: String
+    objectiveResources: String
+  }
+
+type IsmsOperationalProcedure implements IsmsDocumentControlMixin
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    relevantControls: [IsmsControl]
     procedureScope: String
-    processCriteria: String
-    controlMeasures: [String]
-    responsibleRoles: [Role]
-    relatedControls: [SecurityControl]
-    changeControlRequirements: String
-  }
-
-type Organization
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    legalName: String
-    tradingNames: [String]
-    organizationType: String
-    industrySector: String
-    sizeCategory: String
-    employeeCount: PositiveIntegerType
-    geographicLocations: [String]
-    regulatoryJurisdictions: [String]
-    parentOrganization: String
-    subsidiaries: [String]
-    climateChangeRelevant: Boolean
-  }
-
-type Resource
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    resourceType: String
-    quantity: String
-    allocationDate: String
-    allocatedTo: String
-    cost: String
-    availabilityStatus: String
-  }
-
-type Risk
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    riskSource: String
-    threatDescription: String
-    vulnerabilityDescription: String
-    affectedAssets: [Asset]
-    affectedCiaProperties: [CIAProperty]
-    riskOwner: String
-    likelihood: LikelihoodRating
-    impact: ImpactRating
-    inherentRiskLevel: RiskLevel
-    existingControls: [SecurityControl]
-    residualRiskLevel: RiskLevel
-    riskTreatmentOption: RiskTreatmentOption
-    treatmentPriority: String
-    relatedTreatmentPlan: RiskTreatmentPlan
-  }
-
-type RiskAssessment
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    documentType: DocumentType
+    procedureCriteria: String
+    procedureControlMeasures: [String]
+    procedureRoles: [IsmsRole]
+    procedureChangeControl: String
     documentReference: String
-    author: String
-    owner: String
-    approvedBy: String
-    approvedDate: String
-    effectiveDate: String
-    reviewDate: String
-    status: String
-    classification: String
-    retentionPeriod: DurationType
-    distributionControls: [String]
-    storageAndPreservation: String
-    changeControlMethod: String
-    externalOrigin: Boolean
-    externalOriginSource: String
+    documentVersion: String
+    documentAuthor: String
+    documentOwner: String
+    documentApprover: String
+    documentApprovalDate: String
+    documentEffectiveDate: String
+    documentLastReviewDate: String
+    documentNextReviewDate: String
+    documentStatus: String
+    documentClassification: String
+    documentRetention: IsmsDuration
+    documentDistribution: [String]
+    documentStorage: String
+    documentChangeControl: String
+    documentExternalOrigin: Boolean
+    documentExternalSource: String
+  }
+
+type IsmsOrganization
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    organizationLegalName: String
+    organizationTradingNames: [String]
+    organizationKind: String
+    organizationSector: String
+    organizationSize: String
+    organizationEmployeeCount: Int
+    organizationLocations: [String]
+    organizationJurisdictions: [String]
+    organizationParent: String
+    organizationSubsidiaries: [String]
+    organizationClimateChangeRelevant: Boolean
+  }
+
+type IsmsPolicy implements IsmsDocumentControlMixin
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    policyStatement: String
+    policyObjectivesFramework: String
+    policyCommitments: [String]
+    policyApplicability: String
+    policyCommunicationDate: String
+    policyAcknowledgementRequired: Boolean
+    policyManagementSystems: [IsmsManagementSystemStandard]
+    documentReference: String
+    documentVersion: String
+    documentAuthor: String
+    documentOwner: String
+    documentApprover: String
+    documentApprovalDate: String
+    documentEffectiveDate: String
+    documentLastReviewDate: String
+    documentNextReviewDate: String
+    documentStatus: String
+    documentClassification: String
+    documentRetention: IsmsDuration
+    documentDistribution: [String]
+    documentStorage: String
+    documentChangeControl: String
+    documentExternalOrigin: Boolean
+    documentExternalSource: String
+  }
+
+interface IsmsRecord
+  {
+    ismsId: String!
+    title: String!
+    description: String
+  }
+
+type IsmsResource
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    resourceCategory: String
+    resourceQuantity: String
+    resourceAllocationDate: String
+    resourceAllocatedTo: String
+    resourceCost: String
+    resourceAvailability: String
+  }
+
+type IsmsRisk
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    affectedAssets: [IsmsAsset]
+    affectedSecurityProperties: [IsmsSecurityProperty]
+    riskSource: String
+    riskThreat: String
+    riskVulnerability: String
+    riskOwner: String
+    riskLikelihood: IsmsLikelihood
+    riskImpact: IsmsImpact
+    riskInherentLevel: IsmsRiskLevel
+    riskExistingControls: [IsmsControl]
+    riskResidualLevel: IsmsRiskLevel
+    riskTreatmentOption: IsmsRiskTreatmentOption
+    riskTreatmentPriority: String
+  }
+
+type IsmsRiskAssessment implements IsmsDocumentControlMixin
+  {
+    ismsId: String!
+    title: String!
+    description: String
     assessmentScope: String
     assessmentDate: String
-    assessor: String
-    methodologyUsed: String
-    risksIdentified: [Risk]
-    summaryFindings: String
-    recommendations: [String]
-    nextAssessmentDate: String
+    assessmentAssessor: String
+    assessmentMethodUsed: String
+    assessmentRisks: [IsmsRisk]
+    assessmentSummary: String
+    assessmentRecommendations: [String]
+    assessmentNextDate: String
+    documentReference: String
+    documentVersion: String
+    documentAuthor: String
+    documentOwner: String
+    documentApprover: String
+    documentApprovalDate: String
+    documentEffectiveDate: String
+    documentLastReviewDate: String
+    documentNextReviewDate: String
+    documentStatus: String
+    documentClassification: String
+    documentRetention: IsmsDuration
+    documentDistribution: [String]
+    documentStorage: String
+    documentChangeControl: String
+    documentExternalOrigin: Boolean
+    documentExternalSource: String
   }
 
-type RiskAssessmentProcess
+type IsmsRiskAssessmentProcess implements IsmsDocumentControlMixin
   {
-    id: String!
-    name: String!
+    ismsId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    documentType: DocumentType
-    documentReference: String
-    author: String
-    owner: String
-    approvedBy: String
-    approvedDate: String
-    effectiveDate: String
-    reviewDate: String
-    status: String
-    classification: String
-    retentionPeriod: DurationType
-    distributionControls: [String]
-    storageAndPreservation: String
-    changeControlMethod: String
-    externalOrigin: Boolean
-    externalOriginSource: String
     riskAcceptanceCriteria: String
-    assessmentCriteria: String
-    assessmentMethodology: String
-    likelihoodScale: String
-    impactScale: String
+    riskAssessmentCriteria: String
+    riskAssessmentMethod: String
+    riskLikelihoodScale: String
+    riskImpactScale: String
     riskMatrix: String
-    assessmentFrequency: String
-    triggerEvents: [String]
+    riskAssessmentFrequency: String
+    riskAssessmentTriggers: [String]
+    documentReference: String
+    documentVersion: String
+    documentAuthor: String
+    documentOwner: String
+    documentApprover: String
+    documentApprovalDate: String
+    documentEffectiveDate: String
+    documentLastReviewDate: String
+    documentNextReviewDate: String
+    documentStatus: String
+    documentClassification: String
+    documentRetention: IsmsDuration
+    documentDistribution: [String]
+    documentStorage: String
+    documentChangeControl: String
+    documentExternalOrigin: Boolean
+    documentExternalSource: String
   }
 
-type RiskTreatmentPlan
+type IsmsRiskTreatmentPlan implements IsmsDocumentControlMixin
   {
-    id: String!
-    name: String!
+    ismsId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    documentType: DocumentType
-    documentReference: String
-    author: String
-    owner: String
-    approvedBy: String
-    effectiveDate: String
-    reviewDate: String
-    status: String
-    classification: String
-    retentionPeriod: DurationType
-    distributionControls: [String]
-    storageAndPreservation: String
-    changeControlMethod: String
-    externalOrigin: Boolean
-    externalOriginSource: String
+    implementationState: IsmsImplementationStatus
     planScope: String
-    risksAddressed: [Risk]
-    treatmentActions: [String]
-    controlsToImplement: [SecurityControl]
-    resourcesRequired: String
-    responsibleParties: [String]
-    implementationTimeline: String
-    riskOwnerApproval: String
-    approvedDate: String
-    residualRiskAcceptance: String
-    implementationStatus: ImplementationStatus
-    completionDate: String
+    planRisks: [IsmsRisk]
+    planActions: [String]
+    planControls: [IsmsControl]
+    planResources: String
+    planResponsibleParties: [String]
+    planTimeline: String
+    planRiskOwnerApproval: String
+    planResidualRiskAcceptance: String
+    planCompletionDate: String
+    documentReference: String
+    documentVersion: String
+    documentAuthor: String
+    documentOwner: String
+    documentApprover: String
+    documentApprovalDate: String
+    documentEffectiveDate: String
+    documentLastReviewDate: String
+    documentNextReviewDate: String
+    documentStatus: String
+    documentClassification: String
+    documentRetention: IsmsDuration
+    documentDistribution: [String]
+    documentStorage: String
+    documentChangeControl: String
+    documentExternalOrigin: Boolean
+    documentExternalSource: String
   }
 
-type RiskTreatmentProcess
+type IsmsRiskTreatmentProcess implements IsmsDocumentControlMixin
   {
-    id: String!
-    name: String!
+    ismsId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    documentType: DocumentType
-    documentReference: String
-    author: String
-    owner: String
-    approvedBy: String
-    approvedDate: String
-    effectiveDate: String
-    reviewDate: String
-    status: String
-    classification: String
-    retentionPeriod: DurationType
-    distributionControls: [String]
-    storageAndPreservation: String
-    changeControlMethod: String
-    externalOrigin: Boolean
-    externalOriginSource: String
     treatmentOptionsGuidance: String
-    controlSelectionCriteria: String
-    annexAOmissionVerification: String
-    soaTemplate: String
-    approvalWorkflow: String
-  }
-
-type Role
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    roleType: String
-    responsibilities: [String]
-    authorities: [String]
-    accountability: String
-    assignedTo: [String]
-    delegationRules: String
-    reportingLine: String
-  }
-
-type SecurityControl
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    controlId: AnnexAControlId
-    controlTitle: String
-    controlCategory: ControlCategory
-    controlText: String
-    implementationGuidance: String
-    relatedControls: [SecurityControl]
-    applicableThreats: [String]
-    applicableAssets: [String]
-    controlOwner: String
-    implementationStatus: ImplementationStatus
-    implementationDate: String
-    effectivenessRating: String
-    lastTestDate: String
-    evidenceReferences: [String]
-  }
-
-type SoAEntry
-  {
-    controlReference: SecurityControl
-    isApplicable: Boolean
-    inclusionJustification: String
-    exclusionJustification: String
-    implementationStatus: ImplementationStatus
-    implementationEvidence: String
-    responsibleRole: Role
-    targetImplementationDate: String
-  }
-
-type StatementOfApplicability
-  {
-    id: String!
-    name: String!
-    description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    documentType: DocumentType
+    treatmentControlSelection: String
+    treatmentAnnexAComparison: String
+    treatmentSoaTemplate: String
+    treatmentApprovalWorkflow: String
     documentReference: String
-    author: String
-    owner: String
-    approvedDate: String
-    effectiveDate: String
-    reviewDate: String
-    status: String
-    classification: String
-    retentionPeriod: DurationType
-    distributionControls: [String]
-    storageAndPreservation: String
-    changeControlMethod: String
-    externalOrigin: Boolean
-    externalOriginSource: String
-    soaEntries: [SoAEntry]
-    totalControls: UnsignedShortType
-    implementedCount: UnsignedShortType
-    plannedCount: UnsignedShortType
-    notApplicableCount: UnsignedShortType
-    lastReviewDate: String
-    approvedBy: String
+    documentVersion: String
+    documentAuthor: String
+    documentOwner: String
+    documentApprover: String
+    documentApprovalDate: String
+    documentEffectiveDate: String
+    documentLastReviewDate: String
+    documentNextReviewDate: String
+    documentStatus: String
+    documentClassification: String
+    documentRetention: IsmsDuration
+    documentDistribution: [String]
+    documentStorage: String
+    documentChangeControl: String
+    documentExternalOrigin: Boolean
+    documentExternalSource: String
   }
 
-type TopicSpecificPolicy
+type IsmsRole
   {
-    id: String!
-    name: String!
+    ismsId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    version: String
-    documentType: DocumentType
+    roleCategory: String
+    roleResponsibilities: [String]
+    roleAuthorities: [String]
+    roleAccountability: String
+    roleHolders: [String]
+    roleDelegation: String
+    roleReportsTo: IsmsRole
+  }
+
+type IsmsSecurityEvent
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    affectedAssets: [IsmsAsset]
+    eventType: String
+    eventOccurredAt: String
+    eventReporter: String
+    eventAssessment: String
+  }
+
+type IsmsSecurityIncident
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    affectedAssets: [IsmsAsset]
+    eventType: String
+    eventOccurredAt: String
+    eventReporter: String
+    eventAssessment: String
+    affectedSecurityProperties: [IsmsSecurityProperty]
+    incidentCategory: IsmsIncidentCategory
+    incidentSeverity: IsmsRiskLevel
+    incidentDetectionMethod: String
+    incidentResponseActions: [String]
+    incidentContainmentActions: [String]
+    incidentEradicationActions: [String]
+    incidentRecoveryActions: [String]
+    incidentRootCause: String
+    incidentLessonsLearned: [String]
+    incidentEvidence: [String]
+    incidentNotificationRequired: Boolean
+    incidentNotifications: [String]
+    incidentClosedAt: String
+    incidentReview: String
+  }
+
+type IsmsStatementOfApplicability implements IsmsDocumentControlMixin
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    soaEntries: [IsmsApplicabilityEntry]
     documentReference: String
-    author: String
-    owner: String
-    approvedBy: String
-    approvedDate: String
-    effectiveDate: String
-    reviewDate: String
-    status: String
-    classification: String
-    retentionPeriod: DurationType
-    distributionControls: [String]
-    storageAndPreservation: String
-    changeControlMethod: String
-    externalOrigin: Boolean
-    externalOriginSource: String
-    topicArea: String
-    parentPolicy: InformationSecurityPolicy
-    applicableControls: [SecurityControl]
-    targetAudience: String
+    documentVersion: String
+    documentAuthor: String
+    documentOwner: String
+    documentApprover: String
+    documentApprovalDate: String
+    documentEffectiveDate: String
+    documentLastReviewDate: String
+    documentNextReviewDate: String
+    documentStatus: String
+    documentClassification: String
+    documentRetention: IsmsDuration
+    documentDistribution: [String]
+    documentStorage: String
+    documentChangeControl: String
+    documentExternalOrigin: Boolean
+    documentExternalSource: String
+  }
+
+type IsmsTopicSpecificPolicy implements IsmsDocumentControlMixin
+  {
+    ismsId: String!
+    title: String!
+    description: String
+    relevantControls: [IsmsControl]
+    topicPolicyTopic: String
+    topicPolicyParent: IsmsPolicy
+    topicPolicyAudience: String
+    documentReference: String
+    documentVersion: String
+    documentAuthor: String
+    documentOwner: String
+    documentApprover: String
+    documentApprovalDate: String
+    documentEffectiveDate: String
+    documentLastReviewDate: String
+    documentNextReviewDate: String
+    documentStatus: String
+    documentClassification: String
+    documentRetention: IsmsDuration
+    documentDistribution: [String]
+    documentStorage: String
+    documentChangeControl: String
+    documentExternalOrigin: Boolean
+    documentExternalSource: String
   }

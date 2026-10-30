@@ -1,0 +1,52 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsAuditFinding
+schema_generating: true
+description: 'One finding of an audit: a nonconformity, an observation or a strength,
+  with the requirement or control it concerns, its evidence and how it is closed.'
+display_name: IsmsAuditFinding
+document_category: IsmsAuditFinding
+weight: 20
+fields:
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecord_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description
+- id: finding_type
+  description: What kind of finding it is.
+  display_name: ismsAuditFinding__finding_type
+- id: finding_requirement
+  description: The clause or Annex A control of ISO/IEC 27001:2022 the finding concerns,
+    by number.
+  display_name: ismsAuditFinding__finding_requirement
+- id: finding_control
+  description: The organization's control the finding concerns.
+  display_name: ismsAuditFinding__finding_control
+- id: finding_evidence
+  description: The objective evidence for the finding.
+  display_name: ismsAuditFinding__finding_evidence
+- id: finding_root_cause
+  description: What the analysis of the finding's cause found.
+  display_name: ismsAuditFinding__finding_root_cause
+- id: finding_risk
+  description: What the finding means for risk.
+  display_name: ismsAuditFinding__finding_risk
+- id: finding_recommendation
+  description: What the auditor recommends.
+  display_name: ismsAuditFinding__finding_recommendation
+- id: finding_auditee_response
+  description: How the auditee responded.
+  display_name: ismsAuditFinding__finding_auditee_response
+- id: finding_corrective_action
+  description: The corrective action the finding led to.
+  display_name: ismsAuditFinding__finding_corrective_action
+- id: finding_closure_status
+  description: Whether the finding is closed, in the organization's own terms.
+  display_name: ismsAuditFinding__finding_closure_status
+- id: finding_closure_date
+  description: When the finding was closed.
+  display_name: ismsAuditFinding__finding_closure_date

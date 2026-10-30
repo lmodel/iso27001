@@ -1,0 +1,124 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsAudit
+schema_generating: true
+description: 'An audit of the ISMS: an internal audit, or an audit by a customer or
+  a certification body, with its scope, criteria, team, findings and conclusion.'
+display_name: IsmsAudit
+document_category: IsmsAudit
+weight: 20
+fields:
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecord_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description
+- id: audit_type
+  description: Who carries out the audit, relative to the organization.
+  display_name: ismsAudit__audit_type
+- id: audit_standards
+  description: The management system standards the audit covers.
+  display_name: ismsAudit__audit_standards
+  cardinality: multi
+- id: audit_scope
+  description: What the audit covers.
+  display_name: ismsAudit__audit_scope
+- id: audit_criteria
+  description: What the audit compares the ISMS against.
+  display_name: ismsAudit__audit_criteria
+  cardinality: multi
+- id: audit_objectives
+  description: What the audit sets out to establish.
+  display_name: ismsAudit__audit_objectives
+  cardinality: multi
+- id: audit_period_start
+  description: When the audit began.
+  display_name: ismsAudit__audit_period_start
+- id: audit_period_end
+  description: When the audit ended.
+  display_name: ismsAudit__audit_period_end
+- id: audit_lead
+  description: Who led the audit.
+  display_name: ismsAudit__audit_lead
+- id: audit_team
+  description: Who else audited.
+  display_name: ismsAudit__audit_team
+  cardinality: multi
+- id: audit_auditees
+  description: Who represented the parts of the organization audited.
+  display_name: ismsAudit__audit_auditees
+  cardinality: multi
+- id: audit_plan
+  description: The documented information that holds the audit plan.
+  display_name: ismsAudit__audit_plan
+- id: audit_findings
+  description: What the audit found, good and bad.
+  display_name: ismsAudit__audit_findings
+  cardinality: multi
+- id: audit_conclusion
+  description: The audit's overall conclusion.
+  display_name: ismsAudit__audit_conclusion
+- id: audit_report_date
+  description: When the audit report was issued.
+  display_name: ismsAudit__audit_report_date
+- id: audit_report_distribution
+  description: Who received the audit report.
+  display_name: ismsAudit__audit_report_distribution
+  cardinality: multi
+- id: document_reference
+  description: The reference the organization's document control gives it.
+  display_name: ismsDocumentControlMixin__document_reference
+- id: document_version
+  description: The version of the document.
+  display_name: ismsDocumentControlMixin__document_version
+- id: document_author
+  description: Who wrote the document.
+  display_name: ismsDocumentControlMixin__document_author
+- id: document_owner
+  description: Who answers for the document's content and upkeep.
+  display_name: ismsDocumentControlMixin__document_owner
+- id: document_approver
+  description: Who approved the document.
+  display_name: ismsDocumentControlMixin__document_approver
+- id: document_approval_date
+  description: When the document was approved.
+  display_name: ismsDocumentControlMixin__document_approval_date
+- id: document_effective_date
+  description: When the document takes effect.
+  display_name: ismsDocumentControlMixin__document_effective_date
+- id: document_last_review_date
+  description: When the document was last reviewed.
+  display_name: ismsDocumentControlMixin__document_last_review_date
+- id: document_next_review_date
+  description: When the document is next due for review.
+  display_name: ismsDocumentControlMixin__document_next_review_date
+- id: document_status
+  description: Where the document stands in its life, in the organization's own terms,
+    such as draft, approved or withdrawn.
+  display_name: ismsDocumentControlMixin__document_status
+- id: document_classification
+  description: The information classification the document carries.
+  display_name: ismsDocumentControlMixin__document_classification
+- id: document_retention
+  description: How long the document is kept, as an ISO 8601 duration.
+  display_name: ismsDocumentControlMixin__document_retention
+- id: document_distribution
+  description: How the document is distributed, accessed, retrieved and used.
+  display_name: ismsDocumentControlMixin__document_distribution
+  cardinality: multi
+- id: document_storage
+  description: How the document is stored and preserved, so that it stays legible.
+  display_name: ismsDocumentControlMixin__document_storage
+- id: document_change_control
+  description: How changes to the document are controlled, such as version control.
+  display_name: ismsDocumentControlMixin__document_change_control
+- id: document_external_origin
+  description: Whether the document comes from outside the organization and is kept
+    because the ISMS needs it.
+  display_name: ismsDocumentControlMixin__document_external_origin
+- id: document_external_source
+  description: Who the document came from, when it comes from outside.
+  display_name: ismsDocumentControlMixin__document_external_source

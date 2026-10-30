@@ -1,0 +1,42 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsInterestedParty
+schema_generating: true
+description: A person or organization whose needs and expectations bear on the ISMS,
+  inside the organization or outside it, such as staff, customers, regulators or suppliers.
+display_name: IsmsInterestedParty
+document_category: IsmsInterestedParty
+weight: 20
+fields:
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecord_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description
+- id: party_category
+  description: What kind of interested party it is, in the organization's own terms.
+  display_name: ismsInterestedParty__party_category
+- id: party_relationship
+  description: How the party relates to the organization.
+  display_name: ismsInterestedParty__party_relationship
+- id: party_requirements
+  description: The party's requirements that bear on information security.
+  display_name: ismsInterestedParty__party_requirements
+  cardinality: multi
+- id: party_addressed_requirements
+  description: Which of those requirements the ISMS addresses.
+  display_name: ismsInterestedParty__party_addressed_requirements
+  cardinality: multi
+- id: party_climate_change_requirements
+  description: The party's requirements that concern climate change.
+  display_name: ismsInterestedParty__party_climate_change_requirements
+  cardinality: multi
+- id: party_communication_needs
+  description: What the party needs to be told, and how.
+  display_name: ismsInterestedParty__party_communication_needs
+- id: party_contact
+  description: How to reach the party.
+  display_name: ismsInterestedParty__party_contact

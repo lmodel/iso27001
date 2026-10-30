@@ -1,0 +1,59 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsObjective
+schema_generating: true
+description: 'An information security objective: a measurable result the organization
+  aims for, with how it plans to reach it and how it measures progress.'
+display_name: IsmsObjective
+document_category: IsmsObjective
+weight: 20
+fields:
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecord_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description
+- id: responsible_role
+  description: The role that answers for the record's activity or outcome.
+  display_name: responsible_role
+- id: relevant_controls
+  description: The organization's controls that the record concerns.
+  display_name: relevant_controls
+  cardinality: multi
+- id: objective_statement
+  description: The objective, as the organization states it.
+  display_name: ismsObjective__objective_statement
+- id: objective_target
+  description: The value the objective aims for.
+  display_name: ismsObjective__objective_target
+- id: objective_current_value
+  description: The value last measured.
+  display_name: ismsObjective__objective_current_value
+- id: objective_metric
+  description: How the objective's value is defined.
+  display_name: ismsObjective__objective_metric
+- id: objective_measurement_method
+  description: How the value is measured.
+  display_name: ismsObjective__objective_measurement_method
+- id: objective_measurement_frequency
+  description: How often the value is measured.
+  display_name: ismsObjective__objective_measurement_frequency
+- id: objective_target_date
+  description: When the objective is to be reached.
+  display_name: ismsObjective__objective_target_date
+- id: objective_achievement
+  description: How far the objective has been reached, in the organization's own terms.
+  display_name: ismsObjective__objective_achievement
+- id: objective_risks
+  description: The risks the objective concerns.
+  display_name: ismsObjective__objective_risks
+  cardinality: multi
+- id: objective_action_plan
+  description: What will be done to reach the objective.
+  display_name: ismsObjective__objective_action_plan
+- id: objective_resources
+  description: The resources needed to reach the objective.
+  display_name: ismsObjective__objective_resources

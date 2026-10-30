@@ -1,0 +1,78 @@
+PREFIX linkml: <https://w3id.org/linkml/>
+PREFIX iso27001: <https://w3id.org/lmodel/iso27001/>
+PREFIX schema: <http://schema.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX oscal: <https://w3id.org/lmodel/oscal/>
+PREFIX nist_sp_800_53: <https://w3id.org/lmodel/nist-sp-800-53/>
+PREFIX spdx_core: <https://spdx.org/rdf/3.0.1/terms/Core/>
+PREFIX spdx_software: <https://spdx.org/rdf/3.0.1/terms/Software/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX shex: <http://www.w3.org/ns/shex#>
+
+SELECT ?g ?s ?p WHERE {
+ GRAPH ?g {
+  ?s rdf:type iso27001:IsmsSecurityIncident ;
+     ?p ?o .
+  FILTER ( ?p NOT IN (
+   iso27001:affected_security_properties,
+   iso27001:incident_category,
+   iso27001:incident_severity,
+   iso27001:incident_detection_method,
+   iso27001:incident_response_actions,
+   iso27001:incident_containment_actions,
+   iso27001:incident_eradication_actions,
+   iso27001:incident_recovery_actions,
+   iso27001:incident_root_cause,
+   iso27001:incident_lessons_learned,
+   iso27001:incident_evidence,
+   iso27001:incident_notification_required,
+   iso27001:incident_notifications,
+   iso27001:incident_closed_at,
+   iso27001:incident_review,
+   iso27001:affected_assets,
+   iso27001:event_type,
+   iso27001:event_occurred_at,
+   iso27001:event_reporter,
+   iso27001:event_assessment,
+   iso27001:isms_id,
+   schema:name,
+   schema:description,
+   rdf:type ))
+ }
+ 
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

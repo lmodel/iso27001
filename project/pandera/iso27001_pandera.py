@@ -26,2064 +26,3489 @@ from linkml.generators.panderagen.linkml_pandera_validator import LinkmlPanderaV
 
 # These are all str for now
 ID_TYPES = {
-    "NamedEntity": "str",
-    "InformationSecurityManagementSystem": "str",
-    "DocumentedInformation": "str",
-    "InformationSecurityPolicy": "str",
-    "TopicSpecificPolicy": "str",
-    "InformationSecurityObjective": "str",
-    "RiskAssessment": "str",
-    "Risk": "str",
-    "RiskTreatmentPlan": "str",
-    "SoAEntry": "str",
-    "StatementOfApplicability": "str",
-    "SecurityControl": "str",
-    "CommunicationItem": "str",
-    "CommunicationPlan": "str",
-    "OperationalProcedure": "str",
-    "MonitoringItem": "str",
-    "MonitoringProgram": "str",
-    "InternalAudit": "str",
-    "AuditProgramme": "str",
-    "AuditFinding": "str",
-    "Nonconformity": "str",
-    "CorrectiveAction": "str",
-    "Asset": "str",
-    "InformationSecurityEvent": "str",
-    "InformationSecurityIncident": "str",
-    "Organization": "str",
-    "InterestedParty": "str",
-    "Role": "str",
-    "RiskAssessmentProcess": "str",
-    "RiskTreatmentProcess": "str",
-    "Resource": "str",
-    "CompetenceRecord": "str",
-    "AwarenessProgram": "str",
-    "ManagementReview": "str",
-    "ImprovementOpportunity": "str",
+    "IsmsRecord": "str",
+    "IsmsOrganization": "str",
+    "IsmsInterestedParty": "str",
+    "IsmsDocumentControlMixin": "str",
+    "IsmsPolicy": "str",
+    "IsmsTopicSpecificPolicy": "str",
+    "IsmsRole": "str",
+    "IsmsObjective": "str",
+    "IsmsRiskAssessmentProcess": "str",
+    "IsmsRiskTreatmentProcess": "str",
+    "IsmsRiskAssessment": "str",
+    "IsmsRisk": "str",
+    "IsmsRiskTreatmentPlan": "str",
+    "IsmsApplicabilityEntry": "str",
+    "IsmsStatementOfApplicability": "str",
+    "IsmsControl": "str",
+    "IsmsAsset": "str",
+    "IsmsResource": "str",
+    "IsmsCompetenceRecord": "str",
+    "IsmsAwarenessProgramme": "str",
+    "IsmsCommunication": "str",
+    "IsmsCommunicationPlan": "str",
+    "IsmsDocumentedInformation": "str",
+    "IsmsOperationalProcedure": "str",
+    "IsmsMonitoringItem": "str",
+    "IsmsMonitoringProgramme": "str",
+    "IsmsAuditProgramme": "str",
+    "IsmsAuditFinding": "str",
+    "IsmsAudit": "str",
+    "IsmsManagementReview": "str",
+    "IsmsNonconformity": "str",
+    "IsmsCorrectiveAction": "str",
+    "IsmsImprovementOpportunity": "str",
+    "IsmsSecurityEvent": "str",
+    "IsmsManagementSystem": "str",
+    "IsmsIncludedControl": "str",
+    "IsmsSecurityIncident": "str",
+    "IsmsExcludedControl": "str",
 }
 
-# metamodel_version: 1.11.0
-# version: 1.0.0class NamedEntity(pla.DataFrameModel, _LinkmlPanderaValidator):
+# metamodel_version: 1.12.0
+# version: 2022/Amd 1:2024class IsmsRecord(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
-    Abstract base class for all entities with an identifier, name, and description. Provides common identification and documentation slots.
+    Anything the ISMS keeps a record of that other records can refer to: it has an identifier, a title and a description.
     """
 
-    _id_name : str =  'id' 
-    id: str = pla.Field()
+    _id_name : str =  'isms_id' 
+    isms_id: str = pla.Field()
     """
-    Unique identifier for this entity instance.
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
     """
     
-    name: str = pla.Field()
+    title: str = pla.Field(str_contains=r"^\s*\S", )
     """
-    Human-readable name or title.
+    The name the organization gives the record.
     """
     
     description: Optional[str] = pla.Field(nullable=True, )
     """
-    Detailed description of the entity.
-    """
-    
-    created_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Date when the entity was created.
-    """
-    
-    modified_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Date when the entity was last modified.
-    """
-    
-    version: Optional[str] = pla.Field(nullable=True, )
-    """
-    Version identifier for the entity.
+    What the record says or describes, in the organization's own words.
     """
     
     
-class InformationSecurityManagementSystem(NamedEntity):
+class IsmsOrganization(IsmsRecord):
     """
-    Top-level container representing an organization's complete ISMS per ISO 27001. Aggregates all components required to support the full ISMS lifecycle.
+    The organization that runs the ISMS, with what it needs to know about itself to understand its context.
     """
 
-    _id_name : str =  'id' 
-    organization: Optional[ID_TYPES['Organization']] = pla.Field(nullable=True, )
+    _id_name : str =  'isms_id' 
+    organization_legal_name: Optional[str] = pla.Field(nullable=True, )
     """
-    Reference to the organization operating the ISMS.
-    """
-    
-    top_management: Optional[str] = pla.Field(nullable=True, )
-    """
-    The person or group of people who direct and control the organization at the highest level, accountable for the ISMS per Clause 5.1.
+    The organization's registered legal name.
     """
     
-    governing_body: Optional[str] = pla.Field(nullable=True, )
+    organization_trading_names: Optional[str] = pla.Field(nullable=True, )
     """
-    The governing body to which top management reports, where applicable (e.g., board of directors). Referenced in ISO/IEC 27001:2022 Clause 5.1 NOTE.
-    """
-    
-    leadership_commitment_evidence: Optional[str] = pla.Field(nullable=True, )
-    """
-    Evidence of leadership and commitment with respect to the ISMS as required by Clause 5.1 a-h).
+    Other names the organization trades under.
     """
     
-    scope_statement: Optional[str] = pla.Field(nullable=True, )
+    organization_kind: Optional[str] = pla.Field(nullable=True, )
     """
-    Documented statement of ISMS scope per 4.3.
-    """
-    
-    scope_boundaries: Optional[str] = pla.Field(nullable=True, )
-    """
-    Defined boundaries of the ISMS scope.
+    What kind of organization it is, such as a company, an agency or a charity.
     """
     
-    scope_exclusions: Optional[str] = pla.Field(nullable=True, )
+    organization_sector: Optional[str] = pla.Field(nullable=True, )
     """
-    Any exclusions from scope with justification.
-    """
-    
-    interfaces_and_dependencies: Optional[str] = pla.Field(nullable=True, )
-    """
-    Interfaces and dependencies between activities performed by the organization and those performed by other organizations, considered when determining the ISMS scope per Clause 4.3 c).
+    The organization's main industry sector.
     """
     
-    processes_and_interactions: Optional[str] = pla.Field(nullable=True, )
+    organization_size: Optional[str] = pla.Field(nullable=True, )
     """
-    Description of the processes needed for the ISMS and their interactions, per Clause 4.4.
-    """
-    
-    context_internal_issues: Optional[str] = pla.Field(nullable=True, )
-    """
-    Internal issues relevant to ISMS per 4.1.
+    How the organization classes its own size.
     """
     
-    context_external_issues: Optional[str] = pla.Field(nullable=True, )
+    organization_employee_count: Optional[int] = pla.Field(ge=1, nullable=True, )
     """
-    External issues relevant to ISMS per 4.1.
-    """
-    
-    interested_parties: Optional[List] = pla.Field(nullable=True, )
-    """
-    Stakeholders relevant to the ISMS.
+    About how many people the organization employs.
     """
     
-    information_security_policy: Optional[ID_TYPES['InformationSecurityPolicy']] = pla.Field(nullable=True, )
+    organization_locations: Optional[str] = pla.Field(nullable=True, )
     """
-    Reference to the information security policy.
-    """
-    
-    objectives: Optional[List] = pla.Field(nullable=True, )
-    """
-    Information security objectives.
+    The countries or regions the organization works in.
     """
     
-    risks_and_opportunities_actions: Optional[str] = pla.Field(nullable=True, )
+    organization_jurisdictions: Optional[str] = pla.Field(nullable=True, )
     """
-    Actions to address risks and opportunities determined per Clause 6.1.1, including how they are integrated into ISMS processes and how their effectiveness is evaluated.
-    """
-    
-    planned_changes: Optional[str] = pla.Field(nullable=True, )
-    """
-    Changes to the ISMS planned and controlled per Clause 6.3 and 8.1 (planning of changes; control of planned changes).
+    The jurisdictions whose laws and regulations apply to the organization.
     """
     
-    externally_provided_services: Optional[str] = pla.Field(nullable=True, )
+    organization_parent: Optional[str] = pla.Field(nullable=True, )
     """
-    Externally provided processes, products or services relevant to the ISMS that are controlled per Clause 8.1.
-    """
-    
-    risk_assessment_process: Optional[ID_TYPES['RiskAssessmentProcess']] = pla.Field(nullable=True, )
-    """
-    Reference to the risk assessment process.
+    The organization's parent, if it has one.
     """
     
-    risk_treatment_process: Optional[ID_TYPES['RiskTreatmentProcess']] = pla.Field(nullable=True, )
+    organization_subsidiaries: Optional[str] = pla.Field(nullable=True, )
     """
-    Reference to the risk treatment process.
-    """
-    
-    statement_of_applicability: Optional[ID_TYPES['StatementOfApplicability']] = pla.Field(nullable=True, )
-    """
-    Reference to the Statement of Applicability.
+    The organization's subsidiaries, if it has any.
     """
     
-    controls: Optional[List] = pla.Field(nullable=True, )
+    organization_climate_change_relevant: Optional[bool] = pla.Field(nullable=True, )
     """
-    Security controls applied in the ISMS.
-    """
-    
-    roles: Optional[List] = pla.Field(nullable=True, )
-    """
-    Information security roles defined in the ISMS.
-    """
-    
-    resources: Optional[List] = pla.Field(nullable=True, )
-    """
-    Resources provided for the ISMS.
-    """
-    
-    competence_records: Optional[List] = pla.Field(nullable=True, )
-    """
-    Competence records for personnel.
-    """
-    
-    awareness_program: Optional[ID_TYPES['AwarenessProgram']] = pla.Field(nullable=True, )
-    """
-    Reference to the awareness program.
-    """
-    
-    communication_plan: Optional[ID_TYPES['CommunicationPlan']] = pla.Field(nullable=True, )
-    """
-    Reference to the communication plan.
-    """
-    
-    documented_information_register: Optional[List] = pla.Field(nullable=True, )
-    """
-    Register of documented information.
-    """
-    
-    operational_procedures: Optional[List] = pla.Field(nullable=True, )
-    """
-    Operational procedures.
-    """
-    
-    risk_assessments: Optional[List] = pla.Field(nullable=True, )
-    """
-    Risk assessment instances.
-    """
-    
-    risk_treatment_plans: Optional[List] = pla.Field(nullable=True, )
-    """
-    Risk treatment plans.
-    """
-    
-    monitoring_program: Optional[ID_TYPES['MonitoringProgram']] = pla.Field(nullable=True, )
-    """
-    Reference to the monitoring program.
-    """
-    
-    internal_audits: Optional[List] = pla.Field(nullable=True, )
-    """
-    Internal audit instances.
-    """
-    
-    management_reviews: Optional[List] = pla.Field(nullable=True, )
-    """
-    Management review instances.
-    """
-    
-    nonconformities: Optional[List] = pla.Field(nullable=True, )
-    """
-    Nonconformities identified.
-    """
-    
-    corrective_actions: Optional[List] = pla.Field(nullable=True, )
-    """
-    Corrective actions.
-    """
-    
-    improvements: Optional[List] = pla.Field(nullable=True, )
-    """
-    Improvement opportunities tracked.
-    """
-    
-    certification_status: Optional[str] = pla.Field(nullable=True, )
-    """
-    Current certification status.
-    """
-    
-    certification_body: Optional[str] = pla.Field(nullable=True, )
-    """
-    Accredited certification body.
-    """
-    
-    certification_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Date certification was achieved.
-    """
-    
-    recertification_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Date recertification is due.
+    Whether the organization has determined that climate change is a relevant issue for its ISMS.
     """
     
     
-class DocumentedInformation(NamedEntity):
+class IsmsInterestedParty(IsmsRecord):
     """
-    Abstract class for documented information per Clause 7.5. Captures metadata required for document control.
+    A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it, such as staff, customers, regulators or suppliers.
     """
 
-    _id_name : str =  'id' 
-    document_type: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('policy','procedure','standard','guideline','record','plan','report',)})
+    _id_name : str =  'isms_id' 
+    party_category: Optional[str] = pla.Field(nullable=True, )
     """
-    Classification of the documented information.
+    What kind of interested party it is, in the organization's own terms.
     """
     
+    party_relationship: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the party relates to the organization.
+    """
+    
+    party_requirements: Optional[str] = pla.Field(nullable=True, )
+    """
+    The party's requirements that bear on information security.
+    """
+    
+    party_addressed_requirements: Optional[str] = pla.Field(nullable=True, )
+    """
+    Which of those requirements the ISMS addresses.
+    """
+    
+    party_climate_change_requirements: Optional[str] = pla.Field(nullable=True, )
+    """
+    The party's requirements that concern climate change.
+    """
+    
+    party_communication_needs: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the party needs to be told, and how.
+    """
+    
+    party_contact: Optional[str] = pla.Field(nullable=True, )
+    """
+    How to reach the party.
+    """
+    
+    
+class IsmsDocumentControlMixin(pla.DataFrameModel, _LinkmlPanderaValidator):
+    """
+    The control that documented information is kept under: who wrote, owns and approved it, when it takes effect and is reviewed, how it is classified, distributed, stored and changed, how long it is retained, and whether it came from outside the organization.
+    """
+
+    _id_name : str = None
     document_reference: Optional[str] = pla.Field(nullable=True, )
     """
-    Unique reference number for document control.
+    The reference the organization's document control gives it.
     """
     
-    author: Optional[str] = pla.Field(nullable=True, )
+    document_version: Optional[str] = pla.Field(nullable=True, )
     """
-    Person who created the document.
-    """
-    
-    owner: Optional[str] = pla.Field(nullable=True, )
-    """
-    Person accountable for the document content and maintenance.
+    The version of the document.
     """
     
-    approved_by: Optional[str] = pla.Field(nullable=True, )
+    document_author: Optional[str] = pla.Field(nullable=True, )
     """
-    Person who approved the document.
-    """
-    
-    approved_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Date when the document was approved.
+    Who wrote the document.
     """
     
-    effective_date: Optional[Date] = pla.Field(nullable=True, )
+    document_owner: Optional[str] = pla.Field(nullable=True, )
     """
-    Date when the document becomes effective.
-    """
-    
-    review_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Date when the document is due for review.
+    Who answers for the document's content and upkeep.
     """
     
-    status: Optional[str] = pla.Field(nullable=True, )
+    document_approver: Optional[str] = pla.Field(nullable=True, )
     """
-    Current status of the document or entity.
-    """
-    
-    classification: Optional[str] = pla.Field(nullable=True, )
-    """
-    Information classification level.
+    Who approved the document.
     """
     
-    retention_period: Optional[str] = pla.Field(nullable=True, )
+    document_approval_date: Optional[Date] = pla.Field(nullable=True, )
     """
-    Duration for which the document is retained.
-    """
-    
-    distribution_controls: Optional[str] = pla.Field(nullable=True, )
-    """
-    Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
+    When the document was approved.
     """
     
-    storage_and_preservation: Optional[str] = pla.Field(nullable=True, )
+    document_effective_date: Optional[Date] = pla.Field(nullable=True, )
     """
-    Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
-    """
-    
-    change_control_method: Optional[str] = pla.Field(nullable=True, )
-    """
-    Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
+    When the document takes effect.
     """
     
-    external_origin: Optional[bool] = pla.Field(nullable=True, )
+    document_last_review_date: Optional[Date] = pla.Field(nullable=True, )
     """
-    Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
-    """
-    
-    external_origin_source: Optional[str] = pla.Field(nullable=True, )
-    """
-    Source or provider of the externally originated documented information, per Clause 7.5.3.
+    When the document was last reviewed.
     """
     
-    
-class InformationSecurityPolicy(DocumentedInformation):
+    document_next_review_date: Optional[Date] = pla.Field(nullable=True, )
     """
-    The information security policy established by top management per Clause 5.2. Provides framework for setting objectives and demonstrates commitment.
+    When the document is next due for review.
+    """
+    
+    document_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    """
+    
+    document_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the document carries.
+    """
+    
+    document_retention: Optional[str] = pla.Field(nullable=True, )
+    """
+    How long the document is kept, as an ISO 8601 duration.
+    """
+    
+    document_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is distributed, accessed, retrieved and used.
+    """
+    
+    document_storage: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is stored and preserved, so that it stays legible.
+    """
+    
+    document_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the document are controlled, such as version control.
+    """
+    
+    document_external_origin: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    """
+    
+    document_external_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who the document came from, when it comes from outside.
+    """
+    
+    
+class IsmsPolicy(IsmsRecord):
+    """
+    The information security policy that top management sets: the organization's commitment and the frame for its information security objectives.
     """
 
-    _id_name : str =  'id' 
+    _id_name : str =  'isms_id' 
     policy_statement: Optional[str] = pla.Field(nullable=True, )
     """
-    The core policy statement text.
+    The policy's own statement, in the organization's words.
     """
     
     policy_objectives_framework: Optional[str] = pla.Field(nullable=True, )
     """
-    Framework for setting information security objectives.
+    How the policy frames the setting of information security objectives.
     """
     
-    commitment_statements: Optional[str] = pla.Field(nullable=True, )
+    policy_commitments: Optional[str] = pla.Field(nullable=True, )
     """
-    Statements of commitment included in the policy.
-    """
-    
-    applicability_statement: Optional[str] = pla.Field(nullable=True, )
-    """
-    Statement of policy applicability.
+    The commitments the policy makes.
     """
     
-    communication_date: Optional[Date] = pla.Field(nullable=True, )
+    policy_applicability: Optional[str] = pla.Field(nullable=True, )
     """
-    Date when the policy was communicated.
-    """
-    
-    acknowledgment_required: Optional[bool] = pla.Field(nullable=True, )
-    """
-    Whether acknowledgment is required from personnel.
+    To whom and to what the policy applies.
     """
     
-    last_policy_review_date: Optional[Date] = pla.Field(nullable=True, )
+    policy_communication_date: Optional[Date] = pla.Field(nullable=True, )
     """
-    Date of the most recent information security policy review.
-    """
-    
-    next_policy_review_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Planned date of the next information security policy review.
+    When the policy was communicated within the organization.
     """
     
-    related_topic_policies: Optional[List] = pla.Field(nullable=True, )
+    policy_acknowledgement_required: Optional[bool] = pla.Field(nullable=True, )
     """
-    Topic-specific policies supporting this policy.
-    """
-    
-    integrated_management_systems: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('iso_iec_27001','iso_iec_27701','iso_iec_27017','iso_iec_27018','iso_iec_42001','iso_9001','iso_14001','iso_22301','iso_iec_20000_1','iso_31000',)})
-    """
-    Other ISO/IEC management system standards with which the ISMS is integrated or aligned (per the harmonized structure of Annex SL).
+    Whether staff must acknowledge the policy.
     """
     
-    
-class TopicSpecificPolicy(DocumentedInformation):
+    policy_management_systems: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('iso_iec_27001','iso_iec_27701','iso_iec_42001','iso_9001','iso_14001','iso_22301','iso_iec_20000_1',)})
     """
-    A policy addressing a specific information security topic, supporting the overarching information security policy.
+    The other management system standards the ISMS is integrated with under the same policy.
+    """
+    
+    document_reference: Optional[str] = pla.Field(nullable=True, )
+    """
+    The reference the organization's document control gives it.
+    """
+    
+    document_version: Optional[str] = pla.Field(nullable=True, )
+    """
+    The version of the document.
+    """
+    
+    document_author: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who wrote the document.
+    """
+    
+    document_owner: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who answers for the document's content and upkeep.
+    """
+    
+    document_approver: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who approved the document.
+    """
+    
+    document_approval_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was approved.
+    """
+    
+    document_effective_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document takes effect.
+    """
+    
+    document_last_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was last reviewed.
+    """
+    
+    document_next_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document is next due for review.
+    """
+    
+    document_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    """
+    
+    document_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the document carries.
+    """
+    
+    document_retention: Optional[str] = pla.Field(nullable=True, )
+    """
+    How long the document is kept, as an ISO 8601 duration.
+    """
+    
+    document_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is distributed, accessed, retrieved and used.
+    """
+    
+    document_storage: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is stored and preserved, so that it stays legible.
+    """
+    
+    document_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the document are controlled, such as version control.
+    """
+    
+    document_external_origin: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    """
+    
+    document_external_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who the document came from, when it comes from outside.
+    """
+    
+    
+class IsmsTopicSpecificPolicy(IsmsRecord):
+    """
+    A policy on one topic of information security, such as access control or backup, that supports the information security policy.
     """
 
-    _id_name : str =  'id' 
-    topic_area: Optional[str] = pla.Field(nullable=True, )
+    _id_name : str =  'isms_id' 
+    relevant_controls: Optional[List] = pla.Field(nullable=True, )
     """
-    The specific topic addressed by the policy.
-    """
-    
-    parent_policy: Optional[ID_TYPES['InformationSecurityPolicy']] = pla.Field(nullable=True, )
-    """
-    The parent policy this topic-specific policy supports.
+    The organization's controls that the record concerns.
     """
     
-    applicable_controls: Optional[List] = pla.Field(nullable=True, )
+    topic_policy_topic: Optional[str] = pla.Field(nullable=True, )
     """
-    Controls related to this policy.
-    """
-    
-    target_audience: Optional[str] = pla.Field(nullable=True, )
-    """
-    Intended audience for the policy or document.
+    The topic the policy covers.
     """
     
-    
-class InformationSecurityObjective(NamedEntity):
+    topic_policy_parent: Optional[ID_TYPES['IsmsPolicy']] = pla.Field(nullable=True, )
     """
-    A measurable information security objective per Clause 6.2, established at relevant functions and levels of the organization.
+    The information security policy this policy supports.
+    """
+    
+    topic_policy_audience: Optional[str] = pla.Field(nullable=True, )
+    """
+    Whom the policy is written for.
+    """
+    
+    document_reference: Optional[str] = pla.Field(nullable=True, )
+    """
+    The reference the organization's document control gives it.
+    """
+    
+    document_version: Optional[str] = pla.Field(nullable=True, )
+    """
+    The version of the document.
+    """
+    
+    document_author: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who wrote the document.
+    """
+    
+    document_owner: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who answers for the document's content and upkeep.
+    """
+    
+    document_approver: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who approved the document.
+    """
+    
+    document_approval_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was approved.
+    """
+    
+    document_effective_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document takes effect.
+    """
+    
+    document_last_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was last reviewed.
+    """
+    
+    document_next_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document is next due for review.
+    """
+    
+    document_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    """
+    
+    document_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the document carries.
+    """
+    
+    document_retention: Optional[str] = pla.Field(nullable=True, )
+    """
+    How long the document is kept, as an ISO 8601 duration.
+    """
+    
+    document_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is distributed, accessed, retrieved and used.
+    """
+    
+    document_storage: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is stored and preserved, so that it stays legible.
+    """
+    
+    document_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the document are controlled, such as version control.
+    """
+    
+    document_external_origin: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    """
+    
+    document_external_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who the document came from, when it comes from outside.
+    """
+    
+    
+class IsmsRole(IsmsRecord):
+    """
+    A role in the ISMS, with the responsibilities and authorities it carries and who holds it.
     """
 
-    _id_name : str =  'id' 
+    _id_name : str =  'isms_id' 
+    role_category: Optional[str] = pla.Field(nullable=True, )
+    """
+    What kind of role it is, in the organization's own terms.
+    """
+    
+    role_responsibilities: Optional[str] = pla.Field(nullable=True, )
+    """
+    The responsibilities assigned to the role.
+    """
+    
+    role_authorities: Optional[str] = pla.Field(nullable=True, )
+    """
+    The authorities the role carries.
+    """
+    
+    role_accountability: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the role is accountable for.
+    """
+    
+    role_holders: Optional[str] = pla.Field(nullable=True, )
+    """
+    The people who hold the role.
+    """
+    
+    role_delegation: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the role may delegate its responsibilities.
+    """
+    
+    role_reports_to: Optional[ID_TYPES['IsmsRole']] = pla.Field(nullable=True, )
+    """
+    The role this role reports to.
+    """
+    
+    
+class IsmsObjective(IsmsRecord):
+    """
+    An information security objective: a measurable result the organization aims for, with how it plans to reach it and how it measures progress.
+    """
+
+    _id_name : str =  'isms_id' 
+    responsible_role: Optional[ID_TYPES['IsmsRole']] = pla.Field(nullable=True, )
+    """
+    The role that answers for the record's activity or outcome.
+    """
+    
+    relevant_controls: Optional[List] = pla.Field(nullable=True, )
+    """
+    The organization's controls that the record concerns.
+    """
+    
     objective_statement: Optional[str] = pla.Field(nullable=True, )
     """
-    Clear statement of the objective.
+    The objective, as the organization states it.
     """
     
-    target_value: Optional[str] = pla.Field(nullable=True, )
+    objective_target: Optional[str] = pla.Field(nullable=True, )
     """
-    Target value for the objective metric.
-    """
-    
-    current_value: Optional[str] = pla.Field(nullable=True, )
-    """
-    Current measured value.
+    The value the objective aims for.
     """
     
-    metric_definition: Optional[str] = pla.Field(nullable=True, )
+    objective_current_value: Optional[str] = pla.Field(nullable=True, )
     """
-    Definition of how the objective is measured.
-    """
-    
-    measurement_method: Optional[str] = pla.Field(nullable=True, )
-    """
-    Method used to measure the metric.
+    The value last measured.
     """
     
-    measurement_frequency: Optional[str] = pla.Field(nullable=True, )
+    objective_metric: Optional[str] = pla.Field(nullable=True, )
     """
-    How often measurement is performed.
-    """
-    
-    responsible_role: Optional[ID_TYPES['Role']] = pla.Field(nullable=True, )
-    """
-    Role responsible for the objective or control.
+    How the objective's value is defined.
     """
     
-    target_date: Optional[Date] = pla.Field(nullable=True, )
+    objective_measurement_method: Optional[str] = pla.Field(nullable=True, )
     """
-    Target date for achieving the objective.
-    """
-    
-    achievement_status: Optional[str] = pla.Field(nullable=True, )
-    """
-    Current status of objective achievement.
+    How the value is measured.
     """
     
-    related_risks: Optional[List] = pla.Field(nullable=True, )
+    objective_measurement_frequency: Optional[str] = pla.Field(nullable=True, )
     """
-    Associated risks.
-    """
-    
-    related_controls: Optional[List] = pla.Field(nullable=True, )
-    """
-    Other controls related to this one.
+    How often the value is measured.
     """
     
-    action_plan: Optional[str] = pla.Field(nullable=True, )
+    objective_target_date: Optional[Date] = pla.Field(nullable=True, )
     """
-    Plan for achieving the objective.
+    When the objective is to be reached.
     """
     
-    objective_resources_required: Optional[str] = pla.Field(nullable=True, )
+    objective_achievement: Optional[str] = pla.Field(nullable=True, )
     """
-    Resources required to achieve the information security objective.
+    How far the objective has been reached, in the organization's own terms.
+    """
+    
+    objective_risks: Optional[List] = pla.Field(nullable=True, )
+    """
+    The risks the objective concerns.
+    """
+    
+    objective_action_plan: Optional[str] = pla.Field(nullable=True, )
+    """
+    What will be done to reach the objective.
+    """
+    
+    objective_resources: Optional[str] = pla.Field(nullable=True, )
+    """
+    The resources needed to reach the objective.
     """
     
     
-class RiskAssessment(DocumentedInformation):
+class IsmsRiskAssessmentProcess(IsmsRecord):
     """
-    An instance of risk assessment performed per Clause 8.2, identifying and evaluating information security risks.
+    The organization's process for assessing information security risks: its criteria for accepting risk and for assessing it, its scales and method, and when it runs.
     """
 
-    _id_name : str =  'id' 
+    _id_name : str =  'isms_id' 
+    risk_acceptance_criteria: Optional[str] = pla.Field(nullable=True, )
+    """
+    The criteria for accepting a risk.
+    """
+    
+    risk_assessment_criteria: Optional[str] = pla.Field(nullable=True, )
+    """
+    The criteria for carrying out a risk assessment.
+    """
+    
+    risk_assessment_method: Optional[str] = pla.Field(nullable=True, )
+    """
+    The method used to identify, analyse and evaluate risks.
+    """
+    
+    risk_likelihood_scale: Optional[str] = pla.Field(nullable=True, )
+    """
+    The scale for rating likelihood.
+    """
+    
+    risk_impact_scale: Optional[str] = pla.Field(nullable=True, )
+    """
+    The scale for rating consequences.
+    """
+    
+    risk_matrix: Optional[str] = pla.Field(nullable=True, )
+    """
+    How likelihood and consequence combine into a risk level.
+    """
+    
+    risk_assessment_frequency: Optional[str] = pla.Field(nullable=True, )
+    """
+    How often risks are assessed.
+    """
+    
+    risk_assessment_triggers: Optional[str] = pla.Field(nullable=True, )
+    """
+    The events that start a risk assessment outside the planned ones.
+    """
+    
+    document_reference: Optional[str] = pla.Field(nullable=True, )
+    """
+    The reference the organization's document control gives it.
+    """
+    
+    document_version: Optional[str] = pla.Field(nullable=True, )
+    """
+    The version of the document.
+    """
+    
+    document_author: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who wrote the document.
+    """
+    
+    document_owner: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who answers for the document's content and upkeep.
+    """
+    
+    document_approver: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who approved the document.
+    """
+    
+    document_approval_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was approved.
+    """
+    
+    document_effective_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document takes effect.
+    """
+    
+    document_last_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was last reviewed.
+    """
+    
+    document_next_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document is next due for review.
+    """
+    
+    document_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    """
+    
+    document_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the document carries.
+    """
+    
+    document_retention: Optional[str] = pla.Field(nullable=True, )
+    """
+    How long the document is kept, as an ISO 8601 duration.
+    """
+    
+    document_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is distributed, accessed, retrieved and used.
+    """
+    
+    document_storage: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is stored and preserved, so that it stays legible.
+    """
+    
+    document_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the document are controlled, such as version control.
+    """
+    
+    document_external_origin: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    """
+    
+    document_external_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who the document came from, when it comes from outside.
+    """
+    
+    
+class IsmsRiskTreatmentProcess(IsmsRecord):
+    """
+    The organization's process for treating information security risks: how it chooses treatments and controls, checks them against Annex A, and produces the Statement of Applicability.
+    """
+
+    _id_name : str =  'isms_id' 
+    treatment_options_guidance: Optional[str] = pla.Field(nullable=True, )
+    """
+    How a treatment option is chosen for a risk.
+    """
+    
+    treatment_control_selection: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the controls a treatment needs are chosen.
+    """
+    
+    treatment_annex_a_comparison: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the chosen controls are compared with Annex A, so that no necessary control is left out.
+    """
+    
+    treatment_soa_template: Optional[str] = pla.Field(nullable=True, )
+    """
+    The template the Statement of Applicability follows.
+    """
+    
+    treatment_approval_workflow: Optional[str] = pla.Field(nullable=True, )
+    """
+    How a treatment plan and its residual risks are approved.
+    """
+    
+    document_reference: Optional[str] = pla.Field(nullable=True, )
+    """
+    The reference the organization's document control gives it.
+    """
+    
+    document_version: Optional[str] = pla.Field(nullable=True, )
+    """
+    The version of the document.
+    """
+    
+    document_author: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who wrote the document.
+    """
+    
+    document_owner: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who answers for the document's content and upkeep.
+    """
+    
+    document_approver: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who approved the document.
+    """
+    
+    document_approval_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was approved.
+    """
+    
+    document_effective_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document takes effect.
+    """
+    
+    document_last_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was last reviewed.
+    """
+    
+    document_next_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document is next due for review.
+    """
+    
+    document_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    """
+    
+    document_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the document carries.
+    """
+    
+    document_retention: Optional[str] = pla.Field(nullable=True, )
+    """
+    How long the document is kept, as an ISO 8601 duration.
+    """
+    
+    document_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is distributed, accessed, retrieved and used.
+    """
+    
+    document_storage: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is stored and preserved, so that it stays legible.
+    """
+    
+    document_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the document are controlled, such as version control.
+    """
+    
+    document_external_origin: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    """
+    
+    document_external_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who the document came from, when it comes from outside.
+    """
+    
+    
+class IsmsRiskAssessment(IsmsRecord):
+    """
+    One risk assessment carried out under the risk assessment process, and what it found.
+    """
+
+    _id_name : str =  'isms_id' 
     assessment_scope: Optional[str] = pla.Field(nullable=True, )
     """
-    Scope of the assessment.
+    What the assessment covered.
     """
     
     assessment_date: Optional[Date] = pla.Field(nullable=True, )
     """
-    Date the assessment was conducted.
+    When the assessment was carried out.
     """
     
-    assessor: Optional[str] = pla.Field(nullable=True, )
+    assessment_assessor: Optional[str] = pla.Field(nullable=True, )
     """
-    Person or team who conducted the assessment.
-    """
-    
-    methodology_used: Optional[str] = pla.Field(nullable=True, )
-    """
-    Specific methodology applied in this assessment.
+    Who carried out the assessment.
     """
     
-    risks_identified: Optional[List] = pla.Field(nullable=True, )
+    assessment_method_used: Optional[str] = pla.Field(nullable=True, )
     """
-    Risks identified in this assessment.
-    """
-    
-    summary_findings: Optional[str] = pla.Field(nullable=True, )
-    """
-    Summary of assessment findings.
+    The method this assessment applied.
     """
     
-    recommendations: Optional[str] = pla.Field(nullable=True, )
+    assessment_risks: Optional[List] = pla.Field(nullable=True, )
     """
-    Recommendations from the assessment.
-    """
-    
-    next_assessment_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Planned date for next assessment.
+    The risks the assessment identified.
     """
     
-    
-class Risk(NamedEntity):
+    assessment_summary: Optional[str] = pla.Field(nullable=True, )
     """
-    An identified information security risk that may affect information security properties within the ISMS scope.
+    A summary of what the assessment found.
+    """
+    
+    assessment_recommendations: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the assessment recommends.
+    """
+    
+    assessment_next_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the next assessment is planned.
+    """
+    
+    document_reference: Optional[str] = pla.Field(nullable=True, )
+    """
+    The reference the organization's document control gives it.
+    """
+    
+    document_version: Optional[str] = pla.Field(nullable=True, )
+    """
+    The version of the document.
+    """
+    
+    document_author: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who wrote the document.
+    """
+    
+    document_owner: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who answers for the document's content and upkeep.
+    """
+    
+    document_approver: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who approved the document.
+    """
+    
+    document_approval_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was approved.
+    """
+    
+    document_effective_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document takes effect.
+    """
+    
+    document_last_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was last reviewed.
+    """
+    
+    document_next_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document is next due for review.
+    """
+    
+    document_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    """
+    
+    document_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the document carries.
+    """
+    
+    document_retention: Optional[str] = pla.Field(nullable=True, )
+    """
+    How long the document is kept, as an ISO 8601 duration.
+    """
+    
+    document_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is distributed, accessed, retrieved and used.
+    """
+    
+    document_storage: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is stored and preserved, so that it stays legible.
+    """
+    
+    document_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the document are controlled, such as version control.
+    """
+    
+    document_external_origin: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    """
+    
+    document_external_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who the document came from, when it comes from outside.
+    """
+    
+    
+class IsmsRisk(IsmsRecord):
+    """
+    An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated.
     """
 
-    _id_name : str =  'id' 
-    risk_source: Optional[str] = pla.Field(nullable=True, )
-    """
-    Source or origin of the risk.
-    """
-    
-    threat_description: Optional[str] = pla.Field(nullable=True, )
-    """
-    Description of the threat exploiting the vulnerability.
-    """
-    
-    vulnerability_description: Optional[str] = pla.Field(nullable=True, )
-    """
-    Description of the vulnerability that could be exploited.
-    """
-    
+    _id_name : str =  'isms_id' 
     affected_assets: Optional[List] = pla.Field(nullable=True, )
     """
-    Assets affected by this risk or incident.
+    The assets the risk, event or incident affects.
     """
     
-    affected_cia_properties: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('confidentiality','integrity','availability',)})
+    affected_security_properties: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('confidentiality','integrity','availability',)})
     """
-    Which CIA properties are affected (confidentiality, integrity, availability).
+    Which of confidentiality, integrity and availability the risk or incident threatens.
+    """
+    
+    risk_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the risk comes from.
+    """
+    
+    risk_threat: Optional[str] = pla.Field(nullable=True, )
+    """
+    The threat that could cause harm.
+    """
+    
+    risk_vulnerability: Optional[str] = pla.Field(nullable=True, )
+    """
+    The weakness the threat could exploit.
     """
     
     risk_owner: Optional[str] = pla.Field(nullable=True, )
     """
-    Person accountable for managing the risk.
+    The person who is accountable for the risk and has the authority to manage it.
     """
     
-    likelihood: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('rare','unlikely','possible','likely','almost_certain',)})
+    risk_likelihood: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('rare','unlikely','possible','likely','almost_certain',)})
     """
-    Assessed likelihood of risk occurrence.
-    """
-    
-    impact: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('negligible','minor','moderate','major','severe',)})
-    """
-    Assessed impact if risk materializes.
+    How likely the risk is.
     """
     
-    inherent_risk_level: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('very_low','low','medium','high','critical',)})
+    risk_impact: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('negligible','minor','moderate','major','severe',)})
     """
-    Risk level before controls are applied.
-    """
-    
-    existing_controls: Optional[List] = pla.Field(nullable=True, )
-    """
-    Controls currently in place affecting this risk.
+    How severe the consequences would be.
     """
     
-    residual_risk_level: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('very_low','low','medium','high','critical',)})
+    risk_inherent_level: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('very_low','low','medium','high','critical',)})
     """
-    Risk level after controls are applied.
-    """
-    
-    risk_treatment_option: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('modify','accept','avoid','share',)})
-    """
-    Selected treatment option for the risk.
+    The risk's level before controls.
     """
     
-    treatment_priority: Optional[str] = pla.Field(nullable=True, )
+    risk_existing_controls: Optional[List] = pla.Field(nullable=True, )
     """
-    Priority for treating this risk.
+    The organization's controls already acting on the risk.
     """
     
-    related_treatment_plan: Optional[ID_TYPES['RiskTreatmentPlan']] = pla.Field(nullable=True, )
+    risk_residual_level: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('very_low','low','medium','high','critical',)})
     """
-    Risk treatment plan addressing this risk.
+    The risk's level after controls.
+    """
+    
+    risk_treatment_option: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('modify','retain','avoid','share',)})
+    """
+    The treatment chosen for the risk.
+    """
+    
+    risk_treatment_priority: Optional[str] = pla.Field(nullable=True, )
+    """
+    How soon the risk is to be treated, in the organization's own terms.
     """
     
     
-class RiskTreatmentPlan(DocumentedInformation):
+class IsmsRiskTreatmentPlan(IsmsRecord):
     """
-    A risk treatment plan documenting planned actions to address identified risks through selected controls.
+    A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's approval of the plan and of the residual risk.
     """
 
-    _id_name : str =  'id' 
+    _id_name : str =  'isms_id' 
+    implementation_state: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('not_started','planned','in_progress','implemented',)})
+    """
+    How far the control or the plan has been put into effect.
+    """
+    
     plan_scope: Optional[str] = pla.Field(nullable=True, )
     """
-    Scope of the plan.
+    What the plan covers.
     """
     
-    risks_addressed: Optional[List] = pla.Field(nullable=True, )
+    plan_risks: Optional[List] = pla.Field(nullable=True, )
     """
-    Risks addressed by this plan.
-    """
-    
-    treatment_actions: Optional[str] = pla.Field(nullable=True, )
-    """
-    Actions to be taken for treatment.
+    The risks the plan treats.
     """
     
-    controls_to_implement: Optional[List] = pla.Field(nullable=True, )
+    plan_actions: Optional[str] = pla.Field(nullable=True, )
     """
-    Controls to be implemented as part of treatment.
-    """
-    
-    resources_required: Optional[str] = pla.Field(nullable=True, )
-    """
-    Resources required for implementation.
+    The actions the plan takes.
     """
     
-    responsible_parties: Optional[str] = pla.Field(nullable=True, )
+    plan_controls: Optional[List] = pla.Field(nullable=True, )
     """
-    Parties responsible for implementation.
-    """
-    
-    implementation_timeline: Optional[str] = pla.Field(nullable=True, )
-    """
-    Timeline for implementation.
+    The controls the plan puts in place.
     """
     
-    risk_owner_approval: Optional[str] = pla.Field(nullable=True, )
+    plan_resources: Optional[str] = pla.Field(nullable=True, )
     """
-    Risk owner who approved the plan.
-    """
-    
-    residual_risk_acceptance: Optional[str] = pla.Field(nullable=True, )
-    """
-    Documentation of residual risk acceptance.
+    The resources the plan needs.
     """
     
-    implementation_status: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('not_started','planned','in_progress','implemented','not_applicable',)})
+    plan_responsible_parties: Optional[str] = pla.Field(nullable=True, )
     """
-    Current implementation status.
-    """
-    
-    completion_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Date when implementation was completed.
+    Who carries out the plan.
     """
     
-    
-class SoAEntry(pla.DataFrameModel, _LinkmlPanderaValidator):
+    plan_timeline: Optional[str] = pla.Field(nullable=True, )
     """
-    A single entry in the Statement of Applicability, documenting the applicability and implementation status of one control.
+    When the plan's actions are to happen.
+    """
+    
+    plan_risk_owner_approval: Optional[str] = pla.Field(nullable=True, )
+    """
+    The risk owner who approved the plan.
+    """
+    
+    plan_residual_risk_acceptance: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the risk owners accepted the risk that remains.
+    """
+    
+    plan_completion_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the plan was completed.
+    """
+    
+    document_reference: Optional[str] = pla.Field(nullable=True, )
+    """
+    The reference the organization's document control gives it.
+    """
+    
+    document_version: Optional[str] = pla.Field(nullable=True, )
+    """
+    The version of the document.
+    """
+    
+    document_author: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who wrote the document.
+    """
+    
+    document_owner: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who answers for the document's content and upkeep.
+    """
+    
+    document_approver: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who approved the document.
+    """
+    
+    document_approval_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was approved.
+    """
+    
+    document_effective_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document takes effect.
+    """
+    
+    document_last_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was last reviewed.
+    """
+    
+    document_next_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document is next due for review.
+    """
+    
+    document_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    """
+    
+    document_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the document carries.
+    """
+    
+    document_retention: Optional[str] = pla.Field(nullable=True, )
+    """
+    How long the document is kept, as an ISO 8601 duration.
+    """
+    
+    document_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is distributed, accessed, retrieved and used.
+    """
+    
+    document_storage: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is stored and preserved, so that it stays legible.
+    """
+    
+    document_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the document are controlled, such as version control.
+    """
+    
+    document_external_origin: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    """
+    
+    document_external_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who the document came from, when it comes from outside.
+    """
+    
+    
+class IsmsApplicabilityEntry(pla.DataFrameModel, _LinkmlPanderaValidator):
+    """
+    One entry of the Statement of Applicability, which either includes a control or excludes an Annex A control, and says why.
     """
 
     _id_name : str = None
-    control_reference: Optional[ID_TYPES['SecurityControl']] = pla.Field(nullable=True, )
+    entry_annex_a_control: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('a_5_1','a_5_2','a_5_3','a_5_4','a_5_5','a_5_6','a_5_7','a_5_8','a_5_9','a_5_10','a_5_11','a_5_12','a_5_13','a_5_14','a_5_15','a_5_16','a_5_17','a_5_18','a_5_19','a_5_20','a_5_21','a_5_22','a_5_23','a_5_24','a_5_25','a_5_26','a_5_27','a_5_28','a_5_29','a_5_30','a_5_31','a_5_32','a_5_33','a_5_34','a_5_35','a_5_36','a_5_37','a_6_1','a_6_2','a_6_3','a_6_4','a_6_5','a_6_6','a_6_7','a_6_8','a_7_1','a_7_2','a_7_3','a_7_4','a_7_5','a_7_6','a_7_7','a_7_8','a_7_9','a_7_10','a_7_11','a_7_12','a_7_13','a_7_14','a_8_1','a_8_2','a_8_3','a_8_4','a_8_5','a_8_6','a_8_7','a_8_8','a_8_9','a_8_10','a_8_11','a_8_12','a_8_13','a_8_14','a_8_15','a_8_16','a_8_17','a_8_18','a_8_19','a_8_20','a_8_21','a_8_22','a_8_23','a_8_24','a_8_25','a_8_26','a_8_27','a_8_28','a_8_29','a_8_30','a_8_31','a_8_32','a_8_33','a_8_34',)})
     """
-    Reference to the control (e.g., A.5.1).
-    """
-    
-    is_applicable: Optional[bool] = pla.Field(nullable=True, )
-    """
-    Whether the control is applicable.
+    The Annex A control a Statement of Applicability entry concerns.
     """
     
-    inclusion_justification: Optional[str] = pla.Field(nullable=True, )
+    entry_type: Optional[str] = pla.Field(nullable=True, )
     """
-    Justification for including the control.
-    """
-    
-    exclusion_justification: Optional[str] = pla.Field(nullable=True, )
-    """
-    Justification for excluding the control.
+    The kind of entry: IsmsIncludedControl or IsmsExcludedControl.
     """
     
-    implementation_status: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('not_started','planned','in_progress','implemented','not_applicable',)})
+    entry_justification: str = pla.Field(str_contains=r"^\s*\S", )
     """
-    Current implementation status.
-    """
-    
-    implementation_evidence: Optional[str] = pla.Field(nullable=True, )
-    """
-    Evidence of control implementation.
-    """
-    
-    responsible_role: Optional[ID_TYPES['Role']] = pla.Field(nullable=True, )
-    """
-    Role responsible for the objective or control.
-    """
-    
-    target_implementation_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Target date for implementing the control.
+    Why the control is included or excluded.
     """
     
     
-class StatementOfApplicability(DocumentedInformation):
+class IsmsStatementOfApplicability(IsmsRecord):
     """
-    The Statement of Applicability (SoA) recording which controls apply, their rationale, and current implementation state.
+    The Statement of Applicability: each control the organization needs, with why it is included and whether it is in place, and each Annex A control it leaves out, with why.
     """
 
-    _id_name : str =  'id' 
+    _id_name : str =  'isms_id' 
     soa_entries: Optional[List] = pla.Field(nullable=True, )
     """
-    Individual control entries in the SoA.
+    The statement's entries, one for each control included or Annex A control excluded.
     """
     
-    total_controls: Optional[int] = pla.Field(nullable=True, )
+    document_reference: Optional[str] = pla.Field(nullable=True, )
     """
-    Total number of controls in scope.
-    """
-    
-    implemented_count: Optional[int] = pla.Field(nullable=True, )
-    """
-    Number of implemented controls.
+    The reference the organization's document control gives it.
     """
     
-    planned_count: Optional[int] = pla.Field(nullable=True, )
+    document_version: Optional[str] = pla.Field(nullable=True, )
     """
-    Number of controls planned for implementation.
-    """
-    
-    not_applicable_count: Optional[int] = pla.Field(nullable=True, )
-    """
-    Number of controls marked not applicable.
+    The version of the document.
     """
     
-    last_review_date: Optional[Date] = pla.Field(nullable=True, )
+    document_author: Optional[str] = pla.Field(nullable=True, )
     """
-    Date of last review.
+    Who wrote the document.
+    """
+    
+    document_owner: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who answers for the document's content and upkeep.
+    """
+    
+    document_approver: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who approved the document.
+    """
+    
+    document_approval_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was approved.
+    """
+    
+    document_effective_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document takes effect.
+    """
+    
+    document_last_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was last reviewed.
+    """
+    
+    document_next_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document is next due for review.
+    """
+    
+    document_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    """
+    
+    document_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the document carries.
+    """
+    
+    document_retention: Optional[str] = pla.Field(nullable=True, )
+    """
+    How long the document is kept, as an ISO 8601 duration.
+    """
+    
+    document_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is distributed, accessed, retrieved and used.
+    """
+    
+    document_storage: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is stored and preserved, so that it stays legible.
+    """
+    
+    document_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the document are controlled, such as version control.
+    """
+    
+    document_external_origin: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    """
+    
+    document_external_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who the document came from, when it comes from outside.
     """
     
     
     @pla.check("soa_entries")
     def check_nested_struct_soa_entries(cls, data: PolarsData):
-        return cls._check_nested_list_struct(data, SoAEntry, pa_pl.SoAEntryDict)
+        return cls._check_nested_list_struct(data, IsmsApplicabilityEntry, pa_pl.IsmsApplicabilityEntryDict)
         
-class SecurityControl(NamedEntity):
+class IsmsControl(IsmsRecord):
     """
-    A security control from Annex A of ISO/IEC 27001:2022, derived from ISO/IEC 27002:2022. Represents a measure that modifies risk.
+    A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.
     """
 
-    _id_name : str =  'id' 
-    control_id: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('a_5_1','a_5_2','a_5_3','a_5_4','a_5_5','a_5_6','a_5_7','a_5_8','a_5_9','a_5_10','a_5_11','a_5_12','a_5_13','a_5_14','a_5_15','a_5_16','a_5_17','a_5_18','a_5_19','a_5_20','a_5_21','a_5_22','a_5_23','a_5_24','a_5_25','a_5_26','a_5_27','a_5_28','a_5_29','a_5_30','a_5_31','a_5_32','a_5_33','a_5_34','a_5_35','a_5_36','a_5_37','a_6_1','a_6_2','a_6_3','a_6_4','a_6_5','a_6_6','a_6_7','a_6_8','a_7_1','a_7_2','a_7_3','a_7_4','a_7_5','a_7_6','a_7_7','a_7_8','a_7_9','a_7_10','a_7_11','a_7_12','a_7_13','a_7_14','a_8_1','a_8_2','a_8_3','a_8_4','a_8_5','a_8_6','a_8_7','a_8_8','a_8_9','a_8_10','a_8_11','a_8_12','a_8_13','a_8_14','a_8_15','a_8_16','a_8_17','a_8_18','a_8_19','a_8_20','a_8_21','a_8_22','a_8_23','a_8_24','a_8_25','a_8_26','a_8_27','a_8_28','a_8_29','a_8_30','a_8_31','a_8_32','a_8_33','a_8_34',)})
+    _id_name : str =  'isms_id' 
+    relevant_controls: Optional[List] = pla.Field(nullable=True, )
     """
-    Control identifier from Annex A (e.g., a_5_1, a_8_24).
-    """
-    
-    control_title: Optional[str] = pla.Field(nullable=True, )
-    """
-    Title of the control.
+    The organization's controls that the record concerns.
     """
     
-    control_category: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('organizational','people','physical','technological',)})
+    implementation_state: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('not_started','planned','in_progress','implemented',)})
     """
-    Domain category of the control.
+    How far the control or the plan has been put into effect.
+    """
+    
+    control_annex_a_controls: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('a_5_1','a_5_2','a_5_3','a_5_4','a_5_5','a_5_6','a_5_7','a_5_8','a_5_9','a_5_10','a_5_11','a_5_12','a_5_13','a_5_14','a_5_15','a_5_16','a_5_17','a_5_18','a_5_19','a_5_20','a_5_21','a_5_22','a_5_23','a_5_24','a_5_25','a_5_26','a_5_27','a_5_28','a_5_29','a_5_30','a_5_31','a_5_32','a_5_33','a_5_34','a_5_35','a_5_36','a_5_37','a_6_1','a_6_2','a_6_3','a_6_4','a_6_5','a_6_6','a_6_7','a_6_8','a_7_1','a_7_2','a_7_3','a_7_4','a_7_5','a_7_6','a_7_7','a_7_8','a_7_9','a_7_10','a_7_11','a_7_12','a_7_13','a_7_14','a_8_1','a_8_2','a_8_3','a_8_4','a_8_5','a_8_6','a_8_7','a_8_8','a_8_9','a_8_10','a_8_11','a_8_12','a_8_13','a_8_14','a_8_15','a_8_16','a_8_17','a_8_18','a_8_19','a_8_20','a_8_21','a_8_22','a_8_23','a_8_24','a_8_25','a_8_26','a_8_27','a_8_28','a_8_29','a_8_30','a_8_31','a_8_32','a_8_33','a_8_34',)})
+    """
+    The Annex A controls the control answers to.
+    """
+    
+    control_theme: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('organizational','people','physical','technological',)})
+    """
+    Which of Annex A's four themes the control belongs to.
     """
     
     control_text: Optional[str] = pla.Field(nullable=True, )
     """
-    Organization-authored control statement or external control summary.
+    What the control does, in the organization's own words.
     """
     
-    implementation_guidance: Optional[str] = pla.Field(nullable=True, )
+    control_guidance: Optional[str] = pla.Field(nullable=True, )
     """
-    Organization-authored implementation notes for the control.
-    """
-    
-    related_controls: Optional[List] = pla.Field(nullable=True, )
-    """
-    Other controls related to this one.
+    The organization's notes on putting the control in place.
     """
     
-    applicable_threats: Optional[str] = pla.Field(nullable=True, )
+    control_threats: Optional[str] = pla.Field(nullable=True, )
     """
-    Threats this control addresses.
+    The threats the control acts against.
     """
     
-    applicable_assets: Optional[str] = pla.Field(nullable=True, )
+    control_asset_types: Optional[str] = pla.Field(nullable=True, )
     """
-    Asset types this control applies to.
+    The kinds of asset the control applies to.
     """
     
     control_owner: Optional[str] = pla.Field(nullable=True, )
     """
-    Person responsible for the control.
+    The person who owns the control.
     """
     
-    implementation_status: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('not_started','planned','in_progress','implemented','not_applicable',)})
+    control_implementation_date: Optional[Date] = pla.Field(nullable=True, )
     """
-    Current implementation status.
-    """
-    
-    implementation_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Date the control was implemented.
+    When the control was put in place.
     """
     
-    effectiveness_rating: Optional[str] = pla.Field(nullable=True, )
+    control_effectiveness: Optional[str] = pla.Field(nullable=True, )
     """
-    Rating of control effectiveness.
-    """
-    
-    last_test_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Date the control was last tested.
+    How well the control works, in the organization's own terms.
     """
     
-    evidence_references: Optional[str] = pla.Field(nullable=True, )
+    control_last_tested: Optional[Date] = pla.Field(nullable=True, )
     """
-    References to evidence of implementation.
+    When the control was last tested.
+    """
+    
+    control_evidence: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the evidence that the control is in place is kept.
     """
     
     
-class CommunicationItem(pla.DataFrameModel, _LinkmlPanderaValidator):
+class IsmsAsset(IsmsRecord):
     """
-    A single communication requirement within the communication plan.
+    An item in the inventory of information and other associated assets: what it is, who owns and looks after it, where it is, how it is classified and how much it matters.
+    """
+
+    _id_name : str =  'isms_id' 
+    relevant_controls: Optional[List] = pla.Field(nullable=True, )
+    """
+    The organization's controls that the record concerns.
+    """
+    
+    asset_category: Optional[str] = pla.Field(nullable=True, )
+    """
+    What kind of asset it is, such as information, software, hardware or a service.
+    """
+    
+    asset_owner: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who owns the asset.
+    """
+    
+    asset_custodian: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who looks after the asset from day to day.
+    """
+    
+    asset_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the asset carries.
+    """
+    
+    asset_location: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the asset is, physically or logically.
+    """
+    
+    asset_criticality: Optional[str] = pla.Field(nullable=True, )
+    """
+    How much the asset matters, in the organization's own terms.
+    """
+    
+    
+class IsmsResource(IsmsRecord):
+    """
+    A resource provided for the ISMS, such as people, time, tools or budget.
+    """
+
+    _id_name : str =  'isms_id' 
+    resource_category: Optional[str] = pla.Field(nullable=True, )
+    """
+    What kind of resource it is.
+    """
+    
+    resource_quantity: Optional[str] = pla.Field(nullable=True, )
+    """
+    How much of the resource is provided.
+    """
+    
+    resource_allocation_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the resource was allocated.
+    """
+    
+    resource_allocated_to: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the resource is allocated to.
+    """
+    
+    resource_cost: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the resource costs.
+    """
+    
+    resource_availability: Optional[str] = pla.Field(nullable=True, )
+    """
+    Whether the resource is available now, in the organization's own terms.
+    """
+    
+    
+class IsmsCompetenceRecord(IsmsRecord):
+    """
+    The evidence of one person's competence for work that affects information security, and what is done to close any gap.
+    """
+
+    _id_name : str =  'isms_id' 
+    competence_person: Optional[str] = pla.Field(nullable=True, )
+    """
+    The person the record is about.
+    """
+    
+    competence_role: Optional[ID_TYPES['IsmsRole']] = pla.Field(nullable=True, )
+    """
+    The role the person holds.
+    """
+    
+    competence_required: Optional[str] = pla.Field(nullable=True, )
+    """
+    The competences the role needs.
+    """
+    
+    competence_education: Optional[str] = pla.Field(nullable=True, )
+    """
+    The person's relevant education.
+    """
+    
+    competence_training: Optional[str] = pla.Field(nullable=True, )
+    """
+    The training the person has completed.
+    """
+    
+    competence_experience: Optional[str] = pla.Field(nullable=True, )
+    """
+    The person's relevant experience.
+    """
+    
+    competence_assessment_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the person's competence was last assessed.
+    """
+    
+    competence_gaps: Optional[str] = pla.Field(nullable=True, )
+    """
+    The gaps the assessment found.
+    """
+    
+    competence_actions: Optional[str] = pla.Field(nullable=True, )
+    """
+    What is done to close the gaps.
+    """
+    
+    document_reference: Optional[str] = pla.Field(nullable=True, )
+    """
+    The reference the organization's document control gives it.
+    """
+    
+    document_version: Optional[str] = pla.Field(nullable=True, )
+    """
+    The version of the document.
+    """
+    
+    document_author: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who wrote the document.
+    """
+    
+    document_owner: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who answers for the document's content and upkeep.
+    """
+    
+    document_approver: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who approved the document.
+    """
+    
+    document_approval_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was approved.
+    """
+    
+    document_effective_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document takes effect.
+    """
+    
+    document_last_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was last reviewed.
+    """
+    
+    document_next_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document is next due for review.
+    """
+    
+    document_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    """
+    
+    document_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the document carries.
+    """
+    
+    document_retention: Optional[str] = pla.Field(nullable=True, )
+    """
+    How long the document is kept, as an ISO 8601 duration.
+    """
+    
+    document_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is distributed, accessed, retrieved and used.
+    """
+    
+    document_storage: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is stored and preserved, so that it stays legible.
+    """
+    
+    document_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the document are controlled, such as version control.
+    """
+    
+    document_external_origin: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    """
+    
+    document_external_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who the document came from, when it comes from outside.
+    """
+    
+    
+class IsmsAwarenessProgramme(IsmsRecord):
+    """
+    The programme that makes people working for the organization aware of the policy, their part in the ISMS and what failing it would mean.
+    """
+
+    _id_name : str =  'isms_id' 
+    awareness_topics: Optional[str] = pla.Field(nullable=True, )
+    """
+    The topics the programme covers.
+    """
+    
+    awareness_methods: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the programme is delivered.
+    """
+    
+    awareness_audience: Optional[str] = pla.Field(nullable=True, )
+    """
+    Whom the programme is for.
+    """
+    
+    awareness_frequency: Optional[str] = pla.Field(nullable=True, )
+    """
+    How often the programme runs.
+    """
+    
+    awareness_completion_tracking: Optional[str] = pla.Field(nullable=True, )
+    """
+    How completion is tracked.
+    """
+    
+    awareness_effectiveness: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the programme's effect is measured.
+    """
+    
+    document_reference: Optional[str] = pla.Field(nullable=True, )
+    """
+    The reference the organization's document control gives it.
+    """
+    
+    document_version: Optional[str] = pla.Field(nullable=True, )
+    """
+    The version of the document.
+    """
+    
+    document_author: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who wrote the document.
+    """
+    
+    document_owner: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who answers for the document's content and upkeep.
+    """
+    
+    document_approver: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who approved the document.
+    """
+    
+    document_approval_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was approved.
+    """
+    
+    document_effective_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document takes effect.
+    """
+    
+    document_last_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was last reviewed.
+    """
+    
+    document_next_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document is next due for review.
+    """
+    
+    document_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    """
+    
+    document_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the document carries.
+    """
+    
+    document_retention: Optional[str] = pla.Field(nullable=True, )
+    """
+    How long the document is kept, as an ISO 8601 duration.
+    """
+    
+    document_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is distributed, accessed, retrieved and used.
+    """
+    
+    document_storage: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is stored and preserved, so that it stays legible.
+    """
+    
+    document_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the document are controlled, such as version control.
+    """
+    
+    document_external_origin: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    """
+    
+    document_external_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who the document came from, when it comes from outside.
+    """
+    
+    
+class IsmsCommunication(pla.DataFrameModel, _LinkmlPanderaValidator):
+    """
+    One communication the plan provides for: what about, why, to whom, how often, how, and who communicates.
     """
 
     _id_name : str = None
-    subject: Optional[str] = pla.Field(nullable=True, )
+    responsible_role: Optional[ID_TYPES['IsmsRole']] = pla.Field(nullable=True, )
     """
-    Subject of the communication.
-    """
-    
-    purpose: Optional[str] = pla.Field(nullable=True, )
-    """
-    Purpose of the communication.
+    The role that answers for the record's activity or outcome.
     """
     
-    audience: Optional[str] = pla.Field(nullable=True, )
+    communication_subject: str = pla.Field()
     """
-    Target audience.
-    """
-    
-    frequency: Optional[str] = pla.Field(nullable=True, )
-    """
-    Frequency of the activity.
+    What the communication is about.
     """
     
-    method: Optional[str] = pla.Field(nullable=True, )
+    communication_purpose: Optional[str] = pla.Field(nullable=True, )
     """
-    Method of communication.
-    """
-    
-    responsible_party: Optional[str] = pla.Field(nullable=True, )
-    """
-    Party responsible for the activity.
+    Why it is communicated.
     """
     
-    records_required: Optional[bool] = pla.Field(nullable=True, )
+    communication_audience: Optional[str] = pla.Field(nullable=True, )
     """
-    Whether records are required.
+    To whom it is communicated.
+    """
+    
+    communication_frequency: Optional[str] = pla.Field(nullable=True, )
+    """
+    How often it is communicated.
+    """
+    
+    communication_method: Optional[str] = pla.Field(nullable=True, )
+    """
+    How it is communicated.
+    """
+    
+    communication_records_required: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether a record of the communication is kept.
     """
     
     
-class CommunicationPlan(DocumentedInformation):
+class IsmsCommunicationPlan(IsmsRecord):
     """
-    Plan for internal and external communications relevant to the ISMS per Clause 7.4.
+    The plan for communication about the ISMS, inside the organization and outside it.
     """
 
-    _id_name : str =  'id' 
+    _id_name : str =  'isms_id' 
     communication_items: Optional[List] = pla.Field(nullable=True, )
     """
-    Communication items in the plan.
+    The communications the plan provides for.
+    """
+    
+    document_reference: Optional[str] = pla.Field(nullable=True, )
+    """
+    The reference the organization's document control gives it.
+    """
+    
+    document_version: Optional[str] = pla.Field(nullable=True, )
+    """
+    The version of the document.
+    """
+    
+    document_author: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who wrote the document.
+    """
+    
+    document_owner: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who answers for the document's content and upkeep.
+    """
+    
+    document_approver: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who approved the document.
+    """
+    
+    document_approval_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was approved.
+    """
+    
+    document_effective_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document takes effect.
+    """
+    
+    document_last_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was last reviewed.
+    """
+    
+    document_next_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document is next due for review.
+    """
+    
+    document_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    """
+    
+    document_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the document carries.
+    """
+    
+    document_retention: Optional[str] = pla.Field(nullable=True, )
+    """
+    How long the document is kept, as an ISO 8601 duration.
+    """
+    
+    document_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is distributed, accessed, retrieved and used.
+    """
+    
+    document_storage: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is stored and preserved, so that it stays legible.
+    """
+    
+    document_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the document are controlled, such as version control.
+    """
+    
+    document_external_origin: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    """
+    
+    document_external_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who the document came from, when it comes from outside.
     """
     
     
     @pla.check("communication_items")
     def check_nested_struct_communication_items(cls, data: PolarsData):
-        return cls._check_nested_list_struct(data, CommunicationItem, pa_pl.CommunicationItemDict)
+        return cls._check_nested_list_struct(data, IsmsCommunication, pa_pl.IsmsCommunicationDict)
         
-class OperationalProcedure(DocumentedInformation):
+class IsmsDocumentedInformation(IsmsRecord):
     """
-    A documented procedure for operational planning and control per Clause 8.1.
+    A piece of documented information the ISMS keeps under control that no more specific record describes, such as a procedure, a standard, a plan or a report.
     """
 
-    _id_name : str =  'id' 
+    _id_name : str =  'isms_id' 
+    document_kind: Enum = pla.Field(dtype_kwargs={"categories":('procedure','standard','guideline','record','plan','report',)})
+    """
+    What kind of documented information it is.
+    """
+    
+    document_reference: Optional[str] = pla.Field(nullable=True, )
+    """
+    The reference the organization's document control gives it.
+    """
+    
+    document_version: Optional[str] = pla.Field(nullable=True, )
+    """
+    The version of the document.
+    """
+    
+    document_author: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who wrote the document.
+    """
+    
+    document_owner: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who answers for the document's content and upkeep.
+    """
+    
+    document_approver: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who approved the document.
+    """
+    
+    document_approval_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was approved.
+    """
+    
+    document_effective_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document takes effect.
+    """
+    
+    document_last_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was last reviewed.
+    """
+    
+    document_next_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document is next due for review.
+    """
+    
+    document_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    """
+    
+    document_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the document carries.
+    """
+    
+    document_retention: Optional[str] = pla.Field(nullable=True, )
+    """
+    How long the document is kept, as an ISO 8601 duration.
+    """
+    
+    document_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is distributed, accessed, retrieved and used.
+    """
+    
+    document_storage: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is stored and preserved, so that it stays legible.
+    """
+    
+    document_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the document are controlled, such as version control.
+    """
+    
+    document_external_origin: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    """
+    
+    document_external_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who the document came from, when it comes from outside.
+    """
+    
+    
+class IsmsOperationalProcedure(IsmsRecord):
+    """
+    A procedure by which the organization plans and controls the processes that meet its information security requirements.
+    """
+
+    _id_name : str =  'isms_id' 
+    relevant_controls: Optional[List] = pla.Field(nullable=True, )
+    """
+    The organization's controls that the record concerns.
+    """
+    
     procedure_scope: Optional[str] = pla.Field(nullable=True, )
     """
-    Scope of the procedure.
+    What the procedure covers.
     """
     
-    process_criteria: Optional[str] = pla.Field(nullable=True, )
+    procedure_criteria: Optional[str] = pla.Field(nullable=True, )
     """
-    Criteria established for the process.
-    """
-    
-    control_measures: Optional[str] = pla.Field(nullable=True, )
-    """
-    Control measures implemented.
+    The criteria the processes are run to.
     """
     
-    responsible_roles: Optional[List] = pla.Field(nullable=True, )
+    procedure_control_measures: Optional[str] = pla.Field(nullable=True, )
     """
-    Roles responsible for the procedure.
-    """
-    
-    related_controls: Optional[List] = pla.Field(nullable=True, )
-    """
-    Other controls related to this one.
+    The measures that control the processes.
     """
     
-    change_control_requirements: Optional[str] = pla.Field(nullable=True, )
+    procedure_roles: Optional[List] = pla.Field(nullable=True, )
     """
-    Requirements for controlling changes.
+    The roles that carry out the procedure.
+    """
+    
+    procedure_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the processes are controlled.
+    """
+    
+    document_reference: Optional[str] = pla.Field(nullable=True, )
+    """
+    The reference the organization's document control gives it.
+    """
+    
+    document_version: Optional[str] = pla.Field(nullable=True, )
+    """
+    The version of the document.
+    """
+    
+    document_author: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who wrote the document.
+    """
+    
+    document_owner: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who answers for the document's content and upkeep.
+    """
+    
+    document_approver: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who approved the document.
+    """
+    
+    document_approval_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was approved.
+    """
+    
+    document_effective_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document takes effect.
+    """
+    
+    document_last_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was last reviewed.
+    """
+    
+    document_next_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document is next due for review.
+    """
+    
+    document_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    """
+    
+    document_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the document carries.
+    """
+    
+    document_retention: Optional[str] = pla.Field(nullable=True, )
+    """
+    How long the document is kept, as an ISO 8601 duration.
+    """
+    
+    document_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is distributed, accessed, retrieved and used.
+    """
+    
+    document_storage: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is stored and preserved, so that it stays legible.
+    """
+    
+    document_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the document are controlled, such as version control.
+    """
+    
+    document_external_origin: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    """
+    
+    document_external_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who the document came from, when it comes from outside.
     """
     
     
-class MonitoringItem(pla.DataFrameModel, _LinkmlPanderaValidator):
+class IsmsMonitoringItem(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
-    A single item to be monitored and measured per 9.1.
+    One thing the monitoring programme measures: what, how, how often and by whom it is measured and analysed, and against what thresholds.
     """
 
     _id_name : str = None
-    metric_name: Optional[str] = pla.Field(nullable=True, )
+    responsible_role: Optional[ID_TYPES['IsmsRole']] = pla.Field(nullable=True, )
     """
-    Name of the metric.
-    """
-    
-    metric_description: Optional[str] = pla.Field(nullable=True, )
-    """
-    Description of what is measured.
+    The role that answers for the record's activity or outcome.
     """
     
-    measurement_method: Optional[str] = pla.Field(nullable=True, )
+    monitoring_metric: str = pla.Field()
     """
-    Method used to measure the metric.
-    """
-    
-    measurement_frequency: Optional[str] = pla.Field(nullable=True, )
-    """
-    How often measurement is performed.
+    The name of what is measured.
     """
     
-    responsible_party: Optional[str] = pla.Field(nullable=True, )
+    monitoring_description: Optional[str] = pla.Field(nullable=True, )
     """
-    Party responsible for the activity.
-    """
-    
-    analysis_frequency: Optional[str] = pla.Field(nullable=True, )
-    """
-    How often analysis is performed.
+    What the measurement shows.
     """
     
-    analyst: Optional[str] = pla.Field(nullable=True, )
+    monitoring_method: Optional[str] = pla.Field(nullable=True, )
     """
-    Person performing analysis.
-    """
-    
-    target_threshold: Optional[str] = pla.Field(nullable=True, )
-    """
-    Target threshold value.
+    How it is measured.
     """
     
-    alert_threshold: Optional[str] = pla.Field(nullable=True, )
+    monitoring_frequency: Optional[str] = pla.Field(nullable=True, )
     """
-    Threshold triggering alerts.
-    """
-    
-    current_value: Optional[str] = pla.Field(nullable=True, )
-    """
-    Current measured value.
+    How often it is measured.
     """
     
-    trend: Optional[str] = pla.Field(nullable=True, )
+    monitoring_analysis_frequency: Optional[str] = pla.Field(nullable=True, )
     """
-    Current trend direction.
+    How often the results are analysed and evaluated.
+    """
+    
+    monitoring_analyst: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who analyses and evaluates the results.
+    """
+    
+    monitoring_target: Optional[str] = pla.Field(nullable=True, )
+    """
+    The value aimed for.
+    """
+    
+    monitoring_alert_threshold: Optional[str] = pla.Field(nullable=True, )
+    """
+    The value that calls for action.
+    """
+    
+    monitoring_current_value: Optional[str] = pla.Field(nullable=True, )
+    """
+    The value last measured.
+    """
+    
+    monitoring_trend: Optional[str] = pla.Field(nullable=True, )
+    """
+    Which way the value is moving.
     """
     
     
-class MonitoringProgram(DocumentedInformation):
+class IsmsMonitoringProgramme(IsmsRecord):
     """
-    The program for monitoring, measurement, analysis, and evaluation per Clause 9.1.
+    The programme of monitoring, measurement, analysis and evaluation of information security performance and of the ISMS's effectiveness.
     """
 
-    _id_name : str =  'id' 
+    _id_name : str =  'isms_id' 
     monitoring_items: Optional[List] = pla.Field(nullable=True, )
     """
-    Items to be monitored.
+    What the programme monitors and measures.
+    """
+    
+    document_reference: Optional[str] = pla.Field(nullable=True, )
+    """
+    The reference the organization's document control gives it.
+    """
+    
+    document_version: Optional[str] = pla.Field(nullable=True, )
+    """
+    The version of the document.
+    """
+    
+    document_author: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who wrote the document.
+    """
+    
+    document_owner: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who answers for the document's content and upkeep.
+    """
+    
+    document_approver: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who approved the document.
+    """
+    
+    document_approval_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was approved.
+    """
+    
+    document_effective_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document takes effect.
+    """
+    
+    document_last_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was last reviewed.
+    """
+    
+    document_next_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document is next due for review.
+    """
+    
+    document_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    """
+    
+    document_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the document carries.
+    """
+    
+    document_retention: Optional[str] = pla.Field(nullable=True, )
+    """
+    How long the document is kept, as an ISO 8601 duration.
+    """
+    
+    document_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is distributed, accessed, retrieved and used.
+    """
+    
+    document_storage: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is stored and preserved, so that it stays legible.
+    """
+    
+    document_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the document are controlled, such as version control.
+    """
+    
+    document_external_origin: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    """
+    
+    document_external_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who the document came from, when it comes from outside.
     """
     
     
     @pla.check("monitoring_items")
     def check_nested_struct_monitoring_items(cls, data: PolarsData):
-        return cls._check_nested_list_struct(data, MonitoringItem, pa_pl.MonitoringItemDict)
+        return cls._check_nested_list_struct(data, IsmsMonitoringItem, pa_pl.IsmsMonitoringItemDict)
         
-class InternalAudit(DocumentedInformation):
+class IsmsAuditProgramme(IsmsRecord):
     """
-    An internal audit instance per Clause 9.2, assessing ISMS conformance and effectiveness.
-    """
-
-    _id_name : str =  'id' 
-    audit_reference: Optional[str] = pla.Field(nullable=True, )
-    """
-    Reference identifier for the audit.
-    """
-    
-    audit_type: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('internal','external_second_party','external_third_party','surveillance','recertification','combined',)})
-    """
-    Type of audit per ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1.
-    """
-    
-    audit_scope: Optional[str] = pla.Field(nullable=True, )
-    """
-    Scope of the audit.
-    """
-    
-    audit_criteria: Optional[str] = pla.Field(nullable=True, )
-    """
-    Criteria against which audit is conducted.
-    """
-    
-    audit_objectives: Optional[str] = pla.Field(nullable=True, )
-    """
-    Objectives of the audit.
-    """
-    
-    audit_period_start: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Start date of audit period.
-    """
-    
-    audit_period_end: Optional[Date] = pla.Field(nullable=True, )
-    """
-    End date of audit period.
-    """
-    
-    lead_auditor: Optional[str] = pla.Field(nullable=True, )
-    """
-    Lead auditor for the audit.
-    """
-    
-    audit_team: Optional[str] = pla.Field(nullable=True, )
-    """
-    Audit team members.
-    """
-    
-    auditee_representatives: Optional[str] = pla.Field(nullable=True, )
-    """
-    Representatives from audited areas.
-    """
-    
-    audit_plan: Optional[str] = pla.Field(nullable=True, )
-    """
-    Audit plan document reference.
-    """
-    
-    findings: Optional[List] = pla.Field(nullable=True, )
-    """
-    Audit findings.
-    """
-    
-    positive_observations: Optional[str] = pla.Field(nullable=True, )
-    """
-    Positive observations noted.
-    """
-    
-    audit_conclusion: Optional[str] = pla.Field(nullable=True, )
-    """
-    Overall audit conclusion.
-    """
-    
-    report_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Date the report was issued.
-    """
-    
-    report_distribution: Optional[str] = pla.Field(nullable=True, )
-    """
-    Distribution list for the report.
-    """
-    
-    
-class AuditProgramme(DocumentedInformation):
-    """
-    The internal audit programme per 9.2.2, planning audit activities over a defined period.
+    An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors they need.
     """
 
-    _id_name : str =  'id' 
+    _id_name : str =  'isms_id' 
     programme_period: Optional[str] = pla.Field(nullable=True, )
     """
-    Period covered by the audit programme.
+    The period the programme covers.
     """
     
-    planned_audits: Optional[List] = pla.Field(nullable=True, )
+    programme_audits: Optional[List] = pla.Field(nullable=True, )
     """
-    Audits planned in this programme.
-    """
-    
-    audit_frequency_rationale: Optional[str] = pla.Field(nullable=True, )
-    """
-    Rationale for audit frequency decisions.
+    The audits the programme plans.
     """
     
-    resource_requirements: Optional[str] = pla.Field(nullable=True, )
+    programme_frequency_rationale: Optional[str] = pla.Field(nullable=True, )
     """
-    Resource requirements for the programme.
+    Why the audits happen as often as they do.
     """
     
-    auditor_qualifications: Optional[str] = pla.Field(nullable=True, )
+    programme_resources: Optional[str] = pla.Field(nullable=True, )
     """
-    Required qualifications for auditors.
+    The resources the programme needs.
+    """
+    
+    programme_auditor_qualifications: Optional[str] = pla.Field(nullable=True, )
+    """
+    The qualifications the auditors need.
     """
     
     programme_status: Optional[str] = pla.Field(nullable=True, )
     """
-    Current status of the programme.
+    Where the programme stands, in the organization's own terms.
+    """
+    
+    document_reference: Optional[str] = pla.Field(nullable=True, )
+    """
+    The reference the organization's document control gives it.
+    """
+    
+    document_version: Optional[str] = pla.Field(nullable=True, )
+    """
+    The version of the document.
+    """
+    
+    document_author: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who wrote the document.
+    """
+    
+    document_owner: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who answers for the document's content and upkeep.
+    """
+    
+    document_approver: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who approved the document.
+    """
+    
+    document_approval_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was approved.
+    """
+    
+    document_effective_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document takes effect.
+    """
+    
+    document_last_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was last reviewed.
+    """
+    
+    document_next_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document is next due for review.
+    """
+    
+    document_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    """
+    
+    document_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the document carries.
+    """
+    
+    document_retention: Optional[str] = pla.Field(nullable=True, )
+    """
+    How long the document is kept, as an ISO 8601 duration.
+    """
+    
+    document_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is distributed, accessed, retrieved and used.
+    """
+    
+    document_storage: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is stored and preserved, so that it stays legible.
+    """
+    
+    document_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the document are controlled, such as version control.
+    """
+    
+    document_external_origin: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    """
+    
+    document_external_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who the document came from, when it comes from outside.
     """
     
     
-class AuditFinding(NamedEntity):
+class IsmsAuditFinding(IsmsRecord):
     """
-    A finding from an internal audit, including nonconformities, observations, and positive findings.
+    One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it concerns, its evidence and how it is closed.
     """
 
-    _id_name : str =  'id' 
-    finding_type: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('major_nonconformity','minor_nonconformity','observation','positive_finding',)})
+    _id_name : str =  'isms_id' 
+    finding_type: Enum = pla.Field(dtype_kwargs={"categories":('major_nonconformity','minor_nonconformity','observation','positive_finding',)})
     """
-    Type of audit finding.
-    """
-    
-    clause_reference: Optional[str] = pla.Field(nullable=True, )
-    """
-    Reference to standard clause.
+    What kind of finding it is.
     """
     
-    control_reference: Optional[ID_TYPES['SecurityControl']] = pla.Field(nullable=True, )
+    finding_requirement: Optional[str] = pla.Field(nullable=True, )
     """
-    Reference to the control (e.g., A.5.1).
-    """
-    
-    finding_description: Optional[str] = pla.Field(nullable=True, )
-    """
-    Description of the finding.
+    The clause or Annex A control of ISO/IEC 27001:2022 the finding concerns, by number.
     """
     
-    objective_evidence: Optional[str] = pla.Field(nullable=True, )
+    finding_control: Optional[ID_TYPES['IsmsControl']] = pla.Field(nullable=True, )
     """
-    Evidence supporting the finding.
-    """
-    
-    root_cause_analysis: Optional[str] = pla.Field(nullable=True, )
-    """
-    Analysis of root cause.
+    The organization's control the finding concerns.
     """
     
-    risk_implication: Optional[str] = pla.Field(nullable=True, )
+    finding_evidence: Optional[str] = pla.Field(nullable=True, )
     """
-    Risk implications of the finding.
-    """
-    
-    recommended_action: Optional[str] = pla.Field(nullable=True, )
-    """
-    Recommended action to address finding.
+    The objective evidence for the finding.
     """
     
-    auditee_response: Optional[str] = pla.Field(nullable=True, )
+    finding_root_cause: Optional[str] = pla.Field(nullable=True, )
     """
-    Response from the auditee.
-    """
-    
-    linked_corrective_action: Optional[ID_TYPES['CorrectiveAction']] = pla.Field(nullable=True, )
-    """
-    Corrective action linked to this finding.
+    What the analysis of the finding's cause found.
     """
     
-    closure_status: Optional[str] = pla.Field(nullable=True, )
+    finding_risk: Optional[str] = pla.Field(nullable=True, )
     """
-    Status of finding closure.
+    What the finding means for risk.
     """
     
-    closure_date: Optional[Date] = pla.Field(nullable=True, )
+    finding_recommendation: Optional[str] = pla.Field(nullable=True, )
     """
-    Date the finding was closed.
+    What the auditor recommends.
+    """
+    
+    finding_auditee_response: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the auditee responded.
+    """
+    
+    finding_corrective_action: Optional[ID_TYPES['IsmsCorrectiveAction']] = pla.Field(nullable=True, )
+    """
+    The corrective action the finding led to.
+    """
+    
+    finding_closure_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Whether the finding is closed, in the organization's own terms.
+    """
+    
+    finding_closure_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the finding was closed.
     """
     
     
-class Nonconformity(NamedEntity):
+class IsmsAudit(IsmsRecord):
     """
-    A nonconformity identified per Clause 10.2, representing failure to fulfill a requirement.
+    An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope, criteria, team, findings and conclusion.
     """
 
-    _id_name : str =  'id' 
+    _id_name : str =  'isms_id' 
+    audit_type: Enum = pla.Field(dtype_kwargs={"categories":('first_party','second_party','third_party',)})
+    """
+    Who carries out the audit, relative to the organization.
+    """
+    
+    audit_standards: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('iso_iec_27001','iso_iec_27701','iso_iec_42001','iso_9001','iso_14001','iso_22301','iso_iec_20000_1',)})
+    """
+    The management system standards the audit covers.
+    """
+    
+    audit_scope: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the audit covers.
+    """
+    
+    audit_criteria: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the audit compares the ISMS against.
+    """
+    
+    audit_objectives: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the audit sets out to establish.
+    """
+    
+    audit_period_start: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the audit began.
+    """
+    
+    audit_period_end: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the audit ended.
+    """
+    
+    audit_lead: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who led the audit.
+    """
+    
+    audit_team: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who else audited.
+    """
+    
+    audit_auditees: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who represented the parts of the organization audited.
+    """
+    
+    audit_plan: Optional[ID_TYPES['IsmsDocumentedInformation']] = pla.Field(nullable=True, )
+    """
+    The documented information that holds the audit plan.
+    """
+    
+    audit_findings: Optional[List] = pla.Field(nullable=True, )
+    """
+    What the audit found, good and bad.
+    """
+    
+    audit_conclusion: Optional[str] = pla.Field(nullable=True, )
+    """
+    The audit's overall conclusion.
+    """
+    
+    audit_report_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the audit report was issued.
+    """
+    
+    audit_report_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who received the audit report.
+    """
+    
+    document_reference: Optional[str] = pla.Field(nullable=True, )
+    """
+    The reference the organization's document control gives it.
+    """
+    
+    document_version: Optional[str] = pla.Field(nullable=True, )
+    """
+    The version of the document.
+    """
+    
+    document_author: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who wrote the document.
+    """
+    
+    document_owner: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who answers for the document's content and upkeep.
+    """
+    
+    document_approver: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who approved the document.
+    """
+    
+    document_approval_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was approved.
+    """
+    
+    document_effective_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document takes effect.
+    """
+    
+    document_last_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was last reviewed.
+    """
+    
+    document_next_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document is next due for review.
+    """
+    
+    document_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    """
+    
+    document_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the document carries.
+    """
+    
+    document_retention: Optional[str] = pla.Field(nullable=True, )
+    """
+    How long the document is kept, as an ISO 8601 duration.
+    """
+    
+    document_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is distributed, accessed, retrieved and used.
+    """
+    
+    document_storage: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is stored and preserved, so that it stays legible.
+    """
+    
+    document_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the document are controlled, such as version control.
+    """
+    
+    document_external_origin: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    """
+    
+    document_external_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who the document came from, when it comes from outside.
+    """
+    
+    
+    @pla.check("audit_findings")
+    def check_nested_struct_audit_findings(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsAuditFinding, pa_pl.IsmsAuditFindingDict)
+        
+class IsmsManagementReview(IsmsRecord):
+    """
+    A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.
+    """
+
+    _id_name : str =  'isms_id' 
+    review_held_on: Date = pla.Field()
+    """
+    When the review was held.
+    """
+    
+    review_attendees: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who attended the review.
+    """
+    
+    review_previous_actions: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the actions from earlier reviews stand.
+    """
+    
+    review_context_changes: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the issues that bear on the ISMS have changed.
+    """
+    
+    review_interested_party_changes: Optional[str] = pla.Field(nullable=True, )
+    """
+    How interested parties' needs and expectations have changed.
+    """
+    
+    review_interested_party_feedback: Optional[str] = pla.Field(nullable=True, )
+    """
+    What interested parties said.
+    """
+    
+    review_performance_trends: Optional[str] = pla.Field(nullable=True, )
+    """
+    The trends in information security performance.
+    """
+    
+    review_audit_results: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the audits found.
+    """
+    
+    review_risk_assessment_results: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the risk assessments found.
+    """
+    
+    review_risk_treatment_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where risk treatment stands.
+    """
+    
+    review_risks_and_opportunities: Optional[str] = pla.Field(nullable=True, )
+    """
+    How risks and opportunities have changed.
+    """
+    
+    review_improvement_opportunities: Optional[str] = pla.Field(nullable=True, )
+    """
+    The opportunities for improvement raised.
+    """
+    
+    review_decisions: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the review decided.
+    """
+    
+    review_actions: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the review asked to be done.
+    """
+    
+    review_next_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the next review is planned.
+    """
+    
+    document_reference: Optional[str] = pla.Field(nullable=True, )
+    """
+    The reference the organization's document control gives it.
+    """
+    
+    document_version: Optional[str] = pla.Field(nullable=True, )
+    """
+    The version of the document.
+    """
+    
+    document_author: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who wrote the document.
+    """
+    
+    document_owner: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who answers for the document's content and upkeep.
+    """
+    
+    document_approver: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who approved the document.
+    """
+    
+    document_approval_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was approved.
+    """
+    
+    document_effective_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document takes effect.
+    """
+    
+    document_last_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document was last reviewed.
+    """
+    
+    document_next_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the document is next due for review.
+    """
+    
+    document_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    """
+    
+    document_classification: Optional[str] = pla.Field(nullable=True, )
+    """
+    The information classification the document carries.
+    """
+    
+    document_retention: Optional[str] = pla.Field(nullable=True, )
+    """
+    How long the document is kept, as an ISO 8601 duration.
+    """
+    
+    document_distribution: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is distributed, accessed, retrieved and used.
+    """
+    
+    document_storage: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the document is stored and preserved, so that it stays legible.
+    """
+    
+    document_change_control: Optional[str] = pla.Field(nullable=True, )
+    """
+    How changes to the document are controlled, such as version control.
+    """
+    
+    document_external_origin: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    """
+    
+    document_external_source: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who the document came from, when it comes from outside.
+    """
+    
+    
+class IsmsNonconformity(IsmsRecord):
+    """
+    A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was closed.
+    """
+
+    _id_name : str =  'isms_id' 
     nonconformity_source: Optional[str] = pla.Field(nullable=True, )
     """
-    Source of nonconformity detection.
+    How the nonconformity came to light, such as an audit, a review or an incident.
     """
     
-    detection_date: Optional[Date] = pla.Field(nullable=True, )
+    nonconformity_detected_on: Optional[Date] = pla.Field(nullable=True, )
     """
-    Date the nonconformity was detected.
-    """
-    
-    detected_by: Optional[str] = pla.Field(nullable=True, )
-    """
-    Person or process that detected the nonconformity.
+    When the nonconformity was found.
     """
     
-    requirement_violated: Optional[str] = pla.Field(nullable=True, )
+    nonconformity_detected_by: Optional[str] = pla.Field(nullable=True, )
     """
-    Requirement that was not fulfilled.
-    """
-    
-    nonconformity_description: Optional[str] = pla.Field(nullable=True, )
-    """
-    Description of the nonconformity.
+    Who or what found it.
     """
     
-    immediate_actions: Optional[str] = pla.Field(nullable=True, )
+    nonconformity_requirement: Optional[str] = pla.Field(nullable=True, )
     """
-    Immediate actions taken to control/correct.
-    """
-    
-    consequences_addressed: Optional[str] = pla.Field(nullable=True, )
-    """
-    How consequences were dealt with.
+    The requirement that was not met, of ISO/IEC 27001, of the organization or of an interested party.
     """
     
-    root_cause: Optional[str] = pla.Field(nullable=True, )
+    nonconformity_immediate_actions: Optional[str] = pla.Field(nullable=True, )
     """
-    Root cause of the nonconformity.
-    """
-    
-    similar_nonconformities_check: Optional[str] = pla.Field(nullable=True, )
-    """
-    Check for similar nonconformities elsewhere.
+    What was done at once to control and correct it.
     """
     
-    linked_corrective_actions: Optional[List] = pla.Field(nullable=True, )
+    nonconformity_consequences: Optional[str] = pla.Field(nullable=True, )
     """
-    Corrective actions addressing this nonconformity.
-    """
-    
-    status: Optional[str] = pla.Field(nullable=True, )
-    """
-    Current status of the document or entity.
+    How its consequences were dealt with.
     """
     
-    closure_date: Optional[Date] = pla.Field(nullable=True, )
+    nonconformity_root_cause: Optional[str] = pla.Field(nullable=True, )
     """
-    Date the finding was closed.
+    What caused it.
     """
     
-    closure_evidence: Optional[str] = pla.Field(nullable=True, )
+    nonconformity_similar_check: Optional[str] = pla.Field(nullable=True, )
     """
-    Evidence supporting closure.
+    Whether similar nonconformities exist or could occur, and where.
+    """
+    
+    nonconformity_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the nonconformity stands, in the organization's own terms.
+    """
+    
+    nonconformity_closure_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When it was closed.
+    """
+    
+    nonconformity_closure_evidence: Optional[str] = pla.Field(nullable=True, )
+    """
+    What shows that it is closed.
     """
     
     
-class CorrectiveAction(NamedEntity):
+class IsmsCorrectiveAction(IsmsRecord):
     """
-    A corrective action per Clause 10.2 to address the root cause of a nonconformity and reduce the likelihood of recurrence.
+    An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it worked.
     """
 
-    _id_name : str =  'id' 
-    linked_nonconformity: Optional[ID_TYPES['Nonconformity']] = pla.Field(nullable=True, )
+    _id_name : str =  'isms_id' 
+    responsible_role: Optional[ID_TYPES['IsmsRole']] = pla.Field(nullable=True, )
     """
-    Nonconformity this action addresses.
-    """
-    
-    action_description: Optional[str] = pla.Field(nullable=True, )
-    """
-    Description of the action.
+    The role that answers for the record's activity or outcome.
     """
     
-    root_cause_addressed: Optional[str] = pla.Field(nullable=True, )
+    action_nonconformities: Optional[List] = pla.Field(nullable=True, )
     """
-    Root cause this action addresses.
-    """
-    
-    responsible_party: Optional[str] = pla.Field(nullable=True, )
-    """
-    Party responsible for the activity.
+    The nonconformities the action addresses.
     """
     
-    target_completion_date: Optional[Date] = pla.Field(nullable=True, )
+    action_root_cause: Optional[str] = pla.Field(nullable=True, )
     """
-    Target date for completing the action.
-    """
-    
-    actual_completion_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Actual date the action was completed.
+    The cause the action removes.
     """
     
-    resources_required: Optional[str] = pla.Field(nullable=True, )
+    action_target_date: Optional[Date] = pla.Field(nullable=True, )
     """
-    Resources required for implementation.
-    """
-    
-    effectiveness_criteria: Optional[str] = pla.Field(nullable=True, )
-    """
-    Criteria for evaluating effectiveness.
+    When the action is to be complete.
     """
     
-    effectiveness_review_date: Optional[Date] = pla.Field(nullable=True, )
+    action_completion_date: Optional[Date] = pla.Field(nullable=True, )
     """
-    Date effectiveness was reviewed.
-    """
-    
-    effectiveness_verified: Optional[bool] = pla.Field(nullable=True, )
-    """
-    Whether effectiveness was verified.
+    When the action was complete.
     """
     
-    isms_changes_required: Optional[str] = pla.Field(nullable=True, )
+    action_resources: Optional[str] = pla.Field(nullable=True, )
     """
-    Changes to ISMS required as a result.
+    The resources the action needs.
     """
     
-    status: Optional[str] = pla.Field(nullable=True, )
+    action_effectiveness_criteria: Optional[str] = pla.Field(nullable=True, )
     """
-    Current status of the document or entity.
+    How the action's effect will be judged.
+    """
+    
+    action_effectiveness_review_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the action's effect was reviewed.
+    """
+    
+    action_effective: Optional[bool] = pla.Field(nullable=True, )
+    """
+    Whether the review found the action effective.
+    """
+    
+    action_isms_changes: Optional[str] = pla.Field(nullable=True, )
+    """
+    The changes to the ISMS the action needs.
+    """
+    
+    action_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the action stands, in the organization's own terms.
     """
     
     
-class Asset(NamedEntity):
+class IsmsImprovementOpportunity(IsmsRecord):
     """
-    An information asset or associated asset requiring protection, per Annex A control 5.9.
+    An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.
     """
 
-    _id_name : str =  'id' 
-    asset_type: Optional[str] = pla.Field(nullable=True, )
+    _id_name : str =  'isms_id' 
+    responsible_role: Optional[ID_TYPES['IsmsRole']] = pla.Field(nullable=True, )
     """
-    Type of asset.
-    """
-    
-    asset_owner: Optional[str] = pla.Field(nullable=True, )
-    """
-    Owner of the asset.
+    The role that answers for the record's activity or outcome.
     """
     
-    asset_custodian: Optional[str] = pla.Field(nullable=True, )
+    improvement_source: Optional[str] = pla.Field(nullable=True, )
     """
-    Custodian responsible for day-to-day protection.
-    """
-    
-    classification: Optional[str] = pla.Field(nullable=True, )
-    """
-    Information classification level.
+    Where the opportunity came from, such as a review, an audit or daily work.
     """
     
-    location: Optional[str] = pla.Field(nullable=True, )
+    improvement_identified_on: Optional[Date] = pla.Field(nullable=True, )
     """
-    Physical or logical location.
-    """
-    
-    criticality: Optional[str] = pla.Field(nullable=True, )
-    """
-    Criticality rating of the asset.
+    When the opportunity was identified.
     """
     
-    related_risks: Optional[List] = pla.Field(nullable=True, )
+    improvement_identified_by: Optional[str] = pla.Field(nullable=True, )
     """
-    Associated risks.
-    """
-    
-    applicable_controls: Optional[List] = pla.Field(nullable=True, )
-    """
-    Controls related to this policy.
+    Who identified it.
     """
     
-    
-class InformationSecurityEvent(NamedEntity):
+    improvement_benefit: Optional[str] = pla.Field(nullable=True, )
     """
-    An information security event per A.5.25, which may or may not be categorized as an incident.
+    What the improvement is expected to bring.
+    """
+    
+    improvement_priority: Optional[str] = pla.Field(nullable=True, )
+    """
+    How soon it is to be acted on, in the organization's own terms.
+    """
+    
+    improvement_plan: Optional[str] = pla.Field(nullable=True, )
+    """
+    How the improvement is to be made.
+    """
+    
+    improvement_target_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the improvement is to be made.
+    """
+    
+    improvement_completion_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When it was made.
+    """
+    
+    improvement_outcome: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the improvement brought.
+    """
+    
+    improvement_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where it stands, in the organization's own terms.
+    """
+    
+    
+class IsmsSecurityEvent(IsmsRecord):
+    """
+    An information security event someone reported, and the assessment of whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.
     """
 
-    _id_name : str =  'id' 
-    event_datetime: Optional[DateTime()] = pla.Field(nullable=True, )
-    """
-    Date and time of the event.
-    """
-    
-    reporter: Optional[str] = pla.Field(nullable=True, )
-    """
-    Person who reported the event.
-    """
-    
-    event_description: Optional[str] = pla.Field(nullable=True, )
-    """
-    Description of the event.
-    """
-    
+    _id_name : str =  'isms_id' 
     affected_assets: Optional[List] = pla.Field(nullable=True, )
     """
-    Assets affected by this risk or incident.
+    The assets the risk, event or incident affects.
     """
     
-    initial_assessment: Optional[str] = pla.Field(nullable=True, )
+    event_type: Optional[str] = pla.Field(nullable=True, )
     """
-    Initial assessment of the event.
-    """
-    
-    categorized_as_incident: Optional[bool] = pla.Field(nullable=True, )
-    """
-    Whether the event was categorized as an incident.
+    The kind of record: IsmsSecurityEvent, or IsmsSecurityIncident for an event assessed as an incident.
     """
     
-    linked_incident: Optional[ID_TYPES['InformationSecurityIncident']] = pla.Field(nullable=True, )
+    event_occurred_at: Optional[DateTime()] = pla.Field(nullable=True, )
     """
-    Linked incident if categorized.
+    When the event happened, or when it was first noticed.
+    """
+    
+    event_reporter: Optional[str] = pla.Field(nullable=True, )
+    """
+    Who reported the event.
+    """
+    
+    event_assessment: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the assessment of the event found.
     """
     
     
-class InformationSecurityIncident(NamedEntity):
+class IsmsManagementSystem(IsmsRecord):
     """
-    An information security incident per A.5.26, requiring response per documented procedures.
+    One organization's information security management system: its scope and context, and every record it keeps, each kind in a list of its own.
     """
 
-    _id_name : str =  'id' 
-    incident_datetime: Optional[DateTime()] = pla.Field(nullable=True, )
+    _id_name : str =  'isms_id' 
+    isms_organization: Optional[Struct] = pla.Field(nullable=True, )
     """
-    Date and time the incident occurred or was detected.
+    The organization that runs the ISMS.
+    """
+    
+    isms_top_management: Optional[str] = pla.Field(nullable=True, )
+    """
+    The person or group that directs and controls the organization at the highest level.
+    """
+    
+    isms_governing_body: Optional[str] = pla.Field(nullable=True, )
+    """
+    The body top management answers to, such as a board, where there is one.
+    """
+    
+    isms_leadership_evidence: Optional[str] = pla.Field(nullable=True, )
+    """
+    What shows that top management leads and commits to the ISMS.
+    """
+    
+    isms_scope: Optional[str] = pla.Field(nullable=True, )
+    """
+    The scope of the ISMS, as the organization states it.
+    """
+    
+    isms_scope_boundaries: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the scope of the ISMS ends.
+    """
+    
+    isms_scope_exclusions: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the scope leaves out, each with the reason.
+    """
+    
+    isms_interfaces: Optional[str] = pla.Field(nullable=True, )
+    """
+    The interfaces and dependencies between what the organization does and what other organizations do, which the scope takes into account.
+    """
+    
+    isms_processes: Optional[str] = pla.Field(nullable=True, )
+    """
+    The processes the ISMS needs and how they interact.
+    """
+    
+    isms_internal_issues: Optional[str] = pla.Field(nullable=True, )
+    """
+    The internal issues that bear on the ISMS.
+    """
+    
+    isms_external_issues: Optional[str] = pla.Field(nullable=True, )
+    """
+    The external issues that bear on the ISMS.
+    """
+    
+    isms_risk_and_opportunity_actions: Optional[str] = pla.Field(nullable=True, )
+    """
+    The actions planned to address the ISMS's risks and opportunities, and how they fit into its processes.
+    """
+    
+    isms_planned_changes: Optional[str] = pla.Field(nullable=True, )
+    """
+    The changes to the ISMS that are planned.
+    """
+    
+    isms_external_services: Optional[str] = pla.Field(nullable=True, )
+    """
+    The processes, products or services from outside the organization that the ISMS relies on and controls.
+    """
+    
+    isms_certification_status: Optional[str] = pla.Field(nullable=True, )
+    """
+    Where the ISMS stands with certification, in the organization's own terms.
+    """
+    
+    isms_certification_body: Optional[str] = pla.Field(nullable=True, )
+    """
+    The body that certifies the ISMS.
+    """
+    
+    isms_certification_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the ISMS was certified.
+    """
+    
+    isms_recertification_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the ISMS is next due for recertification.
+    """
+    
+    isms_interested_parties: Optional[List] = pla.Field(nullable=True, )
+    """
+    The interested parties the ISMS takes into account.
+    """
+    
+    isms_policy: Optional[Struct] = pla.Field(nullable=True, )
+    """
+    The information security policy.
+    """
+    
+    isms_topic_specific_policies: Optional[List] = pla.Field(nullable=True, )
+    """
+    The topic-specific policies under the information security policy.
+    """
+    
+    isms_roles: Optional[List] = pla.Field(nullable=True, )
+    """
+    The roles that carry the ISMS's responsibilities and authorities.
+    """
+    
+    isms_objectives: Optional[List] = pla.Field(nullable=True, )
+    """
+    The information security objectives.
+    """
+    
+    isms_risk_assessment_process: Optional[Struct] = pla.Field(nullable=True, )
+    """
+    The information security risk assessment process.
+    """
+    
+    isms_risk_treatment_process: Optional[Struct] = pla.Field(nullable=True, )
+    """
+    The information security risk treatment process.
+    """
+    
+    isms_risk_assessments: Optional[List] = pla.Field(nullable=True, )
+    """
+    The risk assessments carried out.
+    """
+    
+    isms_risks: Optional[List] = pla.Field(nullable=True, )
+    """
+    The risks identified, the risk register.
+    """
+    
+    isms_risk_treatment_plans: Optional[List] = pla.Field(nullable=True, )
+    """
+    The risk treatment plans.
+    """
+    
+    isms_statement_of_applicability: Optional[Struct] = pla.Field(nullable=True, )
+    """
+    The Statement of Applicability.
+    """
+    
+    isms_controls: Optional[List] = pla.Field(nullable=True, )
+    """
+    The controls the organization has determined it needs.
+    """
+    
+    isms_assets: Optional[List] = pla.Field(nullable=True, )
+    """
+    The inventory of information and other associated assets.
+    """
+    
+    isms_resources: Optional[List] = pla.Field(nullable=True, )
+    """
+    The resources provided for the ISMS.
+    """
+    
+    isms_competence_records: Optional[List] = pla.Field(nullable=True, )
+    """
+    The records of competence.
+    """
+    
+    isms_awareness_programme: Optional[Struct] = pla.Field(nullable=True, )
+    """
+    The awareness programme.
+    """
+    
+    isms_communication_plan: Optional[Struct] = pla.Field(nullable=True, )
+    """
+    The plan for communication about the ISMS.
+    """
+    
+    isms_documented_information: Optional[List] = pla.Field(nullable=True, )
+    """
+    The documented information the ISMS keeps that no more specific list holds, such as procedures, plans and reports.
+    """
+    
+    isms_operational_procedures: Optional[List] = pla.Field(nullable=True, )
+    """
+    The procedures for operational planning and control.
+    """
+    
+    isms_monitoring_programme: Optional[Struct] = pla.Field(nullable=True, )
+    """
+    The programme of monitoring and measurement.
+    """
+    
+    isms_audit_programmes: Optional[List] = pla.Field(nullable=True, )
+    """
+    The audit programmes.
+    """
+    
+    isms_audits: Optional[List] = pla.Field(nullable=True, )
+    """
+    The audits of the ISMS, internal and external.
+    """
+    
+    isms_management_reviews: Optional[List] = pla.Field(nullable=True, )
+    """
+    The management reviews.
+    """
+    
+    isms_nonconformities: Optional[List] = pla.Field(nullable=True, )
+    """
+    The nonconformities found.
+    """
+    
+    isms_corrective_actions: Optional[List] = pla.Field(nullable=True, )
+    """
+    The corrective actions taken.
+    """
+    
+    isms_improvements: Optional[List] = pla.Field(nullable=True, )
+    """
+    The opportunities for improvement identified.
+    """
+    
+    isms_security_events: Optional[List] = pla.Field(nullable=True, )
+    """
+    The information security events reported, the incidents among them.
+    """
+    
+    
+    @pla.check("isms_organization")
+    def check_nested_struct_isms_organization(cls, data: PolarsData):
+        
+        return cls._check_nested_struct(data, IsmsOrganization, pa_pl.IsmsOrganization)
+        
+    @pla.check("isms_interested_parties")
+    def check_nested_struct_isms_interested_parties(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsInterestedParty, pa_pl.IsmsInterestedPartyDict)
+        
+    @pla.check("isms_policy")
+    def check_nested_struct_isms_policy(cls, data: PolarsData):
+        
+        return cls._check_nested_struct(data, IsmsPolicy, pa_pl.IsmsPolicy)
+        
+    @pla.check("isms_topic_specific_policies")
+    def check_nested_struct_isms_topic_specific_policies(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsTopicSpecificPolicy, pa_pl.IsmsTopicSpecificPolicyDict)
+        
+    @pla.check("isms_roles")
+    def check_nested_struct_isms_roles(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsRole, pa_pl.IsmsRoleDict)
+        
+    @pla.check("isms_objectives")
+    def check_nested_struct_isms_objectives(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsObjective, pa_pl.IsmsObjectiveDict)
+        
+    @pla.check("isms_risk_assessment_process")
+    def check_nested_struct_isms_risk_assessment_process(cls, data: PolarsData):
+        
+        return cls._check_nested_struct(data, IsmsRiskAssessmentProcess, pa_pl.IsmsRiskAssessmentProcess)
+        
+    @pla.check("isms_risk_treatment_process")
+    def check_nested_struct_isms_risk_treatment_process(cls, data: PolarsData):
+        
+        return cls._check_nested_struct(data, IsmsRiskTreatmentProcess, pa_pl.IsmsRiskTreatmentProcess)
+        
+    @pla.check("isms_risk_assessments")
+    def check_nested_struct_isms_risk_assessments(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsRiskAssessment, pa_pl.IsmsRiskAssessmentDict)
+        
+    @pla.check("isms_risks")
+    def check_nested_struct_isms_risks(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsRisk, pa_pl.IsmsRiskDict)
+        
+    @pla.check("isms_risk_treatment_plans")
+    def check_nested_struct_isms_risk_treatment_plans(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsRiskTreatmentPlan, pa_pl.IsmsRiskTreatmentPlanDict)
+        
+    @pla.check("isms_statement_of_applicability")
+    def check_nested_struct_isms_statement_of_applicability(cls, data: PolarsData):
+        
+        return cls._check_nested_struct(data, IsmsStatementOfApplicability, pa_pl.IsmsStatementOfApplicability)
+        
+    @pla.check("isms_controls")
+    def check_nested_struct_isms_controls(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsControl, pa_pl.IsmsControlDict)
+        
+    @pla.check("isms_assets")
+    def check_nested_struct_isms_assets(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsAsset, pa_pl.IsmsAssetDict)
+        
+    @pla.check("isms_resources")
+    def check_nested_struct_isms_resources(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsResource, pa_pl.IsmsResourceDict)
+        
+    @pla.check("isms_competence_records")
+    def check_nested_struct_isms_competence_records(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsCompetenceRecord, pa_pl.IsmsCompetenceRecordDict)
+        
+    @pla.check("isms_awareness_programme")
+    def check_nested_struct_isms_awareness_programme(cls, data: PolarsData):
+        
+        return cls._check_nested_struct(data, IsmsAwarenessProgramme, pa_pl.IsmsAwarenessProgramme)
+        
+    @pla.check("isms_communication_plan")
+    def check_nested_struct_isms_communication_plan(cls, data: PolarsData):
+        
+        return cls._check_nested_struct(data, IsmsCommunicationPlan, pa_pl.IsmsCommunicationPlan)
+        
+    @pla.check("isms_documented_information")
+    def check_nested_struct_isms_documented_information(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsDocumentedInformation, pa_pl.IsmsDocumentedInformationDict)
+        
+    @pla.check("isms_operational_procedures")
+    def check_nested_struct_isms_operational_procedures(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsOperationalProcedure, pa_pl.IsmsOperationalProcedureDict)
+        
+    @pla.check("isms_monitoring_programme")
+    def check_nested_struct_isms_monitoring_programme(cls, data: PolarsData):
+        
+        return cls._check_nested_struct(data, IsmsMonitoringProgramme, pa_pl.IsmsMonitoringProgramme)
+        
+    @pla.check("isms_audit_programmes")
+    def check_nested_struct_isms_audit_programmes(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsAuditProgramme, pa_pl.IsmsAuditProgrammeDict)
+        
+    @pla.check("isms_audits")
+    def check_nested_struct_isms_audits(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsAudit, pa_pl.IsmsAuditDict)
+        
+    @pla.check("isms_management_reviews")
+    def check_nested_struct_isms_management_reviews(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsManagementReview, pa_pl.IsmsManagementReviewDict)
+        
+    @pla.check("isms_nonconformities")
+    def check_nested_struct_isms_nonconformities(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsNonconformity, pa_pl.IsmsNonconformityDict)
+        
+    @pla.check("isms_corrective_actions")
+    def check_nested_struct_isms_corrective_actions(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsCorrectiveAction, pa_pl.IsmsCorrectiveActionDict)
+        
+    @pla.check("isms_improvements")
+    def check_nested_struct_isms_improvements(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsImprovementOpportunity, pa_pl.IsmsImprovementOpportunityDict)
+        
+    @pla.check("isms_security_events")
+    def check_nested_struct_isms_security_events(cls, data: PolarsData):
+        return cls._check_nested_list_struct(data, IsmsSecurityEvent, pa_pl.IsmsSecurityEventDict)
+        
+class IsmsIncludedControl(IsmsApplicabilityEntry):
+    """
+    An entry that includes a control the organization needs, from Annex A or from elsewhere, and says whether it is in place.
+    """
+
+    _id_name : str = None
+    implementation_state: Enum = pla.Field(dtype_kwargs={"categories":('not_started','planned','in_progress','implemented',)})
+    """
+    How far the control or the plan has been put into effect.
+    """
+    
+    responsible_role: Optional[ID_TYPES['IsmsRole']] = pla.Field(nullable=True, )
+    """
+    The role that answers for the record's activity or outcome.
+    """
+    
+    included_control: Optional[ID_TYPES['IsmsControl']] = pla.Field(nullable=True, )
+    """
+    The organization's control the entry includes.
+    """
+    
+    included_evidence: Optional[str] = pla.Field(nullable=True, )
+    """
+    What shows that the control is in place.
+    """
+    
+    included_target_date: Optional[Date] = pla.Field(nullable=True, )
+    """
+    When the control is to be in place, if it is not yet.
+    """
+    
+    
+class IsmsSecurityIncident(IsmsSecurityEvent):
+    """
+    An information security event assessed as an incident: its category and severity, how it was detected, contained, eradicated and recovered from, the evidence collected, who was told, and what was learned.
+    """
+
+    _id_name : str =  'isms_id' 
+    affected_security_properties: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('confidentiality','integrity','availability',)})
+    """
+    Which of confidentiality, integrity and availability the risk or incident threatens.
     """
     
     incident_category: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('malware','ransomware','phishing','social_engineering','unauthorized_access','account_compromise','privilege_misuse','data_breach','data_loss','denial_of_service','web_application_attack','supply_chain','insider_threat','physical_security','configuration_error','cryptographic_failure','policy_violation','other',)})
     """
-    Category of incident.
+    What kind of incident it is.
     """
     
-    severity: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('very_low','low','medium','high','critical',)})
+    incident_severity: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('very_low','low','medium','high','critical',)})
     """
-    Severity rating of the incident.
-    """
-    
-    affected_assets: Optional[List] = pla.Field(nullable=True, )
-    """
-    Assets affected by this risk or incident.
+    How severe the incident is.
     """
     
-    affected_cia: Optional[Enum] = pla.Field(nullable=True, dtype_kwargs={"categories":('confidentiality','integrity','availability',)})
-    """
-    CIA properties affected by the incident.
-    """
-    
-    incident_description: Optional[str] = pla.Field(nullable=True, )
-    """
-    Description of the incident.
-    """
-    
-    detection_method: Optional[str] = pla.Field(nullable=True, )
+    incident_detection_method: Optional[str] = pla.Field(nullable=True, )
     """
     How the incident was detected.
     """
     
-    response_actions: Optional[str] = pla.Field(nullable=True, )
+    incident_response_actions: Optional[str] = pla.Field(nullable=True, )
     """
-    Actions taken in response.
-    """
-    
-    containment_actions: Optional[str] = pla.Field(nullable=True, )
-    """
-    Actions to contain the incident.
+    What was done in response.
     """
     
-    eradication_actions: Optional[str] = pla.Field(nullable=True, )
+    incident_containment_actions: Optional[str] = pla.Field(nullable=True, )
     """
-    Actions to eradicate the cause.
-    """
-    
-    recovery_actions: Optional[str] = pla.Field(nullable=True, )
-    """
-    Actions to recover normal operations.
+    What was done to contain it.
     """
     
-    root_cause: Optional[str] = pla.Field(nullable=True, )
+    incident_eradication_actions: Optional[str] = pla.Field(nullable=True, )
     """
-    Root cause of the nonconformity.
-    """
-    
-    lessons_learned: Optional[str] = pla.Field(nullable=True, )
-    """
-    Lessons learned from the incident.
+    What was done to remove its cause.
     """
     
-    evidence_collected: Optional[str] = pla.Field(nullable=True, )
+    incident_recovery_actions: Optional[str] = pla.Field(nullable=True, )
     """
-    Evidence collected.
-    """
-    
-    notification_required: Optional[bool] = pla.Field(nullable=True, )
-    """
-    Whether notification to authorities/parties was required.
+    What was done to restore normal operation.
     """
     
-    notifications_made: Optional[str] = pla.Field(nullable=True, )
+    incident_root_cause: Optional[str] = pla.Field(nullable=True, )
     """
-    Notifications that were made.
-    """
-    
-    closure_datetime: Optional[DateTime()] = pla.Field(nullable=True, )
-    """
-    Date and time of incident closure.
+    What caused the incident.
     """
     
-    post_incident_review: Optional[str] = pla.Field(nullable=True, )
+    incident_lessons_learned: Optional[str] = pla.Field(nullable=True, )
     """
-    Post-incident review findings.
-    """
-    
-    
-class Organization(NamedEntity):
-    """
-    The organization establishing and operating the ISMS. Captures context needed for Clause 4.1 (understanding the organization).
-    """
-
-    _id_name : str =  'id' 
-    legal_name: Optional[str] = pla.Field(nullable=True, )
-    """
-    Legal registered name of the organization.
+    What the organization learned from it.
     """
     
-    trading_names: Optional[str] = pla.Field(nullable=True, )
+    incident_evidence: Optional[str] = pla.Field(nullable=True, )
     """
-    Names under which the organization conducts business.
-    """
-    
-    organization_type: Optional[str] = pla.Field(nullable=True, )
-    """
-    Type of organization (e.g., corporation, government, nonprofit).
+    The evidence collected about it.
     """
     
-    industry_sector: Optional[str] = pla.Field(nullable=True, )
+    incident_notification_required: Optional[bool] = pla.Field(nullable=True, )
     """
-    Primary industry sector of the organization.
-    """
-    
-    size_category: Optional[str] = pla.Field(nullable=True, )
-    """
-    Organization size classification.
+    Whether authorities or other parties had to be told.
     """
     
-    employee_count: Optional[int] = pla.Field(nullable=True, )
+    incident_notifications: Optional[str] = pla.Field(nullable=True, )
     """
-    Approximate number of employees.
-    """
-    
-    geographic_locations: Optional[str] = pla.Field(nullable=True, )
-    """
-    Countries or regions where the organization operates.
+    Whom the organization told, and when.
     """
     
-    regulatory_jurisdictions: Optional[str] = pla.Field(nullable=True, )
+    incident_closed_at: Optional[DateTime()] = pla.Field(nullable=True, )
     """
-    Jurisdictions whose regulations apply to the organization.
-    """
-    
-    parent_organization: Optional[str] = pla.Field(nullable=True, )
-    """
-    Parent organization if applicable.
+    When the incident was closed.
     """
     
-    subsidiaries: Optional[str] = pla.Field(nullable=True, )
+    incident_review: Optional[str] = pla.Field(nullable=True, )
     """
-    Subsidiary organizations if applicable.
-    """
-    
-    climate_change_relevant: Optional[bool] = pla.Field(nullable=True, )
-    """
-    Whether climate change has been determined to be a relevant issue for the organization's context, per Clause 4.1 as amended by Amd. 1:2024.
+    What the review after the incident found.
     """
     
     
-class InterestedParty(NamedEntity):
+class IsmsExcludedControl(IsmsApplicabilityEntry):
     """
-    A stakeholder whose needs and expectations are relevant to the ISMS per 4.2. Includes internal parties (employees, management) and external parties (customers, regulators, suppliers).
+    An entry that leaves out an Annex A control the organization does not need, and says why.
     """
 
-    _id_name : str =  'id' 
-    party_type: Optional[str] = pla.Field(nullable=True, )
-    """
-    Category of interested party.
-    """
-    
-    relationship: Optional[str] = pla.Field(nullable=True, )
-    """
-    Nature of the relationship with the organization.
-    """
-    
-    requirements: Optional[str] = pla.Field(nullable=True, )
-    """
-    Requirements of the interested party.
-    """
-    
-    addressed_requirements: Optional[str] = pla.Field(nullable=True, )
-    """
-    Requirements of the interested party that the organization has determined will be addressed through the ISMS, per Clause 4.2 c).
-    """
-    
-    climate_change_related_requirements: Optional[str] = pla.Field(nullable=True, )
-    """
-    Climate-change-related requirements of the interested party, per ISO/IEC 27001:2022 Clause 4.2 NOTE 2 as added by Amd. 1:2024.
-    """
-    
-    communication_needs: Optional[str] = pla.Field(nullable=True, )
-    """
-    Communication requirements for this party.
-    """
-    
-    contact_information: Optional[str] = pla.Field(nullable=True, )
-    """
-    Contact details for the party.
-    """
-    
-    
-class Role(NamedEntity):
-    """
-    An information security role with defined responsibilities and authorities per Clause 5.3.
-    """
-
-    _id_name : str =  'id' 
-    role_type: Optional[str] = pla.Field(nullable=True, )
-    """
-    Category of the role.
-    """
-    
-    responsibilities: Optional[str] = pla.Field(nullable=True, )
-    """
-    Responsibilities assigned to the role.
-    """
-    
-    authorities: Optional[str] = pla.Field(nullable=True, )
-    """
-    Authorities granted to the role.
-    """
-    
-    accountability: Optional[str] = pla.Field(nullable=True, )
-    """
-    What the role is accountable for.
-    """
-    
-    assigned_to: Optional[str] = pla.Field(nullable=True, )
-    """
-    Person(s) assigned to this role.
-    """
-    
-    delegation_rules: Optional[str] = pla.Field(nullable=True, )
-    """
-    Rules for delegating responsibilities.
-    """
-    
-    reporting_line: Optional[str] = pla.Field(nullable=True, )
-    """
-    To whom this role reports.
-    """
-    
-    
-class RiskAssessmentProcess(DocumentedInformation):
-    """
-    The documented risk assessment process per Clause 6.1.2, defining criteria and methodology for identifying, analyzing, and evaluating risks.
-    """
-
-    _id_name : str =  'id' 
-    risk_acceptance_criteria: Optional[str] = pla.Field(nullable=True, )
-    """
-    Criteria for accepting risks.
-    """
-    
-    assessment_criteria: Optional[str] = pla.Field(nullable=True, )
-    """
-    Criteria for performing risk assessments.
-    """
-    
-    assessment_methodology: Optional[str] = pla.Field(nullable=True, )
-    """
-    Methodology used for risk assessment.
-    """
-    
-    likelihood_scale: Optional[str] = pla.Field(nullable=True, )
-    """
-    Scale used for likelihood rating.
-    """
-    
-    impact_scale: Optional[str] = pla.Field(nullable=True, )
-    """
-    Scale used for impact rating.
-    """
-    
-    risk_matrix: Optional[str] = pla.Field(nullable=True, )
-    """
-    Risk matrix or calculation method.
-    """
-    
-    assessment_frequency: Optional[str] = pla.Field(nullable=True, )
-    """
-    Planned frequency of risk assessments.
-    """
-    
-    trigger_events: Optional[str] = pla.Field(nullable=True, )
-    """
-    Events that trigger risk assessment outside planned schedule.
-    """
-    
-    
-class RiskTreatmentProcess(DocumentedInformation):
-    """
-    The documented risk treatment process per Clause 6.1.3, defining how treatment options are selected and controls determined.
-    """
-
-    _id_name : str =  'id' 
-    treatment_options_guidance: Optional[str] = pla.Field(nullable=True, )
-    """
-    Guidance on selecting treatment options.
-    """
-    
-    control_selection_criteria: Optional[str] = pla.Field(nullable=True, )
-    """
-    Criteria for selecting controls.
-    """
-    
-    annex_a_omission_verification: Optional[str] = pla.Field(nullable=True, )
-    """
-    Description of how controls determined as necessary are compared with those in Annex A to verify that no necessary controls have been omitted, per Clause 6.1.3 c).
-    """
-    
-    soa_template: Optional[str] = pla.Field(nullable=True, )
-    """
-    Template used for Statement of Applicability.
-    """
-    
-    approval_workflow: Optional[str] = pla.Field(nullable=True, )
-    """
-    Workflow for approving risk treatment.
-    """
-    
-    
-class Resource(NamedEntity):
-    """
-    A resource provided for the ISMS per Clause 7.1, including personnel, infrastructure, technology, and budget.
-    """
-
-    _id_name : str =  'id' 
-    resource_type: Optional[str] = pla.Field(nullable=True, )
-    """
-    Type of resource.
-    """
-    
-    quantity: Optional[str] = pla.Field(nullable=True, )
-    """
-    Quantity of the resource.
-    """
-    
-    allocation_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Date the resource was allocated.
-    """
-    
-    allocated_to: Optional[str] = pla.Field(nullable=True, )
-    """
-    What the resource is allocated to.
-    """
-    
-    cost: Optional[str] = pla.Field(nullable=True, )
-    """
-    Cost of the resource.
-    """
-    
-    availability_status: Optional[str] = pla.Field(nullable=True, )
-    """
-    Current availability of the resource.
-    """
-    
-    
-class CompetenceRecord(DocumentedInformation):
-    """
-    Evidence of competence for personnel affecting information security performance per Clause 7.2 d).
-    """
-
-    _id_name : str =  'id' 
-    person_name: Optional[str] = pla.Field(nullable=True, )
-    """
-    Name of the person.
-    """
-    
-    person_role: Optional[str] = pla.Field(nullable=True, )
-    """
-    Role of the person.
-    """
-    
-    required_competencies: Optional[str] = pla.Field(nullable=True, )
-    """
-    Competencies required for the role.
-    """
-    
-    education_records: Optional[str] = pla.Field(nullable=True, )
-    """
-    Education qualifications.
-    """
-    
-    training_records: Optional[str] = pla.Field(nullable=True, )
-    """
-    Training completed.
-    """
-    
-    experience_records: Optional[str] = pla.Field(nullable=True, )
-    """
-    Relevant experience.
-    """
-    
-    competency_assessment_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Date of last competency assessment.
-    """
-    
-    competency_gaps: Optional[str] = pla.Field(nullable=True, )
-    """
-    Identified competency gaps.
-    """
-    
-    development_actions: Optional[str] = pla.Field(nullable=True, )
-    """
-    Actions to address competency gaps.
-    """
-    
-    
-class AwarenessProgram(DocumentedInformation):
-    """
-    The awareness program ensuring personnel understand their information security responsibilities per Clause 7.3.
-    """
-
-    _id_name : str =  'id' 
-    awareness_topics: Optional[str] = pla.Field(nullable=True, )
-    """
-    Topics covered in awareness program.
-    """
-    
-    delivery_methods: Optional[str] = pla.Field(nullable=True, )
-    """
-    Methods used to deliver awareness content.
-    """
-    
-    target_audience: Optional[str] = pla.Field(nullable=True, )
-    """
-    Intended audience for the policy or document.
-    """
-    
-    frequency: Optional[str] = pla.Field(nullable=True, )
-    """
-    Frequency of the activity.
-    """
-    
-    completion_tracking: Optional[str] = pla.Field(nullable=True, )
-    """
-    How completion is tracked.
-    """
-    
-    effectiveness_measures: Optional[str] = pla.Field(nullable=True, )
-    """
-    How effectiveness is measured.
-    """
-    
-    
-class ManagementReview(DocumentedInformation):
-    """
-    A management review per Clause 9.3, conducted by top management to evaluate ongoing ISMS performance and fitness for purpose.
-    """
-
-    _id_name : str =  'id' 
-    attendees: Optional[str] = pla.Field(nullable=True, )
-    """
-    Attendees of the review.
-    """
-    
-    previous_actions_status: Optional[str] = pla.Field(nullable=True, )
-    """
-    Status of actions from previous reviews.
-    """
-    
-    context_changes: Optional[str] = pla.Field(nullable=True, )
-    """
-    Changes in context since last review.
-    """
-    
-    interested_party_changes: Optional[str] = pla.Field(nullable=True, )
-    """
-    Changes in interested party requirements.
-    """
-    
-    interested_party_feedback: Optional[str] = pla.Field(nullable=True, )
-    """
-    Feedback from interested parties considered in the management review.
-    """
-    
-    performance_trends: Optional[str] = pla.Field(nullable=True, )
-    """
-    Trends in information security performance.
-    """
-    
-    audit_results_summary: Optional[str] = pla.Field(nullable=True, )
-    """
-    Summary of audit results.
-    """
-    
-    risk_assessment_results: Optional[str] = pla.Field(nullable=True, )
-    """
-    Results of risk assessment.
-    """
-    
-    risk_treatment_status: Optional[str] = pla.Field(nullable=True, )
-    """
-    Status of the risk treatment plan considered in the management review.
-    """
-    
-    risks_and_opportunities_changes: Optional[str] = pla.Field(nullable=True, )
-    """
-    Changes in risks and opportunities considered in the management review, per Clause 9.3.2 f).
-    """
-    
-    improvement_opportunities: Optional[str] = pla.Field(nullable=True, )
-    """
-    Opportunities for improvement identified.
-    """
-    
-    decisions: Optional[str] = pla.Field(nullable=True, )
-    """
-    Decisions made in the review.
-    """
-    
-    action_items: Optional[str] = pla.Field(nullable=True, )
-    """
-    Action items from the review.
-    """
-    
-    next_review_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Planned date for next review.
-    """
-    
-    
-class ImprovementOpportunity(NamedEntity):
-    """
-    An opportunity for continual improvement per Clause 10.1, enhancing overall ISMS performance.
-    """
-
-    _id_name : str =  'id' 
-    improvement_source: Optional[str] = pla.Field(nullable=True, )
-    """
-    Source of the improvement opportunity.
-    """
-    
-    identification_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Date identified.
-    """
-    
-    identified_by: Optional[str] = pla.Field(nullable=True, )
-    """
-    Person who identified it.
-    """
-    
-    improvement_description: Optional[str] = pla.Field(nullable=True, )
-    """
-    Description of the improvement.
-    """
-    
-    expected_benefit: Optional[str] = pla.Field(nullable=True, )
-    """
-    Expected benefit from implementation.
-    """
-    
-    priority: Optional[str] = pla.Field(nullable=True, )
-    """
-    Priority level.
-    """
-    
-    implementation_plan: Optional[str] = pla.Field(nullable=True, )
-    """
-    Plan for implementing the improvement.
-    """
-    
-    responsible_party: Optional[str] = pla.Field(nullable=True, )
-    """
-    Party responsible for the activity.
-    """
-    
-    target_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Target date for achieving the objective.
-    """
-    
-    actual_completion_date: Optional[Date] = pla.Field(nullable=True, )
-    """
-    Actual date the action was completed.
-    """
-    
-    outcome_assessment: Optional[str] = pla.Field(nullable=True, )
-    """
-    Assessment of actual outcomes.
-    """
-    
-    status: Optional[str] = pla.Field(nullable=True, )
-    """
-    Current status of the document or entity.
-    """
+    _id_name : str = None
+    pass
     
     
 

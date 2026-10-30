@@ -1,0 +1,42 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsRole
+schema_generating: true
+description: A role in the ISMS, with the responsibilities and authorities it carries
+  and who holds it.
+display_name: IsmsRole
+document_category: IsmsRole
+weight: 20
+fields:
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecord_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description
+- id: role_category
+  description: What kind of role it is, in the organization's own terms.
+  display_name: ismsRole__role_category
+- id: role_responsibilities
+  description: The responsibilities assigned to the role.
+  display_name: ismsRole__role_responsibilities
+  cardinality: multi
+- id: role_authorities
+  description: The authorities the role carries.
+  display_name: ismsRole__role_authorities
+  cardinality: multi
+- id: role_accountability
+  description: What the role is accountable for.
+  display_name: ismsRole__role_accountability
+- id: role_holders
+  description: The people who hold the role.
+  display_name: ismsRole__role_holders
+  cardinality: multi
+- id: role_delegation
+  description: How the role may delegate its responsibilities.
+  display_name: ismsRole__role_delegation
+- id: role_reports_to
+  description: The role this role reports to.
+  display_name: ismsRole__role_reports_to

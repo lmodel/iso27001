@@ -1,16 +1,15 @@
-# metamodel_version: 1.11.0
-# version: 1.0.0
+# metamodel_version: 1.12.0
+# version: 2022/Amd 1:2024
 BASE <https://w3id.org/lmodel/iso27001/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX linkml: <https://w3id.org/linkml/>
+PREFIX schema1: <http://schema.org/>
 
 
-<PositiveIntegerType> xsd:positiveInteger
+<IsmsDuration> xsd:duration
 
-<UnsignedShortType> xsd:unsignedShort
-
-<DurationType> xsd:duration
+<IsmsRequirementReference> xsd:string
 
 linkml:String xsd:string
 
@@ -50,758 +49,1242 @@ linkml:Jsonpath xsd:string
 
 linkml:Sparqlpath xsd:string
 
-<Asset> CLOSED {
-    (  $<Asset_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <asset_type> @linkml:String ? ;
-          <asset_owner> @linkml:String ? ;
-          <asset_custodian> @linkml:String ? ;
-          <classification> @linkml:String ? ;
-          <location> @linkml:String ? ;
-          <criticality> @linkml:String ? ;
-          <related_risks> @<Risk> * ;
-          <applicable_controls> @<SecurityControl> *
-       ) ;
-       rdf:type [ <Asset> ]
-    )
-}
-
-<AuditFinding> CLOSED {
-    (  $<AuditFinding_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <finding_type> [ <https://w3id.org/lmodel/iso27001/AuditFindingType#major_nonconformity>
-             <https://w3id.org/lmodel/iso27001/AuditFindingType#minor_nonconformity>
-             <https://w3id.org/lmodel/iso27001/AuditFindingType#observation>
-             <https://w3id.org/lmodel/iso27001/AuditFindingType#positive_finding> ] ? ;
-          <clause_reference> @linkml:String ? ;
-          <control_reference> @<SecurityControl> ? ;
-          <finding_description> @linkml:String ? ;
-          <objective_evidence> @linkml:String ? ;
-          <root_cause_analysis> @linkml:String ? ;
-          <risk_implication> @linkml:String ? ;
-          <recommended_action> @linkml:String ? ;
-          <auditee_response> @linkml:String ? ;
-          <linked_corrective_action> @<CorrectiveAction> ? ;
-          <closure_status> @linkml:String ? ;
-          <closure_date> @linkml:Date ?
-       ) ;
-       rdf:type [ <AuditFinding> ]
-    )
-}
-
-<AuditProgramme> CLOSED {
-    (  $<AuditProgramme_tes> (  &<DocumentedInformation_tes> ;
-          rdf:type [ <DocumentedInformation> ] ? ;
-          <programme_period> @linkml:String ? ;
-          <planned_audits> @<InternalAudit> * ;
-          <audit_frequency_rationale> @linkml:String ? ;
-          <resource_requirements> @linkml:String ? ;
-          <auditor_qualifications> @linkml:String ? ;
-          <programme_status> @linkml:String ?
-       ) ;
-       rdf:type [ <AuditProgramme> ]
-    )
-}
-
-<AwarenessProgram> CLOSED {
-    (  $<AwarenessProgram_tes> (  &<DocumentedInformation_tes> ;
-          rdf:type [ <DocumentedInformation> ] ? ;
-          <awareness_topics> @linkml:String * ;
-          <delivery_methods> @linkml:String * ;
-          <target_audience> @linkml:String ? ;
-          <frequency> @linkml:String ? ;
-          <completion_tracking> @linkml:String ? ;
-          <effectiveness_measures> @linkml:String ?
-       ) ;
-       rdf:type [ <AwarenessProgram> ]
-    )
-}
-
-<CommunicationItem> CLOSED {
-    (  $<CommunicationItem_tes> (  <subject> @linkml:String ? ;
-          <purpose> @linkml:String ? ;
-          <audience> @linkml:String ? ;
-          <frequency> @linkml:String ? ;
-          <method> @linkml:String ? ;
-          <responsible_party> @linkml:String ? ;
-          <records_required> @linkml:Boolean ?
-       ) ;
-       rdf:type [ <CommunicationItem> ] ?
-    )
-}
-
-<CommunicationPlan> CLOSED {
-    (  $<CommunicationPlan_tes> (  &<DocumentedInformation_tes> ;
-          rdf:type [ <DocumentedInformation> ] ? ;
-          <communication_items> @<CommunicationItem> *
-       ) ;
-       rdf:type [ <CommunicationPlan> ]
-    )
-}
-
-<CompetenceRecord> CLOSED {
-    (  $<CompetenceRecord_tes> (  &<DocumentedInformation_tes> ;
-          rdf:type [ <DocumentedInformation> ] ? ;
-          <person_name> @linkml:String ? ;
-          <person_role> @linkml:String ? ;
-          <required_competencies> @linkml:String * ;
-          <education_records> @linkml:String * ;
-          <training_records> @linkml:String * ;
-          <experience_records> @linkml:String * ;
-          <competency_assessment_date> @linkml:Date ? ;
-          <competency_gaps> @linkml:String * ;
-          <development_actions> @linkml:String *
-       ) ;
-       rdf:type [ <CompetenceRecord> ]
-    )
-}
-
-<CorrectiveAction> CLOSED {
-    (  $<CorrectiveAction_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <linked_nonconformity> @<Nonconformity> ? ;
-          <action_description> @linkml:String ? ;
-          <root_cause_addressed> @linkml:String ? ;
-          <responsible_party> @linkml:String ? ;
-          <target_completion_date> @linkml:Date ? ;
-          <actual_completion_date> @linkml:Date ? ;
-          <resources_required> @linkml:String ? ;
-          <effectiveness_criteria> @linkml:String ? ;
-          <effectiveness_review_date> @linkml:Date ? ;
-          <effectiveness_verified> @linkml:Boolean ? ;
-          <isms_changes_required> @linkml:String ? ;
-          <status> @linkml:String ?
-       ) ;
-       rdf:type [ <CorrectiveAction> ]
-    )
-}
-
-<DocumentedInformation>  (
-    @<AuditProgramme> OR @<AwarenessProgram> OR @<CommunicationPlan> OR @<CompetenceRecord> OR @<InformationSecurityPolicy> OR
-    @<InternalAudit> OR @<ManagementReview> OR @<MonitoringProgram> OR @<OperationalProcedure> OR @<RiskAssessment> OR
-    @<RiskAssessmentProcess> OR @<RiskTreatmentPlan> OR @<RiskTreatmentProcess> OR @<StatementOfApplicability> OR
-    @<TopicSpecificPolicy>
+<IsmsApplicabilityEntry>  (
+    @<IsmsExcludedControl> OR @<IsmsIncludedControl>
 )
 
-<DocumentedInformation_struct> {
-    (  $<DocumentedInformation_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <document_type> [ <https://w3id.org/lmodel/iso27001/DocumentType#policy>
-             <https://w3id.org/lmodel/iso27001/DocumentType#procedure> <https://w3id.org/lmodel/iso27001/DocumentType#standard>
-             <https://w3id.org/lmodel/iso27001/DocumentType#guideline> <https://w3id.org/lmodel/iso27001/DocumentType#record>
-             <https://w3id.org/lmodel/iso27001/DocumentType#plan> <https://w3id.org/lmodel/iso27001/DocumentType#report> ] ? ;
-          <document_reference> @linkml:String ? ;
-          <author> @linkml:String ? ;
-          <owner> @linkml:String ? ;
-          <approved_by> @linkml:String ? ;
-          <approved_date> @linkml:Date ? ;
-          <effective_date> @linkml:Date ? ;
-          <review_date> @linkml:Date ? ;
-          <status> @linkml:String ? ;
-          <classification> @linkml:String ? ;
-          <retention_period> @<DurationType> ? ;
-          <distribution_controls> @linkml:String * ;
-          <storage_and_preservation> @linkml:String ? ;
-          <change_control_method> @linkml:String ? ;
-          <external_origin> @linkml:Boolean ? ;
-          <external_origin_source> @linkml:String ?
+<IsmsApplicabilityEntry_struct> {
+    (  $<IsmsApplicabilityEntry_tes> (  <entry_annex_a_control> [ <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_1>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_2> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_3>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_4> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_5>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_6> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_7>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_8> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_9>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_10>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_11>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_12>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_13>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_14>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_15>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_16>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_17>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_18>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_19>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_20>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_21>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_22>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_23>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_24>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_25>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_26>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_27>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_28>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_29>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_30>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_31>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_32>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_33>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_34>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_35>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_36>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_37> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_1>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_2> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_3>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_4> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_5>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_6> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_7>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_8> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_1>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_2> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_3>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_4> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_5>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_6> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_7>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_8> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_9>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_10>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_11>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_12>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_13>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_14> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_1>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_2> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_3>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_4> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_5>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_6> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_7>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_8> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_9>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_10>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_11>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_12>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_13>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_14>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_15>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_16>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_17>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_18>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_19>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_20>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_21>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_22>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_23>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_24>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_25>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_26>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_27>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_28>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_29>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_30>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_31>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_32>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_33>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_34> ] ? ;
+          <entry_type> @linkml:String ? ;
+          <entry_justification> @linkml:String
        ) ;
-       rdf:type [ <DocumentedInformation> ]
+       rdf:type [ <IsmsApplicabilityEntry> ] ?
     )
 }
 
-<ImprovementOpportunity> CLOSED {
-    (  $<ImprovementOpportunity_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <improvement_source> @linkml:String ? ;
-          <identification_date> @linkml:Date ? ;
-          <identified_by> @linkml:String ? ;
-          <improvement_description> @linkml:String ? ;
-          <expected_benefit> @linkml:String ? ;
-          <priority> @linkml:String ? ;
-          <implementation_plan> @linkml:String ? ;
-          <responsible_party> @linkml:String ? ;
-          <target_date> @linkml:Date ? ;
-          <actual_completion_date> @linkml:Date ? ;
-          <outcome_assessment> @linkml:String ? ;
-          <status> @linkml:String ?
+<IsmsAsset> CLOSED {
+    (  $<IsmsAsset_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          <relevant_controls> @<IsmsControl> * ;
+          <asset_category> @linkml:String ? ;
+          <asset_owner> @linkml:String ? ;
+          <asset_custodian> @linkml:String ? ;
+          <asset_classification> @linkml:String ? ;
+          <asset_location> @linkml:String ? ;
+          <asset_criticality> @linkml:String ?
        ) ;
-       rdf:type [ <ImprovementOpportunity> ]
+       rdf:type [ <IsmsAsset> ]
     )
 }
 
-<InformationSecurityEvent> CLOSED {
-    (  $<InformationSecurityEvent_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <event_datetime> @linkml:Datetime ? ;
-          <reporter> @linkml:String ? ;
-          <event_description> @linkml:String ? ;
-          <affected_assets> @<Asset> * ;
-          <initial_assessment> @linkml:String ? ;
-          <categorized_as_incident> @linkml:Boolean ? ;
-          <linked_incident> @<InformationSecurityIncident> ?
-       ) ;
-       rdf:type [ <InformationSecurityEvent> ]
-    )
-}
-
-<InformationSecurityIncident> CLOSED {
-    (  $<InformationSecurityIncident_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <incident_datetime> @linkml:Datetime ? ;
-          <incident_category> [ <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#malware>
-             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#ransomware>
-             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#phishing>
-             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#social_engineering>
-             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#unauthorized_access>
-             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#account_compromise>
-             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#privilege_misuse>
-             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#data_breach>
-             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#data_loss>
-             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#denial_of_service>
-             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#web_application_attack>
-             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#supply_chain>
-             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#insider_threat>
-             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#physical_security>
-             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#configuration_error>
-             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#cryptographic_failure>
-             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#policy_violation>
-             <https://w3id.org/lmodel/iso27001/SecurityIncidentCategory#other> ] ? ;
-          <severity> [ <https://w3id.org/lmodel/iso27001/RiskLevel#very_low> <https://w3id.org/lmodel/iso27001/RiskLevel#low>
-             <https://w3id.org/lmodel/iso27001/RiskLevel#medium> <https://w3id.org/lmodel/iso27001/RiskLevel#high>
-             <https://w3id.org/lmodel/iso27001/RiskLevel#critical> ] ? ;
-          <affected_assets> @<Asset> * ;
-          <affected_cia> [ <https://w3id.org/lmodel/iso27001/CIAProperty#confidentiality>
-             <https://w3id.org/lmodel/iso27001/CIAProperty#integrity> <https://w3id.org/lmodel/iso27001/CIAProperty#availability> ]
-          * ;
-          <incident_description> @linkml:String ? ;
-          <detection_method> @linkml:String ? ;
-          <response_actions> @linkml:String * ;
-          <containment_actions> @linkml:String * ;
-          <eradication_actions> @linkml:String * ;
-          <recovery_actions> @linkml:String * ;
-          <root_cause> @linkml:String ? ;
-          <lessons_learned> @linkml:String * ;
-          <evidence_collected> @linkml:String * ;
-          <notification_required> @linkml:Boolean ? ;
-          <notifications_made> @linkml:String * ;
-          <closure_datetime> @linkml:Datetime ? ;
-          <post_incident_review> @linkml:String ?
-       ) ;
-       rdf:type [ <InformationSecurityIncident> ]
-    )
-}
-
-<InformationSecurityManagementSystem> CLOSED {
-    (  $<InformationSecurityManagementSystem_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <organization> @<Organization> ? ;
-          <top_management> @linkml:String ? ;
-          <governing_body> @linkml:String ? ;
-          <leadership_commitment_evidence> @linkml:String * ;
-          <scope_statement> @linkml:String ? ;
-          <scope_boundaries> @linkml:String * ;
-          <scope_exclusions> @linkml:String * ;
-          <interfaces_and_dependencies> @linkml:String * ;
-          <processes_and_interactions> @linkml:String ? ;
-          <context_internal_issues> @linkml:String * ;
-          <context_external_issues> @linkml:String * ;
-          <interested_parties> @<InterestedParty> * ;
-          <information_security_policy> @<InformationSecurityPolicy> ? ;
-          <objectives> @<InformationSecurityObjective> * ;
-          <risks_and_opportunities_actions> @linkml:String * ;
-          <planned_changes> @linkml:String * ;
-          <externally_provided_services> @linkml:String * ;
-          <risk_assessment_process> @<RiskAssessmentProcess> ? ;
-          <risk_treatment_process> @<RiskTreatmentProcess> ? ;
-          <statement_of_applicability> @<StatementOfApplicability> ? ;
-          <controls> @<SecurityControl> * ;
-          <roles> @<Role> * ;
-          <resources> @<Resource> * ;
-          <competence_records> @<CompetenceRecord> * ;
-          <awareness_program> @<AwarenessProgram> ? ;
-          <communication_plan> @<CommunicationPlan> ? ;
-          <documented_information_register> @<DocumentedInformation> * ;
-          <operational_procedures> @<OperationalProcedure> * ;
-          <risk_assessments> @<RiskAssessment> * ;
-          <risk_treatment_plans> @<RiskTreatmentPlan> * ;
-          <monitoring_program> @<MonitoringProgram> ? ;
-          <internal_audits> @<InternalAudit> * ;
-          <management_reviews> @<ManagementReview> * ;
-          <nonconformities> @<Nonconformity> * ;
-          <corrective_actions> @<CorrectiveAction> * ;
-          <improvements> @<ImprovementOpportunity> * ;
-          <certification_status> @linkml:String ? ;
-          <certification_body> @linkml:String ? ;
-          <certification_date> @linkml:Date ? ;
-          <recertification_date> @linkml:Date ?
-       ) ;
-       rdf:type [ <InformationSecurityManagementSystem> ]
-    )
-}
-
-<InformationSecurityObjective> CLOSED {
-    (  $<InformationSecurityObjective_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <objective_statement> @linkml:String ? ;
-          <target_value> @linkml:String ? ;
-          <current_value> @linkml:String ? ;
-          <metric_definition> @linkml:String ? ;
-          <measurement_method> @linkml:String ? ;
-          <measurement_frequency> @linkml:String ? ;
-          <responsible_role> @<Role> ? ;
-          <target_date> @linkml:Date ? ;
-          <achievement_status> @linkml:String ? ;
-          <related_risks> @<Risk> * ;
-          <related_controls> @<SecurityControl> * ;
-          <action_plan> @linkml:String ? ;
-          <objective_resources_required> @linkml:String ?
-       ) ;
-       rdf:type [ <InformationSecurityObjective> ]
-    )
-}
-
-<InformationSecurityPolicy> CLOSED {
-    (  $<InformationSecurityPolicy_tes> (  &<DocumentedInformation_tes> ;
-          rdf:type [ <DocumentedInformation> ] ? ;
-          <policy_statement> @linkml:String ? ;
-          <policy_objectives_framework> @linkml:String ? ;
-          <commitment_statements> @linkml:String * ;
-          <applicability_statement> @linkml:String ? ;
-          <communication_date> @linkml:Date ? ;
-          <acknowledgment_required> @linkml:Boolean ? ;
-          <last_policy_review_date> @linkml:Date ? ;
-          <next_policy_review_date> @linkml:Date ? ;
-          <related_topic_policies> @<TopicSpecificPolicy> * ;
-          <integrated_management_systems> [ <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_iec_27001>
-             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_iec_27701>
-             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_iec_27017>
-             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_iec_27018>
-             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_iec_42001>
-             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_9001>
-             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_14001>
-             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_22301>
-             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_iec_20000_1>
-             <https://w3id.org/lmodel/iso27001/RelatedManagementSystem#iso_31000> ] *
-       ) ;
-       rdf:type [ <InformationSecurityPolicy> ]
-    )
-}
-
-<InterestedParty> CLOSED {
-    (  $<InterestedParty_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <party_type> @linkml:String ? ;
-          <relationship> @linkml:String ? ;
-          <requirements> @linkml:String * ;
-          <addressed_requirements> @linkml:String * ;
-          <climate_change_related_requirements> @linkml:String * ;
-          <communication_needs> @linkml:String ? ;
-          <contact_information> @linkml:String ?
-       ) ;
-       rdf:type [ <InterestedParty> ]
-    )
-}
-
-<InternalAudit> CLOSED {
-    (  $<InternalAudit_tes> (  &<DocumentedInformation_tes> ;
-          rdf:type [ <DocumentedInformation> ] ? ;
-          <audit_reference> @linkml:String ? ;
-          <audit_type> [ <https://w3id.org/lmodel/iso27001/AuditType#internal>
-             <https://w3id.org/lmodel/iso27001/AuditType#external_second_party>
-             <https://w3id.org/lmodel/iso27001/AuditType#external_third_party>
-             <https://w3id.org/lmodel/iso27001/AuditType#surveillance> <https://w3id.org/lmodel/iso27001/AuditType#recertification>
-             <https://w3id.org/lmodel/iso27001/AuditType#combined> ] ? ;
+<IsmsAudit> CLOSED {
+    (  $<IsmsAudit_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          &<IsmsDocumentControlMixin_tes> ;
+          rdf:type [ <IsmsDocumentControlMixin> ] ? ;
+          <audit_type> [ <https://w3id.org/lmodel/iso27001/IsmsAuditType#first_party>
+             <https://w3id.org/lmodel/iso27001/IsmsAuditType#second_party>
+             <https://w3id.org/lmodel/iso27001/IsmsAuditType#third_party> ] ;
+          <audit_standards> [ <https://w3id.org/lmodel/iso27001/IsmsManagementSystemStandard#iso_iec_27001>
+             <https://w3id.org/lmodel/iso27001/IsmsManagementSystemStandard#iso_iec_27701>
+             <https://w3id.org/lmodel/iso27001/IsmsManagementSystemStandard#iso_iec_42001>
+             <https://w3id.org/lmodel/iso27001/IsmsManagementSystemStandard#iso_9001>
+             <https://w3id.org/lmodel/iso27001/IsmsManagementSystemStandard#iso_14001>
+             <https://w3id.org/lmodel/iso27001/IsmsManagementSystemStandard#iso_22301>
+             <https://w3id.org/lmodel/iso27001/IsmsManagementSystemStandard#iso_iec_20000_1> ] * ;
           <audit_scope> @linkml:String ? ;
           <audit_criteria> @linkml:String * ;
           <audit_objectives> @linkml:String * ;
           <audit_period_start> @linkml:Date ? ;
           <audit_period_end> @linkml:Date ? ;
-          <lead_auditor> @linkml:String ? ;
+          <audit_lead> @linkml:String ? ;
           <audit_team> @linkml:String * ;
-          <auditee_representatives> @linkml:String * ;
-          <audit_plan> @linkml:String ? ;
-          <findings> @<AuditFinding> * ;
-          <positive_observations> @linkml:String * ;
+          <audit_auditees> @linkml:String * ;
+          <audit_plan> @<IsmsDocumentedInformation> ? ;
+          <audit_findings> @<IsmsAuditFinding> * ;
           <audit_conclusion> @linkml:String ? ;
-          <report_date> @linkml:Date ? ;
-          <report_distribution> @linkml:String *
+          <audit_report_date> @linkml:Date ? ;
+          <audit_report_distribution> @linkml:String * ;
+          <document_reference> @linkml:String ? ;
+          <document_version> @linkml:String ? ;
+          <document_author> @linkml:String ? ;
+          <document_owner> @linkml:String ? ;
+          <document_approver> @linkml:String ? ;
+          <document_approval_date> @linkml:Date ? ;
+          <document_effective_date> @linkml:Date ? ;
+          <document_last_review_date> @linkml:Date ? ;
+          <document_next_review_date> @linkml:Date ? ;
+          <document_status> @linkml:String ? ;
+          <document_classification> @linkml:String ? ;
+          <document_retention> @<IsmsDuration> ? ;
+          <document_distribution> @linkml:String * ;
+          <document_storage> @linkml:String ? ;
+          <document_change_control> @linkml:String ? ;
+          <document_external_origin> @linkml:Boolean ? ;
+          <document_external_source> @linkml:String ?
        ) ;
-       rdf:type [ <InternalAudit> ]
+       rdf:type [ <IsmsAudit> ]
     )
 }
 
-<ManagementReview> CLOSED {
-    (  $<ManagementReview_tes> (  &<DocumentedInformation_tes> ;
-          rdf:type [ <DocumentedInformation> ] ? ;
-          <review_date> @linkml:Date ? ;
-          <attendees> @linkml:String * ;
-          <previous_actions_status> @linkml:String ? ;
-          <context_changes> @linkml:String ? ;
-          <interested_party_changes> @linkml:String ? ;
-          <interested_party_feedback> @linkml:String ? ;
-          <performance_trends> @linkml:String ? ;
-          <audit_results_summary> @linkml:String ? ;
-          <risk_assessment_results> @linkml:String ? ;
-          <risk_treatment_status> @linkml:String ? ;
-          <risks_and_opportunities_changes> @linkml:String ? ;
-          <improvement_opportunities> @linkml:String * ;
-          <decisions> @linkml:String * ;
-          <action_items> @linkml:String * ;
-          <next_review_date> @linkml:Date ?
+<IsmsAuditFinding> CLOSED {
+    (  $<IsmsAuditFinding_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          <finding_type> [ <https://w3id.org/lmodel/iso27001/IsmsAuditFindingType#major_nonconformity>
+             <https://w3id.org/lmodel/iso27001/IsmsAuditFindingType#minor_nonconformity>
+             <https://w3id.org/lmodel/iso27001/IsmsAuditFindingType#observation>
+             <https://w3id.org/lmodel/iso27001/IsmsAuditFindingType#positive_finding> ] ;
+          <finding_requirement> @<IsmsRequirementReference> ? ;
+          <finding_control> @<IsmsControl> ? ;
+          <finding_evidence> @linkml:String ? ;
+          <finding_root_cause> @linkml:String ? ;
+          <finding_risk> @linkml:String ? ;
+          <finding_recommendation> @linkml:String ? ;
+          <finding_auditee_response> @linkml:String ? ;
+          <finding_corrective_action> @<IsmsCorrectiveAction> ? ;
+          <finding_closure_status> @linkml:String ? ;
+          <finding_closure_date> @linkml:Date ?
        ) ;
-       rdf:type [ <ManagementReview> ]
+       rdf:type [ <IsmsAuditFinding> ]
     )
 }
 
-<MonitoringItem> CLOSED {
-    (  $<MonitoringItem_tes> (  <metric_name> @linkml:String ? ;
-          <metric_description> @linkml:String ? ;
-          <measurement_method> @linkml:String ? ;
-          <measurement_frequency> @linkml:String ? ;
-          <responsible_party> @linkml:String ? ;
-          <analysis_frequency> @linkml:String ? ;
-          <analyst> @linkml:String ? ;
-          <target_threshold> @linkml:String ? ;
-          <alert_threshold> @linkml:String ? ;
-          <current_value> @linkml:String ? ;
-          <trend> @linkml:String ?
+<IsmsAuditProgramme> CLOSED {
+    (  $<IsmsAuditProgramme_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          &<IsmsDocumentControlMixin_tes> ;
+          rdf:type [ <IsmsDocumentControlMixin> ] ? ;
+          <programme_period> @linkml:String ? ;
+          <programme_audits> @<IsmsAudit> * ;
+          <programme_frequency_rationale> @linkml:String ? ;
+          <programme_resources> @linkml:String ? ;
+          <programme_auditor_qualifications> @linkml:String ? ;
+          <programme_status> @linkml:String ? ;
+          <document_reference> @linkml:String ? ;
+          <document_version> @linkml:String ? ;
+          <document_author> @linkml:String ? ;
+          <document_owner> @linkml:String ? ;
+          <document_approver> @linkml:String ? ;
+          <document_approval_date> @linkml:Date ? ;
+          <document_effective_date> @linkml:Date ? ;
+          <document_last_review_date> @linkml:Date ? ;
+          <document_next_review_date> @linkml:Date ? ;
+          <document_status> @linkml:String ? ;
+          <document_classification> @linkml:String ? ;
+          <document_retention> @<IsmsDuration> ? ;
+          <document_distribution> @linkml:String * ;
+          <document_storage> @linkml:String ? ;
+          <document_change_control> @linkml:String ? ;
+          <document_external_origin> @linkml:Boolean ? ;
+          <document_external_source> @linkml:String ?
        ) ;
-       rdf:type [ <MonitoringItem> ] ?
+       rdf:type [ <IsmsAuditProgramme> ]
     )
 }
 
-<MonitoringProgram> CLOSED {
-    (  $<MonitoringProgram_tes> (  &<DocumentedInformation_tes> ;
-          rdf:type [ <DocumentedInformation> ] ? ;
-          <monitoring_items> @<MonitoringItem> *
+<IsmsAwarenessProgramme> CLOSED {
+    (  $<IsmsAwarenessProgramme_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          &<IsmsDocumentControlMixin_tes> ;
+          rdf:type [ <IsmsDocumentControlMixin> ] ? ;
+          <awareness_topics> @linkml:String * ;
+          <awareness_methods> @linkml:String * ;
+          <awareness_audience> @linkml:String ? ;
+          <awareness_frequency> @linkml:String ? ;
+          <awareness_completion_tracking> @linkml:String ? ;
+          <awareness_effectiveness> @linkml:String ? ;
+          <document_reference> @linkml:String ? ;
+          <document_version> @linkml:String ? ;
+          <document_author> @linkml:String ? ;
+          <document_owner> @linkml:String ? ;
+          <document_approver> @linkml:String ? ;
+          <document_approval_date> @linkml:Date ? ;
+          <document_effective_date> @linkml:Date ? ;
+          <document_last_review_date> @linkml:Date ? ;
+          <document_next_review_date> @linkml:Date ? ;
+          <document_status> @linkml:String ? ;
+          <document_classification> @linkml:String ? ;
+          <document_retention> @<IsmsDuration> ? ;
+          <document_distribution> @linkml:String * ;
+          <document_storage> @linkml:String ? ;
+          <document_change_control> @linkml:String ? ;
+          <document_external_origin> @linkml:Boolean ? ;
+          <document_external_source> @linkml:String ?
        ) ;
-       rdf:type [ <MonitoringProgram> ]
+       rdf:type [ <IsmsAwarenessProgramme> ]
     )
 }
 
-<NamedEntity>  (
-    @<Asset> OR @<AuditFinding> OR @<CorrectiveAction> OR @<DocumentedInformation> OR @<ImprovementOpportunity> OR
-    @<InformationSecurityEvent> OR @<InformationSecurityIncident> OR @<InformationSecurityManagementSystem> OR
-    @<InformationSecurityObjective> OR @<InterestedParty> OR @<Nonconformity> OR @<Organization> OR @<Resource> OR @<Risk> OR
-    @<Role> OR @<SecurityControl>
+<IsmsCommunication> CLOSED {
+    (  $<IsmsCommunication_tes> (  <responsible_role> @<IsmsRole> ? ;
+          <communication_subject> @linkml:String ;
+          <communication_purpose> @linkml:String ? ;
+          <communication_audience> @linkml:String ? ;
+          <communication_frequency> @linkml:String ? ;
+          <communication_method> @linkml:String ? ;
+          <communication_records_required> @linkml:Boolean ?
+       ) ;
+       rdf:type [ <IsmsCommunication> ] ?
+    )
+}
+
+<IsmsCommunicationPlan> CLOSED {
+    (  $<IsmsCommunicationPlan_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          &<IsmsDocumentControlMixin_tes> ;
+          rdf:type [ <IsmsDocumentControlMixin> ] ? ;
+          <communication_items> @<IsmsCommunication> * ;
+          <document_reference> @linkml:String ? ;
+          <document_version> @linkml:String ? ;
+          <document_author> @linkml:String ? ;
+          <document_owner> @linkml:String ? ;
+          <document_approver> @linkml:String ? ;
+          <document_approval_date> @linkml:Date ? ;
+          <document_effective_date> @linkml:Date ? ;
+          <document_last_review_date> @linkml:Date ? ;
+          <document_next_review_date> @linkml:Date ? ;
+          <document_status> @linkml:String ? ;
+          <document_classification> @linkml:String ? ;
+          <document_retention> @<IsmsDuration> ? ;
+          <document_distribution> @linkml:String * ;
+          <document_storage> @linkml:String ? ;
+          <document_change_control> @linkml:String ? ;
+          <document_external_origin> @linkml:Boolean ? ;
+          <document_external_source> @linkml:String ?
+       ) ;
+       rdf:type [ <IsmsCommunicationPlan> ]
+    )
+}
+
+<IsmsCompetenceRecord> CLOSED {
+    (  $<IsmsCompetenceRecord_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          &<IsmsDocumentControlMixin_tes> ;
+          rdf:type [ <IsmsDocumentControlMixin> ] ? ;
+          <competence_person> @linkml:String ? ;
+          <competence_role> @<IsmsRole> ? ;
+          <competence_required> @linkml:String * ;
+          <competence_education> @linkml:String * ;
+          <competence_training> @linkml:String * ;
+          <competence_experience> @linkml:String * ;
+          <competence_assessment_date> @linkml:Date ? ;
+          <competence_gaps> @linkml:String * ;
+          <competence_actions> @linkml:String * ;
+          <document_reference> @linkml:String ? ;
+          <document_version> @linkml:String ? ;
+          <document_author> @linkml:String ? ;
+          <document_owner> @linkml:String ? ;
+          <document_approver> @linkml:String ? ;
+          <document_approval_date> @linkml:Date ? ;
+          <document_effective_date> @linkml:Date ? ;
+          <document_last_review_date> @linkml:Date ? ;
+          <document_next_review_date> @linkml:Date ? ;
+          <document_status> @linkml:String ? ;
+          <document_classification> @linkml:String ? ;
+          <document_retention> @<IsmsDuration> ? ;
+          <document_distribution> @linkml:String * ;
+          <document_storage> @linkml:String ? ;
+          <document_change_control> @linkml:String ? ;
+          <document_external_origin> @linkml:Boolean ? ;
+          <document_external_source> @linkml:String ?
+       ) ;
+       rdf:type [ <IsmsCompetenceRecord> ]
+    )
+}
+
+<IsmsControl> CLOSED {
+    (  $<IsmsControl_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          <relevant_controls> @<IsmsControl> * ;
+          <implementation_state> [ <https://w3id.org/lmodel/iso27001/IsmsImplementationStatus#not_started>
+             <https://w3id.org/lmodel/iso27001/IsmsImplementationStatus#planned>
+             <https://w3id.org/lmodel/iso27001/IsmsImplementationStatus#in_progress>
+             <https://w3id.org/lmodel/iso27001/IsmsImplementationStatus#implemented> ] ? ;
+          <control_annex_a_controls> [ <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_1>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_2> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_3>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_4> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_5>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_6> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_7>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_8> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_9>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_10>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_11>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_12>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_13>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_14>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_15>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_16>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_17>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_18>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_19>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_20>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_21>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_22>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_23>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_24>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_25>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_26>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_27>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_28>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_29>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_30>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_31>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_32>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_33>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_34>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_35>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_36>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_37> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_1>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_2> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_3>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_4> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_5>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_6> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_7>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_8> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_1>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_2> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_3>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_4> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_5>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_6> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_7>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_8> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_9>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_10>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_11>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_12>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_13>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_14> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_1>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_2> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_3>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_4> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_5>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_6> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_7>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_8> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_9>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_10>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_11>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_12>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_13>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_14>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_15>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_16>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_17>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_18>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_19>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_20>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_21>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_22>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_23>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_24>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_25>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_26>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_27>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_28>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_29>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_30>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_31>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_32>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_33>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_34> ] * ;
+          <control_theme> [ <https://w3id.org/lmodel/iso27001/IsmsControlTheme#organizational>
+             <https://w3id.org/lmodel/iso27001/IsmsControlTheme#people>
+             <https://w3id.org/lmodel/iso27001/IsmsControlTheme#physical>
+             <https://w3id.org/lmodel/iso27001/IsmsControlTheme#technological> ] ? ;
+          <control_text> @linkml:String ? ;
+          <control_guidance> @linkml:String ? ;
+          <control_threats> @linkml:String * ;
+          <control_asset_types> @linkml:String * ;
+          <control_owner> @linkml:String ? ;
+          <control_implementation_date> @linkml:Date ? ;
+          <control_effectiveness> @linkml:String ? ;
+          <control_last_tested> @linkml:Date ? ;
+          <control_evidence> @linkml:String *
+       ) ;
+       rdf:type [ <IsmsControl> ]
+    )
+}
+
+<IsmsCorrectiveAction> CLOSED {
+    (  $<IsmsCorrectiveAction_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          <responsible_role> @<IsmsRole> ? ;
+          <action_nonconformities> @<IsmsNonconformity> * ;
+          <action_root_cause> @linkml:String ? ;
+          <action_target_date> @linkml:Date ? ;
+          <action_completion_date> @linkml:Date ? ;
+          <action_resources> @linkml:String ? ;
+          <action_effectiveness_criteria> @linkml:String ? ;
+          <action_effectiveness_review_date> @linkml:Date ? ;
+          <action_effective> @linkml:Boolean ? ;
+          <action_isms_changes> @linkml:String ? ;
+          <action_status> @linkml:String ?
+       ) ;
+       rdf:type [ <IsmsCorrectiveAction> ]
+    )
+}
+
+<IsmsDocumentControlMixin> {
+    (  $<IsmsDocumentControlMixin_tes> (  <document_reference> @linkml:String ? ;
+          <document_version> @linkml:String ? ;
+          <document_author> @linkml:String ? ;
+          <document_owner> @linkml:String ? ;
+          <document_approver> @linkml:String ? ;
+          <document_approval_date> @linkml:Date ? ;
+          <document_effective_date> @linkml:Date ? ;
+          <document_last_review_date> @linkml:Date ? ;
+          <document_next_review_date> @linkml:Date ? ;
+          <document_status> @linkml:String ? ;
+          <document_classification> @linkml:String ? ;
+          <document_retention> @<IsmsDuration> ? ;
+          <document_distribution> @linkml:String * ;
+          <document_storage> @linkml:String ? ;
+          <document_change_control> @linkml:String ? ;
+          <document_external_origin> @linkml:Boolean ? ;
+          <document_external_source> @linkml:String ?
+       ) ;
+       rdf:type [ <IsmsDocumentControlMixin> ] ?
+    )
+}
+
+<IsmsDocumentedInformation> CLOSED {
+    (  $<IsmsDocumentedInformation_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          &<IsmsDocumentControlMixin_tes> ;
+          rdf:type [ <IsmsDocumentControlMixin> ] ? ;
+          <document_kind> [ <https://w3id.org/lmodel/iso27001/IsmsDocumentKind#procedure>
+             <https://w3id.org/lmodel/iso27001/IsmsDocumentKind#standard>
+             <https://w3id.org/lmodel/iso27001/IsmsDocumentKind#guideline>
+             <https://w3id.org/lmodel/iso27001/IsmsDocumentKind#record> <https://w3id.org/lmodel/iso27001/IsmsDocumentKind#plan>
+             <https://w3id.org/lmodel/iso27001/IsmsDocumentKind#report> ] ;
+          <document_reference> @linkml:String ? ;
+          <document_version> @linkml:String ? ;
+          <document_author> @linkml:String ? ;
+          <document_owner> @linkml:String ? ;
+          <document_approver> @linkml:String ? ;
+          <document_approval_date> @linkml:Date ? ;
+          <document_effective_date> @linkml:Date ? ;
+          <document_last_review_date> @linkml:Date ? ;
+          <document_next_review_date> @linkml:Date ? ;
+          <document_status> @linkml:String ? ;
+          <document_classification> @linkml:String ? ;
+          <document_retention> @<IsmsDuration> ? ;
+          <document_distribution> @linkml:String * ;
+          <document_storage> @linkml:String ? ;
+          <document_change_control> @linkml:String ? ;
+          <document_external_origin> @linkml:Boolean ? ;
+          <document_external_source> @linkml:String ?
+       ) ;
+       rdf:type [ <IsmsDocumentedInformation> ]
+    )
+}
+
+<IsmsExcludedControl> CLOSED {
+    (  $<IsmsExcludedControl_tes> (  &<IsmsApplicabilityEntry_tes> ;
+          rdf:type [ <IsmsApplicabilityEntry> ] ? ;
+          <entry_annex_a_control> [ <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_1>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_2> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_3>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_4> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_5>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_6> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_7>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_8> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_9>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_10>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_11>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_12>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_13>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_14>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_15>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_16>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_17>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_18>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_19>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_20>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_21>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_22>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_23>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_24>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_25>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_26>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_27>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_28>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_29>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_30>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_31>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_32>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_33>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_34>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_35>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_36>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_5_37> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_1>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_2> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_3>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_4> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_5>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_6> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_7>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_6_8> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_1>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_2> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_3>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_4> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_5>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_6> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_7>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_8> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_9>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_10>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_11>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_12>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_13>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_7_14> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_1>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_2> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_3>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_4> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_5>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_6> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_7>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_8> <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_9>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_10>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_11>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_12>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_13>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_14>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_15>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_16>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_17>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_18>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_19>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_20>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_21>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_22>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_23>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_24>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_25>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_26>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_27>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_28>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_29>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_30>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_31>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_32>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_33>
+             <https://w3id.org/lmodel/iso27001/IsmsAnnexAControl#a_8_34> ]
+       ) ;
+       rdf:type [ <IsmsExcludedControl> ] ?
+    )
+}
+
+<IsmsImprovementOpportunity> CLOSED {
+    (  $<IsmsImprovementOpportunity_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          <responsible_role> @<IsmsRole> ? ;
+          <improvement_source> @linkml:String ? ;
+          <improvement_identified_on> @linkml:Date ? ;
+          <improvement_identified_by> @linkml:String ? ;
+          <improvement_benefit> @linkml:String ? ;
+          <improvement_priority> @linkml:String ? ;
+          <improvement_plan> @linkml:String ? ;
+          <improvement_target_date> @linkml:Date ? ;
+          <improvement_completion_date> @linkml:Date ? ;
+          <improvement_outcome> @linkml:String ? ;
+          <improvement_status> @linkml:String ?
+       ) ;
+       rdf:type [ <IsmsImprovementOpportunity> ]
+    )
+}
+
+<IsmsIncludedControl> CLOSED {
+    (  $<IsmsIncludedControl_tes> (  &<IsmsApplicabilityEntry_tes> ;
+          rdf:type [ <IsmsApplicabilityEntry> ] ? ;
+          <implementation_state> [ <https://w3id.org/lmodel/iso27001/IsmsImplementationStatus#not_started>
+             <https://w3id.org/lmodel/iso27001/IsmsImplementationStatus#planned>
+             <https://w3id.org/lmodel/iso27001/IsmsImplementationStatus#in_progress>
+             <https://w3id.org/lmodel/iso27001/IsmsImplementationStatus#implemented> ] ;
+          <responsible_role> @<IsmsRole> ? ;
+          <included_control> @<IsmsControl> ? ;
+          <included_evidence> @linkml:String ? ;
+          <included_target_date> @linkml:Date ?
+       ) ;
+       rdf:type [ <IsmsIncludedControl> ] ?
+    )
+}
+
+<IsmsInterestedParty> CLOSED {
+    (  $<IsmsInterestedParty_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          <party_category> @linkml:String ? ;
+          <party_relationship> @linkml:String ? ;
+          <party_requirements> @linkml:String * ;
+          <party_addressed_requirements> @linkml:String * ;
+          <party_climate_change_requirements> @linkml:String * ;
+          <party_communication_needs> @linkml:String ? ;
+          <party_contact> @linkml:String ?
+       ) ;
+       rdf:type [ <IsmsInterestedParty> ]
+    )
+}
+
+<IsmsManagementReview> CLOSED {
+    (  $<IsmsManagementReview_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          &<IsmsDocumentControlMixin_tes> ;
+          rdf:type [ <IsmsDocumentControlMixin> ] ? ;
+          <review_held_on> @linkml:Date ;
+          <review_attendees> @linkml:String * ;
+          <review_previous_actions> @linkml:String ? ;
+          <review_context_changes> @linkml:String ? ;
+          <review_interested_party_changes> @linkml:String ? ;
+          <review_interested_party_feedback> @linkml:String ? ;
+          <review_performance_trends> @linkml:String ? ;
+          <review_audit_results> @linkml:String ? ;
+          <review_risk_assessment_results> @linkml:String ? ;
+          <review_risk_treatment_status> @linkml:String ? ;
+          <review_risks_and_opportunities> @linkml:String ? ;
+          <review_improvement_opportunities> @linkml:String * ;
+          <review_decisions> @linkml:String * ;
+          <review_actions> @linkml:String * ;
+          <review_next_date> @linkml:Date ? ;
+          <document_reference> @linkml:String ? ;
+          <document_version> @linkml:String ? ;
+          <document_author> @linkml:String ? ;
+          <document_owner> @linkml:String ? ;
+          <document_approver> @linkml:String ? ;
+          <document_approval_date> @linkml:Date ? ;
+          <document_effective_date> @linkml:Date ? ;
+          <document_last_review_date> @linkml:Date ? ;
+          <document_next_review_date> @linkml:Date ? ;
+          <document_status> @linkml:String ? ;
+          <document_classification> @linkml:String ? ;
+          <document_retention> @<IsmsDuration> ? ;
+          <document_distribution> @linkml:String * ;
+          <document_storage> @linkml:String ? ;
+          <document_change_control> @linkml:String ? ;
+          <document_external_origin> @linkml:Boolean ? ;
+          <document_external_source> @linkml:String ?
+       ) ;
+       rdf:type [ <IsmsManagementReview> ]
+    )
+}
+
+<IsmsManagementSystem> CLOSED {
+    (  $<IsmsManagementSystem_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          <isms_organization> @<IsmsOrganization> ? ;
+          <isms_top_management> @linkml:String ? ;
+          <isms_governing_body> @linkml:String ? ;
+          <isms_leadership_evidence> @linkml:String * ;
+          <isms_scope> @linkml:String ? ;
+          <isms_scope_boundaries> @linkml:String * ;
+          <isms_scope_exclusions> @linkml:String * ;
+          <isms_interfaces> @linkml:String * ;
+          <isms_processes> @linkml:String ? ;
+          <isms_internal_issues> @linkml:String * ;
+          <isms_external_issues> @linkml:String * ;
+          <isms_risk_and_opportunity_actions> @linkml:String * ;
+          <isms_planned_changes> @linkml:String * ;
+          <isms_external_services> @linkml:String * ;
+          <isms_certification_status> @linkml:String ? ;
+          <isms_certification_body> @linkml:String ? ;
+          <isms_certification_date> @linkml:Date ? ;
+          <isms_recertification_date> @linkml:Date ? ;
+          <isms_interested_parties> @<IsmsInterestedParty> * ;
+          <isms_policy> @<IsmsPolicy> ? ;
+          <isms_topic_specific_policies> @<IsmsTopicSpecificPolicy> * ;
+          <isms_roles> @<IsmsRole> * ;
+          <isms_objectives> @<IsmsObjective> * ;
+          <isms_risk_assessment_process> @<IsmsRiskAssessmentProcess> ? ;
+          <isms_risk_treatment_process> @<IsmsRiskTreatmentProcess> ? ;
+          <isms_risk_assessments> @<IsmsRiskAssessment> * ;
+          <isms_risks> @<IsmsRisk> * ;
+          <isms_risk_treatment_plans> @<IsmsRiskTreatmentPlan> * ;
+          <isms_statement_of_applicability> @<IsmsStatementOfApplicability> ? ;
+          <isms_controls> @<IsmsControl> * ;
+          <isms_assets> @<IsmsAsset> * ;
+          <isms_resources> @<IsmsResource> * ;
+          <isms_competence_records> @<IsmsCompetenceRecord> * ;
+          <isms_awareness_programme> @<IsmsAwarenessProgramme> ? ;
+          <isms_communication_plan> @<IsmsCommunicationPlan> ? ;
+          <isms_documented_information> @<IsmsDocumentedInformation> * ;
+          <isms_operational_procedures> @<IsmsOperationalProcedure> * ;
+          <isms_monitoring_programme> @<IsmsMonitoringProgramme> ? ;
+          <isms_audit_programmes> @<IsmsAuditProgramme> * ;
+          <isms_audits> @<IsmsAudit> * ;
+          <isms_management_reviews> @<IsmsManagementReview> * ;
+          <isms_nonconformities> @<IsmsNonconformity> * ;
+          <isms_corrective_actions> @<IsmsCorrectiveAction> * ;
+          <isms_improvements> @<IsmsImprovementOpportunity> * ;
+          <isms_security_events> @<IsmsSecurityEvent> *
+       ) ;
+       rdf:type [ <IsmsManagementSystem> ]
+    )
+}
+
+<IsmsMonitoringItem> CLOSED {
+    (  $<IsmsMonitoringItem_tes> (  <responsible_role> @<IsmsRole> ? ;
+          <monitoring_metric> @linkml:String ;
+          <monitoring_description> @linkml:String ? ;
+          <monitoring_method> @linkml:String ? ;
+          <monitoring_frequency> @linkml:String ? ;
+          <monitoring_analysis_frequency> @linkml:String ? ;
+          <monitoring_analyst> @linkml:String ? ;
+          <monitoring_target> @linkml:String ? ;
+          <monitoring_alert_threshold> @linkml:String ? ;
+          <monitoring_current_value> @linkml:String ? ;
+          <monitoring_trend> @linkml:String ?
+       ) ;
+       rdf:type [ <IsmsMonitoringItem> ] ?
+    )
+}
+
+<IsmsMonitoringProgramme> CLOSED {
+    (  $<IsmsMonitoringProgramme_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          &<IsmsDocumentControlMixin_tes> ;
+          rdf:type [ <IsmsDocumentControlMixin> ] ? ;
+          <monitoring_items> @<IsmsMonitoringItem> * ;
+          <document_reference> @linkml:String ? ;
+          <document_version> @linkml:String ? ;
+          <document_author> @linkml:String ? ;
+          <document_owner> @linkml:String ? ;
+          <document_approver> @linkml:String ? ;
+          <document_approval_date> @linkml:Date ? ;
+          <document_effective_date> @linkml:Date ? ;
+          <document_last_review_date> @linkml:Date ? ;
+          <document_next_review_date> @linkml:Date ? ;
+          <document_status> @linkml:String ? ;
+          <document_classification> @linkml:String ? ;
+          <document_retention> @<IsmsDuration> ? ;
+          <document_distribution> @linkml:String * ;
+          <document_storage> @linkml:String ? ;
+          <document_change_control> @linkml:String ? ;
+          <document_external_origin> @linkml:Boolean ? ;
+          <document_external_source> @linkml:String ?
+       ) ;
+       rdf:type [ <IsmsMonitoringProgramme> ]
+    )
+}
+
+<IsmsNonconformity> CLOSED {
+    (  $<IsmsNonconformity_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          <nonconformity_source> @linkml:String ? ;
+          <nonconformity_detected_on> @linkml:Date ? ;
+          <nonconformity_detected_by> @linkml:String ? ;
+          <nonconformity_requirement> @linkml:String ? ;
+          <nonconformity_immediate_actions> @linkml:String * ;
+          <nonconformity_consequences> @linkml:String ? ;
+          <nonconformity_root_cause> @linkml:String ? ;
+          <nonconformity_similar_check> @linkml:String ? ;
+          <nonconformity_status> @linkml:String ? ;
+          <nonconformity_closure_date> @linkml:Date ? ;
+          <nonconformity_closure_evidence> @linkml:String ?
+       ) ;
+       rdf:type [ <IsmsNonconformity> ]
+    )
+}
+
+<IsmsObjective> CLOSED {
+    (  $<IsmsObjective_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          <responsible_role> @<IsmsRole> ? ;
+          <relevant_controls> @<IsmsControl> * ;
+          <objective_statement> @linkml:String ? ;
+          <objective_target> @linkml:String ? ;
+          <objective_current_value> @linkml:String ? ;
+          <objective_metric> @linkml:String ? ;
+          <objective_measurement_method> @linkml:String ? ;
+          <objective_measurement_frequency> @linkml:String ? ;
+          <objective_target_date> @linkml:Date ? ;
+          <objective_achievement> @linkml:String ? ;
+          <objective_risks> @<IsmsRisk> * ;
+          <objective_action_plan> @linkml:String ? ;
+          <objective_resources> @linkml:String ?
+       ) ;
+       rdf:type [ <IsmsObjective> ]
+    )
+}
+
+<IsmsOperationalProcedure> CLOSED {
+    (  $<IsmsOperationalProcedure_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          &<IsmsDocumentControlMixin_tes> ;
+          rdf:type [ <IsmsDocumentControlMixin> ] ? ;
+          <relevant_controls> @<IsmsControl> * ;
+          <procedure_scope> @linkml:String ? ;
+          <procedure_criteria> @linkml:String ? ;
+          <procedure_control_measures> @linkml:String * ;
+          <procedure_roles> @<IsmsRole> * ;
+          <procedure_change_control> @linkml:String ? ;
+          <document_reference> @linkml:String ? ;
+          <document_version> @linkml:String ? ;
+          <document_author> @linkml:String ? ;
+          <document_owner> @linkml:String ? ;
+          <document_approver> @linkml:String ? ;
+          <document_approval_date> @linkml:Date ? ;
+          <document_effective_date> @linkml:Date ? ;
+          <document_last_review_date> @linkml:Date ? ;
+          <document_next_review_date> @linkml:Date ? ;
+          <document_status> @linkml:String ? ;
+          <document_classification> @linkml:String ? ;
+          <document_retention> @<IsmsDuration> ? ;
+          <document_distribution> @linkml:String * ;
+          <document_storage> @linkml:String ? ;
+          <document_change_control> @linkml:String ? ;
+          <document_external_origin> @linkml:Boolean ? ;
+          <document_external_source> @linkml:String ?
+       ) ;
+       rdf:type [ <IsmsOperationalProcedure> ]
+    )
+}
+
+<IsmsOrganization> CLOSED {
+    (  $<IsmsOrganization_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          <organization_legal_name> @linkml:String ? ;
+          <organization_trading_names> @linkml:String * ;
+          <organization_kind> @linkml:String ? ;
+          <organization_sector> @linkml:String ? ;
+          <organization_size> @linkml:String ? ;
+          <organization_employee_count> @linkml:Integer ? ;
+          <organization_locations> @linkml:String * ;
+          <organization_jurisdictions> @linkml:String * ;
+          <organization_parent> @linkml:String ? ;
+          <organization_subsidiaries> @linkml:String * ;
+          <organization_climate_change_relevant> @linkml:Boolean ?
+       ) ;
+       rdf:type [ <IsmsOrganization> ]
+    )
+}
+
+<IsmsPolicy> CLOSED {
+    (  $<IsmsPolicy_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          &<IsmsDocumentControlMixin_tes> ;
+          rdf:type [ <IsmsDocumentControlMixin> ] ? ;
+          <policy_statement> @linkml:String ? ;
+          <policy_objectives_framework> @linkml:String ? ;
+          <policy_commitments> @linkml:String * ;
+          <policy_applicability> @linkml:String ? ;
+          <policy_communication_date> @linkml:Date ? ;
+          <policy_acknowledgement_required> @linkml:Boolean ? ;
+          <policy_management_systems> [ <https://w3id.org/lmodel/iso27001/IsmsManagementSystemStandard#iso_iec_27001>
+             <https://w3id.org/lmodel/iso27001/IsmsManagementSystemStandard#iso_iec_27701>
+             <https://w3id.org/lmodel/iso27001/IsmsManagementSystemStandard#iso_iec_42001>
+             <https://w3id.org/lmodel/iso27001/IsmsManagementSystemStandard#iso_9001>
+             <https://w3id.org/lmodel/iso27001/IsmsManagementSystemStandard#iso_14001>
+             <https://w3id.org/lmodel/iso27001/IsmsManagementSystemStandard#iso_22301>
+             <https://w3id.org/lmodel/iso27001/IsmsManagementSystemStandard#iso_iec_20000_1> ] * ;
+          <document_reference> @linkml:String ? ;
+          <document_version> @linkml:String ? ;
+          <document_author> @linkml:String ? ;
+          <document_owner> @linkml:String ? ;
+          <document_approver> @linkml:String ? ;
+          <document_approval_date> @linkml:Date ? ;
+          <document_effective_date> @linkml:Date ? ;
+          <document_last_review_date> @linkml:Date ? ;
+          <document_next_review_date> @linkml:Date ? ;
+          <document_status> @linkml:String ? ;
+          <document_classification> @linkml:String ? ;
+          <document_retention> @<IsmsDuration> ? ;
+          <document_distribution> @linkml:String * ;
+          <document_storage> @linkml:String ? ;
+          <document_change_control> @linkml:String ? ;
+          <document_external_origin> @linkml:Boolean ? ;
+          <document_external_source> @linkml:String ?
+       ) ;
+       rdf:type [ <IsmsPolicy> ]
+    )
+}
+
+<IsmsRecord>  (
+    @<IsmsAsset> OR @<IsmsAudit> OR @<IsmsAuditFinding> OR @<IsmsAuditProgramme> OR @<IsmsAwarenessProgramme> OR
+    @<IsmsCommunicationPlan> OR @<IsmsCompetenceRecord> OR @<IsmsControl> OR @<IsmsCorrectiveAction> OR
+    @<IsmsDocumentedInformation> OR @<IsmsImprovementOpportunity> OR @<IsmsInterestedParty> OR @<IsmsManagementReview> OR
+    @<IsmsManagementSystem> OR @<IsmsMonitoringProgramme> OR @<IsmsNonconformity> OR @<IsmsObjective> OR
+    @<IsmsOperationalProcedure> OR @<IsmsOrganization> OR @<IsmsPolicy> OR @<IsmsResource> OR @<IsmsRisk> OR @<IsmsRiskAssessment>
+    OR @<IsmsRiskAssessmentProcess> OR @<IsmsRiskTreatmentPlan> OR @<IsmsRiskTreatmentProcess> OR @<IsmsRole> OR
+    @<IsmsSecurityEvent> OR @<IsmsStatementOfApplicability> OR @<IsmsTopicSpecificPolicy>
 )
 
-<NamedEntity_struct> {
-    (  $<NamedEntity_tes> (  <name> @linkml:String ;
-          <description> @linkml:String ? ;
-          <created_date> @linkml:Date ? ;
-          <modified_date> @linkml:Date ? ;
-          <version> @linkml:String ?
+<IsmsRecord_struct> {
+    (  $<IsmsRecord_tes> (  schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
-       rdf:type [ <NamedEntity> ]
+       rdf:type [ <IsmsRecord> ]
     )
 }
 
-<Nonconformity> CLOSED {
-    (  $<Nonconformity_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <nonconformity_source> @linkml:String ? ;
-          <detection_date> @linkml:Date ? ;
-          <detected_by> @linkml:String ? ;
-          <requirement_violated> @linkml:String ? ;
-          <nonconformity_description> @linkml:String ? ;
-          <immediate_actions> @linkml:String * ;
-          <consequences_addressed> @linkml:String ? ;
-          <root_cause> @linkml:String ? ;
-          <similar_nonconformities_check> @linkml:String ? ;
-          <linked_corrective_actions> @<CorrectiveAction> * ;
-          <status> @linkml:String ? ;
-          <closure_date> @linkml:Date ? ;
-          <closure_evidence> @linkml:String ?
+<IsmsResource> CLOSED {
+    (  $<IsmsResource_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          <resource_category> @linkml:String ? ;
+          <resource_quantity> @linkml:String ? ;
+          <resource_allocation_date> @linkml:Date ? ;
+          <resource_allocated_to> @linkml:String ? ;
+          <resource_cost> @linkml:String ? ;
+          <resource_availability> @linkml:String ?
        ) ;
-       rdf:type [ <Nonconformity> ]
+       rdf:type [ <IsmsResource> ]
     )
 }
 
-<OperationalProcedure> CLOSED {
-    (  $<OperationalProcedure_tes> (  &<DocumentedInformation_tes> ;
-          rdf:type [ <DocumentedInformation> ] ? ;
-          <procedure_scope> @linkml:String ? ;
-          <process_criteria> @linkml:String ? ;
-          <control_measures> @linkml:String * ;
-          <responsible_roles> @<Role> * ;
-          <related_controls> @<SecurityControl> * ;
-          <change_control_requirements> @linkml:String ?
-       ) ;
-       rdf:type [ <OperationalProcedure> ]
-    )
-}
-
-<Organization> CLOSED {
-    (  $<Organization_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <legal_name> @linkml:String ? ;
-          <trading_names> @linkml:String * ;
-          <organization_type> @linkml:String ? ;
-          <industry_sector> @linkml:String ? ;
-          <size_category> @linkml:String ? ;
-          <employee_count> @<PositiveIntegerType> ? ;
-          <geographic_locations> @linkml:String * ;
-          <regulatory_jurisdictions> @linkml:String * ;
-          <parent_organization> @linkml:String ? ;
-          <subsidiaries> @linkml:String * ;
-          <climate_change_relevant> @linkml:Boolean ?
-       ) ;
-       rdf:type [ <Organization> ]
-    )
-}
-
-<Resource> CLOSED {
-    (  $<Resource_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <resource_type> @linkml:String ? ;
-          <quantity> @linkml:String ? ;
-          <allocation_date> @linkml:Date ? ;
-          <allocated_to> @linkml:String ? ;
-          <cost> @linkml:String ? ;
-          <availability_status> @linkml:String ?
-       ) ;
-       rdf:type [ <Resource> ]
-    )
-}
-
-<Risk> CLOSED {
-    (  $<Risk_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
+<IsmsRisk> CLOSED {
+    (  $<IsmsRisk_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          <affected_assets> @<IsmsAsset> * ;
+          <affected_security_properties> [ <https://w3id.org/lmodel/iso27001/IsmsSecurityProperty#confidentiality>
+             <https://w3id.org/lmodel/iso27001/IsmsSecurityProperty#integrity>
+             <https://w3id.org/lmodel/iso27001/IsmsSecurityProperty#availability> ] * ;
           <risk_source> @linkml:String ? ;
-          <threat_description> @linkml:String ? ;
-          <vulnerability_description> @linkml:String ? ;
-          <affected_assets> @<Asset> * ;
-          <affected_cia_properties> [ <https://w3id.org/lmodel/iso27001/CIAProperty#confidentiality>
-             <https://w3id.org/lmodel/iso27001/CIAProperty#integrity> <https://w3id.org/lmodel/iso27001/CIAProperty#availability> ]
-          * ;
+          <risk_threat> @linkml:String ? ;
+          <risk_vulnerability> @linkml:String ? ;
           <risk_owner> @linkml:String ? ;
-          <likelihood> [ <https://w3id.org/lmodel/iso27001/LikelihoodRating#rare>
-             <https://w3id.org/lmodel/iso27001/LikelihoodRating#unlikely>
-             <https://w3id.org/lmodel/iso27001/LikelihoodRating#possible>
-             <https://w3id.org/lmodel/iso27001/LikelihoodRating#likely>
-             <https://w3id.org/lmodel/iso27001/LikelihoodRating#almost_certain> ] ? ;
-          <impact> [ <https://w3id.org/lmodel/iso27001/ImpactRating#negligible>
-             <https://w3id.org/lmodel/iso27001/ImpactRating#minor> <https://w3id.org/lmodel/iso27001/ImpactRating#moderate>
-             <https://w3id.org/lmodel/iso27001/ImpactRating#major> <https://w3id.org/lmodel/iso27001/ImpactRating#severe> ] ? ;
-          <inherent_risk_level> [ <https://w3id.org/lmodel/iso27001/RiskLevel#very_low>
-             <https://w3id.org/lmodel/iso27001/RiskLevel#low> <https://w3id.org/lmodel/iso27001/RiskLevel#medium>
-             <https://w3id.org/lmodel/iso27001/RiskLevel#high> <https://w3id.org/lmodel/iso27001/RiskLevel#critical> ] ? ;
-          <existing_controls> @<SecurityControl> * ;
-          <residual_risk_level> [ <https://w3id.org/lmodel/iso27001/RiskLevel#very_low>
-             <https://w3id.org/lmodel/iso27001/RiskLevel#low> <https://w3id.org/lmodel/iso27001/RiskLevel#medium>
-             <https://w3id.org/lmodel/iso27001/RiskLevel#high> <https://w3id.org/lmodel/iso27001/RiskLevel#critical> ] ? ;
-          <risk_treatment_option> [ <https://w3id.org/lmodel/iso27001/RiskTreatmentOption#modify>
-             <https://w3id.org/lmodel/iso27001/RiskTreatmentOption#accept>
-             <https://w3id.org/lmodel/iso27001/RiskTreatmentOption#avoid>
-             <https://w3id.org/lmodel/iso27001/RiskTreatmentOption#share> ] ? ;
-          <treatment_priority> @linkml:String ? ;
-          <related_treatment_plan> @<RiskTreatmentPlan> ?
+          <risk_likelihood> [ <https://w3id.org/lmodel/iso27001/IsmsLikelihood#rare>
+             <https://w3id.org/lmodel/iso27001/IsmsLikelihood#unlikely> <https://w3id.org/lmodel/iso27001/IsmsLikelihood#possible>
+             <https://w3id.org/lmodel/iso27001/IsmsLikelihood#likely>
+             <https://w3id.org/lmodel/iso27001/IsmsLikelihood#almost_certain> ] ? ;
+          <risk_impact> [ <https://w3id.org/lmodel/iso27001/IsmsImpact#negligible>
+             <https://w3id.org/lmodel/iso27001/IsmsImpact#minor> <https://w3id.org/lmodel/iso27001/IsmsImpact#moderate>
+             <https://w3id.org/lmodel/iso27001/IsmsImpact#major> <https://w3id.org/lmodel/iso27001/IsmsImpact#severe> ] ? ;
+          <risk_inherent_level> [ <https://w3id.org/lmodel/iso27001/IsmsRiskLevel#very_low>
+             <https://w3id.org/lmodel/iso27001/IsmsRiskLevel#low> <https://w3id.org/lmodel/iso27001/IsmsRiskLevel#medium>
+             <https://w3id.org/lmodel/iso27001/IsmsRiskLevel#high> <https://w3id.org/lmodel/iso27001/IsmsRiskLevel#critical> ] ? ;
+          <risk_existing_controls> @<IsmsControl> * ;
+          <risk_residual_level> [ <https://w3id.org/lmodel/iso27001/IsmsRiskLevel#very_low>
+             <https://w3id.org/lmodel/iso27001/IsmsRiskLevel#low> <https://w3id.org/lmodel/iso27001/IsmsRiskLevel#medium>
+             <https://w3id.org/lmodel/iso27001/IsmsRiskLevel#high> <https://w3id.org/lmodel/iso27001/IsmsRiskLevel#critical> ] ? ;
+          <risk_treatment_option> [ <https://w3id.org/lmodel/iso27001/IsmsRiskTreatmentOption#modify>
+             <https://w3id.org/lmodel/iso27001/IsmsRiskTreatmentOption#retain>
+             <https://w3id.org/lmodel/iso27001/IsmsRiskTreatmentOption#avoid>
+             <https://w3id.org/lmodel/iso27001/IsmsRiskTreatmentOption#share> ] ? ;
+          <risk_treatment_priority> @linkml:String ?
        ) ;
-       rdf:type [ <Risk> ]
+       rdf:type [ <IsmsRisk> ]
     )
 }
 
-<RiskAssessment> CLOSED {
-    (  $<RiskAssessment_tes> (  &<DocumentedInformation_tes> ;
-          rdf:type [ <DocumentedInformation> ] ? ;
+<IsmsRiskAssessment> CLOSED {
+    (  $<IsmsRiskAssessment_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          &<IsmsDocumentControlMixin_tes> ;
+          rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <assessment_scope> @linkml:String ? ;
           <assessment_date> @linkml:Date ? ;
-          <assessor> @linkml:String ? ;
-          <methodology_used> @linkml:String ? ;
-          <risks_identified> @<Risk> * ;
-          <summary_findings> @linkml:String ? ;
-          <recommendations> @linkml:String * ;
-          <next_assessment_date> @linkml:Date ?
+          <assessment_assessor> @linkml:String ? ;
+          <assessment_method_used> @linkml:String ? ;
+          <assessment_risks> @<IsmsRisk> * ;
+          <assessment_summary> @linkml:String ? ;
+          <assessment_recommendations> @linkml:String * ;
+          <assessment_next_date> @linkml:Date ? ;
+          <document_reference> @linkml:String ? ;
+          <document_version> @linkml:String ? ;
+          <document_author> @linkml:String ? ;
+          <document_owner> @linkml:String ? ;
+          <document_approver> @linkml:String ? ;
+          <document_approval_date> @linkml:Date ? ;
+          <document_effective_date> @linkml:Date ? ;
+          <document_last_review_date> @linkml:Date ? ;
+          <document_next_review_date> @linkml:Date ? ;
+          <document_status> @linkml:String ? ;
+          <document_classification> @linkml:String ? ;
+          <document_retention> @<IsmsDuration> ? ;
+          <document_distribution> @linkml:String * ;
+          <document_storage> @linkml:String ? ;
+          <document_change_control> @linkml:String ? ;
+          <document_external_origin> @linkml:Boolean ? ;
+          <document_external_source> @linkml:String ?
        ) ;
-       rdf:type [ <RiskAssessment> ]
+       rdf:type [ <IsmsRiskAssessment> ]
     )
 }
 
-<RiskAssessmentProcess> CLOSED {
-    (  $<RiskAssessmentProcess_tes> (  &<DocumentedInformation_tes> ;
-          rdf:type [ <DocumentedInformation> ] ? ;
+<IsmsRiskAssessmentProcess> CLOSED {
+    (  $<IsmsRiskAssessmentProcess_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          &<IsmsDocumentControlMixin_tes> ;
+          rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <risk_acceptance_criteria> @linkml:String ? ;
-          <assessment_criteria> @linkml:String ? ;
-          <assessment_methodology> @linkml:String ? ;
-          <likelihood_scale> @linkml:String ? ;
-          <impact_scale> @linkml:String ? ;
+          <risk_assessment_criteria> @linkml:String ? ;
+          <risk_assessment_method> @linkml:String ? ;
+          <risk_likelihood_scale> @linkml:String ? ;
+          <risk_impact_scale> @linkml:String ? ;
           <risk_matrix> @linkml:String ? ;
-          <assessment_frequency> @linkml:String ? ;
-          <trigger_events> @linkml:String *
+          <risk_assessment_frequency> @linkml:String ? ;
+          <risk_assessment_triggers> @linkml:String * ;
+          <document_reference> @linkml:String ? ;
+          <document_version> @linkml:String ? ;
+          <document_author> @linkml:String ? ;
+          <document_owner> @linkml:String ? ;
+          <document_approver> @linkml:String ? ;
+          <document_approval_date> @linkml:Date ? ;
+          <document_effective_date> @linkml:Date ? ;
+          <document_last_review_date> @linkml:Date ? ;
+          <document_next_review_date> @linkml:Date ? ;
+          <document_status> @linkml:String ? ;
+          <document_classification> @linkml:String ? ;
+          <document_retention> @<IsmsDuration> ? ;
+          <document_distribution> @linkml:String * ;
+          <document_storage> @linkml:String ? ;
+          <document_change_control> @linkml:String ? ;
+          <document_external_origin> @linkml:Boolean ? ;
+          <document_external_source> @linkml:String ?
        ) ;
-       rdf:type [ <RiskAssessmentProcess> ]
+       rdf:type [ <IsmsRiskAssessmentProcess> ]
     )
 }
 
-<RiskTreatmentPlan> CLOSED {
-    (  $<RiskTreatmentPlan_tes> (  &<DocumentedInformation_tes> ;
-          rdf:type [ <DocumentedInformation> ] ? ;
+<IsmsRiskTreatmentPlan> CLOSED {
+    (  $<IsmsRiskTreatmentPlan_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          &<IsmsDocumentControlMixin_tes> ;
+          rdf:type [ <IsmsDocumentControlMixin> ] ? ;
+          <implementation_state> [ <https://w3id.org/lmodel/iso27001/IsmsImplementationStatus#not_started>
+             <https://w3id.org/lmodel/iso27001/IsmsImplementationStatus#planned>
+             <https://w3id.org/lmodel/iso27001/IsmsImplementationStatus#in_progress>
+             <https://w3id.org/lmodel/iso27001/IsmsImplementationStatus#implemented> ] ? ;
           <plan_scope> @linkml:String ? ;
-          <risks_addressed> @<Risk> * ;
-          <treatment_actions> @linkml:String * ;
-          <controls_to_implement> @<SecurityControl> * ;
-          <resources_required> @linkml:String ? ;
-          <responsible_parties> @linkml:String * ;
-          <implementation_timeline> @linkml:String ? ;
-          <risk_owner_approval> @linkml:String ? ;
-          <approved_date> @linkml:Date ? ;
-          <residual_risk_acceptance> @linkml:String ? ;
-          <implementation_status> [ <https://w3id.org/lmodel/iso27001/ImplementationStatus#not_started>
-             <https://w3id.org/lmodel/iso27001/ImplementationStatus#planned>
-             <https://w3id.org/lmodel/iso27001/ImplementationStatus#in_progress>
-             <https://w3id.org/lmodel/iso27001/ImplementationStatus#implemented>
-             <https://w3id.org/lmodel/iso27001/ImplementationStatus#not_applicable> ] ? ;
-          <completion_date> @linkml:Date ?
+          <plan_risks> @<IsmsRisk> * ;
+          <plan_actions> @linkml:String * ;
+          <plan_controls> @<IsmsControl> * ;
+          <plan_resources> @linkml:String ? ;
+          <plan_responsible_parties> @linkml:String * ;
+          <plan_timeline> @linkml:String ? ;
+          <plan_risk_owner_approval> @linkml:String ? ;
+          <plan_residual_risk_acceptance> @linkml:String ? ;
+          <plan_completion_date> @linkml:Date ? ;
+          <document_reference> @linkml:String ? ;
+          <document_version> @linkml:String ? ;
+          <document_author> @linkml:String ? ;
+          <document_owner> @linkml:String ? ;
+          <document_approver> @linkml:String ? ;
+          <document_approval_date> @linkml:Date ? ;
+          <document_effective_date> @linkml:Date ? ;
+          <document_last_review_date> @linkml:Date ? ;
+          <document_next_review_date> @linkml:Date ? ;
+          <document_status> @linkml:String ? ;
+          <document_classification> @linkml:String ? ;
+          <document_retention> @<IsmsDuration> ? ;
+          <document_distribution> @linkml:String * ;
+          <document_storage> @linkml:String ? ;
+          <document_change_control> @linkml:String ? ;
+          <document_external_origin> @linkml:Boolean ? ;
+          <document_external_source> @linkml:String ?
        ) ;
-       rdf:type [ <RiskTreatmentPlan> ]
+       rdf:type [ <IsmsRiskTreatmentPlan> ]
     )
 }
 
-<RiskTreatmentProcess> CLOSED {
-    (  $<RiskTreatmentProcess_tes> (  &<DocumentedInformation_tes> ;
-          rdf:type [ <DocumentedInformation> ] ? ;
+<IsmsRiskTreatmentProcess> CLOSED {
+    (  $<IsmsRiskTreatmentProcess_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          &<IsmsDocumentControlMixin_tes> ;
+          rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <treatment_options_guidance> @linkml:String ? ;
-          <control_selection_criteria> @linkml:String ? ;
-          <annex_a_omission_verification> @linkml:String ? ;
-          <soa_template> @linkml:String ? ;
-          <approval_workflow> @linkml:String ?
+          <treatment_control_selection> @linkml:String ? ;
+          <treatment_annex_a_comparison> @linkml:String ? ;
+          <treatment_soa_template> @linkml:String ? ;
+          <treatment_approval_workflow> @linkml:String ? ;
+          <document_reference> @linkml:String ? ;
+          <document_version> @linkml:String ? ;
+          <document_author> @linkml:String ? ;
+          <document_owner> @linkml:String ? ;
+          <document_approver> @linkml:String ? ;
+          <document_approval_date> @linkml:Date ? ;
+          <document_effective_date> @linkml:Date ? ;
+          <document_last_review_date> @linkml:Date ? ;
+          <document_next_review_date> @linkml:Date ? ;
+          <document_status> @linkml:String ? ;
+          <document_classification> @linkml:String ? ;
+          <document_retention> @<IsmsDuration> ? ;
+          <document_distribution> @linkml:String * ;
+          <document_storage> @linkml:String ? ;
+          <document_change_control> @linkml:String ? ;
+          <document_external_origin> @linkml:Boolean ? ;
+          <document_external_source> @linkml:String ?
        ) ;
-       rdf:type [ <RiskTreatmentProcess> ]
+       rdf:type [ <IsmsRiskTreatmentProcess> ]
     )
 }
 
-<Role> CLOSED {
-    (  $<Role_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <role_type> @linkml:String ? ;
-          <responsibilities> @linkml:String * ;
-          <authorities> @linkml:String * ;
-          <accountability> @linkml:String ? ;
-          <assigned_to> @linkml:String * ;
-          <delegation_rules> @linkml:String ? ;
-          <reporting_line> @linkml:String ?
+<IsmsRole> CLOSED {
+    (  $<IsmsRole_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          <role_category> @linkml:String ? ;
+          <role_responsibilities> @linkml:String * ;
+          <role_authorities> @linkml:String * ;
+          <role_accountability> @linkml:String ? ;
+          <role_holders> @linkml:String * ;
+          <role_delegation> @linkml:String ? ;
+          <role_reports_to> @<IsmsRole> ?
        ) ;
-       rdf:type [ <Role> ]
+       rdf:type [ <IsmsRole> ]
     )
 }
 
-<SecurityControl> CLOSED {
-    (  $<SecurityControl_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <control_id> [ <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_1>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_2> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_3>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_4> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_5>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_6> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_7>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_8> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_9>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_10> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_11>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_12> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_13>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_14> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_15>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_16> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_17>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_18> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_19>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_20> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_21>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_22> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_23>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_24> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_25>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_26> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_27>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_28> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_29>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_30> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_31>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_32> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_33>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_34> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_35>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_36> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_5_37>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_6_1> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_6_2>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_6_3> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_6_4>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_6_5> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_6_6>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_6_7> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_6_8>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_1> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_2>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_3> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_4>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_5> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_6>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_7> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_8>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_9> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_10>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_11> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_12>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_13> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_7_14>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_1> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_2>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_3> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_4>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_5> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_6>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_7> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_8>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_9> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_10>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_11> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_12>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_13> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_14>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_15> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_16>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_17> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_18>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_19> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_20>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_21> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_22>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_23> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_24>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_25> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_26>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_27> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_28>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_29> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_30>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_31> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_32>
-             <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_33> <https://w3id.org/lmodel/iso27001/AnnexAControlId#a_8_34> ]
-          ? ;
-          <control_title> @linkml:String ? ;
-          <control_category> [ <https://w3id.org/lmodel/iso27001/ControlCategory#organizational>
-             <https://w3id.org/lmodel/iso27001/ControlCategory#people> <https://w3id.org/lmodel/iso27001/ControlCategory#physical>
-             <https://w3id.org/lmodel/iso27001/ControlCategory#technological> ] ? ;
-          <control_text> @linkml:String ? ;
-          <implementation_guidance> @linkml:String ? ;
-          <related_controls> @<SecurityControl> * ;
-          <applicable_threats> @linkml:String * ;
-          <applicable_assets> @linkml:String * ;
-          <control_owner> @linkml:String ? ;
-          <implementation_status> [ <https://w3id.org/lmodel/iso27001/ImplementationStatus#not_started>
-             <https://w3id.org/lmodel/iso27001/ImplementationStatus#planned>
-             <https://w3id.org/lmodel/iso27001/ImplementationStatus#in_progress>
-             <https://w3id.org/lmodel/iso27001/ImplementationStatus#implemented>
-             <https://w3id.org/lmodel/iso27001/ImplementationStatus#not_applicable> ] ? ;
-          <implementation_date> @linkml:Date ? ;
-          <effectiveness_rating> @linkml:String ? ;
-          <last_test_date> @linkml:Date ? ;
-          <evidence_references> @linkml:String *
+<IsmsSecurityEvent>  (
+    CLOSED {
+       (  $<IsmsSecurityEvent_tes> (  &<IsmsRecord_tes> ;
+             rdf:type [ <IsmsRecord> ] ? ;
+             <affected_assets> @<IsmsAsset> * ;
+             <event_type> @linkml:String ? ;
+             <event_occurred_at> @linkml:Datetime ? ;
+             <event_reporter> @linkml:String ? ;
+             <event_assessment> @linkml:String ?
+          ) ;
+          rdf:type [ <IsmsSecurityEvent> ]
+       )
+    } OR @<IsmsSecurityIncident>
+)
+
+<IsmsSecurityIncident> CLOSED {
+    (  $<IsmsSecurityIncident_tes> (  &<IsmsSecurityEvent_tes> ;
+          rdf:type [ <IsmsSecurityEvent> ] ? ;
+          <affected_security_properties> [ <https://w3id.org/lmodel/iso27001/IsmsSecurityProperty#confidentiality>
+             <https://w3id.org/lmodel/iso27001/IsmsSecurityProperty#integrity>
+             <https://w3id.org/lmodel/iso27001/IsmsSecurityProperty#availability> ] * ;
+          <incident_category> [ <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#malware>
+             <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#ransomware>
+             <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#phishing>
+             <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#social_engineering>
+             <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#unauthorized_access>
+             <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#account_compromise>
+             <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#privilege_misuse>
+             <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#data_breach>
+             <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#data_loss>
+             <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#denial_of_service>
+             <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#web_application_attack>
+             <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#supply_chain>
+             <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#insider_threat>
+             <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#physical_security>
+             <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#configuration_error>
+             <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#cryptographic_failure>
+             <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#policy_violation>
+             <https://w3id.org/lmodel/iso27001/IsmsIncidentCategory#other> ] ? ;
+          <incident_severity> [ <https://w3id.org/lmodel/iso27001/IsmsRiskLevel#very_low>
+             <https://w3id.org/lmodel/iso27001/IsmsRiskLevel#low> <https://w3id.org/lmodel/iso27001/IsmsRiskLevel#medium>
+             <https://w3id.org/lmodel/iso27001/IsmsRiskLevel#high> <https://w3id.org/lmodel/iso27001/IsmsRiskLevel#critical> ] ? ;
+          <incident_detection_method> @linkml:String ? ;
+          <incident_response_actions> @linkml:String * ;
+          <incident_containment_actions> @linkml:String * ;
+          <incident_eradication_actions> @linkml:String * ;
+          <incident_recovery_actions> @linkml:String * ;
+          <incident_root_cause> @linkml:String ? ;
+          <incident_lessons_learned> @linkml:String * ;
+          <incident_evidence> @linkml:String * ;
+          <incident_notification_required> @linkml:Boolean ? ;
+          <incident_notifications> @linkml:String * ;
+          <incident_closed_at> @linkml:Datetime ? ;
+          <incident_review> @linkml:String ?
        ) ;
-       rdf:type [ <SecurityControl> ]
+       rdf:type [ <IsmsSecurityIncident> ]
     )
 }
 
-<SoAEntry> CLOSED {
-    (  $<SoAEntry_tes> (  <control_reference> @<SecurityControl> ? ;
-          <is_applicable> @linkml:Boolean ? ;
-          <inclusion_justification> @linkml:String ? ;
-          <exclusion_justification> @linkml:String ? ;
-          <implementation_status> [ <https://w3id.org/lmodel/iso27001/ImplementationStatus#not_started>
-             <https://w3id.org/lmodel/iso27001/ImplementationStatus#planned>
-             <https://w3id.org/lmodel/iso27001/ImplementationStatus#in_progress>
-             <https://w3id.org/lmodel/iso27001/ImplementationStatus#implemented>
-             <https://w3id.org/lmodel/iso27001/ImplementationStatus#not_applicable> ] ? ;
-          <implementation_evidence> @linkml:String ? ;
-          <responsible_role> @<Role> ? ;
-          <target_implementation_date> @linkml:Date ?
+<IsmsStatementOfApplicability> CLOSED {
+    (  $<IsmsStatementOfApplicability_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          &<IsmsDocumentControlMixin_tes> ;
+          rdf:type [ <IsmsDocumentControlMixin> ] ? ;
+          <soa_entries> @<IsmsApplicabilityEntry> * ;
+          <document_reference> @linkml:String ? ;
+          <document_version> @linkml:String ? ;
+          <document_author> @linkml:String ? ;
+          <document_owner> @linkml:String ? ;
+          <document_approver> @linkml:String ? ;
+          <document_approval_date> @linkml:Date ? ;
+          <document_effective_date> @linkml:Date ? ;
+          <document_last_review_date> @linkml:Date ? ;
+          <document_next_review_date> @linkml:Date ? ;
+          <document_status> @linkml:String ? ;
+          <document_classification> @linkml:String ? ;
+          <document_retention> @<IsmsDuration> ? ;
+          <document_distribution> @linkml:String * ;
+          <document_storage> @linkml:String ? ;
+          <document_change_control> @linkml:String ? ;
+          <document_external_origin> @linkml:Boolean ? ;
+          <document_external_source> @linkml:String ?
        ) ;
-       rdf:type [ <SoAEntry> ] ?
+       rdf:type [ <IsmsStatementOfApplicability> ]
     )
 }
 
-<StatementOfApplicability> CLOSED {
-    (  $<StatementOfApplicability_tes> (  &<DocumentedInformation_tes> ;
-          rdf:type [ <DocumentedInformation> ] ? ;
-          <soa_entries> @<SoAEntry> * ;
-          <total_controls> @<UnsignedShortType> ? ;
-          <implemented_count> @<UnsignedShortType> ? ;
-          <planned_count> @<UnsignedShortType> ? ;
-          <not_applicable_count> @<UnsignedShortType> ? ;
-          <last_review_date> @linkml:Date ?
+<IsmsTopicSpecificPolicy> CLOSED {
+    (  $<IsmsTopicSpecificPolicy_tes> (  &<IsmsRecord_tes> ;
+          rdf:type [ <IsmsRecord> ] ? ;
+          &<IsmsDocumentControlMixin_tes> ;
+          rdf:type [ <IsmsDocumentControlMixin> ] ? ;
+          <relevant_controls> @<IsmsControl> * ;
+          <topic_policy_topic> @linkml:String ? ;
+          <topic_policy_parent> @<IsmsPolicy> ? ;
+          <topic_policy_audience> @linkml:String ? ;
+          <document_reference> @linkml:String ? ;
+          <document_version> @linkml:String ? ;
+          <document_author> @linkml:String ? ;
+          <document_owner> @linkml:String ? ;
+          <document_approver> @linkml:String ? ;
+          <document_approval_date> @linkml:Date ? ;
+          <document_effective_date> @linkml:Date ? ;
+          <document_last_review_date> @linkml:Date ? ;
+          <document_next_review_date> @linkml:Date ? ;
+          <document_status> @linkml:String ? ;
+          <document_classification> @linkml:String ? ;
+          <document_retention> @<IsmsDuration> ? ;
+          <document_distribution> @linkml:String * ;
+          <document_storage> @linkml:String ? ;
+          <document_change_control> @linkml:String ? ;
+          <document_external_origin> @linkml:Boolean ? ;
+          <document_external_source> @linkml:String ?
        ) ;
-       rdf:type [ <StatementOfApplicability> ]
-    )
-}
-
-<TopicSpecificPolicy> CLOSED {
-    (  $<TopicSpecificPolicy_tes> (  &<DocumentedInformation_tes> ;
-          rdf:type [ <DocumentedInformation> ] ? ;
-          <topic_area> @linkml:String ? ;
-          <parent_policy> @<InformationSecurityPolicy> ? ;
-          <applicable_controls> @<SecurityControl> * ;
-          <target_audience> @linkml:String ?
-       ) ;
-       rdf:type [ <TopicSpecificPolicy> ]
+       rdf:type [ <IsmsTopicSpecificPolicy> ]
     )
 }

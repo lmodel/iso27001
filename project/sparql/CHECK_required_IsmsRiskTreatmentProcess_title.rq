@@ -1,0 +1,38 @@
+PREFIX linkml: <https://w3id.org/linkml/>
+PREFIX iso27001: <https://w3id.org/lmodel/iso27001/>
+PREFIX schema: <http://schema.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX oscal: <https://w3id.org/lmodel/oscal/>
+PREFIX nist_sp_800_53: <https://w3id.org/lmodel/nist-sp-800-53/>
+PREFIX spdx_core: <https://spdx.org/rdf/3.0.1/terms/Core/>
+PREFIX spdx_software: <https://spdx.org/rdf/3.0.1/terms/Software/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX shex: <http://www.w3.org/ns/shex#>
+
+SELECT
+  ?check
+  ?graph
+  ?subject
+  ?predicate WHERE {
+ GRAPH ?graph {
+  ?subject rdf:type iso27001:IsmsRiskTreatmentProcess .
+  FILTER NOT EXISTS { ?subject  schema:name ?o  }
+ }
+ VALUES ?check { linkml:required }
+ VALUES ?predicate { schema:name }
+ 
+}  
+
+
+
+
+
+
+
+## -- End of checks for IsmsRiskTreatmentProcess
+
+
+## --
+## Checks for IsmsRiskTreatmentPlan
+## --
+

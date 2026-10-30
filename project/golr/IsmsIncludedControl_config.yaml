@@ -1,0 +1,32 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsIncludedControl
+schema_generating: true
+description: An entry that includes a control the organization needs, from Annex A
+  or from elsewhere, and says whether it is in place.
+display_name: IsmsIncludedControl
+document_category: IsmsIncludedControl
+weight: 20
+fields:
+- id: entry_annex_a_control
+  description: The Annex A control a Statement of Applicability entry concerns.
+  display_name: entry_annex_a_control
+- id: entry_type
+  description: 'The kind of entry: IsmsIncludedControl or IsmsExcludedControl.'
+  display_name: ismsApplicabilityEntry__entry_type
+- id: entry_justification
+  description: Why the control is included or excluded.
+  display_name: ismsApplicabilityEntry__entry_justification
+- id: implementation_state
+  description: How far the control or the plan has been put into effect.
+  display_name: IsmsIncludedControl_implementation_state
+- id: responsible_role
+  description: The role that answers for the record's activity or outcome.
+  display_name: responsible_role
+- id: included_control
+  description: The organization's control the entry includes.
+  display_name: ismsIncludedControl__included_control
+- id: included_evidence
+  description: What shows that the control is in place.
+  display_name: ismsIncludedControl__included_evidence
+- id: included_target_date
+  description: When the control is to be in place, if it is not yet.
+  display_name: ismsIncludedControl__included_target_date

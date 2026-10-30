@@ -1,0 +1,121 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsManagementReview
+schema_generating: true
+description: 'A review of the ISMS by top management: what it considered, what it
+  decided and what it asked to be done.'
+display_name: IsmsManagementReview
+document_category: IsmsManagementReview
+weight: 20
+fields:
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecord_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description
+- id: review_held_on
+  description: When the review was held.
+  display_name: ismsManagementReview__review_held_on
+- id: review_attendees
+  description: Who attended the review.
+  display_name: ismsManagementReview__review_attendees
+  cardinality: multi
+- id: review_previous_actions
+  description: Where the actions from earlier reviews stand.
+  display_name: ismsManagementReview__review_previous_actions
+- id: review_context_changes
+  description: How the issues that bear on the ISMS have changed.
+  display_name: ismsManagementReview__review_context_changes
+- id: review_interested_party_changes
+  description: How interested parties' needs and expectations have changed.
+  display_name: ismsManagementReview__review_interested_party_changes
+- id: review_interested_party_feedback
+  description: What interested parties said.
+  display_name: ismsManagementReview__review_interested_party_feedback
+- id: review_performance_trends
+  description: The trends in information security performance.
+  display_name: ismsManagementReview__review_performance_trends
+- id: review_audit_results
+  description: What the audits found.
+  display_name: ismsManagementReview__review_audit_results
+- id: review_risk_assessment_results
+  description: What the risk assessments found.
+  display_name: ismsManagementReview__review_risk_assessment_results
+- id: review_risk_treatment_status
+  description: Where risk treatment stands.
+  display_name: ismsManagementReview__review_risk_treatment_status
+- id: review_risks_and_opportunities
+  description: How risks and opportunities have changed.
+  display_name: ismsManagementReview__review_risks_and_opportunities
+- id: review_improvement_opportunities
+  description: The opportunities for improvement raised.
+  display_name: ismsManagementReview__review_improvement_opportunities
+  cardinality: multi
+- id: review_decisions
+  description: What the review decided.
+  display_name: ismsManagementReview__review_decisions
+  cardinality: multi
+- id: review_actions
+  description: What the review asked to be done.
+  display_name: ismsManagementReview__review_actions
+  cardinality: multi
+- id: review_next_date
+  description: When the next review is planned.
+  display_name: ismsManagementReview__review_next_date
+- id: document_reference
+  description: The reference the organization's document control gives it.
+  display_name: ismsDocumentControlMixin__document_reference
+- id: document_version
+  description: The version of the document.
+  display_name: ismsDocumentControlMixin__document_version
+- id: document_author
+  description: Who wrote the document.
+  display_name: ismsDocumentControlMixin__document_author
+- id: document_owner
+  description: Who answers for the document's content and upkeep.
+  display_name: ismsDocumentControlMixin__document_owner
+- id: document_approver
+  description: Who approved the document.
+  display_name: ismsDocumentControlMixin__document_approver
+- id: document_approval_date
+  description: When the document was approved.
+  display_name: ismsDocumentControlMixin__document_approval_date
+- id: document_effective_date
+  description: When the document takes effect.
+  display_name: ismsDocumentControlMixin__document_effective_date
+- id: document_last_review_date
+  description: When the document was last reviewed.
+  display_name: ismsDocumentControlMixin__document_last_review_date
+- id: document_next_review_date
+  description: When the document is next due for review.
+  display_name: ismsDocumentControlMixin__document_next_review_date
+- id: document_status
+  description: Where the document stands in its life, in the organization's own terms,
+    such as draft, approved or withdrawn.
+  display_name: ismsDocumentControlMixin__document_status
+- id: document_classification
+  description: The information classification the document carries.
+  display_name: ismsDocumentControlMixin__document_classification
+- id: document_retention
+  description: How long the document is kept, as an ISO 8601 duration.
+  display_name: ismsDocumentControlMixin__document_retention
+- id: document_distribution
+  description: How the document is distributed, accessed, retrieved and used.
+  display_name: ismsDocumentControlMixin__document_distribution
+  cardinality: multi
+- id: document_storage
+  description: How the document is stored and preserved, so that it stays legible.
+  display_name: ismsDocumentControlMixin__document_storage
+- id: document_change_control
+  description: How changes to the document are controlled, such as version control.
+  display_name: ismsDocumentControlMixin__document_change_control
+- id: document_external_origin
+  description: Whether the document comes from outside the organization and is kept
+    because the ISMS needs it.
+  display_name: ismsDocumentControlMixin__document_external_origin
+- id: document_external_source
+  description: Who the document came from, when it comes from outside.
+  display_name: ismsDocumentControlMixin__document_external_source

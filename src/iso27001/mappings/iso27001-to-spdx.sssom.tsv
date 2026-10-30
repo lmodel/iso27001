@@ -1,24 +1,18 @@
 # mapping_set_id: https://w3id.org/lmodel/iso27001/mappings/iso27001_to_spdx
-# mapping_set_version: 0.1.0
-# mapping_set_title: ISO/IEC 27001:2022 to SPDX 3.0 Mappings
-# mapping_set_description: Schema-level mappings between ISO/IEC 27001:2022 ISMS classes (Asset, SecurityControl, Risk) and SPDX 3.0 software-bill-of-materials objects. Enables SBOM-driven asset inventory and vulnerability correlation against Annex A controls.
+# mapping_set_version: 0.2.0
+# mapping_set_title: ISO/IEC 27001:2022 ISMS records to SPDX 3.0.1
+# mapping_set_description: Class-level mappings between the records of an ISO/IEC 27001:2022 ISMS and the classes of SPDX 3.0.1 that lmodel/spdx models. Each row maps a class of this schema to a class of the released lmodel/spdx v0.1.0 schema asset, which tests/neighbours/ holds, named by the IRI the released copy gives it. The rows were first drafted by a language model and then each was checked against both classes' descriptions; a row whose object no released copy holds, or whose meaning did not hold, was dropped. They await review by a person.
 # license: https://creativecommons.org/licenses/by/4.0/
 # subject_source: https://w3id.org/lmodel/iso27001
 # object_source: https://w3id.org/lmodel/spdx
-# mapping_date: 2026-06-01
+# mapping_date: 2026-10-30
 # curie_map:
 #   iso27001: https://w3id.org/lmodel/iso27001/
-#   spdx: https://w3id.org/lmodel/spdx/
+#   spdx_core: https://spdx.org/rdf/3.0.1/terms/Core/
+#   spdx_software: https://spdx.org/rdf/3.0.1/terms/Software/
 #   owl: http://www.w3.org/2002/07/owl#
 #   semapv: https://w3id.org/semapv/vocab/
 #   skos: http://www.w3.org/2004/02/skos/core#
 subject_id	subject_label	subject_category	predicate_id	predicate_label	object_id	object_label	object_category	mapping_justification	comment
-iso27001:Asset	Asset	owl:Class	skos:closeMatch	close match	spdx:Package	Package	owl:Class	semapv:LLMBasedMatching	Software asset corresponds to SPDX package
-iso27001:Organization	Organization	owl:Class	skos:closeMatch	close match	spdx:Organization	Organization	owl:Class	semapv:LLMBasedMatching	Supplier or owner organization
-iso27001:DocumentedInformation	DocumentedInformation	owl:Class	skos:relatedMatch	related match	spdx:SpdxDocument	SpdxDocument	owl:Class	semapv:LLMBasedMatching	SBOM as documented information
-iso27001:AnnexAControlId#a_5_9	A.5.9 Inventory of information and other associated assets	skos:Concept	skos:closeMatch	close match	spdx:SpdxDocument	SpdxDocument	owl:Class	semapv:LLMBasedMatching	Software inventory via SBOM
-iso27001:AnnexAControlId#a_5_21	A.5.21 Managing information security in the ICT supply chain	skos:Concept	skos:closeMatch	close match	spdx:Relationship	Relationship	owl:Class	semapv:LLMBasedMatching	Supply chain relationships captured in SBOM
-iso27001:AnnexAControlId#a_8_8	A.8.8 Management of technical vulnerabilities	skos:Concept	skos:closeMatch	close match	spdx:Package	Package	owl:Class	semapv:LLMBasedMatching	Vulnerability management correlates against SBOM packages
-iso27001:AnnexAControlId#a_8_19	A.8.19 Installation of software on operational systems	skos:Concept	skos:relatedMatch	related match	spdx:Package	Package	owl:Class	semapv:LLMBasedMatching	Approved software inventory tracking
-iso27001:AnnexAControlId#a_8_25	A.8.25 Secure development life cycle	skos:Concept	skos:relatedMatch	related match	spdx:Build	Build	owl:Class	semapv:LLMBasedMatching	SDLC artefact build records
-iso27001:AnnexAControlId#a_8_30	A.8.30 Outsourced development	skos:Concept	skos:relatedMatch	related match	spdx:Package	Package	owl:Class	semapv:LLMBasedMatching	Outsourced components tracked in SBOM
+iso27001:IsmsOrganization	IsmsOrganization	owl:Class	skos:closeMatch	close match	spdx_core:Organization	SpdxOrganization	owl:Class	semapv:LLMBasedMatching	Both are a group of people organized for a shared purpose
+iso27001:IsmsAsset	IsmsAsset	owl:Class	skos:relatedMatch	related match	spdx_software:Package	Package	owl:Class	semapv:LLMBasedMatching	A software package is one kind of asset in the ISMS's inventory

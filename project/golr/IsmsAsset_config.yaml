@@ -1,0 +1,42 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsAsset
+schema_generating: true
+description: 'An item in the inventory of information and other associated assets:
+  what it is, who owns and looks after it, where it is, how it is classified and how
+  much it matters.'
+display_name: IsmsAsset
+document_category: IsmsAsset
+weight: 20
+fields:
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecord_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description
+- id: relevant_controls
+  description: The organization's controls that the record concerns.
+  display_name: relevant_controls
+  cardinality: multi
+- id: asset_category
+  description: What kind of asset it is, such as information, software, hardware or
+    a service.
+  display_name: ismsAsset__asset_category
+- id: asset_owner
+  description: Who owns the asset.
+  display_name: ismsAsset__asset_owner
+- id: asset_custodian
+  description: Who looks after the asset from day to day.
+  display_name: ismsAsset__asset_custodian
+- id: asset_classification
+  description: The information classification the asset carries.
+  display_name: ismsAsset__asset_classification
+- id: asset_location
+  description: Where the asset is, physically or logically.
+  display_name: ismsAsset__asset_location
+- id: asset_criticality
+  description: How much the asset matters, in the organization's own terms.
+  display_name: ismsAsset__asset_criticality

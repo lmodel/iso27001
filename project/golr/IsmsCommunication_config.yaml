@@ -1,0 +1,29 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsCommunication
+schema_generating: true
+description: 'One communication the plan provides for: what about, why, to whom, how
+  often, how, and who communicates.'
+display_name: IsmsCommunication
+document_category: IsmsCommunication
+weight: 20
+fields:
+- id: responsible_role
+  description: The role that answers for the record's activity or outcome.
+  display_name: responsible_role
+- id: communication_subject
+  description: What the communication is about.
+  display_name: ismsCommunication__communication_subject
+- id: communication_purpose
+  description: Why it is communicated.
+  display_name: ismsCommunication__communication_purpose
+- id: communication_audience
+  description: To whom it is communicated.
+  display_name: ismsCommunication__communication_audience
+- id: communication_frequency
+  description: How often it is communicated.
+  display_name: ismsCommunication__communication_frequency
+- id: communication_method
+  description: How it is communicated.
+  display_name: ismsCommunication__communication_method
+- id: communication_records_required
+  description: Whether a record of the communication is kept.
+  display_name: ismsCommunication__communication_records_required

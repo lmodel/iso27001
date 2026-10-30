@@ -1,0 +1,52 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsImprovementOpportunity
+schema_generating: true
+description: An opportunity to improve the ISMS's suitability, adequacy or effectiveness,
+  and what came of it.
+display_name: IsmsImprovementOpportunity
+document_category: IsmsImprovementOpportunity
+weight: 20
+fields:
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecord_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description
+- id: responsible_role
+  description: The role that answers for the record's activity or outcome.
+  display_name: responsible_role
+- id: improvement_source
+  description: Where the opportunity came from, such as a review, an audit or daily
+    work.
+  display_name: ismsImprovementOpportunity__improvement_source
+- id: improvement_identified_on
+  description: When the opportunity was identified.
+  display_name: ismsImprovementOpportunity__improvement_identified_on
+- id: improvement_identified_by
+  description: Who identified it.
+  display_name: ismsImprovementOpportunity__improvement_identified_by
+- id: improvement_benefit
+  description: What the improvement is expected to bring.
+  display_name: ismsImprovementOpportunity__improvement_benefit
+- id: improvement_priority
+  description: How soon it is to be acted on, in the organization's own terms.
+  display_name: ismsImprovementOpportunity__improvement_priority
+- id: improvement_plan
+  description: How the improvement is to be made.
+  display_name: ismsImprovementOpportunity__improvement_plan
+- id: improvement_target_date
+  description: When the improvement is to be made.
+  display_name: ismsImprovementOpportunity__improvement_target_date
+- id: improvement_completion_date
+  description: When it was made.
+  display_name: ismsImprovementOpportunity__improvement_completion_date
+- id: improvement_outcome
+  description: What the improvement brought.
+  display_name: ismsImprovementOpportunity__improvement_outcome
+- id: improvement_status
+  description: Where it stands, in the organization's own terms.
+  display_name: ismsImprovementOpportunity__improvement_status

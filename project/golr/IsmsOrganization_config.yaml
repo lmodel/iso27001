@@ -1,0 +1,57 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsOrganization
+schema_generating: true
+description: The organization that runs the ISMS, with what it needs to know about
+  itself to understand its context.
+display_name: IsmsOrganization
+document_category: IsmsOrganization
+weight: 20
+fields:
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecord_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description
+- id: organization_legal_name
+  description: The organization's registered legal name.
+  display_name: ismsOrganization__organization_legal_name
+- id: organization_trading_names
+  description: Other names the organization trades under.
+  display_name: ismsOrganization__organization_trading_names
+  cardinality: multi
+- id: organization_kind
+  description: What kind of organization it is, such as a company, an agency or a
+    charity.
+  display_name: ismsOrganization__organization_kind
+- id: organization_sector
+  description: The organization's main industry sector.
+  display_name: ismsOrganization__organization_sector
+- id: organization_size
+  description: How the organization classes its own size.
+  display_name: ismsOrganization__organization_size
+- id: organization_employee_count
+  description: About how many people the organization employs.
+  display_name: ismsOrganization__organization_employee_count
+- id: organization_locations
+  description: The countries or regions the organization works in.
+  display_name: ismsOrganization__organization_locations
+  cardinality: multi
+- id: organization_jurisdictions
+  description: The jurisdictions whose laws and regulations apply to the organization.
+  display_name: ismsOrganization__organization_jurisdictions
+  cardinality: multi
+- id: organization_parent
+  description: The organization's parent, if it has one.
+  display_name: ismsOrganization__organization_parent
+- id: organization_subsidiaries
+  description: The organization's subsidiaries, if it has any.
+  display_name: ismsOrganization__organization_subsidiaries
+  cardinality: multi
+- id: organization_climate_change_relevant
+  description: Whether the organization has determined that climate change is a relevant
+    issue for its ISMS.
+  display_name: ismsOrganization__organization_climate_change_relevant

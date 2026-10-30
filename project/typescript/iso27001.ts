@@ -1,329 +1,331 @@
-export type NamedEntityId = string;
-export type DocumentedInformationId = string;
-export type InformationSecurityManagementSystemId = string;
-export type OrganizationId = string;
-export type InterestedPartyId = string;
-export type InformationSecurityPolicyId = string;
-export type TopicSpecificPolicyId = string;
-export type RoleId = string;
-export type InformationSecurityObjectiveId = string;
-export type RiskAssessmentProcessId = string;
-export type RiskAssessmentId = string;
-export type RiskId = string;
-export type RiskTreatmentProcessId = string;
-export type RiskTreatmentPlanId = string;
-export type StatementOfApplicabilityId = string;
-export type SecurityControlId = string;
-export type ResourceId = string;
-export type CompetenceRecordId = string;
-export type AwarenessProgramId = string;
-export type CommunicationPlanId = string;
-export type OperationalProcedureId = string;
-export type MonitoringProgramId = string;
-export type InternalAuditId = string;
-export type AuditProgrammeId = string;
-export type AuditFindingId = string;
-export type ManagementReviewId = string;
-export type NonconformityId = string;
-export type CorrectiveActionId = string;
-export type ImprovementOpportunityId = string;
-export type AssetId = string;
-export type InformationSecurityEventId = string;
-export type InformationSecurityIncidentId = string;
+export type IsmsRecordIsmsId = string;
+export type IsmsManagementSystemIsmsId = string;
+export type IsmsOrganizationIsmsId = string;
+export type IsmsInterestedPartyIsmsId = string;
+export type IsmsPolicyIsmsId = string;
+export type IsmsTopicSpecificPolicyIsmsId = string;
+export type IsmsRoleIsmsId = string;
+export type IsmsObjectiveIsmsId = string;
+export type IsmsRiskAssessmentProcessIsmsId = string;
+export type IsmsRiskAssessmentIsmsId = string;
+export type IsmsRiskIsmsId = string;
+export type IsmsRiskTreatmentProcessIsmsId = string;
+export type IsmsRiskTreatmentPlanIsmsId = string;
+export type IsmsStatementOfApplicabilityIsmsId = string;
+export type IsmsControlIsmsId = string;
+export type IsmsAssetIsmsId = string;
+export type IsmsResourceIsmsId = string;
+export type IsmsCompetenceRecordIsmsId = string;
+export type IsmsAwarenessProgrammeIsmsId = string;
+export type IsmsCommunicationPlanIsmsId = string;
+export type IsmsDocumentedInformationIsmsId = string;
+export type IsmsOperationalProcedureIsmsId = string;
+export type IsmsMonitoringProgrammeIsmsId = string;
+export type IsmsAuditProgrammeIsmsId = string;
+export type IsmsAuditIsmsId = string;
+export type IsmsAuditFindingIsmsId = string;
+export type IsmsManagementReviewIsmsId = string;
+export type IsmsNonconformityIsmsId = string;
+export type IsmsCorrectiveActionIsmsId = string;
+export type IsmsImprovementOpportunityIsmsId = string;
+export type IsmsSecurityEventIsmsId = string;
+export type IsmsSecurityIncidentIsmsId = string;
 /**
-* The four control domains defined in ISO/IEC 27001:2022 Annex A, corresponding to Clauses 5-8 of ISO/IEC 27002:2022.
+* The four themes Annex A sorts its controls into, which ISO/IEC 27002:2022 also uses.
 */
-export enum ControlCategory {
+export enum IsmsControlTheme {
     
-    /** Organizational controls (Annex A.5) - policies, roles, asset management, access control, supplier relationships, incident management, compliance. */
+    /** The organizational controls, numbered A.5.1 to A.5.37. */
     organizational = "organizational",
-    /** People controls (Annex A.6) - screening, employment terms, awareness, disciplinary process, termination responsibilities, remote working. */
+    /** The people controls, numbered A.6.1 to A.6.8. */
     people = "people",
-    /** Physical controls (Annex A.7) - perimeters, entry controls, equipment protection, secure areas, media handling, cabling, maintenance. */
+    /** The physical controls, numbered A.7.1 to A.7.14. */
     physical = "physical",
-    /** Technological controls (Annex A.8) - endpoint security, access restrictions, authentication, malware protection, logging, cryptography, secure development. */
+    /** The technological controls, numbered A.8.1 to A.8.34. */
     technological = "technological",
 };
 /**
-* Lifecycle status of a security control, used in Statement of Applicability and control tracking.
+* The 93 reference controls of Annex A, by their numbers. The values carry no titles: the titles and the control text are ISO's.
 */
-export enum ImplementationStatus {
+export enum IsmsAnnexAControl {
     
-    /** Control identified but no implementation activities begun. */
-    not_started = "not_started",
-    /** Control scheduled for implementation with defined timeline. */
-    planned = "planned",
-    /** Implementation actively underway but not yet complete. */
-    in_progress = "in_progress",
-    /** Control fully implemented and operational. */
-    implemented = "implemented",
-    /** Control excluded from scope with documented justification per 6.1.3 d). */
-    not_applicable = "not_applicable",
+    AFULL_STOP5FULL_STOP1 = "a_5_1",
+    AFULL_STOP5FULL_STOP2 = "a_5_2",
+    AFULL_STOP5FULL_STOP3 = "a_5_3",
+    AFULL_STOP5FULL_STOP4 = "a_5_4",
+    AFULL_STOP5FULL_STOP5 = "a_5_5",
+    AFULL_STOP5FULL_STOP6 = "a_5_6",
+    AFULL_STOP5FULL_STOP7 = "a_5_7",
+    AFULL_STOP5FULL_STOP8 = "a_5_8",
+    AFULL_STOP5FULL_STOP9 = "a_5_9",
+    AFULL_STOP5FULL_STOP10 = "a_5_10",
+    AFULL_STOP5FULL_STOP11 = "a_5_11",
+    AFULL_STOP5FULL_STOP12 = "a_5_12",
+    AFULL_STOP5FULL_STOP13 = "a_5_13",
+    AFULL_STOP5FULL_STOP14 = "a_5_14",
+    AFULL_STOP5FULL_STOP15 = "a_5_15",
+    AFULL_STOP5FULL_STOP16 = "a_5_16",
+    AFULL_STOP5FULL_STOP17 = "a_5_17",
+    AFULL_STOP5FULL_STOP18 = "a_5_18",
+    AFULL_STOP5FULL_STOP19 = "a_5_19",
+    AFULL_STOP5FULL_STOP20 = "a_5_20",
+    AFULL_STOP5FULL_STOP21 = "a_5_21",
+    AFULL_STOP5FULL_STOP22 = "a_5_22",
+    AFULL_STOP5FULL_STOP23 = "a_5_23",
+    AFULL_STOP5FULL_STOP24 = "a_5_24",
+    AFULL_STOP5FULL_STOP25 = "a_5_25",
+    AFULL_STOP5FULL_STOP26 = "a_5_26",
+    AFULL_STOP5FULL_STOP27 = "a_5_27",
+    AFULL_STOP5FULL_STOP28 = "a_5_28",
+    AFULL_STOP5FULL_STOP29 = "a_5_29",
+    AFULL_STOP5FULL_STOP30 = "a_5_30",
+    AFULL_STOP5FULL_STOP31 = "a_5_31",
+    AFULL_STOP5FULL_STOP32 = "a_5_32",
+    AFULL_STOP5FULL_STOP33 = "a_5_33",
+    AFULL_STOP5FULL_STOP34 = "a_5_34",
+    AFULL_STOP5FULL_STOP35 = "a_5_35",
+    AFULL_STOP5FULL_STOP36 = "a_5_36",
+    AFULL_STOP5FULL_STOP37 = "a_5_37",
+    AFULL_STOP6FULL_STOP1 = "a_6_1",
+    AFULL_STOP6FULL_STOP2 = "a_6_2",
+    AFULL_STOP6FULL_STOP3 = "a_6_3",
+    AFULL_STOP6FULL_STOP4 = "a_6_4",
+    AFULL_STOP6FULL_STOP5 = "a_6_5",
+    AFULL_STOP6FULL_STOP6 = "a_6_6",
+    AFULL_STOP6FULL_STOP7 = "a_6_7",
+    AFULL_STOP6FULL_STOP8 = "a_6_8",
+    AFULL_STOP7FULL_STOP1 = "a_7_1",
+    AFULL_STOP7FULL_STOP2 = "a_7_2",
+    AFULL_STOP7FULL_STOP3 = "a_7_3",
+    AFULL_STOP7FULL_STOP4 = "a_7_4",
+    AFULL_STOP7FULL_STOP5 = "a_7_5",
+    AFULL_STOP7FULL_STOP6 = "a_7_6",
+    AFULL_STOP7FULL_STOP7 = "a_7_7",
+    AFULL_STOP7FULL_STOP8 = "a_7_8",
+    AFULL_STOP7FULL_STOP9 = "a_7_9",
+    AFULL_STOP7FULL_STOP10 = "a_7_10",
+    AFULL_STOP7FULL_STOP11 = "a_7_11",
+    AFULL_STOP7FULL_STOP12 = "a_7_12",
+    AFULL_STOP7FULL_STOP13 = "a_7_13",
+    AFULL_STOP7FULL_STOP14 = "a_7_14",
+    AFULL_STOP8FULL_STOP1 = "a_8_1",
+    AFULL_STOP8FULL_STOP2 = "a_8_2",
+    AFULL_STOP8FULL_STOP3 = "a_8_3",
+    AFULL_STOP8FULL_STOP4 = "a_8_4",
+    AFULL_STOP8FULL_STOP5 = "a_8_5",
+    AFULL_STOP8FULL_STOP6 = "a_8_6",
+    AFULL_STOP8FULL_STOP7 = "a_8_7",
+    AFULL_STOP8FULL_STOP8 = "a_8_8",
+    AFULL_STOP8FULL_STOP9 = "a_8_9",
+    AFULL_STOP8FULL_STOP10 = "a_8_10",
+    AFULL_STOP8FULL_STOP11 = "a_8_11",
+    AFULL_STOP8FULL_STOP12 = "a_8_12",
+    AFULL_STOP8FULL_STOP13 = "a_8_13",
+    AFULL_STOP8FULL_STOP14 = "a_8_14",
+    AFULL_STOP8FULL_STOP15 = "a_8_15",
+    AFULL_STOP8FULL_STOP16 = "a_8_16",
+    AFULL_STOP8FULL_STOP17 = "a_8_17",
+    AFULL_STOP8FULL_STOP18 = "a_8_18",
+    AFULL_STOP8FULL_STOP19 = "a_8_19",
+    AFULL_STOP8FULL_STOP20 = "a_8_20",
+    AFULL_STOP8FULL_STOP21 = "a_8_21",
+    AFULL_STOP8FULL_STOP22 = "a_8_22",
+    AFULL_STOP8FULL_STOP23 = "a_8_23",
+    AFULL_STOP8FULL_STOP24 = "a_8_24",
+    AFULL_STOP8FULL_STOP25 = "a_8_25",
+    AFULL_STOP8FULL_STOP26 = "a_8_26",
+    AFULL_STOP8FULL_STOP27 = "a_8_27",
+    AFULL_STOP8FULL_STOP28 = "a_8_28",
+    AFULL_STOP8FULL_STOP29 = "a_8_29",
+    AFULL_STOP8FULL_STOP30 = "a_8_30",
+    AFULL_STOP8FULL_STOP31 = "a_8_31",
+    AFULL_STOP8FULL_STOP32 = "a_8_32",
+    AFULL_STOP8FULL_STOP33 = "a_8_33",
+    AFULL_STOP8FULL_STOP34 = "a_8_34",
 };
 /**
-* Standard risk treatment options per ISO 31000 and ISO 27005.
+* How far a control or a plan has been put into effect.
 */
-export enum RiskTreatmentOption {
+export enum IsmsImplementationStatus {
     
-    /** Apply controls to change the risk level (reduce likelihood or impact). */
+    /** Nothing has been done yet. */
+    not_started = "not_started",
+    /** The work is planned, with a timeline. */
+    planned = "planned",
+    /** The work is under way. */
+    in_progress = "in_progress",
+    /** The work is done and in operation. */
+    implemented = "implemented",
+};
+/**
+* The ways of treating a risk, by the names ISO/IEC 27005 gives them.
+*/
+export enum IsmsRiskTreatmentOption {
+    
+    /** Change the risk with controls that lower its likelihood or its consequences. */
     modify = "modify",
-    /** Accept the risk without further treatment, within risk appetite. Requires risk owner approval. */
-    accept = "accept",
-    /** Eliminate the risk by removing the activity or asset that creates it. */
+    /** Keep the risk as it is, with the risk owner's approval. */
+    retain = "retain",
+    /** Remove the risk by stopping or changing what gives rise to it. */
     avoid = "avoid",
-    /** Transfer or share risk with external parties (e.g., insurance, outsourcing). */
+    /** Share the risk with another party, such as an insurer or a supplier. */
     share = "share",
 };
 /**
-* Qualitative risk rating derived from likelihood x impact analysis.
+* A five-point scale of risk level, for an organization that adopts it. ISO/IEC 27001 leaves the scale to the organization.
 */
-export enum RiskLevel {
+export enum IsmsRiskLevel {
     
-    /** Negligible risk requiring no immediate action. */
+    /** Small enough to need no action. */
     very_low = "very_low",
-    /** Minor risk manageable through routine procedures. */
+    /** Managed by routine procedures. */
     low = "low",
-    /** Moderate risk requiring management attention and planned controls. */
+    /** Needs management's attention and planned controls. */
     medium = "medium",
-    /** Significant risk requiring priority treatment and escalation. */
+    /** Needs treatment first and escalation. */
     high = "high",
-    /** Severe risk threatening organizational objectives; requires immediate executive action and resource allocation. */
+    /** Threatens the organization's objectives and needs action at once. */
     critical = "critical",
 };
 /**
-* Categories of documented information required or recommended by ISO 27001.
+* A five-point scale of likelihood, for an organization that adopts it. ISO/IEC 27001 leaves the scale to the organization.
 */
-export enum DocumentType {
+export enum IsmsLikelihood {
     
-    /** High-level statement of intent and direction (e.g., IS policy per 5.2). */
-    policy = "policy",
-    /** Documented steps for performing activities consistently. */
-    procedure = "procedure",
-    /** Mandatory requirements for specific technologies or processes. */
-    standard = "standard",
-    /** Recommended practices that support policies and procedures. */
-    guideline = "guideline",
-    /** Evidence of activities performed or results achieved. */
-    record = "record",
-    /** Documented approach for achieving objectives (e.g., risk treatment plan). */
-    plan = "plan",
-    /** Formal output of assessment, audit, or review activities. */
-    report = "report",
-};
-/**
-* Classification of internal audit findings.
-*/
-export enum AuditFindingType {
-    
-    /** Significant failure to fulfill a requirement that affects ISMS capability to achieve intended outcomes. */
-    major_nonconformity = "major_nonconformity",
-    /** Isolated lapse that does not significantly affect ISMS effectiveness. */
-    minor_nonconformity = "minor_nonconformity",
-    /** Noted condition that could lead to nonconformity if not addressed. */
-    observation = "observation",
-    /** Evidence of effective implementation exceeding requirements. */
-    positive_finding = "positive_finding",
-};
-/**
-* Qualitative likelihood scale for risk assessment.
-*/
-export enum LikelihoodRating {
-    
-    /** Highly unlikely to occur (< 5% probability). */
+    /** Not expected to happen. */
     rare = "rare",
-    /** Not expected but possible (5-20% probability). */
+    /** Could happen, but is not expected to. */
     unlikely = "unlikely",
-    /** May occur at some point (20-50% probability). */
+    /** Might happen at some point. */
     possible = "possible",
-    /** Probably will occur (50-80% probability). */
+    /** Will probably happen. */
     likely = "likely",
-    /** Expected to occur in most circumstances (> 80% probability). */
+    /** Expected to happen. */
     almost_certain = "almost_certain",
 };
 /**
-* Information security properties whose loss is considered when identifying risks per ISO/IEC 27001:2022 Clause 6.1.2 c) 1).
+* A five-point scale of consequence, for an organization that adopts it. ISO/IEC 27001 leaves the scale to the organization.
 */
-export enum CIAProperty {
+export enum IsmsImpact {
     
-    /** Property of information not being made available or disclosed to unauthorized entities. */
+    /** No noticeable effect on operations or objectives. */
+    negligible = "negligible",
+    /** An effect normal operations absorb. */
+    minor = "minor",
+    /** An effect that needs management to step in. */
+    moderate = "moderate",
+    /** A serious effect on objectives, reputation or compliance. */
+    major = "major",
+    /** An effect that threatens the organization's survival. */
+    severe = "severe",
+};
+/**
+* The three properties of information that information security preserves, as ISO/IEC 27000 names them.
+*/
+export enum IsmsSecurityProperty {
+    
+    /** Only those allowed to see the information can see it. */
     confidentiality = "confidentiality",
-    /** Property of accuracy and completeness of information. */
+    /** The information is accurate and complete. */
     integrity = "integrity",
-    /** Property of being accessible and usable on demand by an authorized entity. */
+    /** Those allowed to use the information can use it when they need it. */
     availability = "availability",
 };
 /**
-* Classification of audits referenced by ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1 (audit programmes).
+* The kinds of documented information an IsmsDocumentedInformation record holds. Policies have records of their own.
 */
-export enum AuditType {
+export enum IsmsDocumentKind {
     
-    /** First-party audit conducted by the organization itself per 9.2. */
-    internal = "internal",
-    /** Audit conducted by a party with an interest in the organization (e.g., customer). */
-    external_second_party = "external_second_party",
-    /** Independent audit by a certification body or other third party. */
-    external_third_party = "external_third_party",
-    /** Periodic third-party audit between certification and recertification. */
-    surveillance = "surveillance",
-    /** Third-party audit conducted to renew certification. */
-    recertification = "recertification",
-    /** Audit performed jointly against two or more management system standards. */
-    combined = "combined",
+    /** The steps for carrying out an activity the same way each time. */
+    procedure = "procedure",
+    /** Mandatory requirements for a technology or a process. */
+    standard = "standard",
+    /** Recommended practice that supports a policy or a procedure. */
+    guideline = "guideline",
+    /** Evidence of what was done or achieved. */
+    record = "record",
+    /** How the organization means to reach an objective. */
+    plan = "plan",
+    /** The formal output of an assessment, audit or review. */
+    report = "report",
 };
 /**
-* Identifiers of the 93 reference information security controls listed in ISO/IEC 27001:2022 Annex A (as also titled in ISO/IEC 27002:2022). Control text and titles are normative ISO content and are not reproduced here.
+* Who carries out an audit, relative to the organization audited, as ISO 19011 sorts audits.
 */
-export enum AnnexAControlId {
+export enum IsmsAuditType {
     
-    a_5_1 = "a_5_1",
-    a_5_2 = "a_5_2",
-    a_5_3 = "a_5_3",
-    a_5_4 = "a_5_4",
-    a_5_5 = "a_5_5",
-    a_5_6 = "a_5_6",
-    a_5_7 = "a_5_7",
-    a_5_8 = "a_5_8",
-    a_5_9 = "a_5_9",
-    a_5_10 = "a_5_10",
-    a_5_11 = "a_5_11",
-    a_5_12 = "a_5_12",
-    a_5_13 = "a_5_13",
-    a_5_14 = "a_5_14",
-    a_5_15 = "a_5_15",
-    a_5_16 = "a_5_16",
-    a_5_17 = "a_5_17",
-    a_5_18 = "a_5_18",
-    a_5_19 = "a_5_19",
-    a_5_20 = "a_5_20",
-    a_5_21 = "a_5_21",
-    a_5_22 = "a_5_22",
-    a_5_23 = "a_5_23",
-    a_5_24 = "a_5_24",
-    a_5_25 = "a_5_25",
-    a_5_26 = "a_5_26",
-    a_5_27 = "a_5_27",
-    a_5_28 = "a_5_28",
-    a_5_29 = "a_5_29",
-    a_5_30 = "a_5_30",
-    a_5_31 = "a_5_31",
-    a_5_32 = "a_5_32",
-    a_5_33 = "a_5_33",
-    a_5_34 = "a_5_34",
-    a_5_35 = "a_5_35",
-    a_5_36 = "a_5_36",
-    a_5_37 = "a_5_37",
-    a_6_1 = "a_6_1",
-    a_6_2 = "a_6_2",
-    a_6_3 = "a_6_3",
-    a_6_4 = "a_6_4",
-    a_6_5 = "a_6_5",
-    a_6_6 = "a_6_6",
-    a_6_7 = "a_6_7",
-    a_6_8 = "a_6_8",
-    a_7_1 = "a_7_1",
-    a_7_2 = "a_7_2",
-    a_7_3 = "a_7_3",
-    a_7_4 = "a_7_4",
-    a_7_5 = "a_7_5",
-    a_7_6 = "a_7_6",
-    a_7_7 = "a_7_7",
-    a_7_8 = "a_7_8",
-    a_7_9 = "a_7_9",
-    a_7_10 = "a_7_10",
-    a_7_11 = "a_7_11",
-    a_7_12 = "a_7_12",
-    a_7_13 = "a_7_13",
-    a_7_14 = "a_7_14",
-    a_8_1 = "a_8_1",
-    a_8_2 = "a_8_2",
-    a_8_3 = "a_8_3",
-    a_8_4 = "a_8_4",
-    a_8_5 = "a_8_5",
-    a_8_6 = "a_8_6",
-    a_8_7 = "a_8_7",
-    a_8_8 = "a_8_8",
-    a_8_9 = "a_8_9",
-    a_8_10 = "a_8_10",
-    a_8_11 = "a_8_11",
-    a_8_12 = "a_8_12",
-    a_8_13 = "a_8_13",
-    a_8_14 = "a_8_14",
-    a_8_15 = "a_8_15",
-    a_8_16 = "a_8_16",
-    a_8_17 = "a_8_17",
-    a_8_18 = "a_8_18",
-    a_8_19 = "a_8_19",
-    a_8_20 = "a_8_20",
-    a_8_21 = "a_8_21",
-    a_8_22 = "a_8_22",
-    a_8_23 = "a_8_23",
-    a_8_24 = "a_8_24",
-    a_8_25 = "a_8_25",
-    a_8_26 = "a_8_26",
-    a_8_27 = "a_8_27",
-    a_8_28 = "a_8_28",
-    a_8_29 = "a_8_29",
-    a_8_30 = "a_8_30",
-    a_8_31 = "a_8_31",
-    a_8_32 = "a_8_32",
-    a_8_33 = "a_8_33",
-    a_8_34 = "a_8_34",
+    /** The organization audits itself; an internal audit. */
+    first_party = "first_party",
+    /** A party with an interest in the organization audits it, such as a customer. */
+    second_party = "second_party",
+    /** An independent body audits it, such as a certification body or a regulator. */
+    third_party = "third_party",
 };
 /**
-* Categories of information security incident used to classify events and incidents per ISO/IEC 27001:2022 Annex A controls A.5.24-A.5.28 and ISO/IEC 27035 incident management guidance.
+* The kinds of audit finding.
 */
-export enum SecurityIncidentCategory {
+export enum IsmsAuditFindingType {
     
-    /** Malicious software, including viruses, worms, trojans, and ransomware. */
+    /** A requirement not met in a way that puts the ISMS's intended results in doubt. */
+    major_nonconformity = "major_nonconformity",
+    /** A requirement not met in an isolated way that leaves the ISMS's intended results in reach. */
+    minor_nonconformity = "minor_nonconformity",
+    /** A condition that could lead to a nonconformity if left alone. */
+    observation = "observation",
+    /** Evidence of practice that works well. */
+    positive_finding = "positive_finding",
+};
+/**
+* Kinds of information security incident, for sorting incidents. ISO/IEC 27001 sets no list of its own.
+*/
+export enum IsmsIncidentCategory {
+    
+    /** Malicious software, such as a virus, a worm or a trojan. */
     malware = "malware",
-    /** Malware encrypting or exfiltrating data for extortion. */
+    /** Malware that encrypts or takes data to extort money. */
     ransomware = "ransomware",
-    /** Social-engineering attempt to obtain credentials or trigger malicious action. */
+    /** A message that tries to trick someone into giving up credentials or acting. */
     phishing = "phishing",
-    /** Manipulation of people to disclose information or perform unsafe actions. */
+    /** Manipulating people into disclosing information or acting unsafely. */
     social_engineering = "social_engineering",
-    /** Access to systems or data by a party without authorization. */
+    /** Access to systems or data by someone not allowed it. */
     unauthorized_access = "unauthorized_access",
-    /** Unauthorized control of a legitimate user or service account. */
+    /** Someone else taking control of a legitimate account. */
     account_compromise = "account_compromise",
-    /** Authorized user exceeding or misusing their granted privileges. */
+    /** An authorized user going beyond or misusing their privileges. */
     privilege_misuse = "privilege_misuse",
-    /** Confirmed disclosure of confidential or personal information. */
+    /** Confidential or personal information disclosed. */
     data_breach = "data_breach",
-    /** Loss of integrity or availability of information, including accidental deletion. */
+    /** Information lost or corrupted, by accident or otherwise. */
     data_loss = "data_loss",
-    /** Disruption of availability through volumetric, protocol, or application attacks. */
+    /** Systems made unavailable by flooding or attack. */
     denial_of_service = "denial_of_service",
-    /** Attack targeting a web application (e.g., injection, XSS, broken auth). */
+    /** An attack on a web application, such as an injection. */
     web_application_attack = "web_application_attack",
-    /** Incident originating from a supplier, partner, or third-party component. */
+    /** An incident that starts at a supplier, a partner or a third-party component. */
     supply_chain = "supply_chain",
-    /** Malicious or negligent action by an internal party. */
+    /** Harm done by someone inside the organization, on purpose or by neglect. */
     insider_threat = "insider_threat",
-    /** Theft, loss, or damage of physical assets or unauthorized physical access. */
+    /** Theft, loss or damage of physical assets, or physical access without permission. */
     physical_security = "physical_security",
-    /** Misconfiguration leading to security exposure. */
+    /** A misconfiguration that exposes something. */
     configuration_error = "configuration_error",
-    /** Weak, broken, or misused cryptography. */
+    /** Cryptography that is weak, broken or misused. */
     cryptographic_failure = "cryptographic_failure",
-    /** Failure to comply with information security policies or procedures. */
+    /** A breach of the organization's security policies or procedures. */
     policy_violation = "policy_violation",
-    /** Other incident type not covered by the listed categories. */
+    /** Any incident the other categories do not fit. */
     other = "other",
 };
 /**
-* Other ISO/IEC management system standards with which the ISMS may be integrated or aligned (e.g., harmonized structure of Annex SL).
+* Management system standards an ISMS may be integrated with or audited beside, each written to ISO's harmonized structure.
 */
-export enum RelatedManagementSystem {
+export enum IsmsManagementSystemStandard {
     
     /** Information security management systems. */
     iso_iec_27001 = "iso_iec_27001",
-    /** Privacy information management systems (PIMS). */
+    /** Privacy information management systems. */
     iso_iec_27701 = "iso_iec_27701",
-    /** Information security for cloud services. */
-    iso_iec_27017 = "iso_iec_27017",
-    /** Protection of personally identifiable information in public clouds. */
-    iso_iec_27018 = "iso_iec_27018",
     /** Artificial intelligence management systems. */
     iso_iec_42001 = "iso_iec_42001",
     /** Quality management systems. */
@@ -332,983 +334,946 @@ export enum RelatedManagementSystem {
     iso_14001 = "iso_14001",
     /** Business continuity management systems. */
     iso_22301 = "iso_22301",
-    /** IT service management systems. */
+    /** Service management systems. */
     iso_iec_20000_1 = "iso_iec_20000_1",
-    /** Risk management - guidelines. */
-    iso_31000 = "iso_31000",
-};
-/**
-* Qualitative impact scale for risk assessment.
-*/
-export enum ImpactRating {
-    
-    /** No significant impact on operations or objectives. */
-    negligible = "negligible",
-    /** Limited impact, easily absorbed by normal operations. */
-    minor = "minor",
-    /** Noticeable impact requiring management intervention. */
-    moderate = "moderate",
-    /** Serious impact on objectives, reputation, or compliance. */
-    major = "major",
-    /** Catastrophic impact threatening organizational viability. */
-    severe = "severe",
 };
 
 
 /**
- * Abstract base class for all entities with an identifier, name, and description. Provides common identification and documentation slots.
+ * Anything the ISMS keeps a record of that other records can refer to: it has an identifier, a title and a description.
  */
-export interface NamedEntity {
-    /** Unique identifier for this entity instance. */
-    id: string,
-    /** Human-readable name or title. */
-    name: string,
-    /** Detailed description of the entity. */
+export interface IsmsRecord {
+    /** The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it. */
+    isms_id: string,
+    /** The name the organization gives the record. */
+    title: string,
+    /** What the record says or describes, in the organization's own words. */
     description?: string,
-    /** Date when the entity was created. */
-    created_date?: date,
-    /** Date when the entity was last modified. */
-    modified_date?: date,
-    /** Version identifier for the entity. */
-    version?: string,
 }
 
 
 /**
- * Abstract class for documented information per Clause 7.5. Captures metadata required for document control.
+ * The control that documented information is kept under: who wrote, owns and approved it, when it takes effect and is reviewed, how it is classified, distributed, stored and changed, how long it is retained, and whether it came from outside the organization.
  */
-export interface DocumentedInformation extends NamedEntity {
-    /** Classification of the documented information. */
-    document_type?: string,
-    /** Unique reference number for document control. */
+export interface IsmsDocumentControlMixin {
+    /** The reference the organization's document control gives it. */
     document_reference?: string,
-    /** Person who created the document. */
-    author?: string,
-    /** Person accountable for the document content and maintenance. */
-    owner?: string,
-    /** Person who approved the document. */
-    approved_by?: string,
-    /** Date when the document was approved. */
-    approved_date?: date,
-    /** Date when the document becomes effective. */
-    effective_date?: date,
-    /** Date when the document is due for review. */
-    review_date?: date,
-    /** Current status of the document or entity. */
-    status?: string,
-    /** Information classification level. */
-    classification?: string,
-    /** Duration for which the document is retained. */
-    retention_period?: string,
-    /** Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c). */
-    distribution_controls?: string[],
-    /** Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d). */
-    storage_and_preservation?: string,
-    /** Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e). */
-    change_control_method?: string,
-    /** Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3. */
-    external_origin?: boolean,
-    /** Source or provider of the externally originated documented information, per Clause 7.5.3. */
-    external_origin_source?: string,
+    /** The version of the document. */
+    document_version?: string,
+    /** Who wrote the document. */
+    document_author?: string,
+    /** Who answers for the document's content and upkeep. */
+    document_owner?: string,
+    /** Who approved the document. */
+    document_approver?: string,
+    /** When the document was approved. */
+    document_approval_date?: date,
+    /** When the document takes effect. */
+    document_effective_date?: date,
+    /** When the document was last reviewed. */
+    document_last_review_date?: date,
+    /** When the document is next due for review. */
+    document_next_review_date?: date,
+    /** Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn. */
+    document_status?: string,
+    /** The information classification the document carries. */
+    document_classification?: string,
+    /** How long the document is kept, as an ISO 8601 duration. */
+    document_retention?: string,
+    /** How the document is distributed, accessed, retrieved and used. */
+    document_distribution?: string[],
+    /** How the document is stored and preserved, so that it stays legible. */
+    document_storage?: string,
+    /** How changes to the document are controlled, such as version control. */
+    document_change_control?: string,
+    /** Whether the document comes from outside the organization and is kept because the ISMS needs it. */
+    document_external_origin?: boolean,
+    /** Who the document came from, when it comes from outside. */
+    document_external_source?: string,
 }
 
 
 /**
- * Top-level container representing an organization's complete ISMS per ISO 27001. Aggregates all components required to support the full ISMS lifecycle.
+ * One organization's information security management system: its scope and context, and every record it keeps, each kind in a list of its own.
  */
-export interface InformationSecurityManagementSystem extends NamedEntity {
-    /** Reference to the organization operating the ISMS. */
-    organization?: OrganizationId,
-    /** The person or group of people who direct and control the organization at the highest level, accountable for the ISMS per Clause 5.1. */
-    top_management?: string,
-    /** The governing body to which top management reports, where applicable (e.g., board of directors). Referenced in ISO/IEC 27001:2022 Clause 5.1 NOTE. */
-    governing_body?: string,
-    /** Evidence of leadership and commitment with respect to the ISMS as required by Clause 5.1 a-h). */
-    leadership_commitment_evidence?: string[],
-    /** Documented statement of ISMS scope per 4.3. */
-    scope_statement?: string,
-    /** Defined boundaries of the ISMS scope. */
-    scope_boundaries?: string[],
-    /** Any exclusions from scope with justification. */
-    scope_exclusions?: string[],
-    /** Interfaces and dependencies between activities performed by the organization and those performed by other organizations, considered when determining the ISMS scope per Clause 4.3 c). */
-    interfaces_and_dependencies?: string[],
-    /** Description of the processes needed for the ISMS and their interactions, per Clause 4.4. */
-    processes_and_interactions?: string,
-    /** Internal issues relevant to ISMS per 4.1. */
-    context_internal_issues?: string[],
-    /** External issues relevant to ISMS per 4.1. */
-    context_external_issues?: string[],
-    /** Stakeholders relevant to the ISMS. */
-    interested_parties?: InterestedPartyId[],
-    /** Reference to the information security policy. */
-    information_security_policy?: InformationSecurityPolicyId,
-    /** Information security objectives. */
-    objectives?: InformationSecurityObjectiveId[],
-    /** Actions to address risks and opportunities determined per Clause 6.1.1, including how they are integrated into ISMS processes and how their effectiveness is evaluated. */
-    risks_and_opportunities_actions?: string[],
-    /** Changes to the ISMS planned and controlled per Clause 6.3 and 8.1 (planning of changes; control of planned changes). */
-    planned_changes?: string[],
-    /** Externally provided processes, products or services relevant to the ISMS that are controlled per Clause 8.1. */
-    externally_provided_services?: string[],
-    /** Reference to the risk assessment process. */
-    risk_assessment_process?: RiskAssessmentProcessId,
-    /** Reference to the risk treatment process. */
-    risk_treatment_process?: RiskTreatmentProcessId,
-    /** Reference to the Statement of Applicability. */
-    statement_of_applicability?: StatementOfApplicabilityId,
-    /** Security controls applied in the ISMS. */
-    controls?: SecurityControlId[],
-    /** Information security roles defined in the ISMS. */
-    roles?: RoleId[],
-    /** Resources provided for the ISMS. */
-    resources?: ResourceId[],
-    /** Competence records for personnel. */
-    competence_records?: CompetenceRecordId[],
-    /** Reference to the awareness program. */
-    awareness_program?: AwarenessProgramId,
-    /** Reference to the communication plan. */
-    communication_plan?: CommunicationPlanId,
-    /** Register of documented information. */
-    documented_information_register?: DocumentedInformationId[],
-    /** Operational procedures. */
-    operational_procedures?: OperationalProcedureId[],
-    /** Risk assessment instances. */
-    risk_assessments?: RiskAssessmentId[],
-    /** Risk treatment plans. */
-    risk_treatment_plans?: RiskTreatmentPlanId[],
-    /** Reference to the monitoring program. */
-    monitoring_program?: MonitoringProgramId,
-    /** Internal audit instances. */
-    internal_audits?: InternalAuditId[],
-    /** Management review instances. */
-    management_reviews?: ManagementReviewId[],
-    /** Nonconformities identified. */
-    nonconformities?: NonconformityId[],
-    /** Corrective actions. */
-    corrective_actions?: CorrectiveActionId[],
-    /** Improvement opportunities tracked. */
-    improvements?: ImprovementOpportunityId[],
-    /** Current certification status. */
-    certification_status?: string,
-    /** Accredited certification body. */
-    certification_body?: string,
-    /** Date certification was achieved. */
-    certification_date?: date,
-    /** Date recertification is due. */
-    recertification_date?: date,
+export interface IsmsManagementSystem extends IsmsRecord {
+    /** The organization that runs the ISMS. */
+    isms_organization?: IsmsOrganization,
+    /** The person or group that directs and controls the organization at the highest level. */
+    isms_top_management?: string,
+    /** The body top management answers to, such as a board, where there is one. */
+    isms_governing_body?: string,
+    /** What shows that top management leads and commits to the ISMS. */
+    isms_leadership_evidence?: string[],
+    /** The scope of the ISMS, as the organization states it. */
+    isms_scope?: string,
+    /** Where the scope of the ISMS ends. */
+    isms_scope_boundaries?: string[],
+    /** What the scope leaves out, each with the reason. */
+    isms_scope_exclusions?: string[],
+    /** The interfaces and dependencies between what the organization does and what other organizations do, which the scope takes into account. */
+    isms_interfaces?: string[],
+    /** The processes the ISMS needs and how they interact. */
+    isms_processes?: string,
+    /** The internal issues that bear on the ISMS. */
+    isms_internal_issues?: string[],
+    /** The external issues that bear on the ISMS. */
+    isms_external_issues?: string[],
+    /** The actions planned to address the ISMS's risks and opportunities, and how they fit into its processes. */
+    isms_risk_and_opportunity_actions?: string[],
+    /** The changes to the ISMS that are planned. */
+    isms_planned_changes?: string[],
+    /** The processes, products or services from outside the organization that the ISMS relies on and controls. */
+    isms_external_services?: string[],
+    /** Where the ISMS stands with certification, in the organization's own terms. */
+    isms_certification_status?: string,
+    /** The body that certifies the ISMS. */
+    isms_certification_body?: string,
+    /** When the ISMS was certified. */
+    isms_certification_date?: date,
+    /** When the ISMS is next due for recertification. */
+    isms_recertification_date?: date,
+    /** The interested parties the ISMS takes into account. */
+    isms_interested_parties?: IsmsInterestedParty[],
+    /** The information security policy. */
+    isms_policy?: IsmsPolicy,
+    /** The topic-specific policies under the information security policy. */
+    isms_topic_specific_policies?: IsmsTopicSpecificPolicy[],
+    /** The roles that carry the ISMS's responsibilities and authorities. */
+    isms_roles?: IsmsRole[],
+    /** The information security objectives. */
+    isms_objectives?: IsmsObjective[],
+    /** The information security risk assessment process. */
+    isms_risk_assessment_process?: IsmsRiskAssessmentProcess,
+    /** The information security risk treatment process. */
+    isms_risk_treatment_process?: IsmsRiskTreatmentProcess,
+    /** The risk assessments carried out. */
+    isms_risk_assessments?: IsmsRiskAssessment[],
+    /** The risks identified, the risk register. */
+    isms_risks?: IsmsRisk[],
+    /** The risk treatment plans. */
+    isms_risk_treatment_plans?: IsmsRiskTreatmentPlan[],
+    /** The Statement of Applicability. */
+    isms_statement_of_applicability?: IsmsStatementOfApplicability,
+    /** The controls the organization has determined it needs. */
+    isms_controls?: IsmsControl[],
+    /** The inventory of information and other associated assets. */
+    isms_assets?: IsmsAsset[],
+    /** The resources provided for the ISMS. */
+    isms_resources?: IsmsResource[],
+    /** The records of competence. */
+    isms_competence_records?: IsmsCompetenceRecord[],
+    /** The awareness programme. */
+    isms_awareness_programme?: IsmsAwarenessProgramme,
+    /** The plan for communication about the ISMS. */
+    isms_communication_plan?: IsmsCommunicationPlan,
+    /** The documented information the ISMS keeps that no more specific list holds, such as procedures, plans and reports. */
+    isms_documented_information?: IsmsDocumentedInformation[],
+    /** The procedures for operational planning and control. */
+    isms_operational_procedures?: IsmsOperationalProcedure[],
+    /** The programme of monitoring and measurement. */
+    isms_monitoring_programme?: IsmsMonitoringProgramme,
+    /** The audit programmes. */
+    isms_audit_programmes?: IsmsAuditProgramme[],
+    /** The audits of the ISMS, internal and external. */
+    isms_audits?: IsmsAudit[],
+    /** The management reviews. */
+    isms_management_reviews?: IsmsManagementReview[],
+    /** The nonconformities found. */
+    isms_nonconformities?: IsmsNonconformity[],
+    /** The corrective actions taken. */
+    isms_corrective_actions?: IsmsCorrectiveAction[],
+    /** The opportunities for improvement identified. */
+    isms_improvements?: IsmsImprovementOpportunity[],
+    /** The information security events reported, the incidents among them. */
+    isms_security_events?: IsmsSecurityEvent[],
 }
 
 
 /**
- * The organization establishing and operating the ISMS. Captures context needed for Clause 4.1 (understanding the organization).
+ * The organization that runs the ISMS, with what it needs to know about itself to understand its context.
  */
-export interface Organization extends NamedEntity {
-    /** Legal registered name of the organization. */
-    legal_name?: string,
-    /** Names under which the organization conducts business. */
-    trading_names?: string[],
-    /** Type of organization (e.g., corporation, government, nonprofit). */
-    organization_type?: string,
-    /** Primary industry sector of the organization. */
-    industry_sector?: string,
-    /** Organization size classification. */
-    size_category?: string,
-    /** Approximate number of employees. */
-    employee_count?: number,
-    /** Countries or regions where the organization operates. */
-    geographic_locations?: string[],
-    /** Jurisdictions whose regulations apply to the organization. */
-    regulatory_jurisdictions?: string[],
-    /** Parent organization if applicable. */
-    parent_organization?: string,
-    /** Subsidiary organizations if applicable. */
-    subsidiaries?: string[],
-    /** Whether climate change has been determined to be a relevant issue for the organization's context, per Clause 4.1 as amended by Amd. 1:2024. */
-    climate_change_relevant?: boolean,
+export interface IsmsOrganization extends IsmsRecord {
+    /** The organization's registered legal name. */
+    organization_legal_name?: string,
+    /** Other names the organization trades under. */
+    organization_trading_names?: string[],
+    /** What kind of organization it is, such as a company, an agency or a charity. */
+    organization_kind?: string,
+    /** The organization's main industry sector. */
+    organization_sector?: string,
+    /** How the organization classes its own size. */
+    organization_size?: string,
+    /** About how many people the organization employs. */
+    organization_employee_count?: number,
+    /** The countries or regions the organization works in. */
+    organization_locations?: string[],
+    /** The jurisdictions whose laws and regulations apply to the organization. */
+    organization_jurisdictions?: string[],
+    /** The organization's parent, if it has one. */
+    organization_parent?: string,
+    /** The organization's subsidiaries, if it has any. */
+    organization_subsidiaries?: string[],
+    /** Whether the organization has determined that climate change is a relevant issue for its ISMS. */
+    organization_climate_change_relevant?: boolean,
 }
 
 
 /**
- * A stakeholder whose needs and expectations are relevant to the ISMS per 4.2. Includes internal parties (employees, management) and external parties (customers, regulators, suppliers).
+ * A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it, such as staff, customers, regulators or suppliers.
  */
-export interface InterestedParty extends NamedEntity {
-    /** Category of interested party. */
-    party_type?: string,
-    /** Nature of the relationship with the organization. */
-    relationship?: string,
-    /** Requirements of the interested party. */
-    requirements?: string[],
-    /** Requirements of the interested party that the organization has determined will be addressed through the ISMS, per Clause 4.2 c). */
-    addressed_requirements?: string[],
-    /** Climate-change-related requirements of the interested party, per ISO/IEC 27001:2022 Clause 4.2 NOTE 2 as added by Amd. 1:2024. */
-    climate_change_related_requirements?: string[],
-    /** Communication requirements for this party. */
-    communication_needs?: string,
-    /** Contact details for the party. */
-    contact_information?: string,
+export interface IsmsInterestedParty extends IsmsRecord {
+    /** What kind of interested party it is, in the organization's own terms. */
+    party_category?: string,
+    /** How the party relates to the organization. */
+    party_relationship?: string,
+    /** The party's requirements that bear on information security. */
+    party_requirements?: string[],
+    /** Which of those requirements the ISMS addresses. */
+    party_addressed_requirements?: string[],
+    /** The party's requirements that concern climate change. */
+    party_climate_change_requirements?: string[],
+    /** What the party needs to be told, and how. */
+    party_communication_needs?: string,
+    /** How to reach the party. */
+    party_contact?: string,
 }
 
 
 /**
- * The information security policy established by top management per Clause 5.2. Provides framework for setting objectives and demonstrates commitment.
+ * The information security policy that top management sets: the organization's commitment and the frame for its information security objectives.
  */
-export interface InformationSecurityPolicy extends DocumentedInformation {
-    /** The core policy statement text. */
+export interface IsmsPolicy extends IsmsRecord, IsmsDocumentControlMixin {
+    /** The policy's own statement, in the organization's words. */
     policy_statement?: string,
-    /** Framework for setting information security objectives. */
+    /** How the policy frames the setting of information security objectives. */
     policy_objectives_framework?: string,
-    /** Statements of commitment included in the policy. */
-    commitment_statements?: string[],
-    /** Statement of policy applicability. */
-    applicability_statement?: string,
-    /** Date when the policy was communicated. */
-    communication_date?: date,
-    /** Whether acknowledgment is required from personnel. */
-    acknowledgment_required?: boolean,
-    /** Date of the most recent information security policy review. */
-    last_policy_review_date?: date,
-    /** Planned date of the next information security policy review. */
-    next_policy_review_date?: date,
-    /** Topic-specific policies supporting this policy. */
-    related_topic_policies?: TopicSpecificPolicyId[],
-    /** Other ISO/IEC management system standards with which the ISMS is integrated or aligned (per the harmonized structure of Annex SL). */
-    integrated_management_systems?: string,
+    /** The commitments the policy makes. */
+    policy_commitments?: string[],
+    /** To whom and to what the policy applies. */
+    policy_applicability?: string,
+    /** When the policy was communicated within the organization. */
+    policy_communication_date?: date,
+    /** Whether staff must acknowledge the policy. */
+    policy_acknowledgement_required?: boolean,
+    /** The other management system standards the ISMS is integrated with under the same policy. */
+    policy_management_systems?: string,
 }
 
 
 /**
- * A policy addressing a specific information security topic, supporting the overarching information security policy.
+ * A policy on one topic of information security, such as access control or backup, that supports the information security policy.
  */
-export interface TopicSpecificPolicy extends DocumentedInformation {
-    /** The specific topic addressed by the policy. */
-    topic_area?: string,
-    /** The parent policy this topic-specific policy supports. */
-    parent_policy?: InformationSecurityPolicyId,
-    /** Controls related to this policy. */
-    applicable_controls?: SecurityControlId[],
-    /** Intended audience for the policy or document. */
-    target_audience?: string,
+export interface IsmsTopicSpecificPolicy extends IsmsRecord, IsmsDocumentControlMixin {
+    /** The organization's controls that the record concerns. */
+    relevant_controls?: IsmsControlIsmsId[],
+    /** The topic the policy covers. */
+    topic_policy_topic?: string,
+    /** The information security policy this policy supports. */
+    topic_policy_parent?: IsmsPolicyIsmsId,
+    /** Whom the policy is written for. */
+    topic_policy_audience?: string,
 }
 
 
 /**
- * An information security role with defined responsibilities and authorities per Clause 5.3.
+ * A role in the ISMS, with the responsibilities and authorities it carries and who holds it.
  */
-export interface Role extends NamedEntity {
-    /** Category of the role. */
-    role_type?: string,
-    /** Responsibilities assigned to the role. */
-    responsibilities?: string[],
-    /** Authorities granted to the role. */
-    authorities?: string[],
+export interface IsmsRole extends IsmsRecord {
+    /** What kind of role it is, in the organization's own terms. */
+    role_category?: string,
+    /** The responsibilities assigned to the role. */
+    role_responsibilities?: string[],
+    /** The authorities the role carries. */
+    role_authorities?: string[],
     /** What the role is accountable for. */
-    accountability?: string,
-    /** Person(s) assigned to this role. */
-    assigned_to?: string[],
-    /** Rules for delegating responsibilities. */
-    delegation_rules?: string,
-    /** To whom this role reports. */
-    reporting_line?: string,
+    role_accountability?: string,
+    /** The people who hold the role. */
+    role_holders?: string[],
+    /** How the role may delegate its responsibilities. */
+    role_delegation?: string,
+    /** The role this role reports to. */
+    role_reports_to?: IsmsRoleIsmsId,
 }
 
 
 /**
- * A measurable information security objective per Clause 6.2, established at relevant functions and levels of the organization.
+ * An information security objective: a measurable result the organization aims for, with how it plans to reach it and how it measures progress.
  */
-export interface InformationSecurityObjective extends NamedEntity {
-    /** Clear statement of the objective. */
+export interface IsmsObjective extends IsmsRecord {
+    /** The role that answers for the record's activity or outcome. */
+    responsible_role?: IsmsRoleIsmsId,
+    /** The organization's controls that the record concerns. */
+    relevant_controls?: IsmsControlIsmsId[],
+    /** The objective, as the organization states it. */
     objective_statement?: string,
-    /** Target value for the objective metric. */
-    target_value?: string,
-    /** Current measured value. */
-    current_value?: string,
-    /** Definition of how the objective is measured. */
-    metric_definition?: string,
-    /** Method used to measure the metric. */
-    measurement_method?: string,
-    /** How often measurement is performed. */
-    measurement_frequency?: string,
-    /** Role responsible for the objective or control. */
-    responsible_role?: RoleId,
-    /** Target date for achieving the objective. */
-    target_date?: date,
-    /** Current status of objective achievement. */
-    achievement_status?: string,
-    /** Associated risks. */
-    related_risks?: RiskId[],
-    /** Other controls related to this one. */
-    related_controls?: SecurityControlId[],
-    /** Plan for achieving the objective. */
-    action_plan?: string,
-    /** Resources required to achieve the information security objective. */
-    objective_resources_required?: string,
+    /** The value the objective aims for. */
+    objective_target?: string,
+    /** The value last measured. */
+    objective_current_value?: string,
+    /** How the objective's value is defined. */
+    objective_metric?: string,
+    /** How the value is measured. */
+    objective_measurement_method?: string,
+    /** How often the value is measured. */
+    objective_measurement_frequency?: string,
+    /** When the objective is to be reached. */
+    objective_target_date?: date,
+    /** How far the objective has been reached, in the organization's own terms. */
+    objective_achievement?: string,
+    /** The risks the objective concerns. */
+    objective_risks?: IsmsRiskIsmsId[],
+    /** What will be done to reach the objective. */
+    objective_action_plan?: string,
+    /** The resources needed to reach the objective. */
+    objective_resources?: string,
 }
 
 
 /**
- * The documented risk assessment process per Clause 6.1.2, defining criteria and methodology for identifying, analyzing, and evaluating risks.
+ * The organization's process for assessing information security risks: its criteria for accepting risk and for assessing it, its scales and method, and when it runs.
  */
-export interface RiskAssessmentProcess extends DocumentedInformation {
-    /** Criteria for accepting risks. */
+export interface IsmsRiskAssessmentProcess extends IsmsRecord, IsmsDocumentControlMixin {
+    /** The criteria for accepting a risk. */
     risk_acceptance_criteria?: string,
-    /** Criteria for performing risk assessments. */
-    assessment_criteria?: string,
-    /** Methodology used for risk assessment. */
-    assessment_methodology?: string,
-    /** Scale used for likelihood rating. */
-    likelihood_scale?: string,
-    /** Scale used for impact rating. */
-    impact_scale?: string,
-    /** Risk matrix or calculation method. */
+    /** The criteria for carrying out a risk assessment. */
+    risk_assessment_criteria?: string,
+    /** The method used to identify, analyse and evaluate risks. */
+    risk_assessment_method?: string,
+    /** The scale for rating likelihood. */
+    risk_likelihood_scale?: string,
+    /** The scale for rating consequences. */
+    risk_impact_scale?: string,
+    /** How likelihood and consequence combine into a risk level. */
     risk_matrix?: string,
-    /** Planned frequency of risk assessments. */
-    assessment_frequency?: string,
-    /** Events that trigger risk assessment outside planned schedule. */
-    trigger_events?: string[],
+    /** How often risks are assessed. */
+    risk_assessment_frequency?: string,
+    /** The events that start a risk assessment outside the planned ones. */
+    risk_assessment_triggers?: string[],
 }
 
 
 /**
- * An instance of risk assessment performed per Clause 8.2, identifying and evaluating information security risks.
+ * One risk assessment carried out under the risk assessment process, and what it found.
  */
-export interface RiskAssessment extends DocumentedInformation {
-    /** Scope of the assessment. */
+export interface IsmsRiskAssessment extends IsmsRecord, IsmsDocumentControlMixin {
+    /** What the assessment covered. */
     assessment_scope?: string,
-    /** Date the assessment was conducted. */
+    /** When the assessment was carried out. */
     assessment_date?: date,
-    /** Person or team who conducted the assessment. */
-    assessor?: string,
-    /** Specific methodology applied in this assessment. */
-    methodology_used?: string,
-    /** Risks identified in this assessment. */
-    risks_identified?: RiskId[],
-    /** Summary of assessment findings. */
-    summary_findings?: string,
-    /** Recommendations from the assessment. */
-    recommendations?: string[],
-    /** Planned date for next assessment. */
-    next_assessment_date?: date,
+    /** Who carried out the assessment. */
+    assessment_assessor?: string,
+    /** The method this assessment applied. */
+    assessment_method_used?: string,
+    /** The risks the assessment identified. */
+    assessment_risks?: IsmsRiskIsmsId[],
+    /** A summary of what the assessment found. */
+    assessment_summary?: string,
+    /** What the assessment recommends. */
+    assessment_recommendations?: string[],
+    /** When the next assessment is planned. */
+    assessment_next_date?: date,
 }
 
 
 /**
- * An identified information security risk that may affect information security properties within the ISMS scope.
+ * An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated.
  */
-export interface Risk extends NamedEntity {
-    /** Source or origin of the risk. */
+export interface IsmsRisk extends IsmsRecord {
+    /** The assets the risk, event or incident affects. */
+    affected_assets?: IsmsAssetIsmsId[],
+    /** Which of confidentiality, integrity and availability the risk or incident threatens. */
+    affected_security_properties?: string,
+    /** Where the risk comes from. */
     risk_source?: string,
-    /** Description of the threat exploiting the vulnerability. */
-    threat_description?: string,
-    /** Description of the vulnerability that could be exploited. */
-    vulnerability_description?: string,
-    /** Assets affected by this risk or incident. */
-    affected_assets?: AssetId[],
-    /** Which CIA properties are affected (confidentiality, integrity, availability). */
-    affected_cia_properties?: string,
-    /** Person accountable for managing the risk. */
+    /** The threat that could cause harm. */
+    risk_threat?: string,
+    /** The weakness the threat could exploit. */
+    risk_vulnerability?: string,
+    /** The person who is accountable for the risk and has the authority to manage it. */
     risk_owner?: string,
-    /** Assessed likelihood of risk occurrence. */
-    likelihood?: string,
-    /** Assessed impact if risk materializes. */
-    impact?: string,
-    /** Risk level before controls are applied. */
-    inherent_risk_level?: string,
-    /** Controls currently in place affecting this risk. */
-    existing_controls?: SecurityControlId[],
-    /** Risk level after controls are applied. */
-    residual_risk_level?: string,
-    /** Selected treatment option for the risk. */
+    /** How likely the risk is. */
+    risk_likelihood?: string,
+    /** How severe the consequences would be. */
+    risk_impact?: string,
+    /** The risk's level before controls. */
+    risk_inherent_level?: string,
+    /** The organization's controls already acting on the risk. */
+    risk_existing_controls?: IsmsControlIsmsId[],
+    /** The risk's level after controls. */
+    risk_residual_level?: string,
+    /** The treatment chosen for the risk. */
     risk_treatment_option?: string,
-    /** Priority for treating this risk. */
-    treatment_priority?: string,
-    /** Risk treatment plan addressing this risk. */
-    related_treatment_plan?: RiskTreatmentPlanId,
+    /** How soon the risk is to be treated, in the organization's own terms. */
+    risk_treatment_priority?: string,
 }
 
 
 /**
- * The documented risk treatment process per Clause 6.1.3, defining how treatment options are selected and controls determined.
+ * The organization's process for treating information security risks: how it chooses treatments and controls, checks them against Annex A, and produces the Statement of Applicability.
  */
-export interface RiskTreatmentProcess extends DocumentedInformation {
-    /** Guidance on selecting treatment options. */
+export interface IsmsRiskTreatmentProcess extends IsmsRecord, IsmsDocumentControlMixin {
+    /** How a treatment option is chosen for a risk. */
     treatment_options_guidance?: string,
-    /** Criteria for selecting controls. */
-    control_selection_criteria?: string,
-    /** Description of how controls determined as necessary are compared with those in Annex A to verify that no necessary controls have been omitted, per Clause 6.1.3 c). */
-    annex_a_omission_verification?: string,
-    /** Template used for Statement of Applicability. */
-    soa_template?: string,
-    /** Workflow for approving risk treatment. */
-    approval_workflow?: string,
+    /** How the controls a treatment needs are chosen. */
+    treatment_control_selection?: string,
+    /** How the chosen controls are compared with Annex A, so that no necessary control is left out. */
+    treatment_annex_a_comparison?: string,
+    /** The template the Statement of Applicability follows. */
+    treatment_soa_template?: string,
+    /** How a treatment plan and its residual risks are approved. */
+    treatment_approval_workflow?: string,
 }
 
 
 /**
- * A risk treatment plan documenting planned actions to address identified risks through selected controls.
+ * A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's approval of the plan and of the residual risk.
  */
-export interface RiskTreatmentPlan extends DocumentedInformation {
-    /** Scope of the plan. */
+export interface IsmsRiskTreatmentPlan extends IsmsRecord, IsmsDocumentControlMixin {
+    /** How far the control or the plan has been put into effect. */
+    implementation_state?: string,
+    /** What the plan covers. */
     plan_scope?: string,
-    /** Risks addressed by this plan. */
-    risks_addressed?: RiskId[],
-    /** Actions to be taken for treatment. */
-    treatment_actions?: string[],
-    /** Controls to be implemented as part of treatment. */
-    controls_to_implement?: SecurityControlId[],
-    /** Resources required for implementation. */
-    resources_required?: string,
-    /** Parties responsible for implementation. */
-    responsible_parties?: string[],
-    /** Timeline for implementation. */
-    implementation_timeline?: string,
-    /** Risk owner who approved the plan. */
-    risk_owner_approval?: string,
-    /** Date when the risk treatment plan was approved. */
-    approved_date?: date,
-    /** Documentation of residual risk acceptance. */
-    residual_risk_acceptance?: string,
-    /** Current implementation status. */
-    implementation_status?: string,
-    /** Date when implementation was completed. */
-    completion_date?: date,
+    /** The risks the plan treats. */
+    plan_risks?: IsmsRiskIsmsId[],
+    /** The actions the plan takes. */
+    plan_actions?: string[],
+    /** The controls the plan puts in place. */
+    plan_controls?: IsmsControlIsmsId[],
+    /** The resources the plan needs. */
+    plan_resources?: string,
+    /** Who carries out the plan. */
+    plan_responsible_parties?: string[],
+    /** When the plan's actions are to happen. */
+    plan_timeline?: string,
+    /** The risk owner who approved the plan. */
+    plan_risk_owner_approval?: string,
+    /** How the risk owners accepted the risk that remains. */
+    plan_residual_risk_acceptance?: string,
+    /** When the plan was completed. */
+    plan_completion_date?: date,
 }
 
 
 /**
- * The Statement of Applicability (SoA) recording which controls apply, their rationale, and current implementation state.
+ * The Statement of Applicability: each control the organization needs, with why it is included and whether it is in place, and each Annex A control it leaves out, with why.
  */
-export interface StatementOfApplicability extends DocumentedInformation {
-    /** Individual control entries in the SoA. */
-    soa_entries?: SoAEntry[],
-    /** Total number of controls in scope. */
-    total_controls?: number,
-    /** Number of implemented controls. */
-    implemented_count?: number,
-    /** Number of controls planned for implementation. */
-    planned_count?: number,
-    /** Number of controls marked not applicable. */
-    not_applicable_count?: number,
-    /** Date of last review. */
-    last_review_date?: date,
-    /** Person who approved the document. */
-    approved_by?: string,
+export interface IsmsStatementOfApplicability extends IsmsRecord, IsmsDocumentControlMixin {
+    /** The statement's entries, one for each control included or Annex A control excluded. */
+    soa_entries?: IsmsApplicabilityEntry[],
 }
 
 
 /**
- * A single entry in the Statement of Applicability, documenting the applicability and implementation status of one control.
+ * One entry of the Statement of Applicability, which either includes a control or excludes an Annex A control, and says why.
  */
-export interface SoAEntry {
-    /** Reference to the control (e.g., A.5.1). */
-    control_reference?: SecurityControlId,
-    /** Whether the control is applicable. */
-    is_applicable?: boolean,
-    /** Justification for including the control. */
-    inclusion_justification?: string,
-    /** Justification for excluding the control. */
-    exclusion_justification?: string,
-    /** Current implementation status. */
-    implementation_status?: string,
-    /** Evidence of control implementation. */
-    implementation_evidence?: string,
-    /** Role responsible for the objective or control. */
-    responsible_role?: RoleId,
-    /** Target date for implementing the control. */
-    target_implementation_date?: date,
+export interface IsmsApplicabilityEntry {
+    /** The Annex A control a Statement of Applicability entry concerns. */
+    entry_annex_a_control?: string,
+    /** The kind of entry: IsmsIncludedControl or IsmsExcludedControl. */
+    entry_type?: string,
+    /** Why the control is included or excluded. */
+    entry_justification: string,
 }
 
 
 /**
- * A security control from Annex A of ISO/IEC 27001:2022, derived from ISO/IEC 27002:2022. Represents a measure that modifies risk.
+ * An entry that includes a control the organization needs, from Annex A or from elsewhere, and says whether it is in place.
  */
-export interface SecurityControl extends NamedEntity {
-    /** Control identifier from Annex A (e.g., a_5_1, a_8_24). */
-    control_id?: string,
-    /** Title of the control. */
-    control_title?: string,
-    /** Domain category of the control. */
-    control_category?: string,
-    /** Organization-authored control statement or external control summary. */
+export interface IsmsIncludedControl extends IsmsApplicabilityEntry {
+    /** How far the control or the plan has been put into effect. */
+    implementation_state: string,
+    /** The role that answers for the record's activity or outcome. */
+    responsible_role?: IsmsRoleIsmsId,
+    /** The organization's control the entry includes. */
+    included_control?: IsmsControlIsmsId,
+    /** What shows that the control is in place. */
+    included_evidence?: string,
+    /** When the control is to be in place, if it is not yet. */
+    included_target_date?: date,
+}
+
+
+/**
+ * An entry that leaves out an Annex A control the organization does not need, and says why.
+ */
+export interface IsmsExcludedControl extends IsmsApplicabilityEntry {
+}
+
+
+/**
+ * A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.
+ */
+export interface IsmsControl extends IsmsRecord {
+    /** The organization's controls that the record concerns. */
+    relevant_controls?: IsmsControlIsmsId[],
+    /** How far the control or the plan has been put into effect. */
+    implementation_state?: string,
+    /** The Annex A controls the control answers to. */
+    control_annex_a_controls?: string,
+    /** Which of Annex A's four themes the control belongs to. */
+    control_theme?: string,
+    /** What the control does, in the organization's own words. */
     control_text?: string,
-    /** Organization-authored implementation notes for the control. */
-    implementation_guidance?: string,
-    /** Other controls related to this one. */
-    related_controls?: SecurityControlId[],
-    /** Threats this control addresses. */
-    applicable_threats?: string[],
-    /** Asset types this control applies to. */
-    applicable_assets?: string[],
-    /** Person responsible for the control. */
+    /** The organization's notes on putting the control in place. */
+    control_guidance?: string,
+    /** The threats the control acts against. */
+    control_threats?: string[],
+    /** The kinds of asset the control applies to. */
+    control_asset_types?: string[],
+    /** The person who owns the control. */
     control_owner?: string,
-    /** Current implementation status. */
-    implementation_status?: string,
-    /** Date the control was implemented. */
-    implementation_date?: date,
-    /** Rating of control effectiveness. */
-    effectiveness_rating?: string,
-    /** Date the control was last tested. */
-    last_test_date?: date,
-    /** References to evidence of implementation. */
-    evidence_references?: string[],
+    /** When the control was put in place. */
+    control_implementation_date?: date,
+    /** How well the control works, in the organization's own terms. */
+    control_effectiveness?: string,
+    /** When the control was last tested. */
+    control_last_tested?: date,
+    /** Where the evidence that the control is in place is kept. */
+    control_evidence?: string[],
 }
 
 
 /**
- * A resource provided for the ISMS per Clause 7.1, including personnel, infrastructure, technology, and budget.
+ * An item in the inventory of information and other associated assets: what it is, who owns and looks after it, where it is, how it is classified and how much it matters.
  */
-export interface Resource extends NamedEntity {
-    /** Type of resource. */
-    resource_type?: string,
-    /** Quantity of the resource. */
-    quantity?: string,
-    /** Date the resource was allocated. */
-    allocation_date?: date,
+export interface IsmsAsset extends IsmsRecord {
+    /** The organization's controls that the record concerns. */
+    relevant_controls?: IsmsControlIsmsId[],
+    /** What kind of asset it is, such as information, software, hardware or a service. */
+    asset_category?: string,
+    /** Who owns the asset. */
+    asset_owner?: string,
+    /** Who looks after the asset from day to day. */
+    asset_custodian?: string,
+    /** The information classification the asset carries. */
+    asset_classification?: string,
+    /** Where the asset is, physically or logically. */
+    asset_location?: string,
+    /** How much the asset matters, in the organization's own terms. */
+    asset_criticality?: string,
+}
+
+
+/**
+ * A resource provided for the ISMS, such as people, time, tools or budget.
+ */
+export interface IsmsResource extends IsmsRecord {
+    /** What kind of resource it is. */
+    resource_category?: string,
+    /** How much of the resource is provided. */
+    resource_quantity?: string,
+    /** When the resource was allocated. */
+    resource_allocation_date?: date,
     /** What the resource is allocated to. */
-    allocated_to?: string,
-    /** Cost of the resource. */
-    cost?: string,
-    /** Current availability of the resource. */
-    availability_status?: string,
+    resource_allocated_to?: string,
+    /** What the resource costs. */
+    resource_cost?: string,
+    /** Whether the resource is available now, in the organization's own terms. */
+    resource_availability?: string,
 }
 
 
 /**
- * Evidence of competence for personnel affecting information security performance per Clause 7.2 d).
+ * The evidence of one person's competence for work that affects information security, and what is done to close any gap.
  */
-export interface CompetenceRecord extends DocumentedInformation {
-    /** Name of the person. */
-    person_name?: string,
-    /** Role of the person. */
-    person_role?: string,
-    /** Competencies required for the role. */
-    required_competencies?: string[],
-    /** Education qualifications. */
-    education_records?: string[],
-    /** Training completed. */
-    training_records?: string[],
-    /** Relevant experience. */
-    experience_records?: string[],
-    /** Date of last competency assessment. */
-    competency_assessment_date?: date,
-    /** Identified competency gaps. */
-    competency_gaps?: string[],
-    /** Actions to address competency gaps. */
-    development_actions?: string[],
+export interface IsmsCompetenceRecord extends IsmsRecord, IsmsDocumentControlMixin {
+    /** The person the record is about. */
+    competence_person?: string,
+    /** The role the person holds. */
+    competence_role?: IsmsRoleIsmsId,
+    /** The competences the role needs. */
+    competence_required?: string[],
+    /** The person's relevant education. */
+    competence_education?: string[],
+    /** The training the person has completed. */
+    competence_training?: string[],
+    /** The person's relevant experience. */
+    competence_experience?: string[],
+    /** When the person's competence was last assessed. */
+    competence_assessment_date?: date,
+    /** The gaps the assessment found. */
+    competence_gaps?: string[],
+    /** What is done to close the gaps. */
+    competence_actions?: string[],
 }
 
 
 /**
- * The awareness program ensuring personnel understand their information security responsibilities per Clause 7.3.
+ * The programme that makes people working for the organization aware of the policy, their part in the ISMS and what failing it would mean.
  */
-export interface AwarenessProgram extends DocumentedInformation {
-    /** Topics covered in awareness program. */
+export interface IsmsAwarenessProgramme extends IsmsRecord, IsmsDocumentControlMixin {
+    /** The topics the programme covers. */
     awareness_topics?: string[],
-    /** Methods used to deliver awareness content. */
-    delivery_methods?: string[],
-    /** Intended audience for the policy or document. */
-    target_audience?: string,
-    /** Frequency of the activity. */
-    frequency?: string,
+    /** How the programme is delivered. */
+    awareness_methods?: string[],
+    /** Whom the programme is for. */
+    awareness_audience?: string,
+    /** How often the programme runs. */
+    awareness_frequency?: string,
     /** How completion is tracked. */
-    completion_tracking?: string,
-    /** How effectiveness is measured. */
-    effectiveness_measures?: string,
+    awareness_completion_tracking?: string,
+    /** How the programme's effect is measured. */
+    awareness_effectiveness?: string,
 }
 
 
 /**
- * Plan for internal and external communications relevant to the ISMS per Clause 7.4.
+ * The plan for communication about the ISMS, inside the organization and outside it.
  */
-export interface CommunicationPlan extends DocumentedInformation {
-    /** Communication items in the plan. */
-    communication_items?: CommunicationItem[],
+export interface IsmsCommunicationPlan extends IsmsRecord, IsmsDocumentControlMixin {
+    /** The communications the plan provides for. */
+    communication_items?: IsmsCommunication[],
 }
 
 
 /**
- * A single communication requirement within the communication plan.
+ * One communication the plan provides for: what about, why, to whom, how often, how, and who communicates.
  */
-export interface CommunicationItem {
-    /** Subject of the communication. */
-    subject?: string,
-    /** Purpose of the communication. */
-    purpose?: string,
-    /** Target audience. */
-    audience?: string,
-    /** Frequency of the activity. */
-    frequency?: string,
-    /** Method of communication. */
-    method?: string,
-    /** Party responsible for the activity. */
-    responsible_party?: string,
-    /** Whether records are required. */
-    records_required?: boolean,
+export interface IsmsCommunication {
+    /** The role that answers for the record's activity or outcome. */
+    responsible_role?: IsmsRoleIsmsId,
+    /** What the communication is about. */
+    communication_subject: string,
+    /** Why it is communicated. */
+    communication_purpose?: string,
+    /** To whom it is communicated. */
+    communication_audience?: string,
+    /** How often it is communicated. */
+    communication_frequency?: string,
+    /** How it is communicated. */
+    communication_method?: string,
+    /** Whether a record of the communication is kept. */
+    communication_records_required?: boolean,
 }
 
 
 /**
- * A documented procedure for operational planning and control per Clause 8.1.
+ * A piece of documented information the ISMS keeps under control that no more specific record describes, such as a procedure, a standard, a plan or a report.
  */
-export interface OperationalProcedure extends DocumentedInformation {
-    /** Scope of the procedure. */
+export interface IsmsDocumentedInformation extends IsmsRecord, IsmsDocumentControlMixin {
+    /** What kind of documented information it is. */
+    document_kind: string,
+}
+
+
+/**
+ * A procedure by which the organization plans and controls the processes that meet its information security requirements.
+ */
+export interface IsmsOperationalProcedure extends IsmsRecord, IsmsDocumentControlMixin {
+    /** The organization's controls that the record concerns. */
+    relevant_controls?: IsmsControlIsmsId[],
+    /** What the procedure covers. */
     procedure_scope?: string,
-    /** Criteria established for the process. */
-    process_criteria?: string,
-    /** Control measures implemented. */
-    control_measures?: string[],
-    /** Roles responsible for the procedure. */
-    responsible_roles?: RoleId[],
-    /** Other controls related to this one. */
-    related_controls?: SecurityControlId[],
-    /** Requirements for controlling changes. */
-    change_control_requirements?: string,
+    /** The criteria the processes are run to. */
+    procedure_criteria?: string,
+    /** The measures that control the processes. */
+    procedure_control_measures?: string[],
+    /** The roles that carry out the procedure. */
+    procedure_roles?: IsmsRoleIsmsId[],
+    /** How changes to the processes are controlled. */
+    procedure_change_control?: string,
 }
 
 
 /**
- * The program for monitoring, measurement, analysis, and evaluation per Clause 9.1.
+ * The programme of monitoring, measurement, analysis and evaluation of information security performance and of the ISMS's effectiveness.
  */
-export interface MonitoringProgram extends DocumentedInformation {
-    /** Items to be monitored. */
-    monitoring_items?: MonitoringItem[],
+export interface IsmsMonitoringProgramme extends IsmsRecord, IsmsDocumentControlMixin {
+    /** What the programme monitors and measures. */
+    monitoring_items?: IsmsMonitoringItem[],
 }
 
 
 /**
- * A single item to be monitored and measured per 9.1.
+ * One thing the monitoring programme measures: what, how, how often and by whom it is measured and analysed, and against what thresholds.
  */
-export interface MonitoringItem {
-    /** Name of the metric. */
-    metric_name?: string,
-    /** Description of what is measured. */
-    metric_description?: string,
-    /** Method used to measure the metric. */
-    measurement_method?: string,
-    /** How often measurement is performed. */
-    measurement_frequency?: string,
-    /** Party responsible for the activity. */
-    responsible_party?: string,
-    /** How often analysis is performed. */
-    analysis_frequency?: string,
-    /** Person performing analysis. */
-    analyst?: string,
-    /** Target threshold value. */
-    target_threshold?: string,
-    /** Threshold triggering alerts. */
-    alert_threshold?: string,
-    /** Current measured value. */
-    current_value?: string,
-    /** Current trend direction. */
-    trend?: string,
+export interface IsmsMonitoringItem {
+    /** The role that answers for the record's activity or outcome. */
+    responsible_role?: IsmsRoleIsmsId,
+    /** The name of what is measured. */
+    monitoring_metric: string,
+    /** What the measurement shows. */
+    monitoring_description?: string,
+    /** How it is measured. */
+    monitoring_method?: string,
+    /** How often it is measured. */
+    monitoring_frequency?: string,
+    /** How often the results are analysed and evaluated. */
+    monitoring_analysis_frequency?: string,
+    /** Who analyses and evaluates the results. */
+    monitoring_analyst?: string,
+    /** The value aimed for. */
+    monitoring_target?: string,
+    /** The value that calls for action. */
+    monitoring_alert_threshold?: string,
+    /** The value last measured. */
+    monitoring_current_value?: string,
+    /** Which way the value is moving. */
+    monitoring_trend?: string,
 }
 
 
 /**
- * An internal audit instance per Clause 9.2, assessing ISMS conformance and effectiveness.
+ * An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors they need.
  */
-export interface InternalAudit extends DocumentedInformation {
-    /** Reference identifier for the audit. */
-    audit_reference?: string,
-    /** Type of audit per ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1. */
-    audit_type?: string,
-    /** Scope of the audit. */
-    audit_scope?: string,
-    /** Criteria against which audit is conducted. */
-    audit_criteria?: string[],
-    /** Objectives of the audit. */
-    audit_objectives?: string[],
-    /** Start date of audit period. */
-    audit_period_start?: date,
-    /** End date of audit period. */
-    audit_period_end?: date,
-    /** Lead auditor for the audit. */
-    lead_auditor?: string,
-    /** Audit team members. */
-    audit_team?: string[],
-    /** Representatives from audited areas. */
-    auditee_representatives?: string[],
-    /** Audit plan document reference. */
-    audit_plan?: string,
-    /** Audit findings. */
-    findings?: AuditFindingId[],
-    /** Positive observations noted. */
-    positive_observations?: string[],
-    /** Overall audit conclusion. */
-    audit_conclusion?: string,
-    /** Date the report was issued. */
-    report_date?: date,
-    /** Distribution list for the report. */
-    report_distribution?: string[],
-}
-
-
-/**
- * The internal audit programme per 9.2.2, planning audit activities over a defined period.
- */
-export interface AuditProgramme extends DocumentedInformation {
-    /** Period covered by the audit programme. */
+export interface IsmsAuditProgramme extends IsmsRecord, IsmsDocumentControlMixin {
+    /** The period the programme covers. */
     programme_period?: string,
-    /** Audits planned in this programme. */
-    planned_audits?: InternalAuditId[],
-    /** Rationale for audit frequency decisions. */
-    audit_frequency_rationale?: string,
-    /** Resource requirements for the programme. */
-    resource_requirements?: string,
-    /** Required qualifications for auditors. */
-    auditor_qualifications?: string,
-    /** Current status of the programme. */
+    /** The audits the programme plans. */
+    programme_audits?: IsmsAuditIsmsId[],
+    /** Why the audits happen as often as they do. */
+    programme_frequency_rationale?: string,
+    /** The resources the programme needs. */
+    programme_resources?: string,
+    /** The qualifications the auditors need. */
+    programme_auditor_qualifications?: string,
+    /** Where the programme stands, in the organization's own terms. */
     programme_status?: string,
 }
 
 
 /**
- * A finding from an internal audit, including nonconformities, observations, and positive findings.
+ * An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope, criteria, team, findings and conclusion.
  */
-export interface AuditFinding extends NamedEntity {
-    /** Type of audit finding. */
-    finding_type?: string,
-    /** Reference to standard clause. */
-    clause_reference?: string,
-    /** Reference to the control (e.g., A.5.1). */
-    control_reference?: SecurityControlId,
-    /** Description of the finding. */
-    finding_description?: string,
-    /** Evidence supporting the finding. */
-    objective_evidence?: string,
-    /** Analysis of root cause. */
-    root_cause_analysis?: string,
-    /** Risk implications of the finding. */
-    risk_implication?: string,
-    /** Recommended action to address finding. */
-    recommended_action?: string,
-    /** Response from the auditee. */
-    auditee_response?: string,
-    /** Corrective action linked to this finding. */
-    linked_corrective_action?: CorrectiveActionId,
-    /** Status of finding closure. */
-    closure_status?: string,
-    /** Date the finding was closed. */
-    closure_date?: date,
+export interface IsmsAudit extends IsmsRecord, IsmsDocumentControlMixin {
+    /** Who carries out the audit, relative to the organization. */
+    audit_type: string,
+    /** The management system standards the audit covers. */
+    audit_standards?: string,
+    /** What the audit covers. */
+    audit_scope?: string,
+    /** What the audit compares the ISMS against. */
+    audit_criteria?: string[],
+    /** What the audit sets out to establish. */
+    audit_objectives?: string[],
+    /** When the audit began. */
+    audit_period_start?: date,
+    /** When the audit ended. */
+    audit_period_end?: date,
+    /** Who led the audit. */
+    audit_lead?: string,
+    /** Who else audited. */
+    audit_team?: string[],
+    /** Who represented the parts of the organization audited. */
+    audit_auditees?: string[],
+    /** The documented information that holds the audit plan. */
+    audit_plan?: IsmsDocumentedInformationIsmsId,
+    /** What the audit found, good and bad. */
+    audit_findings?: IsmsAuditFinding[],
+    /** The audit's overall conclusion. */
+    audit_conclusion?: string,
+    /** When the audit report was issued. */
+    audit_report_date?: date,
+    /** Who received the audit report. */
+    audit_report_distribution?: string[],
 }
 
 
 /**
- * A management review per Clause 9.3, conducted by top management to evaluate ongoing ISMS performance and fitness for purpose.
+ * One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it concerns, its evidence and how it is closed.
  */
-export interface ManagementReview extends DocumentedInformation {
-    /** Date when the management review was conducted. */
-    review_date?: date,
-    /** Attendees of the review. */
-    attendees?: string[],
-    /** Status of actions from previous reviews. */
-    previous_actions_status?: string,
-    /** Changes in context since last review. */
-    context_changes?: string,
-    /** Changes in interested party requirements. */
-    interested_party_changes?: string,
-    /** Feedback from interested parties considered in the management review. */
-    interested_party_feedback?: string,
-    /** Trends in information security performance. */
-    performance_trends?: string,
-    /** Summary of audit results. */
-    audit_results_summary?: string,
-    /** Results of risk assessment. */
-    risk_assessment_results?: string,
-    /** Status of the risk treatment plan considered in the management review. */
-    risk_treatment_status?: string,
-    /** Changes in risks and opportunities considered in the management review, per Clause 9.3.2 f). */
-    risks_and_opportunities_changes?: string,
-    /** Opportunities for improvement identified. */
-    improvement_opportunities?: string[],
-    /** Decisions made in the review. */
-    decisions?: string[],
-    /** Action items from the review. */
-    action_items?: string[],
-    /** Planned date for next review. */
-    next_review_date?: date,
+export interface IsmsAuditFinding extends IsmsRecord {
+    /** What kind of finding it is. */
+    finding_type: string,
+    /** The clause or Annex A control of ISO/IEC 27001:2022 the finding concerns, by number. */
+    finding_requirement?: string,
+    /** The organization's control the finding concerns. */
+    finding_control?: IsmsControlIsmsId,
+    /** The objective evidence for the finding. */
+    finding_evidence?: string,
+    /** What the analysis of the finding's cause found. */
+    finding_root_cause?: string,
+    /** What the finding means for risk. */
+    finding_risk?: string,
+    /** What the auditor recommends. */
+    finding_recommendation?: string,
+    /** How the auditee responded. */
+    finding_auditee_response?: string,
+    /** The corrective action the finding led to. */
+    finding_corrective_action?: IsmsCorrectiveActionIsmsId,
+    /** Whether the finding is closed, in the organization's own terms. */
+    finding_closure_status?: string,
+    /** When the finding was closed. */
+    finding_closure_date?: date,
 }
 
 
 /**
- * A nonconformity identified per Clause 10.2, representing failure to fulfill a requirement.
+ * A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.
  */
-export interface Nonconformity extends NamedEntity {
-    /** Source of nonconformity detection. */
+export interface IsmsManagementReview extends IsmsRecord, IsmsDocumentControlMixin {
+    /** When the review was held. */
+    review_held_on: date,
+    /** Who attended the review. */
+    review_attendees?: string[],
+    /** Where the actions from earlier reviews stand. */
+    review_previous_actions?: string,
+    /** How the issues that bear on the ISMS have changed. */
+    review_context_changes?: string,
+    /** How interested parties' needs and expectations have changed. */
+    review_interested_party_changes?: string,
+    /** What interested parties said. */
+    review_interested_party_feedback?: string,
+    /** The trends in information security performance. */
+    review_performance_trends?: string,
+    /** What the audits found. */
+    review_audit_results?: string,
+    /** What the risk assessments found. */
+    review_risk_assessment_results?: string,
+    /** Where risk treatment stands. */
+    review_risk_treatment_status?: string,
+    /** How risks and opportunities have changed. */
+    review_risks_and_opportunities?: string,
+    /** The opportunities for improvement raised. */
+    review_improvement_opportunities?: string[],
+    /** What the review decided. */
+    review_decisions?: string[],
+    /** What the review asked to be done. */
+    review_actions?: string[],
+    /** When the next review is planned. */
+    review_next_date?: date,
+}
+
+
+/**
+ * A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was closed.
+ */
+export interface IsmsNonconformity extends IsmsRecord {
+    /** How the nonconformity came to light, such as an audit, a review or an incident. */
     nonconformity_source?: string,
-    /** Date the nonconformity was detected. */
-    detection_date?: date,
-    /** Person or process that detected the nonconformity. */
-    detected_by?: string,
-    /** Requirement that was not fulfilled. */
-    requirement_violated?: string,
-    /** Description of the nonconformity. */
-    nonconformity_description?: string,
-    /** Immediate actions taken to control/correct. */
-    immediate_actions?: string[],
-    /** How consequences were dealt with. */
-    consequences_addressed?: string,
-    /** Root cause of the nonconformity. */
-    root_cause?: string,
-    /** Check for similar nonconformities elsewhere. */
-    similar_nonconformities_check?: string,
-    /** Corrective actions addressing this nonconformity. */
-    linked_corrective_actions?: CorrectiveActionId[],
-    /** Current status of the document or entity. */
-    status?: string,
-    /** Date the finding was closed. */
-    closure_date?: date,
-    /** Evidence supporting closure. */
-    closure_evidence?: string,
+    /** When the nonconformity was found. */
+    nonconformity_detected_on?: date,
+    /** Who or what found it. */
+    nonconformity_detected_by?: string,
+    /** The requirement that was not met, of ISO/IEC 27001, of the organization or of an interested party. */
+    nonconformity_requirement?: string,
+    /** What was done at once to control and correct it. */
+    nonconformity_immediate_actions?: string[],
+    /** How its consequences were dealt with. */
+    nonconformity_consequences?: string,
+    /** What caused it. */
+    nonconformity_root_cause?: string,
+    /** Whether similar nonconformities exist or could occur, and where. */
+    nonconformity_similar_check?: string,
+    /** Where the nonconformity stands, in the organization's own terms. */
+    nonconformity_status?: string,
+    /** When it was closed. */
+    nonconformity_closure_date?: date,
+    /** What shows that it is closed. */
+    nonconformity_closure_evidence?: string,
 }
 
 
 /**
- * A corrective action per Clause 10.2 to address the root cause of a nonconformity and reduce the likelihood of recurrence.
+ * An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it worked.
  */
-export interface CorrectiveAction extends NamedEntity {
-    /** Nonconformity this action addresses. */
-    linked_nonconformity?: NonconformityId,
-    /** Description of the action. */
-    action_description?: string,
-    /** Root cause this action addresses. */
-    root_cause_addressed?: string,
-    /** Party responsible for the activity. */
-    responsible_party?: string,
-    /** Target date for completing the action. */
-    target_completion_date?: date,
-    /** Actual date the action was completed. */
-    actual_completion_date?: date,
-    /** Resources required for implementation. */
-    resources_required?: string,
-    /** Criteria for evaluating effectiveness. */
-    effectiveness_criteria?: string,
-    /** Date effectiveness was reviewed. */
-    effectiveness_review_date?: date,
-    /** Whether effectiveness was verified. */
-    effectiveness_verified?: boolean,
-    /** Changes to ISMS required as a result. */
-    isms_changes_required?: string,
-    /** Current status of the document or entity. */
-    status?: string,
+export interface IsmsCorrectiveAction extends IsmsRecord {
+    /** The role that answers for the record's activity or outcome. */
+    responsible_role?: IsmsRoleIsmsId,
+    /** The nonconformities the action addresses. */
+    action_nonconformities?: IsmsNonconformityIsmsId[],
+    /** The cause the action removes. */
+    action_root_cause?: string,
+    /** When the action is to be complete. */
+    action_target_date?: date,
+    /** When the action was complete. */
+    action_completion_date?: date,
+    /** The resources the action needs. */
+    action_resources?: string,
+    /** How the action's effect will be judged. */
+    action_effectiveness_criteria?: string,
+    /** When the action's effect was reviewed. */
+    action_effectiveness_review_date?: date,
+    /** Whether the review found the action effective. */
+    action_effective?: boolean,
+    /** The changes to the ISMS the action needs. */
+    action_isms_changes?: string,
+    /** Where the action stands, in the organization's own terms. */
+    action_status?: string,
 }
 
 
 /**
- * An opportunity for continual improvement per Clause 10.1, enhancing overall ISMS performance.
+ * An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.
  */
-export interface ImprovementOpportunity extends NamedEntity {
-    /** Source of the improvement opportunity. */
+export interface IsmsImprovementOpportunity extends IsmsRecord {
+    /** The role that answers for the record's activity or outcome. */
+    responsible_role?: IsmsRoleIsmsId,
+    /** Where the opportunity came from, such as a review, an audit or daily work. */
     improvement_source?: string,
-    /** Date identified. */
-    identification_date?: date,
-    /** Person who identified it. */
-    identified_by?: string,
-    /** Description of the improvement. */
-    improvement_description?: string,
-    /** Expected benefit from implementation. */
-    expected_benefit?: string,
-    /** Priority level. */
-    priority?: string,
-    /** Plan for implementing the improvement. */
-    implementation_plan?: string,
-    /** Party responsible for the activity. */
-    responsible_party?: string,
-    /** Target date for achieving the objective. */
-    target_date?: date,
-    /** Actual date the action was completed. */
-    actual_completion_date?: date,
-    /** Assessment of actual outcomes. */
-    outcome_assessment?: string,
-    /** Current status of the document or entity. */
-    status?: string,
+    /** When the opportunity was identified. */
+    improvement_identified_on?: date,
+    /** Who identified it. */
+    improvement_identified_by?: string,
+    /** What the improvement is expected to bring. */
+    improvement_benefit?: string,
+    /** How soon it is to be acted on, in the organization's own terms. */
+    improvement_priority?: string,
+    /** How the improvement is to be made. */
+    improvement_plan?: string,
+    /** When the improvement is to be made. */
+    improvement_target_date?: date,
+    /** When it was made. */
+    improvement_completion_date?: date,
+    /** What the improvement brought. */
+    improvement_outcome?: string,
+    /** Where it stands, in the organization's own terms. */
+    improvement_status?: string,
 }
 
 
 /**
- * An information asset or associated asset requiring protection, per Annex A control 5.9.
+ * An information security event someone reported, and the assessment of whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.
  */
-export interface Asset extends NamedEntity {
-    /** Type of asset. */
-    asset_type?: string,
-    /** Owner of the asset. */
-    asset_owner?: string,
-    /** Custodian responsible for day-to-day protection. */
-    asset_custodian?: string,
-    /** Information classification level. */
-    classification?: string,
-    /** Physical or logical location. */
-    location?: string,
-    /** Criticality rating of the asset. */
-    criticality?: string,
-    /** Associated risks. */
-    related_risks?: RiskId[],
-    /** Controls related to this policy. */
-    applicable_controls?: SecurityControlId[],
+export interface IsmsSecurityEvent extends IsmsRecord {
+    /** The assets the risk, event or incident affects. */
+    affected_assets?: IsmsAssetIsmsId[],
+    /** The kind of record: IsmsSecurityEvent, or IsmsSecurityIncident for an event assessed as an incident. */
+    event_type?: string,
+    /** When the event happened, or when it was first noticed. */
+    event_occurred_at?: string,
+    /** Who reported the event. */
+    event_reporter?: string,
+    /** What the assessment of the event found. */
+    event_assessment?: string,
 }
 
 
 /**
- * An information security event per A.5.25, which may or may not be categorized as an incident.
+ * An information security event assessed as an incident: its category and severity, how it was detected, contained, eradicated and recovered from, the evidence collected, who was told, and what was learned.
  */
-export interface InformationSecurityEvent extends NamedEntity {
-    /** Date and time of the event. */
-    event_datetime?: string,
-    /** Person who reported the event. */
-    reporter?: string,
-    /** Description of the event. */
-    event_description?: string,
-    /** Assets affected by this risk or incident. */
-    affected_assets?: AssetId[],
-    /** Initial assessment of the event. */
-    initial_assessment?: string,
-    /** Whether the event was categorized as an incident. */
-    categorized_as_incident?: boolean,
-    /** Linked incident if categorized. */
-    linked_incident?: InformationSecurityIncidentId,
-}
-
-
-/**
- * An information security incident per A.5.26, requiring response per documented procedures.
- */
-export interface InformationSecurityIncident extends NamedEntity {
-    /** Date and time the incident occurred or was detected. */
-    incident_datetime?: string,
-    /** Category of incident. */
+export interface IsmsSecurityIncident extends IsmsSecurityEvent {
+    /** Which of confidentiality, integrity and availability the risk or incident threatens. */
+    affected_security_properties?: string,
+    /** What kind of incident it is. */
     incident_category?: string,
-    /** Severity rating of the incident. */
-    severity?: string,
-    /** Assets affected by this risk or incident. */
-    affected_assets?: AssetId[],
-    /** CIA properties affected by the incident. */
-    affected_cia?: string,
-    /** Description of the incident. */
-    incident_description?: string,
+    /** How severe the incident is. */
+    incident_severity?: string,
     /** How the incident was detected. */
-    detection_method?: string,
-    /** Actions taken in response. */
-    response_actions?: string[],
-    /** Actions to contain the incident. */
-    containment_actions?: string[],
-    /** Actions to eradicate the cause. */
-    eradication_actions?: string[],
-    /** Actions to recover normal operations. */
-    recovery_actions?: string[],
-    /** Root cause of the nonconformity. */
-    root_cause?: string,
-    /** Lessons learned from the incident. */
-    lessons_learned?: string[],
-    /** Evidence collected. */
-    evidence_collected?: string[],
-    /** Whether notification to authorities/parties was required. */
-    notification_required?: boolean,
-    /** Notifications that were made. */
-    notifications_made?: string[],
-    /** Date and time of incident closure. */
-    closure_datetime?: string,
-    /** Post-incident review findings. */
-    post_incident_review?: string,
+    incident_detection_method?: string,
+    /** What was done in response. */
+    incident_response_actions?: string[],
+    /** What was done to contain it. */
+    incident_containment_actions?: string[],
+    /** What was done to remove its cause. */
+    incident_eradication_actions?: string[],
+    /** What was done to restore normal operation. */
+    incident_recovery_actions?: string[],
+    /** What caused the incident. */
+    incident_root_cause?: string,
+    /** What the organization learned from it. */
+    incident_lessons_learned?: string[],
+    /** The evidence collected about it. */
+    incident_evidence?: string[],
+    /** Whether authorities or other parties had to be told. */
+    incident_notification_required?: boolean,
+    /** Whom the organization told, and when. */
+    incident_notifications?: string[],
+    /** When the incident was closed. */
+    incident_closed_at?: string,
+    /** What the review after the incident found. */
+    incident_review?: string,
 }
 
 

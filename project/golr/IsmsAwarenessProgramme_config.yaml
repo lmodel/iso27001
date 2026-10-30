@@ -1,0 +1,92 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsAwarenessProgramme
+schema_generating: true
+description: The programme that makes people working for the organization aware of
+  the policy, their part in the ISMS and what failing it would mean.
+display_name: IsmsAwarenessProgramme
+document_category: IsmsAwarenessProgramme
+weight: 20
+fields:
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecord_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description
+- id: awareness_topics
+  description: The topics the programme covers.
+  display_name: ismsAwarenessProgramme__awareness_topics
+  cardinality: multi
+- id: awareness_methods
+  description: How the programme is delivered.
+  display_name: ismsAwarenessProgramme__awareness_methods
+  cardinality: multi
+- id: awareness_audience
+  description: Whom the programme is for.
+  display_name: ismsAwarenessProgramme__awareness_audience
+- id: awareness_frequency
+  description: How often the programme runs.
+  display_name: ismsAwarenessProgramme__awareness_frequency
+- id: awareness_completion_tracking
+  description: How completion is tracked.
+  display_name: ismsAwarenessProgramme__awareness_completion_tracking
+- id: awareness_effectiveness
+  description: How the programme's effect is measured.
+  display_name: ismsAwarenessProgramme__awareness_effectiveness
+- id: document_reference
+  description: The reference the organization's document control gives it.
+  display_name: ismsDocumentControlMixin__document_reference
+- id: document_version
+  description: The version of the document.
+  display_name: ismsDocumentControlMixin__document_version
+- id: document_author
+  description: Who wrote the document.
+  display_name: ismsDocumentControlMixin__document_author
+- id: document_owner
+  description: Who answers for the document's content and upkeep.
+  display_name: ismsDocumentControlMixin__document_owner
+- id: document_approver
+  description: Who approved the document.
+  display_name: ismsDocumentControlMixin__document_approver
+- id: document_approval_date
+  description: When the document was approved.
+  display_name: ismsDocumentControlMixin__document_approval_date
+- id: document_effective_date
+  description: When the document takes effect.
+  display_name: ismsDocumentControlMixin__document_effective_date
+- id: document_last_review_date
+  description: When the document was last reviewed.
+  display_name: ismsDocumentControlMixin__document_last_review_date
+- id: document_next_review_date
+  description: When the document is next due for review.
+  display_name: ismsDocumentControlMixin__document_next_review_date
+- id: document_status
+  description: Where the document stands in its life, in the organization's own terms,
+    such as draft, approved or withdrawn.
+  display_name: ismsDocumentControlMixin__document_status
+- id: document_classification
+  description: The information classification the document carries.
+  display_name: ismsDocumentControlMixin__document_classification
+- id: document_retention
+  description: How long the document is kept, as an ISO 8601 duration.
+  display_name: ismsDocumentControlMixin__document_retention
+- id: document_distribution
+  description: How the document is distributed, accessed, retrieved and used.
+  display_name: ismsDocumentControlMixin__document_distribution
+  cardinality: multi
+- id: document_storage
+  description: How the document is stored and preserved, so that it stays legible.
+  display_name: ismsDocumentControlMixin__document_storage
+- id: document_change_control
+  description: How changes to the document are controlled, such as version control.
+  display_name: ismsDocumentControlMixin__document_change_control
+- id: document_external_origin
+  description: Whether the document comes from outside the organization and is kept
+    because the ISMS needs it.
+  display_name: ismsDocumentControlMixin__document_external_origin
+- id: document_external_source
+  description: Who the document came from, when it comes from outside.
+  display_name: ismsDocumentControlMixin__document_external_source

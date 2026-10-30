@@ -1,0 +1,63 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsControl
+schema_generating: true
+description: 'A control the organization has determined it needs to treat its risks:
+  what it does in the organization''s words, which Annex A controls it answers to,
+  who owns it, how far it is in place and how well it works.'
+display_name: IsmsControl
+document_category: IsmsControl
+weight: 20
+fields:
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecord_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description
+- id: relevant_controls
+  description: The organization's controls that the record concerns.
+  display_name: relevant_controls
+  cardinality: multi
+- id: implementation_state
+  description: How far the control or the plan has been put into effect.
+  display_name: implementation_state
+- id: control_annex_a_controls
+  description: The Annex A controls the control answers to.
+  display_name: ismsControl__control_annex_a_controls
+  cardinality: multi
+- id: control_theme
+  description: Which of Annex A's four themes the control belongs to.
+  display_name: ismsControl__control_theme
+- id: control_text
+  description: What the control does, in the organization's own words.
+  display_name: ismsControl__control_text
+- id: control_guidance
+  description: The organization's notes on putting the control in place.
+  display_name: ismsControl__control_guidance
+- id: control_threats
+  description: The threats the control acts against.
+  display_name: ismsControl__control_threats
+  cardinality: multi
+- id: control_asset_types
+  description: The kinds of asset the control applies to.
+  display_name: ismsControl__control_asset_types
+  cardinality: multi
+- id: control_owner
+  description: The person who owns the control.
+  display_name: ismsControl__control_owner
+- id: control_implementation_date
+  description: When the control was put in place.
+  display_name: ismsControl__control_implementation_date
+- id: control_effectiveness
+  description: How well the control works, in the organization's own terms.
+  display_name: ismsControl__control_effectiveness
+- id: control_last_tested
+  description: When the control was last tested.
+  display_name: ismsControl__control_last_tested
+- id: control_evidence
+  description: Where the evidence that the control is in place is kept.
+  display_name: ismsControl__control_evidence
+  cardinality: multi
