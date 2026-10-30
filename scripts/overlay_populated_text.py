@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
-"""Deep-merge an overlay schema onto the public iso27001 schema.
+"""Deep-merge a licence holder's overlay onto the public iso27001 schema.
 
-For each element in the overlay, non-empty `description` / `comments` values
-replace the corresponding values in the public schema. Structural fields
-(slots, ranges, mappings, annotations, is_a, etc.) are preserved from the
-public schema. The result is written to a separate file; the public schema is
-never modified in place.
+For each class, class attribute, slot, enum and permissible value in the
+overlay, a non-empty descriptive value (`description`, `comments`, `title`,
+`aliases`, `see_also`, `notes`) replaces the public schema's. Structural
+fields (slots, ranges, mappings, annotations, is_a and the rest) are kept
+from the public schema. The result is written to a separate file; the
+public schema is never changed.
+
+The overlay holds the standard's text, so the merged schema does too. The
+script therefore writes it only under the repository's tmp/ folder, which
+git ignores, and refuses any other output path. src/iso27001/schema/OVERLAY.md
+says how to fill the overlay.
 
 Usage:
     uv run python scripts/overlay_populated_text.py \
@@ -13,6 +19,7 @@ Usage:
         --overlay src/iso27001/schema/iso27001-overlay.yaml \
         --output  tmp/iso27001-merged.yaml
 """
+
 from __future__ import annotations
 
 import argparse
@@ -20,13 +27,17 @@ from pathlib import Path
 
 import yaml
 
+ROOT = Path(__file__).resolve().parent.parent
+# The one folder the merged schema, which holds licensed text, may go to.
+PRIVATE_OUTPUT_DIR = ROOT / "tmp"
+
 
 class IndentedDumper(yaml.SafeDumper):
     """yaml.SafeDumper that indents block-sequence items under their key,
     matching yamllint's default `indentation.indent-sequences: true` rule.
     """
 
-    def increase_indent(self, flow=False, indentless=False):  # noqa: D401, ARG002
+    def increase_indent(self, flow=False, indentless=False):  # noqa: ARG002
         return super().increase_indent(flow, False)
 
 
@@ -51,6 +62,19 @@ def merge_element(base: dict, overlay: dict) -> dict:
     return merged
 
 
+def merge_class(base: dict, overlay: dict) -> dict:
+    """Merge a class and, one by one, its attributes."""
+    merged = merge_element(base, overlay)
+    base_attrs = (base or {}).get("attributes") or {}
+    over_attrs = (overlay or {}).get("attributes") or {}
+    if base_attrs and over_attrs:
+        merged["attributes"] = {
+            name: merge_element(definition or {}, over_attrs.get(name) or {})
+            for name, definition in base_attrs.items()
+        }
+    return merged
+
+
 def merge_enum(base: dict, overlay: dict) -> dict:
     merged = merge_element(base, overlay)
     base_pv = (base or {}).get("permissible_values") or {}
@@ -66,33 +90,40 @@ def merge_enum(base: dict, overlay: dict) -> dict:
 
 def apply(public: dict, overlay: dict) -> dict:
     out = dict(public)
-    for section in ("classes", "slots"):
+    for section, merge in (
+        ("classes", merge_class),
+        ("slots", merge_element),
+        ("enums", merge_enum),
+    ):
         base_section = public.get(section) or {}
         over_section = (overlay or {}).get(section) or {}
-        if not base_section:
-            continue
-        merged_section = {}
-        for name, base_def in base_section.items():
-            merged_section[name] = merge_element(base_def or {}, over_section.get(name) or {})
-        out[section] = merged_section
-
-    base_enums = public.get("enums") or {}
-    over_enums = (overlay or {}).get("enums") or {}
-    if base_enums:
-        merged_enums = {}
-        for name, base_def in base_enums.items():
-            merged_enums[name] = merge_enum(base_def or {}, over_enums.get(name) or {})
-        out["enums"] = merged_enums
+        if base_section:
+            out[section] = {
+                name: merge(base_def or {}, over_section.get(name) or {})
+                for name, base_def in base_section.items()
+            }
     return out
 
 
-def main() -> int:
+def private_output(path: Path) -> Path:
+    """The output path, if it lies under PRIVATE_OUTPUT_DIR; else stop."""
+    resolved = path.resolve()
+    if not resolved.is_relative_to(PRIVATE_OUTPUT_DIR.resolve()):
+        raise SystemExit(
+            f"Refusing to write {path}: the merged schema holds licensed text, so "
+            f"it goes under {PRIVATE_OUTPUT_DIR}, which git ignores."
+        )
+    return resolved
+
+
+def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--public", required=True, type=Path)
     ap.add_argument("--overlay", required=True, type=Path)
     ap.add_argument("--output", required=True, type=Path)
-    args = ap.parse_args()
+    args = ap.parse_args(argv)
 
+    output = private_output(args.output)
     if not args.overlay.exists():
         raise SystemExit(
             f"Overlay file not found: {args.overlay}\n"
@@ -104,8 +135,8 @@ def main() -> int:
     overlay = yaml.safe_load(args.overlay.read_text(encoding="utf-8")) or {}
 
     merged = apply(public, overlay)
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    with args.output.open("w", encoding="utf-8") as fh:
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with output.open("w", encoding="utf-8") as fh:
         fh.write(
             "# AUTO-GENERATED merged schema. Contains verbatim ISO/IEC 27001:2022\n"
             "# text from the local overlay. NOT FOR REDISTRIBUTION.\n\n"
@@ -120,7 +151,7 @@ def main() -> int:
             width=120,
             indent=2,
         )
-    print(f"Wrote merged schema: {args.output}")
+    print(f"Wrote merged schema: {output}")
     return 0
 
 

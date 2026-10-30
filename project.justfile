@@ -20,7 +20,9 @@ _ensure_probo_output:
     -rm -rf examples/output/third_party/probo/*.*
 ## Add your own just recipes here. This is imported by the main justfile.
 
-# Apply curated SSSOM mapping TSVs to the generated LinkML schema YAMLs.
+# Apply curated SSSOM mapping TSVs to the public schema, and to no other
+# file in its folder: the overlay template and a licence holder's private
+# overlay sit beside it.
 # Merges SKOS exact/close/broad/narrow/related matches into the matching
 # class / enum / type bodies and declares any referenced object-side prefixes.
 # Idempotent: re-running on a clean tree produces no further changes. Run
@@ -28,7 +30,7 @@ _ensure_probo_output:
 [group('model development')]
 apply-sssom-overlay:
   uv run python scripts/apply_sssom_overlay.py \
-    --schema-dir src/iso27001/schema \
+    --schema {{source_schema_path}} \
     --mappings-dir src/iso27001/mappings
 
 # ============== Supplemental generator recipes (beyond gen-project defaults) ==============
