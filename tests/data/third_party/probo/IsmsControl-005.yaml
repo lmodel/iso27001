@@ -1,0 +1,8 @@
+isms_id: probo:follow-news-in-cybersecurity
+title: Follow news in cybersecurity
+control_annex_a_controls:
+  - a_5_6
+control_theme: organizational
+control_text: Monitoring emerging attack trends and security patches enables proactive defenses,
+  letting you adapt strategies quickly and remain resilient as the threat landscape evolves
+implementation_state: not_started

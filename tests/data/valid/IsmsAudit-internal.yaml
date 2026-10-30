@@ -1,0 +1,37 @@
+# An internal audit of two management systems at once, with its findings.
+isms_id: acme:audit-2026-internal
+title: Internal audit, spring 2026
+audit_type: first_party
+audit_standards:
+  - iso_iec_27001
+  - iso_9001
+audit_scope: Clauses 4 to 10 and the technological controls.
+audit_criteria:
+  - ISO/IEC 27001:2022
+  - Acme's information security policy
+audit_objectives:
+  - Confirm the ISMS conforms and is effective.
+audit_period_start: "2026-04-14"
+audit_period_end: "2026-04-16"
+audit_lead: Riley Chen
+audit_team:
+  - Morgan Diaz
+audit_auditees:
+  - Head of IT Operations
+audit_plan: acme:doc-audit-plan-2026
+audit_findings:
+  - isms_id: acme:finding-2026-01
+    title: Access reviews not recorded
+    finding_type: minor_nonconformity
+    finding_requirement: A.5.18
+    finding_control: acme:control-access-review
+    finding_evidence: No record of the March access review.
+    finding_corrective_action: acme:action-access-review-records
+  - isms_id: acme:finding-2026-02
+    title: Clear change records
+    finding_type: positive_finding
+    finding_requirement: "8.1"
+audit_conclusion: The ISMS conforms, with one minor nonconformity.
+audit_report_date: "2026-04-20"
+audit_report_distribution:
+  - Managing Director

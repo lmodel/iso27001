@@ -1,0 +1,8 @@
+isms_id: probo:insert-security-clause-in-third-party-contracts
+title: Insert security clause in third-party contracts
+control_annex_a_controls:
+  - a_5_20
+control_theme: organizational
+control_text: Strong contractual language ensures third parties protect your data with the
+  same rigor you do, lowering supply-chain risk and establishing clear accountability
+implementation_state: not_started

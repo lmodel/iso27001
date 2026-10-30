@@ -1,0 +1,4 @@
+# An excluded entry on its own.
+entry_type: IsmsExcludedControl
+entry_annex_a_control: a_7_5
+entry_justification: Acme has no premises exposed to the physical threats this control addresses.

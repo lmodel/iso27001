@@ -1,0 +1,11 @@
+# A topic-specific policy that supports the information security policy.
+isms_id: acme:policy-access-control
+title: Access control policy
+topic_policy_topic: access control
+topic_policy_parent: acme:policy-information-security
+topic_policy_audience: All staff and contractors with system accounts.
+relevant_controls:
+  - acme:control-access-review
+document_reference: POL-005
+document_owner: Head of IT Operations
+document_retention: P7Y

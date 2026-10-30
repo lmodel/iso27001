@@ -1,0 +1,8 @@
+isms_id: probo:implement-physical-security-measures
+title: Implement physical security measures
+control_annex_a_controls:
+  - a_7_4
+control_theme: physical
+control_text: Physical safeguards bolster your security stance by preventing theft, deterring
+  unauthorized access, and providing forensic evidence in case of breaches
+implementation_state: not_started

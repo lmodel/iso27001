@@ -1,0 +1,15 @@
+# A monitoring programme with one measure.
+isms_id: acme:monitoring-2026
+title: Monitoring and measurement 2026
+monitoring_items:
+  - monitoring_metric: Phishing report rate
+    monitoring_description: Share of staff who report the test message.
+    monitoring_method: Simulated phishing campaign
+    monitoring_frequency: quarterly
+    monitoring_analysis_frequency: quarterly
+    monitoring_analyst: Security team
+    monitoring_target: "80%"
+    monitoring_alert_threshold: "50%"
+    monitoring_current_value: "64%"
+    monitoring_trend: rising
+    responsible_role: acme:role-ciso

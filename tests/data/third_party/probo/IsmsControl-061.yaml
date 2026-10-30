@@ -1,0 +1,9 @@
+isms_id: probo:have-testing-procedures
+title: Have testing procedures
+control_annex_a_controls:
+  - a_8_33
+  - a_8_32
+control_theme: technological
+control_text: Systematic testing ensures reliability, quickly uncovers potential security
+  or functionality gaps, and upholds quality standards. It leads to fewer incidents in production
+implementation_state: not_started

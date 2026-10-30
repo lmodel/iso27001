@@ -1,0 +1,14 @@
+# A role that reports to another role.
+isms_id: acme:role-ciso
+title: Chief Information Security Officer
+role_category: management
+role_responsibilities:
+  - Run the ISMS day to day.
+  - Report on information security performance to top management.
+role_authorities:
+  - Stop a change that would put information at risk.
+role_accountability: The ISMS meets the organization's requirements.
+role_holders:
+  - Dana Byrne
+role_delegation: May delegate operational tasks to the security team.
+role_reports_to: acme:role-managing-director

@@ -1,0 +1,4 @@
+# Fails at: /
+# Invalid: every record has a title, so one without fails.
+isms_id: acme:role-ciso
+role_category: management

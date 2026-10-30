@@ -1,0 +1,6 @@
+# Fails at: /
+# Invalid: every class is closed, so a key the class does not declare fails;
+# name was the old schema's key for the title.
+isms_id: acme:risk-phishing
+title: Credentials taken by phishing
+name: Credentials taken by phishing

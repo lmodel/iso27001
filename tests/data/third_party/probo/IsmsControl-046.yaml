@@ -1,0 +1,9 @@
+isms_id: probo:prove-customer-data-is-deleted-upon-request
+title: Prove customer data is deleted upon request
+control_annex_a_controls:
+  - a_8_10
+control_theme: technological
+control_text: Being able to demonstrate data deletion meets regulatory requirements (like
+  GDPR), and protects you from potential legal consequences if data isn’t erased or retention
+  policies aren’t followed
+implementation_state: not_started

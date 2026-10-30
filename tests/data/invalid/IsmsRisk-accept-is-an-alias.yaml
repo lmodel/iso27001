@@ -1,0 +1,6 @@
+# Fails at: /risk_treatment_option
+# Invalid: accept is an alias of retain, and data writes the value, not the
+# alias.
+isms_id: acme:risk-phishing
+title: Credentials taken by phishing
+risk_treatment_option: accept

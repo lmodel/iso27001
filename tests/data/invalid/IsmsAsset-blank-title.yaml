@@ -1,0 +1,4 @@
+# Fails at: /title
+# Invalid: a title of blanks fails as a missing one does.
+isms_id: acme:asset-mail
+title: "   "

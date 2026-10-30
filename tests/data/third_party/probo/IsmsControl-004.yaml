@@ -1,0 +1,9 @@
+isms_id: probo:build-an-incident-response-process
+title: Build an incident response process
+control_annex_a_controls:
+  - a_5_5
+control_theme: organizational
+control_text: An **incident response plan** is crucial for quickly identifying, containing,
+  and resolving incidents, minimizing potential disruptions. It ensures you’re prepared effectively
+  and that you keep your operations running smoothly, even in the face of unexpected threats
+implementation_state: not_started

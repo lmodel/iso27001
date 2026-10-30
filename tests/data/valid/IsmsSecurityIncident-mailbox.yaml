@@ -1,0 +1,30 @@
+# An event assessed as an incident, from detection to review.
+isms_id: acme:incident-2026-004
+title: Mailbox taken over by phishing
+event_type: IsmsSecurityIncident
+event_occurred_at: "2026-02-11T14:30:00Z"
+event_reporter: Sales team
+affected_assets:
+  - acme:asset-mail
+event_assessment: A real phishing message captured one password.
+incident_category: account_compromise
+incident_severity: high
+affected_security_properties:
+  - confidentiality
+incident_detection_method: A colleague reported an odd message from the account.
+incident_response_actions:
+  - Reset the password and revoked sessions.
+incident_containment_actions:
+  - Blocked the sender's domain.
+incident_eradication_actions:
+  - Removed the forwarding rule the attacker added.
+incident_recovery_actions:
+  - Restored the mailbox's settings.
+incident_root_cause: The mailbox had no second factor.
+incident_lessons_learned:
+  - Multi-factor sign-in for every mailbox.
+incident_evidence:
+  - Sign-in logs exported to the evidence store.
+incident_notification_required: false
+incident_closed_at: "2026-02-13T17:00:00Z"
+incident_review: The incident led to the multi-factor sign-in plan.

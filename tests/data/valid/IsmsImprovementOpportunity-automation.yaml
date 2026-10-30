@@ -1,0 +1,12 @@
+# An opportunity for improvement from a management review.
+isms_id: acme:improvement-automate-access-review
+title: Automate the access review
+improvement_source: management review
+improvement_identified_on: "2026-05-12"
+improvement_identified_by: Managing Director
+improvement_benefit: Fewer missed reviews and less manual work.
+improvement_priority: medium
+improvement_plan: Use the identity provider's review campaigns.
+responsible_role: acme:role-ciso
+improvement_target_date: "2026-12-31"
+improvement_status: planned

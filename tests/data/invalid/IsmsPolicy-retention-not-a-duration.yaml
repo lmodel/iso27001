@@ -1,0 +1,5 @@
+# Fails at: /document_retention
+# Invalid: a retention period is an ISO 8601 duration, such as P7Y.
+isms_id: acme:policy-information-security
+title: Information security policy
+document_retention: 7 years

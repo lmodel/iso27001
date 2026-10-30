@@ -1,0 +1,5 @@
+# Fails at: /organization_employee_count
+# Invalid: an organization employs at least one person.
+isms_id: acme:organization
+title: Acme Widgets Ltd
+organization_employee_count: 0

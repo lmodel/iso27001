@@ -1,0 +1,5 @@
+# Fails at: /control_theme
+# Invalid: a theme is one of Annex A's four.
+isms_id: acme:control-mfa
+title: Multi-factor sign-in
+control_theme: technical

@@ -1,0 +1,12 @@
+isms_id: probo:automated-backup
+title: Automated backup
+control_annex_a_controls:
+  - a_8_13
+  - a_5_33
+  - a_5_29
+control_theme: technological
+control_text: Automated backups ensure that your data—one of your company’s most important
+  assets—is regularly and securely saved, reducing the risk of data loss. The back-up keeps
+  it safe and available, while the automated and regular aspect allows for a restoration just
+  before any disruption, minimizing loss
+implementation_state: not_started

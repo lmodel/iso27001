@@ -1,0 +1,10 @@
+isms_id: probo:password-manager
+title: Setup a password manager
+control_annex_a_controls:
+  - a_8_5
+  - a_5_17
+control_theme: technological
+control_text: 'In order to minimize the threat of someone getting access to something they
+  should not, we want to ensure a few things: 1. The password used in your company are complex
+  enough'
+implementation_state: not_started

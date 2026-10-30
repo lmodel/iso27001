@@ -1,0 +1,9 @@
+isms_id: probo:enable-code-scanning
+title: Enable code scanning
+control_annex_a_controls:
+  - a_8_8
+  - a_5_7
+control_theme: technological
+control_text: It ensures that potential security flaws are detected early. This proactive
+  approach strengthens your security posture and helps maintain high code quality
+implementation_state: not_started

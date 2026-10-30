@@ -1,0 +1,10 @@
+isms_id: probo:run-a-penetration-test
+title: Run a penetration test
+control_annex_a_controls:
+  - a_8_29
+  - a_5_35
+control_theme: technological
+control_text: 'It is a good way to safeguard your company’s data. It is a real-life simulation
+  of attack scenarios on your company: it enables you to identify potential vulnerabilities
+  that can be fixed before being exploited'
+implementation_state: not_started

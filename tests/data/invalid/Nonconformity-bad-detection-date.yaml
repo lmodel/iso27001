@@ -1,3 +1,0 @@
-id: iso27001:nc-bad-date
-name: Nonconformity With Invalid Detection Date
-detection_date: "April 2026"

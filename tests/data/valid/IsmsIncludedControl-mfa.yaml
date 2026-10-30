@@ -1,0 +1,8 @@
+# An included entry on its own, naming the organization's control and its
+# Annex A control.
+entry_type: IsmsIncludedControl
+entry_annex_a_control: a_8_5
+entry_justification: Needed to treat the phishing risk.
+included_control: acme:control-mfa
+implementation_state: implemented
+included_evidence: Identity provider report of enrolled users.

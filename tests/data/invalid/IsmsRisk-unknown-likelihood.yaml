@@ -1,0 +1,5 @@
+# Fails at: /risk_likelihood
+# Invalid: the likelihood is one of the five values of IsmsLikelihood.
+isms_id: acme:risk-phishing
+title: Credentials taken by phishing
+risk_likelihood: frequent

@@ -1,0 +1,5 @@
+# Fails at: /document_effective_date
+# Invalid: a date is an ISO 8601 date.
+isms_id: acme:policy-information-security
+title: Information security policy
+document_effective_date: next month

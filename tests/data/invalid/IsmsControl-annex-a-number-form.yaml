@@ -1,0 +1,7 @@
+# Fails at: /control_annex_a_controls/0
+# Invalid: an Annex A control is written as its enum value, a_5_1, not as
+# A.5.1.
+isms_id: acme:control-policies
+title: Information security policies
+control_annex_a_controls:
+  - A.5.1

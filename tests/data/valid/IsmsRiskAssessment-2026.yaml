@@ -1,0 +1,13 @@
+# One risk assessment and the risks it identified.
+isms_id: acme:assessment-2026
+title: Risk assessment 2026
+assessment_scope: All systems in the ISMS scope.
+assessment_date: "2026-03-02"
+assessment_assessor: Security team
+assessment_method_used: Asset-based assessment on five-point scales.
+assessment_risks:
+  - acme:risk-phishing
+assessment_summary: One high risk, from phishing, needs treatment.
+assessment_recommendations:
+  - Enforce multi-factor authentication on mail.
+assessment_next_date: "2027-03-01"

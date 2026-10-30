@@ -1,0 +1,18 @@
+# A record of one person's competence for an ISMS role.
+isms_id: acme:competence-analyst
+title: Competence of the security analyst
+competence_person: Sam Okafor
+competence_role: acme:role-security-analyst
+competence_required:
+  - Incident handling
+competence_education:
+  - BSc in Computer Science
+competence_training:
+  - Incident response course, 2025.
+competence_experience:
+  - Two years in a security operations team.
+competence_assessment_date: "2026-02-10"
+competence_gaps:
+  - Cloud forensics
+competence_actions:
+  - Cloud forensics course in the third quarter.

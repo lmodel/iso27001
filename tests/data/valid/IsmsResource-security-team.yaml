@@ -1,0 +1,9 @@
+# A resource provided for the ISMS.
+isms_id: acme:resource-security-team
+title: Security team
+resource_category: people
+resource_quantity: Three full-time staff.
+resource_allocation_date: "2026-01-01"
+resource_allocated_to: Running and improving the ISMS.
+resource_cost: Within the IT budget.
+resource_availability: available

@@ -1,0 +1,6 @@
+# Fails at: /implementation_state
+# Invalid: an excluded Annex A control is an IsmsExcludedControl entry, so
+# not_applicable is no implementation status.
+isms_id: acme:control-mfa
+title: Multi-factor sign-in
+implementation_state: not_applicable

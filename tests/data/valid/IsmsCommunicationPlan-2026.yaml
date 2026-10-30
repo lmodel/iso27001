@@ -1,0 +1,11 @@
+# A communication plan with one communication.
+isms_id: acme:communication-plan
+title: ISMS communication plan
+communication_items:
+  - communication_subject: Information security performance
+    communication_purpose: Keep top management informed.
+    communication_audience: Board of directors
+    communication_frequency: quarterly
+    communication_method: Board report
+    responsible_role: acme:role-ciso
+    communication_records_required: true

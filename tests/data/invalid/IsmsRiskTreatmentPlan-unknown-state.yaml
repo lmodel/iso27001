@@ -1,0 +1,6 @@
+# Fails at: /implementation_state
+# Invalid: a plan's state is one of the four values of
+# IsmsImplementationStatus.
+isms_id: acme:plan-phishing
+title: Treat the phishing risk
+implementation_state: done

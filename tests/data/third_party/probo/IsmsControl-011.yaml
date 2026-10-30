@@ -1,0 +1,10 @@
+isms_id: probo:database-auth
+title: Implement IAM for database authentication
+control_annex_a_controls:
+  - a_5_15
+  - a_5_16
+  - a_5_18
+control_theme: organizational
+control_text: You want to ensure that only the proper people can access your production database.
+  You also want to avoid the burden of managing another list of users or rotating credentials
+implementation_state: not_started

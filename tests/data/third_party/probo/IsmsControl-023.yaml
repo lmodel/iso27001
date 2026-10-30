@@ -1,0 +1,11 @@
+isms_id: probo:vpn-remote-access
+title: Use VPNs to secure access for remote devices
+control_annex_a_controls:
+  - a_6_7
+  - a_8_22
+control_theme: people
+control_text: In short, implementing a VPN will encrypt your data and ensure a safe transmission
+  between your employees devices and your internal network (even when using untrusted networks
+  like a public wifi) so it offers a layer of security for your data. If everything is on
+  Google Suite/Notion/Slack/etc
+implementation_state: not_started

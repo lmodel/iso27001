@@ -1,0 +1,11 @@
+isms_id: probo:infra-github-tokens
+title: Plug your infrastructure & GitHub - avoid lifetime tokens
+control_annex_a_controls:
+  - a_8_4
+  - a_8_15
+  - a_8_9
+control_theme: technological
+control_text: Having credentials to manage can become a nightmare (especially if you need
+  to change/rotate them often) - it quickly becomes time consuming. It is the same with lifetime
+  tokens - someone leaving and you need to change them
+implementation_state: not_started

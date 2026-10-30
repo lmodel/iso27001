@@ -1,0 +1,4 @@
+# Fails at: /
+# Invalid: an excluded entry names the Annex A control it leaves out.
+entry_type: IsmsExcludedControl
+entry_justification: Not needed.

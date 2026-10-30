@@ -1,0 +1,8 @@
+isms_id: probo:set-up-2fa-for-all-contributors
+title: Set-up 2FA for all contributors
+control_annex_a_controls:
+  - a_8_4
+control_theme: technological
+control_text: It reduces the risk of account compromise for all contributors, especially the
+  ones not in your company
+implementation_state: not_started

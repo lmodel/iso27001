@@ -1,0 +1,5 @@
+# Fails at: /risk_inherent_level
+# Invalid: a risk level is one of the five values of IsmsRiskLevel.
+isms_id: acme:risk-phishing
+title: Credentials taken by phishing
+risk_inherent_level: extreme

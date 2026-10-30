@@ -1,0 +1,10 @@
+isms_id: probo:cloud-datacenter-physical-security
+title: Cloud datacenter physical security
+control_annex_a_controls:
+  - a_7_4
+  - a_7_1
+  - a_7_9
+control_theme: physical
+control_text: You know how critical a data center is. You don’t want unauthorized people to
+  access it
+implementation_state: not_started

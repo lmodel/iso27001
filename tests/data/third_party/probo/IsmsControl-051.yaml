@@ -1,0 +1,10 @@
+isms_id: probo:keep-your-logs
+title: Keep your logs
+control_annex_a_controls:
+  - a_8_15
+control_theme: technological
+control_text: Logs help you to detect and investigate security incidents and troubleshoot
+  operational issues. They provide an audit trail
+control_guidance: You should consider a retention period of at least 90 days, and up to 1
+  year
+implementation_state: not_started

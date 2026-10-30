@@ -1,0 +1,20 @@
+# The organization that runs the ISMS in every example, as its own record.
+isms_id: acme:organization
+title: Acme Widgets Ltd
+description: >-
+  A manufacturer of small machine parts that sells online to businesses.
+organization_legal_name: Acme Widgets Limited
+organization_trading_names:
+  - Acme Widgets
+organization_kind: private company
+organization_sector: manufacturing
+organization_size: medium
+organization_employee_count: 240
+organization_locations:
+  - Ireland
+  - Germany
+organization_jurisdictions:
+  - European Union
+organization_subsidiaries:
+  - Acme Widgets GmbH
+organization_climate_change_relevant: true

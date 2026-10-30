@@ -1,0 +1,9 @@
+isms_id: probo:manage-your-service-accounts
+title: Manage your service accounts
+control_annex_a_controls:
+  - a_8_9
+control_theme: technological
+control_text: You don’t want to use the “default” service account, it has way too many permissions
+  - it is a super administrator. Even GCP is asking you not to use theirs, it is only here
+  for legacy reasons
+implementation_state: not_started

@@ -1,0 +1,15 @@
+# An interested party and its requirements, including one about climate
+# change.
+isms_id: acme:party-customers
+title: Business customers
+party_category: customer
+party_relationship: Buys parts through the online shop under framework contracts.
+party_requirements:
+  - Orders and design files are kept confidential.
+  - The shop is available during European business hours.
+party_addressed_requirements:
+  - Orders and design files are kept confidential.
+party_climate_change_requirements:
+  - Suppliers report the energy their hosted services use.
+party_communication_needs: Notice of any incident that affects their orders.
+party_contact: account-managers@example.org

@@ -1,0 +1,13 @@
+isms_id: probo:external-support
+title: External support available
+control_annex_a_controls:
+  - a_5_19
+  - a_5_14
+control_theme: organizational
+control_text: 'External support is not required, but it enhances transparency by showcasing
+  your security practices, policies, and compliance efforts, building trust with customers
+  and stakeholders. Ultimately, this is what compliance is about: reassuring your prospect
+  and customer on how you work'
+control_guidance: Create and maintain a complete list of support resources (eg. user guides,
+  technical documentation) for all your services
+implementation_state: not_started

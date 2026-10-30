@@ -1,181 +1,110 @@
 #!/usr/bin/env python3
-"""Convert Probo mitigations.json to iso27001 LinkML-compliant YAML test fixtures.
+"""Turn Probo's mitigations.json into IsmsControl examples for this schema.
 
-Source: https://github.com/getprobo/probo (MIT licence)
+Source: https://github.com/getprobo/probo, under the MIT License that the
+LICENSE file beside this script carries.
 
-Output:
-  tests/data/third_party/probo/SecurityControl-NNN.yaml  - one per Annex A mitigation (61 entries)
+Each Probo mitigation that names one or more Annex A controls becomes an
+IsmsControl, written to IsmsControl-NNN.yaml beside this script: its
+`control_annex_a_controls` list every Annex A control the mitigation names, in
+order, and its theme is the first one's. The text and guidance are Probo's
+own words, its "Why?" and "What?" sections cut to two sentences each.
 
-Clause-level mitigations (references to main ISO 27001 clauses rather than Annex A
-controls) are written to a separate summary report and not converted to YAML fixtures
-because they describe ISMS governance activities that map to classes such as
-InformationSecurityObjective, ManagementReview, and AwarenessProgram - classes that
-already have hand-authored fixtures covering their required fields.
+A mitigation that names only clauses of the standard, or only other
+frameworks, has no Annex A control to answer to, so it is skipped and listed.
+
+Usage::
+
+    uv run python tests/data/third_party/probo/convert.py
 """
+
+from __future__ import annotations
 
 import json
 import re
-import sys
-import textwrap
 from pathlib import Path
 
-# ---------------------------------------------------------------------------
-# Paths
-# ---------------------------------------------------------------------------
+import yaml
 
 HERE = Path(__file__).parent
-OUTPUT_DIR = HERE          # write fixtures alongside the source data
 SOURCE = HERE / "mitigations.json"
 
-# ---------------------------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------------------------
-
-_ANNEX_A_RE = re.compile(r"ISO27001:2022-A\.([\d.]+)")
-_CLAUSE_RE = re.compile(r"ISO27001:2022-([\d.]+)")
-
-CATEGORY_MAP = {5: "organizational", 6: "people", 7: "physical", 8: "technological"}
+_ANNEX_A_RE = re.compile(r"ISO27001:2022-A\.(\d)\.(\d+)")
+THEMES = {"5": "organizational", "6": "people", "7": "physical", "8": "technological"}
 
 
-def first_annex_a_control(standards: str) -> str | None:
-    """Return the first Annex A control number from the standards string, or None."""
-    m = _ANNEX_A_RE.search(standards)
-    if not m:
-        return None
-    return m.group(1).rstrip(".")  # strip any trailing dot from source data
+class IndentedDumper(yaml.SafeDumper):
+    """A safe dumper that indents a list under its key, as yamllint expects."""
+
+    def increase_indent(self, flow=False, indentless=False):
+        return super().increase_indent(flow, False)
 
 
-def control_category(control_id: str) -> str:
-    """Derive ControlCategory enum value from the Annex A control number prefix."""
-    major = int(control_id.split(".")[0])
-    return CATEGORY_MAP.get(major, "organizational")
+def annex_a_controls(standards: str) -> list[str]:
+    """The Annex A controls a mitigation names, as enum values, in order."""
+    seen = []
+    for theme, number in _ANNEX_A_RE.findall(standards):
+        value = f"a_{theme}_{number}"
+        if value not in seen:
+            seen.append(value)
+    return seen
+
+
+def first_sentences(text: str, n: int = 2) -> str:
+    sentences = re.split(r"(?<=[.!?])\s+", text)
+    return " ".join(sentences[:n]).strip().rstrip(".")
 
 
 def parse_description(raw: str) -> tuple[str, str]:
-    """
-    Split a Probo description into (control_text, implementation_guidance).
-
-    Probo descriptions use '## Why?' and optionally '## What?' markdown headings.
-    Returns plain-text sentences suitable for YAML scalar values.
-    """
-    # Normalise arrow characters and extra whitespace
-    raw = raw.replace("⇒", "->").replace("\u21d2", "->")
-    raw = re.sub(r"\s+", " ", raw).strip()
-
-    # Split on ## What? (case-insensitive)
+    """Split a Probo description into its "Why?" and "What?" sections."""
+    raw = re.sub(r"\s+", " ", raw.replace("\N{RIGHTWARDS DOUBLE ARROW}", "so")).strip()
     parts = re.split(r"##\s*[Ww]hat\?", raw, maxsplit=1)
-    why_part = parts[0]
-    what_part = parts[1] if len(parts) > 1 else ""
-
-    # Strip ## Why? heading
-    why_text = re.sub(r"##\s*[Ww]hy\?\s*", "", why_part).strip()
-    what_text = what_part.strip()
-
-    # Take the first two sentences of each section to keep fixtures concise
-    def first_sentences(text: str, n: int = 2) -> str:
-        sentences = re.split(r"(?<=[.!?])\s+", text)
-        return " ".join(sentences[:n]).strip().rstrip(".")
-
-    control_text = first_sentences(why_text, 2) if why_text else why_text
-    implementation_guidance = first_sentences(what_text, 2) if what_text else ""
-
-    return control_text, implementation_guidance
-
-
-def yaml_scalar(value: str, indent: int = 0) -> str:
-    """Render a string as a YAML scalar; use block style for long values."""
-    if not value:
-        return '""'
-    if len(value) <= 90 and "\n" not in value:
-        # Inline - escape any problematic characters
-        escaped = value.replace('"', '\\"')
-        return f'"{escaped}"'
-    # Block folded scalar
-    prefix = " " * indent
-    wrapped = textwrap.fill(value, width=90, subsequent_indent=prefix)
-    lines = wrapped.split("\n")
-    block = "\n".join(f"{prefix}{l}" for l in lines)
-    return f">\n{block}"
-
-
-def slug_to_id(probo_id: str) -> str:
-    return f"iso27001:control-{probo_id}"
-
-
-# ---------------------------------------------------------------------------
-# Main conversion
-# ---------------------------------------------------------------------------
+    why = re.sub(r"##\s*[Ww]hy\?\s*", "", parts[0]).strip()
+    what = parts[1].strip() if len(parts) > 1 else ""
+    return (first_sentences(why) if why else ""), (
+        first_sentences(what) if what else ""
+    )
 
 
 def convert() -> None:
-    data = json.loads(SOURCE.read_text())
-
-    annex_a_entries = []
-    skipped = []
-
+    data = json.loads(SOURCE.read_text(encoding="utf-8"))
+    entries, skipped = [], []
     for entry in data:
-        std = entry.get("standards", "")
-        ctrl = first_annex_a_control(std)
-        if ctrl:
-            annex_a_entries.append((ctrl, entry))
-        else:
-            skipped.append(entry)
+        controls = annex_a_controls(entry.get("standards", ""))
+        (entries if controls else skipped).append((controls, entry))
+    entries.sort(key=lambda item: tuple(int(p) for p in item[0][0].split("_")[1:]))
 
-    # Sort by Annex A control number (numerically by major.minor)
-    def sort_key(item):
-        parts = [p for p in item[0].split(".") if p]
-        return tuple(int(p) for p in parts)
-
-    annex_a_entries.sort(key=sort_key)
-
-    generated = []
-    for seq, (ctrl_id, entry) in enumerate(annex_a_entries, start=1):
-        num = f"{seq:03d}"
-        filename = OUTPUT_DIR / f"SecurityControl-{num}.yaml"
-
-        cat = control_category(ctrl_id)
-        ctrl_text, impl_guidance = parse_description(entry.get("description", ""))
-
-        lines = [
-            f'id: {slug_to_id(entry["id"])}',
-            f'name: {entry["name"]}',
-            f'control_id: a_{ctrl_id.replace(".", "_")}',
-            f'control_title: {entry["name"]}',
-            f'control_category: {cat}',
-        ]
-
-        if ctrl_text:
-            # Inline if short, block if long
-            if len(ctrl_text) <= 90:
-                lines.append(f'control_text: "{ctrl_text}"')
-            else:
-                lines.append(f"control_text: >-")
-                for part in textwrap.wrap(ctrl_text, width=90):
-                    lines.append(f"  {part}")
-
-        if impl_guidance:
-            if len(impl_guidance) <= 90:
-                lines.append(f'implementation_guidance: "{impl_guidance}"')
-            else:
-                lines.append(f"implementation_guidance: >-")
-                for part in textwrap.wrap(impl_guidance, width=90):
-                    lines.append(f"  {part}")
-
-        lines.append("implementation_status: not_started")
-
-        content = "\n".join(lines) + "\n"
-        filename.write_text(content)
-        generated.append(filename.name)
-
-    print(f"Generated {len(generated)} SecurityControl fixtures in {OUTPUT_DIR}")
-
+    for old in HERE.glob("IsmsControl-*.yaml"):
+        old.unlink()
+    for seq, (controls, entry) in enumerate(entries, start=1):
+        text, guidance = parse_description(entry.get("description", ""))
+        record = {
+            "isms_id": f"probo:{entry['id']}",
+            "title": entry["name"],
+            "control_annex_a_controls": controls,
+            "control_theme": THEMES[controls[0].split("_")[1]],
+        }
+        if text:
+            record["control_text"] = text
+        if guidance:
+            record["control_guidance"] = guidance
+        record["implementation_state"] = "not_started"
+        out = HERE / f"IsmsControl-{seq:03d}.yaml"
+        out.write_text(
+            yaml.dump(
+                record,
+                Dumper=IndentedDumper,
+                sort_keys=False,
+                allow_unicode=True,
+                width=88,
+            ),
+            encoding="utf-8",
+        )
+    print(f"Wrote {len(entries)} IsmsControl examples to {HERE}")
     if skipped:
-        print(f"\nSkipped {len(skipped)} non-Annex-A mitigations (clause-level or SOC2-only):")
-        for e in skipped:
-            stds = e.get("standards", "")
-            clauses = _CLAUSE_RE.findall(stds)
-            cat = e.get("category", "")
-            print(f"  {e['id']:55s}  clauses={clauses}  [{cat}]")
+        print(f"Skipped {len(skipped)} mitigations that name no Annex A control:")
+        for _, entry in skipped:
+            print(f"  {entry['id']}")
 
 
 if __name__ == "__main__":

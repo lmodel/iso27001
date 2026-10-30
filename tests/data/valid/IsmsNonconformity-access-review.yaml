@@ -1,0 +1,15 @@
+# A nonconformity, how it was found, contained and why it happened.
+isms_id: acme:nonconformity-access-review
+title: Access reviews not recorded
+nonconformity_source: internal audit
+nonconformity_detected_on: "2026-04-15"
+nonconformity_detected_by: Riley Chen
+nonconformity_requirement: The access control policy's quarterly review.
+nonconformity_immediate_actions:
+  - Ran and recorded the missed review.
+nonconformity_consequences: No access was found that should have been removed.
+nonconformity_root_cause: The review had no owner after a staff change.
+nonconformity_similar_check: The other quarterly reviews have owners.
+nonconformity_status: closed
+nonconformity_closure_date: "2026-06-01"
+nonconformity_closure_evidence: Review record for May.
