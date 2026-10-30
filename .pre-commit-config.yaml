@@ -1,5 +1,23 @@
 ---
 # https://pre-commit.com/
+# No hook may rewrite a file this repository does not write by hand: ISO
+# Open Data's records and Probo's mitigations, kept byte for byte so their
+# hashes match; what the LinkML generators, `just create-empty-overlay` and
+# `lokf adapt` write, which the next run would rewrite back; the neighbours'
+# released copies; and the KTL sidecar's scripts, which the weekly sync
+# replaces.
+exclude: >-
+  (?x)^(
+    src/iso27001/schema/iso-open-data/|
+    src/iso27001/schema/iso27001-overlay\.template\.yaml$|
+    src/iso27001/datamodel/|
+    project/|
+    docs/schema/|
+    tests/data/third_party/probo/mitigations\.json$|
+    \.lokf/(scripts|m365)/|
+    \.lokf/(lokf|iso27001)\.yaml$|
+    tests/neighbours/
+  )
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
