@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 # Named like lmodel/slsa's slsa-linkml, so the PyPI name says what it holds;
 # the import package stays iso27001. PyPI publishing is off.
 name = "iso27001-linkml"
-description = "ISO 27001 / ISMS: LinkML Schema"
+description = "ISO/IEC 27001:2022 information security management system records (LinkML)"
 authors = [
   {name = "Noel McLoughlin", email = "noel.mcloughlin@gmail.com"},
 ]
@@ -67,6 +67,14 @@ skip = [
   "project/*",
   "src/iso27001/datamodel/iso27001_pydantic.py",
   "src/iso27001/datamodel/iso27001.py",
+  # ISO Open Data's records, Probo's mitigations and the neighbours' adapt
+  # copies, copied as published, and files copied in by the KTL sidecar sync
+  # or written by npm, not by hand.
+  "src/iso27001/schema/iso-open-data/*",
+  "tests/data/third_party/probo/mitigations.json",
+  "tests/neighbours/*",
+  ".lokf/scripts/*",
+  "website/package-lock.json",
 ]
 
 # Reminder: words have to be lowercased for the ignore-words-list
@@ -85,4 +93,9 @@ extend-exclude = [
   "project/*",
   "src/iso27001/datamodel/iso27001_pydantic.py",
   "src/iso27001/datamodel/iso27001.py",
+  "src/iso27001/schema/iso-open-data/*",
+  "tests/data/third_party/probo/mitigations.json",
+  "tests/neighbours/*",
+  ".lokf/scripts/*",
+  "website/package-lock.json",
 ]

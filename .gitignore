@@ -142,3 +142,12 @@ dmypy.json
 .idea
 # Local vscode editor config
 .vscode
+
+# Agent skills are installed at run time, never committed.
+.agents/
+.claude/
+skills-lock.json
+
+# A licence holder's private overlay of ISO/IEC 27001 text, which must never
+# be committed or packaged (src/iso27001/schema/OVERLAY.md).
+/src/iso27001/schema/iso27001-overlay.yaml

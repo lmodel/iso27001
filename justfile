@@ -115,10 +115,10 @@ deploy: site
 [group('model development')]
 test: _test-schema _test-python _test-examples
 
-# Run linting
+# Run linting; a warning fails it as an error does (CI runs the same command)
 [group('model development')]
 lint:
-  uv run linkml-lint {{source_schema_dir}}
+  uv run linkml-lint {{source_schema_path}}
 
 # Regenerate the empty overlay scaffold from the public schema.
 # Safe to commit - contains no copyrighted text. See src/iso27001/schema/OVERLAY.md
