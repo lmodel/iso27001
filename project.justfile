@@ -32,28 +32,26 @@ apply-sssom-overlay:
     --mappings-dir src/iso27001/mappings
 
 # ============== Supplemental generator recipes (beyond gen-project defaults) ==============
-# gen-project already covers: graphql, jsonldcontext, jsonld, jsonschema, owl,
-# prefixmap, proto, python, shex, shacl, sqlddl, excel, typescript.
-# Explicit in main justfile: java, typescript (dup), owl (dup), pydantic (→ datamodel/).
-# The recipes below cover the remaining available generators.
-# Run all at once with: just gen-project-extended
+# gen-project already covers graphql, jsonldcontext, jsonld, jsonschema, owl,
+# prefixmap, proto, python, shex, shacl, sqlddl and excel, and the main
+# justfile adds java, typescript, owl and pydantic. The recipes below cover
+# the other generators LinkML ships. Run them all with `just gen-project-extended`.
+# Each runs the stock generator, except gen-dbml-artifact, whose wrapper
+# scripts/gen_dbml_patched.py explains why it is still needed.
 
 # ---- Schema / metadata formats ----
 
-# NOTE: recipe named gen-merged-schema to avoid conflict with CDM's gen-linkml recipe
 # Generate a single self-contained merged LinkML YAML with all imports resolved
 [group('model development - extended')]
 gen-merged-schema:
   mkdir -p {{dest}}/linkml
   uv run gen-linkml --mergeimports -o {{dest}}/linkml/{{schema_name}}.merged.linkml.yaml {{source_schema_path}}
 
-# gen-yaml CLI hits the linkml-runtime 1.11.0 RepresenterError (JsonObj missing SafeDumper representer).
-# Use the same patched script as _gen-yaml until linkml-runtime > 1.11.0 lands.
-# Generate resolved YAML schema (patched yamlgen)
+# Generate resolved YAML schema
 [group('model development - extended')]
 gen-yaml-artifact:
   mkdir -p {{dest}}/yaml
-  uv run python scripts//gen_yaml_patched.py {{source_schema_path}} > {{dest}}/yaml/{{schema_name}}.yaml
+  uv run gen-yaml {{source_schema_path}} > {{dest}}/yaml/{{schema_name}}.yaml
 
 # Generate SSSOM mapping TSV from schema slot_uri / mappings
 [group('model development - extended')]
@@ -93,7 +91,7 @@ gen-erdiagram-artifact:
   mkdir -p {{dest}}/erdiagram
   uv run gen-erdiagram --mergeimports -f mermaid {{source_schema_path}} > {{dest}}/erdiagram/{{schema_name}}.er.md
 
-# Generate PlantUML diagram (stdout → single file)
+# Generate PlantUML diagram as a single file
 [group('model development - extended')]
 gen-plantuml-artifact:
   mkdir -p {{dest}}/plantuml
@@ -101,14 +99,11 @@ gen-plantuml-artifact:
 
 # ---- Data / query formats ----
 
-# gen-rdf embeds ./cdm_*.context.jsonld refs that rdflib resolves against the
-# schema @base URL (https://w3id.org/lmodel/…), returning HTTP 404. Patched
-# script strips those refs; all prefix bindings are in the merged context.
 # Generate RDF/Turtle representation of the schema
 [group('model development - extended')]
 gen-rdf-artifact:
   mkdir -p {{dest}}/rdf
-  uv run python scripts//gen_rdf_patched.py --mergeimports -o {{dest}}/rdf/{{schema_name}}.ttl {{source_schema_path}}
+  uv run gen-rdf --mergeimports -o {{dest}}/rdf/{{schema_name}}.ttl {{source_schema_path}}
 
 # Generate a directory of SPARQL validation queries (one query per constraint)
 [group('model development - extended')]
@@ -128,7 +123,7 @@ gen-csv-artifact:
 [group('model development - extended')]
 gen-dbml-artifact:
   mkdir -p {{dest}}/dbml
-  uv run python3 scripts//gen_dbml_patched.py -s {{source_schema_path}} -o {{dest}}/dbml/{{schema_name}}.dbml
+  uv run python scripts/gen_dbml_patched.py -s {{source_schema_path}} -o {{dest}}/dbml/{{schema_name}}.dbml
 
 # Generate SQLAlchemy ORM models
 [group('model development - extended')]
@@ -156,7 +151,7 @@ gen-typedb-artifact:
 
 # ---- Language bindings ----
 
-# Generate Go structs (stdout → single file)
+# Generate Go structs as a single file
 [group('model development - extended')]
 gen-golang-artifact:
   mkdir -p {{dest}}/golang
@@ -178,17 +173,13 @@ gen-cpp-artifact:
 [group('model development - extended')]
 gen-pandera-artifact:
   mkdir -p {{dest}}/pandera
-  uv run python3 scripts//gen_pandera_patched.py {{source_schema_path}} > {{dest}}/pandera/{{schema_name}}_pandera.py
+  uv run gen-pandera {{source_schema_path}} > {{dest}}/pandera/{{schema_name}}_pandera.py
 
 # Generate Markdown data dictionary (single combined file)
-# NOTE Bug 12: gen-markdown-datadict creates a new ERDiagramGenerator (and
-# therefore re-loads the full CDM schema) for every one of the 2500+ CDM
-# classes, hanging indefinitely.  scripts/gen_markdown_datadict_patched.py
-# overrides _generate_class_diagram to cache one ERDiagramGenerator instance.
 [group('model development - extended')]
 gen-markdown-datadict-artifact:
   mkdir -p {{dest}}/markdown-datadict
-  uv run python3 scripts//gen_markdown_datadict_patched.py --mergeimports {{source_schema_path}} > {{dest}}/markdown-datadict/{{schema_name}}.md
+  uv run gen-markdown-datadict --mergeimports {{source_schema_path}} > {{dest}}/markdown-datadict/{{schema_name}}.md
 
 # Generate GOLR (SOLR) view configurations (one JSON per class)
 [group('model development - extended')]

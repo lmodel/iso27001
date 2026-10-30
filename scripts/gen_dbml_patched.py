@@ -1,85 +1,57 @@
 #!/usr/bin/env python3
-"""Wrapper for linkml gen-dbml that patches two upstream bugs.
+"""Run gen-dbml on this schema, skipping references to classes without an identifier.
 
-Bug A – FileNotFoundError on schema imports (schemaloader.py + dbmlgen.py):
-  DBMLGenerator.__post_init__ creates a fresh SchemaView(self.schema) after
-  Generator.__post_init__ has already loaded the schema via SchemaLoader.
-  SchemaLoader.resolve() deliberately strips source_file to its basename
-  (schemaloader.py line ~705: source_file = os.path.basename(source_file)).
-  When the new SchemaView later calls load_import(), os.path.dirname(basename)
-  returns "" so hbpopen() resolves import filenames relative to cwd rather than
-  the schema directory, raising FileNotFoundError for split/multi-module schemas.
-  Fix: restore source_file from schema_location (which SchemaLoader saved before
-  stripping) so SchemaView can resolve imports relative to the schema directory.
+gen-dbml in linkml 1.12.1 draws each reference between classes as a DBML
+relationship to the referenced class's identifier, and raises ValueError when
+the referenced class has none. This schema inlines three classes that have no
+identifier of their own, because they live only inside the record that holds
+them: IsmsApplicabilityEntry in the Statement of Applicability,
+IsmsCommunication in the communication plan and IsmsMonitoringItem in the
+monitoring programme. So the stock generator stops on the first of them.
 
-Bug B – ValueError for classes without an identifier slot (dbmlgen.py):
-  DBMLGenerator._generate_relationships() raises ValueError when a slot's range
-  class carries no identifier slot.  Most LinkML schemas (including CDM) use
-  object-identity rather than explicit @id fields, so this raises for essentially
-  every cross-class reference and makes the generator unusable.
-  Fix: skip (continue) instead of raising; emit only the relationships that can
-  be expressed.
+This is linkml issue 3633 (https://github.com/linkml/linkml/issues/3633),
+which pull request 3639 fixed on 2026-10-22, after the 1.12.1 release. The
+wrapper below does what that fix does: it skips such a reference and keeps the
+rest. Drop the wrapper, and call gen-dbml from project.justfile's
+gen-dbml-artifact recipe, once the root lock holds a linkml release that
+carries the fix.
 
-  Bugs raised upstream.
+Usage::
 
-See project.justfile gen-dbml-artifact for usage.
+    uv run python scripts/gen_dbml_patched.py -s <schema> -o <output>
 """
 
-import logging
-import os
-from dataclasses import dataclass
+from __future__ import annotations
 
 import click
 from linkml.generators.dbmlgen import DBMLGenerator
-from linkml.utils.generator import Generator
 from linkml_runtime.utils.formatutils import camelcase, underscore
-from linkml_runtime.utils.schemaview import SchemaView
 
-@dataclass
+
 class PatchedDBMLGenerator(DBMLGenerator):
-    """DBMLGenerator subclass that patches import resolution and relationship generation."""
-
-    def __post_init__(self) -> None:
-        """Run base init then restore source_file / SchemaView so relative imports resolve."""
-        # Run Generator (grandparent) __post_init__ via SchemaLoader: loads the
-        # schema, resolves imports, and sets self.base_dir / self.schema_location.
-        # NOTE: this also strips self.schema.source_file to its basename.
-        Generator.__post_init__(self)
-        self.logger = logging.getLogger(__name__)
-
-        # Bug A fix: restore source_file from schema_location so the new
-        # SchemaView can resolve relative imports against the schema directory.
-        if self.schema_location and not os.path.dirname(self.schema.source_file):
-            self.schema.source_file = self.schema_location
-
-        self.schemaview = SchemaView(self.schema)
+    """DBMLGenerator that skips a reference to a class without an identifier."""
 
     def _generate_relationships(self) -> str:
-        """Like DBMLGenerator._generate_relationships but skips classes with no identifier slot.
-
-        Bug B fix: upstream raises ValueError when a referenced class has no
-        identifier slot.  We skip those references instead so the rest of the
-        schema is still serialised.
-        """
+        view = self.schemaview
+        classes = view.all_classes()
         relationships = []
-        for class_name, _class_def in self.schemaview.all_classes().items():
-            for slot_name in self.schemaview.class_induced_slots(class_name):
-                slot = self.schemaview.get_slot(slot_name.name)
-                if slot.range not in self.schemaview.all_classes():
+        for class_name in classes:
+            for slot in view.class_induced_slots(class_name):
+                if slot.range not in classes:
                     continue
-                identifier_slot_name = next(
+                identifier = next(
                     (
-                        sn.name
-                        for sn in self.schemaview.class_induced_slots(slot.range)
-                        if self.schemaview.get_slot(sn.name).identifier
+                        s.name
+                        for s in view.class_induced_slots(slot.range)
+                        if s.identifier
                     ),
                     None,
                 )
-                if identifier_slot_name is None:
-                    continue  # Bug B fix: skip instead of raise
+                if identifier is None:
+                    continue
                 relationships.append(
                     f"Ref: {camelcase(class_name)}.{underscore(slot.name)} > "
-                    f"{camelcase(slot.range)}.{underscore(identifier_slot_name)}"
+                    f"{camelcase(slot.range)}.{underscore(identifier)}"
                 )
         return "\n".join(relationships)
 
@@ -100,14 +72,13 @@ class PatchedDBMLGenerator(DBMLGenerator):
     help="Output file (default: stdout)",
 )
 def cli(schema: str, output: str | None) -> None:
-    """Patched gen-dbml CLI: fixes import resolution and relationship generation."""
-    generator = PatchedDBMLGenerator(schema)
-    dbml_output = generator.serialize()
+    """Write the schema as DBML."""
+    dbml = PatchedDBMLGenerator(schema).serialize()
     if output:
-        with open(output, "w", encoding="utf-8") as f:
-            f.write(dbml_output)
+        with open(output, "w", encoding="utf-8") as fh:
+            fh.write(dbml)
     else:
-        print(dbml_output)
+        print(dbml)
 
 
 if __name__ == "__main__":
