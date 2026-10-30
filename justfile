@@ -1,8 +1,8 @@
-# ============ Hint for for Windows Users ============
+# ============ Shell configuration for Windows ============
 
-# On Windows the "sh" shell that comes with Git for Windows should be used.
-# If it is not on path, provide the path to the executable in the following line.
-#set windows-shell := ["C:/Program Files/Git/usr/bin/sh", "-cu"]
+# On Windows the "bash" shell from Git for Windows is used.
+# If Git is installed in a non-standard location, edit the path below.
+set windows-shell := ["C:/Program Files/Git/bin/bash", "-cu"]
 
 # ============ Variables used in recipes ============
 
@@ -158,7 +158,8 @@ gen-python:
 [group('model development')]
 gen-project:  apply-sssom-overlay
   uv run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
-  mv {{dest}}/*.py {{pymodel}}
+  mkdir -p {{pymodel}}
+  mv {{dest}}/*.py {{pymodel}}/
   uv run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
 
   @# Some generators ignore config_yaml or cannot create directories, so we run them separately.
@@ -226,9 +227,9 @@ _check-config:
 _update-template:
   copier update --trust --skip-answered
 
-# Update LinkML to latest version
+# Update LinkML runtime and LinkML to latest versions
 _update-linkml:
-  uv add linkml --upgrade-package linkml
+  uv lock --upgrade-package linkml-runtime --upgrade-package linkml
 
 # Test schema generation
 _test-schema:
