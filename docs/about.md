@@ -57,11 +57,11 @@ Two kinds of record come in variants, told apart by a type designator:
 The schema holds no text of ISO/IEC 27001 or ISO/IEC 27002: no clause, no
 control title and no guidance. It models no audit by a certification body
 beyond its record as an `IsmsAudit`, and no certification scheme. Its scales
-of likelihood, impact and risk level, and its incident categories, are
-offered for an organization that adopts them; the standard leaves both to
-the organization. The mappings name only terms of released lmodel schemas,
-and [Use cases](value.md#implementation-status) lists the ones dropped until
-their targets are released.
+of likelihood, impact and risk level, and its incident categories, are offered
+for an organization that adopts them. The standard leaves both to the
+organization. The mappings name only terms of released lmodel schemas, and
+[Use cases](value.md#implementation-status) lists the ones dropped until their
+targets are released.
 
 ## Reference
 

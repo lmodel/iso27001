@@ -24,7 +24,7 @@ ISO/IEC 27001:2022 information security management system records (LinkML)
 
 ## What it models
 
-The records an organization keeps to run an information security management system (ISMS) to [ISO/IEC 27001:2022](https://www.iso.org/standard/82875.html), third edition, with [Amendment 1:2024](https://www.iso.org/standard/88435.html), Climate action changes. The schema holds no text of the standard, which is ISO's copyright; each element cites the clause or Annex A control it models by number.
+The schema models the records an organization keeps to run an information security management system (ISMS) to [ISO/IEC 27001:2022](https://www.iso.org/standard/82875.html), third edition, with [Amendment 1:2024](https://www.iso.org/standard/88435.html), Climate action changes. The schema holds no text of the standard, which is ISO's copyright. Each element cites the clause or Annex A control it models by number.
 
 * **The ISMS** (`IsmsManagementSystem`): its scope, context and certification, and a list of each kind of record it keeps (clause 4).
 * **Context and leadership**: the organization (`IsmsOrganization`), its interested parties (`IsmsInterestedParty`), the information security policy (`IsmsPolicy`), topic-specific policies (`IsmsTopicSpecificPolicy`) and roles (`IsmsRole`) (clauses 4 and 5).
@@ -47,11 +47,11 @@ The schema renders one publication, ISO/IEC 27001:2022 with its amendment. Its e
 
 ## Mappings
 
-The schema crosses to three vocabularies and borrows from none. Each mapping names a class of a released lmodel schema, by the IRI that release gives it, and comes from an SSSOM file in [src/iso27001/mappings/](src/iso27001/mappings).
+The schema maps to three vocabularies and borrows from none. Each mapping names a class of a released lmodel schema, by the IRI that release gives it, and comes from an SSSOM file in [src/iso27001/mappings/](src/iso27001/mappings).
 
-* **OSCAL** ([lmodel/oscal](https://github.com/lmodel/oscal)): the included control is close to OSCAL's implemented requirement, the role to OSCAL's role, and OSCAL's party is broader than the organization. The ISMS, the control, the Statement of Applicability, the risk treatment plan, the corrective action, the audit, the audit programme and the asset are related to their nearest OSCAL classes.
+* **OSCAL**, the Open Security Controls Assessment Language ([lmodel/oscal](https://github.com/lmodel/oscal)): the included control is close to OSCAL's implemented requirement, the role to OSCAL's role, and OSCAL's party is broader than the organization. The ISMS, the control, the Statement of Applicability, the risk treatment plan, the corrective action, the audit, the audit programme and the asset are related to their nearest OSCAL classes.
 * **SP 800-53** ([lmodel/nist-sp-800-53](https://github.com/lmodel/nist-sp-800-53)): the organization's control is related to SP 800-53's control.
-* **SPDX** ([lmodel/spdx](https://github.com/lmodel/spdx)): the organization is close to SPDX's organization, and an asset is related to SPDX's package.
+* **SPDX**, the Software Package Data Exchange ([lmodel/spdx](https://github.com/lmodel/spdx)): the organization is close to SPDX's organization, and an asset is related to SPDX's package.
 
 Mappings to schemas that have no release yet, and to terms the released schemas do not hold, such as one SP 800-53 control, are left out until those exist. [docs/value.md](docs/value.md#implementation-status) lists what was dropped.
 
@@ -59,7 +59,7 @@ Mappings to schemas that have no release yet, and to terms the released schemas 
 
 * The text of ISO/IEC 27001 and ISO/IEC 27002: clauses, control titles and guidance.
 * Certification itself: the certification body's audit programme, its grading and its certificates, beyond the ISMS's own record of an audit and its certification status.
-* A fixed method of risk assessment. The likelihood, impact and risk-level scales and the incident categories are offered for an organization that adopts them; ISO/IEC 27001 leaves both to the organization.
+* A fixed method of risk assessment. The likelihood, impact and risk-level scales and the incident categories are offered for an organization that adopts them. ISO/IEC 27001 leaves both to the organization.
 * The rules no check covers, which [docs/index.md](docs/index.md) lists.
 
 ## Repository Structure

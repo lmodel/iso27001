@@ -3,10 +3,10 @@
 This project is a LinkML model of the records an organization keeps to run an
 information security management system (ISMS) to ISO/IEC 27001:2022 with
 Amendment 1:2024. It covers the ISMS's context and scope, its policies, roles
-and objectives, its risks and their treatment, its controls and Statement of
-Applicability, the support and operation it needs, its audits and management
-reviews, and its nonconformities, corrective actions and improvements. It
-holds no text of the standard.
+and objectives, and its risks and their treatment. It also covers its controls
+and Statement of Applicability, the support and operation it needs, its audits
+and management reviews, and its nonconformities, corrective actions and
+improvements. It holds no text of the standard.
 
 - [Schema documentation](elements/index.md), generated from the schema
 - [About](about.md): how the elements are named and what the model leaves out

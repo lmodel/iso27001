@@ -12,7 +12,7 @@ Use GitHub's [private vulnerability reporting](https://github.com/lmodel/iso2700
 
 ## What this repository releases
 
-A LinkML schema, the Python datamodel generated from it, and the schema's `lokf adapt` copy as a release asset. Nothing is published to PyPI, and nothing released holds text of ISO/IEC 27001. `scripts/check_upstream_release.py` runs only in `upstream-watch.yaml`. It streams ISO Open Data's daily metadata file line by line, parses only the lines that name the pinned standards, and writes nothing but its report. The tests read the pinned extract with the standard library's JSON parser. The overlay scripts under `scripts/` read YAML with `yaml.safe_load`; `overlay_populated_text.py`, which merges a licence holder's private text, writes only under `tmp/`, and `.gitignore` keeps the private overlay out of every commit. A schema is data: loading one from an untrusted source with any LinkML tool is that tool's risk, not this repository's.
+It releases a LinkML schema, the Python datamodel generated from it, and the schema's `lokf adapt` copy as a release asset. Nothing is published to PyPI, and nothing released holds text of ISO/IEC 27001. `scripts/check_upstream_release.py` runs only in `upstream-watch.yaml`. It streams ISO Open Data's daily metadata file line by line, parses only the lines that name the pinned standards, and writes nothing but its report. The tests read the pinned extract with the standard library's JSON parser. The overlay scripts under `scripts/` read YAML with `yaml.safe_load`. `overlay_populated_text.py`, which merges a licence holder's private text, writes only under `tmp/`, and `.gitignore` keeps the private overlay out of every commit. A schema is data: loading one from an untrusted source with any LinkML tool is that tool's risk, not this repository's.
 
 ## What executes here
 
@@ -33,4 +33,4 @@ Every workflow declares `permissions: {}` at the top, pins its actions to commit
 - ISO/IEC 27001 itself: report a problem to [ISO/IEC JTC 1/SC 27](https://www.iso.org/committee/45306.html) through your national standards body. ISO Open Data's records, copied under `src/iso27001/schema/iso-open-data/`, belong to [ISO](https://www.iso.org/open-data.html).
 - LinkML, its generators and runtime: report them to [LinkML](https://github.com/linkml/linkml/security).
 - A compromised runner, upstream action or agent harness: this is a baseline, not a sandbox. Report a finding in one anyway, with scope and reproduction.
-- Whether the knowledge bundle is *true*. The gate proves who vouched, not what they read; [AI_COVENANT.md](AI_COVENANT.md) sets the human-accountability rules.
+- Whether the knowledge bundle is *true*. The gate proves who vouched, not what they read. [AI_COVENANT.md](AI_COVENANT.md) sets the human-accountability rules.
