@@ -34,11 +34,16 @@ Validate a file before loading it into either model in
 - Neither checks that an included control names an Annex A control or one
   of the organization's controls.
 
-No check covers these rules:
+No validator checks these rules:
 
 - that a reference names a record the ISMS holds, of the class the
   reference ranges over;
 - that a list never repeats an identifier;
-- that an audit ends after it begins, or that a control's theme is the theme
-  of the Annex A controls it answers to;
+- that an audit ends on or after the day it begins, or that a control's
+  theme is the theme of one of the Annex A controls it answers to;
 - that the Statement of Applicability has one entry for each Annex A control.
+
+`tests/test_data.py` checks the first two within the whole ISMS example, and
+the third over every example and every control derived from Probo. The
+examples are cut down, so for the last it checks only that no Statement of
+Applicability lists an Annex A control twice.

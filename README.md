@@ -60,7 +60,7 @@ Mappings to schemas that have no release yet, and to terms the released schemas 
 * The text of ISO/IEC 27001 and ISO/IEC 27002: clauses, control titles and guidance.
 * Certification itself: the certification body's audit programme, its grading and its certificates, beyond the ISMS's own record of an audit and its certification status.
 * A fixed method of risk assessment. The likelihood, impact and risk-level scales and the incident categories are offered for an organization that adopts them. ISO/IEC 27001 leaves both to the organization.
-* The rules no check covers, which [docs/index.md](docs/index.md) lists.
+* The rules no validator checks, which [docs/index.md](docs/index.md) lists.
 
 ## Repository Structure
 
