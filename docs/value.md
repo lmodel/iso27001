@@ -4,45 +4,45 @@
 
 - [LinkML](#linkml)
 - [ISO27001 SCHEMA](#iso27001-schema)
-  - [Governance](#governance)
-    - [ISMS-as-Data](#isms-as-data)
-    - [Policy Lifecycle Management](#policy-lifecycle-management)
-    - [Roles, Responsibilities, and Accountability](#roles-responsibilities-and-accountability)
-    - [Management Review Evidence](#management-review-evidence)
-    - [Objectives Tracking](#objectives-tracking)
-  - [Cybersecurity](#cybersecurity)
-    - [Risk Register](#risk-register)
-    - [Control Tracking Against Annex A](#control-tracking-against-annex-a)
-    - [Statement of Applicability Automation](#statement-of-applicability-automation)
-    - [Incident Response Traceability](#incident-response-traceability)
-    - [Threat Intelligence Integration](#threat-intelligence-integration)
-  - [DevSecOps](#devsecops)
-    - [Schema-as-Code](#schema-as-code)
-    - [CI/CD Compliance Gates](#cicd-compliance-gates)
-    - [Infrastructure-as-Code Alignment](#infrastructure-as-code-alignment)
-    - [Automated Evidence Collection](#automated-evidence-collection)
-    - [SHACL/ShEx Validation of Linked Data Artifacts](#shaclshex-validation-of-linked-data-artifacts)
-  - [Regulatory Compliance](#regulatory-compliance)
-    - [Multi-Framework Mapping](#multi-framework-mapping)
-    - [Documented Information Inventory](#documented-information-inventory)
-    - [Nonconformity and Corrective Action Audit Trail](#nonconformity-and-corrective-action-audit-trail)
-    - [Audit Programme Management](#audit-programme-management)
-    - [NIS2 / DORA Readiness](#nis2--dora-readiness)
-    - [Export to SQL / Relational GRC](#export-to-sql--relational-grc)
-  - [Integration](#integration)
-    - [Linked Data and Knowledge Graph](#linked-data-and-knowledge-graph)
-    - [GRC Platform Data Exchange](#grc-platform-data-exchange)
-    - [SIEM and SOAR Enrichment](#siem-and-soar-enrichment)
-    - [Asset Management System Integration](#asset-management-system-integration)
-    - [Spreadsheet / GRC Import via SchemaSheets](#spreadsheet--grc-import-via-schemasheets)
-    - [Python and TypeScript SDK Generation](#python-and-typescript-sdk-generation)
-    - [Semantic Cross-Framework Alignment via LinkML Mappings](#semantic-cross-framework-alignment-via-linkml-mappings)
+- [Governance](#governance)
+  - [ISMS-as-Data](#isms-as-data)
+  - [Policy Lifecycle Management](#policy-lifecycle-management)
+  - [Roles, Responsibilities, and Accountability](#roles-responsibilities-and-accountability)
+  - [Management Review Evidence](#management-review-evidence)
+  - [Objectives Tracking](#objectives-tracking)
+- [Cybersecurity](#cybersecurity)
+  - [Risk Register](#risk-register)
+  - [Control Tracking Against Annex A](#control-tracking-against-annex-a)
+  - [Statement of Applicability Automation](#statement-of-applicability-automation)
+  - [Incident Response Traceability](#incident-response-traceability)
+  - [Threat Intelligence Integration](#threat-intelligence-integration)
+- [DevSecOps](#devsecops)
+  - [Schema-as-Code](#schema-as-code)
+  - [CI/CD Compliance Gates](#cicd-compliance-gates)
+  - [Infrastructure-as-Code Alignment](#infrastructure-as-code-alignment)
+  - [Automated Evidence Collection](#automated-evidence-collection)
+  - [SHACL/ShEx Validation of Linked Data Artifacts](#shaclshex-validation-of-linked-data-artifacts)
+- [Regulatory Compliance](#regulatory-compliance)
+  - [Multi-Framework Mapping](#multi-framework-mapping)
+  - [Documented Information Inventory](#documented-information-inventory)
+  - [Nonconformity and Corrective Action Audit Trail](#nonconformity-and-corrective-action-audit-trail)
+  - [Audit Programme Management](#audit-programme-management)
+  - [NIS2 / DORA Readiness](#nis2--dora-readiness)
+  - [Export to SQL / Relational GRC](#export-to-sql--relational-grc)
+- [Integration](#integration)
+  - [Linked Data and Knowledge Graph](#linked-data-and-knowledge-graph)
+  - [GRC Platform Data Exchange](#grc-platform-data-exchange)
+  - [SIEM and SOAR Enrichment](#siem-and-soar-enrichment)
+  - [Asset Management System Integration](#asset-management-system-integration)
+  - [Spreadsheet / GRC Import via SchemaSheets](#spreadsheet--grc-import-via-schemasheets)
+  - [Python and TypeScript SDK Generation](#python-and-typescript-sdk-generation)
+  - [Semantic Cross-Framework Alignment via LinkML Mappings](#semantic-cross-framework-alignment-via-linkml-mappings)
 - [lmodel Ecosystem](#lmodel-ecosystem)
-  - [Compliance and Control Frameworks](#compliance-and-control-frameworks)
-  - [Threat Intelligence and Incident Response](#threat-intelligence-and-incident-response)
-  - [Unified Cyber Ontology](#unified-cyber-ontology)
-  - [Supply Chain and Software Integrity](#supply-chain-and-software-integrity)
-  - [Linked Data Infrastructure](#linked-data-infrastructure)
+- [Compliance and Control Frameworks](#compliance-and-control-frameworks)
+- [Threat Intelligence and Incident Response](#threat-intelligence-and-incident-response)
+- [Unified Cyber Ontology](#unified-cyber-ontology)
+- [Supply Chain and Software Integrity](#supply-chain-and-software-integrity)
+- [Linked Data Infrastructure](#linked-data-infrastructure)
 - [Summary Assessment](#summary-assessment)
 - [Implementation Status](#implementation-status)
 
@@ -54,51 +54,51 @@ LinkML models are organized around the core concepts of Classes and Slots. They 
 
 LinkML offers many features of use to data modelers, while retaining a simple core
 
-  - Classes can be arranged in inheritance hierarchies
-  - Powerful yet easy to use Semantic enumerations that can optionally be backed by ontologies
-  - Create data models that are independent of a database technology
-  - Develop machine-actionable reporting standards and data dictionaries
-  - Include rich annotations and mappings as part of a model
-  - “Linked Data” ready
-    - All schemas have a corresponding JSON-LD context
-    - Compatibility with RDF tooling, without committing to an RDF stack
-    - Compilation to SHACL and ShEx
-    - Export of data models to OWL Schemas
+- Classes can be arranged in inheritance hierarchies
+- Powerful yet easy to use Semantic enumerations that can optionally be backed by ontologies
+- Create data models that are independent of a database technology
+- Develop machine-actionable reporting standards and data dictionaries
+- Include rich annotations and mappings as part of a model
+- “Linked Data” ready
+  - All schemas have a corresponding JSON-LD context
+  - Compatibility with RDF tooling, without committing to an RDF stack
+  - Compilation to SHACL and ShEx
+  - Export of data models to OWL Schemas
 
 Many frameworks lock you in to a particular view of the world or technology. This can lead to silos, and the need to create mappings and transformations between different representations of the same data; for example, if your JSON documents need to work in concert with your relational database or graph store.
 
 LinkML has many different generators for existing frameworks that allow the translation of a LinkML schema to other frameworks:
 
-  - Convert to JSON-LD contexts, and instantly port your data to RDF
-  - Convert to JSON-Schema and using JSON-Schema validators
-  - Convert to SHACL or ShEx and validate your RDF data
-  - Convert to Python dataclasses or pydantic for easy use within applications
-  - Generate SQL Schemas or SQL Alchemy for use with relational databases and validate your database with SQL Validation
+- Convert to JSON-LD contexts, and instantly port your data to RDF
+- Convert to JSON-Schema and using JSON-Schema validators
+- Convert to SHACL or ShEx and validate your RDF data
+- Convert to Python dataclasses or pydantic for easy use within applications
+- Generate SQL Schemas or SQL Alchemy for use with relational databases and validate your database with SQL Validation
 
 Using the LinkML toolchain you can go from a schema to a statically hosted searchable website in minutes, with pages for each of your schema elements. Using lightweight namespace registries such as w3id.org you can easily have resolvable URIs for all your concepts.
 
 LinkML can be thought of as two interlocking parts:
 
-  - A standard for representing schemas, data dictionaries, standards, and metadata
-  - A reference tool stack for doing things with artefacts that conform to the standard
+- A standard for representing schemas, data dictionaries, standards, and metadata
+- A reference tool stack for doing things with artefacts that conform to the standard
 
 The core LinkML toolchain is written in Python allows for:
 
-  - generating downstream schema artefacts, including:
-    - documentation and static sites
-    - code for use by developers (data class in Python, Java, and Typescript, ORMs, enumerations)
-    - conversion between alternate representations like JSON-Schema, SQL DDL, RDF Shapes, Protobuf, …
-    - validation and linting of schemas
-    - data conversion between JSON, TSV, and RDF (where that data conforms to a LinkML schema)
-    - data validation of JSON, TSVs, or RDF using either JSON-Schema, SPARQL, or ShEx
-    - easy programmatic manipulation of schemas
+- generating downstream schema artefacts, including:
+  - documentation and static sites
+  - code for use by developers (data class in Python, Java, and Typescript, ORMs, enumerations)
+  - conversion between alternate representations like JSON-Schema, SQL DDL, RDF Shapes, Protobuf, …
+  - validation and linting of schemas
+  - data conversion between JSON, TSV, and RDF (where that data conforms to a LinkML schema)
+  - data validation of JSON, TSVs, or RDF using either JSON-Schema, SPARQL, or ShEx
+  - easy programmatic manipulation of schemas
 
 LinkML is part of a growing ecosystem of general purpose tools that make curating, mapping, ingesting, and organizing data much easier
 
-  - schema-automator bootstraps schemas from existing structured and semi-structured sources
-  - LinkML-OWL allows for generation of complex OWL axioms from datamodels
-  - SchemaSheets converts between spreadsheets and schemas
-  - DataHarmonizer is an ontology-based curation tool that is being adapted to LinkML
+- schema-automator bootstraps schemas from existing structured and semi-structured sources
+- LinkML-OWL allows for generation of complex OWL axioms from datamodels
+- SchemaSheets converts between spreadsheets and schemas
+- DataHarmonizer is an ontology-based curation tool that is being adapted to LinkML
 
 ## ISO27001 SCHEMA
 
@@ -120,7 +120,6 @@ The root `IsmsManagementSystem` class aggregates every governance artifact - sco
 
 `IsmsRole` with `role_responsibilities`, `role_authorities`, `role_accountability`, `role_holders`, and `role_reports_to` slots maps directly to Clause 5.3 requirements. It can power org-chart tooling, responsibility assignment matrices (RACI), and automated checks that every ISMS process has a named owner.
 
-
 #### Management Review Evidence
 
 `IsmsManagementReview` captures all Clause 9.3 inputs (context changes, interested-party changes, performance trends, audit results, risk status) and outputs (decisions, action items). Structured records make it straightforward to extract management review packs automatically or generate evidence bundles for certification bodies.
@@ -128,7 +127,6 @@ The root `IsmsManagementSystem` class aggregates every governance artifact - sco
 #### Objectives Tracking
 
 `IsmsObjective` includes `objective_target`, `objective_current_value`, `objective_metric`, and `objective_measurement_method`. A dashboard layer can query these records to produce live objective achievement status without manual reporting.
-
 
 ### Cybersecurity
 
@@ -139,7 +137,6 @@ The root `IsmsManagementSystem` class aggregates every governance artifact - sco
 #### Control Tracking Against Annex A
 
 `IsmsControl` with the `IsmsControlTheme` enum (organizational / people / physical / technological) and `IsmsImplementationStatus` enum models all 93 Annex A controls. `implementation_state`, `control_effectiveness`, `control_last_tested`, and `control_evidence` slots enable a live control effectiveness dashboard without a dedicated GRC product.
-
 
 #### Statement of Applicability Automation
 
@@ -173,7 +170,6 @@ The generated JSON-Schema (`project/jsonschema/iso27001.schema.json`) can be app
 `IsmsOperationalProcedure` with `procedure_control_measures` and `document_last_review_date` alongside `IsmsCompetenceRecord` and `IsmsAwarenessProgramme` (with `awareness_completion_tracking` and `awareness_effectiveness`) give automation agents structured targets. Evidence-collection scripts can populate these records from ticketing
 systems, LMS platforms, and SIEM logs.
 
-
 #### SHACL/ShEx Validation of Linked Data Artifacts
 
 `project/shacl/iso27001.shacl.ttl` can validate RDF-serialised compliance data in any graph-based pipeline. A DevSecOps team building a knowledge graph of assets, risks, and controls can enforce schema correctness using standard RDF tooling without writing custom validators.
@@ -195,7 +191,6 @@ Classes in the schema carry `iso27001_clause` and `annex_a_control` annotations 
 #### Audit Programme Management
 
 `IsmsAuditProgramme` and `IsmsAudit` with `audit_criteria`, `audit_period_start` and `audit_period_end`, `audit_lead`, `audit_auditees`, `audit_findings` and `audit_report_distribution` model the Clause 9.2.2 audit programme. Structured records support audit scheduling systems, finding trackers, and closure verification workflows.
-
 
 #### NIS2 / DORA Readiness
 
@@ -224,7 +219,6 @@ All entity identifiers are URIs under `https://w3id.org/lmodel/iso27001/`.
 
 `IsmsAsset` with `asset_category`, `asset_owner`, `asset_custodian`, `asset_classification`, `asset_location`, and `criticality` links to risk and control records by URI. This is the bridge between CMDB/asset inventory tools (ServiceNow CMDB, Snipe-IT) and the ISMS risk register - changes in the asset inventory can trigger automatic risk reassessment workflows.
 
-
 #### Spreadsheet / GRC Import via SchemaSheets
 
 Existing SoA spreadsheets, risk registers, or control tracking workbooks can be bootstrapped into schema-conformant YAML using SchemaSheets, lowering the migration barrier for organisations moving from spreadsheet-based ISMS management.
@@ -233,7 +227,6 @@ Existing SoA spreadsheets, risk registers, or control tracking workbooks can be 
 
 The generated `iso27001.py` (dataclasses), `iso27001_pydantic.py`, and
 `project/typescript/iso27001.ts` are drop-in libraries for application developers building compliance portals, audit tooling, or internal GRC APIs. No hand-written data models are required - the schema is the single source of truth for both validation and application code.
-
 
 #### Semantic Cross-Framework Alignment via LinkML Mappings
 
@@ -280,7 +273,6 @@ The [lmodel](https://github.com/lmodel/) schemas below are grouped by their prim
 | **nist-sp-800-171** | Controlled Unclassified Information (CUI) protection requirements. Relevant for organisations in US defence supply chains; `IsmsControl` mappings cover the 110 CUI requirements. |
 | **nist-sp-800-218** | Secure Software Development Framework (SSDF). Maps to `IsmsOperationalProcedure` and `IsmsControl` in DevSecOps pipelines; supports software supply chain assurance requirements in Annex A 8.25–8.31. |
 
-
 ### Threat Intelligence and Incident Response
 
 | Schema | Relevance |
@@ -289,7 +281,6 @@ The [lmodel](https://github.com/lmodel/) schemas below are grouped by their prim
 | **capec** | MITRE CAPEC attack pattern catalogue. Complements ATT&CK at the attack-pattern level; `related_mappings` on `IsmsRisk` instances link threat descriptions to structured attack patterns, enabling automated correlation with vulnerability scan findings. |
 | **d3fend** | MITRE D3FEND defensive countermeasure knowledge graph. `close_mappings` from `IsmsControl` to D3FEND countermeasure URIs creates a machine-traversable chain: ATT&CK technique → D3FEND countermeasure → iso27001 `IsmsControl`. This enables automated gap analysis between observed threats and implemented controls. |
 | **stix** | STIX 2.1 cyber threat intelligence objects. `IsmsSecurityIncident` mapped via `close_mappings` to STIX `Incident` allows incident records to be exported as STIX bundles for TAXII sharing, or enriched from incoming threat intelligence without field-by-field translation. |
-
 
 ### Unified Cyber Ontology
 
@@ -307,7 +298,6 @@ The UCO (Unified Cyber Ontology) family provides a modular foundational ontology
 | **uco-tool** | `Tool` objects align with `IsmsAsset` subtype software-tooling references; relevant for evidence-of-control implementation. |
 | **uco-vocabulary** | Controlled vocabularies underpin enum-to-URI alignment patterns shared by iso27001 enums (e.g. `IsmsImplementationStatus`). |
 
-
 ### Supply Chain and Software Integrity
 
 These schemas directly address the supply chain risk scoring weakness identified in the Summary Assessment.
@@ -318,7 +308,6 @@ These schemas directly address the supply chain risk scoring weakness identified
 | **spdx** | Software Package Data Exchange (SPDX). Software Bill of Materials (SBOM) format. `IsmsAsset` instances of type `software` can carry `related_mappings` to SPDX `Package` URIs, linking the ISMS asset inventory to the SBOM for automated vulnerability correlation (Annex A 8.8). |
 | **nist-sp-800-218** | SSDF practices map onto software supplier assessment criteria; combined with SLSA levels provides a two-axis (practice maturity × build integrity) supplier scoring rubric. |
 
-
 ### Linked Data Infrastructure
 
 | Schema | Relevance |
@@ -327,7 +316,6 @@ These schemas directly address the supply chain risk scoring weakness identified
 | **geosparql** | OGC GeoSPARQL. `IsmsAsset.asset_location` can be expressed as GeoSPARQL `Feature` and `Geometry` objects, enabling spatial queries over asset inventories - particularly relevant for OT zone and physical perimeter modelling. |
 | **datatype** | LinkML datatype library. Ensures consistent XSD-aligned type usage across the schema (dates, URIs, integers); reduces datatype impedance mismatches when round-tripping through JSON-Schema, SQL, and RDF serialisations. |
 | **collections** | LinkML collections primitives. Supports typed list and set slots in generated Python, TypeScript, and SQL artefacts; underpins multi-valued slots such as `control_threats`, `control_evidence`, and `procedure_control_measures`. |
-
 
 ### Additional Schemas to Target
 
@@ -342,7 +330,6 @@ The following schemas remain high-value alignment targets that are not yet publi
 | **iso31000** | ISO 31000 risk management vocabulary. `exact_mappings` from `IsmsRisk`, `IsmsRiskAssessment`, `IsmsRiskTreatmentPlan` to ISO 31000 terms. | ISO does not publish stable concept URIs; an lmodel placeholder namespace would be required. |
 | **gdpr** | GDPR articles as linked data. `related_mappings` from `IsmsSecurityIncident.incident_notification_required` and `IsmsPolicy` to article URIs. | Several community URI schemes exist (e.g. ELI, DPV); choice affects portability. |
 | **soc2** | AICPA SOC 2 Trust Service Criteria. `close_mappings` from `IsmsControl` and `IsmsAuditFinding` to TSC criterion URIs. | AICPA does not publish canonical URIs; lmodel placeholder namespace required. |
-
 
 ## Summary Assessment
 

@@ -8,4 +8,4 @@ This repository does not grant rights to reproduce, redistribute, or sublicense 
 
 The repository keeps ISO's own metadata records of ISO/IEC 27001:2022 and the standards around it, from ISO Open Data, under the ODC Attribution License (ODC-By) v1.0; [NOTICE](https://github.com/lmodel/iso27001/blob/main/NOTICE) gives the attribution. It leaves out each record's scope, which summarizes the standard in ISO's words.
 
-For licensing options related to ISO content in software and GRC products, contact ISO directly at customerservice@iso.org.
+For licensing options related to ISO content in software and GRC products, contact ISO directly at <customerservice@iso.org>.
