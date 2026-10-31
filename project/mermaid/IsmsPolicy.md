@@ -5,10 +5,10 @@
  classDiagram
     class IsmsPolicy
     click IsmsPolicy href "../IsmsPolicy"
+      IsmsRecordMixin <|-- IsmsPolicy
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       IsmsDocumentControlMixin <|-- IsmsPolicy
         click IsmsDocumentControlMixin href "../IsmsDocumentControlMixin"
-      IsmsRecord <|-- IsmsPolicy
-        click IsmsRecord href "../IsmsRecord"
       
       IsmsPolicy : description
         

@@ -1230,8 +1230,8 @@
       "IsmsPolicy": {
          "@id": "IsmsPolicy"
       },
-      "IsmsRecord": {
-         "@id": "IsmsRecord"
+      "IsmsRecordMixin": {
+         "@id": "IsmsRecordMixin"
       },
       "IsmsResource": {
          "@id": "IsmsResource"

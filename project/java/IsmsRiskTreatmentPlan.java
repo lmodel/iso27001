@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsRiskTreatmentPlan extends IsmsRecord {
+public class IsmsRiskTreatmentPlan  {
 
   private String implementationState;
   private String planScope;
@@ -27,6 +27,9 @@ public class IsmsRiskTreatmentPlan extends IsmsRecord {
   private String planRiskOwnerApproval;
   private String planResidualRiskAcceptance;
   private LocalDate planCompletionDate;
+  private URI ismsId;
+  private String title;
+  private String description;
   private String documentReference;
   private String documentVersion;
   private String documentAuthor;

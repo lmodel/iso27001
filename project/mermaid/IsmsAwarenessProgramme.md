@@ -5,10 +5,10 @@
  classDiagram
     class IsmsAwarenessProgramme
     click IsmsAwarenessProgramme href "../IsmsAwarenessProgramme"
+      IsmsRecordMixin <|-- IsmsAwarenessProgramme
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       IsmsDocumentControlMixin <|-- IsmsAwarenessProgramme
         click IsmsDocumentControlMixin href "../IsmsDocumentControlMixin"
-      IsmsRecord <|-- IsmsAwarenessProgramme
-        click IsmsRecord href "../IsmsRecord"
       
       IsmsAwarenessProgramme : awareness_audience
         

@@ -5,10 +5,10 @@
  classDiagram
     class IsmsStatementOfApplicability
     click IsmsStatementOfApplicability href "../IsmsStatementOfApplicability"
+      IsmsRecordMixin <|-- IsmsStatementOfApplicability
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       IsmsDocumentControlMixin <|-- IsmsStatementOfApplicability
         click IsmsDocumentControlMixin href "../IsmsDocumentControlMixin"
-      IsmsRecord <|-- IsmsStatementOfApplicability
-        click IsmsRecord href "../IsmsRecord"
       
       IsmsStatementOfApplicability : description
         

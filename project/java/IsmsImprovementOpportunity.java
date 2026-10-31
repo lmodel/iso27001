@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsImprovementOpportunity extends IsmsRecord {
+public class IsmsImprovementOpportunity  {
 
   private IsmsRole responsibleRole;
   private String improvementSource;
@@ -27,6 +27,9 @@ public class IsmsImprovementOpportunity extends IsmsRecord {
   private LocalDate improvementCompletionDate;
   private String improvementOutcome;
   private String improvementStatus;
+  private URI ismsId;
+  private String title;
+  private String description;
 
 
 }

@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsResource extends IsmsRecord {
+public class IsmsResource  {
 
   private String resourceCategory;
   private String resourceQuantity;
@@ -22,6 +22,9 @@ public class IsmsResource extends IsmsRecord {
   private String resourceAllocatedTo;
   private String resourceCost;
   private String resourceAvailability;
+  private URI ismsId;
+  private String title;
+  private String description;
 
 
 }

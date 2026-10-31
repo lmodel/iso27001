@@ -1,4 +1,4 @@
-export type IsmsRecordIsmsId = string;
+export type IsmsRecordMixinIsmsId = string;
 export type IsmsManagementSystemIsmsId = string;
 export type IsmsOrganizationIsmsId = string;
 export type IsmsInterestedPartyIsmsId = string;
@@ -340,9 +340,9 @@ export enum IsmsManagementSystemStandard {
 
 
 /**
- * Anything the ISMS keeps a record of that other records can refer to: it has an identifier, a title and a description.
+ * What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.
  */
-export interface IsmsRecord {
+export interface IsmsRecordMixin {
     /** The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it. */
     isms_id: string,
     /** The name the organization gives the record. */
@@ -396,7 +396,7 @@ export interface IsmsDocumentControlMixin {
 /**
  * One organization's information security management system: its scope and context, and every record it keeps, each kind in a list of its own.
  */
-export interface IsmsManagementSystem extends IsmsRecord {
+export interface IsmsManagementSystem extends IsmsRecordMixin {
     /** The organization that runs the ISMS. */
     isms_organization?: IsmsOrganization,
     /** The person or group that directs and controls the organization at the highest level. */
@@ -493,7 +493,7 @@ export interface IsmsManagementSystem extends IsmsRecord {
 /**
  * The organization that runs the ISMS, with what it needs to know about itself to understand its context.
  */
-export interface IsmsOrganization extends IsmsRecord {
+export interface IsmsOrganization extends IsmsRecordMixin {
     /** The organization's registered legal name. */
     organization_legal_name?: string,
     /** Other names the organization trades under. */
@@ -522,7 +522,7 @@ export interface IsmsOrganization extends IsmsRecord {
 /**
  * A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it, such as staff, customers, regulators or suppliers.
  */
-export interface IsmsInterestedParty extends IsmsRecord {
+export interface IsmsInterestedParty extends IsmsRecordMixin {
     /** What kind of interested party it is, in the organization's own terms. */
     party_category?: string,
     /** How the party relates to the organization. */
@@ -543,7 +543,7 @@ export interface IsmsInterestedParty extends IsmsRecord {
 /**
  * The information security policy that top management sets: the organization's commitment and the frame for its information security objectives.
  */
-export interface IsmsPolicy extends IsmsRecord, IsmsDocumentControlMixin {
+export interface IsmsPolicy extends IsmsRecordMixin, IsmsDocumentControlMixin {
     /** The policy's own statement, in the organization's words. */
     policy_statement?: string,
     /** How the policy frames the setting of information security objectives. */
@@ -564,7 +564,7 @@ export interface IsmsPolicy extends IsmsRecord, IsmsDocumentControlMixin {
 /**
  * A policy on one topic of information security, such as access control or backup, that supports the information security policy.
  */
-export interface IsmsTopicSpecificPolicy extends IsmsRecord, IsmsDocumentControlMixin {
+export interface IsmsTopicSpecificPolicy extends IsmsRecordMixin, IsmsDocumentControlMixin {
     /** The organization's controls that the record concerns. */
     relevant_controls?: IsmsControlIsmsId[],
     /** The topic the policy covers. */
@@ -579,7 +579,7 @@ export interface IsmsTopicSpecificPolicy extends IsmsRecord, IsmsDocumentControl
 /**
  * A role in the ISMS, with the responsibilities and authorities it carries and who holds it.
  */
-export interface IsmsRole extends IsmsRecord {
+export interface IsmsRole extends IsmsRecordMixin {
     /** What kind of role it is, in the organization's own terms. */
     role_category?: string,
     /** The responsibilities assigned to the role. */
@@ -600,7 +600,7 @@ export interface IsmsRole extends IsmsRecord {
 /**
  * An information security objective: a measurable result the organization aims for, with how it plans to reach it and how it measures progress.
  */
-export interface IsmsObjective extends IsmsRecord {
+export interface IsmsObjective extends IsmsRecordMixin {
     /** The role that answers for the record's activity or outcome. */
     responsible_role?: IsmsRoleIsmsId,
     /** The organization's controls that the record concerns. */
@@ -633,7 +633,7 @@ export interface IsmsObjective extends IsmsRecord {
 /**
  * The organization's process for assessing information security risks: its criteria for accepting risk and for assessing it, its scales and method, and when it runs.
  */
-export interface IsmsRiskAssessmentProcess extends IsmsRecord, IsmsDocumentControlMixin {
+export interface IsmsRiskAssessmentProcess extends IsmsRecordMixin, IsmsDocumentControlMixin {
     /** The criteria for accepting a risk. */
     risk_acceptance_criteria?: string,
     /** The criteria for carrying out a risk assessment. */
@@ -656,7 +656,7 @@ export interface IsmsRiskAssessmentProcess extends IsmsRecord, IsmsDocumentContr
 /**
  * One risk assessment carried out under the risk assessment process, and what it found.
  */
-export interface IsmsRiskAssessment extends IsmsRecord, IsmsDocumentControlMixin {
+export interface IsmsRiskAssessment extends IsmsRecordMixin, IsmsDocumentControlMixin {
     /** What the assessment covered. */
     assessment_scope?: string,
     /** When the assessment was carried out. */
@@ -679,7 +679,7 @@ export interface IsmsRiskAssessment extends IsmsRecord, IsmsDocumentControlMixin
 /**
  * An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated.
  */
-export interface IsmsRisk extends IsmsRecord {
+export interface IsmsRisk extends IsmsRecordMixin {
     /** The assets the risk, event or incident affects. */
     affected_assets?: IsmsAssetIsmsId[],
     /** Which of confidentiality, integrity and availability the risk or incident threatens. */
@@ -712,7 +712,7 @@ export interface IsmsRisk extends IsmsRecord {
 /**
  * The organization's process for treating information security risks: how it chooses treatments and controls, checks them against Annex A, and produces the Statement of Applicability.
  */
-export interface IsmsRiskTreatmentProcess extends IsmsRecord, IsmsDocumentControlMixin {
+export interface IsmsRiskTreatmentProcess extends IsmsRecordMixin, IsmsDocumentControlMixin {
     /** How a treatment option is chosen for a risk. */
     treatment_options_guidance?: string,
     /** How the controls a treatment needs are chosen. */
@@ -729,7 +729,7 @@ export interface IsmsRiskTreatmentProcess extends IsmsRecord, IsmsDocumentContro
 /**
  * A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's approval of the plan and of the residual risk.
  */
-export interface IsmsRiskTreatmentPlan extends IsmsRecord, IsmsDocumentControlMixin {
+export interface IsmsRiskTreatmentPlan extends IsmsRecordMixin, IsmsDocumentControlMixin {
     /** How far the control or the plan has been put into effect. */
     implementation_state?: string,
     /** What the plan covers. */
@@ -758,7 +758,7 @@ export interface IsmsRiskTreatmentPlan extends IsmsRecord, IsmsDocumentControlMi
 /**
  * The Statement of Applicability: each control the organization needs, with why it is included and whether it is in place, and each Annex A control it leaves out, with why.
  */
-export interface IsmsStatementOfApplicability extends IsmsRecord, IsmsDocumentControlMixin {
+export interface IsmsStatementOfApplicability extends IsmsRecordMixin, IsmsDocumentControlMixin {
     /** The statement's entries, one for each control included or Annex A control excluded. */
     soa_entries?: IsmsApplicabilityEntry[],
 }
@@ -804,7 +804,7 @@ export interface IsmsExcludedControl extends IsmsApplicabilityEntry {
 /**
  * A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.
  */
-export interface IsmsControl extends IsmsRecord {
+export interface IsmsControl extends IsmsRecordMixin {
     /** The organization's controls that the record concerns. */
     relevant_controls?: IsmsControlIsmsId[],
     /** How far the control or the plan has been put into effect. */
@@ -837,7 +837,7 @@ export interface IsmsControl extends IsmsRecord {
 /**
  * An item in the inventory of information and other associated assets: what it is, who owns and looks after it, where it is, how it is classified and how much it matters.
  */
-export interface IsmsAsset extends IsmsRecord {
+export interface IsmsAsset extends IsmsRecordMixin {
     /** The organization's controls that the record concerns. */
     relevant_controls?: IsmsControlIsmsId[],
     /** What kind of asset it is, such as information, software, hardware or a service. */
@@ -858,7 +858,7 @@ export interface IsmsAsset extends IsmsRecord {
 /**
  * A resource provided for the ISMS, such as people, time, tools or budget.
  */
-export interface IsmsResource extends IsmsRecord {
+export interface IsmsResource extends IsmsRecordMixin {
     /** What kind of resource it is. */
     resource_category?: string,
     /** How much of the resource is provided. */
@@ -877,7 +877,7 @@ export interface IsmsResource extends IsmsRecord {
 /**
  * The evidence of one person's competence for work that affects information security, and what is done to close any gap.
  */
-export interface IsmsCompetenceRecord extends IsmsRecord, IsmsDocumentControlMixin {
+export interface IsmsCompetenceRecord extends IsmsRecordMixin, IsmsDocumentControlMixin {
     /** The person the record is about. */
     competence_person?: string,
     /** The role the person holds. */
@@ -902,7 +902,7 @@ export interface IsmsCompetenceRecord extends IsmsRecord, IsmsDocumentControlMix
 /**
  * The programme that makes people working for the organization aware of the policy, their part in the ISMS and what failing it would mean.
  */
-export interface IsmsAwarenessProgramme extends IsmsRecord, IsmsDocumentControlMixin {
+export interface IsmsAwarenessProgramme extends IsmsRecordMixin, IsmsDocumentControlMixin {
     /** The topics the programme covers. */
     awareness_topics?: string[],
     /** How the programme is delivered. */
@@ -921,7 +921,7 @@ export interface IsmsAwarenessProgramme extends IsmsRecord, IsmsDocumentControlM
 /**
  * The plan for communication about the ISMS, inside the organization and outside it.
  */
-export interface IsmsCommunicationPlan extends IsmsRecord, IsmsDocumentControlMixin {
+export interface IsmsCommunicationPlan extends IsmsRecordMixin, IsmsDocumentControlMixin {
     /** The communications the plan provides for. */
     communication_items?: IsmsCommunication[],
 }
@@ -951,7 +951,7 @@ export interface IsmsCommunication {
 /**
  * A piece of documented information the ISMS keeps under control that no more specific record describes, such as a procedure, a standard, a plan or a report.
  */
-export interface IsmsDocumentedInformation extends IsmsRecord, IsmsDocumentControlMixin {
+export interface IsmsDocumentedInformation extends IsmsRecordMixin, IsmsDocumentControlMixin {
     /** What kind of documented information it is. */
     document_kind: string,
 }
@@ -960,7 +960,7 @@ export interface IsmsDocumentedInformation extends IsmsRecord, IsmsDocumentContr
 /**
  * A procedure by which the organization plans and controls the processes that meet its information security requirements.
  */
-export interface IsmsOperationalProcedure extends IsmsRecord, IsmsDocumentControlMixin {
+export interface IsmsOperationalProcedure extends IsmsRecordMixin, IsmsDocumentControlMixin {
     /** The organization's controls that the record concerns. */
     relevant_controls?: IsmsControlIsmsId[],
     /** What the procedure covers. */
@@ -979,7 +979,7 @@ export interface IsmsOperationalProcedure extends IsmsRecord, IsmsDocumentContro
 /**
  * The programme of monitoring, measurement, analysis and evaluation of information security performance and of the ISMS's effectiveness.
  */
-export interface IsmsMonitoringProgramme extends IsmsRecord, IsmsDocumentControlMixin {
+export interface IsmsMonitoringProgramme extends IsmsRecordMixin, IsmsDocumentControlMixin {
     /** What the programme monitors and measures. */
     monitoring_items?: IsmsMonitoringItem[],
 }
@@ -1017,7 +1017,7 @@ export interface IsmsMonitoringItem {
 /**
  * An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors they need.
  */
-export interface IsmsAuditProgramme extends IsmsRecord, IsmsDocumentControlMixin {
+export interface IsmsAuditProgramme extends IsmsRecordMixin, IsmsDocumentControlMixin {
     /** The period the programme covers. */
     programme_period?: string,
     /** The audits the programme plans. */
@@ -1036,7 +1036,7 @@ export interface IsmsAuditProgramme extends IsmsRecord, IsmsDocumentControlMixin
 /**
  * An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope, criteria, team, findings and conclusion.
  */
-export interface IsmsAudit extends IsmsRecord, IsmsDocumentControlMixin {
+export interface IsmsAudit extends IsmsRecordMixin, IsmsDocumentControlMixin {
     /** Who carries out the audit, relative to the organization. */
     audit_type: string,
     /** The management system standards the audit covers. */
@@ -1073,7 +1073,7 @@ export interface IsmsAudit extends IsmsRecord, IsmsDocumentControlMixin {
 /**
  * One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it concerns, its evidence and how it is closed.
  */
-export interface IsmsAuditFinding extends IsmsRecord {
+export interface IsmsAuditFinding extends IsmsRecordMixin {
     /** What kind of finding it is. */
     finding_type: string,
     /** The clause or Annex A control of ISO/IEC 27001:2022 the finding concerns, by number. */
@@ -1102,7 +1102,7 @@ export interface IsmsAuditFinding extends IsmsRecord {
 /**
  * A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.
  */
-export interface IsmsManagementReview extends IsmsRecord, IsmsDocumentControlMixin {
+export interface IsmsManagementReview extends IsmsRecordMixin, IsmsDocumentControlMixin {
     /** When the review was held. */
     review_held_on: date,
     /** Who attended the review. */
@@ -1139,7 +1139,7 @@ export interface IsmsManagementReview extends IsmsRecord, IsmsDocumentControlMix
 /**
  * A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was closed.
  */
-export interface IsmsNonconformity extends IsmsRecord {
+export interface IsmsNonconformity extends IsmsRecordMixin {
     /** How the nonconformity came to light, such as an audit, a review or an incident. */
     nonconformity_source?: string,
     /** When the nonconformity was found. */
@@ -1168,7 +1168,7 @@ export interface IsmsNonconformity extends IsmsRecord {
 /**
  * An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it worked.
  */
-export interface IsmsCorrectiveAction extends IsmsRecord {
+export interface IsmsCorrectiveAction extends IsmsRecordMixin {
     /** The role that answers for the record's activity or outcome. */
     responsible_role?: IsmsRoleIsmsId,
     /** The nonconformities the action addresses. */
@@ -1197,7 +1197,7 @@ export interface IsmsCorrectiveAction extends IsmsRecord {
 /**
  * An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.
  */
-export interface IsmsImprovementOpportunity extends IsmsRecord {
+export interface IsmsImprovementOpportunity extends IsmsRecordMixin {
     /** The role that answers for the record's activity or outcome. */
     responsible_role?: IsmsRoleIsmsId,
     /** Where the opportunity came from, such as a review, an audit or daily work. */
@@ -1226,7 +1226,7 @@ export interface IsmsImprovementOpportunity extends IsmsRecord {
 /**
  * An information security event someone reported, and the assessment of whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.
  */
-export interface IsmsSecurityEvent extends IsmsRecord {
+export interface IsmsSecurityEvent extends IsmsRecordMixin {
     /** The assets the risk, event or incident affects. */
     affected_assets?: IsmsAssetIsmsId[],
     /** The kind of record: IsmsSecurityEvent, or IsmsSecurityIncident for an event assessed as an incident. */

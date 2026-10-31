@@ -10,11 +10,11 @@ import java.util.List;
 import lombok.*;
 
 /**
-  Anything the ISMS keeps a record of that other records can refer to: it has an identifier, a title and a description.
+  What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public abstract class IsmsRecord  {
+public class IsmsRecordMixin  {
 
   private URI ismsId;
   private String title;

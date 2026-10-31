@@ -298,8 +298,8 @@ const (
 	// Service management systems.
 	IsmsManagementSystemStandardIsoIec200001 IsmsManagementSystemStandard = "iso_iec_20000_1"
 )
-// Anything the ISMS keeps a record of that other records can refer to: it has an identifier, a title and a description.
-type IsmsRecord struct {
+// What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.
+type IsmsRecordMixin struct {
 	// The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
 	IsmsId string `json:"isms_id"`
 	// The name the organization gives the record.
@@ -349,7 +349,7 @@ type IsmsDocumentControlMixin struct {
 // One organization's information security management system: its scope and context, and every record it keeps, each kind in a list of its own.
 type IsmsManagementSystem struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	// The organization that runs the ISMS.
 	IsmsOrganization *IsmsOrganization `json:"isms_organization,omitempty"`
 	// The person or group that directs and controls the organization at the highest level.
@@ -445,7 +445,7 @@ type IsmsManagementSystem struct {
 // The organization that runs the ISMS, with what it needs to know about itself to understand its context.
 type IsmsOrganization struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	// The organization's registered legal name.
 	OrganizationLegalName *string `json:"organization_legal_name,omitempty"`
 	// Other names the organization trades under.
@@ -473,7 +473,7 @@ type IsmsOrganization struct {
 // A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it, such as staff, customers, regulators or suppliers.
 type IsmsInterestedParty struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	// What kind of interested party it is, in the organization's own terms.
 	PartyCategory *string `json:"party_category,omitempty"`
 	// How the party relates to the organization.
@@ -493,7 +493,7 @@ type IsmsInterestedParty struct {
 // The information security policy that top management sets: the organization's commitment and the frame for its information security objectives.
 type IsmsPolicy struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	IsmsDocumentControlMixin `json:",inline"`
 	// The policy's own statement, in the organization's words.
 	PolicyStatement *string `json:"policy_statement,omitempty"`
@@ -514,7 +514,7 @@ type IsmsPolicy struct {
 // A policy on one topic of information security, such as access control or backup, that supports the information security policy.
 type IsmsTopicSpecificPolicy struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	IsmsDocumentControlMixin `json:",inline"`
 	// The organization's controls that the record concerns.
 	RelevantControls []IsmsControlId `json:"relevant_controls,omitempty"`
@@ -529,7 +529,7 @@ type IsmsTopicSpecificPolicy struct {
 // A role in the ISMS, with the responsibilities and authorities it carries and who holds it.
 type IsmsRole struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	// What kind of role it is, in the organization's own terms.
 	RoleCategory *string `json:"role_category,omitempty"`
 	// The responsibilities assigned to the role.
@@ -549,7 +549,7 @@ type IsmsRole struct {
 // An information security objective: a measurable result the organization aims for, with how it plans to reach it and how it measures progress.
 type IsmsObjective struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	// The role that answers for the record's activity or outcome.
 	ResponsibleRole *IsmsRoleId `json:"responsible_role,omitempty"`
 	// The organization's controls that the record concerns.
@@ -581,7 +581,7 @@ type IsmsObjective struct {
 // The organization's process for assessing information security risks: its criteria for accepting risk and for assessing it, its scales and method, and when it runs.
 type IsmsRiskAssessmentProcess struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	IsmsDocumentControlMixin `json:",inline"`
 	// The criteria for accepting a risk.
 	RiskAcceptanceCriteria *string `json:"risk_acceptance_criteria,omitempty"`
@@ -604,7 +604,7 @@ type IsmsRiskAssessmentProcess struct {
 // One risk assessment carried out under the risk assessment process, and what it found.
 type IsmsRiskAssessment struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	IsmsDocumentControlMixin `json:",inline"`
 	// What the assessment covered.
 	AssessmentScope *string `json:"assessment_scope,omitempty"`
@@ -627,7 +627,7 @@ type IsmsRiskAssessment struct {
 // An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated.
 type IsmsRisk struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	// The assets the risk, event or incident affects.
 	AffectedAssets []IsmsAssetId `json:"affected_assets,omitempty"`
 	// Which of confidentiality, integrity and availability the risk or incident threatens.
@@ -659,7 +659,7 @@ type IsmsRisk struct {
 // The organization's process for treating information security risks: how it chooses treatments and controls, checks them against Annex A, and produces the Statement of Applicability.
 type IsmsRiskTreatmentProcess struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	IsmsDocumentControlMixin `json:",inline"`
 	// How a treatment option is chosen for a risk.
 	TreatmentOptionsGuidance *string `json:"treatment_options_guidance,omitempty"`
@@ -676,7 +676,7 @@ type IsmsRiskTreatmentProcess struct {
 // A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's approval of the plan and of the residual risk.
 type IsmsRiskTreatmentPlan struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	IsmsDocumentControlMixin `json:",inline"`
 	// How far the control or the plan has been put into effect.
 	ImplementationState IsmsImplementationStatus `json:"implementation_state,omitempty"`
@@ -705,7 +705,7 @@ type IsmsRiskTreatmentPlan struct {
 // The Statement of Applicability: each control the organization needs, with why it is included and whether it is in place, and each Annex A control it leaves out, with why.
 type IsmsStatementOfApplicability struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	IsmsDocumentControlMixin `json:",inline"`
 	// The statement's entries, one for each control included or Annex A control excluded.
 	SoaEntries []IsmsApplicabilityEntry `json:"soa_entries,omitempty"`
@@ -746,7 +746,7 @@ type IsmsExcludedControl struct {
 // A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.
 type IsmsControl struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	// The organization's controls that the record concerns.
 	RelevantControls []IsmsControlId `json:"relevant_controls,omitempty"`
 	// How far the control or the plan has been put into effect.
@@ -778,7 +778,7 @@ type IsmsControl struct {
 // An item in the inventory of information and other associated assets: what it is, who owns and looks after it, where it is, how it is classified and how much it matters.
 type IsmsAsset struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	// The organization's controls that the record concerns.
 	RelevantControls []IsmsControlId `json:"relevant_controls,omitempty"`
 	// What kind of asset it is, such as information, software, hardware or a service.
@@ -798,7 +798,7 @@ type IsmsAsset struct {
 // A resource provided for the ISMS, such as people, time, tools or budget.
 type IsmsResource struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	// What kind of resource it is.
 	ResourceCategory *string `json:"resource_category,omitempty"`
 	// How much of the resource is provided.
@@ -816,7 +816,7 @@ type IsmsResource struct {
 // The evidence of one person's competence for work that affects information security, and what is done to close any gap.
 type IsmsCompetenceRecord struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	IsmsDocumentControlMixin `json:",inline"`
 	// The person the record is about.
 	CompetencePerson *string `json:"competence_person,omitempty"`
@@ -841,7 +841,7 @@ type IsmsCompetenceRecord struct {
 // The programme that makes people working for the organization aware of the policy, their part in the ISMS and what failing it would mean.
 type IsmsAwarenessProgramme struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	IsmsDocumentControlMixin `json:",inline"`
 	// The topics the programme covers.
 	AwarenessTopics []string `json:"awareness_topics,omitempty"`
@@ -860,7 +860,7 @@ type IsmsAwarenessProgramme struct {
 // The plan for communication about the ISMS, inside the organization and outside it.
 type IsmsCommunicationPlan struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	IsmsDocumentControlMixin `json:",inline"`
 	// The communications the plan provides for.
 	CommunicationItems []IsmsCommunication `json:"communication_items,omitempty"`
@@ -887,7 +887,7 @@ type IsmsCommunication struct {
 // A piece of documented information the ISMS keeps under control that no more specific record describes, such as a procedure, a standard, a plan or a report.
 type IsmsDocumentedInformation struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	IsmsDocumentControlMixin `json:",inline"`
 	// What kind of documented information it is.
 	DocumentKind IsmsDocumentKind `json:"document_kind"`
@@ -896,7 +896,7 @@ type IsmsDocumentedInformation struct {
 // A procedure by which the organization plans and controls the processes that meet its information security requirements.
 type IsmsOperationalProcedure struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	IsmsDocumentControlMixin `json:",inline"`
 	// The organization's controls that the record concerns.
 	RelevantControls []IsmsControlId `json:"relevant_controls,omitempty"`
@@ -915,7 +915,7 @@ type IsmsOperationalProcedure struct {
 // The programme of monitoring, measurement, analysis and evaluation of information security performance and of the ISMS's effectiveness.
 type IsmsMonitoringProgramme struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	IsmsDocumentControlMixin `json:",inline"`
 	// What the programme monitors and measures.
 	MonitoringItems []IsmsMonitoringItem `json:"monitoring_items,omitempty"`
@@ -950,7 +950,7 @@ type IsmsMonitoringItem struct {
 // An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors they need.
 type IsmsAuditProgramme struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	IsmsDocumentControlMixin `json:",inline"`
 	// The period the programme covers.
 	ProgrammePeriod *string `json:"programme_period,omitempty"`
@@ -969,7 +969,7 @@ type IsmsAuditProgramme struct {
 // An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope, criteria, team, findings and conclusion.
 type IsmsAudit struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	IsmsDocumentControlMixin `json:",inline"`
 	// Who carries out the audit, relative to the organization.
 	AuditType IsmsAuditType `json:"audit_type"`
@@ -1006,7 +1006,7 @@ type IsmsAudit struct {
 // One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it concerns, its evidence and how it is closed.
 type IsmsAuditFinding struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	// What kind of finding it is.
 	FindingType IsmsAuditFindingType `json:"finding_type"`
 	// The clause or Annex A control of ISO/IEC 27001:2022 the finding concerns, by number.
@@ -1034,7 +1034,7 @@ type IsmsAuditFinding struct {
 // A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.
 type IsmsManagementReview struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	IsmsDocumentControlMixin `json:",inline"`
 	// When the review was held.
 	ReviewHeldOn time.Time `json:"review_held_on"`
@@ -1071,7 +1071,7 @@ type IsmsManagementReview struct {
 // A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was closed.
 type IsmsNonconformity struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	// How the nonconformity came to light, such as an audit, a review or an incident.
 	NonconformitySource *string `json:"nonconformity_source,omitempty"`
 	// When the nonconformity was found.
@@ -1099,7 +1099,7 @@ type IsmsNonconformity struct {
 // An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it worked.
 type IsmsCorrectiveAction struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	// The role that answers for the record's activity or outcome.
 	ResponsibleRole *IsmsRoleId `json:"responsible_role,omitempty"`
 	// The nonconformities the action addresses.
@@ -1127,7 +1127,7 @@ type IsmsCorrectiveAction struct {
 // An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.
 type IsmsImprovementOpportunity struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	// The role that answers for the record's activity or outcome.
 	ResponsibleRole *IsmsRoleId `json:"responsible_role,omitempty"`
 	// Where the opportunity came from, such as a review, an audit or daily work.
@@ -1155,7 +1155,7 @@ type IsmsImprovementOpportunity struct {
 // An information security event someone reported, and the assessment of whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.
 type IsmsSecurityEvent struct {
 	// Embedded types for inheritance
-	IsmsRecord `json:",inline"`
+	IsmsRecordMixin `json:",inline"`
 	// The assets the risk, event or incident affects.
 	AffectedAssets []IsmsAssetId `json:"affected_assets,omitempty"`
 	// The kind of record: IsmsSecurityEvent, or IsmsSecurityIncident for an event assessed as an incident.

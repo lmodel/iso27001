@@ -14,9 +14,12 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsCommunicationPlan extends IsmsRecord {
+public class IsmsCommunicationPlan  {
 
   private List<IsmsCommunication> communicationItems;
+  private URI ismsId;
+  private String title;
+  private String description;
   private String documentReference;
   private String documentVersion;
   private String documentAuthor;

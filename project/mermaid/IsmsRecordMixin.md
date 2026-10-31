@@ -3,74 +3,74 @@
 
 ```mermaid
  classDiagram
-    class IsmsRecord
-    click IsmsRecord href "../IsmsRecord"
-      IsmsRecord <|-- IsmsManagementSystem
+    class IsmsRecordMixin
+    click IsmsRecordMixin href "../IsmsRecordMixin"
+      IsmsRecordMixin <|-- IsmsManagementSystem
         click IsmsManagementSystem href "../IsmsManagementSystem"
-      IsmsRecord <|-- IsmsOrganization
+      IsmsRecordMixin <|-- IsmsOrganization
         click IsmsOrganization href "../IsmsOrganization"
-      IsmsRecord <|-- IsmsInterestedParty
+      IsmsRecordMixin <|-- IsmsInterestedParty
         click IsmsInterestedParty href "../IsmsInterestedParty"
-      IsmsRecord <|-- IsmsPolicy
+      IsmsRecordMixin <|-- IsmsPolicy
         click IsmsPolicy href "../IsmsPolicy"
-      IsmsRecord <|-- IsmsTopicSpecificPolicy
+      IsmsRecordMixin <|-- IsmsTopicSpecificPolicy
         click IsmsTopicSpecificPolicy href "../IsmsTopicSpecificPolicy"
-      IsmsRecord <|-- IsmsRole
+      IsmsRecordMixin <|-- IsmsRole
         click IsmsRole href "../IsmsRole"
-      IsmsRecord <|-- IsmsObjective
+      IsmsRecordMixin <|-- IsmsObjective
         click IsmsObjective href "../IsmsObjective"
-      IsmsRecord <|-- IsmsRiskAssessmentProcess
+      IsmsRecordMixin <|-- IsmsRiskAssessmentProcess
         click IsmsRiskAssessmentProcess href "../IsmsRiskAssessmentProcess"
-      IsmsRecord <|-- IsmsRiskAssessment
+      IsmsRecordMixin <|-- IsmsRiskAssessment
         click IsmsRiskAssessment href "../IsmsRiskAssessment"
-      IsmsRecord <|-- IsmsRisk
+      IsmsRecordMixin <|-- IsmsRisk
         click IsmsRisk href "../IsmsRisk"
-      IsmsRecord <|-- IsmsRiskTreatmentProcess
+      IsmsRecordMixin <|-- IsmsRiskTreatmentProcess
         click IsmsRiskTreatmentProcess href "../IsmsRiskTreatmentProcess"
-      IsmsRecord <|-- IsmsRiskTreatmentPlan
+      IsmsRecordMixin <|-- IsmsRiskTreatmentPlan
         click IsmsRiskTreatmentPlan href "../IsmsRiskTreatmentPlan"
-      IsmsRecord <|-- IsmsStatementOfApplicability
+      IsmsRecordMixin <|-- IsmsStatementOfApplicability
         click IsmsStatementOfApplicability href "../IsmsStatementOfApplicability"
-      IsmsRecord <|-- IsmsControl
+      IsmsRecordMixin <|-- IsmsControl
         click IsmsControl href "../IsmsControl"
-      IsmsRecord <|-- IsmsAsset
+      IsmsRecordMixin <|-- IsmsAsset
         click IsmsAsset href "../IsmsAsset"
-      IsmsRecord <|-- IsmsResource
+      IsmsRecordMixin <|-- IsmsResource
         click IsmsResource href "../IsmsResource"
-      IsmsRecord <|-- IsmsCompetenceRecord
+      IsmsRecordMixin <|-- IsmsCompetenceRecord
         click IsmsCompetenceRecord href "../IsmsCompetenceRecord"
-      IsmsRecord <|-- IsmsAwarenessProgramme
+      IsmsRecordMixin <|-- IsmsAwarenessProgramme
         click IsmsAwarenessProgramme href "../IsmsAwarenessProgramme"
-      IsmsRecord <|-- IsmsCommunicationPlan
+      IsmsRecordMixin <|-- IsmsCommunicationPlan
         click IsmsCommunicationPlan href "../IsmsCommunicationPlan"
-      IsmsRecord <|-- IsmsDocumentedInformation
+      IsmsRecordMixin <|-- IsmsDocumentedInformation
         click IsmsDocumentedInformation href "../IsmsDocumentedInformation"
-      IsmsRecord <|-- IsmsOperationalProcedure
+      IsmsRecordMixin <|-- IsmsOperationalProcedure
         click IsmsOperationalProcedure href "../IsmsOperationalProcedure"
-      IsmsRecord <|-- IsmsMonitoringProgramme
+      IsmsRecordMixin <|-- IsmsMonitoringProgramme
         click IsmsMonitoringProgramme href "../IsmsMonitoringProgramme"
-      IsmsRecord <|-- IsmsAuditProgramme
+      IsmsRecordMixin <|-- IsmsAuditProgramme
         click IsmsAuditProgramme href "../IsmsAuditProgramme"
-      IsmsRecord <|-- IsmsAudit
+      IsmsRecordMixin <|-- IsmsAudit
         click IsmsAudit href "../IsmsAudit"
-      IsmsRecord <|-- IsmsAuditFinding
+      IsmsRecordMixin <|-- IsmsAuditFinding
         click IsmsAuditFinding href "../IsmsAuditFinding"
-      IsmsRecord <|-- IsmsManagementReview
+      IsmsRecordMixin <|-- IsmsManagementReview
         click IsmsManagementReview href "../IsmsManagementReview"
-      IsmsRecord <|-- IsmsNonconformity
+      IsmsRecordMixin <|-- IsmsNonconformity
         click IsmsNonconformity href "../IsmsNonconformity"
-      IsmsRecord <|-- IsmsCorrectiveAction
+      IsmsRecordMixin <|-- IsmsCorrectiveAction
         click IsmsCorrectiveAction href "../IsmsCorrectiveAction"
-      IsmsRecord <|-- IsmsImprovementOpportunity
+      IsmsRecordMixin <|-- IsmsImprovementOpportunity
         click IsmsImprovementOpportunity href "../IsmsImprovementOpportunity"
-      IsmsRecord <|-- IsmsSecurityEvent
+      IsmsRecordMixin <|-- IsmsSecurityEvent
         click IsmsSecurityEvent href "../IsmsSecurityEvent"
       
-      IsmsRecord : description
+      IsmsRecordMixin : description
         
-      IsmsRecord : isms_id
+      IsmsRecordMixin : isms_id
         
-      IsmsRecord : title
+      IsmsRecordMixin : title
         
       
 ```

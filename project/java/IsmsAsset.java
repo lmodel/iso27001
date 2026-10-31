@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsAsset extends IsmsRecord {
+public class IsmsAsset  {
 
   private List<IsmsControl> relevantControls;
   private String assetCategory;
@@ -23,6 +23,9 @@ public class IsmsAsset extends IsmsRecord {
   private String assetClassification;
   private String assetLocation;
   private String assetCriticality;
+  private URI ismsId;
+  private String title;
+  private String description;
 
 
 }

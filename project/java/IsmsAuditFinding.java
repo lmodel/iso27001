@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsAuditFinding extends IsmsRecord {
+public class IsmsAuditFinding  {
 
   private String findingType;
   private String findingRequirement;
@@ -27,6 +27,9 @@ public class IsmsAuditFinding extends IsmsRecord {
   private IsmsCorrectiveAction findingCorrectiveAction;
   private String findingClosureStatus;
   private LocalDate findingClosureDate;
+  private URI ismsId;
+  private String title;
+  private String description;
 
 
 }

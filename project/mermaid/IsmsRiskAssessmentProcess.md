@@ -5,10 +5,10 @@
  classDiagram
     class IsmsRiskAssessmentProcess
     click IsmsRiskAssessmentProcess href "../IsmsRiskAssessmentProcess"
+      IsmsRecordMixin <|-- IsmsRiskAssessmentProcess
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       IsmsDocumentControlMixin <|-- IsmsRiskAssessmentProcess
         click IsmsDocumentControlMixin href "../IsmsDocumentControlMixin"
-      IsmsRecord <|-- IsmsRiskAssessmentProcess
-        click IsmsRecord href "../IsmsRecord"
       
       IsmsRiskAssessmentProcess : description
         

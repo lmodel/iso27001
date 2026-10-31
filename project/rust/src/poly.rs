@@ -4,7 +4,7 @@ use crate::*;
 use crate::poly_containers::*;
 
 
-pub trait IsmsRecord   {
+pub trait IsmsRecordMixin   {
 
     fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie;
     // fn isms_id_mut(&mut self) -> &mut &'a crate::uriorcurie;
@@ -21,7 +21,7 @@ pub trait IsmsRecord   {
 
 }
 
-impl IsmsRecord for crate::IsmsRecord {
+impl IsmsRecordMixin for crate::IsmsRecordMixin {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -32,7 +32,7 @@ impl IsmsRecord for crate::IsmsRecord {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsManagementSystem {
+impl IsmsRecordMixin for crate::IsmsManagementSystem {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -43,7 +43,7 @@ impl IsmsRecord for crate::IsmsManagementSystem {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsOrganization {
+impl IsmsRecordMixin for crate::IsmsOrganization {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -54,7 +54,7 @@ impl IsmsRecord for crate::IsmsOrganization {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsInterestedParty {
+impl IsmsRecordMixin for crate::IsmsInterestedParty {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -65,7 +65,7 @@ impl IsmsRecord for crate::IsmsInterestedParty {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsPolicy {
+impl IsmsRecordMixin for crate::IsmsPolicy {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -76,7 +76,7 @@ impl IsmsRecord for crate::IsmsPolicy {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsTopicSpecificPolicy {
+impl IsmsRecordMixin for crate::IsmsTopicSpecificPolicy {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -87,7 +87,7 @@ impl IsmsRecord for crate::IsmsTopicSpecificPolicy {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsRole {
+impl IsmsRecordMixin for crate::IsmsRole {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -98,7 +98,7 @@ impl IsmsRecord for crate::IsmsRole {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsObjective {
+impl IsmsRecordMixin for crate::IsmsObjective {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -109,7 +109,7 @@ impl IsmsRecord for crate::IsmsObjective {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsRiskAssessmentProcess {
+impl IsmsRecordMixin for crate::IsmsRiskAssessmentProcess {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -120,7 +120,7 @@ impl IsmsRecord for crate::IsmsRiskAssessmentProcess {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsRiskAssessment {
+impl IsmsRecordMixin for crate::IsmsRiskAssessment {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -131,7 +131,7 @@ impl IsmsRecord for crate::IsmsRiskAssessment {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsRisk {
+impl IsmsRecordMixin for crate::IsmsRisk {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -142,7 +142,7 @@ impl IsmsRecord for crate::IsmsRisk {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsRiskTreatmentProcess {
+impl IsmsRecordMixin for crate::IsmsRiskTreatmentProcess {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -153,7 +153,7 @@ impl IsmsRecord for crate::IsmsRiskTreatmentProcess {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsRiskTreatmentPlan {
+impl IsmsRecordMixin for crate::IsmsRiskTreatmentPlan {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -164,7 +164,7 @@ impl IsmsRecord for crate::IsmsRiskTreatmentPlan {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsStatementOfApplicability {
+impl IsmsRecordMixin for crate::IsmsStatementOfApplicability {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -175,7 +175,7 @@ impl IsmsRecord for crate::IsmsStatementOfApplicability {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsControl {
+impl IsmsRecordMixin for crate::IsmsControl {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -186,7 +186,7 @@ impl IsmsRecord for crate::IsmsControl {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsAsset {
+impl IsmsRecordMixin for crate::IsmsAsset {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -197,7 +197,7 @@ impl IsmsRecord for crate::IsmsAsset {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsResource {
+impl IsmsRecordMixin for crate::IsmsResource {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -208,7 +208,7 @@ impl IsmsRecord for crate::IsmsResource {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsCompetenceRecord {
+impl IsmsRecordMixin for crate::IsmsCompetenceRecord {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -219,7 +219,7 @@ impl IsmsRecord for crate::IsmsCompetenceRecord {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsAwarenessProgramme {
+impl IsmsRecordMixin for crate::IsmsAwarenessProgramme {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -230,7 +230,7 @@ impl IsmsRecord for crate::IsmsAwarenessProgramme {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsCommunicationPlan {
+impl IsmsRecordMixin for crate::IsmsCommunicationPlan {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -241,7 +241,7 @@ impl IsmsRecord for crate::IsmsCommunicationPlan {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsDocumentedInformation {
+impl IsmsRecordMixin for crate::IsmsDocumentedInformation {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -252,7 +252,7 @@ impl IsmsRecord for crate::IsmsDocumentedInformation {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsOperationalProcedure {
+impl IsmsRecordMixin for crate::IsmsOperationalProcedure {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -263,7 +263,7 @@ impl IsmsRecord for crate::IsmsOperationalProcedure {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsMonitoringProgramme {
+impl IsmsRecordMixin for crate::IsmsMonitoringProgramme {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -274,7 +274,7 @@ impl IsmsRecord for crate::IsmsMonitoringProgramme {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsAuditProgramme {
+impl IsmsRecordMixin for crate::IsmsAuditProgramme {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -285,7 +285,7 @@ impl IsmsRecord for crate::IsmsAuditProgramme {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsAudit {
+impl IsmsRecordMixin for crate::IsmsAudit {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -296,7 +296,7 @@ impl IsmsRecord for crate::IsmsAudit {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsAuditFinding {
+impl IsmsRecordMixin for crate::IsmsAuditFinding {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -307,7 +307,7 @@ impl IsmsRecord for crate::IsmsAuditFinding {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsManagementReview {
+impl IsmsRecordMixin for crate::IsmsManagementReview {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -318,7 +318,7 @@ impl IsmsRecord for crate::IsmsManagementReview {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsNonconformity {
+impl IsmsRecordMixin for crate::IsmsNonconformity {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -329,7 +329,7 @@ impl IsmsRecord for crate::IsmsNonconformity {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsCorrectiveAction {
+impl IsmsRecordMixin for crate::IsmsCorrectiveAction {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -340,7 +340,7 @@ impl IsmsRecord for crate::IsmsCorrectiveAction {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsImprovementOpportunity {
+impl IsmsRecordMixin for crate::IsmsImprovementOpportunity {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -351,7 +351,7 @@ impl IsmsRecord for crate::IsmsImprovementOpportunity {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsSecurityEvent {
+impl IsmsRecordMixin for crate::IsmsSecurityEvent {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -362,7 +362,7 @@ impl IsmsRecord for crate::IsmsSecurityEvent {
         return self.description.as_deref();
     }
 }
-impl IsmsRecord for crate::IsmsSecurityIncident {
+impl IsmsRecordMixin for crate::IsmsSecurityIncident {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         return &self.isms_id;
     }
@@ -374,117 +374,117 @@ impl IsmsRecord for crate::IsmsSecurityIncident {
     }
 }
 
-impl IsmsRecord for crate::IsmsRecordOrSubtype {
+impl IsmsRecordMixin for crate::IsmsRecordMixinOrSubtype {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         match self {
-                IsmsRecordOrSubtype::IsmsManagementSystem(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsOrganization(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsInterestedParty(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsPolicy(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsTopicSpecificPolicy(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsRole(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsObjective(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsRiskAssessmentProcess(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsRiskAssessment(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsRisk(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsRiskTreatmentProcess(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsRiskTreatmentPlan(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsStatementOfApplicability(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsControl(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsAsset(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsResource(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsCompetenceRecord(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsAwarenessProgramme(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsCommunicationPlan(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsDocumentedInformation(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsOperationalProcedure(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsMonitoringProgramme(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsAuditProgramme(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsAudit(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsAuditFinding(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsManagementReview(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsNonconformity(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsCorrectiveAction(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsImprovementOpportunity(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsSecurityEvent(val) => val.isms_id(),
-                IsmsRecordOrSubtype::IsmsSecurityIncident(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsManagementSystem(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsOrganization(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsInterestedParty(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsPolicy(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsTopicSpecificPolicy(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsRole(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsObjective(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsRiskAssessmentProcess(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsRiskAssessment(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsRisk(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsRiskTreatmentProcess(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsRiskTreatmentPlan(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsStatementOfApplicability(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsControl(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsAsset(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsResource(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsCompetenceRecord(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsAwarenessProgramme(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsCommunicationPlan(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsDocumentedInformation(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsOperationalProcedure(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsMonitoringProgramme(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsAuditProgramme(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsAudit(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsAuditFinding(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsManagementReview(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsNonconformity(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsCorrectiveAction(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsImprovementOpportunity(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsSecurityEvent(val) => val.isms_id(),
+                IsmsRecordMixinOrSubtype::IsmsSecurityIncident(val) => val.isms_id(),
 
         }
     }
         fn title<'a>(&'a self) -> &'a str {
         match self {
-                IsmsRecordOrSubtype::IsmsManagementSystem(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsOrganization(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsInterestedParty(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsPolicy(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsTopicSpecificPolicy(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsRole(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsObjective(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsRiskAssessmentProcess(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsRiskAssessment(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsRisk(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsRiskTreatmentProcess(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsRiskTreatmentPlan(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsStatementOfApplicability(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsControl(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsAsset(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsResource(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsCompetenceRecord(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsAwarenessProgramme(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsCommunicationPlan(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsDocumentedInformation(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsOperationalProcedure(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsMonitoringProgramme(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsAuditProgramme(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsAudit(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsAuditFinding(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsManagementReview(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsNonconformity(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsCorrectiveAction(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsImprovementOpportunity(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsSecurityEvent(val) => val.title(),
-                IsmsRecordOrSubtype::IsmsSecurityIncident(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsManagementSystem(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsOrganization(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsInterestedParty(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsPolicy(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsTopicSpecificPolicy(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsRole(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsObjective(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsRiskAssessmentProcess(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsRiskAssessment(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsRisk(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsRiskTreatmentProcess(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsRiskTreatmentPlan(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsStatementOfApplicability(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsControl(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsAsset(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsResource(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsCompetenceRecord(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsAwarenessProgramme(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsCommunicationPlan(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsDocumentedInformation(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsOperationalProcedure(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsMonitoringProgramme(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsAuditProgramme(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsAudit(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsAuditFinding(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsManagementReview(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsNonconformity(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsCorrectiveAction(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsImprovementOpportunity(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsSecurityEvent(val) => val.title(),
+                IsmsRecordMixinOrSubtype::IsmsSecurityIncident(val) => val.title(),
 
         }
     }
         fn description<'a>(&'a self) -> Option<&'a str> {
         match self {
-                IsmsRecordOrSubtype::IsmsManagementSystem(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsOrganization(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsInterestedParty(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsPolicy(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsTopicSpecificPolicy(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsRole(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsObjective(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsRiskAssessmentProcess(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsRiskAssessment(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsRisk(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsRiskTreatmentProcess(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsRiskTreatmentPlan(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsStatementOfApplicability(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsControl(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsAsset(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsResource(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsCompetenceRecord(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsAwarenessProgramme(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsCommunicationPlan(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsDocumentedInformation(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsOperationalProcedure(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsMonitoringProgramme(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsAuditProgramme(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsAudit(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsAuditFinding(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsManagementReview(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsNonconformity(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsCorrectiveAction(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsImprovementOpportunity(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsSecurityEvent(val) => val.description(),
-                IsmsRecordOrSubtype::IsmsSecurityIncident(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsManagementSystem(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsOrganization(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsInterestedParty(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsPolicy(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsTopicSpecificPolicy(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsRole(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsObjective(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsRiskAssessmentProcess(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsRiskAssessment(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsRisk(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsRiskTreatmentProcess(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsRiskTreatmentPlan(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsStatementOfApplicability(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsControl(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsAsset(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsResource(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsCompetenceRecord(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsAwarenessProgramme(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsCommunicationPlan(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsDocumentedInformation(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsOperationalProcedure(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsMonitoringProgramme(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsAuditProgramme(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsAudit(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsAuditFinding(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsManagementReview(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsNonconformity(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsCorrectiveAction(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsImprovementOpportunity(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsSecurityEvent(val) => val.description(),
+                IsmsRecordMixinOrSubtype::IsmsSecurityIncident(val) => val.description(),
 
         }
     }
 }
-impl IsmsRecord for crate::IsmsSecurityEventOrSubtype {
+impl IsmsRecordMixin for crate::IsmsSecurityEventOrSubtype {
         fn isms_id<'a>(&'a self) -> &'a crate::uriorcurie {
         match self {
                 IsmsSecurityEventOrSubtype::IsmsSecurityIncident(val) => val.isms_id(),
@@ -1840,7 +1840,7 @@ impl IsmsDocumentControlMixin for crate::IsmsDocumentControlMixinOrSubtype {
     }
 }
 
-pub trait IsmsManagementSystem : IsmsRecord   {
+pub trait IsmsManagementSystem : IsmsRecordMixin   {
 
     fn isms_organization<'a>(&'a self) -> Option<&'a crate::IsmsOrganization>;
     // fn isms_organization_mut(&mut self) -> &mut Option<&'a crate::IsmsOrganization>;
@@ -2164,7 +2164,7 @@ impl IsmsManagementSystem for crate::IsmsManagementSystem {
 }
 
 
-pub trait IsmsOrganization : IsmsRecord   {
+pub trait IsmsOrganization : IsmsRecordMixin   {
 
     fn organization_legal_name<'a>(&'a self) -> Option<&'a str>;
     // fn organization_legal_name_mut(&mut self) -> &mut Option<&'a str>;
@@ -2250,7 +2250,7 @@ impl IsmsOrganization for crate::IsmsOrganization {
 }
 
 
-pub trait IsmsInterestedParty : IsmsRecord   {
+pub trait IsmsInterestedParty : IsmsRecordMixin   {
 
     fn party_category<'a>(&'a self) -> Option<&'a str>;
     // fn party_category_mut(&mut self) -> &mut Option<&'a str>;
@@ -2308,7 +2308,7 @@ impl IsmsInterestedParty for crate::IsmsInterestedParty {
 }
 
 
-pub trait IsmsPolicy : IsmsRecord  +  IsmsDocumentControlMixin   {
+pub trait IsmsPolicy : IsmsRecordMixin  +  IsmsDocumentControlMixin   {
 
     fn policy_statement<'a>(&'a self) -> Option<&'a str>;
     // fn policy_statement_mut(&mut self) -> &mut Option<&'a str>;
@@ -2366,7 +2366,7 @@ impl IsmsPolicy for crate::IsmsPolicy {
 }
 
 
-pub trait IsmsTopicSpecificPolicy : IsmsRecord  +  IsmsDocumentControlMixin   {
+pub trait IsmsTopicSpecificPolicy : IsmsRecordMixin  +  IsmsDocumentControlMixin   {
 
     fn relevant_controls<'a>(&'a self) -> Option<impl poly_containers::SeqRef<'a, String>>;
     // fn relevant_controls_mut(&mut self) -> &mut Option<impl poly_containers::SeqRef<'a, String>>;
@@ -2403,7 +2403,7 @@ impl IsmsTopicSpecificPolicy for crate::IsmsTopicSpecificPolicy {
 }
 
 
-pub trait IsmsRole : IsmsRecord   {
+pub trait IsmsRole : IsmsRecordMixin   {
 
     fn role_category<'a>(&'a self) -> Option<&'a str>;
     // fn role_category_mut(&mut self) -> &mut Option<&'a str>;
@@ -2461,7 +2461,7 @@ impl IsmsRole for crate::IsmsRole {
 }
 
 
-pub trait IsmsObjective : IsmsRecord   {
+pub trait IsmsObjective : IsmsRecordMixin   {
 
     fn responsible_role<'a>(&'a self) -> Option<&'a str>;
     // fn responsible_role_mut(&mut self) -> &mut Option<&'a str>;
@@ -2561,7 +2561,7 @@ impl IsmsObjective for crate::IsmsObjective {
 }
 
 
-pub trait IsmsRiskAssessmentProcess : IsmsRecord  +  IsmsDocumentControlMixin   {
+pub trait IsmsRiskAssessmentProcess : IsmsRecordMixin  +  IsmsDocumentControlMixin   {
 
     fn risk_acceptance_criteria<'a>(&'a self) -> Option<&'a str>;
     // fn risk_acceptance_criteria_mut(&mut self) -> &mut Option<&'a str>;
@@ -2626,7 +2626,7 @@ impl IsmsRiskAssessmentProcess for crate::IsmsRiskAssessmentProcess {
 }
 
 
-pub trait IsmsRiskAssessment : IsmsRecord  +  IsmsDocumentControlMixin   {
+pub trait IsmsRiskAssessment : IsmsRecordMixin  +  IsmsDocumentControlMixin   {
 
     fn assessment_scope<'a>(&'a self) -> Option<&'a str>;
     // fn assessment_scope_mut(&mut self) -> &mut Option<&'a str>;
@@ -2691,7 +2691,7 @@ impl IsmsRiskAssessment for crate::IsmsRiskAssessment {
 }
 
 
-pub trait IsmsRisk : IsmsRecord   {
+pub trait IsmsRisk : IsmsRecordMixin   {
 
     fn affected_assets<'a>(&'a self) -> Option<impl poly_containers::SeqRef<'a, String>>;
     // fn affected_assets_mut(&mut self) -> &mut Option<impl poly_containers::SeqRef<'a, String>>;
@@ -2791,7 +2791,7 @@ impl IsmsRisk for crate::IsmsRisk {
 }
 
 
-pub trait IsmsRiskTreatmentProcess : IsmsRecord  +  IsmsDocumentControlMixin   {
+pub trait IsmsRiskTreatmentProcess : IsmsRecordMixin  +  IsmsDocumentControlMixin   {
 
     fn treatment_options_guidance<'a>(&'a self) -> Option<&'a str>;
     // fn treatment_options_guidance_mut(&mut self) -> &mut Option<&'a str>;
@@ -2835,7 +2835,7 @@ impl IsmsRiskTreatmentProcess for crate::IsmsRiskTreatmentProcess {
 }
 
 
-pub trait IsmsRiskTreatmentPlan : IsmsRecord  +  IsmsDocumentControlMixin   {
+pub trait IsmsRiskTreatmentPlan : IsmsRecordMixin  +  IsmsDocumentControlMixin   {
 
     fn implementation_state<'a>(&'a self) -> Option<&'a crate::IsmsImplementationStatus>;
     // fn implementation_state_mut(&mut self) -> &mut Option<&'a crate::IsmsImplementationStatus>;
@@ -2921,7 +2921,7 @@ impl IsmsRiskTreatmentPlan for crate::IsmsRiskTreatmentPlan {
 }
 
 
-pub trait IsmsStatementOfApplicability : IsmsRecord  +  IsmsDocumentControlMixin   {
+pub trait IsmsStatementOfApplicability : IsmsRecordMixin  +  IsmsDocumentControlMixin   {
 
     fn soa_entries<'a>(&'a self) -> Option<impl poly_containers::SeqRef<'a, IsmsApplicabilityEntryOrSubtype>>;
     // fn soa_entries_mut(&mut self) -> &mut Option<impl poly_containers::SeqRef<'a, IsmsApplicabilityEntryOrSubtype>>;
@@ -3065,7 +3065,7 @@ impl IsmsExcludedControl for crate::IsmsExcludedControl {
 }
 
 
-pub trait IsmsControl : IsmsRecord   {
+pub trait IsmsControl : IsmsRecordMixin   {
 
     fn relevant_controls<'a>(&'a self) -> Option<impl poly_containers::SeqRef<'a, String>>;
     // fn relevant_controls_mut(&mut self) -> &mut Option<impl poly_containers::SeqRef<'a, String>>;
@@ -3165,7 +3165,7 @@ impl IsmsControl for crate::IsmsControl {
 }
 
 
-pub trait IsmsAsset : IsmsRecord   {
+pub trait IsmsAsset : IsmsRecordMixin   {
 
     fn relevant_controls<'a>(&'a self) -> Option<impl poly_containers::SeqRef<'a, String>>;
     // fn relevant_controls_mut(&mut self) -> &mut Option<impl poly_containers::SeqRef<'a, String>>;
@@ -3223,7 +3223,7 @@ impl IsmsAsset for crate::IsmsAsset {
 }
 
 
-pub trait IsmsResource : IsmsRecord   {
+pub trait IsmsResource : IsmsRecordMixin   {
 
     fn resource_category<'a>(&'a self) -> Option<&'a str>;
     // fn resource_category_mut(&mut self) -> &mut Option<&'a str>;
@@ -3274,7 +3274,7 @@ impl IsmsResource for crate::IsmsResource {
 }
 
 
-pub trait IsmsCompetenceRecord : IsmsRecord  +  IsmsDocumentControlMixin   {
+pub trait IsmsCompetenceRecord : IsmsRecordMixin  +  IsmsDocumentControlMixin   {
 
     fn competence_person<'a>(&'a self) -> Option<&'a str>;
     // fn competence_person_mut(&mut self) -> &mut Option<&'a str>;
@@ -3346,7 +3346,7 @@ impl IsmsCompetenceRecord for crate::IsmsCompetenceRecord {
 }
 
 
-pub trait IsmsAwarenessProgramme : IsmsRecord  +  IsmsDocumentControlMixin   {
+pub trait IsmsAwarenessProgramme : IsmsRecordMixin  +  IsmsDocumentControlMixin   {
 
     fn awareness_topics<'a>(&'a self) -> Option<impl poly_containers::SeqRef<'a, String>>;
     // fn awareness_topics_mut(&mut self) -> &mut Option<impl poly_containers::SeqRef<'a, String>>;
@@ -3397,7 +3397,7 @@ impl IsmsAwarenessProgramme for crate::IsmsAwarenessProgramme {
 }
 
 
-pub trait IsmsCommunicationPlan : IsmsRecord  +  IsmsDocumentControlMixin   {
+pub trait IsmsCommunicationPlan : IsmsRecordMixin  +  IsmsDocumentControlMixin   {
 
     fn communication_items<'a>(&'a self) -> Option<impl poly_containers::SeqRef<'a, crate::IsmsCommunication>>;
     // fn communication_items_mut(&mut self) -> &mut Option<impl poly_containers::SeqRef<'a, crate::IsmsCommunication>>;
@@ -3471,7 +3471,7 @@ impl IsmsCommunication for crate::IsmsCommunication {
 }
 
 
-pub trait IsmsDocumentedInformation : IsmsRecord  +  IsmsDocumentControlMixin   {
+pub trait IsmsDocumentedInformation : IsmsRecordMixin  +  IsmsDocumentControlMixin   {
 
     fn document_kind<'a>(&'a self) -> &'a crate::IsmsDocumentKind;
     // fn document_kind_mut(&mut self) -> &mut &'a crate::IsmsDocumentKind;
@@ -3487,7 +3487,7 @@ impl IsmsDocumentedInformation for crate::IsmsDocumentedInformation {
 }
 
 
-pub trait IsmsOperationalProcedure : IsmsRecord  +  IsmsDocumentControlMixin   {
+pub trait IsmsOperationalProcedure : IsmsRecordMixin  +  IsmsDocumentControlMixin   {
 
     fn relevant_controls<'a>(&'a self) -> Option<impl poly_containers::SeqRef<'a, String>>;
     // fn relevant_controls_mut(&mut self) -> &mut Option<impl poly_containers::SeqRef<'a, String>>;
@@ -3538,7 +3538,7 @@ impl IsmsOperationalProcedure for crate::IsmsOperationalProcedure {
 }
 
 
-pub trait IsmsMonitoringProgramme : IsmsRecord  +  IsmsDocumentControlMixin   {
+pub trait IsmsMonitoringProgramme : IsmsRecordMixin  +  IsmsDocumentControlMixin   {
 
     fn monitoring_items<'a>(&'a self) -> Option<impl poly_containers::SeqRef<'a, crate::IsmsMonitoringItem>>;
     // fn monitoring_items_mut(&mut self) -> &mut Option<impl poly_containers::SeqRef<'a, crate::IsmsMonitoringItem>>;
@@ -3640,7 +3640,7 @@ impl IsmsMonitoringItem for crate::IsmsMonitoringItem {
 }
 
 
-pub trait IsmsAuditProgramme : IsmsRecord  +  IsmsDocumentControlMixin   {
+pub trait IsmsAuditProgramme : IsmsRecordMixin  +  IsmsDocumentControlMixin   {
 
     fn programme_period<'a>(&'a self) -> Option<&'a str>;
     // fn programme_period_mut(&mut self) -> &mut Option<&'a str>;
@@ -3691,7 +3691,7 @@ impl IsmsAuditProgramme for crate::IsmsAuditProgramme {
 }
 
 
-pub trait IsmsAudit : IsmsRecord  +  IsmsDocumentControlMixin   {
+pub trait IsmsAudit : IsmsRecordMixin  +  IsmsDocumentControlMixin   {
 
     fn audit_type<'a>(&'a self) -> &'a crate::IsmsAuditType;
     // fn audit_type_mut(&mut self) -> &mut &'a crate::IsmsAuditType;
@@ -3805,7 +3805,7 @@ impl IsmsAudit for crate::IsmsAudit {
 }
 
 
-pub trait IsmsAuditFinding : IsmsRecord   {
+pub trait IsmsAuditFinding : IsmsRecordMixin   {
 
     fn finding_type<'a>(&'a self) -> &'a crate::IsmsAuditFindingType;
     // fn finding_type_mut(&mut self) -> &mut &'a crate::IsmsAuditFindingType;
@@ -3891,7 +3891,7 @@ impl IsmsAuditFinding for crate::IsmsAuditFinding {
 }
 
 
-pub trait IsmsManagementReview : IsmsRecord  +  IsmsDocumentControlMixin   {
+pub trait IsmsManagementReview : IsmsRecordMixin  +  IsmsDocumentControlMixin   {
 
     fn review_held_on<'a>(&'a self) -> &'a crate::NaiveDate;
     // fn review_held_on_mut(&mut self) -> &mut &'a crate::NaiveDate;
@@ -4005,7 +4005,7 @@ impl IsmsManagementReview for crate::IsmsManagementReview {
 }
 
 
-pub trait IsmsNonconformity : IsmsRecord   {
+pub trait IsmsNonconformity : IsmsRecordMixin   {
 
     fn nonconformity_source<'a>(&'a self) -> Option<&'a str>;
     // fn nonconformity_source_mut(&mut self) -> &mut Option<&'a str>;
@@ -4091,7 +4091,7 @@ impl IsmsNonconformity for crate::IsmsNonconformity {
 }
 
 
-pub trait IsmsCorrectiveAction : IsmsRecord   {
+pub trait IsmsCorrectiveAction : IsmsRecordMixin   {
 
     fn responsible_role<'a>(&'a self) -> Option<&'a str>;
     // fn responsible_role_mut(&mut self) -> &mut Option<&'a str>;
@@ -4177,7 +4177,7 @@ impl IsmsCorrectiveAction for crate::IsmsCorrectiveAction {
 }
 
 
-pub trait IsmsImprovementOpportunity : IsmsRecord   {
+pub trait IsmsImprovementOpportunity : IsmsRecordMixin   {
 
     fn responsible_role<'a>(&'a self) -> Option<&'a str>;
     // fn responsible_role_mut(&mut self) -> &mut Option<&'a str>;
@@ -4263,7 +4263,7 @@ impl IsmsImprovementOpportunity for crate::IsmsImprovementOpportunity {
 }
 
 
-pub trait IsmsSecurityEvent : IsmsRecord   {
+pub trait IsmsSecurityEvent : IsmsRecordMixin   {
 
     fn affected_assets<'a>(&'a self) -> Option<impl poly_containers::SeqRef<'a, String>>;
     // fn affected_assets_mut(&mut self) -> &mut Option<impl poly_containers::SeqRef<'a, String>>;

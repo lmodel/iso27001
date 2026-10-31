@@ -5,10 +5,10 @@
  classDiagram
     class IsmsCompetenceRecord
     click IsmsCompetenceRecord href "../IsmsCompetenceRecord"
+      IsmsRecordMixin <|-- IsmsCompetenceRecord
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       IsmsDocumentControlMixin <|-- IsmsCompetenceRecord
         click IsmsDocumentControlMixin href "../IsmsDocumentControlMixin"
-      IsmsRecord <|-- IsmsCompetenceRecord
-        click IsmsRecord href "../IsmsRecord"
       
       IsmsCompetenceRecord : competence_actions
         

@@ -1870,7 +1870,7 @@
       "from_schema": "https://w3id.org/lmodel/iso27001",
       "identifier": true,
       "domain_of": [
-        "IsmsRecord"
+        "IsmsRecordMixin"
       ],
       "range": "uriorcurie",
       "required": true
@@ -1884,7 +1884,7 @@
       "from_schema": "https://w3id.org/lmodel/iso27001",
       "slot_uri": "schema:name",
       "domain_of": [
-        "IsmsRecord"
+        "IsmsRecordMixin"
       ]
     },
     "description": {
@@ -1896,7 +1896,7 @@
       "from_schema": "https://w3id.org/lmodel/iso27001",
       "slot_uri": "schema:description",
       "domain_of": [
-        "IsmsRecord"
+        "IsmsRecordMixin"
       ]
     },
     "responsible_role": {
@@ -1971,11 +1971,14 @@
     }
   },
   "classes": {
-    "IsmsRecord": {
-      "name": "IsmsRecord",
-      "description": "Anything the ISMS keeps a record of that other records can refer to: it has an identifier, a title and a description.",
+    "IsmsRecordMixin": {
+      "name": "IsmsRecordMixin",
+      "description": "What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.",
+      "comments": [
+        "It is a mixin, not a base class, so that the adapt copy can re-root some record classes on LOKF's Concept and leave the others as they are: lokf adapt replaces isms_id with LOKF's id, and a class that declares id itself must descend from Concept."
+      ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "abstract": true,
+      "mixin": true,
       "slots": [
         "isms_id",
         "title",
@@ -1994,9 +1997,9 @@
           "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
           "from_schema": "https://w3id.org/lmodel/iso27001",
           "identifier": true,
-          "owner": "IsmsRecord",
+          "owner": "IsmsRecordMixin",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "uriorcurie",
           "required": true
@@ -2009,9 +2012,9 @@
           ],
           "from_schema": "https://w3id.org/lmodel/iso27001",
           "slot_uri": "schema:name",
-          "owner": "IsmsRecord",
+          "owner": "IsmsRecordMixin",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string",
           "required": true,
@@ -2025,9 +2028,9 @@
           ],
           "from_schema": "https://w3id.org/lmodel/iso27001",
           "slot_uri": "schema:description",
-          "owner": "IsmsRecord",
+          "owner": "IsmsRecordMixin",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string"
         }
@@ -2237,7 +2240,9 @@
       "related_mappings": [
         "oscal:SystemSecurityPlan"
       ],
-      "is_a": "IsmsRecord",
+      "mixins": [
+        "IsmsRecordMixin"
+      ],
       "attributes": {
         "isms_organization": {
           "name": "isms_organization",
@@ -2839,7 +2844,7 @@
           "identifier": true,
           "owner": "IsmsManagementSystem",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "uriorcurie",
           "required": true
@@ -2854,7 +2859,7 @@
           "slot_uri": "schema:name",
           "owner": "IsmsManagementSystem",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string",
           "required": true,
@@ -2870,7 +2875,7 @@
           "slot_uri": "schema:description",
           "owner": "IsmsManagementSystem",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string"
         }
@@ -2896,7 +2901,9 @@
       "broad_mappings": [
         "oscal:Party"
       ],
-      "is_a": "IsmsRecord",
+      "mixins": [
+        "IsmsRecordMixin"
+      ],
       "attributes": {
         "organization_legal_name": {
           "name": "organization_legal_name",
@@ -3030,7 +3037,7 @@
           "identifier": true,
           "owner": "IsmsOrganization",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "uriorcurie",
           "required": true
@@ -3045,7 +3052,7 @@
           "slot_uri": "schema:name",
           "owner": "IsmsOrganization",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string",
           "required": true,
@@ -3061,7 +3068,7 @@
           "slot_uri": "schema:description",
           "owner": "IsmsOrganization",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string"
         }
@@ -3080,7 +3087,9 @@
         "isms_core"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
+      "mixins": [
+        "IsmsRecordMixin"
+      ],
       "attributes": {
         "party_category": {
           "name": "party_category",
@@ -3172,7 +3181,7 @@
           "identifier": true,
           "owner": "IsmsInterestedParty",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "uriorcurie",
           "required": true
@@ -3187,7 +3196,7 @@
           "slot_uri": "schema:name",
           "owner": "IsmsInterestedParty",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string",
           "required": true,
@@ -3203,7 +3212,7 @@
           "slot_uri": "schema:description",
           "owner": "IsmsInterestedParty",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string"
         }
@@ -3223,8 +3232,8 @@
         "isms_documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
       "mixins": [
+        "IsmsRecordMixin",
         "IsmsDocumentControlMixin"
       ],
       "attributes": {
@@ -3300,6 +3309,48 @@
           "range": "IsmsManagementSystemStandard",
           "multivalued": true
         },
+        "isms_id": {
+          "name": "isms_id",
+          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "identifier": true,
+          "owner": "IsmsPolicy",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:name",
+          "owner": "IsmsPolicy",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:description",
+          "owner": "IsmsPolicy",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string"
+        },
         "document_reference": {
           "name": "document_reference",
           "description": "The reference the organization's document control gives it.",
@@ -3470,48 +3521,6 @@
             "IsmsDocumentControlMixin"
           ],
           "range": "string"
-        },
-        "isms_id": {
-          "name": "isms_id",
-          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "identifier": true,
-          "owner": "IsmsPolicy",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "uriorcurie",
-          "required": true
-        },
-        "title": {
-          "name": "title",
-          "description": "The name the organization gives the record.",
-          "comments": [
-            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:name",
-          "owner": "IsmsPolicy",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string",
-          "required": true,
-          "pattern": "^\\s*\\S"
-        },
-        "description": {
-          "name": "description",
-          "description": "What the record says or describes, in the organization's own words.",
-          "comments": [
-            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:description",
-          "owner": "IsmsPolicy",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string"
         }
       }
     },
@@ -3529,8 +3538,8 @@
         "isms_documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
       "mixins": [
+        "IsmsRecordMixin",
         "IsmsDocumentControlMixin"
       ],
       "slots": [
@@ -3582,6 +3591,48 @@
           "range": "IsmsControl",
           "multivalued": true
         },
+        "isms_id": {
+          "name": "isms_id",
+          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "identifier": true,
+          "owner": "IsmsTopicSpecificPolicy",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:name",
+          "owner": "IsmsTopicSpecificPolicy",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:description",
+          "owner": "IsmsTopicSpecificPolicy",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string"
+        },
         "document_reference": {
           "name": "document_reference",
           "description": "The reference the organization's document control gives it.",
@@ -3752,48 +3803,6 @@
             "IsmsDocumentControlMixin"
           ],
           "range": "string"
-        },
-        "isms_id": {
-          "name": "isms_id",
-          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "identifier": true,
-          "owner": "IsmsTopicSpecificPolicy",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "uriorcurie",
-          "required": true
-        },
-        "title": {
-          "name": "title",
-          "description": "The name the organization gives the record.",
-          "comments": [
-            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:name",
-          "owner": "IsmsTopicSpecificPolicy",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string",
-          "required": true,
-          "pattern": "^\\s*\\S"
-        },
-        "description": {
-          "name": "description",
-          "description": "What the record says or describes, in the organization's own words.",
-          "comments": [
-            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:description",
-          "owner": "IsmsTopicSpecificPolicy",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string"
         }
       }
     },
@@ -3813,7 +3822,9 @@
       "close_mappings": [
         "oscal:Role"
       ],
-      "is_a": "IsmsRecord",
+      "mixins": [
+        "IsmsRecordMixin"
+      ],
       "attributes": {
         "role_category": {
           "name": "role_category",
@@ -3895,7 +3906,7 @@
           "identifier": true,
           "owner": "IsmsRole",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "uriorcurie",
           "required": true
@@ -3910,7 +3921,7 @@
           "slot_uri": "schema:name",
           "owner": "IsmsRole",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string",
           "required": true,
@@ -3926,7 +3937,7 @@
           "slot_uri": "schema:description",
           "owner": "IsmsRole",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string"
         }
@@ -3945,7 +3956,9 @@
         "isms_core"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
+      "mixins": [
+        "IsmsRecordMixin"
+      ],
       "slots": [
         "responsible_role",
         "relevant_controls"
@@ -4099,7 +4112,7 @@
           "identifier": true,
           "owner": "IsmsObjective",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "uriorcurie",
           "required": true
@@ -4114,7 +4127,7 @@
           "slot_uri": "schema:name",
           "owner": "IsmsObjective",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string",
           "required": true,
@@ -4130,7 +4143,7 @@
           "slot_uri": "schema:description",
           "owner": "IsmsObjective",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string"
         }
@@ -4150,8 +4163,8 @@
         "isms_documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
       "mixins": [
+        "IsmsRecordMixin",
         "IsmsDocumentControlMixin"
       ],
       "attributes": {
@@ -4235,6 +4248,48 @@
           ],
           "range": "string",
           "multivalued": true
+        },
+        "isms_id": {
+          "name": "isms_id",
+          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "identifier": true,
+          "owner": "IsmsRiskAssessmentProcess",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:name",
+          "owner": "IsmsRiskAssessmentProcess",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:description",
+          "owner": "IsmsRiskAssessmentProcess",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string"
         },
         "document_reference": {
           "name": "document_reference",
@@ -4406,48 +4461,6 @@
             "IsmsDocumentControlMixin"
           ],
           "range": "string"
-        },
-        "isms_id": {
-          "name": "isms_id",
-          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "identifier": true,
-          "owner": "IsmsRiskAssessmentProcess",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "uriorcurie",
-          "required": true
-        },
-        "title": {
-          "name": "title",
-          "description": "The name the organization gives the record.",
-          "comments": [
-            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:name",
-          "owner": "IsmsRiskAssessmentProcess",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string",
-          "required": true,
-          "pattern": "^\\s*\\S"
-        },
-        "description": {
-          "name": "description",
-          "description": "What the record says or describes, in the organization's own words.",
-          "comments": [
-            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:description",
-          "owner": "IsmsRiskAssessmentProcess",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string"
         }
       }
     },
@@ -4464,8 +4477,8 @@
         "isms_risk_management"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
       "mixins": [
+        "IsmsRecordMixin",
         "IsmsDocumentControlMixin"
       ],
       "attributes": {
@@ -4551,6 +4564,48 @@
           ],
           "range": "date"
         },
+        "isms_id": {
+          "name": "isms_id",
+          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "identifier": true,
+          "owner": "IsmsRiskAssessment",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:name",
+          "owner": "IsmsRiskAssessment",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:description",
+          "owner": "IsmsRiskAssessment",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string"
+        },
         "document_reference": {
           "name": "document_reference",
           "description": "The reference the organization's document control gives it.",
@@ -4721,48 +4776,6 @@
             "IsmsDocumentControlMixin"
           ],
           "range": "string"
-        },
-        "isms_id": {
-          "name": "isms_id",
-          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "identifier": true,
-          "owner": "IsmsRiskAssessment",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "uriorcurie",
-          "required": true
-        },
-        "title": {
-          "name": "title",
-          "description": "The name the organization gives the record.",
-          "comments": [
-            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:name",
-          "owner": "IsmsRiskAssessment",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string",
-          "required": true,
-          "pattern": "^\\s*\\S"
-        },
-        "description": {
-          "name": "description",
-          "description": "What the record says or describes, in the organization's own words.",
-          "comments": [
-            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:description",
-          "owner": "IsmsRiskAssessment",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string"
         }
       }
     },
@@ -4779,7 +4792,9 @@
         "isms_risk_management"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
+      "mixins": [
+        "IsmsRecordMixin"
+      ],
       "slots": [
         "affected_assets",
         "affected_security_properties"
@@ -4927,7 +4942,7 @@
           "identifier": true,
           "owner": "IsmsRisk",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "uriorcurie",
           "required": true
@@ -4942,7 +4957,7 @@
           "slot_uri": "schema:name",
           "owner": "IsmsRisk",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string",
           "required": true,
@@ -4958,7 +4973,7 @@
           "slot_uri": "schema:description",
           "owner": "IsmsRisk",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string"
         }
@@ -4978,8 +4993,8 @@
         "isms_documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
       "mixins": [
+        "IsmsRecordMixin",
         "IsmsDocumentControlMixin"
       ],
       "attributes": {
@@ -5030,6 +5045,48 @@
           "owner": "IsmsRiskTreatmentProcess",
           "domain_of": [
             "IsmsRiskTreatmentProcess"
+          ],
+          "range": "string"
+        },
+        "isms_id": {
+          "name": "isms_id",
+          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "identifier": true,
+          "owner": "IsmsRiskTreatmentProcess",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:name",
+          "owner": "IsmsRiskTreatmentProcess",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:description",
+          "owner": "IsmsRiskTreatmentProcess",
+          "domain_of": [
+            "IsmsRecordMixin"
           ],
           "range": "string"
         },
@@ -5203,48 +5260,6 @@
             "IsmsDocumentControlMixin"
           ],
           "range": "string"
-        },
-        "isms_id": {
-          "name": "isms_id",
-          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "identifier": true,
-          "owner": "IsmsRiskTreatmentProcess",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "uriorcurie",
-          "required": true
-        },
-        "title": {
-          "name": "title",
-          "description": "The name the organization gives the record.",
-          "comments": [
-            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:name",
-          "owner": "IsmsRiskTreatmentProcess",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string",
-          "required": true,
-          "pattern": "^\\s*\\S"
-        },
-        "description": {
-          "name": "description",
-          "description": "What the record says or describes, in the organization's own words.",
-          "comments": [
-            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:description",
-          "owner": "IsmsRiskTreatmentProcess",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string"
         }
       }
     },
@@ -5265,8 +5280,8 @@
       "related_mappings": [
         "oscal:PlanOfActionAndMilestones"
       ],
-      "is_a": "IsmsRecord",
       "mixins": [
+        "IsmsRecordMixin",
         "IsmsDocumentControlMixin"
       ],
       "slots": [
@@ -5389,6 +5404,48 @@
           ],
           "range": "IsmsImplementationStatus"
         },
+        "isms_id": {
+          "name": "isms_id",
+          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "identifier": true,
+          "owner": "IsmsRiskTreatmentPlan",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:name",
+          "owner": "IsmsRiskTreatmentPlan",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:description",
+          "owner": "IsmsRiskTreatmentPlan",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string"
+        },
         "document_reference": {
           "name": "document_reference",
           "description": "The reference the organization's document control gives it.",
@@ -5557,48 +5614,6 @@
           "owner": "IsmsRiskTreatmentPlan",
           "domain_of": [
             "IsmsDocumentControlMixin"
-          ],
-          "range": "string"
-        },
-        "isms_id": {
-          "name": "isms_id",
-          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "identifier": true,
-          "owner": "IsmsRiskTreatmentPlan",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "uriorcurie",
-          "required": true
-        },
-        "title": {
-          "name": "title",
-          "description": "The name the organization gives the record.",
-          "comments": [
-            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:name",
-          "owner": "IsmsRiskTreatmentPlan",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string",
-          "required": true,
-          "pattern": "^\\s*\\S"
-        },
-        "description": {
-          "name": "description",
-          "description": "What the record says or describes, in the organization's own words.",
-          "comments": [
-            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:description",
-          "owner": "IsmsRiskTreatmentPlan",
-          "domain_of": [
-            "IsmsRecord"
           ],
           "range": "string"
         }
@@ -5621,8 +5636,8 @@
       "related_mappings": [
         "oscal:SspControlImplementation"
       ],
-      "is_a": "IsmsRecord",
       "mixins": [
+        "IsmsRecordMixin",
         "IsmsDocumentControlMixin"
       ],
       "attributes": {
@@ -5638,6 +5653,48 @@
           "multivalued": true,
           "inlined": true,
           "inlined_as_list": true
+        },
+        "isms_id": {
+          "name": "isms_id",
+          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "identifier": true,
+          "owner": "IsmsStatementOfApplicability",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:name",
+          "owner": "IsmsStatementOfApplicability",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:description",
+          "owner": "IsmsStatementOfApplicability",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string"
         },
         "document_reference": {
           "name": "document_reference",
@@ -5807,48 +5864,6 @@
           "owner": "IsmsStatementOfApplicability",
           "domain_of": [
             "IsmsDocumentControlMixin"
-          ],
-          "range": "string"
-        },
-        "isms_id": {
-          "name": "isms_id",
-          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "identifier": true,
-          "owner": "IsmsStatementOfApplicability",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "uriorcurie",
-          "required": true
-        },
-        "title": {
-          "name": "title",
-          "description": "The name the organization gives the record.",
-          "comments": [
-            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:name",
-          "owner": "IsmsStatementOfApplicability",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string",
-          "required": true,
-          "pattern": "^\\s*\\S"
-        },
-        "description": {
-          "name": "description",
-          "description": "What the record says or describes, in the organization's own words.",
-          "comments": [
-            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:description",
-          "owner": "IsmsStatementOfApplicability",
-          "domain_of": [
-            "IsmsRecord"
           ],
           "range": "string"
         }
@@ -6114,7 +6129,9 @@
         "oscal:Control",
         "nist_sp_800_53:Control"
       ],
-      "is_a": "IsmsRecord",
+      "mixins": [
+        "IsmsRecordMixin"
+      ],
       "slots": [
         "relevant_controls",
         "implementation_state"
@@ -6268,7 +6285,7 @@
           "identifier": true,
           "owner": "IsmsControl",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "uriorcurie",
           "required": true
@@ -6283,7 +6300,7 @@
           "slot_uri": "schema:name",
           "owner": "IsmsControl",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string",
           "required": true,
@@ -6299,7 +6316,7 @@
           "slot_uri": "schema:description",
           "owner": "IsmsControl",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string"
         }
@@ -6322,7 +6339,9 @@
         "oscal:SspInventoryItem",
         "spdx_software:Package"
       ],
-      "is_a": "IsmsRecord",
+      "mixins": [
+        "IsmsRecordMixin"
+      ],
       "slots": [
         "relevant_controls"
       ],
@@ -6409,7 +6428,7 @@
           "identifier": true,
           "owner": "IsmsAsset",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "uriorcurie",
           "required": true
@@ -6424,7 +6443,7 @@
           "slot_uri": "schema:name",
           "owner": "IsmsAsset",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string",
           "required": true,
@@ -6440,7 +6459,7 @@
           "slot_uri": "schema:description",
           "owner": "IsmsAsset",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string"
         }
@@ -6459,7 +6478,9 @@
         "isms_core"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
+      "mixins": [
+        "IsmsRecordMixin"
+      ],
       "attributes": {
         "resource_category": {
           "name": "resource_category",
@@ -6528,7 +6549,7 @@
           "identifier": true,
           "owner": "IsmsResource",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "uriorcurie",
           "required": true
@@ -6543,7 +6564,7 @@
           "slot_uri": "schema:name",
           "owner": "IsmsResource",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string",
           "required": true,
@@ -6559,7 +6580,7 @@
           "slot_uri": "schema:description",
           "owner": "IsmsResource",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string"
         }
@@ -6579,8 +6600,8 @@
         "isms_documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
       "mixins": [
+        "IsmsRecordMixin",
         "IsmsDocumentControlMixin"
       ],
       "attributes": {
@@ -6680,6 +6701,48 @@
           "range": "string",
           "multivalued": true
         },
+        "isms_id": {
+          "name": "isms_id",
+          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "identifier": true,
+          "owner": "IsmsCompetenceRecord",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:name",
+          "owner": "IsmsCompetenceRecord",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:description",
+          "owner": "IsmsCompetenceRecord",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string"
+        },
         "document_reference": {
           "name": "document_reference",
           "description": "The reference the organization's document control gives it.",
@@ -6850,48 +6913,6 @@
             "IsmsDocumentControlMixin"
           ],
           "range": "string"
-        },
-        "isms_id": {
-          "name": "isms_id",
-          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "identifier": true,
-          "owner": "IsmsCompetenceRecord",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "uriorcurie",
-          "required": true
-        },
-        "title": {
-          "name": "title",
-          "description": "The name the organization gives the record.",
-          "comments": [
-            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:name",
-          "owner": "IsmsCompetenceRecord",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string",
-          "required": true,
-          "pattern": "^\\s*\\S"
-        },
-        "description": {
-          "name": "description",
-          "description": "What the record says or describes, in the organization's own words.",
-          "comments": [
-            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:description",
-          "owner": "IsmsCompetenceRecord",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string"
         }
       }
     },
@@ -6908,8 +6929,8 @@
         "isms_core"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
       "mixins": [
+        "IsmsRecordMixin",
         "IsmsDocumentControlMixin"
       ],
       "attributes": {
@@ -6975,6 +6996,48 @@
           ],
           "range": "string"
         },
+        "isms_id": {
+          "name": "isms_id",
+          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "identifier": true,
+          "owner": "IsmsAwarenessProgramme",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:name",
+          "owner": "IsmsAwarenessProgramme",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:description",
+          "owner": "IsmsAwarenessProgramme",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string"
+        },
         "document_reference": {
           "name": "document_reference",
           "description": "The reference the organization's document control gives it.",
@@ -7143,48 +7206,6 @@
           "owner": "IsmsAwarenessProgramme",
           "domain_of": [
             "IsmsDocumentControlMixin"
-          ],
-          "range": "string"
-        },
-        "isms_id": {
-          "name": "isms_id",
-          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "identifier": true,
-          "owner": "IsmsAwarenessProgramme",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "uriorcurie",
-          "required": true
-        },
-        "title": {
-          "name": "title",
-          "description": "The name the organization gives the record.",
-          "comments": [
-            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:name",
-          "owner": "IsmsAwarenessProgramme",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string",
-          "required": true,
-          "pattern": "^\\s*\\S"
-        },
-        "description": {
-          "name": "description",
-          "description": "What the record says or describes, in the organization's own words.",
-          "comments": [
-            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:description",
-          "owner": "IsmsAwarenessProgramme",
-          "domain_of": [
-            "IsmsRecord"
           ],
           "range": "string"
         }
@@ -7204,8 +7225,8 @@
         "isms_documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
       "mixins": [
+        "IsmsRecordMixin",
         "IsmsDocumentControlMixin"
       ],
       "attributes": {
@@ -7221,6 +7242,48 @@
           "multivalued": true,
           "inlined": true,
           "inlined_as_list": true
+        },
+        "isms_id": {
+          "name": "isms_id",
+          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "identifier": true,
+          "owner": "IsmsCommunicationPlan",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:name",
+          "owner": "IsmsCommunicationPlan",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:description",
+          "owner": "IsmsCommunicationPlan",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string"
         },
         "document_reference": {
           "name": "document_reference",
@@ -7390,48 +7453,6 @@
           "owner": "IsmsCommunicationPlan",
           "domain_of": [
             "IsmsDocumentControlMixin"
-          ],
-          "range": "string"
-        },
-        "isms_id": {
-          "name": "isms_id",
-          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "identifier": true,
-          "owner": "IsmsCommunicationPlan",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "uriorcurie",
-          "required": true
-        },
-        "title": {
-          "name": "title",
-          "description": "The name the organization gives the record.",
-          "comments": [
-            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:name",
-          "owner": "IsmsCommunicationPlan",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string",
-          "required": true,
-          "pattern": "^\\s*\\S"
-        },
-        "description": {
-          "name": "description",
-          "description": "What the record says or describes, in the organization's own words.",
-          "comments": [
-            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:description",
-          "owner": "IsmsCommunicationPlan",
-          "domain_of": [
-            "IsmsRecord"
           ],
           "range": "string"
         }
@@ -7545,8 +7566,8 @@
         "isms_documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
       "mixins": [
+        "IsmsRecordMixin",
         "IsmsDocumentControlMixin"
       ],
       "attributes": {
@@ -7560,6 +7581,48 @@
           ],
           "range": "IsmsDocumentKind",
           "required": true
+        },
+        "isms_id": {
+          "name": "isms_id",
+          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "identifier": true,
+          "owner": "IsmsDocumentedInformation",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:name",
+          "owner": "IsmsDocumentedInformation",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:description",
+          "owner": "IsmsDocumentedInformation",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string"
         },
         "document_reference": {
           "name": "document_reference",
@@ -7731,48 +7794,6 @@
             "IsmsDocumentControlMixin"
           ],
           "range": "string"
-        },
-        "isms_id": {
-          "name": "isms_id",
-          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "identifier": true,
-          "owner": "IsmsDocumentedInformation",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "uriorcurie",
-          "required": true
-        },
-        "title": {
-          "name": "title",
-          "description": "The name the organization gives the record.",
-          "comments": [
-            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:name",
-          "owner": "IsmsDocumentedInformation",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string",
-          "required": true,
-          "pattern": "^\\s*\\S"
-        },
-        "description": {
-          "name": "description",
-          "description": "What the record says or describes, in the organization's own words.",
-          "comments": [
-            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:description",
-          "owner": "IsmsDocumentedInformation",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string"
         }
       }
     },
@@ -7789,8 +7810,8 @@
         "isms_documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
       "mixins": [
+        "IsmsRecordMixin",
         "IsmsDocumentControlMixin"
       ],
       "slots": [
@@ -7864,6 +7885,48 @@
           "range": "IsmsControl",
           "multivalued": true
         },
+        "isms_id": {
+          "name": "isms_id",
+          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "identifier": true,
+          "owner": "IsmsOperationalProcedure",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:name",
+          "owner": "IsmsOperationalProcedure",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:description",
+          "owner": "IsmsOperationalProcedure",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string"
+        },
         "document_reference": {
           "name": "document_reference",
           "description": "The reference the organization's document control gives it.",
@@ -8032,48 +8095,6 @@
           "owner": "IsmsOperationalProcedure",
           "domain_of": [
             "IsmsDocumentControlMixin"
-          ],
-          "range": "string"
-        },
-        "isms_id": {
-          "name": "isms_id",
-          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "identifier": true,
-          "owner": "IsmsOperationalProcedure",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "uriorcurie",
-          "required": true
-        },
-        "title": {
-          "name": "title",
-          "description": "The name the organization gives the record.",
-          "comments": [
-            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:name",
-          "owner": "IsmsOperationalProcedure",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string",
-          "required": true,
-          "pattern": "^\\s*\\S"
-        },
-        "description": {
-          "name": "description",
-          "description": "What the record says or describes, in the organization's own words.",
-          "comments": [
-            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:description",
-          "owner": "IsmsOperationalProcedure",
-          "domain_of": [
-            "IsmsRecord"
           ],
           "range": "string"
         }
@@ -8093,8 +8114,8 @@
         "isms_documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
       "mixins": [
+        "IsmsRecordMixin",
         "IsmsDocumentControlMixin"
       ],
       "attributes": {
@@ -8110,6 +8131,48 @@
           "multivalued": true,
           "inlined": true,
           "inlined_as_list": true
+        },
+        "isms_id": {
+          "name": "isms_id",
+          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "identifier": true,
+          "owner": "IsmsMonitoringProgramme",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:name",
+          "owner": "IsmsMonitoringProgramme",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:description",
+          "owner": "IsmsMonitoringProgramme",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string"
         },
         "document_reference": {
           "name": "document_reference",
@@ -8279,48 +8342,6 @@
           "owner": "IsmsMonitoringProgramme",
           "domain_of": [
             "IsmsDocumentControlMixin"
-          ],
-          "range": "string"
-        },
-        "isms_id": {
-          "name": "isms_id",
-          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "identifier": true,
-          "owner": "IsmsMonitoringProgramme",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "uriorcurie",
-          "required": true
-        },
-        "title": {
-          "name": "title",
-          "description": "The name the organization gives the record.",
-          "comments": [
-            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:name",
-          "owner": "IsmsMonitoringProgramme",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string",
-          "required": true,
-          "pattern": "^\\s*\\S"
-        },
-        "description": {
-          "name": "description",
-          "description": "What the record says or describes, in the organization's own words.",
-          "comments": [
-            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:description",
-          "owner": "IsmsMonitoringProgramme",
-          "domain_of": [
-            "IsmsRecord"
           ],
           "range": "string"
         }
@@ -8478,8 +8499,8 @@
       "related_mappings": [
         "oscal:AssessmentPlan"
       ],
-      "is_a": "IsmsRecord",
       "mixins": [
+        "IsmsRecordMixin",
         "IsmsDocumentControlMixin"
       ],
       "attributes": {
@@ -8541,6 +8562,48 @@
           "owner": "IsmsAuditProgramme",
           "domain_of": [
             "IsmsAuditProgramme"
+          ],
+          "range": "string"
+        },
+        "isms_id": {
+          "name": "isms_id",
+          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "identifier": true,
+          "owner": "IsmsAuditProgramme",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:name",
+          "owner": "IsmsAuditProgramme",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:description",
+          "owner": "IsmsAuditProgramme",
+          "domain_of": [
+            "IsmsRecordMixin"
           ],
           "range": "string"
         },
@@ -8714,48 +8777,6 @@
             "IsmsDocumentControlMixin"
           ],
           "range": "string"
-        },
-        "isms_id": {
-          "name": "isms_id",
-          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "identifier": true,
-          "owner": "IsmsAuditProgramme",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "uriorcurie",
-          "required": true
-        },
-        "title": {
-          "name": "title",
-          "description": "The name the organization gives the record.",
-          "comments": [
-            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:name",
-          "owner": "IsmsAuditProgramme",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string",
-          "required": true,
-          "pattern": "^\\s*\\S"
-        },
-        "description": {
-          "name": "description",
-          "description": "What the record says or describes, in the organization's own words.",
-          "comments": [
-            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:description",
-          "owner": "IsmsAuditProgramme",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string"
         }
       }
     },
@@ -8779,8 +8800,8 @@
       "related_mappings": [
         "oscal:AssessmentPlan"
       ],
-      "is_a": "IsmsRecord",
       "mixins": [
+        "IsmsRecordMixin",
         "IsmsDocumentControlMixin"
       ],
       "attributes": {
@@ -8944,6 +8965,48 @@
           "range": "string",
           "multivalued": true
         },
+        "isms_id": {
+          "name": "isms_id",
+          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "identifier": true,
+          "owner": "IsmsAudit",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:name",
+          "owner": "IsmsAudit",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:description",
+          "owner": "IsmsAudit",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string"
+        },
         "document_reference": {
           "name": "document_reference",
           "description": "The reference the organization's document control gives it.",
@@ -9114,48 +9177,6 @@
             "IsmsDocumentControlMixin"
           ],
           "range": "string"
-        },
-        "isms_id": {
-          "name": "isms_id",
-          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "identifier": true,
-          "owner": "IsmsAudit",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "uriorcurie",
-          "required": true
-        },
-        "title": {
-          "name": "title",
-          "description": "The name the organization gives the record.",
-          "comments": [
-            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:name",
-          "owner": "IsmsAudit",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string",
-          "required": true,
-          "pattern": "^\\s*\\S"
-        },
-        "description": {
-          "name": "description",
-          "description": "What the record says or describes, in the organization's own words.",
-          "comments": [
-            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:description",
-          "owner": "IsmsAudit",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string"
         }
       }
     },
@@ -9172,7 +9193,9 @@
         "isms_performance_evaluation"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
+      "mixins": [
+        "IsmsRecordMixin"
+      ],
       "attributes": {
         "finding_type": {
           "name": "finding_type",
@@ -9292,7 +9315,7 @@
           "identifier": true,
           "owner": "IsmsAuditFinding",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "uriorcurie",
           "required": true
@@ -9307,7 +9330,7 @@
           "slot_uri": "schema:name",
           "owner": "IsmsAuditFinding",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string",
           "required": true,
@@ -9323,7 +9346,7 @@
           "slot_uri": "schema:description",
           "owner": "IsmsAuditFinding",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string"
         }
@@ -9343,8 +9366,8 @@
         "isms_documented_information"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
       "mixins": [
+        "IsmsRecordMixin",
         "IsmsDocumentControlMixin"
       ],
       "attributes": {
@@ -9503,6 +9526,48 @@
           ],
           "range": "date"
         },
+        "isms_id": {
+          "name": "isms_id",
+          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "identifier": true,
+          "owner": "IsmsManagementReview",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:name",
+          "owner": "IsmsManagementReview",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso27001",
+          "slot_uri": "schema:description",
+          "owner": "IsmsManagementReview",
+          "domain_of": [
+            "IsmsRecordMixin"
+          ],
+          "range": "string"
+        },
         "document_reference": {
           "name": "document_reference",
           "description": "The reference the organization's document control gives it.",
@@ -9673,48 +9738,6 @@
             "IsmsDocumentControlMixin"
           ],
           "range": "string"
-        },
-        "isms_id": {
-          "name": "isms_id",
-          "description": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "identifier": true,
-          "owner": "IsmsManagementReview",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "uriorcurie",
-          "required": true
-        },
-        "title": {
-          "name": "title",
-          "description": "The name the organization gives the record.",
-          "comments": [
-            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:name",
-          "owner": "IsmsManagementReview",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string",
-          "required": true,
-          "pattern": "^\\s*\\S"
-        },
-        "description": {
-          "name": "description",
-          "description": "What the record says or describes, in the organization's own words.",
-          "comments": [
-            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
-          ],
-          "from_schema": "https://w3id.org/lmodel/iso27001",
-          "slot_uri": "schema:description",
-          "owner": "IsmsManagementReview",
-          "domain_of": [
-            "IsmsRecord"
-          ],
-          "range": "string"
         }
       }
     },
@@ -9731,7 +9754,9 @@
         "isms_improvement"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
+      "mixins": [
+        "IsmsRecordMixin"
+      ],
       "attributes": {
         "nonconformity_source": {
           "name": "nonconformity_source",
@@ -9851,7 +9876,7 @@
           "identifier": true,
           "owner": "IsmsNonconformity",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "uriorcurie",
           "required": true
@@ -9866,7 +9891,7 @@
           "slot_uri": "schema:name",
           "owner": "IsmsNonconformity",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string",
           "required": true,
@@ -9882,7 +9907,7 @@
           "slot_uri": "schema:description",
           "owner": "IsmsNonconformity",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string"
         }
@@ -9904,7 +9929,9 @@
       "related_mappings": [
         "oscal:PoamItem"
       ],
-      "is_a": "IsmsRecord",
+      "mixins": [
+        "IsmsRecordMixin"
+      ],
       "slots": [
         "responsible_role"
       ],
@@ -10032,7 +10059,7 @@
           "identifier": true,
           "owner": "IsmsCorrectiveAction",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "uriorcurie",
           "required": true
@@ -10047,7 +10074,7 @@
           "slot_uri": "schema:name",
           "owner": "IsmsCorrectiveAction",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string",
           "required": true,
@@ -10063,7 +10090,7 @@
           "slot_uri": "schema:description",
           "owner": "IsmsCorrectiveAction",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string"
         }
@@ -10082,7 +10109,9 @@
         "isms_improvement"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
+      "mixins": [
+        "IsmsRecordMixin"
+      ],
       "slots": [
         "responsible_role"
       ],
@@ -10209,7 +10238,7 @@
           "identifier": true,
           "owner": "IsmsImprovementOpportunity",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "uriorcurie",
           "required": true
@@ -10224,7 +10253,7 @@
           "slot_uri": "schema:name",
           "owner": "IsmsImprovementOpportunity",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string",
           "required": true,
@@ -10240,7 +10269,7 @@
           "slot_uri": "schema:description",
           "owner": "IsmsImprovementOpportunity",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string"
         }
@@ -10259,7 +10288,9 @@
         "isms_annex_a"
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
-      "is_a": "IsmsRecord",
+      "mixins": [
+        "IsmsRecordMixin"
+      ],
       "slots": [
         "affected_assets"
       ],
@@ -10324,7 +10355,7 @@
           "identifier": true,
           "owner": "IsmsSecurityEvent",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "uriorcurie",
           "required": true
@@ -10339,7 +10370,7 @@
           "slot_uri": "schema:name",
           "owner": "IsmsSecurityEvent",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string",
           "required": true,
@@ -10355,7 +10386,7 @@
           "slot_uri": "schema:description",
           "owner": "IsmsSecurityEvent",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string"
         }
@@ -10610,7 +10641,7 @@
           "identifier": true,
           "owner": "IsmsSecurityIncident",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "uriorcurie",
           "required": true
@@ -10625,7 +10656,7 @@
           "slot_uri": "schema:name",
           "owner": "IsmsSecurityIncident",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string",
           "required": true,
@@ -10641,7 +10672,7 @@
           "slot_uri": "schema:description",
           "owner": "IsmsSecurityIncident",
           "domain_of": [
-            "IsmsRecord"
+            "IsmsRecordMixin"
           ],
           "range": "string"
         }

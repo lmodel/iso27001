@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsRisk extends IsmsRecord {
+public class IsmsRisk  {
 
   private List<IsmsAsset> affectedAssets;
   private List<String> affectedSecurityProperties;
@@ -29,6 +29,9 @@ public class IsmsRisk extends IsmsRecord {
   private String riskResidualLevel;
   private String riskTreatmentOption;
   private String riskTreatmentPriority;
+  private URI ismsId;
+  private String title;
+  private String description;
 
 
 }

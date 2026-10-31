@@ -5,8 +5,8 @@
  classDiagram
     class IsmsManagementSystem
     click IsmsManagementSystem href "../IsmsManagementSystem"
-      IsmsRecord <|-- IsmsManagementSystem
-        click IsmsRecord href "../IsmsRecord"
+      IsmsRecordMixin <|-- IsmsManagementSystem
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       
       IsmsManagementSystem : description
         

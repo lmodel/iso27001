@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsPolicy extends IsmsRecord {
+public class IsmsPolicy  {
 
   private String policyStatement;
   private String policyObjectivesFramework;
@@ -23,6 +23,9 @@ public class IsmsPolicy extends IsmsRecord {
   private LocalDate policyCommunicationDate;
   private Boolean policyAcknowledgementRequired;
   private List<String> policyManagementSystems;
+  private URI ismsId;
+  private String title;
+  private String description;
   private String documentReference;
   private String documentVersion;
   private String documentAuthor;

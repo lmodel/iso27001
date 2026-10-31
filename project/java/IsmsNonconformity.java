@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsNonconformity extends IsmsRecord {
+public class IsmsNonconformity  {
 
   private String nonconformitySource;
   private LocalDate nonconformityDetectedOn;
@@ -27,6 +27,9 @@ public class IsmsNonconformity extends IsmsRecord {
   private String nonconformityStatus;
   private LocalDate nonconformityClosureDate;
   private String nonconformityClosureEvidence;
+  private URI ismsId;
+  private String title;
+  private String description;
 
 
 }

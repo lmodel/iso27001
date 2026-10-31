@@ -605,7 +605,7 @@ classes:
         description: ''
       policy_statement:
         description: ''
-  IsmsRecord:
+  IsmsRecordMixin:
     description: ''
     comments: []
   IsmsResource:

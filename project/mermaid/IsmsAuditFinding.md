@@ -5,8 +5,8 @@
  classDiagram
     class IsmsAuditFinding
     click IsmsAuditFinding href "../IsmsAuditFinding"
-      IsmsRecord <|-- IsmsAuditFinding
-        click IsmsRecord href "../IsmsRecord"
+      IsmsRecordMixin <|-- IsmsAuditFinding
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       
       IsmsAuditFinding : description
         

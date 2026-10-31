@@ -13,65 +13,65 @@ message IsmsApplicabilityEntry {
 }
 // An item in the inventory of information and other associated assets: what it is, who owns and looks after it, where it is, how it is classified and how much it matters.
 message IsmsAsset {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The organization's controls that the record concerns.
-  repeated IsmsControl relevant_controls = 4;
+  repeated IsmsControl relevant_controls = 1;
   // What kind of asset it is, such as information, software, hardware or a service.
-  string asset_category = 5;
+  string asset_category = 2;
   // Who owns the asset.
-  string asset_owner = 6;
+  string asset_owner = 3;
   // Who looks after the asset from day to day.
-  string asset_custodian = 7;
+  string asset_custodian = 4;
   // The information classification the asset carries.
-  string asset_classification = 8;
+  string asset_classification = 5;
   // Where the asset is, physically or logically.
-  string asset_location = 9;
+  string asset_location = 6;
   // How much the asset matters, in the organization's own terms.
-  string asset_criticality = 10;
+  string asset_criticality = 7;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 8;
+  // The name the organization gives the record.
+  string title = 9;
+  // What the record says or describes, in the organization's own words.
+  string description = 10;
 }
 // An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope, criteria, team, findings and conclusion.
 message IsmsAudit {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // Who carries out the audit, relative to the organization.
-  IsmsAuditType audit_type = 4;
+  IsmsAuditType audit_type = 1;
   // The management system standards the audit covers.
-  repeated IsmsManagementSystemStandard audit_standards = 5;
+  repeated IsmsManagementSystemStandard audit_standards = 2;
   // What the audit covers.
-  string audit_scope = 6;
+  string audit_scope = 3;
   // What the audit compares the ISMS against.
-  repeated string audit_criteria = 7;
+  repeated string audit_criteria = 4;
   // What the audit sets out to establish.
-  repeated string audit_objectives = 8;
+  repeated string audit_objectives = 5;
   // When the audit began.
-  string audit_period_start = 9;
+  string audit_period_start = 6;
   // When the audit ended.
-  string audit_period_end = 10;
+  string audit_period_end = 7;
   // Who led the audit.
-  string audit_lead = 11;
+  string audit_lead = 8;
   // Who else audited.
-  repeated string audit_team = 12;
+  repeated string audit_team = 9;
   // Who represented the parts of the organization audited.
-  repeated string audit_auditees = 13;
+  repeated string audit_auditees = 10;
   // The documented information that holds the audit plan.
-  IsmsDocumentedInformation audit_plan = 14;
+  IsmsDocumentedInformation audit_plan = 11;
   // What the audit found, good and bad.
-  repeated IsmsAuditFinding audit_findings = 15;
+  repeated IsmsAuditFinding audit_findings = 12;
   // The audit's overall conclusion.
-  string audit_conclusion = 16;
+  string audit_conclusion = 13;
   // When the audit report was issued.
-  string audit_report_date = 17;
+  string audit_report_date = 14;
   // Who received the audit report.
-  repeated string audit_report_distribution = 18;
+  repeated string audit_report_distribution = 15;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 16;
+  // The name the organization gives the record.
+  string title = 17;
+  // What the record says or describes, in the organization's own words.
+  string description = 18;
   // The reference the organization's document control gives it.
   string document_reference = 19;
   // The version of the document.
@@ -109,55 +109,55 @@ message IsmsAudit {
 }
 // One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it concerns, its evidence and how it is closed.
 message IsmsAuditFinding {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // What kind of finding it is.
-  IsmsAuditFindingType finding_type = 4;
+  IsmsAuditFindingType finding_type = 1;
   // The clause or Annex A control of ISO/IEC 27001:2022 the finding concerns, by number.
-  string finding_requirement = 5;
+  string finding_requirement = 2;
   // The organization's control the finding concerns.
-  IsmsControl finding_control = 6;
+  IsmsControl finding_control = 3;
   // The objective evidence for the finding.
-  string finding_evidence = 7;
+  string finding_evidence = 4;
   // What the analysis of the finding's cause found.
-  string finding_root_cause = 8;
+  string finding_root_cause = 5;
   // What the finding means for risk.
-  string finding_risk = 9;
+  string finding_risk = 6;
   // What the auditor recommends.
-  string finding_recommendation = 10;
+  string finding_recommendation = 7;
   // How the auditee responded.
-  string finding_auditee_response = 11;
+  string finding_auditee_response = 8;
   // The corrective action the finding led to.
-  IsmsCorrectiveAction finding_corrective_action = 12;
+  IsmsCorrectiveAction finding_corrective_action = 9;
   // Whether the finding is closed, in the organization's own terms.
-  string finding_closure_status = 13;
+  string finding_closure_status = 10;
   // When the finding was closed.
-  string finding_closure_date = 14;
+  string finding_closure_date = 11;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 12;
+  // The name the organization gives the record.
+  string title = 13;
+  // What the record says or describes, in the organization's own words.
+  string description = 14;
 }
 // An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors they need.
 message IsmsAuditProgramme {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The period the programme covers.
-  string programme_period = 4;
+  string programme_period = 1;
   // The audits the programme plans.
-  repeated IsmsAudit programme_audits = 5;
+  repeated IsmsAudit programme_audits = 2;
   // Why the audits happen as often as they do.
-  string programme_frequency_rationale = 6;
+  string programme_frequency_rationale = 3;
   // The resources the programme needs.
-  string programme_resources = 7;
+  string programme_resources = 4;
   // The qualifications the auditors need.
-  string programme_auditor_qualifications = 8;
+  string programme_auditor_qualifications = 5;
   // Where the programme stands, in the organization's own terms.
-  string programme_status = 9;
+  string programme_status = 6;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 7;
+  // The name the organization gives the record.
+  string title = 8;
+  // What the record says or describes, in the organization's own words.
+  string description = 9;
   // The reference the organization's document control gives it.
   string document_reference = 10;
   // The version of the document.
@@ -195,24 +195,24 @@ message IsmsAuditProgramme {
 }
 // The programme that makes people working for the organization aware of the policy, their part in the ISMS and what failing it would mean.
 message IsmsAwarenessProgramme {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The topics the programme covers.
-  repeated string awareness_topics = 4;
+  repeated string awareness_topics = 1;
   // How the programme is delivered.
-  repeated string awareness_methods = 5;
+  repeated string awareness_methods = 2;
   // Whom the programme is for.
-  string awareness_audience = 6;
+  string awareness_audience = 3;
   // How often the programme runs.
-  string awareness_frequency = 7;
+  string awareness_frequency = 4;
   // How completion is tracked.
-  string awareness_completion_tracking = 8;
+  string awareness_completion_tracking = 5;
   // How the programme's effect is measured.
-  string awareness_effectiveness = 9;
+  string awareness_effectiveness = 6;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 7;
+  // The name the organization gives the record.
+  string title = 8;
+  // What the record says or describes, in the organization's own words.
+  string description = 9;
   // The reference the organization's document control gives it.
   string document_reference = 10;
   // The version of the document.
@@ -267,14 +267,14 @@ message IsmsCommunication {
 }
 // The plan for communication about the ISMS, inside the organization and outside it.
 message IsmsCommunicationPlan {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The communications the plan provides for.
-  repeated IsmsCommunication communication_items = 4;
+  repeated IsmsCommunication communication_items = 1;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 2;
+  // The name the organization gives the record.
+  string title = 3;
+  // What the record says or describes, in the organization's own words.
+  string description = 4;
   // The reference the organization's document control gives it.
   string document_reference = 5;
   // The version of the document.
@@ -312,30 +312,30 @@ message IsmsCommunicationPlan {
 }
 // The evidence of one person's competence for work that affects information security, and what is done to close any gap.
 message IsmsCompetenceRecord {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The person the record is about.
-  string competence_person = 4;
+  string competence_person = 1;
   // The role the person holds.
-  IsmsRole competence_role = 5;
+  IsmsRole competence_role = 2;
   // The competences the role needs.
-  repeated string competence_required = 6;
+  repeated string competence_required = 3;
   // The person's relevant education.
-  repeated string competence_education = 7;
+  repeated string competence_education = 4;
   // The training the person has completed.
-  repeated string competence_training = 8;
+  repeated string competence_training = 5;
   // The person's relevant experience.
-  repeated string competence_experience = 9;
+  repeated string competence_experience = 6;
   // When the person's competence was last assessed.
-  string competence_assessment_date = 10;
+  string competence_assessment_date = 7;
   // The gaps the assessment found.
-  repeated string competence_gaps = 11;
+  repeated string competence_gaps = 8;
   // What is done to close the gaps.
-  repeated string competence_actions = 12;
+  repeated string competence_actions = 9;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 10;
+  // The name the organization gives the record.
+  string title = 11;
+  // What the record says or describes, in the organization's own words.
+  string description = 12;
   // The reference the organization's document control gives it.
   string document_reference = 13;
   // The version of the document.
@@ -373,69 +373,69 @@ message IsmsCompetenceRecord {
 }
 // A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.
 message IsmsControl {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The organization's controls that the record concerns.
-  repeated IsmsControl relevant_controls = 4;
+  repeated IsmsControl relevant_controls = 1;
   // How far the control or the plan has been put into effect.
-  IsmsImplementationStatus implementation_state = 5;
+  IsmsImplementationStatus implementation_state = 2;
   // The Annex A controls the control answers to.
-  repeated IsmsAnnexAControl control_annex_a_controls = 6;
+  repeated IsmsAnnexAControl control_annex_a_controls = 3;
   // Which of Annex A's four themes the control belongs to.
-  IsmsControlTheme control_theme = 7;
+  IsmsControlTheme control_theme = 4;
   // What the control does, in the organization's own words.
-  string control_text = 8;
+  string control_text = 5;
   // The organization's notes on putting the control in place.
-  string control_guidance = 9;
+  string control_guidance = 6;
   // The threats the control acts against.
-  repeated string control_threats = 10;
+  repeated string control_threats = 7;
   // The kinds of asset the control applies to.
-  repeated string control_asset_types = 11;
+  repeated string control_asset_types = 8;
   // The person who owns the control.
-  string control_owner = 12;
+  string control_owner = 9;
   // When the control was put in place.
-  string control_implementation_date = 13;
+  string control_implementation_date = 10;
   // How well the control works, in the organization's own terms.
-  string control_effectiveness = 14;
+  string control_effectiveness = 11;
   // When the control was last tested.
-  string control_last_tested = 15;
+  string control_last_tested = 12;
   // Where the evidence that the control is in place is kept.
-  repeated string control_evidence = 16;
+  repeated string control_evidence = 13;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 14;
+  // The name the organization gives the record.
+  string title = 15;
+  // What the record says or describes, in the organization's own words.
+  string description = 16;
 }
 // An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it worked.
 message IsmsCorrectiveAction {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The role that answers for the record's activity or outcome.
-  IsmsRole responsible_role = 4;
+  IsmsRole responsible_role = 1;
   // The nonconformities the action addresses.
-  repeated IsmsNonconformity action_nonconformities = 5;
+  repeated IsmsNonconformity action_nonconformities = 2;
   // The cause the action removes.
-  string action_root_cause = 6;
+  string action_root_cause = 3;
   // When the action is to be complete.
-  string action_target_date = 7;
+  string action_target_date = 4;
   // When the action was complete.
-  string action_completion_date = 8;
+  string action_completion_date = 5;
   // The resources the action needs.
-  string action_resources = 9;
+  string action_resources = 6;
   // How the action's effect will be judged.
-  string action_effectiveness_criteria = 10;
+  string action_effectiveness_criteria = 7;
   // When the action's effect was reviewed.
-  string action_effectiveness_review_date = 11;
+  string action_effectiveness_review_date = 8;
   // Whether the review found the action effective.
-  bool action_effective = 12;
+  bool action_effective = 9;
   // The changes to the ISMS the action needs.
-  string action_isms_changes = 13;
+  string action_isms_changes = 10;
   // Where the action stands, in the organization's own terms.
-  string action_status = 14;
+  string action_status = 11;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 12;
+  // The name the organization gives the record.
+  string title = 13;
+  // What the record says or describes, in the organization's own words.
+  string description = 14;
 }
 // The control that documented information is kept under: who wrote, owns and approved it, when it takes effect and is reviewed, how it is classified, distributed, stored and changed, how long it is retained, and whether it came from outside the organization.
 message IsmsDocumentControlMixin {
@@ -476,14 +476,14 @@ message IsmsDocumentControlMixin {
 }
 // A piece of documented information the ISMS keeps under control that no more specific record describes, such as a procedure, a standard, a plan or a report.
 message IsmsDocumentedInformation {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // What kind of documented information it is.
-  IsmsDocumentKind document_kind = 4;
+  IsmsDocumentKind document_kind = 1;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 2;
+  // The name the organization gives the record.
+  string title = 3;
+  // What the record says or describes, in the organization's own words.
+  string description = 4;
   // The reference the organization's document control gives it.
   string document_reference = 5;
   // The version of the document.
@@ -530,34 +530,34 @@ message IsmsExcludedControl {
 }
 // An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.
 message IsmsImprovementOpportunity {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The role that answers for the record's activity or outcome.
-  IsmsRole responsible_role = 4;
+  IsmsRole responsible_role = 1;
   // Where the opportunity came from, such as a review, an audit or daily work.
-  string improvement_source = 5;
+  string improvement_source = 2;
   // When the opportunity was identified.
-  string improvement_identified_on = 6;
+  string improvement_identified_on = 3;
   // Who identified it.
-  string improvement_identified_by = 7;
+  string improvement_identified_by = 4;
   // What the improvement is expected to bring.
-  string improvement_benefit = 8;
+  string improvement_benefit = 5;
   // How soon it is to be acted on, in the organization's own terms.
-  string improvement_priority = 9;
+  string improvement_priority = 6;
   // How the improvement is to be made.
-  string improvement_plan = 10;
+  string improvement_plan = 7;
   // When the improvement is to be made.
-  string improvement_target_date = 11;
+  string improvement_target_date = 8;
   // When it was made.
-  string improvement_completion_date = 12;
+  string improvement_completion_date = 9;
   // What the improvement brought.
-  string improvement_outcome = 13;
+  string improvement_outcome = 10;
   // Where it stands, in the organization's own terms.
-  string improvement_status = 14;
+  string improvement_status = 11;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 12;
+  // The name the organization gives the record.
+  string title = 13;
+  // What the record says or describes, in the organization's own words.
+  string description = 14;
 }
 // An entry that includes a control the organization needs, from Annex A or from elsewhere, and says whether it is in place.
 message IsmsIncludedControl {
@@ -580,65 +580,65 @@ message IsmsIncludedControl {
 }
 // A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it, such as staff, customers, regulators or suppliers.
 message IsmsInterestedParty {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // What kind of interested party it is, in the organization's own terms.
-  string party_category = 4;
+  string party_category = 1;
   // How the party relates to the organization.
-  string party_relationship = 5;
+  string party_relationship = 2;
   // The party's requirements that bear on information security.
-  repeated string party_requirements = 6;
+  repeated string party_requirements = 3;
   // Which of those requirements the ISMS addresses.
-  repeated string party_addressed_requirements = 7;
+  repeated string party_addressed_requirements = 4;
   // The party's requirements that concern climate change.
-  repeated string party_climate_change_requirements = 8;
+  repeated string party_climate_change_requirements = 5;
   // What the party needs to be told, and how.
-  string party_communication_needs = 9;
+  string party_communication_needs = 6;
   // How to reach the party.
-  string party_contact = 10;
+  string party_contact = 7;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 8;
+  // The name the organization gives the record.
+  string title = 9;
+  // What the record says or describes, in the organization's own words.
+  string description = 10;
 }
 // A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.
 message IsmsManagementReview {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // When the review was held.
-  string review_held_on = 4;
+  string review_held_on = 1;
   // Who attended the review.
-  repeated string review_attendees = 5;
+  repeated string review_attendees = 2;
   // Where the actions from earlier reviews stand.
-  string review_previous_actions = 6;
+  string review_previous_actions = 3;
   // How the issues that bear on the ISMS have changed.
-  string review_context_changes = 7;
+  string review_context_changes = 4;
   // How interested parties' needs and expectations have changed.
-  string review_interested_party_changes = 8;
+  string review_interested_party_changes = 5;
   // What interested parties said.
-  string review_interested_party_feedback = 9;
+  string review_interested_party_feedback = 6;
   // The trends in information security performance.
-  string review_performance_trends = 10;
+  string review_performance_trends = 7;
   // What the audits found.
-  string review_audit_results = 11;
+  string review_audit_results = 8;
   // What the risk assessments found.
-  string review_risk_assessment_results = 12;
+  string review_risk_assessment_results = 9;
   // Where risk treatment stands.
-  string review_risk_treatment_status = 13;
+  string review_risk_treatment_status = 10;
   // How risks and opportunities have changed.
-  string review_risks_and_opportunities = 14;
+  string review_risks_and_opportunities = 11;
   // The opportunities for improvement raised.
-  repeated string review_improvement_opportunities = 15;
+  repeated string review_improvement_opportunities = 12;
   // What the review decided.
-  repeated string review_decisions = 16;
+  repeated string review_decisions = 13;
   // What the review asked to be done.
-  repeated string review_actions = 17;
+  repeated string review_actions = 14;
   // When the next review is planned.
-  string review_next_date = 18;
+  string review_next_date = 15;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 16;
+  // The name the organization gives the record.
+  string title = 17;
+  // What the record says or describes, in the organization's own words.
+  string description = 18;
   // The reference the organization's document control gives it.
   string document_reference = 19;
   // The version of the document.
@@ -676,102 +676,102 @@ message IsmsManagementReview {
 }
 // One organization's information security management system: its scope and context, and every record it keeps, each kind in a list of its own.
 message IsmsManagementSystem {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The organization that runs the ISMS.
-  IsmsOrganization isms_organization = 4;
+  IsmsOrganization isms_organization = 1;
   // The person or group that directs and controls the organization at the highest level.
-  string isms_top_management = 5;
+  string isms_top_management = 2;
   // The body top management answers to, such as a board, where there is one.
-  string isms_governing_body = 6;
+  string isms_governing_body = 3;
   // What shows that top management leads and commits to the ISMS.
-  repeated string isms_leadership_evidence = 7;
+  repeated string isms_leadership_evidence = 4;
   // The scope of the ISMS, as the organization states it.
-  string isms_scope = 8;
+  string isms_scope = 5;
   // Where the scope of the ISMS ends.
-  repeated string isms_scope_boundaries = 9;
+  repeated string isms_scope_boundaries = 6;
   // What the scope leaves out, each with the reason.
-  repeated string isms_scope_exclusions = 10;
+  repeated string isms_scope_exclusions = 7;
   // The interfaces and dependencies between what the organization does and what other organizations do, which the scope takes into account.
-  repeated string isms_interfaces = 11;
+  repeated string isms_interfaces = 8;
   // The processes the ISMS needs and how they interact.
-  string isms_processes = 12;
+  string isms_processes = 9;
   // The internal issues that bear on the ISMS.
-  repeated string isms_internal_issues = 13;
+  repeated string isms_internal_issues = 10;
   // The external issues that bear on the ISMS.
-  repeated string isms_external_issues = 14;
+  repeated string isms_external_issues = 11;
   // The actions planned to address the ISMS's risks and opportunities, and how they fit into its processes.
-  repeated string isms_risk_and_opportunity_actions = 15;
+  repeated string isms_risk_and_opportunity_actions = 12;
   // The changes to the ISMS that are planned.
-  repeated string isms_planned_changes = 16;
+  repeated string isms_planned_changes = 13;
   // The processes, products or services from outside the organization that the ISMS relies on and controls.
-  repeated string isms_external_services = 17;
+  repeated string isms_external_services = 14;
   // Where the ISMS stands with certification, in the organization's own terms.
-  string isms_certification_status = 18;
+  string isms_certification_status = 15;
   // The body that certifies the ISMS.
-  string isms_certification_body = 19;
+  string isms_certification_body = 16;
   // When the ISMS was certified.
-  string isms_certification_date = 20;
+  string isms_certification_date = 17;
   // When the ISMS is next due for recertification.
-  string isms_recertification_date = 21;
+  string isms_recertification_date = 18;
   // The interested parties the ISMS takes into account.
-  repeated IsmsInterestedParty isms_interested_parties = 22;
+  repeated IsmsInterestedParty isms_interested_parties = 19;
   // The information security policy.
-  IsmsPolicy isms_policy = 23;
+  IsmsPolicy isms_policy = 20;
   // The topic-specific policies under the information security policy.
-  repeated IsmsTopicSpecificPolicy isms_topic_specific_policies = 24;
+  repeated IsmsTopicSpecificPolicy isms_topic_specific_policies = 21;
   // The roles that carry the ISMS's responsibilities and authorities.
-  repeated IsmsRole isms_roles = 25;
+  repeated IsmsRole isms_roles = 22;
   // The information security objectives.
-  repeated IsmsObjective isms_objectives = 26;
+  repeated IsmsObjective isms_objectives = 23;
   // The information security risk assessment process.
-  IsmsRiskAssessmentProcess isms_risk_assessment_process = 27;
+  IsmsRiskAssessmentProcess isms_risk_assessment_process = 24;
   // The information security risk treatment process.
-  IsmsRiskTreatmentProcess isms_risk_treatment_process = 28;
+  IsmsRiskTreatmentProcess isms_risk_treatment_process = 25;
   // The risk assessments carried out.
-  repeated IsmsRiskAssessment isms_risk_assessments = 29;
+  repeated IsmsRiskAssessment isms_risk_assessments = 26;
   // The risks identified, the risk register.
-  repeated IsmsRisk isms_risks = 30;
+  repeated IsmsRisk isms_risks = 27;
   // The risk treatment plans.
-  repeated IsmsRiskTreatmentPlan isms_risk_treatment_plans = 31;
+  repeated IsmsRiskTreatmentPlan isms_risk_treatment_plans = 28;
   // The Statement of Applicability.
-  IsmsStatementOfApplicability isms_statement_of_applicability = 32;
+  IsmsStatementOfApplicability isms_statement_of_applicability = 29;
   // The controls the organization has determined it needs.
-  repeated IsmsControl isms_controls = 33;
+  repeated IsmsControl isms_controls = 30;
   // The inventory of information and other associated assets.
-  repeated IsmsAsset isms_assets = 34;
+  repeated IsmsAsset isms_assets = 31;
   // The resources provided for the ISMS.
-  repeated IsmsResource isms_resources = 35;
+  repeated IsmsResource isms_resources = 32;
   // The records of competence.
-  repeated IsmsCompetenceRecord isms_competence_records = 36;
+  repeated IsmsCompetenceRecord isms_competence_records = 33;
   // The awareness programme.
-  IsmsAwarenessProgramme isms_awareness_programme = 37;
+  IsmsAwarenessProgramme isms_awareness_programme = 34;
   // The plan for communication about the ISMS.
-  IsmsCommunicationPlan isms_communication_plan = 38;
+  IsmsCommunicationPlan isms_communication_plan = 35;
   // The documented information the ISMS keeps that no more specific list holds, such as procedures, plans and reports.
-  repeated IsmsDocumentedInformation isms_documented_information = 39;
+  repeated IsmsDocumentedInformation isms_documented_information = 36;
   // The procedures for operational planning and control.
-  repeated IsmsOperationalProcedure isms_operational_procedures = 40;
+  repeated IsmsOperationalProcedure isms_operational_procedures = 37;
   // The programme of monitoring and measurement.
-  IsmsMonitoringProgramme isms_monitoring_programme = 41;
+  IsmsMonitoringProgramme isms_monitoring_programme = 38;
   // The audit programmes.
-  repeated IsmsAuditProgramme isms_audit_programmes = 42;
+  repeated IsmsAuditProgramme isms_audit_programmes = 39;
   // The audits of the ISMS, internal and external.
-  repeated IsmsAudit isms_audits = 43;
+  repeated IsmsAudit isms_audits = 40;
   // The management reviews.
-  repeated IsmsManagementReview isms_management_reviews = 44;
+  repeated IsmsManagementReview isms_management_reviews = 41;
   // The nonconformities found.
-  repeated IsmsNonconformity isms_nonconformities = 45;
+  repeated IsmsNonconformity isms_nonconformities = 42;
   // The corrective actions taken.
-  repeated IsmsCorrectiveAction isms_corrective_actions = 46;
+  repeated IsmsCorrectiveAction isms_corrective_actions = 43;
   // The opportunities for improvement identified.
-  repeated IsmsImprovementOpportunity isms_improvements = 47;
+  repeated IsmsImprovementOpportunity isms_improvements = 44;
   // The information security events reported, the incidents among them.
-  repeated IsmsSecurityEvent isms_security_events = 48;
+  repeated IsmsSecurityEvent isms_security_events = 45;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 46;
+  // The name the organization gives the record.
+  string title = 47;
+  // What the record says or describes, in the organization's own words.
+  string description = 48;
 }
 // One thing the monitoring programme measures: what, how, how often and by whom it is measured and analysed, and against what thresholds.
 message IsmsMonitoringItem {
@@ -800,14 +800,14 @@ message IsmsMonitoringItem {
 }
 // The programme of monitoring, measurement, analysis and evaluation of information security performance and of the ISMS's effectiveness.
 message IsmsMonitoringProgramme {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // What the programme monitors and measures.
-  repeated IsmsMonitoringItem monitoring_items = 4;
+  repeated IsmsMonitoringItem monitoring_items = 1;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 2;
+  // The name the organization gives the record.
+  string title = 3;
+  // What the record says or describes, in the organization's own words.
+  string description = 4;
   // The reference the organization's document control gives it.
   string document_reference = 5;
   // The version of the document.
@@ -845,90 +845,90 @@ message IsmsMonitoringProgramme {
 }
 // A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was closed.
 message IsmsNonconformity {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // How the nonconformity came to light, such as an audit, a review or an incident.
-  string nonconformity_source = 4;
+  string nonconformity_source = 1;
   // When the nonconformity was found.
-  string nonconformity_detected_on = 5;
+  string nonconformity_detected_on = 2;
   // Who or what found it.
-  string nonconformity_detected_by = 6;
+  string nonconformity_detected_by = 3;
   // The requirement that was not met, of ISO/IEC 27001, of the organization or of an interested party.
-  string nonconformity_requirement = 7;
+  string nonconformity_requirement = 4;
   // What was done at once to control and correct it.
-  repeated string nonconformity_immediate_actions = 8;
+  repeated string nonconformity_immediate_actions = 5;
   // How its consequences were dealt with.
-  string nonconformity_consequences = 9;
+  string nonconformity_consequences = 6;
   // What caused it.
-  string nonconformity_root_cause = 10;
+  string nonconformity_root_cause = 7;
   // Whether similar nonconformities exist or could occur, and where.
-  string nonconformity_similar_check = 11;
+  string nonconformity_similar_check = 8;
   // Where the nonconformity stands, in the organization's own terms.
-  string nonconformity_status = 12;
+  string nonconformity_status = 9;
   // When it was closed.
-  string nonconformity_closure_date = 13;
+  string nonconformity_closure_date = 10;
   // What shows that it is closed.
-  string nonconformity_closure_evidence = 14;
+  string nonconformity_closure_evidence = 11;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 12;
+  // The name the organization gives the record.
+  string title = 13;
+  // What the record says or describes, in the organization's own words.
+  string description = 14;
 }
 // An information security objective: a measurable result the organization aims for, with how it plans to reach it and how it measures progress.
 message IsmsObjective {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The role that answers for the record's activity or outcome.
-  IsmsRole responsible_role = 4;
+  IsmsRole responsible_role = 1;
   // The organization's controls that the record concerns.
-  repeated IsmsControl relevant_controls = 5;
+  repeated IsmsControl relevant_controls = 2;
   // The objective, as the organization states it.
-  string objective_statement = 6;
+  string objective_statement = 3;
   // The value the objective aims for.
-  string objective_target = 7;
+  string objective_target = 4;
   // The value last measured.
-  string objective_current_value = 8;
+  string objective_current_value = 5;
   // How the objective's value is defined.
-  string objective_metric = 9;
+  string objective_metric = 6;
   // How the value is measured.
-  string objective_measurement_method = 10;
+  string objective_measurement_method = 7;
   // How often the value is measured.
-  string objective_measurement_frequency = 11;
+  string objective_measurement_frequency = 8;
   // When the objective is to be reached.
-  string objective_target_date = 12;
+  string objective_target_date = 9;
   // How far the objective has been reached, in the organization's own terms.
-  string objective_achievement = 13;
+  string objective_achievement = 10;
   // The risks the objective concerns.
-  repeated IsmsRisk objective_risks = 14;
+  repeated IsmsRisk objective_risks = 11;
   // What will be done to reach the objective.
-  string objective_action_plan = 15;
+  string objective_action_plan = 12;
   // The resources needed to reach the objective.
-  string objective_resources = 16;
+  string objective_resources = 13;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 14;
+  // The name the organization gives the record.
+  string title = 15;
+  // What the record says or describes, in the organization's own words.
+  string description = 16;
 }
 // A procedure by which the organization plans and controls the processes that meet its information security requirements.
 message IsmsOperationalProcedure {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The organization's controls that the record concerns.
-  repeated IsmsControl relevant_controls = 4;
+  repeated IsmsControl relevant_controls = 1;
   // What the procedure covers.
-  string procedure_scope = 5;
+  string procedure_scope = 2;
   // The criteria the processes are run to.
-  string procedure_criteria = 6;
+  string procedure_criteria = 3;
   // The measures that control the processes.
-  repeated string procedure_control_measures = 7;
+  repeated string procedure_control_measures = 4;
   // The roles that carry out the procedure.
-  repeated IsmsRole procedure_roles = 8;
+  repeated IsmsRole procedure_roles = 5;
   // How changes to the processes are controlled.
-  string procedure_change_control = 9;
+  string procedure_change_control = 6;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 7;
+  // The name the organization gives the record.
+  string title = 8;
+  // What the record says or describes, in the organization's own words.
+  string description = 9;
   // The reference the organization's document control gives it.
   string document_reference = 10;
   // The version of the document.
@@ -966,57 +966,57 @@ message IsmsOperationalProcedure {
 }
 // The organization that runs the ISMS, with what it needs to know about itself to understand its context.
 message IsmsOrganization {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The organization's registered legal name.
-  string organization_legal_name = 4;
+  string organization_legal_name = 1;
   // Other names the organization trades under.
-  repeated string organization_trading_names = 5;
+  repeated string organization_trading_names = 2;
   // What kind of organization it is, such as a company, an agency or a charity.
-  string organization_kind = 6;
+  string organization_kind = 3;
   // The organization's main industry sector.
-  string organization_sector = 7;
+  string organization_sector = 4;
   // How the organization classes its own size.
-  string organization_size = 8;
+  string organization_size = 5;
   // About how many people the organization employs.
-  int32 organization_employee_count = 9;
+  int32 organization_employee_count = 6;
   // The countries or regions the organization works in.
-  repeated string organization_locations = 10;
+  repeated string organization_locations = 7;
   // The jurisdictions whose laws and regulations apply to the organization.
-  repeated string organization_jurisdictions = 11;
+  repeated string organization_jurisdictions = 8;
   // The organization's parent, if it has one.
-  string organization_parent = 12;
+  string organization_parent = 9;
   // The organization's subsidiaries, if it has any.
-  repeated string organization_subsidiaries = 13;
+  repeated string organization_subsidiaries = 10;
   // Whether the organization has determined that climate change is a relevant issue for its ISMS.
-  bool organization_climate_change_relevant = 14;
+  bool organization_climate_change_relevant = 11;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 12;
+  // The name the organization gives the record.
+  string title = 13;
+  // What the record says or describes, in the organization's own words.
+  string description = 14;
 }
 // The information security policy that top management sets: the organization's commitment and the frame for its information security objectives.
 message IsmsPolicy {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The policy's own statement, in the organization's words.
-  string policy_statement = 4;
+  string policy_statement = 1;
   // How the policy frames the setting of information security objectives.
-  string policy_objectives_framework = 5;
+  string policy_objectives_framework = 2;
   // The commitments the policy makes.
-  repeated string policy_commitments = 6;
+  repeated string policy_commitments = 3;
   // To whom and to what the policy applies.
-  string policy_applicability = 7;
+  string policy_applicability = 4;
   // When the policy was communicated within the organization.
-  string policy_communication_date = 8;
+  string policy_communication_date = 5;
   // Whether staff must acknowledge the policy.
-  bool policy_acknowledgement_required = 9;
+  bool policy_acknowledgement_required = 6;
   // The other management system standards the ISMS is integrated with under the same policy.
-  repeated IsmsManagementSystemStandard policy_management_systems = 10;
+  repeated IsmsManagementSystemStandard policy_management_systems = 7;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 8;
+  // The name the organization gives the record.
+  string title = 9;
+  // What the record says or describes, in the organization's own words.
+  string description = 10;
   // The reference the organization's document control gives it.
   string document_reference = 11;
   // The version of the document.
@@ -1052,8 +1052,8 @@ message IsmsPolicy {
   // Who the document came from, when it comes from outside.
   string document_external_source = 27;
 }
-// Anything the ISMS keeps a record of that other records can refer to: it has an identifier, a title and a description.
-message IsmsRecord {
+// What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.
+message IsmsRecordMixin {
   // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
   string isms_id = 1;
   // The name the organization gives the record.
@@ -1063,84 +1063,84 @@ message IsmsRecord {
 }
 // A resource provided for the ISMS, such as people, time, tools or budget.
 message IsmsResource {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // What kind of resource it is.
-  string resource_category = 4;
+  string resource_category = 1;
   // How much of the resource is provided.
-  string resource_quantity = 5;
+  string resource_quantity = 2;
   // When the resource was allocated.
-  string resource_allocation_date = 6;
+  string resource_allocation_date = 3;
   // What the resource is allocated to.
-  string resource_allocated_to = 7;
+  string resource_allocated_to = 4;
   // What the resource costs.
-  string resource_cost = 8;
+  string resource_cost = 5;
   // Whether the resource is available now, in the organization's own terms.
-  string resource_availability = 9;
+  string resource_availability = 6;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 7;
+  // The name the organization gives the record.
+  string title = 8;
+  // What the record says or describes, in the organization's own words.
+  string description = 9;
 }
 // An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated.
 message IsmsRisk {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The assets the risk, event or incident affects.
-  repeated IsmsAsset affected_assets = 4;
+  repeated IsmsAsset affected_assets = 1;
   // Which of confidentiality, integrity and availability the risk or incident threatens.
-  repeated IsmsSecurityProperty affected_security_properties = 5;
+  repeated IsmsSecurityProperty affected_security_properties = 2;
   // Where the risk comes from.
-  string risk_source = 6;
+  string risk_source = 3;
   // The threat that could cause harm.
-  string risk_threat = 7;
+  string risk_threat = 4;
   // The weakness the threat could exploit.
-  string risk_vulnerability = 8;
+  string risk_vulnerability = 5;
   // The person who is accountable for the risk and has the authority to manage it.
-  string risk_owner = 9;
+  string risk_owner = 6;
   // How likely the risk is.
-  IsmsLikelihood risk_likelihood = 10;
+  IsmsLikelihood risk_likelihood = 7;
   // How severe the consequences would be.
-  IsmsImpact risk_impact = 11;
+  IsmsImpact risk_impact = 8;
   // The risk's level before controls.
-  IsmsRiskLevel risk_inherent_level = 12;
+  IsmsRiskLevel risk_inherent_level = 9;
   // The organization's controls already acting on the risk.
-  repeated IsmsControl risk_existing_controls = 13;
+  repeated IsmsControl risk_existing_controls = 10;
   // The risk's level after controls.
-  IsmsRiskLevel risk_residual_level = 14;
+  IsmsRiskLevel risk_residual_level = 11;
   // The treatment chosen for the risk.
-  IsmsRiskTreatmentOption risk_treatment_option = 15;
+  IsmsRiskTreatmentOption risk_treatment_option = 12;
   // How soon the risk is to be treated, in the organization's own terms.
-  string risk_treatment_priority = 16;
+  string risk_treatment_priority = 13;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 14;
+  // The name the organization gives the record.
+  string title = 15;
+  // What the record says or describes, in the organization's own words.
+  string description = 16;
 }
 // One risk assessment carried out under the risk assessment process, and what it found.
 message IsmsRiskAssessment {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // What the assessment covered.
-  string assessment_scope = 4;
+  string assessment_scope = 1;
   // When the assessment was carried out.
-  string assessment_date = 5;
+  string assessment_date = 2;
   // Who carried out the assessment.
-  string assessment_assessor = 6;
+  string assessment_assessor = 3;
   // The method this assessment applied.
-  string assessment_method_used = 7;
+  string assessment_method_used = 4;
   // The risks the assessment identified.
-  repeated IsmsRisk assessment_risks = 8;
+  repeated IsmsRisk assessment_risks = 5;
   // A summary of what the assessment found.
-  string assessment_summary = 9;
+  string assessment_summary = 6;
   // What the assessment recommends.
-  repeated string assessment_recommendations = 10;
+  repeated string assessment_recommendations = 7;
   // When the next assessment is planned.
-  string assessment_next_date = 11;
+  string assessment_next_date = 8;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 9;
+  // The name the organization gives the record.
+  string title = 10;
+  // What the record says or describes, in the organization's own words.
+  string description = 11;
   // The reference the organization's document control gives it.
   string document_reference = 12;
   // The version of the document.
@@ -1178,28 +1178,28 @@ message IsmsRiskAssessment {
 }
 // The organization's process for assessing information security risks: its criteria for accepting risk and for assessing it, its scales and method, and when it runs.
 message IsmsRiskAssessmentProcess {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The criteria for accepting a risk.
-  string risk_acceptance_criteria = 4;
+  string risk_acceptance_criteria = 1;
   // The criteria for carrying out a risk assessment.
-  string risk_assessment_criteria = 5;
+  string risk_assessment_criteria = 2;
   // The method used to identify, analyse and evaluate risks.
-  string risk_assessment_method = 6;
+  string risk_assessment_method = 3;
   // The scale for rating likelihood.
-  string risk_likelihood_scale = 7;
+  string risk_likelihood_scale = 4;
   // The scale for rating consequences.
-  string risk_impact_scale = 8;
+  string risk_impact_scale = 5;
   // How likelihood and consequence combine into a risk level.
-  string risk_matrix = 9;
+  string risk_matrix = 6;
   // How often risks are assessed.
-  string risk_assessment_frequency = 10;
+  string risk_assessment_frequency = 7;
   // The events that start a risk assessment outside the planned ones.
-  repeated string risk_assessment_triggers = 11;
+  repeated string risk_assessment_triggers = 8;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 9;
+  // The name the organization gives the record.
+  string title = 10;
+  // What the record says or describes, in the organization's own words.
+  string description = 11;
   // The reference the organization's document control gives it.
   string document_reference = 12;
   // The version of the document.
@@ -1237,34 +1237,34 @@ message IsmsRiskAssessmentProcess {
 }
 // A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's approval of the plan and of the residual risk.
 message IsmsRiskTreatmentPlan {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // How far the control or the plan has been put into effect.
-  IsmsImplementationStatus implementation_state = 4;
+  IsmsImplementationStatus implementation_state = 1;
   // What the plan covers.
-  string plan_scope = 5;
+  string plan_scope = 2;
   // The risks the plan treats.
-  repeated IsmsRisk plan_risks = 6;
+  repeated IsmsRisk plan_risks = 3;
   // The actions the plan takes.
-  repeated string plan_actions = 7;
+  repeated string plan_actions = 4;
   // The controls the plan puts in place.
-  repeated IsmsControl plan_controls = 8;
+  repeated IsmsControl plan_controls = 5;
   // The resources the plan needs.
-  string plan_resources = 9;
+  string plan_resources = 6;
   // Who carries out the plan.
-  repeated string plan_responsible_parties = 10;
+  repeated string plan_responsible_parties = 7;
   // When the plan's actions are to happen.
-  string plan_timeline = 11;
+  string plan_timeline = 8;
   // The risk owner who approved the plan.
-  string plan_risk_owner_approval = 12;
+  string plan_risk_owner_approval = 9;
   // How the risk owners accepted the risk that remains.
-  string plan_residual_risk_acceptance = 13;
+  string plan_residual_risk_acceptance = 10;
   // When the plan was completed.
-  string plan_completion_date = 14;
+  string plan_completion_date = 11;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 12;
+  // The name the organization gives the record.
+  string title = 13;
+  // What the record says or describes, in the organization's own words.
+  string description = 14;
   // The reference the organization's document control gives it.
   string document_reference = 15;
   // The version of the document.
@@ -1302,22 +1302,22 @@ message IsmsRiskTreatmentPlan {
 }
 // The organization's process for treating information security risks: how it chooses treatments and controls, checks them against Annex A, and produces the Statement of Applicability.
 message IsmsRiskTreatmentProcess {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // How a treatment option is chosen for a risk.
-  string treatment_options_guidance = 4;
+  string treatment_options_guidance = 1;
   // How the controls a treatment needs are chosen.
-  string treatment_control_selection = 5;
+  string treatment_control_selection = 2;
   // How the chosen controls are compared with Annex A, so that no necessary control is left out.
-  string treatment_annex_a_comparison = 6;
+  string treatment_annex_a_comparison = 3;
   // The template the Statement of Applicability follows.
-  string treatment_soa_template = 7;
+  string treatment_soa_template = 4;
   // How a treatment plan and its residual risks are approved.
-  string treatment_approval_workflow = 8;
+  string treatment_approval_workflow = 5;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 6;
+  // The name the organization gives the record.
+  string title = 7;
+  // What the record says or describes, in the organization's own words.
+  string description = 8;
   // The reference the organization's document control gives it.
   string document_reference = 9;
   // The version of the document.
@@ -1355,64 +1355,64 @@ message IsmsRiskTreatmentProcess {
 }
 // A role in the ISMS, with the responsibilities and authorities it carries and who holds it.
 message IsmsRole {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // What kind of role it is, in the organization's own terms.
-  string role_category = 4;
+  string role_category = 1;
   // The responsibilities assigned to the role.
-  repeated string role_responsibilities = 5;
+  repeated string role_responsibilities = 2;
   // The authorities the role carries.
-  repeated string role_authorities = 6;
+  repeated string role_authorities = 3;
   // What the role is accountable for.
-  string role_accountability = 7;
+  string role_accountability = 4;
   // The people who hold the role.
-  repeated string role_holders = 8;
+  repeated string role_holders = 5;
   // How the role may delegate its responsibilities.
-  string role_delegation = 9;
+  string role_delegation = 6;
   // The role this role reports to.
-  IsmsRole role_reports_to = 10;
+  IsmsRole role_reports_to = 7;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 8;
+  // The name the organization gives the record.
+  string title = 9;
+  // What the record says or describes, in the organization's own words.
+  string description = 10;
 }
 // An information security event someone reported, and the assessment of whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.
 message IsmsSecurityEvent {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The assets the risk, event or incident affects.
-  repeated IsmsAsset affected_assets = 4;
+  repeated IsmsAsset affected_assets = 1;
   // The kind of record: IsmsSecurityEvent, or IsmsSecurityIncident for an event assessed as an incident.
-  string event_type = 5;
+  string event_type = 2;
   // When the event happened, or when it was first noticed.
-  string event_occurred_at = 6;
+  string event_occurred_at = 3;
   // Who reported the event.
-  string event_reporter = 7;
+  string event_reporter = 4;
   // What the assessment of the event found.
-  string event_assessment = 8;
+  string event_assessment = 5;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 6;
+  // The name the organization gives the record.
+  string title = 7;
+  // What the record says or describes, in the organization's own words.
+  string description = 8;
 }
 // An information security event assessed as an incident: its category and severity, how it was detected, contained, eradicated and recovered from, the evidence collected, who was told, and what was learned.
 message IsmsSecurityIncident {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The assets the risk, event or incident affects.
-  repeated IsmsAsset affected_assets = 4;
+  repeated IsmsAsset affected_assets = 1;
   // The kind of record: IsmsSecurityEvent, or IsmsSecurityIncident for an event assessed as an incident.
-  string event_type = 5;
+  string event_type = 2;
   // When the event happened, or when it was first noticed.
-  string event_occurred_at = 6;
+  string event_occurred_at = 3;
   // Who reported the event.
-  string event_reporter = 7;
+  string event_reporter = 4;
   // What the assessment of the event found.
-  string event_assessment = 8;
+  string event_assessment = 5;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 6;
+  // The name the organization gives the record.
+  string title = 7;
+  // What the record says or describes, in the organization's own words.
+  string description = 8;
   // Which of confidentiality, integrity and availability the risk or incident threatens.
   repeated IsmsSecurityProperty affected_security_properties = 9;
   // What kind of incident it is.
@@ -1446,14 +1446,14 @@ message IsmsSecurityIncident {
 }
 // The Statement of Applicability: each control the organization needs, with why it is included and whether it is in place, and each Annex A control it leaves out, with why.
 message IsmsStatementOfApplicability {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The statement's entries, one for each control included or Annex A control excluded.
-  repeated IsmsApplicabilityEntry soa_entries = 4;
+  repeated IsmsApplicabilityEntry soa_entries = 1;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 2;
+  // The name the organization gives the record.
+  string title = 3;
+  // What the record says or describes, in the organization's own words.
+  string description = 4;
   // The reference the organization's document control gives it.
   string document_reference = 5;
   // The version of the document.
@@ -1491,20 +1491,20 @@ message IsmsStatementOfApplicability {
 }
 // A policy on one topic of information security, such as access control or backup, that supports the information security policy.
 message IsmsTopicSpecificPolicy {
-  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
-  string isms_id = 1;
-  // The name the organization gives the record.
-  string title = 2;
-  // What the record says or describes, in the organization's own words.
-  string description = 3;
   // The organization's controls that the record concerns.
-  repeated IsmsControl relevant_controls = 4;
+  repeated IsmsControl relevant_controls = 1;
   // The topic the policy covers.
-  string topic_policy_topic = 5;
+  string topic_policy_topic = 2;
   // The information security policy this policy supports.
-  IsmsPolicy topic_policy_parent = 6;
+  IsmsPolicy topic_policy_parent = 3;
   // Whom the policy is written for.
-  string topic_policy_audience = 7;
+  string topic_policy_audience = 4;
+  // The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+  string isms_id = 5;
+  // The name the organization gives the record.
+  string title = 6;
+  // What the record says or describes, in the organization's own words.
+  string description = 7;
   // The reference the organization's document control gives it.
   string document_reference = 8;
   // The version of the document.

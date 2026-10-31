@@ -5,8 +5,8 @@
  classDiagram
     class IsmsSecurityEvent
     click IsmsSecurityEvent href "../IsmsSecurityEvent"
-      IsmsRecord <|-- IsmsSecurityEvent
-        click IsmsRecord href "../IsmsRecord"
+      IsmsRecordMixin <|-- IsmsSecurityEvent
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       
 
       IsmsSecurityEvent <|-- IsmsSecurityIncident

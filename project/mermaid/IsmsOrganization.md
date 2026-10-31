@@ -5,8 +5,8 @@
  classDiagram
     class IsmsOrganization
     click IsmsOrganization href "../IsmsOrganization"
-      IsmsRecord <|-- IsmsOrganization
-        click IsmsRecord href "../IsmsRecord"
+      IsmsRecordMixin <|-- IsmsOrganization
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       
       IsmsOrganization : description
         

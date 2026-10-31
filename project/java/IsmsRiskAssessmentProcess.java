@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsRiskAssessmentProcess extends IsmsRecord {
+public class IsmsRiskAssessmentProcess  {
 
   private String riskAcceptanceCriteria;
   private String riskAssessmentCriteria;
@@ -24,6 +24,9 @@ public class IsmsRiskAssessmentProcess extends IsmsRecord {
   private String riskMatrix;
   private String riskAssessmentFrequency;
   private List<String> riskAssessmentTriggers;
+  private URI ismsId;
+  private String title;
+  private String description;
   private String documentReference;
   private String documentVersion;
   private String documentAuthor;

@@ -14,9 +14,12 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsStatementOfApplicability extends IsmsRecord {
+public class IsmsStatementOfApplicability  {
 
   private List<IsmsApplicabilityEntry> soaEntries;
+  private URI ismsId;
+  private String title;
+  private String description;
   private String documentReference;
   private String documentVersion;
   private String documentAuthor;

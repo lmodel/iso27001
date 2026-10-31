@@ -4213,9 +4213,9 @@
             "title": "IsmsPolicy",
             "type": "object"
         },
-        "IsmsRecord": {
+        "IsmsRecordMixin": {
             "additionalProperties": false,
-            "description": "Anything the ISMS keeps a record of that other records can refer to: it has an identifier, a title and a description.",
+            "description": "What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.",
             "properties": {
                 "description": {
                     "description": "What the record says or describes, in the organization's own words.",
@@ -4238,7 +4238,7 @@
                 "isms_id",
                 "title"
             ],
-            "title": "IsmsRecord",
+            "title": "IsmsRecordMixin",
             "type": "object"
         },
         "IsmsResource": {

@@ -14,13 +14,16 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsSecurityEvent extends IsmsRecord {
+public class IsmsSecurityEvent  {
 
   private List<IsmsAsset> affectedAssets;
   private String eventType;
   private ZonedDateTime eventOccurredAt;
   private String eventReporter;
   private String eventAssessment;
+  private URI ismsId;
+  private String title;
+  private String description;
 
 
 }

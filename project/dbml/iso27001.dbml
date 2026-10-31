@@ -4,7 +4,7 @@ Project {
   name: 'iso27001'
 }
 
-Table IsmsRecord {
+Table IsmsRecordMixin {
 isms_id varchar [not null, primary key]
 title varchar [not null]
 description varchar
@@ -119,6 +119,9 @@ policy_applicability varchar
 policy_communication_date date
 policy_acknowledgement_required boolean
 policy_management_systems varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 document_reference varchar
 document_version varchar
 document_author varchar
@@ -136,9 +139,6 @@ document_storage varchar
 document_change_control varchar
 document_external_origin boolean
 document_external_source varchar
-isms_id varchar [not null, primary key]
-title varchar [not null]
-description varchar
 }
 
 Table IsmsTopicSpecificPolicy {
@@ -146,6 +146,9 @@ relevant_controls varchar
 topic_policy_topic varchar
 topic_policy_parent varchar
 topic_policy_audience varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 document_reference varchar
 document_version varchar
 document_author varchar
@@ -163,9 +166,6 @@ document_storage varchar
 document_change_control varchar
 document_external_origin boolean
 document_external_source varchar
-isms_id varchar [not null, primary key]
-title varchar [not null]
-description varchar
 }
 
 Table IsmsRole {
@@ -209,6 +209,9 @@ risk_impact_scale varchar
 risk_matrix varchar
 risk_assessment_frequency varchar
 risk_assessment_triggers varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 document_reference varchar
 document_version varchar
 document_author varchar
@@ -226,9 +229,6 @@ document_storage varchar
 document_change_control varchar
 document_external_origin boolean
 document_external_source varchar
-isms_id varchar [not null, primary key]
-title varchar [not null]
-description varchar
 }
 
 Table IsmsRiskAssessment {
@@ -240,6 +240,9 @@ assessment_risks varchar
 assessment_summary varchar
 assessment_recommendations varchar
 assessment_next_date date
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 document_reference varchar
 document_version varchar
 document_author varchar
@@ -257,9 +260,6 @@ document_storage varchar
 document_change_control varchar
 document_external_origin boolean
 document_external_source varchar
-isms_id varchar [not null, primary key]
-title varchar [not null]
-description varchar
 }
 
 Table IsmsRisk {
@@ -287,6 +287,9 @@ treatment_control_selection varchar
 treatment_annex_a_comparison varchar
 treatment_soa_template varchar
 treatment_approval_workflow varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 document_reference varchar
 document_version varchar
 document_author varchar
@@ -304,9 +307,6 @@ document_storage varchar
 document_change_control varchar
 document_external_origin boolean
 document_external_source varchar
-isms_id varchar [not null, primary key]
-title varchar [not null]
-description varchar
 }
 
 Table IsmsRiskTreatmentPlan {
@@ -321,6 +321,9 @@ plan_timeline varchar
 plan_risk_owner_approval varchar
 plan_residual_risk_acceptance varchar
 plan_completion_date date
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 document_reference varchar
 document_version varchar
 document_author varchar
@@ -338,13 +341,13 @@ document_storage varchar
 document_change_control varchar
 document_external_origin boolean
 document_external_source varchar
-isms_id varchar [not null, primary key]
-title varchar [not null]
-description varchar
 }
 
 Table IsmsStatementOfApplicability {
 soa_entries varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 document_reference varchar
 document_version varchar
 document_author varchar
@@ -362,9 +365,6 @@ document_storage varchar
 document_change_control varchar
 document_external_origin boolean
 document_external_source varchar
-isms_id varchar [not null, primary key]
-title varchar [not null]
-description varchar
 }
 
 Table IsmsApplicabilityEntry {
@@ -444,6 +444,9 @@ competence_experience varchar
 competence_assessment_date date
 competence_gaps varchar
 competence_actions varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 document_reference varchar
 document_version varchar
 document_author varchar
@@ -461,9 +464,6 @@ document_storage varchar
 document_change_control varchar
 document_external_origin boolean
 document_external_source varchar
-isms_id varchar [not null, primary key]
-title varchar [not null]
-description varchar
 }
 
 Table IsmsAwarenessProgramme {
@@ -473,6 +473,9 @@ awareness_audience varchar
 awareness_frequency varchar
 awareness_completion_tracking varchar
 awareness_effectiveness varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 document_reference varchar
 document_version varchar
 document_author varchar
@@ -490,13 +493,13 @@ document_storage varchar
 document_change_control varchar
 document_external_origin boolean
 document_external_source varchar
-isms_id varchar [not null, primary key]
-title varchar [not null]
-description varchar
 }
 
 Table IsmsCommunicationPlan {
 communication_items varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 document_reference varchar
 document_version varchar
 document_author varchar
@@ -514,9 +517,6 @@ document_storage varchar
 document_change_control varchar
 document_external_origin boolean
 document_external_source varchar
-isms_id varchar [not null, primary key]
-title varchar [not null]
-description varchar
 }
 
 Table IsmsCommunication {
@@ -531,6 +531,9 @@ communication_records_required boolean
 
 Table IsmsDocumentedInformation {
 document_kind varchar [not null]
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 document_reference varchar
 document_version varchar
 document_author varchar
@@ -548,9 +551,6 @@ document_storage varchar
 document_change_control varchar
 document_external_origin boolean
 document_external_source varchar
-isms_id varchar [not null, primary key]
-title varchar [not null]
-description varchar
 }
 
 Table IsmsOperationalProcedure {
@@ -560,6 +560,9 @@ procedure_criteria varchar
 procedure_control_measures varchar
 procedure_roles varchar
 procedure_change_control varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 document_reference varchar
 document_version varchar
 document_author varchar
@@ -577,13 +580,13 @@ document_storage varchar
 document_change_control varchar
 document_external_origin boolean
 document_external_source varchar
-isms_id varchar [not null, primary key]
-title varchar [not null]
-description varchar
 }
 
 Table IsmsMonitoringProgramme {
 monitoring_items varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 document_reference varchar
 document_version varchar
 document_author varchar
@@ -601,9 +604,6 @@ document_storage varchar
 document_change_control varchar
 document_external_origin boolean
 document_external_source varchar
-isms_id varchar [not null, primary key]
-title varchar [not null]
-description varchar
 }
 
 Table IsmsMonitoringItem {
@@ -627,6 +627,9 @@ programme_frequency_rationale varchar
 programme_resources varchar
 programme_auditor_qualifications varchar
 programme_status varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 document_reference varchar
 document_version varchar
 document_author varchar
@@ -644,9 +647,6 @@ document_storage varchar
 document_change_control varchar
 document_external_origin boolean
 document_external_source varchar
-isms_id varchar [not null, primary key]
-title varchar [not null]
-description varchar
 }
 
 Table IsmsAudit {
@@ -665,6 +665,9 @@ audit_findings varchar
 audit_conclusion varchar
 audit_report_date date
 audit_report_distribution varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 document_reference varchar
 document_version varchar
 document_author varchar
@@ -682,9 +685,6 @@ document_storage varchar
 document_change_control varchar
 document_external_origin boolean
 document_external_source varchar
-isms_id varchar [not null, primary key]
-title varchar [not null]
-description varchar
 }
 
 Table IsmsAuditFinding {
@@ -720,6 +720,9 @@ review_improvement_opportunities varchar
 review_decisions varchar
 review_actions varchar
 review_next_date date
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 document_reference varchar
 document_version varchar
 document_author varchar
@@ -737,9 +740,6 @@ document_storage varchar
 document_change_control varchar
 document_external_origin boolean
 document_external_source varchar
-isms_id varchar [not null, primary key]
-title varchar [not null]
-description varchar
 }
 
 Table IsmsNonconformity {

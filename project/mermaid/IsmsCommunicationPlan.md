@@ -5,10 +5,10 @@
  classDiagram
     class IsmsCommunicationPlan
     click IsmsCommunicationPlan href "../IsmsCommunicationPlan"
+      IsmsRecordMixin <|-- IsmsCommunicationPlan
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       IsmsDocumentControlMixin <|-- IsmsCommunicationPlan
         click IsmsDocumentControlMixin href "../IsmsDocumentControlMixin"
-      IsmsRecord <|-- IsmsCommunicationPlan
-        click IsmsRecord href "../IsmsRecord"
       
       IsmsCommunicationPlan : communication_items
         

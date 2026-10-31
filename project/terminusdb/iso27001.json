@@ -36,26 +36,17 @@
     "@documentation": {
       "@comment": "An item in the inventory of information and other associated assets: what it is, who owns and looks after it, where it is, how it is classified and how much it matters.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "relevant_controls": "The organization's controls that the record concerns.",
         "asset_category": "What kind of asset it is, such as information, software, hardware or a service.",
         "asset_owner": "Who owns the asset.",
         "asset_custodian": "Who looks after the asset from day to day.",
         "asset_classification": "The information classification the asset carries.",
         "asset_location": "Where the asset is, physically or logically.",
-        "asset_criticality": "How much the asset matters, in the organization's own terms."
+        "asset_criticality": "How much the asset matters, in the organization's own terms.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "relevant_controls": {
       "@type": "Set",
@@ -84,6 +75,12 @@
     "asset_criticality": {
       "@type": "Optional",
       "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
     }
   },
   {
@@ -92,9 +89,6 @@
     "@documentation": {
       "@comment": "An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope, criteria, team, findings and conclusion.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "audit_type": "Who carries out the audit, relative to the organization.",
         "audit_standards": "The management system standards the audit covers.",
         "audit_scope": "What the audit covers.",
@@ -110,6 +104,9 @@
         "audit_conclusion": "The audit's overall conclusion.",
         "audit_report_date": "When the audit report was issued.",
         "audit_report_distribution": "Who received the audit report.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words.",
         "document_reference": "The reference the organization's document control gives it.",
         "document_version": "The version of the document.",
         "document_author": "Who wrote the document.",
@@ -128,15 +125,6 @@
         "document_external_origin": "Whether the document comes from outside the organization and is kept because the ISMS needs it.",
         "document_external_source": "Who the document came from, when it comes from outside."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "audit_type": "IsmsAuditType",
     "audit_standards": {
@@ -193,6 +181,12 @@
     },
     "audit_report_distribution": {
       "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
       "@class": "xsd:string"
     },
     "document_reference": {
@@ -270,9 +264,6 @@
     "@documentation": {
       "@comment": "One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it concerns, its evidence and how it is closed.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "finding_type": "What kind of finding it is.",
         "finding_requirement": "The clause or Annex A control of ISO/IEC 27001:2022 the finding concerns, by number.",
         "finding_control": "The organization's control the finding concerns.",
@@ -283,17 +274,11 @@
         "finding_auditee_response": "How the auditee responded.",
         "finding_corrective_action": "The corrective action the finding led to.",
         "finding_closure_status": "Whether the finding is closed, in the organization's own terms.",
-        "finding_closure_date": "When the finding was closed."
+        "finding_closure_date": "When the finding was closed.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "finding_type": "IsmsAuditFindingType",
     "finding_requirement": {
@@ -335,6 +320,12 @@
     "finding_closure_date": {
       "@type": "Optional",
       "@class": "xsd:dateTime"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
     }
   },
   {
@@ -343,15 +334,15 @@
     "@documentation": {
       "@comment": "An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors they need.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "programme_period": "The period the programme covers.",
         "programme_audits": "The audits the programme plans.",
         "programme_frequency_rationale": "Why the audits happen as often as they do.",
         "programme_resources": "The resources the programme needs.",
         "programme_auditor_qualifications": "The qualifications the auditors need.",
         "programme_status": "Where the programme stands, in the organization's own terms.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words.",
         "document_reference": "The reference the organization's document control gives it.",
         "document_version": "The version of the document.",
         "document_author": "Who wrote the document.",
@@ -370,15 +361,6 @@
         "document_external_origin": "Whether the document comes from outside the organization and is kept because the ISMS needs it.",
         "document_external_source": "Who the document came from, when it comes from outside."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "programme_period": {
       "@type": "Optional",
@@ -401,6 +383,12 @@
       "@class": "xsd:string"
     },
     "programme_status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
       "@type": "Optional",
       "@class": "xsd:string"
     },
@@ -479,15 +467,15 @@
     "@documentation": {
       "@comment": "The programme that makes people working for the organization aware of the policy, their part in the ISMS and what failing it would mean.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "awareness_topics": "The topics the programme covers.",
         "awareness_methods": "How the programme is delivered.",
         "awareness_audience": "Whom the programme is for.",
         "awareness_frequency": "How often the programme runs.",
         "awareness_completion_tracking": "How completion is tracked.",
         "awareness_effectiveness": "How the programme's effect is measured.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words.",
         "document_reference": "The reference the organization's document control gives it.",
         "document_version": "The version of the document.",
         "document_author": "Who wrote the document.",
@@ -506,15 +494,6 @@
         "document_external_origin": "Whether the document comes from outside the organization and is kept because the ISMS needs it.",
         "document_external_source": "Who the document came from, when it comes from outside."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "awareness_topics": {
       "@type": "Set",
@@ -537,6 +516,12 @@
       "@class": "xsd:string"
     },
     "awareness_effectiveness": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
       "@type": "Optional",
       "@class": "xsd:string"
     },
@@ -656,10 +641,10 @@
     "@documentation": {
       "@comment": "The plan for communication about the ISMS, inside the organization and outside it.",
       "@properties": {
+        "communication_items": "The communications the plan provides for.",
         "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
         "title": "The name the organization gives the record.",
         "description": "What the record says or describes, in the organization's own words.",
-        "communication_items": "The communications the plan provides for.",
         "document_reference": "The reference the organization's document control gives it.",
         "document_version": "The version of the document.",
         "document_author": "Who wrote the document.",
@@ -679,18 +664,15 @@
         "document_external_source": "Who the document came from, when it comes from outside."
       }
     },
-    "@inherits": [
-      "IsmsRecord"
-    ],
+    "communication_items": {
+      "@type": "List",
+      "@class": "IsmsCommunication"
+    },
     "isms_id": "xsd:anyURI",
     "title": "xsd:string",
     "description": {
       "@type": "Optional",
       "@class": "xsd:string"
-    },
-    "communication_items": {
-      "@type": "List",
-      "@class": "IsmsCommunication"
     },
     "document_reference": {
       "@type": "Optional",
@@ -767,9 +749,6 @@
     "@documentation": {
       "@comment": "The evidence of one person's competence for work that affects information security, and what is done to close any gap.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "competence_person": "The person the record is about.",
         "competence_role": "The role the person holds.",
         "competence_required": "The competences the role needs.",
@@ -779,6 +758,9 @@
         "competence_assessment_date": "When the person's competence was last assessed.",
         "competence_gaps": "The gaps the assessment found.",
         "competence_actions": "What is done to close the gaps.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words.",
         "document_reference": "The reference the organization's document control gives it.",
         "document_version": "The version of the document.",
         "document_author": "Who wrote the document.",
@@ -797,15 +779,6 @@
         "document_external_origin": "Whether the document comes from outside the organization and is kept because the ISMS needs it.",
         "document_external_source": "Who the document came from, when it comes from outside."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "competence_person": {
       "@type": "Optional",
@@ -841,6 +814,12 @@
     },
     "competence_actions": {
       "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
       "@class": "xsd:string"
     },
     "document_reference": {
@@ -918,9 +897,6 @@
     "@documentation": {
       "@comment": "A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "relevant_controls": "The organization's controls that the record concerns.",
         "implementation_state": "How far the control or the plan has been put into effect.",
         "control_annex_a_controls": "The Annex A controls the control answers to.",
@@ -933,17 +909,11 @@
         "control_implementation_date": "When the control was put in place.",
         "control_effectiveness": "How well the control works, in the organization's own terms.",
         "control_last_tested": "When the control was last tested.",
-        "control_evidence": "Where the evidence that the control is in place is kept."
+        "control_evidence": "Where the evidence that the control is in place is kept.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "relevant_controls": {
       "@type": "Set",
@@ -996,6 +966,12 @@
     "control_evidence": {
       "@type": "Set",
       "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
     }
   },
   {
@@ -1004,9 +980,6 @@
     "@documentation": {
       "@comment": "An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it worked.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "responsible_role": "The role that answers for the record's activity or outcome.",
         "action_nonconformities": "The nonconformities the action addresses.",
         "action_root_cause": "The cause the action removes.",
@@ -1017,17 +990,11 @@
         "action_effectiveness_review_date": "When the action's effect was reviewed.",
         "action_effective": "Whether the review found the action effective.",
         "action_isms_changes": "The changes to the ISMS the action needs.",
-        "action_status": "Where the action stands, in the organization's own terms."
+        "action_status": "Where the action stands, in the organization's own terms.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "responsible_role": {
       "@type": "Optional",
@@ -1070,6 +1037,12 @@
       "@class": "xsd:string"
     },
     "action_status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
       "@type": "Optional",
       "@class": "xsd:string"
     }
@@ -1174,10 +1147,10 @@
     "@documentation": {
       "@comment": "A piece of documented information the ISMS keeps under control that no more specific record describes, such as a procedure, a standard, a plan or a report.",
       "@properties": {
+        "document_kind": "What kind of documented information it is.",
         "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
         "title": "The name the organization gives the record.",
         "description": "What the record says or describes, in the organization's own words.",
-        "document_kind": "What kind of documented information it is.",
         "document_reference": "The reference the organization's document control gives it.",
         "document_version": "The version of the document.",
         "document_author": "Who wrote the document.",
@@ -1197,16 +1170,13 @@
         "document_external_source": "Who the document came from, when it comes from outside."
       }
     },
-    "@inherits": [
-      "IsmsRecord"
-    ],
+    "document_kind": "IsmsDocumentKind",
     "isms_id": "xsd:anyURI",
     "title": "xsd:string",
     "description": {
       "@type": "Optional",
       "@class": "xsd:string"
     },
-    "document_kind": "IsmsDocumentKind",
     "document_reference": {
       "@type": "Optional",
       "@class": "xsd:string"
@@ -1303,9 +1273,6 @@
     "@documentation": {
       "@comment": "An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "responsible_role": "The role that answers for the record's activity or outcome.",
         "improvement_source": "Where the opportunity came from, such as a review, an audit or daily work.",
         "improvement_identified_on": "When the opportunity was identified.",
@@ -1316,17 +1283,11 @@
         "improvement_target_date": "When the improvement is to be made.",
         "improvement_completion_date": "When it was made.",
         "improvement_outcome": "What the improvement brought.",
-        "improvement_status": "Where it stands, in the organization's own terms."
+        "improvement_status": "Where it stands, in the organization's own terms.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "responsible_role": {
       "@type": "Optional",
@@ -1369,6 +1330,12 @@
       "@class": "xsd:string"
     },
     "improvement_status": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
       "@type": "Optional",
       "@class": "xsd:string"
     }
@@ -1425,26 +1392,17 @@
     "@documentation": {
       "@comment": "A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it, such as staff, customers, regulators or suppliers.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "party_category": "What kind of interested party it is, in the organization's own terms.",
         "party_relationship": "How the party relates to the organization.",
         "party_requirements": "The party's requirements that bear on information security.",
         "party_addressed_requirements": "Which of those requirements the ISMS addresses.",
         "party_climate_change_requirements": "The party's requirements that concern climate change.",
         "party_communication_needs": "What the party needs to be told, and how.",
-        "party_contact": "How to reach the party."
+        "party_contact": "How to reach the party.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "party_category": {
       "@type": "Optional",
@@ -1473,6 +1431,12 @@
     "party_contact": {
       "@type": "Optional",
       "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
     }
   },
   {
@@ -1481,9 +1445,6 @@
     "@documentation": {
       "@comment": "A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "review_held_on": "When the review was held.",
         "review_attendees": "Who attended the review.",
         "review_previous_actions": "Where the actions from earlier reviews stand.",
@@ -1499,6 +1460,9 @@
         "review_decisions": "What the review decided.",
         "review_actions": "What the review asked to be done.",
         "review_next_date": "When the next review is planned.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words.",
         "document_reference": "The reference the organization's document control gives it.",
         "document_version": "The version of the document.",
         "document_author": "Who wrote the document.",
@@ -1517,15 +1481,6 @@
         "document_external_origin": "Whether the document comes from outside the organization and is kept because the ISMS needs it.",
         "document_external_source": "Who the document came from, when it comes from outside."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "review_held_on": "xsd:dateTime",
     "review_attendees": {
@@ -1583,6 +1538,12 @@
     "review_next_date": {
       "@type": "Optional",
       "@class": "xsd:dateTime"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
     },
     "document_reference": {
       "@type": "Optional",
@@ -1659,9 +1620,6 @@
     "@documentation": {
       "@comment": "One organization's information security management system: its scope and context, and every record it keeps, each kind in a list of its own.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "isms_organization": "The organization that runs the ISMS.",
         "isms_top_management": "The person or group that directs and controls the organization at the highest level.",
         "isms_governing_body": "The body top management answers to, such as a board, where there is one.",
@@ -1706,17 +1664,11 @@
         "isms_nonconformities": "The nonconformities found.",
         "isms_corrective_actions": "The corrective actions taken.",
         "isms_improvements": "The opportunities for improvement identified.",
-        "isms_security_events": "The information security events reported, the incidents among them."
+        "isms_security_events": "The information security events reported, the incidents among them.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "isms_organization": {
       "@type": "Optional",
@@ -1897,6 +1849,12 @@
     "isms_security_events": {
       "@type": "List",
       "@class": "IsmsSecurityEvent"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
     }
   },
   {
@@ -1966,10 +1924,10 @@
     "@documentation": {
       "@comment": "The programme of monitoring, measurement, analysis and evaluation of information security performance and of the ISMS's effectiveness.",
       "@properties": {
+        "monitoring_items": "What the programme monitors and measures.",
         "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
         "title": "The name the organization gives the record.",
         "description": "What the record says or describes, in the organization's own words.",
-        "monitoring_items": "What the programme monitors and measures.",
         "document_reference": "The reference the organization's document control gives it.",
         "document_version": "The version of the document.",
         "document_author": "Who wrote the document.",
@@ -1989,18 +1947,15 @@
         "document_external_source": "Who the document came from, when it comes from outside."
       }
     },
-    "@inherits": [
-      "IsmsRecord"
-    ],
+    "monitoring_items": {
+      "@type": "List",
+      "@class": "IsmsMonitoringItem"
+    },
     "isms_id": "xsd:anyURI",
     "title": "xsd:string",
     "description": {
       "@type": "Optional",
       "@class": "xsd:string"
-    },
-    "monitoring_items": {
-      "@type": "List",
-      "@class": "IsmsMonitoringItem"
     },
     "document_reference": {
       "@type": "Optional",
@@ -2077,9 +2032,6 @@
     "@documentation": {
       "@comment": "A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was closed.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "nonconformity_source": "How the nonconformity came to light, such as an audit, a review or an incident.",
         "nonconformity_detected_on": "When the nonconformity was found.",
         "nonconformity_detected_by": "Who or what found it.",
@@ -2090,17 +2042,11 @@
         "nonconformity_similar_check": "Whether similar nonconformities exist or could occur, and where.",
         "nonconformity_status": "Where the nonconformity stands, in the organization's own terms.",
         "nonconformity_closure_date": "When it was closed.",
-        "nonconformity_closure_evidence": "What shows that it is closed."
+        "nonconformity_closure_evidence": "What shows that it is closed.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "nonconformity_source": {
       "@type": "Optional",
@@ -2145,6 +2091,12 @@
     "nonconformity_closure_evidence": {
       "@type": "Optional",
       "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
     }
   },
   {
@@ -2153,9 +2105,6 @@
     "@documentation": {
       "@comment": "An information security objective: a measurable result the organization aims for, with how it plans to reach it and how it measures progress.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "responsible_role": "The role that answers for the record's activity or outcome.",
         "relevant_controls": "The organization's controls that the record concerns.",
         "objective_statement": "The objective, as the organization states it.",
@@ -2168,17 +2117,11 @@
         "objective_achievement": "How far the objective has been reached, in the organization's own terms.",
         "objective_risks": "The risks the objective concerns.",
         "objective_action_plan": "What will be done to reach the objective.",
-        "objective_resources": "The resources needed to reach the objective."
+        "objective_resources": "The resources needed to reach the objective.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "responsible_role": {
       "@type": "Optional",
@@ -2231,6 +2174,12 @@
     "objective_resources": {
       "@type": "Optional",
       "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
     }
   },
   {
@@ -2239,15 +2188,15 @@
     "@documentation": {
       "@comment": "A procedure by which the organization plans and controls the processes that meet its information security requirements.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "relevant_controls": "The organization's controls that the record concerns.",
         "procedure_scope": "What the procedure covers.",
         "procedure_criteria": "The criteria the processes are run to.",
         "procedure_control_measures": "The measures that control the processes.",
         "procedure_roles": "The roles that carry out the procedure.",
         "procedure_change_control": "How changes to the processes are controlled.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words.",
         "document_reference": "The reference the organization's document control gives it.",
         "document_version": "The version of the document.",
         "document_author": "Who wrote the document.",
@@ -2266,15 +2215,6 @@
         "document_external_origin": "Whether the document comes from outside the organization and is kept because the ISMS needs it.",
         "document_external_source": "Who the document came from, when it comes from outside."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "relevant_controls": {
       "@type": "Set",
@@ -2297,6 +2237,12 @@
       "@class": "IsmsRole"
     },
     "procedure_change_control": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
       "@type": "Optional",
       "@class": "xsd:string"
     },
@@ -2375,9 +2321,6 @@
     "@documentation": {
       "@comment": "The organization that runs the ISMS, with what it needs to know about itself to understand its context.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "organization_legal_name": "The organization's registered legal name.",
         "organization_trading_names": "Other names the organization trades under.",
         "organization_kind": "What kind of organization it is, such as a company, an agency or a charity.",
@@ -2388,17 +2331,11 @@
         "organization_jurisdictions": "The jurisdictions whose laws and regulations apply to the organization.",
         "organization_parent": "The organization's parent, if it has one.",
         "organization_subsidiaries": "The organization's subsidiaries, if it has any.",
-        "organization_climate_change_relevant": "Whether the organization has determined that climate change is a relevant issue for its ISMS."
+        "organization_climate_change_relevant": "Whether the organization has determined that climate change is a relevant issue for its ISMS.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "organization_legal_name": {
       "@type": "Optional",
@@ -2443,6 +2380,12 @@
     "organization_climate_change_relevant": {
       "@type": "Optional",
       "@class": "xsd:boolean"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
     }
   },
   {
@@ -2451,9 +2394,6 @@
     "@documentation": {
       "@comment": "The information security policy that top management sets: the organization's commitment and the frame for its information security objectives.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "policy_statement": "The policy's own statement, in the organization's words.",
         "policy_objectives_framework": "How the policy frames the setting of information security objectives.",
         "policy_commitments": "The commitments the policy makes.",
@@ -2461,6 +2401,9 @@
         "policy_communication_date": "When the policy was communicated within the organization.",
         "policy_acknowledgement_required": "Whether staff must acknowledge the policy.",
         "policy_management_systems": "The other management system standards the ISMS is integrated with under the same policy.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words.",
         "document_reference": "The reference the organization's document control gives it.",
         "document_version": "The version of the document.",
         "document_author": "Who wrote the document.",
@@ -2479,15 +2422,6 @@
         "document_external_origin": "Whether the document comes from outside the organization and is kept because the ISMS needs it.",
         "document_external_source": "Who the document came from, when it comes from outside."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "policy_statement": {
       "@type": "Optional",
@@ -2516,6 +2450,12 @@
     "policy_management_systems": {
       "@type": "Set",
       "@class": "IsmsManagementSystemStandard"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
     },
     "document_reference": {
       "@type": "Optional",
@@ -2588,16 +2528,15 @@
   },
   {
     "@type": "Class",
-    "@id": "IsmsRecord",
+    "@id": "IsmsRecordMixin",
     "@documentation": {
-      "@comment": "Anything the ISMS keeps a record of that other records can refer to: it has an identifier, a title and a description.",
+      "@comment": "What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.",
       "@properties": {
         "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
         "title": "The name the organization gives the record.",
         "description": "What the record says or describes, in the organization's own words."
       }
     },
-    "@abstract": [],
     "isms_id": "xsd:anyURI",
     "title": "xsd:string",
     "description": {
@@ -2611,25 +2550,16 @@
     "@documentation": {
       "@comment": "A resource provided for the ISMS, such as people, time, tools or budget.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "resource_category": "What kind of resource it is.",
         "resource_quantity": "How much of the resource is provided.",
         "resource_allocation_date": "When the resource was allocated.",
         "resource_allocated_to": "What the resource is allocated to.",
         "resource_cost": "What the resource costs.",
-        "resource_availability": "Whether the resource is available now, in the organization's own terms."
+        "resource_availability": "Whether the resource is available now, in the organization's own terms.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "resource_category": {
       "@type": "Optional",
@@ -2654,6 +2584,12 @@
     "resource_availability": {
       "@type": "Optional",
       "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
     }
   },
   {
@@ -2662,9 +2598,6 @@
     "@documentation": {
       "@comment": "An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "affected_assets": "The assets the risk, event or incident affects.",
         "affected_security_properties": "Which of confidentiality, integrity and availability the risk or incident threatens.",
         "risk_source": "Where the risk comes from.",
@@ -2677,17 +2610,11 @@
         "risk_existing_controls": "The organization's controls already acting on the risk.",
         "risk_residual_level": "The risk's level after controls.",
         "risk_treatment_option": "The treatment chosen for the risk.",
-        "risk_treatment_priority": "How soon the risk is to be treated, in the organization's own terms."
+        "risk_treatment_priority": "How soon the risk is to be treated, in the organization's own terms.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "affected_assets": {
       "@type": "Set",
@@ -2740,6 +2667,12 @@
     "risk_treatment_priority": {
       "@type": "Optional",
       "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
     }
   },
   {
@@ -2748,9 +2681,6 @@
     "@documentation": {
       "@comment": "One risk assessment carried out under the risk assessment process, and what it found.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "assessment_scope": "What the assessment covered.",
         "assessment_date": "When the assessment was carried out.",
         "assessment_assessor": "Who carried out the assessment.",
@@ -2759,6 +2689,9 @@
         "assessment_summary": "A summary of what the assessment found.",
         "assessment_recommendations": "What the assessment recommends.",
         "assessment_next_date": "When the next assessment is planned.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words.",
         "document_reference": "The reference the organization's document control gives it.",
         "document_version": "The version of the document.",
         "document_author": "Who wrote the document.",
@@ -2777,15 +2710,6 @@
         "document_external_origin": "Whether the document comes from outside the organization and is kept because the ISMS needs it.",
         "document_external_source": "Who the document came from, when it comes from outside."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "assessment_scope": {
       "@type": "Optional",
@@ -2818,6 +2742,12 @@
     "assessment_next_date": {
       "@type": "Optional",
       "@class": "xsd:dateTime"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
     },
     "document_reference": {
       "@type": "Optional",
@@ -2894,9 +2824,6 @@
     "@documentation": {
       "@comment": "The organization's process for assessing information security risks: its criteria for accepting risk and for assessing it, its scales and method, and when it runs.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "risk_acceptance_criteria": "The criteria for accepting a risk.",
         "risk_assessment_criteria": "The criteria for carrying out a risk assessment.",
         "risk_assessment_method": "The method used to identify, analyse and evaluate risks.",
@@ -2905,6 +2832,9 @@
         "risk_matrix": "How likelihood and consequence combine into a risk level.",
         "risk_assessment_frequency": "How often risks are assessed.",
         "risk_assessment_triggers": "The events that start a risk assessment outside the planned ones.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words.",
         "document_reference": "The reference the organization's document control gives it.",
         "document_version": "The version of the document.",
         "document_author": "Who wrote the document.",
@@ -2923,15 +2853,6 @@
         "document_external_origin": "Whether the document comes from outside the organization and is kept because the ISMS needs it.",
         "document_external_source": "Who the document came from, when it comes from outside."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "risk_acceptance_criteria": {
       "@type": "Optional",
@@ -2963,6 +2884,12 @@
     },
     "risk_assessment_triggers": {
       "@type": "Set",
+      "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
       "@class": "xsd:string"
     },
     "document_reference": {
@@ -3040,9 +2967,6 @@
     "@documentation": {
       "@comment": "A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's approval of the plan and of the residual risk.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "implementation_state": "How far the control or the plan has been put into effect.",
         "plan_scope": "What the plan covers.",
         "plan_risks": "The risks the plan treats.",
@@ -3054,6 +2978,9 @@
         "plan_risk_owner_approval": "The risk owner who approved the plan.",
         "plan_residual_risk_acceptance": "How the risk owners accepted the risk that remains.",
         "plan_completion_date": "When the plan was completed.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words.",
         "document_reference": "The reference the organization's document control gives it.",
         "document_version": "The version of the document.",
         "document_author": "Who wrote the document.",
@@ -3072,15 +2999,6 @@
         "document_external_origin": "Whether the document comes from outside the organization and is kept because the ISMS needs it.",
         "document_external_source": "Who the document came from, when it comes from outside."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "implementation_state": {
       "@type": "Optional",
@@ -3125,6 +3043,12 @@
     "plan_completion_date": {
       "@type": "Optional",
       "@class": "xsd:dateTime"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
     },
     "document_reference": {
       "@type": "Optional",
@@ -3201,14 +3125,14 @@
     "@documentation": {
       "@comment": "The organization's process for treating information security risks: how it chooses treatments and controls, checks them against Annex A, and produces the Statement of Applicability.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "treatment_options_guidance": "How a treatment option is chosen for a risk.",
         "treatment_control_selection": "How the controls a treatment needs are chosen.",
         "treatment_annex_a_comparison": "How the chosen controls are compared with Annex A, so that no necessary control is left out.",
         "treatment_soa_template": "The template the Statement of Applicability follows.",
         "treatment_approval_workflow": "How a treatment plan and its residual risks are approved.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words.",
         "document_reference": "The reference the organization's document control gives it.",
         "document_version": "The version of the document.",
         "document_author": "Who wrote the document.",
@@ -3228,15 +3152,6 @@
         "document_external_source": "Who the document came from, when it comes from outside."
       }
     },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
-    },
     "treatment_options_guidance": {
       "@type": "Optional",
       "@class": "xsd:string"
@@ -3254,6 +3169,12 @@
       "@class": "xsd:string"
     },
     "treatment_approval_workflow": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
       "@type": "Optional",
       "@class": "xsd:string"
     },
@@ -3332,26 +3253,17 @@
     "@documentation": {
       "@comment": "A role in the ISMS, with the responsibilities and authorities it carries and who holds it.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "role_category": "What kind of role it is, in the organization's own terms.",
         "role_responsibilities": "The responsibilities assigned to the role.",
         "role_authorities": "The authorities the role carries.",
         "role_accountability": "What the role is accountable for.",
         "role_holders": "The people who hold the role.",
         "role_delegation": "How the role may delegate its responsibilities.",
-        "role_reports_to": "The role this role reports to."
+        "role_reports_to": "The role this role reports to.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "role_category": {
       "@type": "Optional",
@@ -3380,6 +3292,12 @@
     "role_reports_to": {
       "@type": "Optional",
       "@class": "IsmsRole"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
     }
   },
   {
@@ -3388,24 +3306,15 @@
     "@documentation": {
       "@comment": "An information security event someone reported, and the assessment of whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "affected_assets": "The assets the risk, event or incident affects.",
         "event_type": "The kind of record: IsmsSecurityEvent, or IsmsSecurityIncident for an event assessed as an incident.",
         "event_occurred_at": "When the event happened, or when it was first noticed.",
         "event_reporter": "Who reported the event.",
-        "event_assessment": "What the assessment of the event found."
+        "event_assessment": "What the assessment of the event found.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words."
       }
-    },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
     },
     "affected_assets": {
       "@type": "Set",
@@ -3426,6 +3335,12 @@
     "event_assessment": {
       "@type": "Optional",
       "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
+      "@type": "Optional",
+      "@class": "xsd:string"
     }
   },
   {
@@ -3434,14 +3349,14 @@
     "@documentation": {
       "@comment": "An information security event assessed as an incident: its category and severity, how it was detected, contained, eradicated and recovered from, the evidence collected, who was told, and what was learned.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "affected_assets": "The assets the risk, event or incident affects.",
         "event_type": "The kind of record: IsmsSecurityEvent, or IsmsSecurityIncident for an event assessed as an incident.",
         "event_occurred_at": "When the event happened, or when it was first noticed.",
         "event_reporter": "Who reported the event.",
         "event_assessment": "What the assessment of the event found.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words.",
         "affected_security_properties": "Which of confidentiality, integrity and availability the risk or incident threatens.",
         "incident_category": "What kind of incident it is.",
         "incident_severity": "How severe the incident is.",
@@ -3462,12 +3377,6 @@
     "@inherits": [
       "IsmsSecurityEvent"
     ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
-    },
     "affected_assets": {
       "@type": "Set",
       "@class": "IsmsAsset"
@@ -3485,6 +3394,12 @@
       "@class": "xsd:string"
     },
     "event_assessment": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
       "@type": "Optional",
       "@class": "xsd:string"
     },
@@ -3555,10 +3470,10 @@
     "@documentation": {
       "@comment": "The Statement of Applicability: each control the organization needs, with why it is included and whether it is in place, and each Annex A control it leaves out, with why.",
       "@properties": {
+        "soa_entries": "The statement's entries, one for each control included or Annex A control excluded.",
         "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
         "title": "The name the organization gives the record.",
         "description": "What the record says or describes, in the organization's own words.",
-        "soa_entries": "The statement's entries, one for each control included or Annex A control excluded.",
         "document_reference": "The reference the organization's document control gives it.",
         "document_version": "The version of the document.",
         "document_author": "Who wrote the document.",
@@ -3578,18 +3493,15 @@
         "document_external_source": "Who the document came from, when it comes from outside."
       }
     },
-    "@inherits": [
-      "IsmsRecord"
-    ],
+    "soa_entries": {
+      "@type": "List",
+      "@class": "IsmsApplicabilityEntry"
+    },
     "isms_id": "xsd:anyURI",
     "title": "xsd:string",
     "description": {
       "@type": "Optional",
       "@class": "xsd:string"
-    },
-    "soa_entries": {
-      "@type": "List",
-      "@class": "IsmsApplicabilityEntry"
     },
     "document_reference": {
       "@type": "Optional",
@@ -3666,13 +3578,13 @@
     "@documentation": {
       "@comment": "A policy on one topic of information security, such as access control or backup, that supports the information security policy.",
       "@properties": {
-        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
-        "title": "The name the organization gives the record.",
-        "description": "What the record says or describes, in the organization's own words.",
         "relevant_controls": "The organization's controls that the record concerns.",
         "topic_policy_topic": "The topic the policy covers.",
         "topic_policy_parent": "The information security policy this policy supports.",
         "topic_policy_audience": "Whom the policy is written for.",
+        "isms_id": "The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.",
+        "title": "The name the organization gives the record.",
+        "description": "What the record says or describes, in the organization's own words.",
         "document_reference": "The reference the organization's document control gives it.",
         "document_version": "The version of the document.",
         "document_author": "Who wrote the document.",
@@ -3692,15 +3604,6 @@
         "document_external_source": "Who the document came from, when it comes from outside."
       }
     },
-    "@inherits": [
-      "IsmsRecord"
-    ],
-    "isms_id": "xsd:anyURI",
-    "title": "xsd:string",
-    "description": {
-      "@type": "Optional",
-      "@class": "xsd:string"
-    },
     "relevant_controls": {
       "@type": "Set",
       "@class": "IsmsControl"
@@ -3714,6 +3617,12 @@
       "@class": "IsmsPolicy"
     },
     "topic_policy_audience": {
+      "@type": "Optional",
+      "@class": "xsd:string"
+    },
+    "isms_id": "xsd:anyURI",
+    "title": "xsd:string",
+    "description": {
       "@type": "Optional",
       "@class": "xsd:string"
     },

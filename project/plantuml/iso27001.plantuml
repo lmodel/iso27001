@@ -2,14 +2,12 @@
 skinparam nodesep 10
 hide circle
 hide empty members
-abstract "IsmsRecord" [[{Anything the ISMS keeps a record of that other records can refer to: it has an identifier, a title and a description.}]] {
-    {field} isms_id : uriorcurie  
-    {field} title : string  
-    {field} description : string  
-}
 class "IsmsTopicSpecificPolicy" [[{A policy on one topic of information security, such as access control or backup, that supports the information security policy.}]] {
     {field} topic_policy_topic : string  
     {field} topic_policy_audience : string  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
     {field} document_reference : string  
     {field} document_version : string  
     {field} document_author : string  
@@ -27,195 +25,6 @@ class "IsmsTopicSpecificPolicy" [[{A policy on one topic of information security
     {field} document_change_control : string  
     {field} document_external_origin : boolean  
     {field} document_external_source : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsStatementOfApplicability" [[{The Statement of Applicability: each control the organization needs, with why it is included and whether it is in place, and each Annex A control it leaves out, with why.}]] {
-    {field} document_reference : string  
-    {field} document_version : string  
-    {field} document_author : string  
-    {field} document_owner : string  
-    {field} document_approver : string  
-    {field} document_approval_date : date  
-    {field} document_effective_date : date  
-    {field} document_last_review_date : date  
-    {field} document_next_review_date : date  
-    {field} document_status : string  
-    {field} document_classification : string  
-    {field} document_retention : isms_duration  
-    {field} document_distribution : string  [0..*]
-    {field} document_storage : string  
-    {field} document_change_control : string  
-    {field} document_external_origin : boolean  
-    {field} document_external_source : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsSecurityEvent" [[{An information security event someone reported, and the assessment of whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.}]] {
-    {field} event_type : string  
-    {field} event_occurred_at : datetime  
-    {field} event_reporter : string  
-    {field} event_assessment : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsRole" [[{A role in the ISMS, with the responsibilities and authorities it carries and who holds it.}]] {
-    {field} role_category : string  
-    {field} role_responsibilities : string  [0..*]
-    {field} role_authorities : string  [0..*]
-    {field} role_accountability : string  
-    {field} role_holders : string  [0..*]
-    {field} role_delegation : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsRiskTreatmentProcess" [[{The organization's process for treating information security risks: how it chooses treatments and controls, checks them against Annex A, and produces the Statement of Applicability.}]] {
-    {field} treatment_options_guidance : string  
-    {field} treatment_control_selection : string  
-    {field} treatment_annex_a_comparison : string  
-    {field} treatment_soa_template : string  
-    {field} treatment_approval_workflow : string  
-    {field} document_reference : string  
-    {field} document_version : string  
-    {field} document_author : string  
-    {field} document_owner : string  
-    {field} document_approver : string  
-    {field} document_approval_date : date  
-    {field} document_effective_date : date  
-    {field} document_last_review_date : date  
-    {field} document_next_review_date : date  
-    {field} document_status : string  
-    {field} document_classification : string  
-    {field} document_retention : isms_duration  
-    {field} document_distribution : string  [0..*]
-    {field} document_storage : string  
-    {field} document_change_control : string  
-    {field} document_external_origin : boolean  
-    {field} document_external_source : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsRiskTreatmentPlan" [[{A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's approval of the plan and of the residual risk.}]] {
-    {field} implementation_state : IsmsImplementationStatus  
-    {field} plan_scope : string  
-    {field} plan_actions : string  [0..*]
-    {field} plan_resources : string  
-    {field} plan_responsible_parties : string  [0..*]
-    {field} plan_timeline : string  
-    {field} plan_risk_owner_approval : string  
-    {field} plan_residual_risk_acceptance : string  
-    {field} plan_completion_date : date  
-    {field} document_reference : string  
-    {field} document_version : string  
-    {field} document_author : string  
-    {field} document_owner : string  
-    {field} document_approver : string  
-    {field} document_approval_date : date  
-    {field} document_effective_date : date  
-    {field} document_last_review_date : date  
-    {field} document_next_review_date : date  
-    {field} document_status : string  
-    {field} document_classification : string  
-    {field} document_retention : isms_duration  
-    {field} document_distribution : string  [0..*]
-    {field} document_storage : string  
-    {field} document_change_control : string  
-    {field} document_external_origin : boolean  
-    {field} document_external_source : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsRiskAssessmentProcess" [[{The organization's process for assessing information security risks: its criteria for accepting risk and for assessing it, its scales and method, and when it runs.}]] {
-    {field} risk_acceptance_criteria : string  
-    {field} risk_assessment_criteria : string  
-    {field} risk_assessment_method : string  
-    {field} risk_likelihood_scale : string  
-    {field} risk_impact_scale : string  
-    {field} risk_matrix : string  
-    {field} risk_assessment_frequency : string  
-    {field} risk_assessment_triggers : string  [0..*]
-    {field} document_reference : string  
-    {field} document_version : string  
-    {field} document_author : string  
-    {field} document_owner : string  
-    {field} document_approver : string  
-    {field} document_approval_date : date  
-    {field} document_effective_date : date  
-    {field} document_last_review_date : date  
-    {field} document_next_review_date : date  
-    {field} document_status : string  
-    {field} document_classification : string  
-    {field} document_retention : isms_duration  
-    {field} document_distribution : string  [0..*]
-    {field} document_storage : string  
-    {field} document_change_control : string  
-    {field} document_external_origin : boolean  
-    {field} document_external_source : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsRiskAssessment" [[{One risk assessment carried out under the risk assessment process, and what it found.}]] {
-    {field} assessment_scope : string  
-    {field} assessment_date : date  
-    {field} assessment_assessor : string  
-    {field} assessment_method_used : string  
-    {field} assessment_summary : string  
-    {field} assessment_recommendations : string  [0..*]
-    {field} assessment_next_date : date  
-    {field} document_reference : string  
-    {field} document_version : string  
-    {field} document_author : string  
-    {field} document_owner : string  
-    {field} document_approver : string  
-    {field} document_approval_date : date  
-    {field} document_effective_date : date  
-    {field} document_last_review_date : date  
-    {field} document_next_review_date : date  
-    {field} document_status : string  
-    {field} document_classification : string  
-    {field} document_retention : isms_duration  
-    {field} document_distribution : string  [0..*]
-    {field} document_storage : string  
-    {field} document_change_control : string  
-    {field} document_external_origin : boolean  
-    {field} document_external_source : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsRisk" [[{An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated.}]] {
-    {field} affected_security_properties : IsmsSecurityProperty  [0..*]
-    {field} risk_source : string  
-    {field} risk_threat : string  
-    {field} risk_vulnerability : string  
-    {field} risk_owner : string  
-    {field} risk_likelihood : IsmsLikelihood  
-    {field} risk_impact : IsmsImpact  
-    {field} risk_inherent_level : IsmsRiskLevel  
-    {field} risk_residual_level : IsmsRiskLevel  
-    {field} risk_treatment_option : IsmsRiskTreatmentOption  
-    {field} risk_treatment_priority : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsResource" [[{A resource provided for the ISMS, such as people, time, tools or budget.}]] {
-    {field} resource_category : string  
-    {field} resource_quantity : string  
-    {field} resource_allocation_date : date  
-    {field} resource_allocated_to : string  
-    {field} resource_cost : string  
-    {field} resource_availability : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
 }
 class "IsmsPolicy" [[{The information security policy that top management sets: the organization's commitment and the frame for its information security objectives.}]] {
     {field} policy_statement : string  
@@ -225,6 +34,9 @@ class "IsmsPolicy" [[{The information security policy that top management sets: 
     {field} policy_communication_date : date  
     {field} policy_acknowledgement_required : boolean  
     {field} policy_management_systems : IsmsManagementSystemStandard  [0..*]
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
     {field} document_reference : string  
     {field} document_version : string  
     {field} document_author : string  
@@ -242,104 +54,23 @@ class "IsmsPolicy" [[{The information security policy that top management sets: 
     {field} document_change_control : string  
     {field} document_external_origin : boolean  
     {field} document_external_source : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
 }
-class "IsmsOrganization" [[{The organization that runs the ISMS, with what it needs to know about itself to understand its context.}]] {
-    {field} organization_legal_name : string  
-    {field} organization_trading_names : string  [0..*]
-    {field} organization_kind : string  
-    {field} organization_sector : string  
-    {field} organization_size : string  
-    {field} organization_employee_count : integer  
-    {field} organization_locations : string  [0..*]
-    {field} organization_jurisdictions : string  [0..*]
-    {field} organization_parent : string  
-    {field} organization_subsidiaries : string  [0..*]
-    {field} organization_climate_change_relevant : boolean  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsOperationalProcedure" [[{A procedure by which the organization plans and controls the processes that meet its information security requirements.}]] {
-    {field} procedure_scope : string  
-    {field} procedure_criteria : string  
-    {field} procedure_control_measures : string  [0..*]
-    {field} procedure_change_control : string  
-    {field} document_reference : string  
-    {field} document_version : string  
-    {field} document_author : string  
-    {field} document_owner : string  
-    {field} document_approver : string  
-    {field} document_approval_date : date  
-    {field} document_effective_date : date  
-    {field} document_last_review_date : date  
-    {field} document_next_review_date : date  
-    {field} document_status : string  
-    {field} document_classification : string  
-    {field} document_retention : isms_duration  
-    {field} document_distribution : string  [0..*]
-    {field} document_storage : string  
-    {field} document_change_control : string  
-    {field} document_external_origin : boolean  
-    {field} document_external_source : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsObjective" [[{An information security objective: a measurable result the organization aims for, with how it plans to reach it and how it measures progress.}]] {
-    {field} objective_statement : string  
-    {field} objective_target : string  
-    {field} objective_current_value : string  
-    {field} objective_metric : string  
-    {field} objective_measurement_method : string  
-    {field} objective_measurement_frequency : string  
-    {field} objective_target_date : date  
-    {field} objective_achievement : string  
-    {field} objective_action_plan : string  
-    {field} objective_resources : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsNonconformity" [[{A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was closed.}]] {
-    {field} nonconformity_source : string  
-    {field} nonconformity_detected_on : date  
-    {field} nonconformity_detected_by : string  
-    {field} nonconformity_requirement : string  
-    {field} nonconformity_immediate_actions : string  [0..*]
-    {field} nonconformity_consequences : string  
-    {field} nonconformity_root_cause : string  
-    {field} nonconformity_similar_check : string  
-    {field} nonconformity_status : string  
-    {field} nonconformity_closure_date : date  
-    {field} nonconformity_closure_evidence : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsMonitoringProgramme" [[{The programme of monitoring, measurement, analysis and evaluation of information security performance and of the ISMS's effectiveness.}]] {
-    {field} document_reference : string  
-    {field} document_version : string  
-    {field} document_author : string  
-    {field} document_owner : string  
-    {field} document_approver : string  
-    {field} document_approval_date : date  
-    {field} document_effective_date : date  
-    {field} document_last_review_date : date  
-    {field} document_next_review_date : date  
-    {field} document_status : string  
-    {field} document_classification : string  
-    {field} document_retention : isms_duration  
-    {field} document_distribution : string  [0..*]
-    {field} document_storage : string  
-    {field} document_change_control : string  
-    {field} document_external_origin : boolean  
-    {field} document_external_source : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
+class "IsmsControl" [[{A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.}]] {
+    {field} implementation_state : IsmsImplementationStatus  
+    {field} control_annex_a_controls : IsmsAnnexAControl  [0..*]
+    {field} control_theme : IsmsControlTheme  
+    {field} control_text : string  
+    {field} control_guidance : string  
+    {field} control_threats : string  [0..*]
+    {field} control_asset_types : string  [0..*]
+    {field} control_owner : string  
+    {field} control_implementation_date : date  
+    {field} control_effectiveness : string  
+    {field} control_last_tested : date  
+    {field} control_evidence : string  [0..*]
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
 }
 class "IsmsManagementSystem" [[{One organization's information security management system: its scope and context, and every record it keeps, each kind in a list of its own.}]] {
     {field} isms_top_management : string  
@@ -359,325 +90,15 @@ class "IsmsManagementSystem" [[{One organization's information security manageme
     {field} isms_certification_body : string  
     {field} isms_certification_date : date  
     {field} isms_recertification_date : date  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
 }
-class "IsmsManagementReview" [[{A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.}]] {
-    {field} review_held_on : date  
-    {field} review_attendees : string  [0..*]
-    {field} review_previous_actions : string  
-    {field} review_context_changes : string  
-    {field} review_interested_party_changes : string  
-    {field} review_interested_party_feedback : string  
-    {field} review_performance_trends : string  
-    {field} review_audit_results : string  
-    {field} review_risk_assessment_results : string  
-    {field} review_risk_treatment_status : string  
-    {field} review_risks_and_opportunities : string  
-    {field} review_improvement_opportunities : string  [0..*]
-    {field} review_decisions : string  [0..*]
-    {field} review_actions : string  [0..*]
-    {field} review_next_date : date  
-    {field} document_reference : string  
-    {field} document_version : string  
-    {field} document_author : string  
-    {field} document_owner : string  
-    {field} document_approver : string  
-    {field} document_approval_date : date  
-    {field} document_effective_date : date  
-    {field} document_last_review_date : date  
-    {field} document_next_review_date : date  
-    {field} document_status : string  
-    {field} document_classification : string  
-    {field} document_retention : isms_duration  
-    {field} document_distribution : string  [0..*]
-    {field} document_storage : string  
-    {field} document_change_control : string  
-    {field} document_external_origin : boolean  
-    {field} document_external_source : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
+class "IsmsRecordMixin" [[{What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.}]] {
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
 }
-class "IsmsInterestedParty" [[{A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it, such as staff, customers, regulators or suppliers.}]] {
-    {field} party_category : string  
-    {field} party_relationship : string  
-    {field} party_requirements : string  [0..*]
-    {field} party_addressed_requirements : string  [0..*]
-    {field} party_climate_change_requirements : string  [0..*]
-    {field} party_communication_needs : string  
-    {field} party_contact : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsImprovementOpportunity" [[{An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.}]] {
-    {field} improvement_source : string  
-    {field} improvement_identified_on : date  
-    {field} improvement_identified_by : string  
-    {field} improvement_benefit : string  
-    {field} improvement_priority : string  
-    {field} improvement_plan : string  
-    {field} improvement_target_date : date  
-    {field} improvement_completion_date : date  
-    {field} improvement_outcome : string  
-    {field} improvement_status : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsDocumentedInformation" [[{A piece of documented information the ISMS keeps under control that no more specific record describes, such as a procedure, a standard, a plan or a report.}]] {
-    {field} document_kind : IsmsDocumentKind  
-    {field} document_reference : string  
-    {field} document_version : string  
-    {field} document_author : string  
-    {field} document_owner : string  
-    {field} document_approver : string  
-    {field} document_approval_date : date  
-    {field} document_effective_date : date  
-    {field} document_last_review_date : date  
-    {field} document_next_review_date : date  
-    {field} document_status : string  
-    {field} document_classification : string  
-    {field} document_retention : isms_duration  
-    {field} document_distribution : string  [0..*]
-    {field} document_storage : string  
-    {field} document_change_control : string  
-    {field} document_external_origin : boolean  
-    {field} document_external_source : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsCorrectiveAction" [[{An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it worked.}]] {
-    {field} action_root_cause : string  
-    {field} action_target_date : date  
-    {field} action_completion_date : date  
-    {field} action_resources : string  
-    {field} action_effectiveness_criteria : string  
-    {field} action_effectiveness_review_date : date  
-    {field} action_effective : boolean  
-    {field} action_isms_changes : string  
-    {field} action_status : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsControl" [[{A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.}]] {
-    {field} implementation_state : IsmsImplementationStatus  
-    {field} control_annex_a_controls : IsmsAnnexAControl  [0..*]
-    {field} control_theme : IsmsControlTheme  
-    {field} control_text : string  
-    {field} control_guidance : string  
-    {field} control_threats : string  [0..*]
-    {field} control_asset_types : string  [0..*]
-    {field} control_owner : string  
-    {field} control_implementation_date : date  
-    {field} control_effectiveness : string  
-    {field} control_last_tested : date  
-    {field} control_evidence : string  [0..*]
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsCompetenceRecord" [[{The evidence of one person's competence for work that affects information security, and what is done to close any gap.}]] {
-    {field} competence_person : string  
-    {field} competence_required : string  [0..*]
-    {field} competence_education : string  [0..*]
-    {field} competence_training : string  [0..*]
-    {field} competence_experience : string  [0..*]
-    {field} competence_assessment_date : date  
-    {field} competence_gaps : string  [0..*]
-    {field} competence_actions : string  [0..*]
-    {field} document_reference : string  
-    {field} document_version : string  
-    {field} document_author : string  
-    {field} document_owner : string  
-    {field} document_approver : string  
-    {field} document_approval_date : date  
-    {field} document_effective_date : date  
-    {field} document_last_review_date : date  
-    {field} document_next_review_date : date  
-    {field} document_status : string  
-    {field} document_classification : string  
-    {field} document_retention : isms_duration  
-    {field} document_distribution : string  [0..*]
-    {field} document_storage : string  
-    {field} document_change_control : string  
-    {field} document_external_origin : boolean  
-    {field} document_external_source : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsCommunicationPlan" [[{The plan for communication about the ISMS, inside the organization and outside it.}]] {
-    {field} document_reference : string  
-    {field} document_version : string  
-    {field} document_author : string  
-    {field} document_owner : string  
-    {field} document_approver : string  
-    {field} document_approval_date : date  
-    {field} document_effective_date : date  
-    {field} document_last_review_date : date  
-    {field} document_next_review_date : date  
-    {field} document_status : string  
-    {field} document_classification : string  
-    {field} document_retention : isms_duration  
-    {field} document_distribution : string  [0..*]
-    {field} document_storage : string  
-    {field} document_change_control : string  
-    {field} document_external_origin : boolean  
-    {field} document_external_source : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsAwarenessProgramme" [[{The programme that makes people working for the organization aware of the policy, their part in the ISMS and what failing it would mean.}]] {
-    {field} awareness_topics : string  [0..*]
-    {field} awareness_methods : string  [0..*]
-    {field} awareness_audience : string  
-    {field} awareness_frequency : string  
-    {field} awareness_completion_tracking : string  
-    {field} awareness_effectiveness : string  
-    {field} document_reference : string  
-    {field} document_version : string  
-    {field} document_author : string  
-    {field} document_owner : string  
-    {field} document_approver : string  
-    {field} document_approval_date : date  
-    {field} document_effective_date : date  
-    {field} document_last_review_date : date  
-    {field} document_next_review_date : date  
-    {field} document_status : string  
-    {field} document_classification : string  
-    {field} document_retention : isms_duration  
-    {field} document_distribution : string  [0..*]
-    {field} document_storage : string  
-    {field} document_change_control : string  
-    {field} document_external_origin : boolean  
-    {field} document_external_source : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsAuditProgramme" [[{An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors they need.}]] {
-    {field} programme_period : string  
-    {field} programme_frequency_rationale : string  
-    {field} programme_resources : string  
-    {field} programme_auditor_qualifications : string  
-    {field} programme_status : string  
-    {field} document_reference : string  
-    {field} document_version : string  
-    {field} document_author : string  
-    {field} document_owner : string  
-    {field} document_approver : string  
-    {field} document_approval_date : date  
-    {field} document_effective_date : date  
-    {field} document_last_review_date : date  
-    {field} document_next_review_date : date  
-    {field} document_status : string  
-    {field} document_classification : string  
-    {field} document_retention : isms_duration  
-    {field} document_distribution : string  [0..*]
-    {field} document_storage : string  
-    {field} document_change_control : string  
-    {field} document_external_origin : boolean  
-    {field} document_external_source : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsAuditFinding" [[{One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it concerns, its evidence and how it is closed.}]] {
-    {field} finding_type : IsmsAuditFindingType  
-    {field} finding_requirement : isms_requirement_reference  
-    {field} finding_evidence : string  
-    {field} finding_root_cause : string  
-    {field} finding_risk : string  
-    {field} finding_recommendation : string  
-    {field} finding_auditee_response : string  
-    {field} finding_closure_status : string  
-    {field} finding_closure_date : date  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsAudit" [[{An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope, criteria, team, findings and conclusion.}]] {
-    {field} audit_type : IsmsAuditType  
-    {field} audit_standards : IsmsManagementSystemStandard  [0..*]
-    {field} audit_scope : string  
-    {field} audit_criteria : string  [0..*]
-    {field} audit_objectives : string  [0..*]
-    {field} audit_period_start : date  
-    {field} audit_period_end : date  
-    {field} audit_lead : string  
-    {field} audit_team : string  [0..*]
-    {field} audit_auditees : string  [0..*]
-    {field} audit_conclusion : string  
-    {field} audit_report_date : date  
-    {field} audit_report_distribution : string  [0..*]
-    {field} document_reference : string  
-    {field} document_version : string  
-    {field} document_author : string  
-    {field} document_owner : string  
-    {field} document_approver : string  
-    {field} document_approval_date : date  
-    {field} document_effective_date : date  
-    {field} document_last_review_date : date  
-    {field} document_next_review_date : date  
-    {field} document_status : string  
-    {field} document_classification : string  
-    {field} document_retention : isms_duration  
-    {field} document_distribution : string  [0..*]
-    {field} document_storage : string  
-    {field} document_change_control : string  
-    {field} document_external_origin : boolean  
-    {field} document_external_source : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-class "IsmsAsset" [[{An item in the inventory of information and other associated assets: what it is, who owns and looks after it, where it is, how it is classified and how much it matters.}]] {
-    {field} asset_category : string  
-    {field} asset_owner : string  
-    {field} asset_custodian : string  
-    {field} asset_classification : string  
-    {field} asset_location : string  
-    {field} asset_criticality : string  
-    {field} isms_id(i) : uriorcurie  
-    {field} title(i) : string  
-    {field} description(i) : string  
-}
-"IsmsRecord" ^-- "IsmsTopicSpecificPolicy"
-"IsmsRecord" ^-- "IsmsStatementOfApplicability"
-"IsmsRecord" ^-- "IsmsSecurityEvent"
-"IsmsRecord" ^-- "IsmsRole"
-"IsmsRecord" ^-- "IsmsRiskTreatmentProcess"
-"IsmsRecord" ^-- "IsmsRiskTreatmentPlan"
-"IsmsRecord" ^-- "IsmsRiskAssessmentProcess"
-"IsmsRecord" ^-- "IsmsRiskAssessment"
-"IsmsRecord" ^-- "IsmsRisk"
-"IsmsRecord" ^-- "IsmsResource"
-"IsmsRecord" ^-- "IsmsPolicy"
-"IsmsRecord" ^-- "IsmsOrganization"
-"IsmsRecord" ^-- "IsmsOperationalProcedure"
-"IsmsRecord" ^-- "IsmsObjective"
-"IsmsRecord" ^-- "IsmsNonconformity"
-"IsmsRecord" ^-- "IsmsMonitoringProgramme"
-"IsmsRecord" ^-- "IsmsManagementSystem"
-"IsmsRecord" ^-- "IsmsManagementReview"
-"IsmsRecord" ^-- "IsmsInterestedParty"
-"IsmsRecord" ^-- "IsmsImprovementOpportunity"
-"IsmsRecord" ^-- "IsmsDocumentedInformation"
-"IsmsRecord" ^-- "IsmsCorrectiveAction"
-"IsmsRecord" ^-- "IsmsControl"
-"IsmsRecord" ^-- "IsmsCompetenceRecord"
-"IsmsRecord" ^-- "IsmsCommunicationPlan"
-"IsmsRecord" ^-- "IsmsAwarenessProgramme"
-"IsmsRecord" ^-- "IsmsAuditProgramme"
-"IsmsRecord" ^-- "IsmsAuditFinding"
-"IsmsRecord" ^-- "IsmsAudit"
-"IsmsRecord" ^-- "IsmsAsset"
 class "IsmsDocumentControlMixin" [[{The control that documented information is kept under: who wrote, owns and approved it, when it takes effect and is reviewed, how it is classified, distributed, stored and changed, how long it is retained, and whether it came from outside the organization.}]] {
     {field} document_reference : string  
     {field} document_version : string  
@@ -700,7 +121,30 @@ class "IsmsDocumentControlMixin" [[{The control that documented information is k
 "IsmsTopicSpecificPolicy" --> "0..1" "IsmsPolicy" : "topic_policy_parent"
 "IsmsTopicSpecificPolicy" --> "0..*" "IsmsControl" : "relevant_controls"
 "IsmsManagementSystem" *--> "0..*" "IsmsTopicSpecificPolicy" : "isms_topic_specific_policies"
+"IsmsRecordMixin" ^.. "IsmsTopicSpecificPolicy"
 "IsmsDocumentControlMixin" ^.. "IsmsTopicSpecificPolicy"
+class "IsmsStatementOfApplicability" [[{The Statement of Applicability: each control the organization needs, with why it is included and whether it is in place, and each Annex A control it leaves out, with why.}]] {
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+    {field} document_reference : string  
+    {field} document_version : string  
+    {field} document_author : string  
+    {field} document_owner : string  
+    {field} document_approver : string  
+    {field} document_approval_date : date  
+    {field} document_effective_date : date  
+    {field} document_last_review_date : date  
+    {field} document_next_review_date : date  
+    {field} document_status : string  
+    {field} document_classification : string  
+    {field} document_retention : isms_duration  
+    {field} document_distribution : string  [0..*]
+    {field} document_storage : string  
+    {field} document_change_control : string  
+    {field} document_external_origin : boolean  
+    {field} document_external_source : string  
+}
 abstract "IsmsApplicabilityEntry" [[{One entry of the Statement of Applicability, which either includes a control or excludes an Annex A control, and says why.}]] {
     {field} entry_annex_a_control : IsmsAnnexAControl  
     {field} entry_type : string  
@@ -708,7 +152,28 @@ abstract "IsmsApplicabilityEntry" [[{One entry of the Statement of Applicability
 }
 "IsmsStatementOfApplicability" *--> "0..*" "IsmsApplicabilityEntry" : "soa_entries"
 "IsmsManagementSystem" *--> "0..1" "IsmsStatementOfApplicability" : "isms_statement_of_applicability"
+"IsmsRecordMixin" ^.. "IsmsStatementOfApplicability"
 "IsmsDocumentControlMixin" ^.. "IsmsStatementOfApplicability"
+class "IsmsSecurityEvent" [[{An information security event someone reported, and the assessment of whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.}]] {
+    {field} event_type : string  
+    {field} event_occurred_at : datetime  
+    {field} event_reporter : string  
+    {field} event_assessment : string  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+}
+class "IsmsAsset" [[{An item in the inventory of information and other associated assets: what it is, who owns and looks after it, where it is, how it is classified and how much it matters.}]] {
+    {field} asset_category : string  
+    {field} asset_owner : string  
+    {field} asset_custodian : string  
+    {field} asset_classification : string  
+    {field} asset_location : string  
+    {field} asset_criticality : string  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+}
 class "IsmsSecurityIncident" [[{An information security event assessed as an incident: its category and severity, how it was detected, contained, eradicated and recovered from, the evidence collected, who was told, and what was learned.}]] {
     {field} affected_security_properties : IsmsSecurityProperty  [0..*]
     {field} incident_category : IsmsIncidentCategory  
@@ -735,7 +200,90 @@ class "IsmsSecurityIncident" [[{An information security event assessed as an inc
 }
 "IsmsSecurityEvent" --> "0..*" "IsmsAsset" : "affected_assets"
 "IsmsManagementSystem" *--> "0..*" "IsmsSecurityEvent" : "isms_security_events"
+"IsmsRecordMixin" ^.. "IsmsSecurityEvent"
 "IsmsSecurityEvent" ^-- "IsmsSecurityIncident"
+class "IsmsRole" [[{A role in the ISMS, with the responsibilities and authorities it carries and who holds it.}]] {
+    {field} role_category : string  
+    {field} role_responsibilities : string  [0..*]
+    {field} role_authorities : string  [0..*]
+    {field} role_accountability : string  
+    {field} role_holders : string  [0..*]
+    {field} role_delegation : string  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+}
+class "IsmsCompetenceRecord" [[{The evidence of one person's competence for work that affects information security, and what is done to close any gap.}]] {
+    {field} competence_person : string  
+    {field} competence_required : string  [0..*]
+    {field} competence_education : string  [0..*]
+    {field} competence_training : string  [0..*]
+    {field} competence_experience : string  [0..*]
+    {field} competence_assessment_date : date  
+    {field} competence_gaps : string  [0..*]
+    {field} competence_actions : string  [0..*]
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+    {field} document_reference : string  
+    {field} document_version : string  
+    {field} document_author : string  
+    {field} document_owner : string  
+    {field} document_approver : string  
+    {field} document_approval_date : date  
+    {field} document_effective_date : date  
+    {field} document_last_review_date : date  
+    {field} document_next_review_date : date  
+    {field} document_status : string  
+    {field} document_classification : string  
+    {field} document_retention : isms_duration  
+    {field} document_distribution : string  [0..*]
+    {field} document_storage : string  
+    {field} document_change_control : string  
+    {field} document_external_origin : boolean  
+    {field} document_external_source : string  
+}
+class "IsmsOperationalProcedure" [[{A procedure by which the organization plans and controls the processes that meet its information security requirements.}]] {
+    {field} procedure_scope : string  
+    {field} procedure_criteria : string  
+    {field} procedure_control_measures : string  [0..*]
+    {field} procedure_change_control : string  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+    {field} document_reference : string  
+    {field} document_version : string  
+    {field} document_author : string  
+    {field} document_owner : string  
+    {field} document_approver : string  
+    {field} document_approval_date : date  
+    {field} document_effective_date : date  
+    {field} document_last_review_date : date  
+    {field} document_next_review_date : date  
+    {field} document_status : string  
+    {field} document_classification : string  
+    {field} document_retention : isms_duration  
+    {field} document_distribution : string  [0..*]
+    {field} document_storage : string  
+    {field} document_change_control : string  
+    {field} document_external_origin : boolean  
+    {field} document_external_source : string  
+}
+class "IsmsObjective" [[{An information security objective: a measurable result the organization aims for, with how it plans to reach it and how it measures progress.}]] {
+    {field} objective_statement : string  
+    {field} objective_target : string  
+    {field} objective_current_value : string  
+    {field} objective_metric : string  
+    {field} objective_measurement_method : string  
+    {field} objective_measurement_frequency : string  
+    {field} objective_target_date : date  
+    {field} objective_achievement : string  
+    {field} objective_action_plan : string  
+    {field} objective_resources : string  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+}
 class "IsmsIncludedControl" [[{An entry that includes a control the organization needs, from Annex A or from elsewhere, and says whether it is in place.}]] {
     {field} implementation_state : IsmsImplementationStatus  
     {field} included_evidence : string  
@@ -764,6 +312,35 @@ class "IsmsMonitoringItem" [[{One thing the monitoring programme measures: what,
     {field} monitoring_current_value : string  
     {field} monitoring_trend : string  
 }
+class "IsmsCorrectiveAction" [[{An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it worked.}]] {
+    {field} action_root_cause : string  
+    {field} action_target_date : date  
+    {field} action_completion_date : date  
+    {field} action_resources : string  
+    {field} action_effectiveness_criteria : string  
+    {field} action_effectiveness_review_date : date  
+    {field} action_effective : boolean  
+    {field} action_isms_changes : string  
+    {field} action_status : string  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+}
+class "IsmsImprovementOpportunity" [[{An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.}]] {
+    {field} improvement_source : string  
+    {field} improvement_identified_on : date  
+    {field} improvement_identified_by : string  
+    {field} improvement_benefit : string  
+    {field} improvement_priority : string  
+    {field} improvement_plan : string  
+    {field} improvement_target_date : date  
+    {field} improvement_completion_date : date  
+    {field} improvement_outcome : string  
+    {field} improvement_status : string  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+}
 "IsmsRole" --> "0..1" "IsmsRole" : "role_reports_to"
 "IsmsCompetenceRecord" --> "0..1" "IsmsRole" : "competence_role"
 "IsmsManagementSystem" *--> "0..*" "IsmsRole" : "isms_roles"
@@ -774,22 +351,445 @@ class "IsmsMonitoringItem" [[{One thing the monitoring programme measures: what,
 "IsmsMonitoringItem" --> "0..1" "IsmsRole" : "responsible_role"
 "IsmsCorrectiveAction" --> "0..1" "IsmsRole" : "responsible_role"
 "IsmsImprovementOpportunity" --> "0..1" "IsmsRole" : "responsible_role"
+"IsmsRecordMixin" ^.. "IsmsRole"
+class "IsmsRiskTreatmentProcess" [[{The organization's process for treating information security risks: how it chooses treatments and controls, checks them against Annex A, and produces the Statement of Applicability.}]] {
+    {field} treatment_options_guidance : string  
+    {field} treatment_control_selection : string  
+    {field} treatment_annex_a_comparison : string  
+    {field} treatment_soa_template : string  
+    {field} treatment_approval_workflow : string  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+    {field} document_reference : string  
+    {field} document_version : string  
+    {field} document_author : string  
+    {field} document_owner : string  
+    {field} document_approver : string  
+    {field} document_approval_date : date  
+    {field} document_effective_date : date  
+    {field} document_last_review_date : date  
+    {field} document_next_review_date : date  
+    {field} document_status : string  
+    {field} document_classification : string  
+    {field} document_retention : isms_duration  
+    {field} document_distribution : string  [0..*]
+    {field} document_storage : string  
+    {field} document_change_control : string  
+    {field} document_external_origin : boolean  
+    {field} document_external_source : string  
+}
 "IsmsManagementSystem" *--> "0..1" "IsmsRiskTreatmentProcess" : "isms_risk_treatment_process"
+"IsmsRecordMixin" ^.. "IsmsRiskTreatmentProcess"
 "IsmsDocumentControlMixin" ^.. "IsmsRiskTreatmentProcess"
+class "IsmsRiskTreatmentPlan" [[{A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's approval of the plan and of the residual risk.}]] {
+    {field} implementation_state : IsmsImplementationStatus  
+    {field} plan_scope : string  
+    {field} plan_actions : string  [0..*]
+    {field} plan_resources : string  
+    {field} plan_responsible_parties : string  [0..*]
+    {field} plan_timeline : string  
+    {field} plan_risk_owner_approval : string  
+    {field} plan_residual_risk_acceptance : string  
+    {field} plan_completion_date : date  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+    {field} document_reference : string  
+    {field} document_version : string  
+    {field} document_author : string  
+    {field} document_owner : string  
+    {field} document_approver : string  
+    {field} document_approval_date : date  
+    {field} document_effective_date : date  
+    {field} document_last_review_date : date  
+    {field} document_next_review_date : date  
+    {field} document_status : string  
+    {field} document_classification : string  
+    {field} document_retention : isms_duration  
+    {field} document_distribution : string  [0..*]
+    {field} document_storage : string  
+    {field} document_change_control : string  
+    {field} document_external_origin : boolean  
+    {field} document_external_source : string  
+}
+class "IsmsRisk" [[{An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated.}]] {
+    {field} affected_security_properties : IsmsSecurityProperty  [0..*]
+    {field} risk_source : string  
+    {field} risk_threat : string  
+    {field} risk_vulnerability : string  
+    {field} risk_owner : string  
+    {field} risk_likelihood : IsmsLikelihood  
+    {field} risk_impact : IsmsImpact  
+    {field} risk_inherent_level : IsmsRiskLevel  
+    {field} risk_residual_level : IsmsRiskLevel  
+    {field} risk_treatment_option : IsmsRiskTreatmentOption  
+    {field} risk_treatment_priority : string  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+}
 "IsmsRiskTreatmentPlan" --> "0..*" "IsmsControl" : "plan_controls"
 "IsmsRiskTreatmentPlan" --> "0..*" "IsmsRisk" : "plan_risks"
 "IsmsManagementSystem" *--> "0..*" "IsmsRiskTreatmentPlan" : "isms_risk_treatment_plans"
+"IsmsRecordMixin" ^.. "IsmsRiskTreatmentPlan"
 "IsmsDocumentControlMixin" ^.. "IsmsRiskTreatmentPlan"
+class "IsmsRiskAssessmentProcess" [[{The organization's process for assessing information security risks: its criteria for accepting risk and for assessing it, its scales and method, and when it runs.}]] {
+    {field} risk_acceptance_criteria : string  
+    {field} risk_assessment_criteria : string  
+    {field} risk_assessment_method : string  
+    {field} risk_likelihood_scale : string  
+    {field} risk_impact_scale : string  
+    {field} risk_matrix : string  
+    {field} risk_assessment_frequency : string  
+    {field} risk_assessment_triggers : string  [0..*]
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+    {field} document_reference : string  
+    {field} document_version : string  
+    {field} document_author : string  
+    {field} document_owner : string  
+    {field} document_approver : string  
+    {field} document_approval_date : date  
+    {field} document_effective_date : date  
+    {field} document_last_review_date : date  
+    {field} document_next_review_date : date  
+    {field} document_status : string  
+    {field} document_classification : string  
+    {field} document_retention : isms_duration  
+    {field} document_distribution : string  [0..*]
+    {field} document_storage : string  
+    {field} document_change_control : string  
+    {field} document_external_origin : boolean  
+    {field} document_external_source : string  
+}
 "IsmsManagementSystem" *--> "0..1" "IsmsRiskAssessmentProcess" : "isms_risk_assessment_process"
+"IsmsRecordMixin" ^.. "IsmsRiskAssessmentProcess"
 "IsmsDocumentControlMixin" ^.. "IsmsRiskAssessmentProcess"
+class "IsmsRiskAssessment" [[{One risk assessment carried out under the risk assessment process, and what it found.}]] {
+    {field} assessment_scope : string  
+    {field} assessment_date : date  
+    {field} assessment_assessor : string  
+    {field} assessment_method_used : string  
+    {field} assessment_summary : string  
+    {field} assessment_recommendations : string  [0..*]
+    {field} assessment_next_date : date  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+    {field} document_reference : string  
+    {field} document_version : string  
+    {field} document_author : string  
+    {field} document_owner : string  
+    {field} document_approver : string  
+    {field} document_approval_date : date  
+    {field} document_effective_date : date  
+    {field} document_last_review_date : date  
+    {field} document_next_review_date : date  
+    {field} document_status : string  
+    {field} document_classification : string  
+    {field} document_retention : isms_duration  
+    {field} document_distribution : string  [0..*]
+    {field} document_storage : string  
+    {field} document_change_control : string  
+    {field} document_external_origin : boolean  
+    {field} document_external_source : string  
+}
 "IsmsRiskAssessment" --> "0..*" "IsmsRisk" : "assessment_risks"
 "IsmsManagementSystem" *--> "0..*" "IsmsRiskAssessment" : "isms_risk_assessments"
+"IsmsRecordMixin" ^.. "IsmsRiskAssessment"
 "IsmsDocumentControlMixin" ^.. "IsmsRiskAssessment"
 "IsmsRisk" --> "0..*" "IsmsControl" : "risk_existing_controls"
 "IsmsRisk" --> "0..*" "IsmsAsset" : "affected_assets"
 "IsmsManagementSystem" *--> "0..*" "IsmsRisk" : "isms_risks"
 "IsmsObjective" --> "0..*" "IsmsRisk" : "objective_risks"
+"IsmsRecordMixin" ^.. "IsmsRisk"
+class "IsmsResource" [[{A resource provided for the ISMS, such as people, time, tools or budget.}]] {
+    {field} resource_category : string  
+    {field} resource_quantity : string  
+    {field} resource_allocation_date : date  
+    {field} resource_allocated_to : string  
+    {field} resource_cost : string  
+    {field} resource_availability : string  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+}
 "IsmsManagementSystem" *--> "0..*" "IsmsResource" : "isms_resources"
+"IsmsRecordMixin" ^.. "IsmsResource"
+class "IsmsOrganization" [[{The organization that runs the ISMS, with what it needs to know about itself to understand its context.}]] {
+    {field} organization_legal_name : string  
+    {field} organization_trading_names : string  [0..*]
+    {field} organization_kind : string  
+    {field} organization_sector : string  
+    {field} organization_size : string  
+    {field} organization_employee_count : integer  
+    {field} organization_locations : string  [0..*]
+    {field} organization_jurisdictions : string  [0..*]
+    {field} organization_parent : string  
+    {field} organization_subsidiaries : string  [0..*]
+    {field} organization_climate_change_relevant : boolean  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+}
+class "IsmsNonconformity" [[{A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was closed.}]] {
+    {field} nonconformity_source : string  
+    {field} nonconformity_detected_on : date  
+    {field} nonconformity_detected_by : string  
+    {field} nonconformity_requirement : string  
+    {field} nonconformity_immediate_actions : string  [0..*]
+    {field} nonconformity_consequences : string  
+    {field} nonconformity_root_cause : string  
+    {field} nonconformity_similar_check : string  
+    {field} nonconformity_status : string  
+    {field} nonconformity_closure_date : date  
+    {field} nonconformity_closure_evidence : string  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+}
+class "IsmsMonitoringProgramme" [[{The programme of monitoring, measurement, analysis and evaluation of information security performance and of the ISMS's effectiveness.}]] {
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+    {field} document_reference : string  
+    {field} document_version : string  
+    {field} document_author : string  
+    {field} document_owner : string  
+    {field} document_approver : string  
+    {field} document_approval_date : date  
+    {field} document_effective_date : date  
+    {field} document_last_review_date : date  
+    {field} document_next_review_date : date  
+    {field} document_status : string  
+    {field} document_classification : string  
+    {field} document_retention : isms_duration  
+    {field} document_distribution : string  [0..*]
+    {field} document_storage : string  
+    {field} document_change_control : string  
+    {field} document_external_origin : boolean  
+    {field} document_external_source : string  
+}
+class "IsmsManagementReview" [[{A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.}]] {
+    {field} review_held_on : date  
+    {field} review_attendees : string  [0..*]
+    {field} review_previous_actions : string  
+    {field} review_context_changes : string  
+    {field} review_interested_party_changes : string  
+    {field} review_interested_party_feedback : string  
+    {field} review_performance_trends : string  
+    {field} review_audit_results : string  
+    {field} review_risk_assessment_results : string  
+    {field} review_risk_treatment_status : string  
+    {field} review_risks_and_opportunities : string  
+    {field} review_improvement_opportunities : string  [0..*]
+    {field} review_decisions : string  [0..*]
+    {field} review_actions : string  [0..*]
+    {field} review_next_date : date  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+    {field} document_reference : string  
+    {field} document_version : string  
+    {field} document_author : string  
+    {field} document_owner : string  
+    {field} document_approver : string  
+    {field} document_approval_date : date  
+    {field} document_effective_date : date  
+    {field} document_last_review_date : date  
+    {field} document_next_review_date : date  
+    {field} document_status : string  
+    {field} document_classification : string  
+    {field} document_retention : isms_duration  
+    {field} document_distribution : string  [0..*]
+    {field} document_storage : string  
+    {field} document_change_control : string  
+    {field} document_external_origin : boolean  
+    {field} document_external_source : string  
+}
+class "IsmsInterestedParty" [[{A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it, such as staff, customers, regulators or suppliers.}]] {
+    {field} party_category : string  
+    {field} party_relationship : string  
+    {field} party_requirements : string  [0..*]
+    {field} party_addressed_requirements : string  [0..*]
+    {field} party_climate_change_requirements : string  [0..*]
+    {field} party_communication_needs : string  
+    {field} party_contact : string  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+}
+class "IsmsDocumentedInformation" [[{A piece of documented information the ISMS keeps under control that no more specific record describes, such as a procedure, a standard, a plan or a report.}]] {
+    {field} document_kind : IsmsDocumentKind  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+    {field} document_reference : string  
+    {field} document_version : string  
+    {field} document_author : string  
+    {field} document_owner : string  
+    {field} document_approver : string  
+    {field} document_approval_date : date  
+    {field} document_effective_date : date  
+    {field} document_last_review_date : date  
+    {field} document_next_review_date : date  
+    {field} document_status : string  
+    {field} document_classification : string  
+    {field} document_retention : isms_duration  
+    {field} document_distribution : string  [0..*]
+    {field} document_storage : string  
+    {field} document_change_control : string  
+    {field} document_external_origin : boolean  
+    {field} document_external_source : string  
+}
+class "IsmsCommunicationPlan" [[{The plan for communication about the ISMS, inside the organization and outside it.}]] {
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+    {field} document_reference : string  
+    {field} document_version : string  
+    {field} document_author : string  
+    {field} document_owner : string  
+    {field} document_approver : string  
+    {field} document_approval_date : date  
+    {field} document_effective_date : date  
+    {field} document_last_review_date : date  
+    {field} document_next_review_date : date  
+    {field} document_status : string  
+    {field} document_classification : string  
+    {field} document_retention : isms_duration  
+    {field} document_distribution : string  [0..*]
+    {field} document_storage : string  
+    {field} document_change_control : string  
+    {field} document_external_origin : boolean  
+    {field} document_external_source : string  
+}
+class "IsmsAwarenessProgramme" [[{The programme that makes people working for the organization aware of the policy, their part in the ISMS and what failing it would mean.}]] {
+    {field} awareness_topics : string  [0..*]
+    {field} awareness_methods : string  [0..*]
+    {field} awareness_audience : string  
+    {field} awareness_frequency : string  
+    {field} awareness_completion_tracking : string  
+    {field} awareness_effectiveness : string  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+    {field} document_reference : string  
+    {field} document_version : string  
+    {field} document_author : string  
+    {field} document_owner : string  
+    {field} document_approver : string  
+    {field} document_approval_date : date  
+    {field} document_effective_date : date  
+    {field} document_last_review_date : date  
+    {field} document_next_review_date : date  
+    {field} document_status : string  
+    {field} document_classification : string  
+    {field} document_retention : isms_duration  
+    {field} document_distribution : string  [0..*]
+    {field} document_storage : string  
+    {field} document_change_control : string  
+    {field} document_external_origin : boolean  
+    {field} document_external_source : string  
+}
+class "IsmsAuditProgramme" [[{An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors they need.}]] {
+    {field} programme_period : string  
+    {field} programme_frequency_rationale : string  
+    {field} programme_resources : string  
+    {field} programme_auditor_qualifications : string  
+    {field} programme_status : string  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+    {field} document_reference : string  
+    {field} document_version : string  
+    {field} document_author : string  
+    {field} document_owner : string  
+    {field} document_approver : string  
+    {field} document_approval_date : date  
+    {field} document_effective_date : date  
+    {field} document_last_review_date : date  
+    {field} document_next_review_date : date  
+    {field} document_status : string  
+    {field} document_classification : string  
+    {field} document_retention : isms_duration  
+    {field} document_distribution : string  [0..*]
+    {field} document_storage : string  
+    {field} document_change_control : string  
+    {field} document_external_origin : boolean  
+    {field} document_external_source : string  
+}
+class "IsmsAuditFinding" [[{One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it concerns, its evidence and how it is closed.}]] {
+    {field} finding_type : IsmsAuditFindingType  
+    {field} finding_requirement : isms_requirement_reference  
+    {field} finding_evidence : string  
+    {field} finding_root_cause : string  
+    {field} finding_risk : string  
+    {field} finding_recommendation : string  
+    {field} finding_auditee_response : string  
+    {field} finding_closure_status : string  
+    {field} finding_closure_date : date  
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+}
+class "IsmsAudit" [[{An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope, criteria, team, findings and conclusion.}]] {
+    {field} audit_type : IsmsAuditType  
+    {field} audit_standards : IsmsManagementSystemStandard  [0..*]
+    {field} audit_scope : string  
+    {field} audit_criteria : string  [0..*]
+    {field} audit_objectives : string  [0..*]
+    {field} audit_period_start : date  
+    {field} audit_period_end : date  
+    {field} audit_lead : string  
+    {field} audit_team : string  [0..*]
+    {field} audit_auditees : string  [0..*]
+    {field} audit_conclusion : string  
+    {field} audit_report_date : date  
+    {field} audit_report_distribution : string  [0..*]
+    {field} isms_id : uriorcurie  
+    {field} title : string  
+    {field} description : string  
+    {field} document_reference : string  
+    {field} document_version : string  
+    {field} document_author : string  
+    {field} document_owner : string  
+    {field} document_approver : string  
+    {field} document_approval_date : date  
+    {field} document_effective_date : date  
+    {field} document_last_review_date : date  
+    {field} document_next_review_date : date  
+    {field} document_status : string  
+    {field} document_classification : string  
+    {field} document_retention : isms_duration  
+    {field} document_distribution : string  [0..*]
+    {field} document_storage : string  
+    {field} document_change_control : string  
+    {field} document_external_origin : boolean  
+    {field} document_external_source : string  
+}
+"IsmsRecordMixin" ^.. "IsmsPolicy"
+"IsmsRecordMixin" ^.. "IsmsOrganization"
+"IsmsRecordMixin" ^.. "IsmsOperationalProcedure"
+"IsmsRecordMixin" ^.. "IsmsObjective"
+"IsmsRecordMixin" ^.. "IsmsNonconformity"
+"IsmsRecordMixin" ^.. "IsmsMonitoringProgramme"
+"IsmsRecordMixin" ^.. "IsmsManagementSystem"
+"IsmsRecordMixin" ^.. "IsmsManagementReview"
+"IsmsRecordMixin" ^.. "IsmsInterestedParty"
+"IsmsRecordMixin" ^.. "IsmsImprovementOpportunity"
+"IsmsRecordMixin" ^.. "IsmsDocumentedInformation"
+"IsmsRecordMixin" ^.. "IsmsCorrectiveAction"
+"IsmsRecordMixin" ^.. "IsmsControl"
+"IsmsRecordMixin" ^.. "IsmsCompetenceRecord"
+"IsmsRecordMixin" ^.. "IsmsCommunicationPlan"
+"IsmsRecordMixin" ^.. "IsmsAwarenessProgramme"
+"IsmsRecordMixin" ^.. "IsmsAuditProgramme"
+"IsmsRecordMixin" ^.. "IsmsAuditFinding"
+"IsmsRecordMixin" ^.. "IsmsAudit"
+"IsmsRecordMixin" ^.. "IsmsAsset"
 "IsmsManagementSystem" *--> "0..1" "IsmsPolicy" : "isms_policy"
 "IsmsDocumentControlMixin" ^.. "IsmsPolicy"
 "IsmsManagementSystem" *--> "0..1" "IsmsOrganization" : "isms_organization"

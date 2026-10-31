@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsOrganization extends IsmsRecord {
+public class IsmsOrganization  {
 
   private String organizationLegalName;
   private List<String> organizationTradingNames;
@@ -27,6 +27,9 @@ public class IsmsOrganization extends IsmsRecord {
   private String organizationParent;
   private List<String> organizationSubsidiaries;
   private Boolean organizationClimateChangeRelevant;
+  private URI ismsId;
+  private String title;
+  private String description;
 
 
 }

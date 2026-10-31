@@ -18,6 +18,9 @@ SELECT ?g ?s ?p WHERE {
    iso27001:topic_policy_topic,
    iso27001:topic_policy_parent,
    iso27001:topic_policy_audience,
+   iso27001:isms_id,
+   schema:name,
+   schema:description,
    iso27001:document_reference,
    iso27001:document_version,
    iso27001:document_author,
@@ -35,9 +38,6 @@ SELECT ?g ?s ?p WHERE {
    iso27001:document_change_control,
    iso27001:document_external_origin,
    iso27001:document_external_source,
-   iso27001:isms_id,
-   schema:name,
-   schema:description,
    rdf:type ))
  }
  

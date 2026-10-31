@@ -5,8 +5,8 @@
  classDiagram
     class IsmsResource
     click IsmsResource href "../IsmsResource"
-      IsmsRecord <|-- IsmsResource
-        click IsmsRecord href "../IsmsRecord"
+      IsmsRecordMixin <|-- IsmsResource
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       
       IsmsResource : description
         

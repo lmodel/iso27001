@@ -26,7 +26,7 @@ from linkml.generators.panderagen.linkml_pandera_validator import LinkmlPanderaV
 
 # These are all str for now
 ID_TYPES = {
-    "IsmsRecord": "str",
+    "IsmsRecordMixin": "str",
     "IsmsOrganization": "str",
     "IsmsInterestedParty": "str",
     "IsmsDocumentControlMixin": "str",
@@ -67,9 +67,9 @@ ID_TYPES = {
 }
 
 # metamodel_version: 1.12.0
-# version: 2022/Amd 1:2024class IsmsRecord(pla.DataFrameModel, _LinkmlPanderaValidator):
+# version: 2022/Amd 1:2024class IsmsRecordMixin(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
-    Anything the ISMS keeps a record of that other records can refer to: it has an identifier, a title and a description.
+    What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.
     """
 
     _id_name : str =  'isms_id' 
@@ -89,7 +89,7 @@ ID_TYPES = {
     """
     
     
-class IsmsOrganization(IsmsRecord):
+class IsmsOrganization(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     The organization that runs the ISMS, with what it needs to know about itself to understand its context.
     """
@@ -150,8 +150,23 @@ class IsmsOrganization(IsmsRecord):
     Whether the organization has determined that climate change is a relevant issue for its ISMS.
     """
     
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
     
-class IsmsInterestedParty(IsmsRecord):
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
+    """
+    
+    
+class IsmsInterestedParty(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it, such as staff, customers, regulators or suppliers.
     """
@@ -190,6 +205,21 @@ class IsmsInterestedParty(IsmsRecord):
     party_contact: Optional[str] = pla.Field(nullable=True, )
     """
     How to reach the party.
+    """
+    
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
     """
     
     
@@ -285,7 +315,7 @@ class IsmsDocumentControlMixin(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     
     
-class IsmsPolicy(IsmsRecord):
+class IsmsPolicy(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     The information security policy that top management sets: the organization's commitment and the frame for its information security objectives.
     """
@@ -326,6 +356,21 @@ class IsmsPolicy(IsmsRecord):
     The other management system standards the ISMS is integrated with under the same policy.
     """
     
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
+    """
+    
     document_reference: Optional[str] = pla.Field(nullable=True, )
     """
     The reference the organization's document control gives it.
@@ -412,7 +457,7 @@ class IsmsPolicy(IsmsRecord):
     """
     
     
-class IsmsTopicSpecificPolicy(IsmsRecord):
+class IsmsTopicSpecificPolicy(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     A policy on one topic of information security, such as access control or backup, that supports the information security policy.
     """
@@ -438,6 +483,21 @@ class IsmsTopicSpecificPolicy(IsmsRecord):
     Whom the policy is written for.
     """
     
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
+    """
+    
     document_reference: Optional[str] = pla.Field(nullable=True, )
     """
     The reference the organization's document control gives it.
@@ -524,7 +584,7 @@ class IsmsTopicSpecificPolicy(IsmsRecord):
     """
     
     
-class IsmsRole(IsmsRecord):
+class IsmsRole(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     A role in the ISMS, with the responsibilities and authorities it carries and who holds it.
     """
@@ -565,8 +625,23 @@ class IsmsRole(IsmsRecord):
     The role this role reports to.
     """
     
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
     
-class IsmsObjective(IsmsRecord):
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
+    """
+    
+    
+class IsmsObjective(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     An information security objective: a measurable result the organization aims for, with how it plans to reach it and how it measures progress.
     """
@@ -637,8 +712,23 @@ class IsmsObjective(IsmsRecord):
     The resources needed to reach the objective.
     """
     
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
     
-class IsmsRiskAssessmentProcess(IsmsRecord):
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
+    """
+    
+    
+class IsmsRiskAssessmentProcess(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     The organization's process for assessing information security risks: its criteria for accepting risk and for assessing it, its scales and method, and when it runs.
     """
@@ -684,6 +774,21 @@ class IsmsRiskAssessmentProcess(IsmsRecord):
     The events that start a risk assessment outside the planned ones.
     """
     
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
+    """
+    
     document_reference: Optional[str] = pla.Field(nullable=True, )
     """
     The reference the organization's document control gives it.
@@ -770,7 +875,7 @@ class IsmsRiskAssessmentProcess(IsmsRecord):
     """
     
     
-class IsmsRiskTreatmentProcess(IsmsRecord):
+class IsmsRiskTreatmentProcess(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     The organization's process for treating information security risks: how it chooses treatments and controls, checks them against Annex A, and produces the Statement of Applicability.
     """
@@ -801,6 +906,21 @@ class IsmsRiskTreatmentProcess(IsmsRecord):
     How a treatment plan and its residual risks are approved.
     """
     
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
+    """
+    
     document_reference: Optional[str] = pla.Field(nullable=True, )
     """
     The reference the organization's document control gives it.
@@ -887,7 +1007,7 @@ class IsmsRiskTreatmentProcess(IsmsRecord):
     """
     
     
-class IsmsRiskAssessment(IsmsRecord):
+class IsmsRiskAssessment(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     One risk assessment carried out under the risk assessment process, and what it found.
     """
@@ -933,6 +1053,21 @@ class IsmsRiskAssessment(IsmsRecord):
     When the next assessment is planned.
     """
     
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
+    """
+    
     document_reference: Optional[str] = pla.Field(nullable=True, )
     """
     The reference the organization's document control gives it.
@@ -1019,7 +1154,7 @@ class IsmsRiskAssessment(IsmsRecord):
     """
     
     
-class IsmsRisk(IsmsRecord):
+class IsmsRisk(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated.
     """
@@ -1090,8 +1225,23 @@ class IsmsRisk(IsmsRecord):
     How soon the risk is to be treated, in the organization's own terms.
     """
     
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
     
-class IsmsRiskTreatmentPlan(IsmsRecord):
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
+    """
+    
+    
+class IsmsRiskTreatmentPlan(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's approval of the plan and of the residual risk.
     """
@@ -1150,6 +1300,21 @@ class IsmsRiskTreatmentPlan(IsmsRecord):
     plan_completion_date: Optional[Date] = pla.Field(nullable=True, )
     """
     When the plan was completed.
+    """
+    
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
     """
     
     document_reference: Optional[str] = pla.Field(nullable=True, )
@@ -1260,7 +1425,7 @@ class IsmsApplicabilityEntry(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     
     
-class IsmsStatementOfApplicability(IsmsRecord):
+class IsmsStatementOfApplicability(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     The Statement of Applicability: each control the organization needs, with why it is included and whether it is in place, and each Annex A control it leaves out, with why.
     """
@@ -1269,6 +1434,21 @@ class IsmsStatementOfApplicability(IsmsRecord):
     soa_entries: Optional[List] = pla.Field(nullable=True, )
     """
     The statement's entries, one for each control included or Annex A control excluded.
+    """
+    
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
     """
     
     document_reference: Optional[str] = pla.Field(nullable=True, )
@@ -1361,7 +1541,7 @@ class IsmsStatementOfApplicability(IsmsRecord):
     def check_nested_struct_soa_entries(cls, data: PolarsData):
         return cls._check_nested_list_struct(data, IsmsApplicabilityEntry, pa_pl.IsmsApplicabilityEntryDict)
         
-class IsmsControl(IsmsRecord):
+class IsmsControl(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.
     """
@@ -1432,8 +1612,23 @@ class IsmsControl(IsmsRecord):
     Where the evidence that the control is in place is kept.
     """
     
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
     
-class IsmsAsset(IsmsRecord):
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
+    """
+    
+    
+class IsmsAsset(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     An item in the inventory of information and other associated assets: what it is, who owns and looks after it, where it is, how it is classified and how much it matters.
     """
@@ -1474,8 +1669,23 @@ class IsmsAsset(IsmsRecord):
     How much the asset matters, in the organization's own terms.
     """
     
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
     
-class IsmsResource(IsmsRecord):
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
+    """
+    
+    
+class IsmsResource(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     A resource provided for the ISMS, such as people, time, tools or budget.
     """
@@ -1511,8 +1721,23 @@ class IsmsResource(IsmsRecord):
     Whether the resource is available now, in the organization's own terms.
     """
     
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
     
-class IsmsCompetenceRecord(IsmsRecord):
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
+    """
+    
+    
+class IsmsCompetenceRecord(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     The evidence of one person's competence for work that affects information security, and what is done to close any gap.
     """
@@ -1561,6 +1786,21 @@ class IsmsCompetenceRecord(IsmsRecord):
     competence_actions: Optional[str] = pla.Field(nullable=True, )
     """
     What is done to close the gaps.
+    """
+    
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
     """
     
     document_reference: Optional[str] = pla.Field(nullable=True, )
@@ -1649,7 +1889,7 @@ class IsmsCompetenceRecord(IsmsRecord):
     """
     
     
-class IsmsAwarenessProgramme(IsmsRecord):
+class IsmsAwarenessProgramme(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     The programme that makes people working for the organization aware of the policy, their part in the ISMS and what failing it would mean.
     """
@@ -1683,6 +1923,21 @@ class IsmsAwarenessProgramme(IsmsRecord):
     awareness_effectiveness: Optional[str] = pla.Field(nullable=True, )
     """
     How the programme's effect is measured.
+    """
+    
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
     """
     
     document_reference: Optional[str] = pla.Field(nullable=True, )
@@ -1813,7 +2068,7 @@ class IsmsCommunication(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     
     
-class IsmsCommunicationPlan(IsmsRecord):
+class IsmsCommunicationPlan(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     The plan for communication about the ISMS, inside the organization and outside it.
     """
@@ -1822,6 +2077,21 @@ class IsmsCommunicationPlan(IsmsRecord):
     communication_items: Optional[List] = pla.Field(nullable=True, )
     """
     The communications the plan provides for.
+    """
+    
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
     """
     
     document_reference: Optional[str] = pla.Field(nullable=True, )
@@ -1914,7 +2184,7 @@ class IsmsCommunicationPlan(IsmsRecord):
     def check_nested_struct_communication_items(cls, data: PolarsData):
         return cls._check_nested_list_struct(data, IsmsCommunication, pa_pl.IsmsCommunicationDict)
         
-class IsmsDocumentedInformation(IsmsRecord):
+class IsmsDocumentedInformation(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     A piece of documented information the ISMS keeps under control that no more specific record describes, such as a procedure, a standard, a plan or a report.
     """
@@ -1923,6 +2193,21 @@ class IsmsDocumentedInformation(IsmsRecord):
     document_kind: Enum = pla.Field(dtype_kwargs={"categories":('procedure','standard','guideline','record','plan','report',)})
     """
     What kind of documented information it is.
+    """
+    
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
     """
     
     document_reference: Optional[str] = pla.Field(nullable=True, )
@@ -2011,7 +2296,7 @@ class IsmsDocumentedInformation(IsmsRecord):
     """
     
     
-class IsmsOperationalProcedure(IsmsRecord):
+class IsmsOperationalProcedure(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     A procedure by which the organization plans and controls the processes that meet its information security requirements.
     """
@@ -2045,6 +2330,21 @@ class IsmsOperationalProcedure(IsmsRecord):
     procedure_change_control: Optional[str] = pla.Field(nullable=True, )
     """
     How changes to the processes are controlled.
+    """
+    
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
     """
     
     document_reference: Optional[str] = pla.Field(nullable=True, )
@@ -2195,7 +2495,7 @@ class IsmsMonitoringItem(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     
     
-class IsmsMonitoringProgramme(IsmsRecord):
+class IsmsMonitoringProgramme(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     The programme of monitoring, measurement, analysis and evaluation of information security performance and of the ISMS's effectiveness.
     """
@@ -2204,6 +2504,21 @@ class IsmsMonitoringProgramme(IsmsRecord):
     monitoring_items: Optional[List] = pla.Field(nullable=True, )
     """
     What the programme monitors and measures.
+    """
+    
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
     """
     
     document_reference: Optional[str] = pla.Field(nullable=True, )
@@ -2296,7 +2611,7 @@ class IsmsMonitoringProgramme(IsmsRecord):
     def check_nested_struct_monitoring_items(cls, data: PolarsData):
         return cls._check_nested_list_struct(data, IsmsMonitoringItem, pa_pl.IsmsMonitoringItemDict)
         
-class IsmsAuditProgramme(IsmsRecord):
+class IsmsAuditProgramme(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors they need.
     """
@@ -2330,6 +2645,21 @@ class IsmsAuditProgramme(IsmsRecord):
     programme_status: Optional[str] = pla.Field(nullable=True, )
     """
     Where the programme stands, in the organization's own terms.
+    """
+    
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
     """
     
     document_reference: Optional[str] = pla.Field(nullable=True, )
@@ -2418,7 +2748,7 @@ class IsmsAuditProgramme(IsmsRecord):
     """
     
     
-class IsmsAuditFinding(IsmsRecord):
+class IsmsAuditFinding(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it concerns, its evidence and how it is closed.
     """
@@ -2479,8 +2809,23 @@ class IsmsAuditFinding(IsmsRecord):
     When the finding was closed.
     """
     
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
     
-class IsmsAudit(IsmsRecord):
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
+    """
+    
+    
+class IsmsAudit(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope, criteria, team, findings and conclusion.
     """
@@ -2559,6 +2904,21 @@ class IsmsAudit(IsmsRecord):
     audit_report_distribution: Optional[str] = pla.Field(nullable=True, )
     """
     Who received the audit report.
+    """
+    
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
     """
     
     document_reference: Optional[str] = pla.Field(nullable=True, )
@@ -2651,7 +3011,7 @@ class IsmsAudit(IsmsRecord):
     def check_nested_struct_audit_findings(cls, data: PolarsData):
         return cls._check_nested_list_struct(data, IsmsAuditFinding, pa_pl.IsmsAuditFindingDict)
         
-class IsmsManagementReview(IsmsRecord):
+class IsmsManagementReview(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.
     """
@@ -2730,6 +3090,21 @@ class IsmsManagementReview(IsmsRecord):
     review_next_date: Optional[Date] = pla.Field(nullable=True, )
     """
     When the next review is planned.
+    """
+    
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
     """
     
     document_reference: Optional[str] = pla.Field(nullable=True, )
@@ -2818,7 +3193,7 @@ class IsmsManagementReview(IsmsRecord):
     """
     
     
-class IsmsNonconformity(IsmsRecord):
+class IsmsNonconformity(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was closed.
     """
@@ -2879,8 +3254,23 @@ class IsmsNonconformity(IsmsRecord):
     What shows that it is closed.
     """
     
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
     
-class IsmsCorrectiveAction(IsmsRecord):
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
+    """
+    
+    
+class IsmsCorrectiveAction(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it worked.
     """
@@ -2941,8 +3331,23 @@ class IsmsCorrectiveAction(IsmsRecord):
     Where the action stands, in the organization's own terms.
     """
     
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
     
-class IsmsImprovementOpportunity(IsmsRecord):
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
+    """
+    
+    
+class IsmsImprovementOpportunity(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.
     """
@@ -3003,8 +3408,23 @@ class IsmsImprovementOpportunity(IsmsRecord):
     Where it stands, in the organization's own terms.
     """
     
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
     
-class IsmsSecurityEvent(IsmsRecord):
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
+    """
+    
+    
+class IsmsSecurityEvent(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     An information security event someone reported, and the assessment of whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.
     """
@@ -3035,8 +3455,23 @@ class IsmsSecurityEvent(IsmsRecord):
     What the assessment of the event found.
     """
     
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
     
-class IsmsManagementSystem(IsmsRecord):
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
+    """
+    
+    
+class IsmsManagementSystem(pla.DataFrameModel, _LinkmlPanderaValidator):
     """
     One organization's information security management system: its scope and context, and every record it keeps, each kind in a list of its own.
     """
@@ -3265,6 +3700,21 @@ class IsmsManagementSystem(IsmsRecord):
     isms_security_events: Optional[List] = pla.Field(nullable=True, )
     """
     The information security events reported, the incidents among them.
+    """
+    
+    isms_id: str = pla.Field()
+    """
+    The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    """
+    
+    title: str = pla.Field(str_contains=r"^\s*\S", )
+    """
+    The name the organization gives the record.
+    """
+    
+    description: Optional[str] = pla.Field(nullable=True, )
+    """
+    What the record says or describes, in the organization's own words.
     """
     
     

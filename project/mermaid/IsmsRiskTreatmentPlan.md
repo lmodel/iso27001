@@ -5,10 +5,10 @@
  classDiagram
     class IsmsRiskTreatmentPlan
     click IsmsRiskTreatmentPlan href "../IsmsRiskTreatmentPlan"
+      IsmsRecordMixin <|-- IsmsRiskTreatmentPlan
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       IsmsDocumentControlMixin <|-- IsmsRiskTreatmentPlan
         click IsmsDocumentControlMixin href "../IsmsDocumentControlMixin"
-      IsmsRecord <|-- IsmsRiskTreatmentPlan
-        click IsmsRecord href "../IsmsRecord"
       
       IsmsRiskTreatmentPlan : description
         

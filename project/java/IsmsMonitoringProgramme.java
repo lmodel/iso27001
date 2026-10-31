@@ -14,9 +14,12 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsMonitoringProgramme extends IsmsRecord {
+public class IsmsMonitoringProgramme  {
 
   private List<IsmsMonitoringItem> monitoringItems;
+  private URI ismsId;
+  private String title;
+  private String description;
   private String documentReference;
   private String documentVersion;
   private String documentAuthor;

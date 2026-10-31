@@ -117,8 +117,8 @@ types:
 slots:
   # isms_id is a slot, not an attribute, so every record shares one
   # identifier key and every reference ranges over a class that has one.
-  # IsmsRecord lists it first, so the generated Python dataclasses key an
-  # inlined list by it. The adapt copy replaces it with LOKF's id.
+  # IsmsRecordMixin lists it first, so the generated Python dataclasses key
+  # an inlined list by it. The adapt copy replaces it with LOKF's id.
   isms_id:
     description: >-
       The record's identifier, unique among the ISMS's records, such as a
@@ -177,11 +177,17 @@ slots:
     range: IsmsAnnexAControl
 
 classes:
-  IsmsRecord:
-    abstract: true
+  IsmsRecordMixin:
+    mixin: true
     description: >-
-      Anything the ISMS keeps a record of that other records can refer to:
-      it has an identifier, a title and a description.
+      What every record of the ISMS has, so that other records can refer to
+      it: an identifier, a title and a description.
+    comments:
+      - >-
+        It is a mixin, not a base class, so that the adapt copy can re-root
+        some record classes on LOKF's Concept and leave the others as they
+        are: lokf adapt replaces isms_id with LOKF's id, and a class that
+        declares id itself must descend from Concept.
     slots:
       - isms_id
       - title
@@ -252,8 +258,9 @@ classes:
         description: Who the document came from, when it comes from outside.
 
   IsmsManagementSystem:
-    is_a: IsmsRecord
     tree_root: true
+    mixins:
+      - IsmsRecordMixin
     description: >-
       One organization's information security management system: its scope
       and context, and every record it keeps, each kind in a list of its own.
@@ -499,7 +506,8 @@ classes:
         inlined_as_list: true
 
   IsmsOrganization:
-    is_a: IsmsRecord
+    mixins:
+      - IsmsRecordMixin
     description: >-
       The organization that runs the ISMS, with what it needs to know about
       itself to understand its context.
@@ -548,7 +556,8 @@ classes:
           iso27001_amendment: ISO/IEC 27001:2022/Amd 1:2024
 
   IsmsInterestedParty:
-    is_a: IsmsRecord
+    mixins:
+      - IsmsRecordMixin
     description: >-
       A person or organization whose needs and expectations bear on the
       ISMS, inside the organization or outside it, such as staff, customers,
@@ -580,8 +589,8 @@ classes:
         description: How to reach the party.
 
   IsmsPolicy:
-    is_a: IsmsRecord
     mixins:
+      - IsmsRecordMixin
       - IsmsDocumentControlMixin
     description: >-
       The information security policy that top management sets: the
@@ -616,8 +625,8 @@ classes:
         multivalued: true
 
   IsmsTopicSpecificPolicy:
-    is_a: IsmsRecord
     mixins:
+      - IsmsRecordMixin
       - IsmsDocumentControlMixin
     description: >-
       A policy on one topic of information security, such as access control
@@ -639,7 +648,8 @@ classes:
         description: Whom the policy is written for.
 
   IsmsRole:
-    is_a: IsmsRecord
+    mixins:
+      - IsmsRecordMixin
     description: >-
       A role in the ISMS, with the responsibilities and authorities it
       carries and who holds it.
@@ -670,7 +680,8 @@ classes:
         range: IsmsRole
 
   IsmsObjective:
-    is_a: IsmsRecord
+    mixins:
+      - IsmsRecordMixin
     description: >-
       An information security objective: a measurable result the
       organization aims for, with how it plans to reach it and how it
@@ -710,8 +721,8 @@ classes:
         description: The resources needed to reach the objective.
 
   IsmsRiskAssessmentProcess:
-    is_a: IsmsRecord
     mixins:
+      - IsmsRecordMixin
       - IsmsDocumentControlMixin
     description: >-
       The organization's process for assessing information security risks:
@@ -742,8 +753,8 @@ classes:
         multivalued: true
 
   IsmsRiskAssessment:
-    is_a: IsmsRecord
     mixins:
+      - IsmsRecordMixin
       - IsmsDocumentControlMixin
     description: >-
       One risk assessment carried out under the risk assessment process, and
@@ -776,7 +787,8 @@ classes:
         range: date
 
   IsmsRisk:
-    is_a: IsmsRecord
+    mixins:
+      - IsmsRecordMixin
     description: >-
       An information security risk in the risk register: where it comes from,
       what it threatens, who owns it, how it is rated before and after
@@ -820,8 +832,8 @@ classes:
         description: How soon the risk is to be treated, in the organization's own terms.
 
   IsmsRiskTreatmentProcess:
-    is_a: IsmsRecord
     mixins:
+      - IsmsRecordMixin
       - IsmsDocumentControlMixin
     description: >-
       The organization's process for treating information security risks:
@@ -847,8 +859,8 @@ classes:
         description: How a treatment plan and its residual risks are approved.
 
   IsmsRiskTreatmentPlan:
-    is_a: IsmsRecord
     mixins:
+      - IsmsRecordMixin
       - IsmsDocumentControlMixin
     description: >-
       A plan to treat one or more risks: the actions and controls, who
@@ -893,8 +905,8 @@ classes:
         range: date
 
   IsmsStatementOfApplicability:
-    is_a: IsmsRecord
     mixins:
+      - IsmsRecordMixin
       - IsmsDocumentControlMixin
     description: >-
       The Statement of Applicability: each control the organization needs,
@@ -987,7 +999,8 @@ classes:
         required: true
 
   IsmsControl:
-    is_a: IsmsRecord
+    mixins:
+      - IsmsRecordMixin
     description: >-
       A control the organization has determined it needs to treat its risks:
       what it does in the organization's words, which Annex A controls it
@@ -1040,7 +1053,8 @@ classes:
         multivalued: true
 
   IsmsAsset:
-    is_a: IsmsRecord
+    mixins:
+      - IsmsRecordMixin
     description: >-
       An item in the inventory of information and other associated assets:
       what it is, who owns and looks after it, where it is, how it is
@@ -1069,7 +1083,8 @@ classes:
         description: How much the asset matters, in the organization's own terms.
 
   IsmsResource:
-    is_a: IsmsRecord
+    mixins:
+      - IsmsRecordMixin
     description: >-
       A resource provided for the ISMS, such as people, time, tools or budget.
     in_subset:
@@ -1092,8 +1107,8 @@ classes:
         description: Whether the resource is available now, in the organization's own terms.
 
   IsmsCompetenceRecord:
-    is_a: IsmsRecord
     mixins:
+      - IsmsRecordMixin
       - IsmsDocumentControlMixin
     description: >-
       The evidence of one person's competence for work that affects
@@ -1132,8 +1147,8 @@ classes:
         multivalued: true
 
   IsmsAwarenessProgramme:
-    is_a: IsmsRecord
     mixins:
+      - IsmsRecordMixin
       - IsmsDocumentControlMixin
     description: >-
       The programme that makes people working for the organization aware of
@@ -1159,8 +1174,8 @@ classes:
         description: How the programme's effect is measured.
 
   IsmsCommunicationPlan:
-    is_a: IsmsRecord
     mixins:
+      - IsmsRecordMixin
       - IsmsDocumentControlMixin
     description: >-
       The plan for communication about the ISMS, inside the organization and
@@ -1205,8 +1220,8 @@ classes:
         range: boolean
 
   IsmsDocumentedInformation:
-    is_a: IsmsRecord
     mixins:
+      - IsmsRecordMixin
       - IsmsDocumentControlMixin
     description: >-
       A piece of documented information the ISMS keeps under control that no
@@ -1223,8 +1238,8 @@ classes:
         required: true
 
   IsmsOperationalProcedure:
-    is_a: IsmsRecord
     mixins:
+      - IsmsRecordMixin
       - IsmsDocumentControlMixin
     description: >-
       A procedure by which the organization plans and controls the processes
@@ -1251,8 +1266,8 @@ classes:
         description: How changes to the processes are controlled.
 
   IsmsMonitoringProgramme:
-    is_a: IsmsRecord
     mixins:
+      - IsmsRecordMixin
       - IsmsDocumentControlMixin
     description: >-
       The programme of monitoring, measurement, analysis and evaluation of
@@ -1304,8 +1319,8 @@ classes:
         description: Which way the value is moving.
 
   IsmsAuditProgramme:
-    is_a: IsmsRecord
     mixins:
+      - IsmsRecordMixin
       - IsmsDocumentControlMixin
     description: >-
       An internal audit programme: the audits planned over a period, how
@@ -1334,8 +1349,8 @@ classes:
         description: Where the programme stands, in the organization's own terms.
 
   IsmsAudit:
-    is_a: IsmsRecord
     mixins:
+      - IsmsRecordMixin
       - IsmsDocumentControlMixin
     description: >-
       An audit of the ISMS: an internal audit, or an audit by a customer or a
@@ -1402,7 +1417,8 @@ classes:
         multivalued: true
 
   IsmsAuditFinding:
-    is_a: IsmsRecord
+    mixins:
+      - IsmsRecordMixin
     description: >-
       One finding of an audit: a nonconformity, an observation or a strength,
       with the requirement or control it concerns, its evidence and how it is
@@ -1444,8 +1460,8 @@ classes:
         range: date
 
   IsmsManagementReview:
-    is_a: IsmsRecord
     mixins:
+      - IsmsRecordMixin
       - IsmsDocumentControlMixin
     description: >-
       A review of the ISMS by top management: what it considered, what it
@@ -1495,7 +1511,8 @@ classes:
         range: date
 
   IsmsNonconformity:
-    is_a: IsmsRecord
+    mixins:
+      - IsmsRecordMixin
     description: >-
       A nonconformity: a requirement not met, how it was found and contained,
       its consequences and cause, and how it was closed.
@@ -1533,7 +1550,8 @@ classes:
         description: What shows that it is closed.
 
   IsmsCorrectiveAction:
-    is_a: IsmsRecord
+    mixins:
+      - IsmsRecordMixin
     description: >-
       An action that removes the cause of one or more nonconformities so
       that they do not recur, and the check that it worked.
@@ -1574,7 +1592,8 @@ classes:
         description: Where the action stands, in the organization's own terms.
 
   IsmsImprovementOpportunity:
-    is_a: IsmsRecord
+    mixins:
+      - IsmsRecordMixin
     description: >-
       An opportunity to improve the ISMS's suitability, adequacy or
       effectiveness, and what came of it.
@@ -1610,7 +1629,8 @@ classes:
         description: Where it stands, in the organization's own terms.
 
   IsmsSecurityEvent:
-    is_a: IsmsRecord
+    mixins:
+      - IsmsRecordMixin
     description: >-
       An information security event someone reported, and the assessment of
       whether it is an incident. An event assessed as an incident is

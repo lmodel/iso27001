@@ -6,16 +6,6 @@ display_name: IsmsAudit
 document_category: IsmsAudit
 weight: 20
 fields:
-- id: isms_id
-  description: The record's identifier, unique among the ISMS's records, such as a
-    URI or a CURIE. Other records refer to the record by it.
-  display_name: isms_id
-- id: title
-  description: The name the organization gives the record.
-  display_name: IsmsRecord_title
-- id: description
-  description: What the record says or describes, in the organization's own words.
-  display_name: description
 - id: audit_type
   description: Who carries out the audit, relative to the organization.
   display_name: ismsAudit__audit_type
@@ -68,6 +58,16 @@ fields:
   description: Who received the audit report.
   display_name: ismsAudit__audit_report_distribution
   cardinality: multi
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecordMixin_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description
 - id: document_reference
   description: The reference the organization's document control gives it.
   display_name: ismsDocumentControlMixin__document_reference

@@ -114,7 +114,7 @@ def test_merge_changes_only_descriptive_keys(tmp_path, monkeypatch):
         == "LICENSED ATTRIBUTE TEXT"
     )
     assert "range" not in policy
-    assert policy["is_a"] == public["classes"]["IsmsPolicy"]["is_a"]
+    assert policy["mixins"] == public["classes"]["IsmsPolicy"]["mixins"]
     pv = merged["enums"]["IsmsAnnexAControl"]["permissible_values"]["a_5_1"]
     assert pv["description"] == "LICENSED VALUE TEXT"
     assert pv["title"] == "A.5.1"

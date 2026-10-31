@@ -297,7 +297,7 @@ define
   attribute incident-severity, value string;
 
   # Entity types
-  entity ismsrecord @abstract,
+  entity ismsrecordmixin,
       owns isms-id @key,
       owns title @card(1..1),
       owns description;
@@ -321,7 +321,7 @@ define
       owns document-external-origin,
       owns document-external-source;
   
-  entity ismsmanagementsystem, sub ismsrecord,
+  entity ismsmanagementsystem,
       owns isms-top-management,
       owns isms-governing-body,
       owns isms-leadership-evidence @card(0..),
@@ -368,7 +368,7 @@ define
       plays isms-improvements:ismsmanagementsystem,
       plays isms-security-events:ismsmanagementsystem;
   
-  entity ismsorganization, sub ismsrecord,
+  entity ismsorganization,
       owns organization-legal-name,
       owns organization-trading-names @card(0..),
       owns organization-kind,
@@ -382,7 +382,7 @@ define
       owns organization-climate-change-relevant,
       plays isms-organization:ismsorganization;
   
-  entity ismsinterestedparty, sub ismsrecord,
+  entity ismsinterestedparty,
       owns party-category,
       owns party-relationship,
       owns party-requirements @card(0..),
@@ -392,7 +392,7 @@ define
       owns party-contact,
       plays isms-interested-parties:ismsinterestedparty;
   
-  entity ismspolicy, sub ismsrecord,
+  entity ismspolicy,
       owns policy-statement,
       owns policy-objectives-framework,
       owns policy-commitments @card(0..),
@@ -403,14 +403,14 @@ define
       plays isms-policy:ismspolicy,
       plays topic-policy-parent:ismspolicy;
   
-  entity ismstopicspecificpolicy, sub ismsrecord,
+  entity ismstopicspecificpolicy,
       owns topic-policy-topic,
       owns topic-policy-audience,
       plays isms-topic-specific-policies:ismstopicspecificpolicy,
       plays relevant-controls:ismstopicspecificpolicy,
       plays topic-policy-parent:ismstopicspecificpolicy;
   
-  entity ismsrole, sub ismsrecord,
+  entity ismsrole,
       owns role-category,
       owns role-responsibilities @card(0..),
       owns role-authorities @card(0..),
@@ -423,7 +423,7 @@ define
       plays competence-role:ismsrole,
       plays procedure-roles:ismsrole;
   
-  entity ismsobjective, sub ismsrecord,
+  entity ismsobjective,
       owns objective-statement,
       owns objective-target,
       owns objective-current-value,
@@ -439,7 +439,7 @@ define
       plays relevant-controls:ismsobjective,
       plays objective-risks:ismsobjective;
   
-  entity ismsriskassessmentprocess, sub ismsrecord,
+  entity ismsriskassessmentprocess,
       owns risk-acceptance-criteria,
       owns risk-assessment-criteria,
       owns risk-assessment-method,
@@ -450,7 +450,7 @@ define
       owns risk-assessment-triggers @card(0..),
       plays isms-risk-assessment-process:ismsriskassessmentprocess;
   
-  entity ismsriskassessment, sub ismsrecord,
+  entity ismsriskassessment,
       owns assessment-scope,
       owns assessment-date,
       owns assessment-assessor,
@@ -461,7 +461,7 @@ define
       plays isms-risk-assessments:ismsriskassessment,
       plays assessment-risks:ismsriskassessment;
   
-  entity ismsrisk, sub ismsrecord,
+  entity ismsrisk,
       owns affected-security-properties @card(0..),
       owns risk-source,
       owns risk-threat,
@@ -480,7 +480,7 @@ define
       plays risk-existing-controls:ismsrisk,
       plays plan-risks:ismsrisk;
   
-  entity ismsrisktreatmentprocess, sub ismsrecord,
+  entity ismsrisktreatmentprocess,
       owns treatment-options-guidance,
       owns treatment-control-selection,
       owns treatment-annex-a-comparison,
@@ -488,7 +488,7 @@ define
       owns treatment-approval-workflow,
       plays isms-risk-treatment-process:ismsrisktreatmentprocess;
   
-  entity ismsrisktreatmentplan, sub ismsrecord,
+  entity ismsrisktreatmentplan,
       owns implementation-state,
       owns plan-scope,
       owns plan-actions @card(0..),
@@ -502,7 +502,7 @@ define
       plays plan-risks:ismsrisktreatmentplan,
       plays plan-controls:ismsrisktreatmentplan;
   
-  entity ismsstatementofapplicability, sub ismsrecord,
+  entity ismsstatementofapplicability,
       plays isms-statement-of-applicability:ismsstatementofapplicability,
       plays soa-entries:ismsstatementofapplicability;
   
@@ -521,7 +521,7 @@ define
   
   entity ismsexcludedcontrol, sub ismsapplicabilityentry;
   
-  entity ismscontrol, sub ismsrecord,
+  entity ismscontrol,
       owns implementation-state,
       owns control-annex-a-controls @card(0..),
       owns control-theme,
@@ -541,7 +541,7 @@ define
       plays included-control:ismscontrol,
       plays finding-control:ismscontrol;
   
-  entity ismsasset, sub ismsrecord,
+  entity ismsasset,
       owns asset-category,
       owns asset-owner,
       owns asset-custodian,
@@ -552,7 +552,7 @@ define
       plays affected-assets:ismsasset,
       plays relevant-controls:ismsasset;
   
-  entity ismsresource, sub ismsrecord,
+  entity ismsresource,
       owns resource-category,
       owns resource-quantity,
       owns resource-allocation-date,
@@ -561,7 +561,7 @@ define
       owns resource-availability,
       plays isms-resources:ismsresource;
   
-  entity ismscompetencerecord, sub ismsrecord,
+  entity ismscompetencerecord,
       owns competence-person,
       owns competence-required @card(0..),
       owns competence-education @card(0..),
@@ -573,7 +573,7 @@ define
       plays isms-competence-records:ismscompetencerecord,
       plays competence-role:ismscompetencerecord;
   
-  entity ismsawarenessprogramme, sub ismsrecord,
+  entity ismsawarenessprogramme,
       owns awareness-topics @card(0..),
       owns awareness-methods @card(0..),
       owns awareness-audience,
@@ -582,7 +582,7 @@ define
       owns awareness-effectiveness,
       plays isms-awareness-programme:ismsawarenessprogramme;
   
-  entity ismscommunicationplan, sub ismsrecord,
+  entity ismscommunicationplan,
       plays isms-communication-plan:ismscommunicationplan,
       plays communication-items:ismscommunicationplan;
   
@@ -596,12 +596,12 @@ define
       plays communication-items:ismscommunication,
       plays responsible-role:ismscommunication;
   
-  entity ismsdocumentedinformation, sub ismsrecord,
+  entity ismsdocumentedinformation,
       owns document-kind @card(1..1),
       plays isms-documented-information:ismsdocumentedinformation,
       plays audit-plan:ismsdocumentedinformation;
   
-  entity ismsoperationalprocedure, sub ismsrecord,
+  entity ismsoperationalprocedure,
       owns procedure-scope,
       owns procedure-criteria,
       owns procedure-control-measures @card(0..),
@@ -610,7 +610,7 @@ define
       plays relevant-controls:ismsoperationalprocedure,
       plays procedure-roles:ismsoperationalprocedure;
   
-  entity ismsmonitoringprogramme, sub ismsrecord,
+  entity ismsmonitoringprogramme,
       plays isms-monitoring-programme:ismsmonitoringprogramme,
       plays monitoring-items:ismsmonitoringprogramme;
   
@@ -628,7 +628,7 @@ define
       plays monitoring-items:ismsmonitoringitem,
       plays responsible-role:ismsmonitoringitem;
   
-  entity ismsauditprogramme, sub ismsrecord,
+  entity ismsauditprogramme,
       owns programme-period,
       owns programme-frequency-rationale,
       owns programme-resources,
@@ -637,7 +637,7 @@ define
       plays isms-audit-programmes:ismsauditprogramme,
       plays programme-audits:ismsauditprogramme;
   
-  entity ismsaudit, sub ismsrecord,
+  entity ismsaudit,
       owns audit-type @card(1..1),
       owns audit-standards @card(0..),
       owns audit-scope,
@@ -656,7 +656,7 @@ define
       plays audit-plan:ismsaudit,
       plays audit-findings:ismsaudit;
   
-  entity ismsauditfinding, sub ismsrecord,
+  entity ismsauditfinding,
       owns finding-type @card(1..1),
       owns finding-requirement,
       owns finding-evidence,
@@ -670,7 +670,7 @@ define
       plays finding-control:ismsauditfinding,
       plays finding-corrective-action:ismsauditfinding;
   
-  entity ismsmanagementreview, sub ismsrecord,
+  entity ismsmanagementreview,
       owns review-held-on @card(1..1),
       owns review-attendees @card(0..),
       owns review-previous-actions,
@@ -688,7 +688,7 @@ define
       owns review-next-date,
       plays isms-management-reviews:ismsmanagementreview;
   
-  entity ismsnonconformity, sub ismsrecord,
+  entity ismsnonconformity,
       owns nonconformity-source,
       owns nonconformity-detected-on,
       owns nonconformity-detected-by,
@@ -703,7 +703,7 @@ define
       plays isms-nonconformities:ismsnonconformity,
       plays action-nonconformities:ismsnonconformity;
   
-  entity ismscorrectiveaction, sub ismsrecord,
+  entity ismscorrectiveaction,
       owns action-root-cause,
       owns action-target-date,
       owns action-completion-date,
@@ -718,7 +718,7 @@ define
       plays responsible-role:ismscorrectiveaction,
       plays action-nonconformities:ismscorrectiveaction;
   
-  entity ismsimprovementopportunity, sub ismsrecord,
+  entity ismsimprovementopportunity,
       owns improvement-source,
       owns improvement-identified-on,
       owns improvement-identified-by,
@@ -732,7 +732,7 @@ define
       plays isms-improvements:ismsimprovementopportunity,
       plays responsible-role:ismsimprovementopportunity;
   
-  entity ismssecurityevent, sub ismsrecord,
+  entity ismssecurityevent,
       owns event-type,
       owns event-occurred-at,
       owns event-reporter,

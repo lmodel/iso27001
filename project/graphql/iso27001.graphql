@@ -220,11 +220,8 @@ interface IsmsApplicabilityEntry
     entryJustification: String!
   }
 
-type IsmsAsset
+type IsmsAsset implements IsmsRecordMixin
   {
-    ismsId: String!
-    title: String!
-    description: String
     relevantControls: [IsmsControl]
     assetCategory: String
     assetOwner: String
@@ -232,13 +229,13 @@ type IsmsAsset
     assetClassification: String
     assetLocation: String
     assetCriticality: String
-  }
-
-type IsmsAudit implements IsmsDocumentControlMixin
-  {
     ismsId: String!
     title: String!
     description: String
+  }
+
+type IsmsAudit implements IsmsRecordMixin, IsmsDocumentControlMixin
+  {
     auditType: IsmsAuditType!
     auditStandards: [IsmsManagementSystemStandard]
     auditScope: String
@@ -254,6 +251,9 @@ type IsmsAudit implements IsmsDocumentControlMixin
     auditConclusion: String
     auditReportDate: String
     auditReportDistribution: [String]
+    ismsId: String!
+    title: String!
+    description: String
     documentReference: String
     documentVersion: String
     documentAuthor: String
@@ -273,11 +273,8 @@ type IsmsAudit implements IsmsDocumentControlMixin
     documentExternalSource: String
   }
 
-type IsmsAuditFinding
+type IsmsAuditFinding implements IsmsRecordMixin
   {
-    ismsId: String!
-    title: String!
-    description: String
     findingType: IsmsAuditFindingType!
     findingRequirement: IsmsRequirementReference
     findingControl: IsmsControl
@@ -289,19 +286,22 @@ type IsmsAuditFinding
     findingCorrectiveAction: IsmsCorrectiveAction
     findingClosureStatus: String
     findingClosureDate: String
-  }
-
-type IsmsAuditProgramme implements IsmsDocumentControlMixin
-  {
     ismsId: String!
     title: String!
     description: String
+  }
+
+type IsmsAuditProgramme implements IsmsRecordMixin, IsmsDocumentControlMixin
+  {
     programmePeriod: String
     programmeAudits: [IsmsAudit]
     programmeFrequencyRationale: String
     programmeResources: String
     programmeAuditorQualifications: String
     programmeStatus: String
+    ismsId: String!
+    title: String!
+    description: String
     documentReference: String
     documentVersion: String
     documentAuthor: String
@@ -321,17 +321,17 @@ type IsmsAuditProgramme implements IsmsDocumentControlMixin
     documentExternalSource: String
   }
 
-type IsmsAwarenessProgramme implements IsmsDocumentControlMixin
+type IsmsAwarenessProgramme implements IsmsRecordMixin, IsmsDocumentControlMixin
   {
-    ismsId: String!
-    title: String!
-    description: String
     awarenessTopics: [String]
     awarenessMethods: [String]
     awarenessAudience: String
     awarenessFrequency: String
     awarenessCompletionTracking: String
     awarenessEffectiveness: String
+    ismsId: String!
+    title: String!
+    description: String
     documentReference: String
     documentVersion: String
     documentAuthor: String
@@ -362,12 +362,12 @@ type IsmsCommunication
     communicationRecordsRequired: Boolean
   }
 
-type IsmsCommunicationPlan implements IsmsDocumentControlMixin
+type IsmsCommunicationPlan implements IsmsRecordMixin, IsmsDocumentControlMixin
   {
+    communicationItems: [IsmsCommunication]
     ismsId: String!
     title: String!
     description: String
-    communicationItems: [IsmsCommunication]
     documentReference: String
     documentVersion: String
     documentAuthor: String
@@ -387,11 +387,8 @@ type IsmsCommunicationPlan implements IsmsDocumentControlMixin
     documentExternalSource: String
   }
 
-type IsmsCompetenceRecord implements IsmsDocumentControlMixin
+type IsmsCompetenceRecord implements IsmsRecordMixin, IsmsDocumentControlMixin
   {
-    ismsId: String!
-    title: String!
-    description: String
     competencePerson: String
     competenceRole: IsmsRole
     competenceRequired: [String]
@@ -401,6 +398,9 @@ type IsmsCompetenceRecord implements IsmsDocumentControlMixin
     competenceAssessmentDate: String
     competenceGaps: [String]
     competenceActions: [String]
+    ismsId: String!
+    title: String!
+    description: String
     documentReference: String
     documentVersion: String
     documentAuthor: String
@@ -420,11 +420,8 @@ type IsmsCompetenceRecord implements IsmsDocumentControlMixin
     documentExternalSource: String
   }
 
-type IsmsControl
+type IsmsControl implements IsmsRecordMixin
   {
-    ismsId: String!
-    title: String!
-    description: String
     relevantControls: [IsmsControl]
     implementationState: IsmsImplementationStatus
     controlAnnexAControls: [IsmsAnnexAControl]
@@ -438,13 +435,13 @@ type IsmsControl
     controlEffectiveness: String
     controlLastTested: String
     controlEvidence: [String]
-  }
-
-type IsmsCorrectiveAction
-  {
     ismsId: String!
     title: String!
     description: String
+  }
+
+type IsmsCorrectiveAction implements IsmsRecordMixin
+  {
     responsibleRole: IsmsRole
     actionNonconformities: [IsmsNonconformity]
     actionRootCause: String
@@ -456,6 +453,9 @@ type IsmsCorrectiveAction
     actionEffective: Boolean
     actionIsmsChanges: String
     actionStatus: String
+    ismsId: String!
+    title: String!
+    description: String
   }
 
 interface IsmsDocumentControlMixin
@@ -479,12 +479,12 @@ interface IsmsDocumentControlMixin
     documentExternalSource: String
   }
 
-type IsmsDocumentedInformation implements IsmsDocumentControlMixin
+type IsmsDocumentedInformation implements IsmsRecordMixin, IsmsDocumentControlMixin
   {
+    documentKind: IsmsDocumentKind!
     ismsId: String!
     title: String!
     description: String
-    documentKind: IsmsDocumentKind!
     documentReference: String
     documentVersion: String
     documentAuthor: String
@@ -511,11 +511,8 @@ type IsmsExcludedControl
     entryAnnexAControl: IsmsAnnexAControl!
   }
 
-type IsmsImprovementOpportunity
+type IsmsImprovementOpportunity implements IsmsRecordMixin
   {
-    ismsId: String!
-    title: String!
-    description: String
     responsibleRole: IsmsRole
     improvementSource: String
     improvementIdentifiedOn: String
@@ -527,6 +524,9 @@ type IsmsImprovementOpportunity
     improvementCompletionDate: String
     improvementOutcome: String
     improvementStatus: String
+    ismsId: String!
+    title: String!
+    description: String
   }
 
 type IsmsIncludedControl
@@ -541,11 +541,8 @@ type IsmsIncludedControl
     includedTargetDate: String
   }
 
-type IsmsInterestedParty
+type IsmsInterestedParty implements IsmsRecordMixin
   {
-    ismsId: String!
-    title: String!
-    description: String
     partyCategory: String
     partyRelationship: String
     partyRequirements: [String]
@@ -553,13 +550,13 @@ type IsmsInterestedParty
     partyClimateChangeRequirements: [String]
     partyCommunicationNeeds: String
     partyContact: String
-  }
-
-type IsmsManagementReview implements IsmsDocumentControlMixin
-  {
     ismsId: String!
     title: String!
     description: String
+  }
+
+type IsmsManagementReview implements IsmsRecordMixin, IsmsDocumentControlMixin
+  {
     reviewHeldOn: String!
     reviewAttendees: [String]
     reviewPreviousActions: String
@@ -575,6 +572,9 @@ type IsmsManagementReview implements IsmsDocumentControlMixin
     reviewDecisions: [String]
     reviewActions: [String]
     reviewNextDate: String
+    ismsId: String!
+    title: String!
+    description: String
     documentReference: String
     documentVersion: String
     documentAuthor: String
@@ -594,11 +594,8 @@ type IsmsManagementReview implements IsmsDocumentControlMixin
     documentExternalSource: String
   }
 
-type IsmsManagementSystem
+type IsmsManagementSystem implements IsmsRecordMixin
   {
-    ismsId: String!
-    title: String!
-    description: String
     ismsOrganization: IsmsOrganization
     ismsTopManagement: String
     ismsGoverningBody: String
@@ -644,6 +641,9 @@ type IsmsManagementSystem
     ismsCorrectiveActions: [IsmsCorrectiveAction]
     ismsImprovements: [IsmsImprovementOpportunity]
     ismsSecurityEvents: [IsmsSecurityEvent]
+    ismsId: String!
+    title: String!
+    description: String
   }
 
 type IsmsMonitoringItem
@@ -661,12 +661,12 @@ type IsmsMonitoringItem
     monitoringTrend: String
   }
 
-type IsmsMonitoringProgramme implements IsmsDocumentControlMixin
+type IsmsMonitoringProgramme implements IsmsRecordMixin, IsmsDocumentControlMixin
   {
+    monitoringItems: [IsmsMonitoringItem]
     ismsId: String!
     title: String!
     description: String
-    monitoringItems: [IsmsMonitoringItem]
     documentReference: String
     documentVersion: String
     documentAuthor: String
@@ -686,11 +686,8 @@ type IsmsMonitoringProgramme implements IsmsDocumentControlMixin
     documentExternalSource: String
   }
 
-type IsmsNonconformity
+type IsmsNonconformity implements IsmsRecordMixin
   {
-    ismsId: String!
-    title: String!
-    description: String
     nonconformitySource: String
     nonconformityDetectedOn: String
     nonconformityDetectedBy: String
@@ -702,13 +699,13 @@ type IsmsNonconformity
     nonconformityStatus: String
     nonconformityClosureDate: String
     nonconformityClosureEvidence: String
-  }
-
-type IsmsObjective
-  {
     ismsId: String!
     title: String!
     description: String
+  }
+
+type IsmsObjective implements IsmsRecordMixin
+  {
     responsibleRole: IsmsRole
     relevantControls: [IsmsControl]
     objectiveStatement: String
@@ -722,19 +719,22 @@ type IsmsObjective
     objectiveRisks: [IsmsRisk]
     objectiveActionPlan: String
     objectiveResources: String
-  }
-
-type IsmsOperationalProcedure implements IsmsDocumentControlMixin
-  {
     ismsId: String!
     title: String!
     description: String
+  }
+
+type IsmsOperationalProcedure implements IsmsRecordMixin, IsmsDocumentControlMixin
+  {
     relevantControls: [IsmsControl]
     procedureScope: String
     procedureCriteria: String
     procedureControlMeasures: [String]
     procedureRoles: [IsmsRole]
     procedureChangeControl: String
+    ismsId: String!
+    title: String!
+    description: String
     documentReference: String
     documentVersion: String
     documentAuthor: String
@@ -754,11 +754,8 @@ type IsmsOperationalProcedure implements IsmsDocumentControlMixin
     documentExternalSource: String
   }
 
-type IsmsOrganization
+type IsmsOrganization implements IsmsRecordMixin
   {
-    ismsId: String!
-    title: String!
-    description: String
     organizationLegalName: String
     organizationTradingNames: [String]
     organizationKind: String
@@ -770,13 +767,13 @@ type IsmsOrganization
     organizationParent: String
     organizationSubsidiaries: [String]
     organizationClimateChangeRelevant: Boolean
-  }
-
-type IsmsPolicy implements IsmsDocumentControlMixin
-  {
     ismsId: String!
     title: String!
     description: String
+  }
+
+type IsmsPolicy implements IsmsRecordMixin, IsmsDocumentControlMixin
+  {
     policyStatement: String
     policyObjectivesFramework: String
     policyCommitments: [String]
@@ -784,6 +781,9 @@ type IsmsPolicy implements IsmsDocumentControlMixin
     policyCommunicationDate: String
     policyAcknowledgementRequired: Boolean
     policyManagementSystems: [IsmsManagementSystemStandard]
+    ismsId: String!
+    title: String!
+    description: String
     documentReference: String
     documentVersion: String
     documentAuthor: String
@@ -803,31 +803,28 @@ type IsmsPolicy implements IsmsDocumentControlMixin
     documentExternalSource: String
   }
 
-interface IsmsRecord
+interface IsmsRecordMixin
   {
     ismsId: String!
     title: String!
     description: String
   }
 
-type IsmsResource
+type IsmsResource implements IsmsRecordMixin
   {
-    ismsId: String!
-    title: String!
-    description: String
     resourceCategory: String
     resourceQuantity: String
     resourceAllocationDate: String
     resourceAllocatedTo: String
     resourceCost: String
     resourceAvailability: String
-  }
-
-type IsmsRisk
-  {
     ismsId: String!
     title: String!
     description: String
+  }
+
+type IsmsRisk implements IsmsRecordMixin
+  {
     affectedAssets: [IsmsAsset]
     affectedSecurityProperties: [IsmsSecurityProperty]
     riskSource: String
@@ -841,13 +838,13 @@ type IsmsRisk
     riskResidualLevel: IsmsRiskLevel
     riskTreatmentOption: IsmsRiskTreatmentOption
     riskTreatmentPriority: String
-  }
-
-type IsmsRiskAssessment implements IsmsDocumentControlMixin
-  {
     ismsId: String!
     title: String!
     description: String
+  }
+
+type IsmsRiskAssessment implements IsmsRecordMixin, IsmsDocumentControlMixin
+  {
     assessmentScope: String
     assessmentDate: String
     assessmentAssessor: String
@@ -856,6 +853,9 @@ type IsmsRiskAssessment implements IsmsDocumentControlMixin
     assessmentSummary: String
     assessmentRecommendations: [String]
     assessmentNextDate: String
+    ismsId: String!
+    title: String!
+    description: String
     documentReference: String
     documentVersion: String
     documentAuthor: String
@@ -875,11 +875,8 @@ type IsmsRiskAssessment implements IsmsDocumentControlMixin
     documentExternalSource: String
   }
 
-type IsmsRiskAssessmentProcess implements IsmsDocumentControlMixin
+type IsmsRiskAssessmentProcess implements IsmsRecordMixin, IsmsDocumentControlMixin
   {
-    ismsId: String!
-    title: String!
-    description: String
     riskAcceptanceCriteria: String
     riskAssessmentCriteria: String
     riskAssessmentMethod: String
@@ -888,6 +885,9 @@ type IsmsRiskAssessmentProcess implements IsmsDocumentControlMixin
     riskMatrix: String
     riskAssessmentFrequency: String
     riskAssessmentTriggers: [String]
+    ismsId: String!
+    title: String!
+    description: String
     documentReference: String
     documentVersion: String
     documentAuthor: String
@@ -907,11 +907,8 @@ type IsmsRiskAssessmentProcess implements IsmsDocumentControlMixin
     documentExternalSource: String
   }
 
-type IsmsRiskTreatmentPlan implements IsmsDocumentControlMixin
+type IsmsRiskTreatmentPlan implements IsmsRecordMixin, IsmsDocumentControlMixin
   {
-    ismsId: String!
-    title: String!
-    description: String
     implementationState: IsmsImplementationStatus
     planScope: String
     planRisks: [IsmsRisk]
@@ -923,6 +920,9 @@ type IsmsRiskTreatmentPlan implements IsmsDocumentControlMixin
     planRiskOwnerApproval: String
     planResidualRiskAcceptance: String
     planCompletionDate: String
+    ismsId: String!
+    title: String!
+    description: String
     documentReference: String
     documentVersion: String
     documentAuthor: String
@@ -942,16 +942,16 @@ type IsmsRiskTreatmentPlan implements IsmsDocumentControlMixin
     documentExternalSource: String
   }
 
-type IsmsRiskTreatmentProcess implements IsmsDocumentControlMixin
+type IsmsRiskTreatmentProcess implements IsmsRecordMixin, IsmsDocumentControlMixin
   {
-    ismsId: String!
-    title: String!
-    description: String
     treatmentOptionsGuidance: String
     treatmentControlSelection: String
     treatmentAnnexAComparison: String
     treatmentSoaTemplate: String
     treatmentApprovalWorkflow: String
+    ismsId: String!
+    title: String!
+    description: String
     documentReference: String
     documentVersion: String
     documentAuthor: String
@@ -971,11 +971,8 @@ type IsmsRiskTreatmentProcess implements IsmsDocumentControlMixin
     documentExternalSource: String
   }
 
-type IsmsRole
+type IsmsRole implements IsmsRecordMixin
   {
-    ismsId: String!
-    title: String!
-    description: String
     roleCategory: String
     roleResponsibilities: [String]
     roleAuthorities: [String]
@@ -983,30 +980,33 @@ type IsmsRole
     roleHolders: [String]
     roleDelegation: String
     roleReportsTo: IsmsRole
-  }
-
-type IsmsSecurityEvent
-  {
     ismsId: String!
     title: String!
     description: String
+  }
+
+type IsmsSecurityEvent implements IsmsRecordMixin
+  {
     affectedAssets: [IsmsAsset]
     eventType: String
     eventOccurredAt: String
     eventReporter: String
     eventAssessment: String
+    ismsId: String!
+    title: String!
+    description: String
   }
 
 type IsmsSecurityIncident
   {
-    ismsId: String!
-    title: String!
-    description: String
     affectedAssets: [IsmsAsset]
     eventType: String
     eventOccurredAt: String
     eventReporter: String
     eventAssessment: String
+    ismsId: String!
+    title: String!
+    description: String
     affectedSecurityProperties: [IsmsSecurityProperty]
     incidentCategory: IsmsIncidentCategory
     incidentSeverity: IsmsRiskLevel
@@ -1024,12 +1024,12 @@ type IsmsSecurityIncident
     incidentReview: String
   }
 
-type IsmsStatementOfApplicability implements IsmsDocumentControlMixin
+type IsmsStatementOfApplicability implements IsmsRecordMixin, IsmsDocumentControlMixin
   {
+    soaEntries: [IsmsApplicabilityEntry]
     ismsId: String!
     title: String!
     description: String
-    soaEntries: [IsmsApplicabilityEntry]
     documentReference: String
     documentVersion: String
     documentAuthor: String
@@ -1049,15 +1049,15 @@ type IsmsStatementOfApplicability implements IsmsDocumentControlMixin
     documentExternalSource: String
   }
 
-type IsmsTopicSpecificPolicy implements IsmsDocumentControlMixin
+type IsmsTopicSpecificPolicy implements IsmsRecordMixin, IsmsDocumentControlMixin
   {
-    ismsId: String!
-    title: String!
-    description: String
     relevantControls: [IsmsControl]
     topicPolicyTopic: String
     topicPolicyParent: IsmsPolicy
     topicPolicyAudience: String
+    ismsId: String!
+    title: String!
+    description: String
     documentReference: String
     documentVersion: String
     documentAuthor: String

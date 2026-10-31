@@ -5,8 +5,8 @@
  classDiagram
     class IsmsNonconformity
     click IsmsNonconformity href "../IsmsNonconformity"
-      IsmsRecord <|-- IsmsNonconformity
-        click IsmsRecord href "../IsmsRecord"
+      IsmsRecordMixin <|-- IsmsNonconformity
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       
       IsmsNonconformity : description
         

@@ -5,8 +5,8 @@
  classDiagram
     class IsmsInterestedParty
     click IsmsInterestedParty href "../IsmsInterestedParty"
-      IsmsRecord <|-- IsmsInterestedParty
-        click IsmsRecord href "../IsmsRecord"
+      IsmsRecordMixin <|-- IsmsInterestedParty
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       
       IsmsInterestedParty : description
         

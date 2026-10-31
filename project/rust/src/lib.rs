@@ -1675,7 +1675,7 @@ impl ::pyo3_stub_gen::PyStubType for IsmsManagementSystemStandard {
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[cfg_attr(feature = "stubgen", gen_stub_pyclass)]
 #[cfg_attr(feature = "pyo3", pyclass(subclass, get_all, set_all))]
-pub struct IsmsRecord {
+pub struct IsmsRecordMixin {
     pub isms_id: uriorcurie,
     pub title: String,
     #[cfg_attr(feature = "serde", serde(default))]
@@ -1685,16 +1685,16 @@ pub struct IsmsRecord {
 #[cfg(feature = "pyo3")]
 #[cfg_attr(feature = "stubgen", gen_stub_pymethods)]
 #[pymethods]
-impl IsmsRecord {
+impl IsmsRecordMixin {
     #[new]
     #[pyo3(signature = (isms_id, title, description=None))]
     pub fn new(isms_id: uriorcurie, title: String, description: Option<String>) -> Self {
-        IsmsRecord{isms_id, title, description}
+        IsmsRecordMixin{isms_id, title, description}
     }
 }
 
 #[cfg(feature = "pyo3")]
-impl<'py> IntoPyObject<'py> for Box<IsmsRecord>
+impl<'py> IntoPyObject<'py> for Box<IsmsRecordMixin>
 {
     type Target = PyAny;
     type Output = Bound<'py, Self::Target>;
@@ -1705,20 +1705,20 @@ impl<'py> IntoPyObject<'py> for Box<IsmsRecord>
 }
 
 #[cfg(feature = "pyo3")]
-impl<'py> FromPyObject<'py> for Box<IsmsRecord> {
+impl<'py> FromPyObject<'py> for Box<IsmsRecordMixin> {
     fn extract_bound(ob: &pyo3::Bound<'py, pyo3::types::PyAny>) -> pyo3::PyResult<Self> {
-        if let Ok(val) = ob.extract::<IsmsRecord>() {
+        if let Ok(val) = ob.extract::<IsmsRecordMixin>() {
             return Ok(Box::new(val));
         }
         Err(PyErr::new::<pyo3::exceptions::PyTypeError, _>(
-            "invalid IsmsRecord",
+            "invalid IsmsRecordMixin",
         ))
     }
 }
 
 
 #[cfg(feature = "serde")]
-impl serde_utils::InlinedPair for IsmsRecord {
+impl serde_utils::InlinedPair for IsmsRecordMixin {
     type Key   = uriorcurie;
     type Value = String;
     type Error = String;
@@ -1784,157 +1784,157 @@ impl serde_utils::InlinedPair for IsmsRecord {
 #[derive(Debug, Clone, PartialEq)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[cfg_attr(feature="serde", serde(untagged))]
-pub enum IsmsRecordOrSubtype {    IsmsManagementSystem(IsmsManagementSystem),     IsmsOrganization(IsmsOrganization),     IsmsInterestedParty(IsmsInterestedParty),     IsmsPolicy(IsmsPolicy),     IsmsTopicSpecificPolicy(IsmsTopicSpecificPolicy),     IsmsRole(IsmsRole),     IsmsObjective(IsmsObjective),     IsmsRiskAssessmentProcess(IsmsRiskAssessmentProcess),     IsmsRiskAssessment(IsmsRiskAssessment),     IsmsRisk(IsmsRisk),     IsmsRiskTreatmentProcess(IsmsRiskTreatmentProcess),     IsmsRiskTreatmentPlan(IsmsRiskTreatmentPlan),     IsmsStatementOfApplicability(IsmsStatementOfApplicability),     IsmsControl(IsmsControl),     IsmsAsset(IsmsAsset),     IsmsResource(IsmsResource),     IsmsCompetenceRecord(IsmsCompetenceRecord),     IsmsAwarenessProgramme(IsmsAwarenessProgramme),     IsmsCommunicationPlan(IsmsCommunicationPlan),     IsmsDocumentedInformation(IsmsDocumentedInformation),     IsmsOperationalProcedure(IsmsOperationalProcedure),     IsmsMonitoringProgramme(IsmsMonitoringProgramme),     IsmsAuditProgramme(IsmsAuditProgramme),     IsmsAudit(IsmsAudit),     IsmsAuditFinding(IsmsAuditFinding),     IsmsManagementReview(IsmsManagementReview),     IsmsNonconformity(IsmsNonconformity),     IsmsCorrectiveAction(IsmsCorrectiveAction),     IsmsImprovementOpportunity(IsmsImprovementOpportunity),     IsmsSecurityEvent(IsmsSecurityEvent),     IsmsSecurityIncident(IsmsSecurityIncident)}
+pub enum IsmsRecordMixinOrSubtype {    IsmsManagementSystem(IsmsManagementSystem),     IsmsOrganization(IsmsOrganization),     IsmsInterestedParty(IsmsInterestedParty),     IsmsPolicy(IsmsPolicy),     IsmsTopicSpecificPolicy(IsmsTopicSpecificPolicy),     IsmsRole(IsmsRole),     IsmsObjective(IsmsObjective),     IsmsRiskAssessmentProcess(IsmsRiskAssessmentProcess),     IsmsRiskAssessment(IsmsRiskAssessment),     IsmsRisk(IsmsRisk),     IsmsRiskTreatmentProcess(IsmsRiskTreatmentProcess),     IsmsRiskTreatmentPlan(IsmsRiskTreatmentPlan),     IsmsStatementOfApplicability(IsmsStatementOfApplicability),     IsmsControl(IsmsControl),     IsmsAsset(IsmsAsset),     IsmsResource(IsmsResource),     IsmsCompetenceRecord(IsmsCompetenceRecord),     IsmsAwarenessProgramme(IsmsAwarenessProgramme),     IsmsCommunicationPlan(IsmsCommunicationPlan),     IsmsDocumentedInformation(IsmsDocumentedInformation),     IsmsOperationalProcedure(IsmsOperationalProcedure),     IsmsMonitoringProgramme(IsmsMonitoringProgramme),     IsmsAuditProgramme(IsmsAuditProgramme),     IsmsAudit(IsmsAudit),     IsmsAuditFinding(IsmsAuditFinding),     IsmsManagementReview(IsmsManagementReview),     IsmsNonconformity(IsmsNonconformity),     IsmsCorrectiveAction(IsmsCorrectiveAction),     IsmsImprovementOpportunity(IsmsImprovementOpportunity),     IsmsSecurityEvent(IsmsSecurityEvent),     IsmsSecurityIncident(IsmsSecurityIncident)}
 
-impl From<IsmsManagementSystem>   for IsmsRecordOrSubtype { fn from(x: IsmsManagementSystem)   -> Self { Self::IsmsManagementSystem(x) } }
-impl From<IsmsOrganization>   for IsmsRecordOrSubtype { fn from(x: IsmsOrganization)   -> Self { Self::IsmsOrganization(x) } }
-impl From<IsmsInterestedParty>   for IsmsRecordOrSubtype { fn from(x: IsmsInterestedParty)   -> Self { Self::IsmsInterestedParty(x) } }
-impl From<IsmsPolicy>   for IsmsRecordOrSubtype { fn from(x: IsmsPolicy)   -> Self { Self::IsmsPolicy(x) } }
-impl From<IsmsTopicSpecificPolicy>   for IsmsRecordOrSubtype { fn from(x: IsmsTopicSpecificPolicy)   -> Self { Self::IsmsTopicSpecificPolicy(x) } }
-impl From<IsmsRole>   for IsmsRecordOrSubtype { fn from(x: IsmsRole)   -> Self { Self::IsmsRole(x) } }
-impl From<IsmsObjective>   for IsmsRecordOrSubtype { fn from(x: IsmsObjective)   -> Self { Self::IsmsObjective(x) } }
-impl From<IsmsRiskAssessmentProcess>   for IsmsRecordOrSubtype { fn from(x: IsmsRiskAssessmentProcess)   -> Self { Self::IsmsRiskAssessmentProcess(x) } }
-impl From<IsmsRiskAssessment>   for IsmsRecordOrSubtype { fn from(x: IsmsRiskAssessment)   -> Self { Self::IsmsRiskAssessment(x) } }
-impl From<IsmsRisk>   for IsmsRecordOrSubtype { fn from(x: IsmsRisk)   -> Self { Self::IsmsRisk(x) } }
-impl From<IsmsRiskTreatmentProcess>   for IsmsRecordOrSubtype { fn from(x: IsmsRiskTreatmentProcess)   -> Self { Self::IsmsRiskTreatmentProcess(x) } }
-impl From<IsmsRiskTreatmentPlan>   for IsmsRecordOrSubtype { fn from(x: IsmsRiskTreatmentPlan)   -> Self { Self::IsmsRiskTreatmentPlan(x) } }
-impl From<IsmsStatementOfApplicability>   for IsmsRecordOrSubtype { fn from(x: IsmsStatementOfApplicability)   -> Self { Self::IsmsStatementOfApplicability(x) } }
-impl From<IsmsControl>   for IsmsRecordOrSubtype { fn from(x: IsmsControl)   -> Self { Self::IsmsControl(x) } }
-impl From<IsmsAsset>   for IsmsRecordOrSubtype { fn from(x: IsmsAsset)   -> Self { Self::IsmsAsset(x) } }
-impl From<IsmsResource>   for IsmsRecordOrSubtype { fn from(x: IsmsResource)   -> Self { Self::IsmsResource(x) } }
-impl From<IsmsCompetenceRecord>   for IsmsRecordOrSubtype { fn from(x: IsmsCompetenceRecord)   -> Self { Self::IsmsCompetenceRecord(x) } }
-impl From<IsmsAwarenessProgramme>   for IsmsRecordOrSubtype { fn from(x: IsmsAwarenessProgramme)   -> Self { Self::IsmsAwarenessProgramme(x) } }
-impl From<IsmsCommunicationPlan>   for IsmsRecordOrSubtype { fn from(x: IsmsCommunicationPlan)   -> Self { Self::IsmsCommunicationPlan(x) } }
-impl From<IsmsDocumentedInformation>   for IsmsRecordOrSubtype { fn from(x: IsmsDocumentedInformation)   -> Self { Self::IsmsDocumentedInformation(x) } }
-impl From<IsmsOperationalProcedure>   for IsmsRecordOrSubtype { fn from(x: IsmsOperationalProcedure)   -> Self { Self::IsmsOperationalProcedure(x) } }
-impl From<IsmsMonitoringProgramme>   for IsmsRecordOrSubtype { fn from(x: IsmsMonitoringProgramme)   -> Self { Self::IsmsMonitoringProgramme(x) } }
-impl From<IsmsAuditProgramme>   for IsmsRecordOrSubtype { fn from(x: IsmsAuditProgramme)   -> Self { Self::IsmsAuditProgramme(x) } }
-impl From<IsmsAudit>   for IsmsRecordOrSubtype { fn from(x: IsmsAudit)   -> Self { Self::IsmsAudit(x) } }
-impl From<IsmsAuditFinding>   for IsmsRecordOrSubtype { fn from(x: IsmsAuditFinding)   -> Self { Self::IsmsAuditFinding(x) } }
-impl From<IsmsManagementReview>   for IsmsRecordOrSubtype { fn from(x: IsmsManagementReview)   -> Self { Self::IsmsManagementReview(x) } }
-impl From<IsmsNonconformity>   for IsmsRecordOrSubtype { fn from(x: IsmsNonconformity)   -> Self { Self::IsmsNonconformity(x) } }
-impl From<IsmsCorrectiveAction>   for IsmsRecordOrSubtype { fn from(x: IsmsCorrectiveAction)   -> Self { Self::IsmsCorrectiveAction(x) } }
-impl From<IsmsImprovementOpportunity>   for IsmsRecordOrSubtype { fn from(x: IsmsImprovementOpportunity)   -> Self { Self::IsmsImprovementOpportunity(x) } }
-impl From<IsmsSecurityEvent>   for IsmsRecordOrSubtype { fn from(x: IsmsSecurityEvent)   -> Self { Self::IsmsSecurityEvent(x) } }
-impl From<IsmsSecurityIncident>   for IsmsRecordOrSubtype { fn from(x: IsmsSecurityIncident)   -> Self { Self::IsmsSecurityIncident(x) } }
+impl From<IsmsManagementSystem>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsManagementSystem)   -> Self { Self::IsmsManagementSystem(x) } }
+impl From<IsmsOrganization>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsOrganization)   -> Self { Self::IsmsOrganization(x) } }
+impl From<IsmsInterestedParty>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsInterestedParty)   -> Self { Self::IsmsInterestedParty(x) } }
+impl From<IsmsPolicy>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsPolicy)   -> Self { Self::IsmsPolicy(x) } }
+impl From<IsmsTopicSpecificPolicy>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsTopicSpecificPolicy)   -> Self { Self::IsmsTopicSpecificPolicy(x) } }
+impl From<IsmsRole>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsRole)   -> Self { Self::IsmsRole(x) } }
+impl From<IsmsObjective>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsObjective)   -> Self { Self::IsmsObjective(x) } }
+impl From<IsmsRiskAssessmentProcess>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsRiskAssessmentProcess)   -> Self { Self::IsmsRiskAssessmentProcess(x) } }
+impl From<IsmsRiskAssessment>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsRiskAssessment)   -> Self { Self::IsmsRiskAssessment(x) } }
+impl From<IsmsRisk>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsRisk)   -> Self { Self::IsmsRisk(x) } }
+impl From<IsmsRiskTreatmentProcess>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsRiskTreatmentProcess)   -> Self { Self::IsmsRiskTreatmentProcess(x) } }
+impl From<IsmsRiskTreatmentPlan>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsRiskTreatmentPlan)   -> Self { Self::IsmsRiskTreatmentPlan(x) } }
+impl From<IsmsStatementOfApplicability>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsStatementOfApplicability)   -> Self { Self::IsmsStatementOfApplicability(x) } }
+impl From<IsmsControl>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsControl)   -> Self { Self::IsmsControl(x) } }
+impl From<IsmsAsset>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsAsset)   -> Self { Self::IsmsAsset(x) } }
+impl From<IsmsResource>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsResource)   -> Self { Self::IsmsResource(x) } }
+impl From<IsmsCompetenceRecord>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsCompetenceRecord)   -> Self { Self::IsmsCompetenceRecord(x) } }
+impl From<IsmsAwarenessProgramme>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsAwarenessProgramme)   -> Self { Self::IsmsAwarenessProgramme(x) } }
+impl From<IsmsCommunicationPlan>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsCommunicationPlan)   -> Self { Self::IsmsCommunicationPlan(x) } }
+impl From<IsmsDocumentedInformation>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsDocumentedInformation)   -> Self { Self::IsmsDocumentedInformation(x) } }
+impl From<IsmsOperationalProcedure>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsOperationalProcedure)   -> Self { Self::IsmsOperationalProcedure(x) } }
+impl From<IsmsMonitoringProgramme>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsMonitoringProgramme)   -> Self { Self::IsmsMonitoringProgramme(x) } }
+impl From<IsmsAuditProgramme>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsAuditProgramme)   -> Self { Self::IsmsAuditProgramme(x) } }
+impl From<IsmsAudit>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsAudit)   -> Self { Self::IsmsAudit(x) } }
+impl From<IsmsAuditFinding>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsAuditFinding)   -> Self { Self::IsmsAuditFinding(x) } }
+impl From<IsmsManagementReview>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsManagementReview)   -> Self { Self::IsmsManagementReview(x) } }
+impl From<IsmsNonconformity>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsNonconformity)   -> Self { Self::IsmsNonconformity(x) } }
+impl From<IsmsCorrectiveAction>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsCorrectiveAction)   -> Self { Self::IsmsCorrectiveAction(x) } }
+impl From<IsmsImprovementOpportunity>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsImprovementOpportunity)   -> Self { Self::IsmsImprovementOpportunity(x) } }
+impl From<IsmsSecurityEvent>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsSecurityEvent)   -> Self { Self::IsmsSecurityEvent(x) } }
+impl From<IsmsSecurityIncident>   for IsmsRecordMixinOrSubtype { fn from(x: IsmsSecurityIncident)   -> Self { Self::IsmsSecurityIncident(x) } }
 
 #[cfg(feature = "pyo3")]
-impl<'py> FromPyObject<'py> for IsmsRecordOrSubtype {
+impl<'py> FromPyObject<'py> for IsmsRecordMixinOrSubtype {
     fn extract_bound(ob: &pyo3::Bound<'py, pyo3::types::PyAny>) -> pyo3::PyResult<Self> {
         if let Ok(val) = ob.extract::<IsmsManagementSystem>() {
-            return Ok(IsmsRecordOrSubtype::IsmsManagementSystem(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsManagementSystem(val));
         }        if let Ok(val) = ob.extract::<IsmsOrganization>() {
-            return Ok(IsmsRecordOrSubtype::IsmsOrganization(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsOrganization(val));
         }        if let Ok(val) = ob.extract::<IsmsInterestedParty>() {
-            return Ok(IsmsRecordOrSubtype::IsmsInterestedParty(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsInterestedParty(val));
         }        if let Ok(val) = ob.extract::<IsmsPolicy>() {
-            return Ok(IsmsRecordOrSubtype::IsmsPolicy(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsPolicy(val));
         }        if let Ok(val) = ob.extract::<IsmsTopicSpecificPolicy>() {
-            return Ok(IsmsRecordOrSubtype::IsmsTopicSpecificPolicy(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsTopicSpecificPolicy(val));
         }        if let Ok(val) = ob.extract::<IsmsRole>() {
-            return Ok(IsmsRecordOrSubtype::IsmsRole(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRole(val));
         }        if let Ok(val) = ob.extract::<IsmsObjective>() {
-            return Ok(IsmsRecordOrSubtype::IsmsObjective(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsObjective(val));
         }        if let Ok(val) = ob.extract::<IsmsRiskAssessmentProcess>() {
-            return Ok(IsmsRecordOrSubtype::IsmsRiskAssessmentProcess(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRiskAssessmentProcess(val));
         }        if let Ok(val) = ob.extract::<IsmsRiskAssessment>() {
-            return Ok(IsmsRecordOrSubtype::IsmsRiskAssessment(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRiskAssessment(val));
         }        if let Ok(val) = ob.extract::<IsmsRisk>() {
-            return Ok(IsmsRecordOrSubtype::IsmsRisk(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRisk(val));
         }        if let Ok(val) = ob.extract::<IsmsRiskTreatmentProcess>() {
-            return Ok(IsmsRecordOrSubtype::IsmsRiskTreatmentProcess(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRiskTreatmentProcess(val));
         }        if let Ok(val) = ob.extract::<IsmsRiskTreatmentPlan>() {
-            return Ok(IsmsRecordOrSubtype::IsmsRiskTreatmentPlan(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRiskTreatmentPlan(val));
         }        if let Ok(val) = ob.extract::<IsmsStatementOfApplicability>() {
-            return Ok(IsmsRecordOrSubtype::IsmsStatementOfApplicability(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsStatementOfApplicability(val));
         }        if let Ok(val) = ob.extract::<IsmsControl>() {
-            return Ok(IsmsRecordOrSubtype::IsmsControl(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsControl(val));
         }        if let Ok(val) = ob.extract::<IsmsAsset>() {
-            return Ok(IsmsRecordOrSubtype::IsmsAsset(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsAsset(val));
         }        if let Ok(val) = ob.extract::<IsmsResource>() {
-            return Ok(IsmsRecordOrSubtype::IsmsResource(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsResource(val));
         }        if let Ok(val) = ob.extract::<IsmsCompetenceRecord>() {
-            return Ok(IsmsRecordOrSubtype::IsmsCompetenceRecord(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsCompetenceRecord(val));
         }        if let Ok(val) = ob.extract::<IsmsAwarenessProgramme>() {
-            return Ok(IsmsRecordOrSubtype::IsmsAwarenessProgramme(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsAwarenessProgramme(val));
         }        if let Ok(val) = ob.extract::<IsmsCommunicationPlan>() {
-            return Ok(IsmsRecordOrSubtype::IsmsCommunicationPlan(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsCommunicationPlan(val));
         }        if let Ok(val) = ob.extract::<IsmsDocumentedInformation>() {
-            return Ok(IsmsRecordOrSubtype::IsmsDocumentedInformation(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsDocumentedInformation(val));
         }        if let Ok(val) = ob.extract::<IsmsOperationalProcedure>() {
-            return Ok(IsmsRecordOrSubtype::IsmsOperationalProcedure(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsOperationalProcedure(val));
         }        if let Ok(val) = ob.extract::<IsmsMonitoringProgramme>() {
-            return Ok(IsmsRecordOrSubtype::IsmsMonitoringProgramme(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsMonitoringProgramme(val));
         }        if let Ok(val) = ob.extract::<IsmsAuditProgramme>() {
-            return Ok(IsmsRecordOrSubtype::IsmsAuditProgramme(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsAuditProgramme(val));
         }        if let Ok(val) = ob.extract::<IsmsAudit>() {
-            return Ok(IsmsRecordOrSubtype::IsmsAudit(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsAudit(val));
         }        if let Ok(val) = ob.extract::<IsmsAuditFinding>() {
-            return Ok(IsmsRecordOrSubtype::IsmsAuditFinding(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsAuditFinding(val));
         }        if let Ok(val) = ob.extract::<IsmsManagementReview>() {
-            return Ok(IsmsRecordOrSubtype::IsmsManagementReview(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsManagementReview(val));
         }        if let Ok(val) = ob.extract::<IsmsNonconformity>() {
-            return Ok(IsmsRecordOrSubtype::IsmsNonconformity(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsNonconformity(val));
         }        if let Ok(val) = ob.extract::<IsmsCorrectiveAction>() {
-            return Ok(IsmsRecordOrSubtype::IsmsCorrectiveAction(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsCorrectiveAction(val));
         }        if let Ok(val) = ob.extract::<IsmsImprovementOpportunity>() {
-            return Ok(IsmsRecordOrSubtype::IsmsImprovementOpportunity(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsImprovementOpportunity(val));
         }        if let Ok(val) = ob.extract::<IsmsSecurityEvent>() {
-            return Ok(IsmsRecordOrSubtype::IsmsSecurityEvent(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsSecurityEvent(val));
         }        if let Ok(val) = ob.extract::<IsmsSecurityIncident>() {
-            return Ok(IsmsRecordOrSubtype::IsmsSecurityIncident(val));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsSecurityIncident(val));
         }Err(PyErr::new::<pyo3::exceptions::PyTypeError, _>(
-            "invalid IsmsRecordOrSubtype",
+            "invalid IsmsRecordMixinOrSubtype",
         ))
     }
 }
 
 #[cfg(feature = "pyo3")]
-impl<'py> IntoPyObject<'py> for IsmsRecordOrSubtype {
+impl<'py> IntoPyObject<'py> for IsmsRecordMixinOrSubtype {
     type Target = PyAny;
     type Output = Bound<'py, Self::Target>;
     type Error = PyErr;
 
     fn into_pyobject(self, py: Python<'py>) -> Result<Self::Output, Self::Error> {
         match self {
-            IsmsRecordOrSubtype::IsmsManagementSystem(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsOrganization(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsInterestedParty(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsPolicy(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsTopicSpecificPolicy(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsRole(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsObjective(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsRiskAssessmentProcess(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsRiskAssessment(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsRisk(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsRiskTreatmentProcess(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsRiskTreatmentPlan(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsStatementOfApplicability(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsControl(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsAsset(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsResource(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsCompetenceRecord(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsAwarenessProgramme(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsCommunicationPlan(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsDocumentedInformation(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsOperationalProcedure(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsMonitoringProgramme(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsAuditProgramme(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsAudit(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsAuditFinding(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsManagementReview(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsNonconformity(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsCorrectiveAction(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsImprovementOpportunity(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsSecurityEvent(val) => val.into_pyobject(py).map(move |b| b.into_any()),
-            IsmsRecordOrSubtype::IsmsSecurityIncident(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsManagementSystem(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsOrganization(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsInterestedParty(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsPolicy(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsTopicSpecificPolicy(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsRole(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsObjective(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsRiskAssessmentProcess(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsRiskAssessment(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsRisk(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsRiskTreatmentProcess(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsRiskTreatmentPlan(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsStatementOfApplicability(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsControl(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsAsset(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsResource(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsCompetenceRecord(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsAwarenessProgramme(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsCommunicationPlan(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsDocumentedInformation(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsOperationalProcedure(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsMonitoringProgramme(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsAuditProgramme(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsAudit(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsAuditFinding(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsManagementReview(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsNonconformity(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsCorrectiveAction(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsImprovementOpportunity(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsSecurityEvent(val) => val.into_pyobject(py).map(move |b| b.into_any()),
+            IsmsRecordMixinOrSubtype::IsmsSecurityIncident(val) => val.into_pyobject(py).map(move |b| b.into_any()),
         }
     }
 }
 
 
 #[cfg(feature = "pyo3")]
-impl<'py> IntoPyObject<'py> for Box<IsmsRecordOrSubtype>
+impl<'py> IntoPyObject<'py> for Box<IsmsRecordMixinOrSubtype>
 {
     type Target = PyAny;
     type Output = Bound<'py, Self::Target>;
@@ -1945,256 +1945,256 @@ impl<'py> IntoPyObject<'py> for Box<IsmsRecordOrSubtype>
 }
 
 #[cfg(feature = "pyo3")]
-impl<'py> FromPyObject<'py> for Box<IsmsRecordOrSubtype> {
+impl<'py> FromPyObject<'py> for Box<IsmsRecordMixinOrSubtype> {
     fn extract_bound(ob: &pyo3::Bound<'py, pyo3::types::PyAny>) -> pyo3::PyResult<Self> {
-        if let Ok(val) = ob.extract::<IsmsRecordOrSubtype>() {
+        if let Ok(val) = ob.extract::<IsmsRecordMixinOrSubtype>() {
             return Ok(Box::new(val));
         }
         Err(PyErr::new::<pyo3::exceptions::PyTypeError, _>(
-            "invalid IsmsRecordOrSubtype",
+            "invalid IsmsRecordMixinOrSubtype",
         ))
     }
 }
 
 #[cfg(feature = "serde")]
-impl serde_utils::InlinedPair for IsmsRecordOrSubtype {
+impl serde_utils::InlinedPair for IsmsRecordMixinOrSubtype {
     type Key       = uriorcurie;
     type Value     = serde_value::Value;
     type Error     = String;
 
     fn from_pair_mapping(k: Self::Key, v: Self::Value) -> Result<Self, Self::Error> {
         if let Ok(x) = IsmsManagementSystem::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsManagementSystem(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsManagementSystem(x));
         }
         if let Ok(x) = IsmsOrganization::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsOrganization(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsOrganization(x));
         }
         if let Ok(x) = IsmsInterestedParty::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsInterestedParty(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsInterestedParty(x));
         }
         if let Ok(x) = IsmsPolicy::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsPolicy(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsPolicy(x));
         }
         if let Ok(x) = IsmsTopicSpecificPolicy::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsTopicSpecificPolicy(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsTopicSpecificPolicy(x));
         }
         if let Ok(x) = IsmsRole::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsRole(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRole(x));
         }
         if let Ok(x) = IsmsObjective::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsObjective(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsObjective(x));
         }
         if let Ok(x) = IsmsRiskAssessmentProcess::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsRiskAssessmentProcess(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRiskAssessmentProcess(x));
         }
         if let Ok(x) = IsmsRiskAssessment::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsRiskAssessment(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRiskAssessment(x));
         }
         if let Ok(x) = IsmsRisk::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsRisk(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRisk(x));
         }
         if let Ok(x) = IsmsRiskTreatmentProcess::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsRiskTreatmentProcess(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRiskTreatmentProcess(x));
         }
         if let Ok(x) = IsmsRiskTreatmentPlan::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsRiskTreatmentPlan(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRiskTreatmentPlan(x));
         }
         if let Ok(x) = IsmsStatementOfApplicability::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsStatementOfApplicability(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsStatementOfApplicability(x));
         }
         if let Ok(x) = IsmsControl::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsControl(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsControl(x));
         }
         if let Ok(x) = IsmsAsset::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsAsset(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsAsset(x));
         }
         if let Ok(x) = IsmsResource::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsResource(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsResource(x));
         }
         if let Ok(x) = IsmsCompetenceRecord::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsCompetenceRecord(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsCompetenceRecord(x));
         }
         if let Ok(x) = IsmsAwarenessProgramme::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsAwarenessProgramme(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsAwarenessProgramme(x));
         }
         if let Ok(x) = IsmsCommunicationPlan::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsCommunicationPlan(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsCommunicationPlan(x));
         }
         if let Ok(x) = IsmsDocumentedInformation::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsDocumentedInformation(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsDocumentedInformation(x));
         }
         if let Ok(x) = IsmsOperationalProcedure::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsOperationalProcedure(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsOperationalProcedure(x));
         }
         if let Ok(x) = IsmsMonitoringProgramme::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsMonitoringProgramme(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsMonitoringProgramme(x));
         }
         if let Ok(x) = IsmsAuditProgramme::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsAuditProgramme(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsAuditProgramme(x));
         }
         if let Ok(x) = IsmsAudit::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsAudit(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsAudit(x));
         }
         if let Ok(x) = IsmsAuditFinding::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsAuditFinding(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsAuditFinding(x));
         }
         if let Ok(x) = IsmsManagementReview::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsManagementReview(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsManagementReview(x));
         }
         if let Ok(x) = IsmsNonconformity::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsNonconformity(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsNonconformity(x));
         }
         if let Ok(x) = IsmsCorrectiveAction::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsCorrectiveAction(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsCorrectiveAction(x));
         }
         if let Ok(x) = IsmsImprovementOpportunity::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsImprovementOpportunity(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsImprovementOpportunity(x));
         }
         if let Ok(x) = IsmsSecurityEvent::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsSecurityEvent(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsSecurityEvent(x));
         }
         if let Ok(x) = IsmsSecurityIncident::from_pair_mapping(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsSecurityIncident(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsSecurityIncident(x));
         }
         Err("none of the variants matched the mapping form".into())
     }
 
     fn from_pair_simple(k: Self::Key, v: Self::Value) -> Result<Self, Self::Error> {
         if let Ok(x) = IsmsManagementSystem::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsManagementSystem(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsManagementSystem(x));
         }
         if let Ok(x) = IsmsOrganization::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsOrganization(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsOrganization(x));
         }
         if let Ok(x) = IsmsInterestedParty::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsInterestedParty(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsInterestedParty(x));
         }
         if let Ok(x) = IsmsPolicy::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsPolicy(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsPolicy(x));
         }
         if let Ok(x) = IsmsTopicSpecificPolicy::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsTopicSpecificPolicy(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsTopicSpecificPolicy(x));
         }
         if let Ok(x) = IsmsRole::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsRole(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRole(x));
         }
         if let Ok(x) = IsmsObjective::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsObjective(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsObjective(x));
         }
         if let Ok(x) = IsmsRiskAssessmentProcess::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsRiskAssessmentProcess(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRiskAssessmentProcess(x));
         }
         if let Ok(x) = IsmsRiskAssessment::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsRiskAssessment(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRiskAssessment(x));
         }
         if let Ok(x) = IsmsRisk::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsRisk(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRisk(x));
         }
         if let Ok(x) = IsmsRiskTreatmentProcess::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsRiskTreatmentProcess(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRiskTreatmentProcess(x));
         }
         if let Ok(x) = IsmsRiskTreatmentPlan::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsRiskTreatmentPlan(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsRiskTreatmentPlan(x));
         }
         if let Ok(x) = IsmsStatementOfApplicability::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsStatementOfApplicability(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsStatementOfApplicability(x));
         }
         if let Ok(x) = IsmsControl::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsControl(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsControl(x));
         }
         if let Ok(x) = IsmsAsset::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsAsset(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsAsset(x));
         }
         if let Ok(x) = IsmsResource::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsResource(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsResource(x));
         }
         if let Ok(x) = IsmsCompetenceRecord::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsCompetenceRecord(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsCompetenceRecord(x));
         }
         if let Ok(x) = IsmsAwarenessProgramme::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsAwarenessProgramme(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsAwarenessProgramme(x));
         }
         if let Ok(x) = IsmsCommunicationPlan::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsCommunicationPlan(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsCommunicationPlan(x));
         }
         if let Ok(x) = IsmsDocumentedInformation::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsDocumentedInformation(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsDocumentedInformation(x));
         }
         if let Ok(x) = IsmsOperationalProcedure::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsOperationalProcedure(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsOperationalProcedure(x));
         }
         if let Ok(x) = IsmsMonitoringProgramme::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsMonitoringProgramme(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsMonitoringProgramme(x));
         }
         if let Ok(x) = IsmsAuditProgramme::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsAuditProgramme(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsAuditProgramme(x));
         }
         if let Ok(x) = IsmsAudit::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsAudit(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsAudit(x));
         }
         if let Ok(x) = IsmsAuditFinding::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsAuditFinding(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsAuditFinding(x));
         }
         if let Ok(x) = IsmsManagementReview::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsManagementReview(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsManagementReview(x));
         }
         if let Ok(x) = IsmsNonconformity::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsNonconformity(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsNonconformity(x));
         }
         if let Ok(x) = IsmsCorrectiveAction::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsCorrectiveAction(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsCorrectiveAction(x));
         }
         if let Ok(x) = IsmsImprovementOpportunity::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsImprovementOpportunity(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsImprovementOpportunity(x));
         }
         if let Ok(x) = IsmsSecurityEvent::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsSecurityEvent(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsSecurityEvent(x));
         }
         if let Ok(x) = IsmsSecurityIncident::from_pair_simple(k.clone(), v.clone()) {
-            return Ok(IsmsRecordOrSubtype::IsmsSecurityIncident(x));
+            return Ok(IsmsRecordMixinOrSubtype::IsmsSecurityIncident(x));
         }
         Err("none of the variants support the primitive form".into())
     }
 
     fn extract_key(&self) -> &Self::Key {
         match self {
-            IsmsRecordOrSubtype::IsmsManagementSystem(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsOrganization(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsInterestedParty(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsPolicy(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsTopicSpecificPolicy(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsRole(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsObjective(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsRiskAssessmentProcess(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsRiskAssessment(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsRisk(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsRiskTreatmentProcess(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsRiskTreatmentPlan(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsStatementOfApplicability(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsControl(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsAsset(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsResource(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsCompetenceRecord(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsAwarenessProgramme(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsCommunicationPlan(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsDocumentedInformation(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsOperationalProcedure(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsMonitoringProgramme(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsAuditProgramme(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsAudit(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsAuditFinding(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsManagementReview(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsNonconformity(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsCorrectiveAction(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsImprovementOpportunity(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsSecurityEvent(inner) => inner.extract_key(),
-            IsmsRecordOrSubtype::IsmsSecurityIncident(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsManagementSystem(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsOrganization(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsInterestedParty(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsPolicy(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsTopicSpecificPolicy(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsRole(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsObjective(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsRiskAssessmentProcess(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsRiskAssessment(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsRisk(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsRiskTreatmentProcess(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsRiskTreatmentPlan(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsStatementOfApplicability(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsControl(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsAsset(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsResource(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsCompetenceRecord(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsAwarenessProgramme(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsCommunicationPlan(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsDocumentedInformation(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsOperationalProcedure(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsMonitoringProgramme(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsAuditProgramme(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsAudit(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsAuditFinding(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsManagementReview(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsNonconformity(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsCorrectiveAction(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsImprovementOpportunity(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsSecurityEvent(inner) => inner.extract_key(),
+            IsmsRecordMixinOrSubtype::IsmsSecurityIncident(inner) => inner.extract_key(),
         }
     }
 }
 
 #[cfg(feature = "stubgen")]
-::pyo3_stub_gen::impl_stub_type!(IsmsRecordOrSubtype = IsmsManagementSystem | IsmsOrganization | IsmsInterestedParty | IsmsPolicy | IsmsTopicSpecificPolicy | IsmsRole | IsmsObjective | IsmsRiskAssessmentProcess | IsmsRiskAssessment | IsmsRisk | IsmsRiskTreatmentProcess | IsmsRiskTreatmentPlan | IsmsStatementOfApplicability | IsmsControl | IsmsAsset | IsmsResource | IsmsCompetenceRecord | IsmsAwarenessProgramme | IsmsCommunicationPlan | IsmsDocumentedInformation | IsmsOperationalProcedure | IsmsMonitoringProgramme | IsmsAuditProgramme | IsmsAudit | IsmsAuditFinding | IsmsManagementReview | IsmsNonconformity | IsmsCorrectiveAction | IsmsImprovementOpportunity | IsmsSecurityEvent | IsmsSecurityIncident);
+::pyo3_stub_gen::impl_stub_type!(IsmsRecordMixinOrSubtype = IsmsManagementSystem | IsmsOrganization | IsmsInterestedParty | IsmsPolicy | IsmsTopicSpecificPolicy | IsmsRole | IsmsObjective | IsmsRiskAssessmentProcess | IsmsRiskAssessment | IsmsRisk | IsmsRiskTreatmentProcess | IsmsRiskTreatmentPlan | IsmsStatementOfApplicability | IsmsControl | IsmsAsset | IsmsResource | IsmsCompetenceRecord | IsmsAwarenessProgramme | IsmsCommunicationPlan | IsmsDocumentedInformation | IsmsOperationalProcedure | IsmsMonitoringProgramme | IsmsAuditProgramme | IsmsAudit | IsmsAuditFinding | IsmsManagementReview | IsmsNonconformity | IsmsCorrectiveAction | IsmsImprovementOpportunity | IsmsSecurityEvent | IsmsSecurityIncident);
 
 #[derive(Debug, Clone, PartialEq)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3139,6 +3139,11 @@ pub struct IsmsPolicy {
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub policy_management_systems: Option<Vec<IsmsManagementSystemStandard>>,
+    pub isms_id: uriorcurie,
+    pub title: String,
+    #[cfg_attr(feature = "serde", serde(default))]
+    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
+    pub description: Option<String>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub document_reference: Option<String>,
@@ -3193,21 +3198,16 @@ pub struct IsmsPolicy {
     pub document_external_origin: Option<bool>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub document_external_source: Option<String>,
-    pub isms_id: uriorcurie,
-    pub title: String,
-    #[cfg_attr(feature = "serde", serde(default))]
-    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub description: Option<String>
+    pub document_external_source: Option<String>
 }
 #[cfg(feature = "pyo3")]
 #[cfg_attr(feature = "stubgen", gen_stub_pymethods)]
 #[pymethods]
 impl IsmsPolicy {
     #[new]
-    #[pyo3(signature = (isms_id, title, policy_statement=None, policy_objectives_framework=None, policy_commitments=None, policy_applicability=None, policy_communication_date=None, policy_acknowledgement_required=None, policy_management_systems=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None, description=None))]
-    pub fn new(isms_id: uriorcurie, title: String, policy_statement: Option<String>, policy_objectives_framework: Option<String>, policy_commitments: Option<Vec<String>>, policy_applicability: Option<String>, policy_communication_date: Option<NaiveDate>, policy_acknowledgement_required: Option<bool>, policy_management_systems: Option<Vec<IsmsManagementSystemStandard>>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>, description: Option<String>) -> Self {
-        IsmsPolicy{isms_id, title, policy_statement, policy_objectives_framework, policy_commitments, policy_applicability, policy_communication_date, policy_acknowledgement_required, policy_management_systems, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source, description}
+    #[pyo3(signature = (isms_id, title, policy_statement=None, policy_objectives_framework=None, policy_commitments=None, policy_applicability=None, policy_communication_date=None, policy_acknowledgement_required=None, policy_management_systems=None, description=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None))]
+    pub fn new(isms_id: uriorcurie, title: String, policy_statement: Option<String>, policy_objectives_framework: Option<String>, policy_commitments: Option<Vec<String>>, policy_applicability: Option<String>, policy_communication_date: Option<NaiveDate>, policy_acknowledgement_required: Option<bool>, policy_management_systems: Option<Vec<IsmsManagementSystemStandard>>, description: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>) -> Self {
+        IsmsPolicy{isms_id, title, policy_statement, policy_objectives_framework, policy_commitments, policy_applicability, policy_communication_date, policy_acknowledgement_required, policy_management_systems, description, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source}
     }
 }
 
@@ -3317,6 +3317,11 @@ pub struct IsmsTopicSpecificPolicy {
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub topic_policy_audience: Option<String>,
+    pub isms_id: uriorcurie,
+    pub title: String,
+    #[cfg_attr(feature = "serde", serde(default))]
+    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
+    pub description: Option<String>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub document_reference: Option<String>,
@@ -3371,21 +3376,16 @@ pub struct IsmsTopicSpecificPolicy {
     pub document_external_origin: Option<bool>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub document_external_source: Option<String>,
-    pub isms_id: uriorcurie,
-    pub title: String,
-    #[cfg_attr(feature = "serde", serde(default))]
-    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub description: Option<String>
+    pub document_external_source: Option<String>
 }
 #[cfg(feature = "pyo3")]
 #[cfg_attr(feature = "stubgen", gen_stub_pymethods)]
 #[pymethods]
 impl IsmsTopicSpecificPolicy {
     #[new]
-    #[pyo3(signature = (isms_id, title, relevant_controls=None, topic_policy_topic=None, topic_policy_parent=None, topic_policy_audience=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None, description=None))]
-    pub fn new(isms_id: uriorcurie, title: String, relevant_controls: Option<Vec<String>>, topic_policy_topic: Option<String>, topic_policy_parent: Option<String>, topic_policy_audience: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>, description: Option<String>) -> Self {
-        IsmsTopicSpecificPolicy{isms_id, title, relevant_controls, topic_policy_topic, topic_policy_parent, topic_policy_audience, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source, description}
+    #[pyo3(signature = (isms_id, title, relevant_controls=None, topic_policy_topic=None, topic_policy_parent=None, topic_policy_audience=None, description=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None))]
+    pub fn new(isms_id: uriorcurie, title: String, relevant_controls: Option<Vec<String>>, topic_policy_topic: Option<String>, topic_policy_parent: Option<String>, topic_policy_audience: Option<String>, description: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>) -> Self {
+        IsmsTopicSpecificPolicy{isms_id, title, relevant_controls, topic_policy_topic, topic_policy_parent, topic_policy_audience, description, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source}
     }
 }
 
@@ -3805,6 +3805,11 @@ pub struct IsmsRiskAssessmentProcess {
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub risk_assessment_triggers: Option<Vec<String>>,
+    pub isms_id: uriorcurie,
+    pub title: String,
+    #[cfg_attr(feature = "serde", serde(default))]
+    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
+    pub description: Option<String>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub document_reference: Option<String>,
@@ -3859,21 +3864,16 @@ pub struct IsmsRiskAssessmentProcess {
     pub document_external_origin: Option<bool>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub document_external_source: Option<String>,
-    pub isms_id: uriorcurie,
-    pub title: String,
-    #[cfg_attr(feature = "serde", serde(default))]
-    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub description: Option<String>
+    pub document_external_source: Option<String>
 }
 #[cfg(feature = "pyo3")]
 #[cfg_attr(feature = "stubgen", gen_stub_pymethods)]
 #[pymethods]
 impl IsmsRiskAssessmentProcess {
     #[new]
-    #[pyo3(signature = (isms_id, title, risk_acceptance_criteria=None, risk_assessment_criteria=None, risk_assessment_method=None, risk_likelihood_scale=None, risk_impact_scale=None, risk_matrix=None, risk_assessment_frequency=None, risk_assessment_triggers=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None, description=None))]
-    pub fn new(isms_id: uriorcurie, title: String, risk_acceptance_criteria: Option<String>, risk_assessment_criteria: Option<String>, risk_assessment_method: Option<String>, risk_likelihood_scale: Option<String>, risk_impact_scale: Option<String>, risk_matrix: Option<String>, risk_assessment_frequency: Option<String>, risk_assessment_triggers: Option<Vec<String>>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>, description: Option<String>) -> Self {
-        IsmsRiskAssessmentProcess{isms_id, title, risk_acceptance_criteria, risk_assessment_criteria, risk_assessment_method, risk_likelihood_scale, risk_impact_scale, risk_matrix, risk_assessment_frequency, risk_assessment_triggers, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source, description}
+    #[pyo3(signature = (isms_id, title, risk_acceptance_criteria=None, risk_assessment_criteria=None, risk_assessment_method=None, risk_likelihood_scale=None, risk_impact_scale=None, risk_matrix=None, risk_assessment_frequency=None, risk_assessment_triggers=None, description=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None))]
+    pub fn new(isms_id: uriorcurie, title: String, risk_acceptance_criteria: Option<String>, risk_assessment_criteria: Option<String>, risk_assessment_method: Option<String>, risk_likelihood_scale: Option<String>, risk_impact_scale: Option<String>, risk_matrix: Option<String>, risk_assessment_frequency: Option<String>, risk_assessment_triggers: Option<Vec<String>>, description: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>) -> Self {
+        IsmsRiskAssessmentProcess{isms_id, title, risk_acceptance_criteria, risk_assessment_criteria, risk_assessment_method, risk_likelihood_scale, risk_impact_scale, risk_matrix, risk_assessment_frequency, risk_assessment_triggers, description, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source}
     }
 }
 
@@ -3999,6 +3999,11 @@ pub struct IsmsRiskAssessment {
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub assessment_next_date: Option<NaiveDate>,
+    pub isms_id: uriorcurie,
+    pub title: String,
+    #[cfg_attr(feature = "serde", serde(default))]
+    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
+    pub description: Option<String>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub document_reference: Option<String>,
@@ -4053,21 +4058,16 @@ pub struct IsmsRiskAssessment {
     pub document_external_origin: Option<bool>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub document_external_source: Option<String>,
-    pub isms_id: uriorcurie,
-    pub title: String,
-    #[cfg_attr(feature = "serde", serde(default))]
-    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub description: Option<String>
+    pub document_external_source: Option<String>
 }
 #[cfg(feature = "pyo3")]
 #[cfg_attr(feature = "stubgen", gen_stub_pymethods)]
 #[pymethods]
 impl IsmsRiskAssessment {
     #[new]
-    #[pyo3(signature = (isms_id, title, assessment_scope=None, assessment_date=None, assessment_assessor=None, assessment_method_used=None, assessment_risks=None, assessment_summary=None, assessment_recommendations=None, assessment_next_date=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None, description=None))]
-    pub fn new(isms_id: uriorcurie, title: String, assessment_scope: Option<String>, assessment_date: Option<NaiveDate>, assessment_assessor: Option<String>, assessment_method_used: Option<String>, assessment_risks: Option<Vec<String>>, assessment_summary: Option<String>, assessment_recommendations: Option<Vec<String>>, assessment_next_date: Option<NaiveDate>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>, description: Option<String>) -> Self {
-        IsmsRiskAssessment{isms_id, title, assessment_scope, assessment_date, assessment_assessor, assessment_method_used, assessment_risks, assessment_summary, assessment_recommendations, assessment_next_date, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source, description}
+    #[pyo3(signature = (isms_id, title, assessment_scope=None, assessment_date=None, assessment_assessor=None, assessment_method_used=None, assessment_risks=None, assessment_summary=None, assessment_recommendations=None, assessment_next_date=None, description=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None))]
+    pub fn new(isms_id: uriorcurie, title: String, assessment_scope: Option<String>, assessment_date: Option<NaiveDate>, assessment_assessor: Option<String>, assessment_method_used: Option<String>, assessment_risks: Option<Vec<String>>, assessment_summary: Option<String>, assessment_recommendations: Option<Vec<String>>, assessment_next_date: Option<NaiveDate>, description: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>) -> Self {
+        IsmsRiskAssessment{isms_id, title, assessment_scope, assessment_date, assessment_assessor, assessment_method_used, assessment_risks, assessment_summary, assessment_recommendations, assessment_next_date, description, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source}
     }
 }
 
@@ -4334,6 +4334,11 @@ pub struct IsmsRiskTreatmentProcess {
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub treatment_approval_workflow: Option<String>,
+    pub isms_id: uriorcurie,
+    pub title: String,
+    #[cfg_attr(feature = "serde", serde(default))]
+    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
+    pub description: Option<String>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub document_reference: Option<String>,
@@ -4388,21 +4393,16 @@ pub struct IsmsRiskTreatmentProcess {
     pub document_external_origin: Option<bool>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub document_external_source: Option<String>,
-    pub isms_id: uriorcurie,
-    pub title: String,
-    #[cfg_attr(feature = "serde", serde(default))]
-    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub description: Option<String>
+    pub document_external_source: Option<String>
 }
 #[cfg(feature = "pyo3")]
 #[cfg_attr(feature = "stubgen", gen_stub_pymethods)]
 #[pymethods]
 impl IsmsRiskTreatmentProcess {
     #[new]
-    #[pyo3(signature = (isms_id, title, treatment_options_guidance=None, treatment_control_selection=None, treatment_annex_a_comparison=None, treatment_soa_template=None, treatment_approval_workflow=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None, description=None))]
-    pub fn new(isms_id: uriorcurie, title: String, treatment_options_guidance: Option<String>, treatment_control_selection: Option<String>, treatment_annex_a_comparison: Option<String>, treatment_soa_template: Option<String>, treatment_approval_workflow: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>, description: Option<String>) -> Self {
-        IsmsRiskTreatmentProcess{isms_id, title, treatment_options_guidance, treatment_control_selection, treatment_annex_a_comparison, treatment_soa_template, treatment_approval_workflow, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source, description}
+    #[pyo3(signature = (isms_id, title, treatment_options_guidance=None, treatment_control_selection=None, treatment_annex_a_comparison=None, treatment_soa_template=None, treatment_approval_workflow=None, description=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None))]
+    pub fn new(isms_id: uriorcurie, title: String, treatment_options_guidance: Option<String>, treatment_control_selection: Option<String>, treatment_annex_a_comparison: Option<String>, treatment_soa_template: Option<String>, treatment_approval_workflow: Option<String>, description: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>) -> Self {
+        IsmsRiskTreatmentProcess{isms_id, title, treatment_options_guidance, treatment_control_selection, treatment_annex_a_comparison, treatment_soa_template, treatment_approval_workflow, description, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source}
     }
 }
 
@@ -4541,6 +4541,11 @@ pub struct IsmsRiskTreatmentPlan {
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub plan_completion_date: Option<NaiveDate>,
+    pub isms_id: uriorcurie,
+    pub title: String,
+    #[cfg_attr(feature = "serde", serde(default))]
+    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
+    pub description: Option<String>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub document_reference: Option<String>,
@@ -4595,21 +4600,16 @@ pub struct IsmsRiskTreatmentPlan {
     pub document_external_origin: Option<bool>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub document_external_source: Option<String>,
-    pub isms_id: uriorcurie,
-    pub title: String,
-    #[cfg_attr(feature = "serde", serde(default))]
-    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub description: Option<String>
+    pub document_external_source: Option<String>
 }
 #[cfg(feature = "pyo3")]
 #[cfg_attr(feature = "stubgen", gen_stub_pymethods)]
 #[pymethods]
 impl IsmsRiskTreatmentPlan {
     #[new]
-    #[pyo3(signature = (isms_id, title, implementation_state=None, plan_scope=None, plan_risks=None, plan_actions=None, plan_controls=None, plan_resources=None, plan_responsible_parties=None, plan_timeline=None, plan_risk_owner_approval=None, plan_residual_risk_acceptance=None, plan_completion_date=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None, description=None))]
-    pub fn new(isms_id: uriorcurie, title: String, implementation_state: Option<IsmsImplementationStatus>, plan_scope: Option<String>, plan_risks: Option<Vec<String>>, plan_actions: Option<Vec<String>>, plan_controls: Option<Vec<String>>, plan_resources: Option<String>, plan_responsible_parties: Option<Vec<String>>, plan_timeline: Option<String>, plan_risk_owner_approval: Option<String>, plan_residual_risk_acceptance: Option<String>, plan_completion_date: Option<NaiveDate>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>, description: Option<String>) -> Self {
-        IsmsRiskTreatmentPlan{isms_id, title, implementation_state, plan_scope, plan_risks, plan_actions, plan_controls, plan_resources, plan_responsible_parties, plan_timeline, plan_risk_owner_approval, plan_residual_risk_acceptance, plan_completion_date, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source, description}
+    #[pyo3(signature = (isms_id, title, implementation_state=None, plan_scope=None, plan_risks=None, plan_actions=None, plan_controls=None, plan_resources=None, plan_responsible_parties=None, plan_timeline=None, plan_risk_owner_approval=None, plan_residual_risk_acceptance=None, plan_completion_date=None, description=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None))]
+    pub fn new(isms_id: uriorcurie, title: String, implementation_state: Option<IsmsImplementationStatus>, plan_scope: Option<String>, plan_risks: Option<Vec<String>>, plan_actions: Option<Vec<String>>, plan_controls: Option<Vec<String>>, plan_resources: Option<String>, plan_responsible_parties: Option<Vec<String>>, plan_timeline: Option<String>, plan_risk_owner_approval: Option<String>, plan_residual_risk_acceptance: Option<String>, plan_completion_date: Option<NaiveDate>, description: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>) -> Self {
+        IsmsRiskTreatmentPlan{isms_id, title, implementation_state, plan_scope, plan_risks, plan_actions, plan_controls, plan_resources, plan_responsible_parties, plan_timeline, plan_risk_owner_approval, plan_residual_risk_acceptance, plan_completion_date, description, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source}
     }
 }
 
@@ -4710,6 +4710,11 @@ pub struct IsmsStatementOfApplicability {
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub soa_entries: Option<Vec<IsmsApplicabilityEntryOrSubtype>>,
+    pub isms_id: uriorcurie,
+    pub title: String,
+    #[cfg_attr(feature = "serde", serde(default))]
+    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
+    pub description: Option<String>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub document_reference: Option<String>,
@@ -4764,22 +4769,17 @@ pub struct IsmsStatementOfApplicability {
     pub document_external_origin: Option<bool>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub document_external_source: Option<String>,
-    pub isms_id: uriorcurie,
-    pub title: String,
-    #[cfg_attr(feature = "serde", serde(default))]
-    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub description: Option<String>
+    pub document_external_source: Option<String>
 }
 #[cfg(feature = "pyo3")]
 #[cfg_attr(feature = "stubgen", gen_stub_pymethods)]
 #[pymethods]
 impl IsmsStatementOfApplicability {
     #[new]
-    #[pyo3(signature = (isms_id, title, soa_entries=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None, description=None))]
-    pub fn new(isms_id: uriorcurie, title: String, soa_entries: Option<serde_utils::PyValue<Vec<IsmsApplicabilityEntryOrSubtype>>>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>, description: Option<String>) -> Self {
+    #[pyo3(signature = (isms_id, title, soa_entries=None, description=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None))]
+    pub fn new(isms_id: uriorcurie, title: String, soa_entries: Option<serde_utils::PyValue<Vec<IsmsApplicabilityEntryOrSubtype>>>, description: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>) -> Self {
         let soa_entries = soa_entries.map(|v| v.into_inner());
-        IsmsStatementOfApplicability{isms_id, title, soa_entries, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source, description}
+        IsmsStatementOfApplicability{isms_id, title, soa_entries, description, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source}
     }
 }
 
@@ -5577,6 +5577,11 @@ pub struct IsmsCompetenceRecord {
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub competence_actions: Option<Vec<String>>,
+    pub isms_id: uriorcurie,
+    pub title: String,
+    #[cfg_attr(feature = "serde", serde(default))]
+    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
+    pub description: Option<String>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub document_reference: Option<String>,
@@ -5631,21 +5636,16 @@ pub struct IsmsCompetenceRecord {
     pub document_external_origin: Option<bool>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub document_external_source: Option<String>,
-    pub isms_id: uriorcurie,
-    pub title: String,
-    #[cfg_attr(feature = "serde", serde(default))]
-    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub description: Option<String>
+    pub document_external_source: Option<String>
 }
 #[cfg(feature = "pyo3")]
 #[cfg_attr(feature = "stubgen", gen_stub_pymethods)]
 #[pymethods]
 impl IsmsCompetenceRecord {
     #[new]
-    #[pyo3(signature = (isms_id, title, competence_person=None, competence_role=None, competence_required=None, competence_education=None, competence_training=None, competence_experience=None, competence_assessment_date=None, competence_gaps=None, competence_actions=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None, description=None))]
-    pub fn new(isms_id: uriorcurie, title: String, competence_person: Option<String>, competence_role: Option<String>, competence_required: Option<Vec<String>>, competence_education: Option<Vec<String>>, competence_training: Option<Vec<String>>, competence_experience: Option<Vec<String>>, competence_assessment_date: Option<NaiveDate>, competence_gaps: Option<Vec<String>>, competence_actions: Option<Vec<String>>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>, description: Option<String>) -> Self {
-        IsmsCompetenceRecord{isms_id, title, competence_person, competence_role, competence_required, competence_education, competence_training, competence_experience, competence_assessment_date, competence_gaps, competence_actions, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source, description}
+    #[pyo3(signature = (isms_id, title, competence_person=None, competence_role=None, competence_required=None, competence_education=None, competence_training=None, competence_experience=None, competence_assessment_date=None, competence_gaps=None, competence_actions=None, description=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None))]
+    pub fn new(isms_id: uriorcurie, title: String, competence_person: Option<String>, competence_role: Option<String>, competence_required: Option<Vec<String>>, competence_education: Option<Vec<String>>, competence_training: Option<Vec<String>>, competence_experience: Option<Vec<String>>, competence_assessment_date: Option<NaiveDate>, competence_gaps: Option<Vec<String>>, competence_actions: Option<Vec<String>>, description: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>) -> Self {
+        IsmsCompetenceRecord{isms_id, title, competence_person, competence_role, competence_required, competence_education, competence_training, competence_experience, competence_assessment_date, competence_gaps, competence_actions, description, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source}
     }
 }
 
@@ -5769,6 +5769,11 @@ pub struct IsmsAwarenessProgramme {
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub awareness_effectiveness: Option<String>,
+    pub isms_id: uriorcurie,
+    pub title: String,
+    #[cfg_attr(feature = "serde", serde(default))]
+    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
+    pub description: Option<String>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub document_reference: Option<String>,
@@ -5823,21 +5828,16 @@ pub struct IsmsAwarenessProgramme {
     pub document_external_origin: Option<bool>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub document_external_source: Option<String>,
-    pub isms_id: uriorcurie,
-    pub title: String,
-    #[cfg_attr(feature = "serde", serde(default))]
-    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub description: Option<String>
+    pub document_external_source: Option<String>
 }
 #[cfg(feature = "pyo3")]
 #[cfg_attr(feature = "stubgen", gen_stub_pymethods)]
 #[pymethods]
 impl IsmsAwarenessProgramme {
     #[new]
-    #[pyo3(signature = (isms_id, title, awareness_topics=None, awareness_methods=None, awareness_audience=None, awareness_frequency=None, awareness_completion_tracking=None, awareness_effectiveness=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None, description=None))]
-    pub fn new(isms_id: uriorcurie, title: String, awareness_topics: Option<Vec<String>>, awareness_methods: Option<Vec<String>>, awareness_audience: Option<String>, awareness_frequency: Option<String>, awareness_completion_tracking: Option<String>, awareness_effectiveness: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>, description: Option<String>) -> Self {
-        IsmsAwarenessProgramme{isms_id, title, awareness_topics, awareness_methods, awareness_audience, awareness_frequency, awareness_completion_tracking, awareness_effectiveness, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source, description}
+    #[pyo3(signature = (isms_id, title, awareness_topics=None, awareness_methods=None, awareness_audience=None, awareness_frequency=None, awareness_completion_tracking=None, awareness_effectiveness=None, description=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None))]
+    pub fn new(isms_id: uriorcurie, title: String, awareness_topics: Option<Vec<String>>, awareness_methods: Option<Vec<String>>, awareness_audience: Option<String>, awareness_frequency: Option<String>, awareness_completion_tracking: Option<String>, awareness_effectiveness: Option<String>, description: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>) -> Self {
+        IsmsAwarenessProgramme{isms_id, title, awareness_topics, awareness_methods, awareness_audience, awareness_frequency, awareness_completion_tracking, awareness_effectiveness, description, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source}
     }
 }
 
@@ -5938,6 +5938,11 @@ pub struct IsmsCommunicationPlan {
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub communication_items: Option<Vec<IsmsCommunication>>,
+    pub isms_id: uriorcurie,
+    pub title: String,
+    #[cfg_attr(feature = "serde", serde(default))]
+    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
+    pub description: Option<String>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub document_reference: Option<String>,
@@ -5992,22 +5997,17 @@ pub struct IsmsCommunicationPlan {
     pub document_external_origin: Option<bool>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub document_external_source: Option<String>,
-    pub isms_id: uriorcurie,
-    pub title: String,
-    #[cfg_attr(feature = "serde", serde(default))]
-    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub description: Option<String>
+    pub document_external_source: Option<String>
 }
 #[cfg(feature = "pyo3")]
 #[cfg_attr(feature = "stubgen", gen_stub_pymethods)]
 #[pymethods]
 impl IsmsCommunicationPlan {
     #[new]
-    #[pyo3(signature = (isms_id, title, communication_items=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None, description=None))]
-    pub fn new(isms_id: uriorcurie, title: String, communication_items: Option<serde_utils::PyValue<Vec<IsmsCommunication>>>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>, description: Option<String>) -> Self {
+    #[pyo3(signature = (isms_id, title, communication_items=None, description=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None))]
+    pub fn new(isms_id: uriorcurie, title: String, communication_items: Option<serde_utils::PyValue<Vec<IsmsCommunication>>>, description: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>) -> Self {
         let communication_items = communication_items.map(|v| v.into_inner());
-        IsmsCommunicationPlan{isms_id, title, communication_items, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source, description}
+        IsmsCommunicationPlan{isms_id, title, communication_items, description, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source}
     }
 }
 
@@ -6167,6 +6167,11 @@ impl<'py> FromPyObject<'py> for Box<IsmsCommunication> {
 #[cfg_attr(feature = "pyo3", pyclass(subclass, get_all, set_all))]
 pub struct IsmsDocumentedInformation {
     pub document_kind: IsmsDocumentKind,
+    pub isms_id: uriorcurie,
+    pub title: String,
+    #[cfg_attr(feature = "serde", serde(default))]
+    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
+    pub description: Option<String>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub document_reference: Option<String>,
@@ -6221,21 +6226,16 @@ pub struct IsmsDocumentedInformation {
     pub document_external_origin: Option<bool>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub document_external_source: Option<String>,
-    pub isms_id: uriorcurie,
-    pub title: String,
-    #[cfg_attr(feature = "serde", serde(default))]
-    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub description: Option<String>
+    pub document_external_source: Option<String>
 }
 #[cfg(feature = "pyo3")]
 #[cfg_attr(feature = "stubgen", gen_stub_pymethods)]
 #[pymethods]
 impl IsmsDocumentedInformation {
     #[new]
-    #[pyo3(signature = (document_kind, isms_id, title, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None, description=None))]
-    pub fn new(document_kind: IsmsDocumentKind, isms_id: uriorcurie, title: String, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>, description: Option<String>) -> Self {
-        IsmsDocumentedInformation{document_kind, isms_id, title, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source, description}
+    #[pyo3(signature = (document_kind, isms_id, title, description=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None))]
+    pub fn new(document_kind: IsmsDocumentKind, isms_id: uriorcurie, title: String, description: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>) -> Self {
+        IsmsDocumentedInformation{document_kind, isms_id, title, description, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source}
     }
 }
 
@@ -6342,6 +6342,11 @@ pub struct IsmsOperationalProcedure {
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub procedure_change_control: Option<String>,
+    pub isms_id: uriorcurie,
+    pub title: String,
+    #[cfg_attr(feature = "serde", serde(default))]
+    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
+    pub description: Option<String>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub document_reference: Option<String>,
@@ -6396,21 +6401,16 @@ pub struct IsmsOperationalProcedure {
     pub document_external_origin: Option<bool>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub document_external_source: Option<String>,
-    pub isms_id: uriorcurie,
-    pub title: String,
-    #[cfg_attr(feature = "serde", serde(default))]
-    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub description: Option<String>
+    pub document_external_source: Option<String>
 }
 #[cfg(feature = "pyo3")]
 #[cfg_attr(feature = "stubgen", gen_stub_pymethods)]
 #[pymethods]
 impl IsmsOperationalProcedure {
     #[new]
-    #[pyo3(signature = (isms_id, title, relevant_controls=None, procedure_scope=None, procedure_criteria=None, procedure_control_measures=None, procedure_roles=None, procedure_change_control=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None, description=None))]
-    pub fn new(isms_id: uriorcurie, title: String, relevant_controls: Option<Vec<String>>, procedure_scope: Option<String>, procedure_criteria: Option<String>, procedure_control_measures: Option<Vec<String>>, procedure_roles: Option<Vec<String>>, procedure_change_control: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>, description: Option<String>) -> Self {
-        IsmsOperationalProcedure{isms_id, title, relevant_controls, procedure_scope, procedure_criteria, procedure_control_measures, procedure_roles, procedure_change_control, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source, description}
+    #[pyo3(signature = (isms_id, title, relevant_controls=None, procedure_scope=None, procedure_criteria=None, procedure_control_measures=None, procedure_roles=None, procedure_change_control=None, description=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None))]
+    pub fn new(isms_id: uriorcurie, title: String, relevant_controls: Option<Vec<String>>, procedure_scope: Option<String>, procedure_criteria: Option<String>, procedure_control_measures: Option<Vec<String>>, procedure_roles: Option<Vec<String>>, procedure_change_control: Option<String>, description: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>) -> Self {
+        IsmsOperationalProcedure{isms_id, title, relevant_controls, procedure_scope, procedure_criteria, procedure_control_measures, procedure_roles, procedure_change_control, description, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source}
     }
 }
 
@@ -6511,6 +6511,11 @@ pub struct IsmsMonitoringProgramme {
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub monitoring_items: Option<Vec<IsmsMonitoringItem>>,
+    pub isms_id: uriorcurie,
+    pub title: String,
+    #[cfg_attr(feature = "serde", serde(default))]
+    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
+    pub description: Option<String>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub document_reference: Option<String>,
@@ -6565,22 +6570,17 @@ pub struct IsmsMonitoringProgramme {
     pub document_external_origin: Option<bool>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub document_external_source: Option<String>,
-    pub isms_id: uriorcurie,
-    pub title: String,
-    #[cfg_attr(feature = "serde", serde(default))]
-    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub description: Option<String>
+    pub document_external_source: Option<String>
 }
 #[cfg(feature = "pyo3")]
 #[cfg_attr(feature = "stubgen", gen_stub_pymethods)]
 #[pymethods]
 impl IsmsMonitoringProgramme {
     #[new]
-    #[pyo3(signature = (isms_id, title, monitoring_items=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None, description=None))]
-    pub fn new(isms_id: uriorcurie, title: String, monitoring_items: Option<serde_utils::PyValue<Vec<IsmsMonitoringItem>>>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>, description: Option<String>) -> Self {
+    #[pyo3(signature = (isms_id, title, monitoring_items=None, description=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None))]
+    pub fn new(isms_id: uriorcurie, title: String, monitoring_items: Option<serde_utils::PyValue<Vec<IsmsMonitoringItem>>>, description: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>) -> Self {
         let monitoring_items = monitoring_items.map(|v| v.into_inner());
-        IsmsMonitoringProgramme{isms_id, title, monitoring_items, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source, description}
+        IsmsMonitoringProgramme{isms_id, title, monitoring_items, description, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source}
     }
 }
 
@@ -6769,6 +6769,11 @@ pub struct IsmsAuditProgramme {
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub programme_status: Option<String>,
+    pub isms_id: uriorcurie,
+    pub title: String,
+    #[cfg_attr(feature = "serde", serde(default))]
+    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
+    pub description: Option<String>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub document_reference: Option<String>,
@@ -6823,21 +6828,16 @@ pub struct IsmsAuditProgramme {
     pub document_external_origin: Option<bool>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub document_external_source: Option<String>,
-    pub isms_id: uriorcurie,
-    pub title: String,
-    #[cfg_attr(feature = "serde", serde(default))]
-    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub description: Option<String>
+    pub document_external_source: Option<String>
 }
 #[cfg(feature = "pyo3")]
 #[cfg_attr(feature = "stubgen", gen_stub_pymethods)]
 #[pymethods]
 impl IsmsAuditProgramme {
     #[new]
-    #[pyo3(signature = (isms_id, title, programme_period=None, programme_audits=None, programme_frequency_rationale=None, programme_resources=None, programme_auditor_qualifications=None, programme_status=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None, description=None))]
-    pub fn new(isms_id: uriorcurie, title: String, programme_period: Option<String>, programme_audits: Option<Vec<String>>, programme_frequency_rationale: Option<String>, programme_resources: Option<String>, programme_auditor_qualifications: Option<String>, programme_status: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>, description: Option<String>) -> Self {
-        IsmsAuditProgramme{isms_id, title, programme_period, programme_audits, programme_frequency_rationale, programme_resources, programme_auditor_qualifications, programme_status, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source, description}
+    #[pyo3(signature = (isms_id, title, programme_period=None, programme_audits=None, programme_frequency_rationale=None, programme_resources=None, programme_auditor_qualifications=None, programme_status=None, description=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None))]
+    pub fn new(isms_id: uriorcurie, title: String, programme_period: Option<String>, programme_audits: Option<Vec<String>>, programme_frequency_rationale: Option<String>, programme_resources: Option<String>, programme_auditor_qualifications: Option<String>, programme_status: Option<String>, description: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>) -> Self {
+        IsmsAuditProgramme{isms_id, title, programme_period, programme_audits, programme_frequency_rationale, programme_resources, programme_auditor_qualifications, programme_status, description, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source}
     }
 }
 
@@ -7006,6 +7006,11 @@ pub struct IsmsAudit {
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub audit_report_distribution: Option<Vec<String>>,
+    pub isms_id: uriorcurie,
+    pub title: String,
+    #[cfg_attr(feature = "serde", serde(default))]
+    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
+    pub description: Option<String>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub document_reference: Option<String>,
@@ -7060,22 +7065,17 @@ pub struct IsmsAudit {
     pub document_external_origin: Option<bool>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub document_external_source: Option<String>,
-    pub isms_id: uriorcurie,
-    pub title: String,
-    #[cfg_attr(feature = "serde", serde(default))]
-    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub description: Option<String>
+    pub document_external_source: Option<String>
 }
 #[cfg(feature = "pyo3")]
 #[cfg_attr(feature = "stubgen", gen_stub_pymethods)]
 #[pymethods]
 impl IsmsAudit {
     #[new]
-    #[pyo3(signature = (audit_type, isms_id, title, audit_standards=None, audit_scope=None, audit_criteria=None, audit_objectives=None, audit_period_start=None, audit_period_end=None, audit_lead=None, audit_team=None, audit_auditees=None, audit_plan=None, audit_findings=None, audit_conclusion=None, audit_report_date=None, audit_report_distribution=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None, description=None))]
-    pub fn new(audit_type: IsmsAuditType, isms_id: uriorcurie, title: String, audit_standards: Option<Vec<IsmsManagementSystemStandard>>, audit_scope: Option<String>, audit_criteria: Option<Vec<String>>, audit_objectives: Option<Vec<String>>, audit_period_start: Option<NaiveDate>, audit_period_end: Option<NaiveDate>, audit_lead: Option<String>, audit_team: Option<Vec<String>>, audit_auditees: Option<Vec<String>>, audit_plan: Option<String>, audit_findings: Option<serde_utils::PyValue<Vec<IsmsAuditFinding>>>, audit_conclusion: Option<String>, audit_report_date: Option<NaiveDate>, audit_report_distribution: Option<Vec<String>>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>, description: Option<String>) -> Self {
+    #[pyo3(signature = (audit_type, isms_id, title, audit_standards=None, audit_scope=None, audit_criteria=None, audit_objectives=None, audit_period_start=None, audit_period_end=None, audit_lead=None, audit_team=None, audit_auditees=None, audit_plan=None, audit_findings=None, audit_conclusion=None, audit_report_date=None, audit_report_distribution=None, description=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None))]
+    pub fn new(audit_type: IsmsAuditType, isms_id: uriorcurie, title: String, audit_standards: Option<Vec<IsmsManagementSystemStandard>>, audit_scope: Option<String>, audit_criteria: Option<Vec<String>>, audit_objectives: Option<Vec<String>>, audit_period_start: Option<NaiveDate>, audit_period_end: Option<NaiveDate>, audit_lead: Option<String>, audit_team: Option<Vec<String>>, audit_auditees: Option<Vec<String>>, audit_plan: Option<String>, audit_findings: Option<serde_utils::PyValue<Vec<IsmsAuditFinding>>>, audit_conclusion: Option<String>, audit_report_date: Option<NaiveDate>, audit_report_distribution: Option<Vec<String>>, description: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>) -> Self {
         let audit_findings = audit_findings.map(|v| v.into_inner());
-        IsmsAudit{audit_type, isms_id, title, audit_standards, audit_scope, audit_criteria, audit_objectives, audit_period_start, audit_period_end, audit_lead, audit_team, audit_auditees, audit_plan, audit_findings, audit_conclusion, audit_report_date, audit_report_distribution, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source, description}
+        IsmsAudit{audit_type, isms_id, title, audit_standards, audit_scope, audit_criteria, audit_objectives, audit_period_start, audit_period_end, audit_lead, audit_team, audit_auditees, audit_plan, audit_findings, audit_conclusion, audit_report_date, audit_report_distribution, description, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source}
     }
 }
 
@@ -7348,6 +7348,11 @@ pub struct IsmsManagementReview {
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub review_next_date: Option<NaiveDate>,
+    pub isms_id: uriorcurie,
+    pub title: String,
+    #[cfg_attr(feature = "serde", serde(default))]
+    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
+    pub description: Option<String>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
     pub document_reference: Option<String>,
@@ -7402,21 +7407,16 @@ pub struct IsmsManagementReview {
     pub document_external_origin: Option<bool>,
     #[cfg_attr(feature = "serde", serde(default))]
     #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub document_external_source: Option<String>,
-    pub isms_id: uriorcurie,
-    pub title: String,
-    #[cfg_attr(feature = "serde", serde(default))]
-    #[cfg_attr(feature = "serde", serde(skip_serializing_if = "Option::is_none"))]
-    pub description: Option<String>
+    pub document_external_source: Option<String>
 }
 #[cfg(feature = "pyo3")]
 #[cfg_attr(feature = "stubgen", gen_stub_pymethods)]
 #[pymethods]
 impl IsmsManagementReview {
     #[new]
-    #[pyo3(signature = (review_held_on, isms_id, title, review_attendees=None, review_previous_actions=None, review_context_changes=None, review_interested_party_changes=None, review_interested_party_feedback=None, review_performance_trends=None, review_audit_results=None, review_risk_assessment_results=None, review_risk_treatment_status=None, review_risks_and_opportunities=None, review_improvement_opportunities=None, review_decisions=None, review_actions=None, review_next_date=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None, description=None))]
-    pub fn new(review_held_on: NaiveDate, isms_id: uriorcurie, title: String, review_attendees: Option<Vec<String>>, review_previous_actions: Option<String>, review_context_changes: Option<String>, review_interested_party_changes: Option<String>, review_interested_party_feedback: Option<String>, review_performance_trends: Option<String>, review_audit_results: Option<String>, review_risk_assessment_results: Option<String>, review_risk_treatment_status: Option<String>, review_risks_and_opportunities: Option<String>, review_improvement_opportunities: Option<Vec<String>>, review_decisions: Option<Vec<String>>, review_actions: Option<Vec<String>>, review_next_date: Option<NaiveDate>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>, description: Option<String>) -> Self {
-        IsmsManagementReview{review_held_on, isms_id, title, review_attendees, review_previous_actions, review_context_changes, review_interested_party_changes, review_interested_party_feedback, review_performance_trends, review_audit_results, review_risk_assessment_results, review_risk_treatment_status, review_risks_and_opportunities, review_improvement_opportunities, review_decisions, review_actions, review_next_date, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source, description}
+    #[pyo3(signature = (review_held_on, isms_id, title, review_attendees=None, review_previous_actions=None, review_context_changes=None, review_interested_party_changes=None, review_interested_party_feedback=None, review_performance_trends=None, review_audit_results=None, review_risk_assessment_results=None, review_risk_treatment_status=None, review_risks_and_opportunities=None, review_improvement_opportunities=None, review_decisions=None, review_actions=None, review_next_date=None, description=None, document_reference=None, document_version=None, document_author=None, document_owner=None, document_approver=None, document_approval_date=None, document_effective_date=None, document_last_review_date=None, document_next_review_date=None, document_status=None, document_classification=None, document_retention=None, document_distribution=None, document_storage=None, document_change_control=None, document_external_origin=None, document_external_source=None))]
+    pub fn new(review_held_on: NaiveDate, isms_id: uriorcurie, title: String, review_attendees: Option<Vec<String>>, review_previous_actions: Option<String>, review_context_changes: Option<String>, review_interested_party_changes: Option<String>, review_interested_party_feedback: Option<String>, review_performance_trends: Option<String>, review_audit_results: Option<String>, review_risk_assessment_results: Option<String>, review_risk_treatment_status: Option<String>, review_risks_and_opportunities: Option<String>, review_improvement_opportunities: Option<Vec<String>>, review_decisions: Option<Vec<String>>, review_actions: Option<Vec<String>>, review_next_date: Option<NaiveDate>, description: Option<String>, document_reference: Option<String>, document_version: Option<String>, document_author: Option<String>, document_owner: Option<String>, document_approver: Option<String>, document_approval_date: Option<NaiveDate>, document_effective_date: Option<NaiveDate>, document_last_review_date: Option<NaiveDate>, document_next_review_date: Option<NaiveDate>, document_status: Option<String>, document_classification: Option<String>, document_retention: Option<String>, document_distribution: Option<Vec<String>>, document_storage: Option<String>, document_change_control: Option<String>, document_external_origin: Option<bool>, document_external_source: Option<String>) -> Self {
+        IsmsManagementReview{review_held_on, isms_id, title, review_attendees, review_previous_actions, review_context_changes, review_interested_party_changes, review_interested_party_feedback, review_performance_trends, review_audit_results, review_risk_assessment_results, review_risk_treatment_status, review_risks_and_opportunities, review_improvement_opportunities, review_decisions, review_actions, review_next_date, description, document_reference, document_version, document_author, document_owner, document_approver, document_approval_date, document_effective_date, document_last_review_date, document_next_review_date, document_status, document_classification, document_retention, document_distribution, document_storage, document_change_control, document_external_origin, document_external_source}
     }
 }
 

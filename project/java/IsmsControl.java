@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsControl extends IsmsRecord {
+public class IsmsControl  {
 
   private List<IsmsControl> relevantControls;
   private String implementationState;
@@ -29,6 +29,9 @@ public class IsmsControl extends IsmsRecord {
   private String controlEffectiveness;
   private LocalDate controlLastTested;
   private List<String> controlEvidence;
+  private URI ismsId;
+  private String title;
+  private String description;
 
 
 }

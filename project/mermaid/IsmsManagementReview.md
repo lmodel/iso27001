@@ -5,10 +5,10 @@
  classDiagram
     class IsmsManagementReview
     click IsmsManagementReview href "../IsmsManagementReview"
+      IsmsRecordMixin <|-- IsmsManagementReview
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       IsmsDocumentControlMixin <|-- IsmsManagementReview
         click IsmsDocumentControlMixin href "../IsmsDocumentControlMixin"
-      IsmsRecord <|-- IsmsManagementReview
-        click IsmsRecord href "../IsmsRecord"
       
       IsmsManagementReview : description
         

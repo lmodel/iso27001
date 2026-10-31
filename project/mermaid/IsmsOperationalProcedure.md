@@ -5,10 +5,10 @@
  classDiagram
     class IsmsOperationalProcedure
     click IsmsOperationalProcedure href "../IsmsOperationalProcedure"
+      IsmsRecordMixin <|-- IsmsOperationalProcedure
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       IsmsDocumentControlMixin <|-- IsmsOperationalProcedure
         click IsmsDocumentControlMixin href "../IsmsDocumentControlMixin"
-      IsmsRecord <|-- IsmsOperationalProcedure
-        click IsmsRecord href "../IsmsRecord"
       
       IsmsOperationalProcedure : description
         

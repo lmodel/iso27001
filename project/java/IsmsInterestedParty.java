@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsInterestedParty extends IsmsRecord {
+public class IsmsInterestedParty  {
 
   private String partyCategory;
   private String partyRelationship;
@@ -23,6 +23,9 @@ public class IsmsInterestedParty extends IsmsRecord {
   private List<String> partyClimateChangeRequirements;
   private String partyCommunicationNeeds;
   private String partyContact;
+  private URI ismsId;
+  private String title;
+  private String description;
 
 
 }

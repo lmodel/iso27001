@@ -7,16 +7,6 @@ display_name: IsmsAsset
 document_category: IsmsAsset
 weight: 20
 fields:
-- id: isms_id
-  description: The record's identifier, unique among the ISMS's records, such as a
-    URI or a CURIE. Other records refer to the record by it.
-  display_name: isms_id
-- id: title
-  description: The name the organization gives the record.
-  display_name: IsmsRecord_title
-- id: description
-  description: What the record says or describes, in the organization's own words.
-  display_name: description
 - id: relevant_controls
   description: The organization's controls that the record concerns.
   display_name: relevant_controls
@@ -40,3 +30,13 @@ fields:
 - id: asset_criticality
   description: How much the asset matters, in the organization's own terms.
   display_name: ismsAsset__asset_criticality
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecordMixin_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description

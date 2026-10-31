@@ -5,8 +5,8 @@
  classDiagram
     class IsmsControl
     click IsmsControl href "../IsmsControl"
-      IsmsRecord <|-- IsmsControl
-        click IsmsRecord href "../IsmsRecord"
+      IsmsRecordMixin <|-- IsmsControl
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       
       IsmsControl : control_annex_a_controls
         

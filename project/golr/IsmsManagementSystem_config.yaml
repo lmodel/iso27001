@@ -6,16 +6,6 @@ display_name: IsmsManagementSystem
 document_category: IsmsManagementSystem
 weight: 20
 fields:
-- id: isms_id
-  description: The record's identifier, unique among the ISMS's records, such as a
-    URI or a CURIE. Other records refer to the record by it.
-  display_name: isms_id
-- id: title
-  description: The name the organization gives the record.
-  display_name: IsmsRecord_title
-- id: description
-  description: What the record says or describes, in the organization's own words.
-  display_name: description
 - id: isms_organization
   description: The organization that runs the ISMS.
   display_name: ismsManagementSystem__isms_organization
@@ -187,3 +177,13 @@ fields:
   description: The information security events reported, the incidents among them.
   display_name: ismsManagementSystem__isms_security_events
   cardinality: multi
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecordMixin_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description

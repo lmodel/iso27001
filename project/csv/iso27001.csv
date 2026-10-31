@@ -25,7 +25,7 @@ IsmsObjective,,"An information security objective: a measurable result the organ
 IsmsOperationalProcedure,,A procedure by which the organization plans and controls the processes that meet its information security requirements.
 IsmsOrganization,,"The organization that runs the ISMS, with what it needs to know about itself to understand its context."
 IsmsPolicy,,The information security policy that top management sets: the organization's commitment and the frame for its information security objectives.
-IsmsRecord,,"Anything the ISMS keeps a record of that other records can refer to: it has an identifier, a title and a description."
+IsmsRecordMixin,,"What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description."
 IsmsResource,,"A resource provided for the ISMS, such as people, time, tools or budget."
 IsmsRisk,,"An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated."
 IsmsRiskAssessment,,"One risk assessment carried out under the risk assessment process, and what it found."

@@ -5,8 +5,8 @@
  classDiagram
     class IsmsObjective
     click IsmsObjective href "../IsmsObjective"
-      IsmsRecord <|-- IsmsObjective
-        click IsmsRecord href "../IsmsRecord"
+      IsmsRecordMixin <|-- IsmsObjective
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       
       IsmsObjective : description
         

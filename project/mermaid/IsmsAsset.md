@@ -5,8 +5,8 @@
  classDiagram
     class IsmsAsset
     click IsmsAsset href "../IsmsAsset"
-      IsmsRecord <|-- IsmsAsset
-        click IsmsRecord href "../IsmsRecord"
+      IsmsRecordMixin <|-- IsmsAsset
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       
       IsmsAsset : asset_category
         

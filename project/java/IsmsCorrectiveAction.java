@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsCorrectiveAction extends IsmsRecord {
+public class IsmsCorrectiveAction  {
 
   private IsmsRole responsibleRole;
   private List<IsmsNonconformity> actionNonconformities;
@@ -27,6 +27,9 @@ public class IsmsCorrectiveAction extends IsmsRecord {
   private Boolean actionEffective;
   private String actionIsmsChanges;
   private String actionStatus;
+  private URI ismsId;
+  private String title;
+  private String description;
 
 
 }

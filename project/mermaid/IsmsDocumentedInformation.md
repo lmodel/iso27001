@@ -5,10 +5,10 @@
  classDiagram
     class IsmsDocumentedInformation
     click IsmsDocumentedInformation href "../IsmsDocumentedInformation"
+      IsmsRecordMixin <|-- IsmsDocumentedInformation
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       IsmsDocumentControlMixin <|-- IsmsDocumentedInformation
         click IsmsDocumentControlMixin href "../IsmsDocumentControlMixin"
-      IsmsRecord <|-- IsmsDocumentedInformation
-        click IsmsRecord href "../IsmsRecord"
       
       IsmsDocumentedInformation : description
         

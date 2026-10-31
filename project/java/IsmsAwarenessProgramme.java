@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsAwarenessProgramme extends IsmsRecord {
+public class IsmsAwarenessProgramme  {
 
   private List<String> awarenessTopics;
   private List<String> awarenessMethods;
@@ -22,6 +22,9 @@ public class IsmsAwarenessProgramme extends IsmsRecord {
   private String awarenessFrequency;
   private String awarenessCompletionTracking;
   private String awarenessEffectiveness;
+  private URI ismsId;
+  private String title;
+  private String description;
   private String documentReference;
   private String documentVersion;
   private String documentAuthor;

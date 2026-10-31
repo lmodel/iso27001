@@ -5,8 +5,8 @@
  classDiagram
     class IsmsRisk
     click IsmsRisk href "../IsmsRisk"
-      IsmsRecord <|-- IsmsRisk
-        click IsmsRecord href "../IsmsRecord"
+      IsmsRecordMixin <|-- IsmsRisk
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       
       IsmsRisk : affected_assets
         

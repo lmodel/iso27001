@@ -137,23 +137,25 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsAsset> CLOSED {
-    (  $<IsmsAsset_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsAsset_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           <relevant_controls> @<IsmsControl> * ;
           <asset_category> @linkml:String ? ;
           <asset_owner> @linkml:String ? ;
           <asset_custodian> @linkml:String ? ;
           <asset_classification> @linkml:String ? ;
           <asset_location> @linkml:String ? ;
-          <asset_criticality> @linkml:String ?
+          <asset_criticality> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
        rdf:type [ <IsmsAsset> ]
     )
 }
 
 <IsmsAudit> CLOSED {
-    (  $<IsmsAudit_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsAudit_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           &<IsmsDocumentControlMixin_tes> ;
           rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <audit_type> [ <https://w3id.org/lmodel/iso27001/IsmsAuditType#first_party>
@@ -179,6 +181,8 @@ linkml:Sparqlpath xsd:string
           <audit_conclusion> @linkml:String ? ;
           <audit_report_date> @linkml:Date ? ;
           <audit_report_distribution> @linkml:String * ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ? ;
           <document_reference> @linkml:String ? ;
           <document_version> @linkml:String ? ;
           <document_author> @linkml:String ? ;
@@ -202,8 +206,8 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsAuditFinding> CLOSED {
-    (  $<IsmsAuditFinding_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsAuditFinding_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           <finding_type> [ <https://w3id.org/lmodel/iso27001/IsmsAuditFindingType#major_nonconformity>
              <https://w3id.org/lmodel/iso27001/IsmsAuditFindingType#minor_nonconformity>
              <https://w3id.org/lmodel/iso27001/IsmsAuditFindingType#observation>
@@ -217,15 +221,17 @@ linkml:Sparqlpath xsd:string
           <finding_auditee_response> @linkml:String ? ;
           <finding_corrective_action> @<IsmsCorrectiveAction> ? ;
           <finding_closure_status> @linkml:String ? ;
-          <finding_closure_date> @linkml:Date ?
+          <finding_closure_date> @linkml:Date ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
        rdf:type [ <IsmsAuditFinding> ]
     )
 }
 
 <IsmsAuditProgramme> CLOSED {
-    (  $<IsmsAuditProgramme_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsAuditProgramme_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           &<IsmsDocumentControlMixin_tes> ;
           rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <programme_period> @linkml:String ? ;
@@ -234,6 +240,8 @@ linkml:Sparqlpath xsd:string
           <programme_resources> @linkml:String ? ;
           <programme_auditor_qualifications> @linkml:String ? ;
           <programme_status> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ? ;
           <document_reference> @linkml:String ? ;
           <document_version> @linkml:String ? ;
           <document_author> @linkml:String ? ;
@@ -257,8 +265,8 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsAwarenessProgramme> CLOSED {
-    (  $<IsmsAwarenessProgramme_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsAwarenessProgramme_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           &<IsmsDocumentControlMixin_tes> ;
           rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <awareness_topics> @linkml:String * ;
@@ -267,6 +275,8 @@ linkml:Sparqlpath xsd:string
           <awareness_frequency> @linkml:String ? ;
           <awareness_completion_tracking> @linkml:String ? ;
           <awareness_effectiveness> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ? ;
           <document_reference> @linkml:String ? ;
           <document_version> @linkml:String ? ;
           <document_author> @linkml:String ? ;
@@ -303,11 +313,13 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsCommunicationPlan> CLOSED {
-    (  $<IsmsCommunicationPlan_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsCommunicationPlan_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           &<IsmsDocumentControlMixin_tes> ;
           rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <communication_items> @<IsmsCommunication> * ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ? ;
           <document_reference> @linkml:String ? ;
           <document_version> @linkml:String ? ;
           <document_author> @linkml:String ? ;
@@ -331,8 +343,8 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsCompetenceRecord> CLOSED {
-    (  $<IsmsCompetenceRecord_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsCompetenceRecord_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           &<IsmsDocumentControlMixin_tes> ;
           rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <competence_person> @linkml:String ? ;
@@ -344,6 +356,8 @@ linkml:Sparqlpath xsd:string
           <competence_assessment_date> @linkml:Date ? ;
           <competence_gaps> @linkml:String * ;
           <competence_actions> @linkml:String * ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ? ;
           <document_reference> @linkml:String ? ;
           <document_version> @linkml:String ? ;
           <document_author> @linkml:String ? ;
@@ -367,8 +381,8 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsControl> CLOSED {
-    (  $<IsmsControl_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsControl_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           <relevant_controls> @<IsmsControl> * ;
           <implementation_state> [ <https://w3id.org/lmodel/iso27001/IsmsImplementationStatus#not_started>
              <https://w3id.org/lmodel/iso27001/IsmsImplementationStatus#planned>
@@ -461,15 +475,17 @@ linkml:Sparqlpath xsd:string
           <control_implementation_date> @linkml:Date ? ;
           <control_effectiveness> @linkml:String ? ;
           <control_last_tested> @linkml:Date ? ;
-          <control_evidence> @linkml:String *
+          <control_evidence> @linkml:String * ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
        rdf:type [ <IsmsControl> ]
     )
 }
 
 <IsmsCorrectiveAction> CLOSED {
-    (  $<IsmsCorrectiveAction_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsCorrectiveAction_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           <responsible_role> @<IsmsRole> ? ;
           <action_nonconformities> @<IsmsNonconformity> * ;
           <action_root_cause> @linkml:String ? ;
@@ -480,7 +496,9 @@ linkml:Sparqlpath xsd:string
           <action_effectiveness_review_date> @linkml:Date ? ;
           <action_effective> @linkml:Boolean ? ;
           <action_isms_changes> @linkml:String ? ;
-          <action_status> @linkml:String ?
+          <action_status> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
        rdf:type [ <IsmsCorrectiveAction> ]
     )
@@ -510,8 +528,8 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsDocumentedInformation> CLOSED {
-    (  $<IsmsDocumentedInformation_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsDocumentedInformation_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           &<IsmsDocumentControlMixin_tes> ;
           rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <document_kind> [ <https://w3id.org/lmodel/iso27001/IsmsDocumentKind#procedure>
@@ -519,6 +537,8 @@ linkml:Sparqlpath xsd:string
              <https://w3id.org/lmodel/iso27001/IsmsDocumentKind#guideline>
              <https://w3id.org/lmodel/iso27001/IsmsDocumentKind#record> <https://w3id.org/lmodel/iso27001/IsmsDocumentKind#plan>
              <https://w3id.org/lmodel/iso27001/IsmsDocumentKind#report> ] ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ? ;
           <document_reference> @linkml:String ? ;
           <document_version> @linkml:String ? ;
           <document_author> @linkml:String ? ;
@@ -625,8 +645,8 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsImprovementOpportunity> CLOSED {
-    (  $<IsmsImprovementOpportunity_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsImprovementOpportunity_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           <responsible_role> @<IsmsRole> ? ;
           <improvement_source> @linkml:String ? ;
           <improvement_identified_on> @linkml:Date ? ;
@@ -637,7 +657,9 @@ linkml:Sparqlpath xsd:string
           <improvement_target_date> @linkml:Date ? ;
           <improvement_completion_date> @linkml:Date ? ;
           <improvement_outcome> @linkml:String ? ;
-          <improvement_status> @linkml:String ?
+          <improvement_status> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
        rdf:type [ <IsmsImprovementOpportunity> ]
     )
@@ -660,23 +682,25 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsInterestedParty> CLOSED {
-    (  $<IsmsInterestedParty_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsInterestedParty_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           <party_category> @linkml:String ? ;
           <party_relationship> @linkml:String ? ;
           <party_requirements> @linkml:String * ;
           <party_addressed_requirements> @linkml:String * ;
           <party_climate_change_requirements> @linkml:String * ;
           <party_communication_needs> @linkml:String ? ;
-          <party_contact> @linkml:String ?
+          <party_contact> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
        rdf:type [ <IsmsInterestedParty> ]
     )
 }
 
 <IsmsManagementReview> CLOSED {
-    (  $<IsmsManagementReview_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsManagementReview_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           &<IsmsDocumentControlMixin_tes> ;
           rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <review_held_on> @linkml:Date ;
@@ -694,6 +718,8 @@ linkml:Sparqlpath xsd:string
           <review_decisions> @linkml:String * ;
           <review_actions> @linkml:String * ;
           <review_next_date> @linkml:Date ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ? ;
           <document_reference> @linkml:String ? ;
           <document_version> @linkml:String ? ;
           <document_author> @linkml:String ? ;
@@ -717,8 +743,8 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsManagementSystem> CLOSED {
-    (  $<IsmsManagementSystem_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsManagementSystem_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           <isms_organization> @<IsmsOrganization> ? ;
           <isms_top_management> @linkml:String ? ;
           <isms_governing_body> @linkml:String ? ;
@@ -763,7 +789,9 @@ linkml:Sparqlpath xsd:string
           <isms_nonconformities> @<IsmsNonconformity> * ;
           <isms_corrective_actions> @<IsmsCorrectiveAction> * ;
           <isms_improvements> @<IsmsImprovementOpportunity> * ;
-          <isms_security_events> @<IsmsSecurityEvent> *
+          <isms_security_events> @<IsmsSecurityEvent> * ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
        rdf:type [ <IsmsManagementSystem> ]
     )
@@ -787,11 +815,13 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsMonitoringProgramme> CLOSED {
-    (  $<IsmsMonitoringProgramme_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsMonitoringProgramme_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           &<IsmsDocumentControlMixin_tes> ;
           rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <monitoring_items> @<IsmsMonitoringItem> * ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ? ;
           <document_reference> @linkml:String ? ;
           <document_version> @linkml:String ? ;
           <document_author> @linkml:String ? ;
@@ -815,8 +845,8 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsNonconformity> CLOSED {
-    (  $<IsmsNonconformity_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsNonconformity_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           <nonconformity_source> @linkml:String ? ;
           <nonconformity_detected_on> @linkml:Date ? ;
           <nonconformity_detected_by> @linkml:String ? ;
@@ -827,15 +857,17 @@ linkml:Sparqlpath xsd:string
           <nonconformity_similar_check> @linkml:String ? ;
           <nonconformity_status> @linkml:String ? ;
           <nonconformity_closure_date> @linkml:Date ? ;
-          <nonconformity_closure_evidence> @linkml:String ?
+          <nonconformity_closure_evidence> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
        rdf:type [ <IsmsNonconformity> ]
     )
 }
 
 <IsmsObjective> CLOSED {
-    (  $<IsmsObjective_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsObjective_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           <responsible_role> @<IsmsRole> ? ;
           <relevant_controls> @<IsmsControl> * ;
           <objective_statement> @linkml:String ? ;
@@ -848,15 +880,17 @@ linkml:Sparqlpath xsd:string
           <objective_achievement> @linkml:String ? ;
           <objective_risks> @<IsmsRisk> * ;
           <objective_action_plan> @linkml:String ? ;
-          <objective_resources> @linkml:String ?
+          <objective_resources> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
        rdf:type [ <IsmsObjective> ]
     )
 }
 
 <IsmsOperationalProcedure> CLOSED {
-    (  $<IsmsOperationalProcedure_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsOperationalProcedure_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           &<IsmsDocumentControlMixin_tes> ;
           rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <relevant_controls> @<IsmsControl> * ;
@@ -865,6 +899,8 @@ linkml:Sparqlpath xsd:string
           <procedure_control_measures> @linkml:String * ;
           <procedure_roles> @<IsmsRole> * ;
           <procedure_change_control> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ? ;
           <document_reference> @linkml:String ? ;
           <document_version> @linkml:String ? ;
           <document_author> @linkml:String ? ;
@@ -888,8 +924,8 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsOrganization> CLOSED {
-    (  $<IsmsOrganization_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsOrganization_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           <organization_legal_name> @linkml:String ? ;
           <organization_trading_names> @linkml:String * ;
           <organization_kind> @linkml:String ? ;
@@ -900,15 +936,17 @@ linkml:Sparqlpath xsd:string
           <organization_jurisdictions> @linkml:String * ;
           <organization_parent> @linkml:String ? ;
           <organization_subsidiaries> @linkml:String * ;
-          <organization_climate_change_relevant> @linkml:Boolean ?
+          <organization_climate_change_relevant> @linkml:Boolean ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
        rdf:type [ <IsmsOrganization> ]
     )
 }
 
 <IsmsPolicy> CLOSED {
-    (  $<IsmsPolicy_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsPolicy_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           &<IsmsDocumentControlMixin_tes> ;
           rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <policy_statement> @linkml:String ? ;
@@ -924,6 +962,8 @@ linkml:Sparqlpath xsd:string
              <https://w3id.org/lmodel/iso27001/IsmsManagementSystemStandard#iso_14001>
              <https://w3id.org/lmodel/iso27001/IsmsManagementSystemStandard#iso_22301>
              <https://w3id.org/lmodel/iso27001/IsmsManagementSystemStandard#iso_iec_20000_1> ] * ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ? ;
           <document_reference> @linkml:String ? ;
           <document_version> @linkml:String ? ;
           <document_author> @linkml:String ? ;
@@ -946,41 +986,33 @@ linkml:Sparqlpath xsd:string
     )
 }
 
-<IsmsRecord>  (
-    @<IsmsAsset> OR @<IsmsAudit> OR @<IsmsAuditFinding> OR @<IsmsAuditProgramme> OR @<IsmsAwarenessProgramme> OR
-    @<IsmsCommunicationPlan> OR @<IsmsCompetenceRecord> OR @<IsmsControl> OR @<IsmsCorrectiveAction> OR
-    @<IsmsDocumentedInformation> OR @<IsmsImprovementOpportunity> OR @<IsmsInterestedParty> OR @<IsmsManagementReview> OR
-    @<IsmsManagementSystem> OR @<IsmsMonitoringProgramme> OR @<IsmsNonconformity> OR @<IsmsObjective> OR
-    @<IsmsOperationalProcedure> OR @<IsmsOrganization> OR @<IsmsPolicy> OR @<IsmsResource> OR @<IsmsRisk> OR @<IsmsRiskAssessment>
-    OR @<IsmsRiskAssessmentProcess> OR @<IsmsRiskTreatmentPlan> OR @<IsmsRiskTreatmentProcess> OR @<IsmsRole> OR
-    @<IsmsSecurityEvent> OR @<IsmsStatementOfApplicability> OR @<IsmsTopicSpecificPolicy>
-)
-
-<IsmsRecord_struct> {
-    (  $<IsmsRecord_tes> (  schema1:name @linkml:String ;
+<IsmsRecordMixin> {
+    (  $<IsmsRecordMixin_tes> (  schema1:name @linkml:String ;
           schema1:description @linkml:String ?
        ) ;
-       rdf:type [ <IsmsRecord> ]
+       rdf:type [ <IsmsRecordMixin> ]
     )
 }
 
 <IsmsResource> CLOSED {
-    (  $<IsmsResource_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsResource_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           <resource_category> @linkml:String ? ;
           <resource_quantity> @linkml:String ? ;
           <resource_allocation_date> @linkml:Date ? ;
           <resource_allocated_to> @linkml:String ? ;
           <resource_cost> @linkml:String ? ;
-          <resource_availability> @linkml:String ?
+          <resource_availability> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
        rdf:type [ <IsmsResource> ]
     )
 }
 
 <IsmsRisk> CLOSED {
-    (  $<IsmsRisk_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsRisk_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           <affected_assets> @<IsmsAsset> * ;
           <affected_security_properties> [ <https://w3id.org/lmodel/iso27001/IsmsSecurityProperty#confidentiality>
              <https://w3id.org/lmodel/iso27001/IsmsSecurityProperty#integrity>
@@ -1007,15 +1039,17 @@ linkml:Sparqlpath xsd:string
              <https://w3id.org/lmodel/iso27001/IsmsRiskTreatmentOption#retain>
              <https://w3id.org/lmodel/iso27001/IsmsRiskTreatmentOption#avoid>
              <https://w3id.org/lmodel/iso27001/IsmsRiskTreatmentOption#share> ] ? ;
-          <risk_treatment_priority> @linkml:String ?
+          <risk_treatment_priority> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
        rdf:type [ <IsmsRisk> ]
     )
 }
 
 <IsmsRiskAssessment> CLOSED {
-    (  $<IsmsRiskAssessment_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsRiskAssessment_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           &<IsmsDocumentControlMixin_tes> ;
           rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <assessment_scope> @linkml:String ? ;
@@ -1026,6 +1060,8 @@ linkml:Sparqlpath xsd:string
           <assessment_summary> @linkml:String ? ;
           <assessment_recommendations> @linkml:String * ;
           <assessment_next_date> @linkml:Date ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ? ;
           <document_reference> @linkml:String ? ;
           <document_version> @linkml:String ? ;
           <document_author> @linkml:String ? ;
@@ -1049,8 +1085,8 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsRiskAssessmentProcess> CLOSED {
-    (  $<IsmsRiskAssessmentProcess_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsRiskAssessmentProcess_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           &<IsmsDocumentControlMixin_tes> ;
           rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <risk_acceptance_criteria> @linkml:String ? ;
@@ -1061,6 +1097,8 @@ linkml:Sparqlpath xsd:string
           <risk_matrix> @linkml:String ? ;
           <risk_assessment_frequency> @linkml:String ? ;
           <risk_assessment_triggers> @linkml:String * ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ? ;
           <document_reference> @linkml:String ? ;
           <document_version> @linkml:String ? ;
           <document_author> @linkml:String ? ;
@@ -1084,8 +1122,8 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsRiskTreatmentPlan> CLOSED {
-    (  $<IsmsRiskTreatmentPlan_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsRiskTreatmentPlan_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           &<IsmsDocumentControlMixin_tes> ;
           rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <implementation_state> [ <https://w3id.org/lmodel/iso27001/IsmsImplementationStatus#not_started>
@@ -1102,6 +1140,8 @@ linkml:Sparqlpath xsd:string
           <plan_risk_owner_approval> @linkml:String ? ;
           <plan_residual_risk_acceptance> @linkml:String ? ;
           <plan_completion_date> @linkml:Date ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ? ;
           <document_reference> @linkml:String ? ;
           <document_version> @linkml:String ? ;
           <document_author> @linkml:String ? ;
@@ -1125,8 +1165,8 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsRiskTreatmentProcess> CLOSED {
-    (  $<IsmsRiskTreatmentProcess_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsRiskTreatmentProcess_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           &<IsmsDocumentControlMixin_tes> ;
           rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <treatment_options_guidance> @linkml:String ? ;
@@ -1134,6 +1174,8 @@ linkml:Sparqlpath xsd:string
           <treatment_annex_a_comparison> @linkml:String ? ;
           <treatment_soa_template> @linkml:String ? ;
           <treatment_approval_workflow> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ? ;
           <document_reference> @linkml:String ? ;
           <document_version> @linkml:String ? ;
           <document_author> @linkml:String ? ;
@@ -1157,15 +1199,17 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsRole> CLOSED {
-    (  $<IsmsRole_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsRole_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           <role_category> @linkml:String ? ;
           <role_responsibilities> @linkml:String * ;
           <role_authorities> @linkml:String * ;
           <role_accountability> @linkml:String ? ;
           <role_holders> @linkml:String * ;
           <role_delegation> @linkml:String ? ;
-          <role_reports_to> @<IsmsRole> ?
+          <role_reports_to> @<IsmsRole> ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
        rdf:type [ <IsmsRole> ]
     )
@@ -1173,13 +1217,15 @@ linkml:Sparqlpath xsd:string
 
 <IsmsSecurityEvent>  (
     CLOSED {
-       (  $<IsmsSecurityEvent_tes> (  &<IsmsRecord_tes> ;
-             rdf:type [ <IsmsRecord> ] ? ;
+       (  $<IsmsSecurityEvent_tes> (  &<IsmsRecordMixin_tes> ;
+             rdf:type [ <IsmsRecordMixin> ] ? ;
              <affected_assets> @<IsmsAsset> * ;
              <event_type> @linkml:String ? ;
              <event_occurred_at> @linkml:Datetime ? ;
              <event_reporter> @linkml:String ? ;
-             <event_assessment> @linkml:String ?
+             <event_assessment> @linkml:String ? ;
+             schema1:name @linkml:String ;
+             schema1:description @linkml:String ?
           ) ;
           rdf:type [ <IsmsSecurityEvent> ]
        )
@@ -1231,11 +1277,13 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsStatementOfApplicability> CLOSED {
-    (  $<IsmsStatementOfApplicability_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsStatementOfApplicability_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           &<IsmsDocumentControlMixin_tes> ;
           rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <soa_entries> @<IsmsApplicabilityEntry> * ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ? ;
           <document_reference> @linkml:String ? ;
           <document_version> @linkml:String ? ;
           <document_author> @linkml:String ? ;
@@ -1259,14 +1307,16 @@ linkml:Sparqlpath xsd:string
 }
 
 <IsmsTopicSpecificPolicy> CLOSED {
-    (  $<IsmsTopicSpecificPolicy_tes> (  &<IsmsRecord_tes> ;
-          rdf:type [ <IsmsRecord> ] ? ;
+    (  $<IsmsTopicSpecificPolicy_tes> (  &<IsmsRecordMixin_tes> ;
+          rdf:type [ <IsmsRecordMixin> ] ? ;
           &<IsmsDocumentControlMixin_tes> ;
           rdf:type [ <IsmsDocumentControlMixin> ] ? ;
           <relevant_controls> @<IsmsControl> * ;
           <topic_policy_topic> @linkml:String ? ;
           <topic_policy_parent> @<IsmsPolicy> ? ;
           <topic_policy_audience> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ? ;
           <document_reference> @linkml:String ? ;
           <document_version> @linkml:String ? ;
           <document_author> @linkml:String ? ;

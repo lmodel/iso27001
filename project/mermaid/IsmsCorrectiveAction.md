@@ -5,8 +5,8 @@
  classDiagram
     class IsmsCorrectiveAction
     click IsmsCorrectiveAction href "../IsmsCorrectiveAction"
-      IsmsRecord <|-- IsmsCorrectiveAction
-        click IsmsRecord href "../IsmsRecord"
+      IsmsRecordMixin <|-- IsmsCorrectiveAction
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       
       IsmsCorrectiveAction : action_completion_date
         

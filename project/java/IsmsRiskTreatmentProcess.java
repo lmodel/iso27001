@@ -14,13 +14,16 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsRiskTreatmentProcess extends IsmsRecord {
+public class IsmsRiskTreatmentProcess  {
 
   private String treatmentOptionsGuidance;
   private String treatmentControlSelection;
   private String treatmentAnnexAComparison;
   private String treatmentSoaTemplate;
   private String treatmentApprovalWorkflow;
+  private URI ismsId;
+  private String title;
+  private String description;
   private String documentReference;
   private String documentVersion;
   private String documentAuthor;

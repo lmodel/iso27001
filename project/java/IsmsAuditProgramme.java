@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsAuditProgramme extends IsmsRecord {
+public class IsmsAuditProgramme  {
 
   private String programmePeriod;
   private List<IsmsAudit> programmeAudits;
@@ -22,6 +22,9 @@ public class IsmsAuditProgramme extends IsmsRecord {
   private String programmeResources;
   private String programmeAuditorQualifications;
   private String programmeStatus;
+  private URI ismsId;
+  private String title;
+  private String description;
   private String documentReference;
   private String documentVersion;
   private String documentAuthor;

@@ -5,10 +5,10 @@
  classDiagram
     class IsmsAuditProgramme
     click IsmsAuditProgramme href "../IsmsAuditProgramme"
+      IsmsRecordMixin <|-- IsmsAuditProgramme
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       IsmsDocumentControlMixin <|-- IsmsAuditProgramme
         click IsmsDocumentControlMixin href "../IsmsDocumentControlMixin"
-      IsmsRecord <|-- IsmsAuditProgramme
-        click IsmsRecord href "../IsmsRecord"
       
       IsmsAuditProgramme : description
         

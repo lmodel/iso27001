@@ -9,11 +9,11 @@ Base = declarative_base()
 metadata = Base.metadata
 
 
-class IsmsRecord(Base):
+class IsmsRecordMixin(Base):
     """
-    Anything the ISMS keeps a record of that other records can refer to: it has an identifier, a title and a description.
+    What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.
     """
-    __tablename__ = 'IsmsRecord'
+    __tablename__ = 'IsmsRecordMixin'
 
     isms_id = Column(Text(), primary_key=True, nullable=False )
     title = Column(Text(), nullable=False )
@@ -21,7 +21,7 @@ class IsmsRecord(Base):
     
 
     def __repr__(self):
-        return f"IsmsRecord(isms_id={self.isms_id},title={self.title},description={self.description},)"
+        return f"IsmsRecordMixin(isms_id={self.isms_id},title={self.title},description={self.description},)"
 
 
 
@@ -66,6 +66,746 @@ class IsmsDocumentControlMixin(Base):
     
 
 
+class IsmsManagementSystem(Base):
+    """
+    One organization's information security management system: its scope and context, and every record it keeps, each kind in a list of its own.
+    """
+    __tablename__ = 'IsmsManagementSystem'
+
+    isms_top_management = Column(Text())
+    isms_governing_body = Column(Text())
+    isms_scope = Column(Text())
+    isms_processes = Column(Text())
+    isms_certification_status = Column(Text())
+    isms_certification_body = Column(Text())
+    isms_certification_date = Column(Date())
+    isms_recertification_date = Column(Date())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    isms_organization_isms_id = Column(Text(), ForeignKey('IsmsOrganization.isms_id'))
+    isms_organization = relationship("IsmsOrganization", uselist=False, foreign_keys=[isms_organization_isms_id])
+    isms_policy_isms_id = Column(Text(), ForeignKey('IsmsPolicy.isms_id'))
+    isms_policy = relationship("IsmsPolicy", uselist=False, foreign_keys=[isms_policy_isms_id])
+    isms_risk_assessment_process_isms_id = Column(Text(), ForeignKey('IsmsRiskAssessmentProcess.isms_id'))
+    isms_risk_assessment_process = relationship("IsmsRiskAssessmentProcess", uselist=False, foreign_keys=[isms_risk_assessment_process_isms_id])
+    isms_risk_treatment_process_isms_id = Column(Text(), ForeignKey('IsmsRiskTreatmentProcess.isms_id'))
+    isms_risk_treatment_process = relationship("IsmsRiskTreatmentProcess", uselist=False, foreign_keys=[isms_risk_treatment_process_isms_id])
+    isms_statement_of_applicability_isms_id = Column(Text(), ForeignKey('IsmsStatementOfApplicability.isms_id'))
+    isms_statement_of_applicability = relationship("IsmsStatementOfApplicability", uselist=False, foreign_keys=[isms_statement_of_applicability_isms_id])
+    isms_awareness_programme_isms_id = Column(Text(), ForeignKey('IsmsAwarenessProgramme.isms_id'))
+    isms_awareness_programme = relationship("IsmsAwarenessProgramme", uselist=False, foreign_keys=[isms_awareness_programme_isms_id])
+    isms_communication_plan_isms_id = Column(Text(), ForeignKey('IsmsCommunicationPlan.isms_id'))
+    isms_communication_plan = relationship("IsmsCommunicationPlan", uselist=False, foreign_keys=[isms_communication_plan_isms_id])
+    isms_monitoring_programme_isms_id = Column(Text(), ForeignKey('IsmsMonitoringProgramme.isms_id'))
+    isms_monitoring_programme = relationship("IsmsMonitoringProgramme", uselist=False, foreign_keys=[isms_monitoring_programme_isms_id])
+    
+    
+    isms_leadership_evidence_rel = relationship( "IsmsManagementSystemIsmsLeadershipEvidence" )
+    isms_leadership_evidence = association_proxy("isms_leadership_evidence_rel", "isms_leadership_evidence",
+                                  creator=lambda x_: IsmsManagementSystemIsmsLeadershipEvidence(isms_leadership_evidence=x_))
+    
+    
+    isms_scope_boundaries_rel = relationship( "IsmsManagementSystemIsmsScopeBoundaries" )
+    isms_scope_boundaries = association_proxy("isms_scope_boundaries_rel", "isms_scope_boundaries",
+                                  creator=lambda x_: IsmsManagementSystemIsmsScopeBoundaries(isms_scope_boundaries=x_))
+    
+    
+    isms_scope_exclusions_rel = relationship( "IsmsManagementSystemIsmsScopeExclusions" )
+    isms_scope_exclusions = association_proxy("isms_scope_exclusions_rel", "isms_scope_exclusions",
+                                  creator=lambda x_: IsmsManagementSystemIsmsScopeExclusions(isms_scope_exclusions=x_))
+    
+    
+    isms_interfaces_rel = relationship( "IsmsManagementSystemIsmsInterfaces" )
+    isms_interfaces = association_proxy("isms_interfaces_rel", "isms_interfaces",
+                                  creator=lambda x_: IsmsManagementSystemIsmsInterfaces(isms_interfaces=x_))
+    
+    
+    isms_internal_issues_rel = relationship( "IsmsManagementSystemIsmsInternalIssues" )
+    isms_internal_issues = association_proxy("isms_internal_issues_rel", "isms_internal_issues",
+                                  creator=lambda x_: IsmsManagementSystemIsmsInternalIssues(isms_internal_issues=x_))
+    
+    
+    isms_external_issues_rel = relationship( "IsmsManagementSystemIsmsExternalIssues" )
+    isms_external_issues = association_proxy("isms_external_issues_rel", "isms_external_issues",
+                                  creator=lambda x_: IsmsManagementSystemIsmsExternalIssues(isms_external_issues=x_))
+    
+    
+    isms_risk_and_opportunity_actions_rel = relationship( "IsmsManagementSystemIsmsRiskAndOpportunityActions" )
+    isms_risk_and_opportunity_actions = association_proxy("isms_risk_and_opportunity_actions_rel", "isms_risk_and_opportunity_actions",
+                                  creator=lambda x_: IsmsManagementSystemIsmsRiskAndOpportunityActions(isms_risk_and_opportunity_actions=x_))
+    
+    
+    isms_planned_changes_rel = relationship( "IsmsManagementSystemIsmsPlannedChanges" )
+    isms_planned_changes = association_proxy("isms_planned_changes_rel", "isms_planned_changes",
+                                  creator=lambda x_: IsmsManagementSystemIsmsPlannedChanges(isms_planned_changes=x_))
+    
+    
+    isms_external_services_rel = relationship( "IsmsManagementSystemIsmsExternalServices" )
+    isms_external_services = association_proxy("isms_external_services_rel", "isms_external_services",
+                                  creator=lambda x_: IsmsManagementSystemIsmsExternalServices(isms_external_services=x_))
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_interested_parties', mapping_type=None, target_class='IsmsInterestedParty', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_interested_parties = relationship( "IsmsInterestedParty", foreign_keys="[IsmsInterestedParty.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_topic_specific_policies', mapping_type=None, target_class='IsmsTopicSpecificPolicy', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_topic_specific_policies = relationship( "IsmsTopicSpecificPolicy", foreign_keys="[IsmsTopicSpecificPolicy.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_roles', mapping_type=None, target_class='IsmsRole', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_roles = relationship( "IsmsRole", foreign_keys="[IsmsRole.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_objectives', mapping_type=None, target_class='IsmsObjective', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_objectives = relationship( "IsmsObjective", foreign_keys="[IsmsObjective.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_risk_assessments', mapping_type=None, target_class='IsmsRiskAssessment', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_risk_assessments = relationship( "IsmsRiskAssessment", foreign_keys="[IsmsRiskAssessment.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_risks', mapping_type=None, target_class='IsmsRisk', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_risks = relationship( "IsmsRisk", foreign_keys="[IsmsRisk.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_risk_treatment_plans', mapping_type=None, target_class='IsmsRiskTreatmentPlan', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_risk_treatment_plans = relationship( "IsmsRiskTreatmentPlan", foreign_keys="[IsmsRiskTreatmentPlan.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_controls', mapping_type=None, target_class='IsmsControl', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_controls = relationship( "IsmsControl", foreign_keys="[IsmsControl.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_assets', mapping_type=None, target_class='IsmsAsset', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_assets = relationship( "IsmsAsset", foreign_keys="[IsmsAsset.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_resources', mapping_type=None, target_class='IsmsResource', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_resources = relationship( "IsmsResource", foreign_keys="[IsmsResource.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_competence_records', mapping_type=None, target_class='IsmsCompetenceRecord', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_competence_records = relationship( "IsmsCompetenceRecord", foreign_keys="[IsmsCompetenceRecord.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_documented_information', mapping_type=None, target_class='IsmsDocumentedInformation', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_documented_information = relationship( "IsmsDocumentedInformation", foreign_keys="[IsmsDocumentedInformation.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_operational_procedures', mapping_type=None, target_class='IsmsOperationalProcedure', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_operational_procedures = relationship( "IsmsOperationalProcedure", foreign_keys="[IsmsOperationalProcedure.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_audit_programmes', mapping_type=None, target_class='IsmsAuditProgramme', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_audit_programmes = relationship( "IsmsAuditProgramme", foreign_keys="[IsmsAuditProgramme.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_audits', mapping_type=None, target_class='IsmsAudit', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_audits = relationship( "IsmsAudit", foreign_keys="[IsmsAudit.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_management_reviews', mapping_type=None, target_class='IsmsManagementReview', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_management_reviews = relationship( "IsmsManagementReview", foreign_keys="[IsmsManagementReview.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_nonconformities', mapping_type=None, target_class='IsmsNonconformity', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_nonconformities = relationship( "IsmsNonconformity", foreign_keys="[IsmsNonconformity.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_corrective_actions', mapping_type=None, target_class='IsmsCorrectiveAction', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_corrective_actions = relationship( "IsmsCorrectiveAction", foreign_keys="[IsmsCorrectiveAction.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_improvements', mapping_type=None, target_class='IsmsImprovementOpportunity', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_improvements = relationship( "IsmsImprovementOpportunity", foreign_keys="[IsmsImprovementOpportunity.IsmsManagementSystem_isms_id]")
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_security_events', mapping_type=None, target_class='IsmsSecurityEvent', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    isms_security_events = relationship( "IsmsSecurityEvent", foreign_keys="[IsmsSecurityEvent.IsmsManagementSystem_isms_id]")
+    
+
+    def __repr__(self):
+        return f"IsmsManagementSystem(isms_top_management={self.isms_top_management},isms_governing_body={self.isms_governing_body},isms_scope={self.isms_scope},isms_processes={self.isms_processes},isms_certification_status={self.isms_certification_status},isms_certification_body={self.isms_certification_body},isms_certification_date={self.isms_certification_date},isms_recertification_date={self.isms_recertification_date},isms_id={self.isms_id},title={self.title},description={self.description},isms_organization_isms_id={self.isms_organization_isms_id},isms_policy_isms_id={self.isms_policy_isms_id},isms_risk_assessment_process_isms_id={self.isms_risk_assessment_process_isms_id},isms_risk_treatment_process_isms_id={self.isms_risk_treatment_process_isms_id},isms_statement_of_applicability_isms_id={self.isms_statement_of_applicability_isms_id},isms_awareness_programme_isms_id={self.isms_awareness_programme_isms_id},isms_communication_plan_isms_id={self.isms_communication_plan_isms_id},isms_monitoring_programme_isms_id={self.isms_monitoring_programme_isms_id},)"
+
+
+
+    
+
+
+class IsmsOrganization(Base):
+    """
+    The organization that runs the ISMS, with what it needs to know about itself to understand its context.
+    """
+    __tablename__ = 'IsmsOrganization'
+
+    organization_legal_name = Column(Text())
+    organization_kind = Column(Text())
+    organization_sector = Column(Text())
+    organization_size = Column(Text())
+    organization_employee_count = Column(Integer())
+    organization_parent = Column(Text())
+    organization_climate_change_relevant = Column(Boolean())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    
+    
+    organization_trading_names_rel = relationship( "IsmsOrganizationOrganizationTradingNames" )
+    organization_trading_names = association_proxy("organization_trading_names_rel", "organization_trading_names",
+                                  creator=lambda x_: IsmsOrganizationOrganizationTradingNames(organization_trading_names=x_))
+    
+    
+    organization_locations_rel = relationship( "IsmsOrganizationOrganizationLocations" )
+    organization_locations = association_proxy("organization_locations_rel", "organization_locations",
+                                  creator=lambda x_: IsmsOrganizationOrganizationLocations(organization_locations=x_))
+    
+    
+    organization_jurisdictions_rel = relationship( "IsmsOrganizationOrganizationJurisdictions" )
+    organization_jurisdictions = association_proxy("organization_jurisdictions_rel", "organization_jurisdictions",
+                                  creator=lambda x_: IsmsOrganizationOrganizationJurisdictions(organization_jurisdictions=x_))
+    
+    
+    organization_subsidiaries_rel = relationship( "IsmsOrganizationOrganizationSubsidiaries" )
+    organization_subsidiaries = association_proxy("organization_subsidiaries_rel", "organization_subsidiaries",
+                                  creator=lambda x_: IsmsOrganizationOrganizationSubsidiaries(organization_subsidiaries=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsOrganization(organization_legal_name={self.organization_legal_name},organization_kind={self.organization_kind},organization_sector={self.organization_sector},organization_size={self.organization_size},organization_employee_count={self.organization_employee_count},organization_parent={self.organization_parent},organization_climate_change_relevant={self.organization_climate_change_relevant},isms_id={self.isms_id},title={self.title},description={self.description},)"
+
+
+
+    
+
+
+class IsmsInterestedParty(Base):
+    """
+    A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it, such as staff, customers, regulators or suppliers.
+    """
+    __tablename__ = 'IsmsInterestedParty'
+
+    party_category = Column(Text())
+    party_relationship = Column(Text())
+    party_communication_needs = Column(Text())
+    party_contact = Column(Text())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    party_requirements_rel = relationship( "IsmsInterestedPartyPartyRequirements" )
+    party_requirements = association_proxy("party_requirements_rel", "party_requirements",
+                                  creator=lambda x_: IsmsInterestedPartyPartyRequirements(party_requirements=x_))
+    
+    
+    party_addressed_requirements_rel = relationship( "IsmsInterestedPartyPartyAddressedRequirements" )
+    party_addressed_requirements = association_proxy("party_addressed_requirements_rel", "party_addressed_requirements",
+                                  creator=lambda x_: IsmsInterestedPartyPartyAddressedRequirements(party_addressed_requirements=x_))
+    
+    
+    party_climate_change_requirements_rel = relationship( "IsmsInterestedPartyPartyClimateChangeRequirements" )
+    party_climate_change_requirements = association_proxy("party_climate_change_requirements_rel", "party_climate_change_requirements",
+                                  creator=lambda x_: IsmsInterestedPartyPartyClimateChangeRequirements(party_climate_change_requirements=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsInterestedParty(party_category={self.party_category},party_relationship={self.party_relationship},party_communication_needs={self.party_communication_needs},party_contact={self.party_contact},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsPolicy(Base):
+    """
+    The information security policy that top management sets: the organization's commitment and the frame for its information security objectives.
+    """
+    __tablename__ = 'IsmsPolicy'
+
+    policy_statement = Column(Text())
+    policy_objectives_framework = Column(Text())
+    policy_applicability = Column(Text())
+    policy_communication_date = Column(Date())
+    policy_acknowledgement_required = Column(Boolean())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    document_reference = Column(Text())
+    document_version = Column(Text())
+    document_author = Column(Text())
+    document_owner = Column(Text())
+    document_approver = Column(Text())
+    document_approval_date = Column(Date())
+    document_effective_date = Column(Date())
+    document_last_review_date = Column(Date())
+    document_next_review_date = Column(Date())
+    document_status = Column(Text())
+    document_classification = Column(Text())
+    document_retention = Column(Text())
+    document_storage = Column(Text())
+    document_change_control = Column(Text())
+    document_external_origin = Column(Boolean())
+    document_external_source = Column(Text())
+    
+    
+    policy_commitments_rel = relationship( "IsmsPolicyPolicyCommitments" )
+    policy_commitments = association_proxy("policy_commitments_rel", "policy_commitments",
+                                  creator=lambda x_: IsmsPolicyPolicyCommitments(policy_commitments=x_))
+    
+    
+    policy_management_systems_rel = relationship( "IsmsPolicyPolicyManagementSystems" )
+    policy_management_systems = association_proxy("policy_management_systems_rel", "policy_management_systems",
+                                  creator=lambda x_: IsmsPolicyPolicyManagementSystems(policy_management_systems=x_))
+    
+    
+    document_distribution_rel = relationship( "IsmsPolicyDocumentDistribution" )
+    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
+                                  creator=lambda x_: IsmsPolicyDocumentDistribution(document_distribution=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsPolicy(policy_statement={self.policy_statement},policy_objectives_framework={self.policy_objectives_framework},policy_applicability={self.policy_applicability},policy_communication_date={self.policy_communication_date},policy_acknowledgement_required={self.policy_acknowledgement_required},isms_id={self.isms_id},title={self.title},description={self.description},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},)"
+
+
+
+    
+
+
+class IsmsTopicSpecificPolicy(Base):
+    """
+    A policy on one topic of information security, such as access control or backup, that supports the information security policy.
+    """
+    __tablename__ = 'IsmsTopicSpecificPolicy'
+
+    topic_policy_topic = Column(Text())
+    topic_policy_parent = Column(Text(), ForeignKey('IsmsPolicy.isms_id'))
+    topic_policy_audience = Column(Text())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    document_reference = Column(Text())
+    document_version = Column(Text())
+    document_author = Column(Text())
+    document_owner = Column(Text())
+    document_approver = Column(Text())
+    document_approval_date = Column(Date())
+    document_effective_date = Column(Date())
+    document_last_review_date = Column(Date())
+    document_next_review_date = Column(Date())
+    document_status = Column(Text())
+    document_classification = Column(Text())
+    document_retention = Column(Text())
+    document_storage = Column(Text())
+    document_change_control = Column(Text())
+    document_external_origin = Column(Boolean())
+    document_external_source = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    # ManyToMany
+    relevant_controls = relationship( "IsmsControl", secondary="IsmsTopicSpecificPolicy_relevant_controls")
+    
+    
+    document_distribution_rel = relationship( "IsmsTopicSpecificPolicyDocumentDistribution" )
+    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
+                                  creator=lambda x_: IsmsTopicSpecificPolicyDocumentDistribution(document_distribution=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsTopicSpecificPolicy(topic_policy_topic={self.topic_policy_topic},topic_policy_parent={self.topic_policy_parent},topic_policy_audience={self.topic_policy_audience},isms_id={self.isms_id},title={self.title},description={self.description},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsRole(Base):
+    """
+    A role in the ISMS, with the responsibilities and authorities it carries and who holds it.
+    """
+    __tablename__ = 'IsmsRole'
+
+    role_category = Column(Text())
+    role_accountability = Column(Text())
+    role_delegation = Column(Text())
+    role_reports_to = Column(Text(), ForeignKey('IsmsRole.isms_id'))
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    role_responsibilities_rel = relationship( "IsmsRoleRoleResponsibilities" )
+    role_responsibilities = association_proxy("role_responsibilities_rel", "role_responsibilities",
+                                  creator=lambda x_: IsmsRoleRoleResponsibilities(role_responsibilities=x_))
+    
+    
+    role_authorities_rel = relationship( "IsmsRoleRoleAuthorities" )
+    role_authorities = association_proxy("role_authorities_rel", "role_authorities",
+                                  creator=lambda x_: IsmsRoleRoleAuthorities(role_authorities=x_))
+    
+    
+    role_holders_rel = relationship( "IsmsRoleRoleHolders" )
+    role_holders = association_proxy("role_holders_rel", "role_holders",
+                                  creator=lambda x_: IsmsRoleRoleHolders(role_holders=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsRole(role_category={self.role_category},role_accountability={self.role_accountability},role_delegation={self.role_delegation},role_reports_to={self.role_reports_to},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsObjective(Base):
+    """
+    An information security objective: a measurable result the organization aims for, with how it plans to reach it and how it measures progress.
+    """
+    __tablename__ = 'IsmsObjective'
+
+    responsible_role = Column(Text(), ForeignKey('IsmsRole.isms_id'))
+    objective_statement = Column(Text())
+    objective_target = Column(Text())
+    objective_current_value = Column(Text())
+    objective_metric = Column(Text())
+    objective_measurement_method = Column(Text())
+    objective_measurement_frequency = Column(Text())
+    objective_target_date = Column(Date())
+    objective_achievement = Column(Text())
+    objective_action_plan = Column(Text())
+    objective_resources = Column(Text())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    # ManyToMany
+    relevant_controls = relationship( "IsmsControl", secondary="IsmsObjective_relevant_controls")
+    
+    
+    # ManyToMany
+    objective_risks = relationship( "IsmsRisk", secondary="IsmsObjective_objective_risks")
+    
+
+    def __repr__(self):
+        return f"IsmsObjective(responsible_role={self.responsible_role},objective_statement={self.objective_statement},objective_target={self.objective_target},objective_current_value={self.objective_current_value},objective_metric={self.objective_metric},objective_measurement_method={self.objective_measurement_method},objective_measurement_frequency={self.objective_measurement_frequency},objective_target_date={self.objective_target_date},objective_achievement={self.objective_achievement},objective_action_plan={self.objective_action_plan},objective_resources={self.objective_resources},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsRiskAssessmentProcess(Base):
+    """
+    The organization's process for assessing information security risks: its criteria for accepting risk and for assessing it, its scales and method, and when it runs.
+    """
+    __tablename__ = 'IsmsRiskAssessmentProcess'
+
+    risk_acceptance_criteria = Column(Text())
+    risk_assessment_criteria = Column(Text())
+    risk_assessment_method = Column(Text())
+    risk_likelihood_scale = Column(Text())
+    risk_impact_scale = Column(Text())
+    risk_matrix = Column(Text())
+    risk_assessment_frequency = Column(Text())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    document_reference = Column(Text())
+    document_version = Column(Text())
+    document_author = Column(Text())
+    document_owner = Column(Text())
+    document_approver = Column(Text())
+    document_approval_date = Column(Date())
+    document_effective_date = Column(Date())
+    document_last_review_date = Column(Date())
+    document_next_review_date = Column(Date())
+    document_status = Column(Text())
+    document_classification = Column(Text())
+    document_retention = Column(Text())
+    document_storage = Column(Text())
+    document_change_control = Column(Text())
+    document_external_origin = Column(Boolean())
+    document_external_source = Column(Text())
+    
+    
+    risk_assessment_triggers_rel = relationship( "IsmsRiskAssessmentProcessRiskAssessmentTriggers" )
+    risk_assessment_triggers = association_proxy("risk_assessment_triggers_rel", "risk_assessment_triggers",
+                                  creator=lambda x_: IsmsRiskAssessmentProcessRiskAssessmentTriggers(risk_assessment_triggers=x_))
+    
+    
+    document_distribution_rel = relationship( "IsmsRiskAssessmentProcessDocumentDistribution" )
+    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
+                                  creator=lambda x_: IsmsRiskAssessmentProcessDocumentDistribution(document_distribution=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsRiskAssessmentProcess(risk_acceptance_criteria={self.risk_acceptance_criteria},risk_assessment_criteria={self.risk_assessment_criteria},risk_assessment_method={self.risk_assessment_method},risk_likelihood_scale={self.risk_likelihood_scale},risk_impact_scale={self.risk_impact_scale},risk_matrix={self.risk_matrix},risk_assessment_frequency={self.risk_assessment_frequency},isms_id={self.isms_id},title={self.title},description={self.description},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},)"
+
+
+
+    
+
+
+class IsmsRiskAssessment(Base):
+    """
+    One risk assessment carried out under the risk assessment process, and what it found.
+    """
+    __tablename__ = 'IsmsRiskAssessment'
+
+    assessment_scope = Column(Text())
+    assessment_date = Column(Date())
+    assessment_assessor = Column(Text())
+    assessment_method_used = Column(Text())
+    assessment_summary = Column(Text())
+    assessment_next_date = Column(Date())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    document_reference = Column(Text())
+    document_version = Column(Text())
+    document_author = Column(Text())
+    document_owner = Column(Text())
+    document_approver = Column(Text())
+    document_approval_date = Column(Date())
+    document_effective_date = Column(Date())
+    document_last_review_date = Column(Date())
+    document_next_review_date = Column(Date())
+    document_status = Column(Text())
+    document_classification = Column(Text())
+    document_retention = Column(Text())
+    document_storage = Column(Text())
+    document_change_control = Column(Text())
+    document_external_origin = Column(Boolean())
+    document_external_source = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    # ManyToMany
+    assessment_risks = relationship( "IsmsRisk", secondary="IsmsRiskAssessment_assessment_risks")
+    
+    
+    assessment_recommendations_rel = relationship( "IsmsRiskAssessmentAssessmentRecommendations" )
+    assessment_recommendations = association_proxy("assessment_recommendations_rel", "assessment_recommendations",
+                                  creator=lambda x_: IsmsRiskAssessmentAssessmentRecommendations(assessment_recommendations=x_))
+    
+    
+    document_distribution_rel = relationship( "IsmsRiskAssessmentDocumentDistribution" )
+    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
+                                  creator=lambda x_: IsmsRiskAssessmentDocumentDistribution(document_distribution=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsRiskAssessment(assessment_scope={self.assessment_scope},assessment_date={self.assessment_date},assessment_assessor={self.assessment_assessor},assessment_method_used={self.assessment_method_used},assessment_summary={self.assessment_summary},assessment_next_date={self.assessment_next_date},isms_id={self.isms_id},title={self.title},description={self.description},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsRisk(Base):
+    """
+    An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated.
+    """
+    __tablename__ = 'IsmsRisk'
+
+    risk_source = Column(Text())
+    risk_threat = Column(Text())
+    risk_vulnerability = Column(Text())
+    risk_owner = Column(Text())
+    risk_likelihood = Column(Enum('rare', 'unlikely', 'possible', 'likely', 'almost_certain', name='IsmsLikelihood'))
+    risk_impact = Column(Enum('negligible', 'minor', 'moderate', 'major', 'severe', name='IsmsImpact'))
+    risk_inherent_level = Column(Enum('very_low', 'low', 'medium', 'high', 'critical', name='IsmsRiskLevel'))
+    risk_residual_level = Column(Enum('very_low', 'low', 'medium', 'high', 'critical', name='IsmsRiskLevel'))
+    risk_treatment_option = Column(Enum('modify', 'retain', 'avoid', 'share', name='IsmsRiskTreatmentOption'))
+    risk_treatment_priority = Column(Text())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    # ManyToMany
+    affected_assets = relationship( "IsmsAsset", secondary="IsmsRisk_affected_assets")
+    
+    
+    affected_security_properties_rel = relationship( "IsmsRiskAffectedSecurityProperties" )
+    affected_security_properties = association_proxy("affected_security_properties_rel", "affected_security_properties",
+                                  creator=lambda x_: IsmsRiskAffectedSecurityProperties(affected_security_properties=x_))
+    
+    
+    # ManyToMany
+    risk_existing_controls = relationship( "IsmsControl", secondary="IsmsRisk_risk_existing_controls")
+    
+
+    def __repr__(self):
+        return f"IsmsRisk(risk_source={self.risk_source},risk_threat={self.risk_threat},risk_vulnerability={self.risk_vulnerability},risk_owner={self.risk_owner},risk_likelihood={self.risk_likelihood},risk_impact={self.risk_impact},risk_inherent_level={self.risk_inherent_level},risk_residual_level={self.risk_residual_level},risk_treatment_option={self.risk_treatment_option},risk_treatment_priority={self.risk_treatment_priority},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsRiskTreatmentProcess(Base):
+    """
+    The organization's process for treating information security risks: how it chooses treatments and controls, checks them against Annex A, and produces the Statement of Applicability.
+    """
+    __tablename__ = 'IsmsRiskTreatmentProcess'
+
+    treatment_options_guidance = Column(Text())
+    treatment_control_selection = Column(Text())
+    treatment_annex_a_comparison = Column(Text())
+    treatment_soa_template = Column(Text())
+    treatment_approval_workflow = Column(Text())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    document_reference = Column(Text())
+    document_version = Column(Text())
+    document_author = Column(Text())
+    document_owner = Column(Text())
+    document_approver = Column(Text())
+    document_approval_date = Column(Date())
+    document_effective_date = Column(Date())
+    document_last_review_date = Column(Date())
+    document_next_review_date = Column(Date())
+    document_status = Column(Text())
+    document_classification = Column(Text())
+    document_retention = Column(Text())
+    document_storage = Column(Text())
+    document_change_control = Column(Text())
+    document_external_origin = Column(Boolean())
+    document_external_source = Column(Text())
+    
+    
+    document_distribution_rel = relationship( "IsmsRiskTreatmentProcessDocumentDistribution" )
+    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
+                                  creator=lambda x_: IsmsRiskTreatmentProcessDocumentDistribution(document_distribution=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsRiskTreatmentProcess(treatment_options_guidance={self.treatment_options_guidance},treatment_control_selection={self.treatment_control_selection},treatment_annex_a_comparison={self.treatment_annex_a_comparison},treatment_soa_template={self.treatment_soa_template},treatment_approval_workflow={self.treatment_approval_workflow},isms_id={self.isms_id},title={self.title},description={self.description},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},)"
+
+
+
+    
+
+
+class IsmsRiskTreatmentPlan(Base):
+    """
+    A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's approval of the plan and of the residual risk.
+    """
+    __tablename__ = 'IsmsRiskTreatmentPlan'
+
+    implementation_state = Column(Enum('not_started', 'planned', 'in_progress', 'implemented', name='IsmsImplementationStatus'))
+    plan_scope = Column(Text())
+    plan_resources = Column(Text())
+    plan_timeline = Column(Text())
+    plan_risk_owner_approval = Column(Text())
+    plan_residual_risk_acceptance = Column(Text())
+    plan_completion_date = Column(Date())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    document_reference = Column(Text())
+    document_version = Column(Text())
+    document_author = Column(Text())
+    document_owner = Column(Text())
+    document_approver = Column(Text())
+    document_approval_date = Column(Date())
+    document_effective_date = Column(Date())
+    document_last_review_date = Column(Date())
+    document_next_review_date = Column(Date())
+    document_status = Column(Text())
+    document_classification = Column(Text())
+    document_retention = Column(Text())
+    document_storage = Column(Text())
+    document_change_control = Column(Text())
+    document_external_origin = Column(Boolean())
+    document_external_source = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    # ManyToMany
+    plan_risks = relationship( "IsmsRisk", secondary="IsmsRiskTreatmentPlan_plan_risks")
+    
+    
+    plan_actions_rel = relationship( "IsmsRiskTreatmentPlanPlanActions" )
+    plan_actions = association_proxy("plan_actions_rel", "plan_actions",
+                                  creator=lambda x_: IsmsRiskTreatmentPlanPlanActions(plan_actions=x_))
+    
+    
+    # ManyToMany
+    plan_controls = relationship( "IsmsControl", secondary="IsmsRiskTreatmentPlan_plan_controls")
+    
+    
+    plan_responsible_parties_rel = relationship( "IsmsRiskTreatmentPlanPlanResponsibleParties" )
+    plan_responsible_parties = association_proxy("plan_responsible_parties_rel", "plan_responsible_parties",
+                                  creator=lambda x_: IsmsRiskTreatmentPlanPlanResponsibleParties(plan_responsible_parties=x_))
+    
+    
+    document_distribution_rel = relationship( "IsmsRiskTreatmentPlanDocumentDistribution" )
+    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
+                                  creator=lambda x_: IsmsRiskTreatmentPlanDocumentDistribution(document_distribution=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsRiskTreatmentPlan(implementation_state={self.implementation_state},plan_scope={self.plan_scope},plan_resources={self.plan_resources},plan_timeline={self.plan_timeline},plan_risk_owner_approval={self.plan_risk_owner_approval},plan_residual_risk_acceptance={self.plan_residual_risk_acceptance},plan_completion_date={self.plan_completion_date},isms_id={self.isms_id},title={self.title},description={self.description},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsStatementOfApplicability(Base):
+    """
+    The Statement of Applicability: each control the organization needs, with why it is included and whether it is in place, and each Annex A control it leaves out, with why.
+    """
+    __tablename__ = 'IsmsStatementOfApplicability'
+
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    document_reference = Column(Text())
+    document_version = Column(Text())
+    document_author = Column(Text())
+    document_owner = Column(Text())
+    document_approver = Column(Text())
+    document_approval_date = Column(Date())
+    document_effective_date = Column(Date())
+    document_last_review_date = Column(Date())
+    document_next_review_date = Column(Date())
+    document_status = Column(Text())
+    document_classification = Column(Text())
+    document_retention = Column(Text())
+    document_storage = Column(Text())
+    document_change_control = Column(Text())
+    document_external_origin = Column(Boolean())
+    document_external_source = Column(Text())
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsStatementOfApplicability', source_slot='soa_entries', mapping_type=None, target_class='IsmsApplicabilityEntry', target_slot='IsmsStatementOfApplicability_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    soa_entries = relationship( "IsmsApplicabilityEntry", foreign_keys="[IsmsApplicabilityEntry.IsmsStatementOfApplicability_isms_id]")
+    
+    
+    document_distribution_rel = relationship( "IsmsStatementOfApplicabilityDocumentDistribution" )
+    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
+                                  creator=lambda x_: IsmsStatementOfApplicabilityDocumentDistribution(document_distribution=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsStatementOfApplicability(isms_id={self.isms_id},title={self.title},description={self.description},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},)"
+
+
+
+    
+
+
 class IsmsApplicabilityEntry(Base):
     """
     One entry of the Statement of Applicability, which either includes a control or excludes an Annex A control, and says why.
@@ -81,6 +821,286 @@ class IsmsApplicabilityEntry(Base):
 
     def __repr__(self):
         return f"IsmsApplicabilityEntry(id={self.id},entry_annex_a_control={self.entry_annex_a_control},entry_type={self.entry_type},entry_justification={self.entry_justification},IsmsStatementOfApplicability_isms_id={self.IsmsStatementOfApplicability_isms_id},)"
+
+
+
+    
+
+
+class IsmsControl(Base):
+    """
+    A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.
+    """
+    __tablename__ = 'IsmsControl'
+
+    implementation_state = Column(Enum('not_started', 'planned', 'in_progress', 'implemented', name='IsmsImplementationStatus'))
+    control_theme = Column(Enum('organizational', 'people', 'physical', 'technological', name='IsmsControlTheme'))
+    control_text = Column(Text())
+    control_guidance = Column(Text())
+    control_owner = Column(Text())
+    control_implementation_date = Column(Date())
+    control_effectiveness = Column(Text())
+    control_last_tested = Column(Date())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    # ManyToMany
+    relevant_controls = relationship( "IsmsControl", secondary="IsmsControl_relevant_controls")
+    
+    
+    control_annex_a_controls_rel = relationship( "IsmsControlControlAnnexAControls" )
+    control_annex_a_controls = association_proxy("control_annex_a_controls_rel", "control_annex_a_controls",
+                                  creator=lambda x_: IsmsControlControlAnnexAControls(control_annex_a_controls=x_))
+    
+    
+    control_threats_rel = relationship( "IsmsControlControlThreats" )
+    control_threats = association_proxy("control_threats_rel", "control_threats",
+                                  creator=lambda x_: IsmsControlControlThreats(control_threats=x_))
+    
+    
+    control_asset_types_rel = relationship( "IsmsControlControlAssetTypes" )
+    control_asset_types = association_proxy("control_asset_types_rel", "control_asset_types",
+                                  creator=lambda x_: IsmsControlControlAssetTypes(control_asset_types=x_))
+    
+    
+    control_evidence_rel = relationship( "IsmsControlControlEvidence" )
+    control_evidence = association_proxy("control_evidence_rel", "control_evidence",
+                                  creator=lambda x_: IsmsControlControlEvidence(control_evidence=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsControl(implementation_state={self.implementation_state},control_theme={self.control_theme},control_text={self.control_text},control_guidance={self.control_guidance},control_owner={self.control_owner},control_implementation_date={self.control_implementation_date},control_effectiveness={self.control_effectiveness},control_last_tested={self.control_last_tested},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsAsset(Base):
+    """
+    An item in the inventory of information and other associated assets: what it is, who owns and looks after it, where it is, how it is classified and how much it matters.
+    """
+    __tablename__ = 'IsmsAsset'
+
+    asset_category = Column(Text())
+    asset_owner = Column(Text())
+    asset_custodian = Column(Text())
+    asset_classification = Column(Text())
+    asset_location = Column(Text())
+    asset_criticality = Column(Text())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    # ManyToMany
+    relevant_controls = relationship( "IsmsControl", secondary="IsmsAsset_relevant_controls")
+    
+
+    def __repr__(self):
+        return f"IsmsAsset(asset_category={self.asset_category},asset_owner={self.asset_owner},asset_custodian={self.asset_custodian},asset_classification={self.asset_classification},asset_location={self.asset_location},asset_criticality={self.asset_criticality},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsResource(Base):
+    """
+    A resource provided for the ISMS, such as people, time, tools or budget.
+    """
+    __tablename__ = 'IsmsResource'
+
+    resource_category = Column(Text())
+    resource_quantity = Column(Text())
+    resource_allocation_date = Column(Date())
+    resource_allocated_to = Column(Text())
+    resource_cost = Column(Text())
+    resource_availability = Column(Text())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+
+    def __repr__(self):
+        return f"IsmsResource(resource_category={self.resource_category},resource_quantity={self.resource_quantity},resource_allocation_date={self.resource_allocation_date},resource_allocated_to={self.resource_allocated_to},resource_cost={self.resource_cost},resource_availability={self.resource_availability},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsCompetenceRecord(Base):
+    """
+    The evidence of one person's competence for work that affects information security, and what is done to close any gap.
+    """
+    __tablename__ = 'IsmsCompetenceRecord'
+
+    competence_person = Column(Text())
+    competence_role = Column(Text(), ForeignKey('IsmsRole.isms_id'))
+    competence_assessment_date = Column(Date())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    document_reference = Column(Text())
+    document_version = Column(Text())
+    document_author = Column(Text())
+    document_owner = Column(Text())
+    document_approver = Column(Text())
+    document_approval_date = Column(Date())
+    document_effective_date = Column(Date())
+    document_last_review_date = Column(Date())
+    document_next_review_date = Column(Date())
+    document_status = Column(Text())
+    document_classification = Column(Text())
+    document_retention = Column(Text())
+    document_storage = Column(Text())
+    document_change_control = Column(Text())
+    document_external_origin = Column(Boolean())
+    document_external_source = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    competence_required_rel = relationship( "IsmsCompetenceRecordCompetenceRequired" )
+    competence_required = association_proxy("competence_required_rel", "competence_required",
+                                  creator=lambda x_: IsmsCompetenceRecordCompetenceRequired(competence_required=x_))
+    
+    
+    competence_education_rel = relationship( "IsmsCompetenceRecordCompetenceEducation" )
+    competence_education = association_proxy("competence_education_rel", "competence_education",
+                                  creator=lambda x_: IsmsCompetenceRecordCompetenceEducation(competence_education=x_))
+    
+    
+    competence_training_rel = relationship( "IsmsCompetenceRecordCompetenceTraining" )
+    competence_training = association_proxy("competence_training_rel", "competence_training",
+                                  creator=lambda x_: IsmsCompetenceRecordCompetenceTraining(competence_training=x_))
+    
+    
+    competence_experience_rel = relationship( "IsmsCompetenceRecordCompetenceExperience" )
+    competence_experience = association_proxy("competence_experience_rel", "competence_experience",
+                                  creator=lambda x_: IsmsCompetenceRecordCompetenceExperience(competence_experience=x_))
+    
+    
+    competence_gaps_rel = relationship( "IsmsCompetenceRecordCompetenceGaps" )
+    competence_gaps = association_proxy("competence_gaps_rel", "competence_gaps",
+                                  creator=lambda x_: IsmsCompetenceRecordCompetenceGaps(competence_gaps=x_))
+    
+    
+    competence_actions_rel = relationship( "IsmsCompetenceRecordCompetenceActions" )
+    competence_actions = association_proxy("competence_actions_rel", "competence_actions",
+                                  creator=lambda x_: IsmsCompetenceRecordCompetenceActions(competence_actions=x_))
+    
+    
+    document_distribution_rel = relationship( "IsmsCompetenceRecordDocumentDistribution" )
+    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
+                                  creator=lambda x_: IsmsCompetenceRecordDocumentDistribution(document_distribution=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsCompetenceRecord(competence_person={self.competence_person},competence_role={self.competence_role},competence_assessment_date={self.competence_assessment_date},isms_id={self.isms_id},title={self.title},description={self.description},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsAwarenessProgramme(Base):
+    """
+    The programme that makes people working for the organization aware of the policy, their part in the ISMS and what failing it would mean.
+    """
+    __tablename__ = 'IsmsAwarenessProgramme'
+
+    awareness_audience = Column(Text())
+    awareness_frequency = Column(Text())
+    awareness_completion_tracking = Column(Text())
+    awareness_effectiveness = Column(Text())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    document_reference = Column(Text())
+    document_version = Column(Text())
+    document_author = Column(Text())
+    document_owner = Column(Text())
+    document_approver = Column(Text())
+    document_approval_date = Column(Date())
+    document_effective_date = Column(Date())
+    document_last_review_date = Column(Date())
+    document_next_review_date = Column(Date())
+    document_status = Column(Text())
+    document_classification = Column(Text())
+    document_retention = Column(Text())
+    document_storage = Column(Text())
+    document_change_control = Column(Text())
+    document_external_origin = Column(Boolean())
+    document_external_source = Column(Text())
+    
+    
+    awareness_topics_rel = relationship( "IsmsAwarenessProgrammeAwarenessTopics" )
+    awareness_topics = association_proxy("awareness_topics_rel", "awareness_topics",
+                                  creator=lambda x_: IsmsAwarenessProgrammeAwarenessTopics(awareness_topics=x_))
+    
+    
+    awareness_methods_rel = relationship( "IsmsAwarenessProgrammeAwarenessMethods" )
+    awareness_methods = association_proxy("awareness_methods_rel", "awareness_methods",
+                                  creator=lambda x_: IsmsAwarenessProgrammeAwarenessMethods(awareness_methods=x_))
+    
+    
+    document_distribution_rel = relationship( "IsmsAwarenessProgrammeDocumentDistribution" )
+    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
+                                  creator=lambda x_: IsmsAwarenessProgrammeDocumentDistribution(document_distribution=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsAwarenessProgramme(awareness_audience={self.awareness_audience},awareness_frequency={self.awareness_frequency},awareness_completion_tracking={self.awareness_completion_tracking},awareness_effectiveness={self.awareness_effectiveness},isms_id={self.isms_id},title={self.title},description={self.description},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},)"
+
+
+
+    
+
+
+class IsmsCommunicationPlan(Base):
+    """
+    The plan for communication about the ISMS, inside the organization and outside it.
+    """
+    __tablename__ = 'IsmsCommunicationPlan'
+
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    document_reference = Column(Text())
+    document_version = Column(Text())
+    document_author = Column(Text())
+    document_owner = Column(Text())
+    document_approver = Column(Text())
+    document_approval_date = Column(Date())
+    document_effective_date = Column(Date())
+    document_last_review_date = Column(Date())
+    document_next_review_date = Column(Date())
+    document_status = Column(Text())
+    document_classification = Column(Text())
+    document_retention = Column(Text())
+    document_storage = Column(Text())
+    document_change_control = Column(Text())
+    document_external_origin = Column(Boolean())
+    document_external_source = Column(Text())
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsCommunicationPlan', source_slot='communication_items', mapping_type=None, target_class='IsmsCommunication', target_slot='IsmsCommunicationPlan_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    communication_items = relationship( "IsmsCommunication", foreign_keys="[IsmsCommunication.IsmsCommunicationPlan_isms_id]")
+    
+    
+    document_distribution_rel = relationship( "IsmsCommunicationPlanDocumentDistribution" )
+    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
+                                  creator=lambda x_: IsmsCommunicationPlanDocumentDistribution(document_distribution=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsCommunicationPlan(isms_id={self.isms_id},title={self.title},description={self.description},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},)"
 
 
 
@@ -112,6 +1132,149 @@ class IsmsCommunication(Base):
     
 
 
+class IsmsDocumentedInformation(Base):
+    """
+    A piece of documented information the ISMS keeps under control that no more specific record describes, such as a procedure, a standard, a plan or a report.
+    """
+    __tablename__ = 'IsmsDocumentedInformation'
+
+    document_kind = Column(Enum('procedure', 'standard', 'guideline', 'record', 'plan', 'report', name='IsmsDocumentKind'), nullable=False )
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    document_reference = Column(Text())
+    document_version = Column(Text())
+    document_author = Column(Text())
+    document_owner = Column(Text())
+    document_approver = Column(Text())
+    document_approval_date = Column(Date())
+    document_effective_date = Column(Date())
+    document_last_review_date = Column(Date())
+    document_next_review_date = Column(Date())
+    document_status = Column(Text())
+    document_classification = Column(Text())
+    document_retention = Column(Text())
+    document_storage = Column(Text())
+    document_change_control = Column(Text())
+    document_external_origin = Column(Boolean())
+    document_external_source = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    document_distribution_rel = relationship( "IsmsDocumentedInformationDocumentDistribution" )
+    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
+                                  creator=lambda x_: IsmsDocumentedInformationDocumentDistribution(document_distribution=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsDocumentedInformation(document_kind={self.document_kind},isms_id={self.isms_id},title={self.title},description={self.description},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsOperationalProcedure(Base):
+    """
+    A procedure by which the organization plans and controls the processes that meet its information security requirements.
+    """
+    __tablename__ = 'IsmsOperationalProcedure'
+
+    procedure_scope = Column(Text())
+    procedure_criteria = Column(Text())
+    procedure_change_control = Column(Text())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    document_reference = Column(Text())
+    document_version = Column(Text())
+    document_author = Column(Text())
+    document_owner = Column(Text())
+    document_approver = Column(Text())
+    document_approval_date = Column(Date())
+    document_effective_date = Column(Date())
+    document_last_review_date = Column(Date())
+    document_next_review_date = Column(Date())
+    document_status = Column(Text())
+    document_classification = Column(Text())
+    document_retention = Column(Text())
+    document_storage = Column(Text())
+    document_change_control = Column(Text())
+    document_external_origin = Column(Boolean())
+    document_external_source = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    # ManyToMany
+    relevant_controls = relationship( "IsmsControl", secondary="IsmsOperationalProcedure_relevant_controls")
+    
+    
+    procedure_control_measures_rel = relationship( "IsmsOperationalProcedureProcedureControlMeasures" )
+    procedure_control_measures = association_proxy("procedure_control_measures_rel", "procedure_control_measures",
+                                  creator=lambda x_: IsmsOperationalProcedureProcedureControlMeasures(procedure_control_measures=x_))
+    
+    
+    # ManyToMany
+    procedure_roles = relationship( "IsmsRole", secondary="IsmsOperationalProcedure_procedure_roles")
+    
+    
+    document_distribution_rel = relationship( "IsmsOperationalProcedureDocumentDistribution" )
+    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
+                                  creator=lambda x_: IsmsOperationalProcedureDocumentDistribution(document_distribution=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsOperationalProcedure(procedure_scope={self.procedure_scope},procedure_criteria={self.procedure_criteria},procedure_change_control={self.procedure_change_control},isms_id={self.isms_id},title={self.title},description={self.description},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsMonitoringProgramme(Base):
+    """
+    The programme of monitoring, measurement, analysis and evaluation of information security performance and of the ISMS's effectiveness.
+    """
+    __tablename__ = 'IsmsMonitoringProgramme'
+
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    document_reference = Column(Text())
+    document_version = Column(Text())
+    document_author = Column(Text())
+    document_owner = Column(Text())
+    document_approver = Column(Text())
+    document_approval_date = Column(Date())
+    document_effective_date = Column(Date())
+    document_last_review_date = Column(Date())
+    document_next_review_date = Column(Date())
+    document_status = Column(Text())
+    document_classification = Column(Text())
+    document_retention = Column(Text())
+    document_storage = Column(Text())
+    document_change_control = Column(Text())
+    document_external_origin = Column(Boolean())
+    document_external_source = Column(Text())
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsMonitoringProgramme', source_slot='monitoring_items', mapping_type=None, target_class='IsmsMonitoringItem', target_slot='IsmsMonitoringProgramme_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    monitoring_items = relationship( "IsmsMonitoringItem", foreign_keys="[IsmsMonitoringItem.IsmsMonitoringProgramme_isms_id]")
+    
+    
+    document_distribution_rel = relationship( "IsmsMonitoringProgrammeDocumentDistribution" )
+    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
+                                  creator=lambda x_: IsmsMonitoringProgrammeDocumentDistribution(document_distribution=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsMonitoringProgramme(isms_id={self.isms_id},title={self.title},description={self.description},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},)"
+
+
+
+    
+
+
 class IsmsMonitoringItem(Base):
     """
     One thing the monitoring programme measures: what, how, how often and by whom it is measured and analysed, and against what thresholds.
@@ -135,6 +1298,370 @@ class IsmsMonitoringItem(Base):
 
     def __repr__(self):
         return f"IsmsMonitoringItem(id={self.id},responsible_role={self.responsible_role},monitoring_metric={self.monitoring_metric},monitoring_description={self.monitoring_description},monitoring_method={self.monitoring_method},monitoring_frequency={self.monitoring_frequency},monitoring_analysis_frequency={self.monitoring_analysis_frequency},monitoring_analyst={self.monitoring_analyst},monitoring_target={self.monitoring_target},monitoring_alert_threshold={self.monitoring_alert_threshold},monitoring_current_value={self.monitoring_current_value},monitoring_trend={self.monitoring_trend},IsmsMonitoringProgramme_isms_id={self.IsmsMonitoringProgramme_isms_id},)"
+
+
+
+    
+
+
+class IsmsAuditProgramme(Base):
+    """
+    An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors they need.
+    """
+    __tablename__ = 'IsmsAuditProgramme'
+
+    programme_period = Column(Text())
+    programme_frequency_rationale = Column(Text())
+    programme_resources = Column(Text())
+    programme_auditor_qualifications = Column(Text())
+    programme_status = Column(Text())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    document_reference = Column(Text())
+    document_version = Column(Text())
+    document_author = Column(Text())
+    document_owner = Column(Text())
+    document_approver = Column(Text())
+    document_approval_date = Column(Date())
+    document_effective_date = Column(Date())
+    document_last_review_date = Column(Date())
+    document_next_review_date = Column(Date())
+    document_status = Column(Text())
+    document_classification = Column(Text())
+    document_retention = Column(Text())
+    document_storage = Column(Text())
+    document_change_control = Column(Text())
+    document_external_origin = Column(Boolean())
+    document_external_source = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    # ManyToMany
+    programme_audits = relationship( "IsmsAudit", secondary="IsmsAuditProgramme_programme_audits")
+    
+    
+    document_distribution_rel = relationship( "IsmsAuditProgrammeDocumentDistribution" )
+    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
+                                  creator=lambda x_: IsmsAuditProgrammeDocumentDistribution(document_distribution=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsAuditProgramme(programme_period={self.programme_period},programme_frequency_rationale={self.programme_frequency_rationale},programme_resources={self.programme_resources},programme_auditor_qualifications={self.programme_auditor_qualifications},programme_status={self.programme_status},isms_id={self.isms_id},title={self.title},description={self.description},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsAudit(Base):
+    """
+    An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope, criteria, team, findings and conclusion.
+    """
+    __tablename__ = 'IsmsAudit'
+
+    audit_type = Column(Enum('first_party', 'second_party', 'third_party', name='IsmsAuditType'), nullable=False )
+    audit_scope = Column(Text())
+    audit_period_start = Column(Date())
+    audit_period_end = Column(Date())
+    audit_lead = Column(Text())
+    audit_plan = Column(Text(), ForeignKey('IsmsDocumentedInformation.isms_id'))
+    audit_conclusion = Column(Text())
+    audit_report_date = Column(Date())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    document_reference = Column(Text())
+    document_version = Column(Text())
+    document_author = Column(Text())
+    document_owner = Column(Text())
+    document_approver = Column(Text())
+    document_approval_date = Column(Date())
+    document_effective_date = Column(Date())
+    document_last_review_date = Column(Date())
+    document_next_review_date = Column(Date())
+    document_status = Column(Text())
+    document_classification = Column(Text())
+    document_retention = Column(Text())
+    document_storage = Column(Text())
+    document_change_control = Column(Text())
+    document_external_origin = Column(Boolean())
+    document_external_source = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    audit_standards_rel = relationship( "IsmsAuditAuditStandards" )
+    audit_standards = association_proxy("audit_standards_rel", "audit_standards",
+                                  creator=lambda x_: IsmsAuditAuditStandards(audit_standards=x_))
+    
+    
+    audit_criteria_rel = relationship( "IsmsAuditAuditCriteria" )
+    audit_criteria = association_proxy("audit_criteria_rel", "audit_criteria",
+                                  creator=lambda x_: IsmsAuditAuditCriteria(audit_criteria=x_))
+    
+    
+    audit_objectives_rel = relationship( "IsmsAuditAuditObjectives" )
+    audit_objectives = association_proxy("audit_objectives_rel", "audit_objectives",
+                                  creator=lambda x_: IsmsAuditAuditObjectives(audit_objectives=x_))
+    
+    
+    audit_team_rel = relationship( "IsmsAuditAuditTeam" )
+    audit_team = association_proxy("audit_team_rel", "audit_team",
+                                  creator=lambda x_: IsmsAuditAuditTeam(audit_team=x_))
+    
+    
+    audit_auditees_rel = relationship( "IsmsAuditAuditAuditees" )
+    audit_auditees = association_proxy("audit_auditees_rel", "audit_auditees",
+                                  creator=lambda x_: IsmsAuditAuditAuditees(audit_auditees=x_))
+    
+    
+    # One-To-Many: OneToAnyMapping(source_class='IsmsAudit', source_slot='audit_findings', mapping_type=None, target_class='IsmsAuditFinding', target_slot='IsmsAudit_isms_id', join_class=None, uses_join_table=None, multivalued=False)
+    audit_findings = relationship( "IsmsAuditFinding", foreign_keys="[IsmsAuditFinding.IsmsAudit_isms_id]")
+    
+    
+    audit_report_distribution_rel = relationship( "IsmsAuditAuditReportDistribution" )
+    audit_report_distribution = association_proxy("audit_report_distribution_rel", "audit_report_distribution",
+                                  creator=lambda x_: IsmsAuditAuditReportDistribution(audit_report_distribution=x_))
+    
+    
+    document_distribution_rel = relationship( "IsmsAuditDocumentDistribution" )
+    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
+                                  creator=lambda x_: IsmsAuditDocumentDistribution(document_distribution=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsAudit(audit_type={self.audit_type},audit_scope={self.audit_scope},audit_period_start={self.audit_period_start},audit_period_end={self.audit_period_end},audit_lead={self.audit_lead},audit_plan={self.audit_plan},audit_conclusion={self.audit_conclusion},audit_report_date={self.audit_report_date},isms_id={self.isms_id},title={self.title},description={self.description},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsAuditFinding(Base):
+    """
+    One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it concerns, its evidence and how it is closed.
+    """
+    __tablename__ = 'IsmsAuditFinding'
+
+    finding_type = Column(Enum('major_nonconformity', 'minor_nonconformity', 'observation', 'positive_finding', name='IsmsAuditFindingType'), nullable=False )
+    finding_requirement = Column(Text())
+    finding_control = Column(Text(), ForeignKey('IsmsControl.isms_id'))
+    finding_evidence = Column(Text())
+    finding_root_cause = Column(Text())
+    finding_risk = Column(Text())
+    finding_recommendation = Column(Text())
+    finding_auditee_response = Column(Text())
+    finding_corrective_action = Column(Text(), ForeignKey('IsmsCorrectiveAction.isms_id'))
+    finding_closure_status = Column(Text())
+    finding_closure_date = Column(Date())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    IsmsAudit_isms_id = Column(Text(), ForeignKey('IsmsAudit.isms_id'))
+    
+
+    def __repr__(self):
+        return f"IsmsAuditFinding(finding_type={self.finding_type},finding_requirement={self.finding_requirement},finding_control={self.finding_control},finding_evidence={self.finding_evidence},finding_root_cause={self.finding_root_cause},finding_risk={self.finding_risk},finding_recommendation={self.finding_recommendation},finding_auditee_response={self.finding_auditee_response},finding_corrective_action={self.finding_corrective_action},finding_closure_status={self.finding_closure_status},finding_closure_date={self.finding_closure_date},isms_id={self.isms_id},title={self.title},description={self.description},IsmsAudit_isms_id={self.IsmsAudit_isms_id},)"
+
+
+
+    
+
+
+class IsmsManagementReview(Base):
+    """
+    A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.
+    """
+    __tablename__ = 'IsmsManagementReview'
+
+    review_held_on = Column(Date(), nullable=False )
+    review_previous_actions = Column(Text())
+    review_context_changes = Column(Text())
+    review_interested_party_changes = Column(Text())
+    review_interested_party_feedback = Column(Text())
+    review_performance_trends = Column(Text())
+    review_audit_results = Column(Text())
+    review_risk_assessment_results = Column(Text())
+    review_risk_treatment_status = Column(Text())
+    review_risks_and_opportunities = Column(Text())
+    review_next_date = Column(Date())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    document_reference = Column(Text())
+    document_version = Column(Text())
+    document_author = Column(Text())
+    document_owner = Column(Text())
+    document_approver = Column(Text())
+    document_approval_date = Column(Date())
+    document_effective_date = Column(Date())
+    document_last_review_date = Column(Date())
+    document_next_review_date = Column(Date())
+    document_status = Column(Text())
+    document_classification = Column(Text())
+    document_retention = Column(Text())
+    document_storage = Column(Text())
+    document_change_control = Column(Text())
+    document_external_origin = Column(Boolean())
+    document_external_source = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    review_attendees_rel = relationship( "IsmsManagementReviewReviewAttendees" )
+    review_attendees = association_proxy("review_attendees_rel", "review_attendees",
+                                  creator=lambda x_: IsmsManagementReviewReviewAttendees(review_attendees=x_))
+    
+    
+    review_improvement_opportunities_rel = relationship( "IsmsManagementReviewReviewImprovementOpportunities" )
+    review_improvement_opportunities = association_proxy("review_improvement_opportunities_rel", "review_improvement_opportunities",
+                                  creator=lambda x_: IsmsManagementReviewReviewImprovementOpportunities(review_improvement_opportunities=x_))
+    
+    
+    review_decisions_rel = relationship( "IsmsManagementReviewReviewDecisions" )
+    review_decisions = association_proxy("review_decisions_rel", "review_decisions",
+                                  creator=lambda x_: IsmsManagementReviewReviewDecisions(review_decisions=x_))
+    
+    
+    review_actions_rel = relationship( "IsmsManagementReviewReviewActions" )
+    review_actions = association_proxy("review_actions_rel", "review_actions",
+                                  creator=lambda x_: IsmsManagementReviewReviewActions(review_actions=x_))
+    
+    
+    document_distribution_rel = relationship( "IsmsManagementReviewDocumentDistribution" )
+    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
+                                  creator=lambda x_: IsmsManagementReviewDocumentDistribution(document_distribution=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsManagementReview(review_held_on={self.review_held_on},review_previous_actions={self.review_previous_actions},review_context_changes={self.review_context_changes},review_interested_party_changes={self.review_interested_party_changes},review_interested_party_feedback={self.review_interested_party_feedback},review_performance_trends={self.review_performance_trends},review_audit_results={self.review_audit_results},review_risk_assessment_results={self.review_risk_assessment_results},review_risk_treatment_status={self.review_risk_treatment_status},review_risks_and_opportunities={self.review_risks_and_opportunities},review_next_date={self.review_next_date},isms_id={self.isms_id},title={self.title},description={self.description},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsNonconformity(Base):
+    """
+    A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was closed.
+    """
+    __tablename__ = 'IsmsNonconformity'
+
+    nonconformity_source = Column(Text())
+    nonconformity_detected_on = Column(Date())
+    nonconformity_detected_by = Column(Text())
+    nonconformity_requirement = Column(Text())
+    nonconformity_consequences = Column(Text())
+    nonconformity_root_cause = Column(Text())
+    nonconformity_similar_check = Column(Text())
+    nonconformity_status = Column(Text())
+    nonconformity_closure_date = Column(Date())
+    nonconformity_closure_evidence = Column(Text())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    nonconformity_immediate_actions_rel = relationship( "IsmsNonconformityNonconformityImmediateActions" )
+    nonconformity_immediate_actions = association_proxy("nonconformity_immediate_actions_rel", "nonconformity_immediate_actions",
+                                  creator=lambda x_: IsmsNonconformityNonconformityImmediateActions(nonconformity_immediate_actions=x_))
+    
+
+    def __repr__(self):
+        return f"IsmsNonconformity(nonconformity_source={self.nonconformity_source},nonconformity_detected_on={self.nonconformity_detected_on},nonconformity_detected_by={self.nonconformity_detected_by},nonconformity_requirement={self.nonconformity_requirement},nonconformity_consequences={self.nonconformity_consequences},nonconformity_root_cause={self.nonconformity_root_cause},nonconformity_similar_check={self.nonconformity_similar_check},nonconformity_status={self.nonconformity_status},nonconformity_closure_date={self.nonconformity_closure_date},nonconformity_closure_evidence={self.nonconformity_closure_evidence},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsCorrectiveAction(Base):
+    """
+    An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it worked.
+    """
+    __tablename__ = 'IsmsCorrectiveAction'
+
+    responsible_role = Column(Text(), ForeignKey('IsmsRole.isms_id'))
+    action_root_cause = Column(Text())
+    action_target_date = Column(Date())
+    action_completion_date = Column(Date())
+    action_resources = Column(Text())
+    action_effectiveness_criteria = Column(Text())
+    action_effectiveness_review_date = Column(Date())
+    action_effective = Column(Boolean())
+    action_isms_changes = Column(Text())
+    action_status = Column(Text())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    # ManyToMany
+    action_nonconformities = relationship( "IsmsNonconformity", secondary="IsmsCorrectiveAction_action_nonconformities")
+    
+
+    def __repr__(self):
+        return f"IsmsCorrectiveAction(responsible_role={self.responsible_role},action_root_cause={self.action_root_cause},action_target_date={self.action_target_date},action_completion_date={self.action_completion_date},action_resources={self.action_resources},action_effectiveness_criteria={self.action_effectiveness_criteria},action_effectiveness_review_date={self.action_effectiveness_review_date},action_effective={self.action_effective},action_isms_changes={self.action_isms_changes},action_status={self.action_status},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsImprovementOpportunity(Base):
+    """
+    An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.
+    """
+    __tablename__ = 'IsmsImprovementOpportunity'
+
+    responsible_role = Column(Text(), ForeignKey('IsmsRole.isms_id'))
+    improvement_source = Column(Text())
+    improvement_identified_on = Column(Date())
+    improvement_identified_by = Column(Text())
+    improvement_benefit = Column(Text())
+    improvement_priority = Column(Text())
+    improvement_plan = Column(Text())
+    improvement_target_date = Column(Date())
+    improvement_completion_date = Column(Date())
+    improvement_outcome = Column(Text())
+    improvement_status = Column(Text())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+
+    def __repr__(self):
+        return f"IsmsImprovementOpportunity(responsible_role={self.responsible_role},improvement_source={self.improvement_source},improvement_identified_on={self.improvement_identified_on},improvement_identified_by={self.improvement_identified_by},improvement_benefit={self.improvement_benefit},improvement_priority={self.improvement_priority},improvement_plan={self.improvement_plan},improvement_target_date={self.improvement_target_date},improvement_completion_date={self.improvement_completion_date},improvement_outcome={self.improvement_outcome},improvement_status={self.improvement_status},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
+
+
+
+    
+
+
+class IsmsSecurityEvent(Base):
+    """
+    An information security event someone reported, and the assessment of whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.
+    """
+    __tablename__ = 'IsmsSecurityEvent'
+
+    event_type = Column(Text())
+    event_occurred_at = Column(DateTime())
+    event_reporter = Column(Text())
+    event_assessment = Column(Text())
+    isms_id = Column(Text(), primary_key=True, nullable=False )
+    title = Column(Text(), nullable=False )
+    description = Column(Text())
+    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
+    
+    
+    # ManyToMany
+    affected_assets = relationship( "IsmsAsset", secondary="IsmsSecurityEvent_affected_assets")
+    
+
+    def __repr__(self):
+        return f"IsmsSecurityEvent(event_type={self.event_type},event_occurred_at={self.event_occurred_at},event_reporter={self.event_reporter},event_assessment={self.event_assessment},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
 
 
 
@@ -1779,811 +3306,6 @@ class IsmsSecurityIncidentAffectedAssets(Base):
     
 
 
-class IsmsManagementSystem(IsmsRecord):
-    """
-    One organization's information security management system: its scope and context, and every record it keeps, each kind in a list of its own.
-    """
-    __tablename__ = 'IsmsManagementSystem'
-
-    isms_top_management = Column(Text())
-    isms_governing_body = Column(Text())
-    isms_scope = Column(Text())
-    isms_processes = Column(Text())
-    isms_certification_status = Column(Text())
-    isms_certification_body = Column(Text())
-    isms_certification_date = Column(Date())
-    isms_recertification_date = Column(Date())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    isms_organization_isms_id = Column(Text(), ForeignKey('IsmsOrganization.isms_id'))
-    isms_organization = relationship("IsmsOrganization", uselist=False, foreign_keys=[isms_organization_isms_id])
-    isms_policy_isms_id = Column(Text(), ForeignKey('IsmsPolicy.isms_id'))
-    isms_policy = relationship("IsmsPolicy", uselist=False, foreign_keys=[isms_policy_isms_id])
-    isms_risk_assessment_process_isms_id = Column(Text(), ForeignKey('IsmsRiskAssessmentProcess.isms_id'))
-    isms_risk_assessment_process = relationship("IsmsRiskAssessmentProcess", uselist=False, foreign_keys=[isms_risk_assessment_process_isms_id])
-    isms_risk_treatment_process_isms_id = Column(Text(), ForeignKey('IsmsRiskTreatmentProcess.isms_id'))
-    isms_risk_treatment_process = relationship("IsmsRiskTreatmentProcess", uselist=False, foreign_keys=[isms_risk_treatment_process_isms_id])
-    isms_statement_of_applicability_isms_id = Column(Text(), ForeignKey('IsmsStatementOfApplicability.isms_id'))
-    isms_statement_of_applicability = relationship("IsmsStatementOfApplicability", uselist=False, foreign_keys=[isms_statement_of_applicability_isms_id])
-    isms_awareness_programme_isms_id = Column(Text(), ForeignKey('IsmsAwarenessProgramme.isms_id'))
-    isms_awareness_programme = relationship("IsmsAwarenessProgramme", uselist=False, foreign_keys=[isms_awareness_programme_isms_id])
-    isms_communication_plan_isms_id = Column(Text(), ForeignKey('IsmsCommunicationPlan.isms_id'))
-    isms_communication_plan = relationship("IsmsCommunicationPlan", uselist=False, foreign_keys=[isms_communication_plan_isms_id])
-    isms_monitoring_programme_isms_id = Column(Text(), ForeignKey('IsmsMonitoringProgramme.isms_id'))
-    isms_monitoring_programme = relationship("IsmsMonitoringProgramme", uselist=False, foreign_keys=[isms_monitoring_programme_isms_id])
-    
-    
-    isms_leadership_evidence_rel = relationship( "IsmsManagementSystemIsmsLeadershipEvidence" )
-    isms_leadership_evidence = association_proxy("isms_leadership_evidence_rel", "isms_leadership_evidence",
-                                  creator=lambda x_: IsmsManagementSystemIsmsLeadershipEvidence(isms_leadership_evidence=x_))
-    
-    
-    isms_scope_boundaries_rel = relationship( "IsmsManagementSystemIsmsScopeBoundaries" )
-    isms_scope_boundaries = association_proxy("isms_scope_boundaries_rel", "isms_scope_boundaries",
-                                  creator=lambda x_: IsmsManagementSystemIsmsScopeBoundaries(isms_scope_boundaries=x_))
-    
-    
-    isms_scope_exclusions_rel = relationship( "IsmsManagementSystemIsmsScopeExclusions" )
-    isms_scope_exclusions = association_proxy("isms_scope_exclusions_rel", "isms_scope_exclusions",
-                                  creator=lambda x_: IsmsManagementSystemIsmsScopeExclusions(isms_scope_exclusions=x_))
-    
-    
-    isms_interfaces_rel = relationship( "IsmsManagementSystemIsmsInterfaces" )
-    isms_interfaces = association_proxy("isms_interfaces_rel", "isms_interfaces",
-                                  creator=lambda x_: IsmsManagementSystemIsmsInterfaces(isms_interfaces=x_))
-    
-    
-    isms_internal_issues_rel = relationship( "IsmsManagementSystemIsmsInternalIssues" )
-    isms_internal_issues = association_proxy("isms_internal_issues_rel", "isms_internal_issues",
-                                  creator=lambda x_: IsmsManagementSystemIsmsInternalIssues(isms_internal_issues=x_))
-    
-    
-    isms_external_issues_rel = relationship( "IsmsManagementSystemIsmsExternalIssues" )
-    isms_external_issues = association_proxy("isms_external_issues_rel", "isms_external_issues",
-                                  creator=lambda x_: IsmsManagementSystemIsmsExternalIssues(isms_external_issues=x_))
-    
-    
-    isms_risk_and_opportunity_actions_rel = relationship( "IsmsManagementSystemIsmsRiskAndOpportunityActions" )
-    isms_risk_and_opportunity_actions = association_proxy("isms_risk_and_opportunity_actions_rel", "isms_risk_and_opportunity_actions",
-                                  creator=lambda x_: IsmsManagementSystemIsmsRiskAndOpportunityActions(isms_risk_and_opportunity_actions=x_))
-    
-    
-    isms_planned_changes_rel = relationship( "IsmsManagementSystemIsmsPlannedChanges" )
-    isms_planned_changes = association_proxy("isms_planned_changes_rel", "isms_planned_changes",
-                                  creator=lambda x_: IsmsManagementSystemIsmsPlannedChanges(isms_planned_changes=x_))
-    
-    
-    isms_external_services_rel = relationship( "IsmsManagementSystemIsmsExternalServices" )
-    isms_external_services = association_proxy("isms_external_services_rel", "isms_external_services",
-                                  creator=lambda x_: IsmsManagementSystemIsmsExternalServices(isms_external_services=x_))
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_interested_parties', mapping_type=None, target_class='IsmsInterestedParty', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_interested_parties = relationship( "IsmsInterestedParty", foreign_keys="[IsmsInterestedParty.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_topic_specific_policies', mapping_type=None, target_class='IsmsTopicSpecificPolicy', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_topic_specific_policies = relationship( "IsmsTopicSpecificPolicy", foreign_keys="[IsmsTopicSpecificPolicy.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_roles', mapping_type=None, target_class='IsmsRole', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_roles = relationship( "IsmsRole", foreign_keys="[IsmsRole.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_objectives', mapping_type=None, target_class='IsmsObjective', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_objectives = relationship( "IsmsObjective", foreign_keys="[IsmsObjective.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_risk_assessments', mapping_type=None, target_class='IsmsRiskAssessment', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_risk_assessments = relationship( "IsmsRiskAssessment", foreign_keys="[IsmsRiskAssessment.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_risks', mapping_type=None, target_class='IsmsRisk', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_risks = relationship( "IsmsRisk", foreign_keys="[IsmsRisk.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_risk_treatment_plans', mapping_type=None, target_class='IsmsRiskTreatmentPlan', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_risk_treatment_plans = relationship( "IsmsRiskTreatmentPlan", foreign_keys="[IsmsRiskTreatmentPlan.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_controls', mapping_type=None, target_class='IsmsControl', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_controls = relationship( "IsmsControl", foreign_keys="[IsmsControl.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_assets', mapping_type=None, target_class='IsmsAsset', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_assets = relationship( "IsmsAsset", foreign_keys="[IsmsAsset.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_resources', mapping_type=None, target_class='IsmsResource', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_resources = relationship( "IsmsResource", foreign_keys="[IsmsResource.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_competence_records', mapping_type=None, target_class='IsmsCompetenceRecord', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_competence_records = relationship( "IsmsCompetenceRecord", foreign_keys="[IsmsCompetenceRecord.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_documented_information', mapping_type=None, target_class='IsmsDocumentedInformation', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_documented_information = relationship( "IsmsDocumentedInformation", foreign_keys="[IsmsDocumentedInformation.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_operational_procedures', mapping_type=None, target_class='IsmsOperationalProcedure', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_operational_procedures = relationship( "IsmsOperationalProcedure", foreign_keys="[IsmsOperationalProcedure.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_audit_programmes', mapping_type=None, target_class='IsmsAuditProgramme', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_audit_programmes = relationship( "IsmsAuditProgramme", foreign_keys="[IsmsAuditProgramme.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_audits', mapping_type=None, target_class='IsmsAudit', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_audits = relationship( "IsmsAudit", foreign_keys="[IsmsAudit.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_management_reviews', mapping_type=None, target_class='IsmsManagementReview', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_management_reviews = relationship( "IsmsManagementReview", foreign_keys="[IsmsManagementReview.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_nonconformities', mapping_type=None, target_class='IsmsNonconformity', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_nonconformities = relationship( "IsmsNonconformity", foreign_keys="[IsmsNonconformity.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_corrective_actions', mapping_type=None, target_class='IsmsCorrectiveAction', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_corrective_actions = relationship( "IsmsCorrectiveAction", foreign_keys="[IsmsCorrectiveAction.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_improvements', mapping_type=None, target_class='IsmsImprovementOpportunity', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_improvements = relationship( "IsmsImprovementOpportunity", foreign_keys="[IsmsImprovementOpportunity.IsmsManagementSystem_isms_id]")
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsManagementSystem', source_slot='isms_security_events', mapping_type=None, target_class='IsmsSecurityEvent', target_slot='IsmsManagementSystem_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    isms_security_events = relationship( "IsmsSecurityEvent", foreign_keys="[IsmsSecurityEvent.IsmsManagementSystem_isms_id]")
-    
-
-    def __repr__(self):
-        return f"IsmsManagementSystem(isms_top_management={self.isms_top_management},isms_governing_body={self.isms_governing_body},isms_scope={self.isms_scope},isms_processes={self.isms_processes},isms_certification_status={self.isms_certification_status},isms_certification_body={self.isms_certification_body},isms_certification_date={self.isms_certification_date},isms_recertification_date={self.isms_recertification_date},isms_id={self.isms_id},title={self.title},description={self.description},isms_organization_isms_id={self.isms_organization_isms_id},isms_policy_isms_id={self.isms_policy_isms_id},isms_risk_assessment_process_isms_id={self.isms_risk_assessment_process_isms_id},isms_risk_treatment_process_isms_id={self.isms_risk_treatment_process_isms_id},isms_statement_of_applicability_isms_id={self.isms_statement_of_applicability_isms_id},isms_awareness_programme_isms_id={self.isms_awareness_programme_isms_id},isms_communication_plan_isms_id={self.isms_communication_plan_isms_id},isms_monitoring_programme_isms_id={self.isms_monitoring_programme_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsOrganization(IsmsRecord):
-    """
-    The organization that runs the ISMS, with what it needs to know about itself to understand its context.
-    """
-    __tablename__ = 'IsmsOrganization'
-
-    organization_legal_name = Column(Text())
-    organization_kind = Column(Text())
-    organization_sector = Column(Text())
-    organization_size = Column(Text())
-    organization_employee_count = Column(Integer())
-    organization_parent = Column(Text())
-    organization_climate_change_relevant = Column(Boolean())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    
-    
-    organization_trading_names_rel = relationship( "IsmsOrganizationOrganizationTradingNames" )
-    organization_trading_names = association_proxy("organization_trading_names_rel", "organization_trading_names",
-                                  creator=lambda x_: IsmsOrganizationOrganizationTradingNames(organization_trading_names=x_))
-    
-    
-    organization_locations_rel = relationship( "IsmsOrganizationOrganizationLocations" )
-    organization_locations = association_proxy("organization_locations_rel", "organization_locations",
-                                  creator=lambda x_: IsmsOrganizationOrganizationLocations(organization_locations=x_))
-    
-    
-    organization_jurisdictions_rel = relationship( "IsmsOrganizationOrganizationJurisdictions" )
-    organization_jurisdictions = association_proxy("organization_jurisdictions_rel", "organization_jurisdictions",
-                                  creator=lambda x_: IsmsOrganizationOrganizationJurisdictions(organization_jurisdictions=x_))
-    
-    
-    organization_subsidiaries_rel = relationship( "IsmsOrganizationOrganizationSubsidiaries" )
-    organization_subsidiaries = association_proxy("organization_subsidiaries_rel", "organization_subsidiaries",
-                                  creator=lambda x_: IsmsOrganizationOrganizationSubsidiaries(organization_subsidiaries=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsOrganization(organization_legal_name={self.organization_legal_name},organization_kind={self.organization_kind},organization_sector={self.organization_sector},organization_size={self.organization_size},organization_employee_count={self.organization_employee_count},organization_parent={self.organization_parent},organization_climate_change_relevant={self.organization_climate_change_relevant},isms_id={self.isms_id},title={self.title},description={self.description},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsInterestedParty(IsmsRecord):
-    """
-    A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it, such as staff, customers, regulators or suppliers.
-    """
-    __tablename__ = 'IsmsInterestedParty'
-
-    party_category = Column(Text())
-    party_relationship = Column(Text())
-    party_communication_needs = Column(Text())
-    party_contact = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    party_requirements_rel = relationship( "IsmsInterestedPartyPartyRequirements" )
-    party_requirements = association_proxy("party_requirements_rel", "party_requirements",
-                                  creator=lambda x_: IsmsInterestedPartyPartyRequirements(party_requirements=x_))
-    
-    
-    party_addressed_requirements_rel = relationship( "IsmsInterestedPartyPartyAddressedRequirements" )
-    party_addressed_requirements = association_proxy("party_addressed_requirements_rel", "party_addressed_requirements",
-                                  creator=lambda x_: IsmsInterestedPartyPartyAddressedRequirements(party_addressed_requirements=x_))
-    
-    
-    party_climate_change_requirements_rel = relationship( "IsmsInterestedPartyPartyClimateChangeRequirements" )
-    party_climate_change_requirements = association_proxy("party_climate_change_requirements_rel", "party_climate_change_requirements",
-                                  creator=lambda x_: IsmsInterestedPartyPartyClimateChangeRequirements(party_climate_change_requirements=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsInterestedParty(party_category={self.party_category},party_relationship={self.party_relationship},party_communication_needs={self.party_communication_needs},party_contact={self.party_contact},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsPolicy(IsmsRecord):
-    """
-    The information security policy that top management sets: the organization's commitment and the frame for its information security objectives.
-    """
-    __tablename__ = 'IsmsPolicy'
-
-    policy_statement = Column(Text())
-    policy_objectives_framework = Column(Text())
-    policy_applicability = Column(Text())
-    policy_communication_date = Column(Date())
-    policy_acknowledgement_required = Column(Boolean())
-    document_reference = Column(Text())
-    document_version = Column(Text())
-    document_author = Column(Text())
-    document_owner = Column(Text())
-    document_approver = Column(Text())
-    document_approval_date = Column(Date())
-    document_effective_date = Column(Date())
-    document_last_review_date = Column(Date())
-    document_next_review_date = Column(Date())
-    document_status = Column(Text())
-    document_classification = Column(Text())
-    document_retention = Column(Text())
-    document_storage = Column(Text())
-    document_change_control = Column(Text())
-    document_external_origin = Column(Boolean())
-    document_external_source = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    
-    
-    policy_commitments_rel = relationship( "IsmsPolicyPolicyCommitments" )
-    policy_commitments = association_proxy("policy_commitments_rel", "policy_commitments",
-                                  creator=lambda x_: IsmsPolicyPolicyCommitments(policy_commitments=x_))
-    
-    
-    policy_management_systems_rel = relationship( "IsmsPolicyPolicyManagementSystems" )
-    policy_management_systems = association_proxy("policy_management_systems_rel", "policy_management_systems",
-                                  creator=lambda x_: IsmsPolicyPolicyManagementSystems(policy_management_systems=x_))
-    
-    
-    document_distribution_rel = relationship( "IsmsPolicyDocumentDistribution" )
-    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
-                                  creator=lambda x_: IsmsPolicyDocumentDistribution(document_distribution=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsPolicy(policy_statement={self.policy_statement},policy_objectives_framework={self.policy_objectives_framework},policy_applicability={self.policy_applicability},policy_communication_date={self.policy_communication_date},policy_acknowledgement_required={self.policy_acknowledgement_required},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},isms_id={self.isms_id},title={self.title},description={self.description},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsTopicSpecificPolicy(IsmsRecord):
-    """
-    A policy on one topic of information security, such as access control or backup, that supports the information security policy.
-    """
-    __tablename__ = 'IsmsTopicSpecificPolicy'
-
-    topic_policy_topic = Column(Text())
-    topic_policy_parent = Column(Text(), ForeignKey('IsmsPolicy.isms_id'))
-    topic_policy_audience = Column(Text())
-    document_reference = Column(Text())
-    document_version = Column(Text())
-    document_author = Column(Text())
-    document_owner = Column(Text())
-    document_approver = Column(Text())
-    document_approval_date = Column(Date())
-    document_effective_date = Column(Date())
-    document_last_review_date = Column(Date())
-    document_next_review_date = Column(Date())
-    document_status = Column(Text())
-    document_classification = Column(Text())
-    document_retention = Column(Text())
-    document_storage = Column(Text())
-    document_change_control = Column(Text())
-    document_external_origin = Column(Boolean())
-    document_external_source = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    # ManyToMany
-    relevant_controls = relationship( "IsmsControl", secondary="IsmsTopicSpecificPolicy_relevant_controls")
-    
-    
-    document_distribution_rel = relationship( "IsmsTopicSpecificPolicyDocumentDistribution" )
-    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
-                                  creator=lambda x_: IsmsTopicSpecificPolicyDocumentDistribution(document_distribution=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsTopicSpecificPolicy(topic_policy_topic={self.topic_policy_topic},topic_policy_parent={self.topic_policy_parent},topic_policy_audience={self.topic_policy_audience},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsRole(IsmsRecord):
-    """
-    A role in the ISMS, with the responsibilities and authorities it carries and who holds it.
-    """
-    __tablename__ = 'IsmsRole'
-
-    role_category = Column(Text())
-    role_accountability = Column(Text())
-    role_delegation = Column(Text())
-    role_reports_to = Column(Text(), ForeignKey('IsmsRole.isms_id'))
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    role_responsibilities_rel = relationship( "IsmsRoleRoleResponsibilities" )
-    role_responsibilities = association_proxy("role_responsibilities_rel", "role_responsibilities",
-                                  creator=lambda x_: IsmsRoleRoleResponsibilities(role_responsibilities=x_))
-    
-    
-    role_authorities_rel = relationship( "IsmsRoleRoleAuthorities" )
-    role_authorities = association_proxy("role_authorities_rel", "role_authorities",
-                                  creator=lambda x_: IsmsRoleRoleAuthorities(role_authorities=x_))
-    
-    
-    role_holders_rel = relationship( "IsmsRoleRoleHolders" )
-    role_holders = association_proxy("role_holders_rel", "role_holders",
-                                  creator=lambda x_: IsmsRoleRoleHolders(role_holders=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsRole(role_category={self.role_category},role_accountability={self.role_accountability},role_delegation={self.role_delegation},role_reports_to={self.role_reports_to},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsObjective(IsmsRecord):
-    """
-    An information security objective: a measurable result the organization aims for, with how it plans to reach it and how it measures progress.
-    """
-    __tablename__ = 'IsmsObjective'
-
-    responsible_role = Column(Text(), ForeignKey('IsmsRole.isms_id'))
-    objective_statement = Column(Text())
-    objective_target = Column(Text())
-    objective_current_value = Column(Text())
-    objective_metric = Column(Text())
-    objective_measurement_method = Column(Text())
-    objective_measurement_frequency = Column(Text())
-    objective_target_date = Column(Date())
-    objective_achievement = Column(Text())
-    objective_action_plan = Column(Text())
-    objective_resources = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    # ManyToMany
-    relevant_controls = relationship( "IsmsControl", secondary="IsmsObjective_relevant_controls")
-    
-    
-    # ManyToMany
-    objective_risks = relationship( "IsmsRisk", secondary="IsmsObjective_objective_risks")
-    
-
-    def __repr__(self):
-        return f"IsmsObjective(responsible_role={self.responsible_role},objective_statement={self.objective_statement},objective_target={self.objective_target},objective_current_value={self.objective_current_value},objective_metric={self.objective_metric},objective_measurement_method={self.objective_measurement_method},objective_measurement_frequency={self.objective_measurement_frequency},objective_target_date={self.objective_target_date},objective_achievement={self.objective_achievement},objective_action_plan={self.objective_action_plan},objective_resources={self.objective_resources},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsRiskAssessmentProcess(IsmsRecord):
-    """
-    The organization's process for assessing information security risks: its criteria for accepting risk and for assessing it, its scales and method, and when it runs.
-    """
-    __tablename__ = 'IsmsRiskAssessmentProcess'
-
-    risk_acceptance_criteria = Column(Text())
-    risk_assessment_criteria = Column(Text())
-    risk_assessment_method = Column(Text())
-    risk_likelihood_scale = Column(Text())
-    risk_impact_scale = Column(Text())
-    risk_matrix = Column(Text())
-    risk_assessment_frequency = Column(Text())
-    document_reference = Column(Text())
-    document_version = Column(Text())
-    document_author = Column(Text())
-    document_owner = Column(Text())
-    document_approver = Column(Text())
-    document_approval_date = Column(Date())
-    document_effective_date = Column(Date())
-    document_last_review_date = Column(Date())
-    document_next_review_date = Column(Date())
-    document_status = Column(Text())
-    document_classification = Column(Text())
-    document_retention = Column(Text())
-    document_storage = Column(Text())
-    document_change_control = Column(Text())
-    document_external_origin = Column(Boolean())
-    document_external_source = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    
-    
-    risk_assessment_triggers_rel = relationship( "IsmsRiskAssessmentProcessRiskAssessmentTriggers" )
-    risk_assessment_triggers = association_proxy("risk_assessment_triggers_rel", "risk_assessment_triggers",
-                                  creator=lambda x_: IsmsRiskAssessmentProcessRiskAssessmentTriggers(risk_assessment_triggers=x_))
-    
-    
-    document_distribution_rel = relationship( "IsmsRiskAssessmentProcessDocumentDistribution" )
-    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
-                                  creator=lambda x_: IsmsRiskAssessmentProcessDocumentDistribution(document_distribution=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsRiskAssessmentProcess(risk_acceptance_criteria={self.risk_acceptance_criteria},risk_assessment_criteria={self.risk_assessment_criteria},risk_assessment_method={self.risk_assessment_method},risk_likelihood_scale={self.risk_likelihood_scale},risk_impact_scale={self.risk_impact_scale},risk_matrix={self.risk_matrix},risk_assessment_frequency={self.risk_assessment_frequency},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},isms_id={self.isms_id},title={self.title},description={self.description},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsRiskAssessment(IsmsRecord):
-    """
-    One risk assessment carried out under the risk assessment process, and what it found.
-    """
-    __tablename__ = 'IsmsRiskAssessment'
-
-    assessment_scope = Column(Text())
-    assessment_date = Column(Date())
-    assessment_assessor = Column(Text())
-    assessment_method_used = Column(Text())
-    assessment_summary = Column(Text())
-    assessment_next_date = Column(Date())
-    document_reference = Column(Text())
-    document_version = Column(Text())
-    document_author = Column(Text())
-    document_owner = Column(Text())
-    document_approver = Column(Text())
-    document_approval_date = Column(Date())
-    document_effective_date = Column(Date())
-    document_last_review_date = Column(Date())
-    document_next_review_date = Column(Date())
-    document_status = Column(Text())
-    document_classification = Column(Text())
-    document_retention = Column(Text())
-    document_storage = Column(Text())
-    document_change_control = Column(Text())
-    document_external_origin = Column(Boolean())
-    document_external_source = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    # ManyToMany
-    assessment_risks = relationship( "IsmsRisk", secondary="IsmsRiskAssessment_assessment_risks")
-    
-    
-    assessment_recommendations_rel = relationship( "IsmsRiskAssessmentAssessmentRecommendations" )
-    assessment_recommendations = association_proxy("assessment_recommendations_rel", "assessment_recommendations",
-                                  creator=lambda x_: IsmsRiskAssessmentAssessmentRecommendations(assessment_recommendations=x_))
-    
-    
-    document_distribution_rel = relationship( "IsmsRiskAssessmentDocumentDistribution" )
-    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
-                                  creator=lambda x_: IsmsRiskAssessmentDocumentDistribution(document_distribution=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsRiskAssessment(assessment_scope={self.assessment_scope},assessment_date={self.assessment_date},assessment_assessor={self.assessment_assessor},assessment_method_used={self.assessment_method_used},assessment_summary={self.assessment_summary},assessment_next_date={self.assessment_next_date},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsRisk(IsmsRecord):
-    """
-    An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated.
-    """
-    __tablename__ = 'IsmsRisk'
-
-    risk_source = Column(Text())
-    risk_threat = Column(Text())
-    risk_vulnerability = Column(Text())
-    risk_owner = Column(Text())
-    risk_likelihood = Column(Enum('rare', 'unlikely', 'possible', 'likely', 'almost_certain', name='IsmsLikelihood'))
-    risk_impact = Column(Enum('negligible', 'minor', 'moderate', 'major', 'severe', name='IsmsImpact'))
-    risk_inherent_level = Column(Enum('very_low', 'low', 'medium', 'high', 'critical', name='IsmsRiskLevel'))
-    risk_residual_level = Column(Enum('very_low', 'low', 'medium', 'high', 'critical', name='IsmsRiskLevel'))
-    risk_treatment_option = Column(Enum('modify', 'retain', 'avoid', 'share', name='IsmsRiskTreatmentOption'))
-    risk_treatment_priority = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    # ManyToMany
-    affected_assets = relationship( "IsmsAsset", secondary="IsmsRisk_affected_assets")
-    
-    
-    affected_security_properties_rel = relationship( "IsmsRiskAffectedSecurityProperties" )
-    affected_security_properties = association_proxy("affected_security_properties_rel", "affected_security_properties",
-                                  creator=lambda x_: IsmsRiskAffectedSecurityProperties(affected_security_properties=x_))
-    
-    
-    # ManyToMany
-    risk_existing_controls = relationship( "IsmsControl", secondary="IsmsRisk_risk_existing_controls")
-    
-
-    def __repr__(self):
-        return f"IsmsRisk(risk_source={self.risk_source},risk_threat={self.risk_threat},risk_vulnerability={self.risk_vulnerability},risk_owner={self.risk_owner},risk_likelihood={self.risk_likelihood},risk_impact={self.risk_impact},risk_inherent_level={self.risk_inherent_level},risk_residual_level={self.risk_residual_level},risk_treatment_option={self.risk_treatment_option},risk_treatment_priority={self.risk_treatment_priority},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsRiskTreatmentProcess(IsmsRecord):
-    """
-    The organization's process for treating information security risks: how it chooses treatments and controls, checks them against Annex A, and produces the Statement of Applicability.
-    """
-    __tablename__ = 'IsmsRiskTreatmentProcess'
-
-    treatment_options_guidance = Column(Text())
-    treatment_control_selection = Column(Text())
-    treatment_annex_a_comparison = Column(Text())
-    treatment_soa_template = Column(Text())
-    treatment_approval_workflow = Column(Text())
-    document_reference = Column(Text())
-    document_version = Column(Text())
-    document_author = Column(Text())
-    document_owner = Column(Text())
-    document_approver = Column(Text())
-    document_approval_date = Column(Date())
-    document_effective_date = Column(Date())
-    document_last_review_date = Column(Date())
-    document_next_review_date = Column(Date())
-    document_status = Column(Text())
-    document_classification = Column(Text())
-    document_retention = Column(Text())
-    document_storage = Column(Text())
-    document_change_control = Column(Text())
-    document_external_origin = Column(Boolean())
-    document_external_source = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    
-    
-    document_distribution_rel = relationship( "IsmsRiskTreatmentProcessDocumentDistribution" )
-    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
-                                  creator=lambda x_: IsmsRiskTreatmentProcessDocumentDistribution(document_distribution=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsRiskTreatmentProcess(treatment_options_guidance={self.treatment_options_guidance},treatment_control_selection={self.treatment_control_selection},treatment_annex_a_comparison={self.treatment_annex_a_comparison},treatment_soa_template={self.treatment_soa_template},treatment_approval_workflow={self.treatment_approval_workflow},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},isms_id={self.isms_id},title={self.title},description={self.description},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsRiskTreatmentPlan(IsmsRecord):
-    """
-    A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's approval of the plan and of the residual risk.
-    """
-    __tablename__ = 'IsmsRiskTreatmentPlan'
-
-    implementation_state = Column(Enum('not_started', 'planned', 'in_progress', 'implemented', name='IsmsImplementationStatus'))
-    plan_scope = Column(Text())
-    plan_resources = Column(Text())
-    plan_timeline = Column(Text())
-    plan_risk_owner_approval = Column(Text())
-    plan_residual_risk_acceptance = Column(Text())
-    plan_completion_date = Column(Date())
-    document_reference = Column(Text())
-    document_version = Column(Text())
-    document_author = Column(Text())
-    document_owner = Column(Text())
-    document_approver = Column(Text())
-    document_approval_date = Column(Date())
-    document_effective_date = Column(Date())
-    document_last_review_date = Column(Date())
-    document_next_review_date = Column(Date())
-    document_status = Column(Text())
-    document_classification = Column(Text())
-    document_retention = Column(Text())
-    document_storage = Column(Text())
-    document_change_control = Column(Text())
-    document_external_origin = Column(Boolean())
-    document_external_source = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    # ManyToMany
-    plan_risks = relationship( "IsmsRisk", secondary="IsmsRiskTreatmentPlan_plan_risks")
-    
-    
-    plan_actions_rel = relationship( "IsmsRiskTreatmentPlanPlanActions" )
-    plan_actions = association_proxy("plan_actions_rel", "plan_actions",
-                                  creator=lambda x_: IsmsRiskTreatmentPlanPlanActions(plan_actions=x_))
-    
-    
-    # ManyToMany
-    plan_controls = relationship( "IsmsControl", secondary="IsmsRiskTreatmentPlan_plan_controls")
-    
-    
-    plan_responsible_parties_rel = relationship( "IsmsRiskTreatmentPlanPlanResponsibleParties" )
-    plan_responsible_parties = association_proxy("plan_responsible_parties_rel", "plan_responsible_parties",
-                                  creator=lambda x_: IsmsRiskTreatmentPlanPlanResponsibleParties(plan_responsible_parties=x_))
-    
-    
-    document_distribution_rel = relationship( "IsmsRiskTreatmentPlanDocumentDistribution" )
-    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
-                                  creator=lambda x_: IsmsRiskTreatmentPlanDocumentDistribution(document_distribution=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsRiskTreatmentPlan(implementation_state={self.implementation_state},plan_scope={self.plan_scope},plan_resources={self.plan_resources},plan_timeline={self.plan_timeline},plan_risk_owner_approval={self.plan_risk_owner_approval},plan_residual_risk_acceptance={self.plan_residual_risk_acceptance},plan_completion_date={self.plan_completion_date},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsStatementOfApplicability(IsmsRecord):
-    """
-    The Statement of Applicability: each control the organization needs, with why it is included and whether it is in place, and each Annex A control it leaves out, with why.
-    """
-    __tablename__ = 'IsmsStatementOfApplicability'
-
-    document_reference = Column(Text())
-    document_version = Column(Text())
-    document_author = Column(Text())
-    document_owner = Column(Text())
-    document_approver = Column(Text())
-    document_approval_date = Column(Date())
-    document_effective_date = Column(Date())
-    document_last_review_date = Column(Date())
-    document_next_review_date = Column(Date())
-    document_status = Column(Text())
-    document_classification = Column(Text())
-    document_retention = Column(Text())
-    document_storage = Column(Text())
-    document_change_control = Column(Text())
-    document_external_origin = Column(Boolean())
-    document_external_source = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsStatementOfApplicability', source_slot='soa_entries', mapping_type=None, target_class='IsmsApplicabilityEntry', target_slot='IsmsStatementOfApplicability_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    soa_entries = relationship( "IsmsApplicabilityEntry", foreign_keys="[IsmsApplicabilityEntry.IsmsStatementOfApplicability_isms_id]")
-    
-    
-    document_distribution_rel = relationship( "IsmsStatementOfApplicabilityDocumentDistribution" )
-    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
-                                  creator=lambda x_: IsmsStatementOfApplicabilityDocumentDistribution(document_distribution=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsStatementOfApplicability(document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},isms_id={self.isms_id},title={self.title},description={self.description},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
 class IsmsIncludedControl(IsmsApplicabilityEntry):
     """
     An entry that includes a control the organization needs, from Annex A or from elsewhere, and says whether it is in place.
@@ -2628,878 +3350,6 @@ class IsmsExcludedControl(IsmsApplicabilityEntry):
 
     def __repr__(self):
         return f"IsmsExcludedControl(id={self.id},entry_annex_a_control={self.entry_annex_a_control},entry_type={self.entry_type},entry_justification={self.entry_justification},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsControl(IsmsRecord):
-    """
-    A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.
-    """
-    __tablename__ = 'IsmsControl'
-
-    implementation_state = Column(Enum('not_started', 'planned', 'in_progress', 'implemented', name='IsmsImplementationStatus'))
-    control_theme = Column(Enum('organizational', 'people', 'physical', 'technological', name='IsmsControlTheme'))
-    control_text = Column(Text())
-    control_guidance = Column(Text())
-    control_owner = Column(Text())
-    control_implementation_date = Column(Date())
-    control_effectiveness = Column(Text())
-    control_last_tested = Column(Date())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    # ManyToMany
-    relevant_controls = relationship( "IsmsControl", secondary="IsmsControl_relevant_controls")
-    
-    
-    control_annex_a_controls_rel = relationship( "IsmsControlControlAnnexAControls" )
-    control_annex_a_controls = association_proxy("control_annex_a_controls_rel", "control_annex_a_controls",
-                                  creator=lambda x_: IsmsControlControlAnnexAControls(control_annex_a_controls=x_))
-    
-    
-    control_threats_rel = relationship( "IsmsControlControlThreats" )
-    control_threats = association_proxy("control_threats_rel", "control_threats",
-                                  creator=lambda x_: IsmsControlControlThreats(control_threats=x_))
-    
-    
-    control_asset_types_rel = relationship( "IsmsControlControlAssetTypes" )
-    control_asset_types = association_proxy("control_asset_types_rel", "control_asset_types",
-                                  creator=lambda x_: IsmsControlControlAssetTypes(control_asset_types=x_))
-    
-    
-    control_evidence_rel = relationship( "IsmsControlControlEvidence" )
-    control_evidence = association_proxy("control_evidence_rel", "control_evidence",
-                                  creator=lambda x_: IsmsControlControlEvidence(control_evidence=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsControl(implementation_state={self.implementation_state},control_theme={self.control_theme},control_text={self.control_text},control_guidance={self.control_guidance},control_owner={self.control_owner},control_implementation_date={self.control_implementation_date},control_effectiveness={self.control_effectiveness},control_last_tested={self.control_last_tested},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsAsset(IsmsRecord):
-    """
-    An item in the inventory of information and other associated assets: what it is, who owns and looks after it, where it is, how it is classified and how much it matters.
-    """
-    __tablename__ = 'IsmsAsset'
-
-    asset_category = Column(Text())
-    asset_owner = Column(Text())
-    asset_custodian = Column(Text())
-    asset_classification = Column(Text())
-    asset_location = Column(Text())
-    asset_criticality = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    # ManyToMany
-    relevant_controls = relationship( "IsmsControl", secondary="IsmsAsset_relevant_controls")
-    
-
-    def __repr__(self):
-        return f"IsmsAsset(asset_category={self.asset_category},asset_owner={self.asset_owner},asset_custodian={self.asset_custodian},asset_classification={self.asset_classification},asset_location={self.asset_location},asset_criticality={self.asset_criticality},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsResource(IsmsRecord):
-    """
-    A resource provided for the ISMS, such as people, time, tools or budget.
-    """
-    __tablename__ = 'IsmsResource'
-
-    resource_category = Column(Text())
-    resource_quantity = Column(Text())
-    resource_allocation_date = Column(Date())
-    resource_allocated_to = Column(Text())
-    resource_cost = Column(Text())
-    resource_availability = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-
-    def __repr__(self):
-        return f"IsmsResource(resource_category={self.resource_category},resource_quantity={self.resource_quantity},resource_allocation_date={self.resource_allocation_date},resource_allocated_to={self.resource_allocated_to},resource_cost={self.resource_cost},resource_availability={self.resource_availability},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsCompetenceRecord(IsmsRecord):
-    """
-    The evidence of one person's competence for work that affects information security, and what is done to close any gap.
-    """
-    __tablename__ = 'IsmsCompetenceRecord'
-
-    competence_person = Column(Text())
-    competence_role = Column(Text(), ForeignKey('IsmsRole.isms_id'))
-    competence_assessment_date = Column(Date())
-    document_reference = Column(Text())
-    document_version = Column(Text())
-    document_author = Column(Text())
-    document_owner = Column(Text())
-    document_approver = Column(Text())
-    document_approval_date = Column(Date())
-    document_effective_date = Column(Date())
-    document_last_review_date = Column(Date())
-    document_next_review_date = Column(Date())
-    document_status = Column(Text())
-    document_classification = Column(Text())
-    document_retention = Column(Text())
-    document_storage = Column(Text())
-    document_change_control = Column(Text())
-    document_external_origin = Column(Boolean())
-    document_external_source = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    competence_required_rel = relationship( "IsmsCompetenceRecordCompetenceRequired" )
-    competence_required = association_proxy("competence_required_rel", "competence_required",
-                                  creator=lambda x_: IsmsCompetenceRecordCompetenceRequired(competence_required=x_))
-    
-    
-    competence_education_rel = relationship( "IsmsCompetenceRecordCompetenceEducation" )
-    competence_education = association_proxy("competence_education_rel", "competence_education",
-                                  creator=lambda x_: IsmsCompetenceRecordCompetenceEducation(competence_education=x_))
-    
-    
-    competence_training_rel = relationship( "IsmsCompetenceRecordCompetenceTraining" )
-    competence_training = association_proxy("competence_training_rel", "competence_training",
-                                  creator=lambda x_: IsmsCompetenceRecordCompetenceTraining(competence_training=x_))
-    
-    
-    competence_experience_rel = relationship( "IsmsCompetenceRecordCompetenceExperience" )
-    competence_experience = association_proxy("competence_experience_rel", "competence_experience",
-                                  creator=lambda x_: IsmsCompetenceRecordCompetenceExperience(competence_experience=x_))
-    
-    
-    competence_gaps_rel = relationship( "IsmsCompetenceRecordCompetenceGaps" )
-    competence_gaps = association_proxy("competence_gaps_rel", "competence_gaps",
-                                  creator=lambda x_: IsmsCompetenceRecordCompetenceGaps(competence_gaps=x_))
-    
-    
-    competence_actions_rel = relationship( "IsmsCompetenceRecordCompetenceActions" )
-    competence_actions = association_proxy("competence_actions_rel", "competence_actions",
-                                  creator=lambda x_: IsmsCompetenceRecordCompetenceActions(competence_actions=x_))
-    
-    
-    document_distribution_rel = relationship( "IsmsCompetenceRecordDocumentDistribution" )
-    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
-                                  creator=lambda x_: IsmsCompetenceRecordDocumentDistribution(document_distribution=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsCompetenceRecord(competence_person={self.competence_person},competence_role={self.competence_role},competence_assessment_date={self.competence_assessment_date},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsAwarenessProgramme(IsmsRecord):
-    """
-    The programme that makes people working for the organization aware of the policy, their part in the ISMS and what failing it would mean.
-    """
-    __tablename__ = 'IsmsAwarenessProgramme'
-
-    awareness_audience = Column(Text())
-    awareness_frequency = Column(Text())
-    awareness_completion_tracking = Column(Text())
-    awareness_effectiveness = Column(Text())
-    document_reference = Column(Text())
-    document_version = Column(Text())
-    document_author = Column(Text())
-    document_owner = Column(Text())
-    document_approver = Column(Text())
-    document_approval_date = Column(Date())
-    document_effective_date = Column(Date())
-    document_last_review_date = Column(Date())
-    document_next_review_date = Column(Date())
-    document_status = Column(Text())
-    document_classification = Column(Text())
-    document_retention = Column(Text())
-    document_storage = Column(Text())
-    document_change_control = Column(Text())
-    document_external_origin = Column(Boolean())
-    document_external_source = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    
-    
-    awareness_topics_rel = relationship( "IsmsAwarenessProgrammeAwarenessTopics" )
-    awareness_topics = association_proxy("awareness_topics_rel", "awareness_topics",
-                                  creator=lambda x_: IsmsAwarenessProgrammeAwarenessTopics(awareness_topics=x_))
-    
-    
-    awareness_methods_rel = relationship( "IsmsAwarenessProgrammeAwarenessMethods" )
-    awareness_methods = association_proxy("awareness_methods_rel", "awareness_methods",
-                                  creator=lambda x_: IsmsAwarenessProgrammeAwarenessMethods(awareness_methods=x_))
-    
-    
-    document_distribution_rel = relationship( "IsmsAwarenessProgrammeDocumentDistribution" )
-    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
-                                  creator=lambda x_: IsmsAwarenessProgrammeDocumentDistribution(document_distribution=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsAwarenessProgramme(awareness_audience={self.awareness_audience},awareness_frequency={self.awareness_frequency},awareness_completion_tracking={self.awareness_completion_tracking},awareness_effectiveness={self.awareness_effectiveness},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},isms_id={self.isms_id},title={self.title},description={self.description},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsCommunicationPlan(IsmsRecord):
-    """
-    The plan for communication about the ISMS, inside the organization and outside it.
-    """
-    __tablename__ = 'IsmsCommunicationPlan'
-
-    document_reference = Column(Text())
-    document_version = Column(Text())
-    document_author = Column(Text())
-    document_owner = Column(Text())
-    document_approver = Column(Text())
-    document_approval_date = Column(Date())
-    document_effective_date = Column(Date())
-    document_last_review_date = Column(Date())
-    document_next_review_date = Column(Date())
-    document_status = Column(Text())
-    document_classification = Column(Text())
-    document_retention = Column(Text())
-    document_storage = Column(Text())
-    document_change_control = Column(Text())
-    document_external_origin = Column(Boolean())
-    document_external_source = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsCommunicationPlan', source_slot='communication_items', mapping_type=None, target_class='IsmsCommunication', target_slot='IsmsCommunicationPlan_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    communication_items = relationship( "IsmsCommunication", foreign_keys="[IsmsCommunication.IsmsCommunicationPlan_isms_id]")
-    
-    
-    document_distribution_rel = relationship( "IsmsCommunicationPlanDocumentDistribution" )
-    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
-                                  creator=lambda x_: IsmsCommunicationPlanDocumentDistribution(document_distribution=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsCommunicationPlan(document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},isms_id={self.isms_id},title={self.title},description={self.description},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsDocumentedInformation(IsmsRecord):
-    """
-    A piece of documented information the ISMS keeps under control that no more specific record describes, such as a procedure, a standard, a plan or a report.
-    """
-    __tablename__ = 'IsmsDocumentedInformation'
-
-    document_kind = Column(Enum('procedure', 'standard', 'guideline', 'record', 'plan', 'report', name='IsmsDocumentKind'), nullable=False )
-    document_reference = Column(Text())
-    document_version = Column(Text())
-    document_author = Column(Text())
-    document_owner = Column(Text())
-    document_approver = Column(Text())
-    document_approval_date = Column(Date())
-    document_effective_date = Column(Date())
-    document_last_review_date = Column(Date())
-    document_next_review_date = Column(Date())
-    document_status = Column(Text())
-    document_classification = Column(Text())
-    document_retention = Column(Text())
-    document_storage = Column(Text())
-    document_change_control = Column(Text())
-    document_external_origin = Column(Boolean())
-    document_external_source = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    document_distribution_rel = relationship( "IsmsDocumentedInformationDocumentDistribution" )
-    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
-                                  creator=lambda x_: IsmsDocumentedInformationDocumentDistribution(document_distribution=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsDocumentedInformation(document_kind={self.document_kind},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsOperationalProcedure(IsmsRecord):
-    """
-    A procedure by which the organization plans and controls the processes that meet its information security requirements.
-    """
-    __tablename__ = 'IsmsOperationalProcedure'
-
-    procedure_scope = Column(Text())
-    procedure_criteria = Column(Text())
-    procedure_change_control = Column(Text())
-    document_reference = Column(Text())
-    document_version = Column(Text())
-    document_author = Column(Text())
-    document_owner = Column(Text())
-    document_approver = Column(Text())
-    document_approval_date = Column(Date())
-    document_effective_date = Column(Date())
-    document_last_review_date = Column(Date())
-    document_next_review_date = Column(Date())
-    document_status = Column(Text())
-    document_classification = Column(Text())
-    document_retention = Column(Text())
-    document_storage = Column(Text())
-    document_change_control = Column(Text())
-    document_external_origin = Column(Boolean())
-    document_external_source = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    # ManyToMany
-    relevant_controls = relationship( "IsmsControl", secondary="IsmsOperationalProcedure_relevant_controls")
-    
-    
-    procedure_control_measures_rel = relationship( "IsmsOperationalProcedureProcedureControlMeasures" )
-    procedure_control_measures = association_proxy("procedure_control_measures_rel", "procedure_control_measures",
-                                  creator=lambda x_: IsmsOperationalProcedureProcedureControlMeasures(procedure_control_measures=x_))
-    
-    
-    # ManyToMany
-    procedure_roles = relationship( "IsmsRole", secondary="IsmsOperationalProcedure_procedure_roles")
-    
-    
-    document_distribution_rel = relationship( "IsmsOperationalProcedureDocumentDistribution" )
-    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
-                                  creator=lambda x_: IsmsOperationalProcedureDocumentDistribution(document_distribution=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsOperationalProcedure(procedure_scope={self.procedure_scope},procedure_criteria={self.procedure_criteria},procedure_change_control={self.procedure_change_control},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsMonitoringProgramme(IsmsRecord):
-    """
-    The programme of monitoring, measurement, analysis and evaluation of information security performance and of the ISMS's effectiveness.
-    """
-    __tablename__ = 'IsmsMonitoringProgramme'
-
-    document_reference = Column(Text())
-    document_version = Column(Text())
-    document_author = Column(Text())
-    document_owner = Column(Text())
-    document_approver = Column(Text())
-    document_approval_date = Column(Date())
-    document_effective_date = Column(Date())
-    document_last_review_date = Column(Date())
-    document_next_review_date = Column(Date())
-    document_status = Column(Text())
-    document_classification = Column(Text())
-    document_retention = Column(Text())
-    document_storage = Column(Text())
-    document_change_control = Column(Text())
-    document_external_origin = Column(Boolean())
-    document_external_source = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsMonitoringProgramme', source_slot='monitoring_items', mapping_type=None, target_class='IsmsMonitoringItem', target_slot='IsmsMonitoringProgramme_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    monitoring_items = relationship( "IsmsMonitoringItem", foreign_keys="[IsmsMonitoringItem.IsmsMonitoringProgramme_isms_id]")
-    
-    
-    document_distribution_rel = relationship( "IsmsMonitoringProgrammeDocumentDistribution" )
-    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
-                                  creator=lambda x_: IsmsMonitoringProgrammeDocumentDistribution(document_distribution=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsMonitoringProgramme(document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},isms_id={self.isms_id},title={self.title},description={self.description},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsAuditProgramme(IsmsRecord):
-    """
-    An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors they need.
-    """
-    __tablename__ = 'IsmsAuditProgramme'
-
-    programme_period = Column(Text())
-    programme_frequency_rationale = Column(Text())
-    programme_resources = Column(Text())
-    programme_auditor_qualifications = Column(Text())
-    programme_status = Column(Text())
-    document_reference = Column(Text())
-    document_version = Column(Text())
-    document_author = Column(Text())
-    document_owner = Column(Text())
-    document_approver = Column(Text())
-    document_approval_date = Column(Date())
-    document_effective_date = Column(Date())
-    document_last_review_date = Column(Date())
-    document_next_review_date = Column(Date())
-    document_status = Column(Text())
-    document_classification = Column(Text())
-    document_retention = Column(Text())
-    document_storage = Column(Text())
-    document_change_control = Column(Text())
-    document_external_origin = Column(Boolean())
-    document_external_source = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    # ManyToMany
-    programme_audits = relationship( "IsmsAudit", secondary="IsmsAuditProgramme_programme_audits")
-    
-    
-    document_distribution_rel = relationship( "IsmsAuditProgrammeDocumentDistribution" )
-    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
-                                  creator=lambda x_: IsmsAuditProgrammeDocumentDistribution(document_distribution=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsAuditProgramme(programme_period={self.programme_period},programme_frequency_rationale={self.programme_frequency_rationale},programme_resources={self.programme_resources},programme_auditor_qualifications={self.programme_auditor_qualifications},programme_status={self.programme_status},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsAudit(IsmsRecord):
-    """
-    An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope, criteria, team, findings and conclusion.
-    """
-    __tablename__ = 'IsmsAudit'
-
-    audit_type = Column(Enum('first_party', 'second_party', 'third_party', name='IsmsAuditType'), nullable=False )
-    audit_scope = Column(Text())
-    audit_period_start = Column(Date())
-    audit_period_end = Column(Date())
-    audit_lead = Column(Text())
-    audit_plan = Column(Text(), ForeignKey('IsmsDocumentedInformation.isms_id'))
-    audit_conclusion = Column(Text())
-    audit_report_date = Column(Date())
-    document_reference = Column(Text())
-    document_version = Column(Text())
-    document_author = Column(Text())
-    document_owner = Column(Text())
-    document_approver = Column(Text())
-    document_approval_date = Column(Date())
-    document_effective_date = Column(Date())
-    document_last_review_date = Column(Date())
-    document_next_review_date = Column(Date())
-    document_status = Column(Text())
-    document_classification = Column(Text())
-    document_retention = Column(Text())
-    document_storage = Column(Text())
-    document_change_control = Column(Text())
-    document_external_origin = Column(Boolean())
-    document_external_source = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    audit_standards_rel = relationship( "IsmsAuditAuditStandards" )
-    audit_standards = association_proxy("audit_standards_rel", "audit_standards",
-                                  creator=lambda x_: IsmsAuditAuditStandards(audit_standards=x_))
-    
-    
-    audit_criteria_rel = relationship( "IsmsAuditAuditCriteria" )
-    audit_criteria = association_proxy("audit_criteria_rel", "audit_criteria",
-                                  creator=lambda x_: IsmsAuditAuditCriteria(audit_criteria=x_))
-    
-    
-    audit_objectives_rel = relationship( "IsmsAuditAuditObjectives" )
-    audit_objectives = association_proxy("audit_objectives_rel", "audit_objectives",
-                                  creator=lambda x_: IsmsAuditAuditObjectives(audit_objectives=x_))
-    
-    
-    audit_team_rel = relationship( "IsmsAuditAuditTeam" )
-    audit_team = association_proxy("audit_team_rel", "audit_team",
-                                  creator=lambda x_: IsmsAuditAuditTeam(audit_team=x_))
-    
-    
-    audit_auditees_rel = relationship( "IsmsAuditAuditAuditees" )
-    audit_auditees = association_proxy("audit_auditees_rel", "audit_auditees",
-                                  creator=lambda x_: IsmsAuditAuditAuditees(audit_auditees=x_))
-    
-    
-    # One-To-Many: OneToAnyMapping(source_class='IsmsAudit', source_slot='audit_findings', mapping_type=None, target_class='IsmsAuditFinding', target_slot='IsmsAudit_isms_id', join_class=None, uses_join_table=None, multivalued=False)
-    audit_findings = relationship( "IsmsAuditFinding", foreign_keys="[IsmsAuditFinding.IsmsAudit_isms_id]")
-    
-    
-    audit_report_distribution_rel = relationship( "IsmsAuditAuditReportDistribution" )
-    audit_report_distribution = association_proxy("audit_report_distribution_rel", "audit_report_distribution",
-                                  creator=lambda x_: IsmsAuditAuditReportDistribution(audit_report_distribution=x_))
-    
-    
-    document_distribution_rel = relationship( "IsmsAuditDocumentDistribution" )
-    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
-                                  creator=lambda x_: IsmsAuditDocumentDistribution(document_distribution=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsAudit(audit_type={self.audit_type},audit_scope={self.audit_scope},audit_period_start={self.audit_period_start},audit_period_end={self.audit_period_end},audit_lead={self.audit_lead},audit_plan={self.audit_plan},audit_conclusion={self.audit_conclusion},audit_report_date={self.audit_report_date},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsAuditFinding(IsmsRecord):
-    """
-    One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it concerns, its evidence and how it is closed.
-    """
-    __tablename__ = 'IsmsAuditFinding'
-
-    finding_type = Column(Enum('major_nonconformity', 'minor_nonconformity', 'observation', 'positive_finding', name='IsmsAuditFindingType'), nullable=False )
-    finding_requirement = Column(Text())
-    finding_control = Column(Text(), ForeignKey('IsmsControl.isms_id'))
-    finding_evidence = Column(Text())
-    finding_root_cause = Column(Text())
-    finding_risk = Column(Text())
-    finding_recommendation = Column(Text())
-    finding_auditee_response = Column(Text())
-    finding_corrective_action = Column(Text(), ForeignKey('IsmsCorrectiveAction.isms_id'))
-    finding_closure_status = Column(Text())
-    finding_closure_date = Column(Date())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsAudit_isms_id = Column(Text(), ForeignKey('IsmsAudit.isms_id'))
-    
-
-    def __repr__(self):
-        return f"IsmsAuditFinding(finding_type={self.finding_type},finding_requirement={self.finding_requirement},finding_control={self.finding_control},finding_evidence={self.finding_evidence},finding_root_cause={self.finding_root_cause},finding_risk={self.finding_risk},finding_recommendation={self.finding_recommendation},finding_auditee_response={self.finding_auditee_response},finding_corrective_action={self.finding_corrective_action},finding_closure_status={self.finding_closure_status},finding_closure_date={self.finding_closure_date},isms_id={self.isms_id},title={self.title},description={self.description},IsmsAudit_isms_id={self.IsmsAudit_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsManagementReview(IsmsRecord):
-    """
-    A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.
-    """
-    __tablename__ = 'IsmsManagementReview'
-
-    review_held_on = Column(Date(), nullable=False )
-    review_previous_actions = Column(Text())
-    review_context_changes = Column(Text())
-    review_interested_party_changes = Column(Text())
-    review_interested_party_feedback = Column(Text())
-    review_performance_trends = Column(Text())
-    review_audit_results = Column(Text())
-    review_risk_assessment_results = Column(Text())
-    review_risk_treatment_status = Column(Text())
-    review_risks_and_opportunities = Column(Text())
-    review_next_date = Column(Date())
-    document_reference = Column(Text())
-    document_version = Column(Text())
-    document_author = Column(Text())
-    document_owner = Column(Text())
-    document_approver = Column(Text())
-    document_approval_date = Column(Date())
-    document_effective_date = Column(Date())
-    document_last_review_date = Column(Date())
-    document_next_review_date = Column(Date())
-    document_status = Column(Text())
-    document_classification = Column(Text())
-    document_retention = Column(Text())
-    document_storage = Column(Text())
-    document_change_control = Column(Text())
-    document_external_origin = Column(Boolean())
-    document_external_source = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    review_attendees_rel = relationship( "IsmsManagementReviewReviewAttendees" )
-    review_attendees = association_proxy("review_attendees_rel", "review_attendees",
-                                  creator=lambda x_: IsmsManagementReviewReviewAttendees(review_attendees=x_))
-    
-    
-    review_improvement_opportunities_rel = relationship( "IsmsManagementReviewReviewImprovementOpportunities" )
-    review_improvement_opportunities = association_proxy("review_improvement_opportunities_rel", "review_improvement_opportunities",
-                                  creator=lambda x_: IsmsManagementReviewReviewImprovementOpportunities(review_improvement_opportunities=x_))
-    
-    
-    review_decisions_rel = relationship( "IsmsManagementReviewReviewDecisions" )
-    review_decisions = association_proxy("review_decisions_rel", "review_decisions",
-                                  creator=lambda x_: IsmsManagementReviewReviewDecisions(review_decisions=x_))
-    
-    
-    review_actions_rel = relationship( "IsmsManagementReviewReviewActions" )
-    review_actions = association_proxy("review_actions_rel", "review_actions",
-                                  creator=lambda x_: IsmsManagementReviewReviewActions(review_actions=x_))
-    
-    
-    document_distribution_rel = relationship( "IsmsManagementReviewDocumentDistribution" )
-    document_distribution = association_proxy("document_distribution_rel", "document_distribution",
-                                  creator=lambda x_: IsmsManagementReviewDocumentDistribution(document_distribution=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsManagementReview(review_held_on={self.review_held_on},review_previous_actions={self.review_previous_actions},review_context_changes={self.review_context_changes},review_interested_party_changes={self.review_interested_party_changes},review_interested_party_feedback={self.review_interested_party_feedback},review_performance_trends={self.review_performance_trends},review_audit_results={self.review_audit_results},review_risk_assessment_results={self.review_risk_assessment_results},review_risk_treatment_status={self.review_risk_treatment_status},review_risks_and_opportunities={self.review_risks_and_opportunities},review_next_date={self.review_next_date},document_reference={self.document_reference},document_version={self.document_version},document_author={self.document_author},document_owner={self.document_owner},document_approver={self.document_approver},document_approval_date={self.document_approval_date},document_effective_date={self.document_effective_date},document_last_review_date={self.document_last_review_date},document_next_review_date={self.document_next_review_date},document_status={self.document_status},document_classification={self.document_classification},document_retention={self.document_retention},document_storage={self.document_storage},document_change_control={self.document_change_control},document_external_origin={self.document_external_origin},document_external_source={self.document_external_source},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsNonconformity(IsmsRecord):
-    """
-    A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was closed.
-    """
-    __tablename__ = 'IsmsNonconformity'
-
-    nonconformity_source = Column(Text())
-    nonconformity_detected_on = Column(Date())
-    nonconformity_detected_by = Column(Text())
-    nonconformity_requirement = Column(Text())
-    nonconformity_consequences = Column(Text())
-    nonconformity_root_cause = Column(Text())
-    nonconformity_similar_check = Column(Text())
-    nonconformity_status = Column(Text())
-    nonconformity_closure_date = Column(Date())
-    nonconformity_closure_evidence = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    nonconformity_immediate_actions_rel = relationship( "IsmsNonconformityNonconformityImmediateActions" )
-    nonconformity_immediate_actions = association_proxy("nonconformity_immediate_actions_rel", "nonconformity_immediate_actions",
-                                  creator=lambda x_: IsmsNonconformityNonconformityImmediateActions(nonconformity_immediate_actions=x_))
-    
-
-    def __repr__(self):
-        return f"IsmsNonconformity(nonconformity_source={self.nonconformity_source},nonconformity_detected_on={self.nonconformity_detected_on},nonconformity_detected_by={self.nonconformity_detected_by},nonconformity_requirement={self.nonconformity_requirement},nonconformity_consequences={self.nonconformity_consequences},nonconformity_root_cause={self.nonconformity_root_cause},nonconformity_similar_check={self.nonconformity_similar_check},nonconformity_status={self.nonconformity_status},nonconformity_closure_date={self.nonconformity_closure_date},nonconformity_closure_evidence={self.nonconformity_closure_evidence},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsCorrectiveAction(IsmsRecord):
-    """
-    An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it worked.
-    """
-    __tablename__ = 'IsmsCorrectiveAction'
-
-    responsible_role = Column(Text(), ForeignKey('IsmsRole.isms_id'))
-    action_root_cause = Column(Text())
-    action_target_date = Column(Date())
-    action_completion_date = Column(Date())
-    action_resources = Column(Text())
-    action_effectiveness_criteria = Column(Text())
-    action_effectiveness_review_date = Column(Date())
-    action_effective = Column(Boolean())
-    action_isms_changes = Column(Text())
-    action_status = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    # ManyToMany
-    action_nonconformities = relationship( "IsmsNonconformity", secondary="IsmsCorrectiveAction_action_nonconformities")
-    
-
-    def __repr__(self):
-        return f"IsmsCorrectiveAction(responsible_role={self.responsible_role},action_root_cause={self.action_root_cause},action_target_date={self.action_target_date},action_completion_date={self.action_completion_date},action_resources={self.action_resources},action_effectiveness_criteria={self.action_effectiveness_criteria},action_effectiveness_review_date={self.action_effectiveness_review_date},action_effective={self.action_effective},action_isms_changes={self.action_isms_changes},action_status={self.action_status},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsImprovementOpportunity(IsmsRecord):
-    """
-    An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.
-    """
-    __tablename__ = 'IsmsImprovementOpportunity'
-
-    responsible_role = Column(Text(), ForeignKey('IsmsRole.isms_id'))
-    improvement_source = Column(Text())
-    improvement_identified_on = Column(Date())
-    improvement_identified_by = Column(Text())
-    improvement_benefit = Column(Text())
-    improvement_priority = Column(Text())
-    improvement_plan = Column(Text())
-    improvement_target_date = Column(Date())
-    improvement_completion_date = Column(Date())
-    improvement_outcome = Column(Text())
-    improvement_status = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-
-    def __repr__(self):
-        return f"IsmsImprovementOpportunity(responsible_role={self.responsible_role},improvement_source={self.improvement_source},improvement_identified_on={self.improvement_identified_on},improvement_identified_by={self.improvement_identified_by},improvement_benefit={self.improvement_benefit},improvement_priority={self.improvement_priority},improvement_plan={self.improvement_plan},improvement_target_date={self.improvement_target_date},improvement_completion_date={self.improvement_completion_date},improvement_outcome={self.improvement_outcome},improvement_status={self.improvement_status},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
-
-
-
-    
-    # Using concrete inheritance: see https://docs.sqlalchemy.org/en/14/orm/inheritance.html
-    __mapper_args__ = {
-        'concrete': True
-    }
-    
-
-
-class IsmsSecurityEvent(IsmsRecord):
-    """
-    An information security event someone reported, and the assessment of whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.
-    """
-    __tablename__ = 'IsmsSecurityEvent'
-
-    event_type = Column(Text())
-    event_occurred_at = Column(DateTime())
-    event_reporter = Column(Text())
-    event_assessment = Column(Text())
-    isms_id = Column(Text(), primary_key=True, nullable=False )
-    title = Column(Text(), nullable=False )
-    description = Column(Text())
-    IsmsManagementSystem_isms_id = Column(Text(), ForeignKey('IsmsManagementSystem.isms_id'))
-    
-    
-    # ManyToMany
-    affected_assets = relationship( "IsmsAsset", secondary="IsmsSecurityEvent_affected_assets")
-    
-
-    def __repr__(self):
-        return f"IsmsSecurityEvent(event_type={self.event_type},event_occurred_at={self.event_occurred_at},event_reporter={self.event_reporter},event_assessment={self.event_assessment},isms_id={self.isms_id},title={self.title},description={self.description},IsmsManagementSystem_isms_id={self.IsmsManagementSystem_isms_id},)"
 
 
 

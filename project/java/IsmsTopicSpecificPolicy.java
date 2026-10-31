@@ -14,12 +14,15 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsTopicSpecificPolicy extends IsmsRecord {
+public class IsmsTopicSpecificPolicy  {
 
   private List<IsmsControl> relevantControls;
   private String topicPolicyTopic;
   private IsmsPolicy topicPolicyParent;
   private String topicPolicyAudience;
+  private URI ismsId;
+  private String title;
+  private String description;
   private String documentReference;
   private String documentVersion;
   private String documentAuthor;

@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsOperationalProcedure extends IsmsRecord {
+public class IsmsOperationalProcedure  {
 
   private List<IsmsControl> relevantControls;
   private String procedureScope;
@@ -22,6 +22,9 @@ public class IsmsOperationalProcedure extends IsmsRecord {
   private List<String> procedureControlMeasures;
   private List<IsmsRole> procedureRoles;
   private String procedureChangeControl;
+  private URI ismsId;
+  private String title;
+  private String description;
   private String documentReference;
   private String documentVersion;
   private String documentAuthor;

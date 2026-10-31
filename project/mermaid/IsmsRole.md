@@ -5,8 +5,8 @@
  classDiagram
     class IsmsRole
     click IsmsRole href "../IsmsRole"
-      IsmsRecord <|-- IsmsRole
-        click IsmsRecord href "../IsmsRecord"
+      IsmsRecordMixin <|-- IsmsRole
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       
       IsmsRole : description
         

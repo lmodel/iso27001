@@ -91,127 +91,127 @@ class IsmsRequirementReference(String):
 
 
 # Class references
-class IsmsRecordIsmsId(URIorCURIE):
+class IsmsRecordMixinIsmsId(URIorCURIE):
     pass
 
 
-class IsmsManagementSystemIsmsId(IsmsRecordIsmsId):
+class IsmsManagementSystemIsmsId(URIorCURIE):
     pass
 
 
-class IsmsOrganizationIsmsId(IsmsRecordIsmsId):
+class IsmsOrganizationIsmsId(URIorCURIE):
     pass
 
 
-class IsmsInterestedPartyIsmsId(IsmsRecordIsmsId):
+class IsmsInterestedPartyIsmsId(URIorCURIE):
     pass
 
 
-class IsmsPolicyIsmsId(IsmsRecordIsmsId):
+class IsmsPolicyIsmsId(URIorCURIE):
     pass
 
 
-class IsmsTopicSpecificPolicyIsmsId(IsmsRecordIsmsId):
+class IsmsTopicSpecificPolicyIsmsId(URIorCURIE):
     pass
 
 
-class IsmsRoleIsmsId(IsmsRecordIsmsId):
+class IsmsRoleIsmsId(URIorCURIE):
     pass
 
 
-class IsmsObjectiveIsmsId(IsmsRecordIsmsId):
+class IsmsObjectiveIsmsId(URIorCURIE):
     pass
 
 
-class IsmsRiskAssessmentProcessIsmsId(IsmsRecordIsmsId):
+class IsmsRiskAssessmentProcessIsmsId(URIorCURIE):
     pass
 
 
-class IsmsRiskAssessmentIsmsId(IsmsRecordIsmsId):
+class IsmsRiskAssessmentIsmsId(URIorCURIE):
     pass
 
 
-class IsmsRiskIsmsId(IsmsRecordIsmsId):
+class IsmsRiskIsmsId(URIorCURIE):
     pass
 
 
-class IsmsRiskTreatmentProcessIsmsId(IsmsRecordIsmsId):
+class IsmsRiskTreatmentProcessIsmsId(URIorCURIE):
     pass
 
 
-class IsmsRiskTreatmentPlanIsmsId(IsmsRecordIsmsId):
+class IsmsRiskTreatmentPlanIsmsId(URIorCURIE):
     pass
 
 
-class IsmsStatementOfApplicabilityIsmsId(IsmsRecordIsmsId):
+class IsmsStatementOfApplicabilityIsmsId(URIorCURIE):
     pass
 
 
-class IsmsControlIsmsId(IsmsRecordIsmsId):
+class IsmsControlIsmsId(URIorCURIE):
     pass
 
 
-class IsmsAssetIsmsId(IsmsRecordIsmsId):
+class IsmsAssetIsmsId(URIorCURIE):
     pass
 
 
-class IsmsResourceIsmsId(IsmsRecordIsmsId):
+class IsmsResourceIsmsId(URIorCURIE):
     pass
 
 
-class IsmsCompetenceRecordIsmsId(IsmsRecordIsmsId):
+class IsmsCompetenceRecordIsmsId(URIorCURIE):
     pass
 
 
-class IsmsAwarenessProgrammeIsmsId(IsmsRecordIsmsId):
+class IsmsAwarenessProgrammeIsmsId(URIorCURIE):
     pass
 
 
-class IsmsCommunicationPlanIsmsId(IsmsRecordIsmsId):
+class IsmsCommunicationPlanIsmsId(URIorCURIE):
     pass
 
 
-class IsmsDocumentedInformationIsmsId(IsmsRecordIsmsId):
+class IsmsDocumentedInformationIsmsId(URIorCURIE):
     pass
 
 
-class IsmsOperationalProcedureIsmsId(IsmsRecordIsmsId):
+class IsmsOperationalProcedureIsmsId(URIorCURIE):
     pass
 
 
-class IsmsMonitoringProgrammeIsmsId(IsmsRecordIsmsId):
+class IsmsMonitoringProgrammeIsmsId(URIorCURIE):
     pass
 
 
-class IsmsAuditProgrammeIsmsId(IsmsRecordIsmsId):
+class IsmsAuditProgrammeIsmsId(URIorCURIE):
     pass
 
 
-class IsmsAuditIsmsId(IsmsRecordIsmsId):
+class IsmsAuditIsmsId(URIorCURIE):
     pass
 
 
-class IsmsAuditFindingIsmsId(IsmsRecordIsmsId):
+class IsmsAuditFindingIsmsId(URIorCURIE):
     pass
 
 
-class IsmsManagementReviewIsmsId(IsmsRecordIsmsId):
+class IsmsManagementReviewIsmsId(URIorCURIE):
     pass
 
 
-class IsmsNonconformityIsmsId(IsmsRecordIsmsId):
+class IsmsNonconformityIsmsId(URIorCURIE):
     pass
 
 
-class IsmsCorrectiveActionIsmsId(IsmsRecordIsmsId):
+class IsmsCorrectiveActionIsmsId(URIorCURIE):
     pass
 
 
-class IsmsImprovementOpportunityIsmsId(IsmsRecordIsmsId):
+class IsmsImprovementOpportunityIsmsId(URIorCURIE):
     pass
 
 
-class IsmsSecurityEventIsmsId(IsmsRecordIsmsId):
+class IsmsSecurityEventIsmsId(URIorCURIE):
     pass
 
 
@@ -220,27 +220,26 @@ class IsmsSecurityIncidentIsmsId(IsmsSecurityEventIsmsId):
 
 
 @dataclass(repr=False)
-class IsmsRecord(YAMLRoot):
+class IsmsRecordMixin(YAMLRoot):
     """
-    Anything the ISMS keeps a record of that other records can refer to: it has an identifier, a title and a
-    description.
+    What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = ISO27001["IsmsRecord"]
-    class_class_curie: ClassVar[str] = "iso27001:IsmsRecord"
-    class_name: ClassVar[str] = "IsmsRecord"
-    class_model_uri: ClassVar[URIRef] = ISO27001.IsmsRecord
+    class_class_uri: ClassVar[URIRef] = ISO27001["IsmsRecordMixin"]
+    class_class_curie: ClassVar[str] = "iso27001:IsmsRecordMixin"
+    class_name: ClassVar[str] = "IsmsRecordMixin"
+    class_model_uri: ClassVar[URIRef] = ISO27001.IsmsRecordMixin
 
-    isms_id: Union[str, IsmsRecordIsmsId] = None
+    isms_id: Union[str, IsmsRecordMixinIsmsId] = None
     title: str = None
     description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.isms_id):
             self.MissingRequiredField("isms_id")
-        if not isinstance(self.isms_id, IsmsRecordIsmsId):
-            self.isms_id = IsmsRecordIsmsId(self.isms_id)
+        if not isinstance(self.isms_id, IsmsRecordMixinIsmsId):
+            self.isms_id = IsmsRecordMixinIsmsId(self.isms_id)
 
         if self._is_empty(self.title):
             self.MissingRequiredField("title")
@@ -342,7 +341,7 @@ class IsmsDocumentControlMixin(YAMLRoot):
 
 
 @dataclass(repr=False)
-class IsmsManagementSystem(IsmsRecord):
+class IsmsManagementSystem(YAMLRoot):
     """
     One organization's information security management system: its scope and context, and every record it keeps, each
     kind in a list of its own.
@@ -401,12 +400,18 @@ class IsmsManagementSystem(IsmsRecord):
     isms_corrective_actions: Optional[Union[dict[Union[str, IsmsCorrectiveActionIsmsId], Union[dict, "IsmsCorrectiveAction"]], list[Union[dict, "IsmsCorrectiveAction"]]]] = empty_dict()
     isms_improvements: Optional[Union[dict[Union[str, IsmsImprovementOpportunityIsmsId], Union[dict, "IsmsImprovementOpportunity"]], list[Union[dict, "IsmsImprovementOpportunity"]]]] = empty_dict()
     isms_security_events: Optional[Union[dict[Union[str, IsmsSecurityEventIsmsId], Union[dict, "IsmsSecurityEvent"]], list[Union[dict, "IsmsSecurityEvent"]]]] = empty_dict()
+    description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.isms_id):
             self.MissingRequiredField("isms_id")
         if not isinstance(self.isms_id, IsmsManagementSystemIsmsId):
             self.isms_id = IsmsManagementSystemIsmsId(self.isms_id)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if self.isms_organization is not None and not isinstance(self.isms_organization, IsmsOrganization):
             self.isms_organization = IsmsOrganization(**as_dict(self.isms_organization))
@@ -532,11 +537,14 @@ class IsmsManagementSystem(IsmsRecord):
 
         self._normalize_inlined_as_list(slot_name="isms_security_events", slot_type=IsmsSecurityEvent, key_name="isms_id", keyed=True)
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class IsmsOrganization(IsmsRecord):
+class IsmsOrganization(YAMLRoot):
     """
     The organization that runs the ISMS, with what it needs to know about itself to understand its context.
     """
@@ -560,12 +568,18 @@ class IsmsOrganization(IsmsRecord):
     organization_parent: Optional[str] = None
     organization_subsidiaries: Optional[Union[str, list[str]]] = empty_list()
     organization_climate_change_relevant: Optional[Union[bool, Bool]] = None
+    description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.isms_id):
             self.MissingRequiredField("isms_id")
         if not isinstance(self.isms_id, IsmsOrganizationIsmsId):
             self.isms_id = IsmsOrganizationIsmsId(self.isms_id)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if self.organization_legal_name is not None and not isinstance(self.organization_legal_name, str):
             self.organization_legal_name = str(self.organization_legal_name)
@@ -604,11 +618,14 @@ class IsmsOrganization(IsmsRecord):
         if self.organization_climate_change_relevant is not None and not isinstance(self.organization_climate_change_relevant, Bool):
             self.organization_climate_change_relevant = Bool(self.organization_climate_change_relevant)
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class IsmsInterestedParty(IsmsRecord):
+class IsmsInterestedParty(YAMLRoot):
     """
     A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it,
     such as staff, customers, regulators or suppliers.
@@ -629,12 +646,18 @@ class IsmsInterestedParty(IsmsRecord):
     party_climate_change_requirements: Optional[Union[str, list[str]]] = empty_list()
     party_communication_needs: Optional[str] = None
     party_contact: Optional[str] = None
+    description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.isms_id):
             self.MissingRequiredField("isms_id")
         if not isinstance(self.isms_id, IsmsInterestedPartyIsmsId):
             self.isms_id = IsmsInterestedPartyIsmsId(self.isms_id)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if self.party_category is not None and not isinstance(self.party_category, str):
             self.party_category = str(self.party_category)
@@ -660,11 +683,14 @@ class IsmsInterestedParty(IsmsRecord):
         if self.party_contact is not None and not isinstance(self.party_contact, str):
             self.party_contact = str(self.party_contact)
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class IsmsPolicy(IsmsRecord):
+class IsmsPolicy(YAMLRoot):
     """
     The information security policy that top management sets: the organization's commitment and the frame for its
     information security objectives.
@@ -685,6 +711,7 @@ class IsmsPolicy(IsmsRecord):
     policy_communication_date: Optional[Union[str, XSDDate]] = None
     policy_acknowledgement_required: Optional[Union[bool, Bool]] = None
     policy_management_systems: Optional[Union[Union[str, "IsmsManagementSystemStandard"], list[Union[str, "IsmsManagementSystemStandard"]]]] = empty_list()
+    description: Optional[str] = None
     document_reference: Optional[str] = None
     document_version: Optional[str] = None
     document_author: Optional[str] = None
@@ -709,6 +736,11 @@ class IsmsPolicy(IsmsRecord):
         if not isinstance(self.isms_id, IsmsPolicyIsmsId):
             self.isms_id = IsmsPolicyIsmsId(self.isms_id)
 
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
+
         if self.policy_statement is not None and not isinstance(self.policy_statement, str):
             self.policy_statement = str(self.policy_statement)
 
@@ -731,6 +763,9 @@ class IsmsPolicy(IsmsRecord):
         if not isinstance(self.policy_management_systems, list):
             self.policy_management_systems = [self.policy_management_systems] if self.policy_management_systems is not None else []
         self.policy_management_systems = [v if isinstance(v, IsmsManagementSystemStandard) else IsmsManagementSystemStandard(v) for v in self.policy_management_systems]
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
         if self.document_reference is not None and not isinstance(self.document_reference, str):
             self.document_reference = str(self.document_reference)
@@ -788,7 +823,7 @@ class IsmsPolicy(IsmsRecord):
 
 
 @dataclass(repr=False)
-class IsmsTopicSpecificPolicy(IsmsRecord):
+class IsmsTopicSpecificPolicy(YAMLRoot):
     """
     A policy on one topic of information security, such as access control or backup, that supports the information
     security policy.
@@ -806,6 +841,7 @@ class IsmsTopicSpecificPolicy(IsmsRecord):
     topic_policy_topic: Optional[str] = None
     topic_policy_parent: Optional[Union[str, IsmsPolicyIsmsId]] = None
     topic_policy_audience: Optional[str] = None
+    description: Optional[str] = None
     document_reference: Optional[str] = None
     document_version: Optional[str] = None
     document_author: Optional[str] = None
@@ -830,6 +866,11 @@ class IsmsTopicSpecificPolicy(IsmsRecord):
         if not isinstance(self.isms_id, IsmsTopicSpecificPolicyIsmsId):
             self.isms_id = IsmsTopicSpecificPolicyIsmsId(self.isms_id)
 
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
+
         if not isinstance(self.relevant_controls, list):
             self.relevant_controls = [self.relevant_controls] if self.relevant_controls is not None else []
         self.relevant_controls = [v if isinstance(v, IsmsControlIsmsId) else IsmsControlIsmsId(v) for v in self.relevant_controls]
@@ -842,6 +883,9 @@ class IsmsTopicSpecificPolicy(IsmsRecord):
 
         if self.topic_policy_audience is not None and not isinstance(self.topic_policy_audience, str):
             self.topic_policy_audience = str(self.topic_policy_audience)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
         if self.document_reference is not None and not isinstance(self.document_reference, str):
             self.document_reference = str(self.document_reference)
@@ -899,7 +943,7 @@ class IsmsTopicSpecificPolicy(IsmsRecord):
 
 
 @dataclass(repr=False)
-class IsmsRole(IsmsRecord):
+class IsmsRole(YAMLRoot):
     """
     A role in the ISMS, with the responsibilities and authorities it carries and who holds it.
     """
@@ -919,12 +963,18 @@ class IsmsRole(IsmsRecord):
     role_holders: Optional[Union[str, list[str]]] = empty_list()
     role_delegation: Optional[str] = None
     role_reports_to: Optional[Union[str, IsmsRoleIsmsId]] = None
+    description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.isms_id):
             self.MissingRequiredField("isms_id")
         if not isinstance(self.isms_id, IsmsRoleIsmsId):
             self.isms_id = IsmsRoleIsmsId(self.isms_id)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if self.role_category is not None and not isinstance(self.role_category, str):
             self.role_category = str(self.role_category)
@@ -950,11 +1000,14 @@ class IsmsRole(IsmsRecord):
         if self.role_reports_to is not None and not isinstance(self.role_reports_to, IsmsRoleIsmsId):
             self.role_reports_to = IsmsRoleIsmsId(self.role_reports_to)
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class IsmsObjective(IsmsRecord):
+class IsmsObjective(YAMLRoot):
     """
     An information security objective: a measurable result the organization aims for, with how it plans to reach it
     and how it measures progress.
@@ -981,12 +1034,18 @@ class IsmsObjective(IsmsRecord):
     objective_risks: Optional[Union[Union[str, IsmsRiskIsmsId], list[Union[str, IsmsRiskIsmsId]]]] = empty_list()
     objective_action_plan: Optional[str] = None
     objective_resources: Optional[str] = None
+    description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.isms_id):
             self.MissingRequiredField("isms_id")
         if not isinstance(self.isms_id, IsmsObjectiveIsmsId):
             self.isms_id = IsmsObjectiveIsmsId(self.isms_id)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if self.responsible_role is not None and not isinstance(self.responsible_role, IsmsRoleIsmsId):
             self.responsible_role = IsmsRoleIsmsId(self.responsible_role)
@@ -1029,11 +1088,14 @@ class IsmsObjective(IsmsRecord):
         if self.objective_resources is not None and not isinstance(self.objective_resources, str):
             self.objective_resources = str(self.objective_resources)
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class IsmsRiskAssessmentProcess(IsmsRecord):
+class IsmsRiskAssessmentProcess(YAMLRoot):
     """
     The organization's process for assessing information security risks: its criteria for accepting risk and for
     assessing it, its scales and method, and when it runs.
@@ -1055,6 +1117,7 @@ class IsmsRiskAssessmentProcess(IsmsRecord):
     risk_matrix: Optional[str] = None
     risk_assessment_frequency: Optional[str] = None
     risk_assessment_triggers: Optional[Union[str, list[str]]] = empty_list()
+    description: Optional[str] = None
     document_reference: Optional[str] = None
     document_version: Optional[str] = None
     document_author: Optional[str] = None
@@ -1078,6 +1141,11 @@ class IsmsRiskAssessmentProcess(IsmsRecord):
             self.MissingRequiredField("isms_id")
         if not isinstance(self.isms_id, IsmsRiskAssessmentProcessIsmsId):
             self.isms_id = IsmsRiskAssessmentProcessIsmsId(self.isms_id)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if self.risk_acceptance_criteria is not None and not isinstance(self.risk_acceptance_criteria, str):
             self.risk_acceptance_criteria = str(self.risk_acceptance_criteria)
@@ -1103,6 +1171,9 @@ class IsmsRiskAssessmentProcess(IsmsRecord):
         if not isinstance(self.risk_assessment_triggers, list):
             self.risk_assessment_triggers = [self.risk_assessment_triggers] if self.risk_assessment_triggers is not None else []
         self.risk_assessment_triggers = [v if isinstance(v, str) else str(v) for v in self.risk_assessment_triggers]
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
         if self.document_reference is not None and not isinstance(self.document_reference, str):
             self.document_reference = str(self.document_reference)
@@ -1160,7 +1231,7 @@ class IsmsRiskAssessmentProcess(IsmsRecord):
 
 
 @dataclass(repr=False)
-class IsmsRiskAssessment(IsmsRecord):
+class IsmsRiskAssessment(YAMLRoot):
     """
     One risk assessment carried out under the risk assessment process, and what it found.
     """
@@ -1181,6 +1252,7 @@ class IsmsRiskAssessment(IsmsRecord):
     assessment_summary: Optional[str] = None
     assessment_recommendations: Optional[Union[str, list[str]]] = empty_list()
     assessment_next_date: Optional[Union[str, XSDDate]] = None
+    description: Optional[str] = None
     document_reference: Optional[str] = None
     document_version: Optional[str] = None
     document_author: Optional[str] = None
@@ -1204,6 +1276,11 @@ class IsmsRiskAssessment(IsmsRecord):
             self.MissingRequiredField("isms_id")
         if not isinstance(self.isms_id, IsmsRiskAssessmentIsmsId):
             self.isms_id = IsmsRiskAssessmentIsmsId(self.isms_id)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if self.assessment_scope is not None and not isinstance(self.assessment_scope, str):
             self.assessment_scope = str(self.assessment_scope)
@@ -1231,6 +1308,9 @@ class IsmsRiskAssessment(IsmsRecord):
         if self.assessment_next_date is not None and not isinstance(self.assessment_next_date, XSDDate):
             self.assessment_next_date = XSDDate(self.assessment_next_date)
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         if self.document_reference is not None and not isinstance(self.document_reference, str):
             self.document_reference = str(self.document_reference)
 
@@ -1287,7 +1367,7 @@ class IsmsRiskAssessment(IsmsRecord):
 
 
 @dataclass(repr=False)
-class IsmsRisk(IsmsRecord):
+class IsmsRisk(YAMLRoot):
     """
     An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is
     rated before and after controls, and how it is treated.
@@ -1314,12 +1394,18 @@ class IsmsRisk(IsmsRecord):
     risk_residual_level: Optional[Union[str, "IsmsRiskLevel"]] = None
     risk_treatment_option: Optional[Union[str, "IsmsRiskTreatmentOption"]] = None
     risk_treatment_priority: Optional[str] = None
+    description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.isms_id):
             self.MissingRequiredField("isms_id")
         if not isinstance(self.isms_id, IsmsRiskIsmsId):
             self.isms_id = IsmsRiskIsmsId(self.isms_id)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if not isinstance(self.affected_assets, list):
             self.affected_assets = [self.affected_assets] if self.affected_assets is not None else []
@@ -1363,11 +1449,14 @@ class IsmsRisk(IsmsRecord):
         if self.risk_treatment_priority is not None and not isinstance(self.risk_treatment_priority, str):
             self.risk_treatment_priority = str(self.risk_treatment_priority)
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class IsmsRiskTreatmentProcess(IsmsRecord):
+class IsmsRiskTreatmentProcess(YAMLRoot):
     """
     The organization's process for treating information security risks: how it chooses treatments and controls, checks
     them against Annex A, and produces the Statement of Applicability.
@@ -1386,6 +1475,7 @@ class IsmsRiskTreatmentProcess(IsmsRecord):
     treatment_annex_a_comparison: Optional[str] = None
     treatment_soa_template: Optional[str] = None
     treatment_approval_workflow: Optional[str] = None
+    description: Optional[str] = None
     document_reference: Optional[str] = None
     document_version: Optional[str] = None
     document_author: Optional[str] = None
@@ -1410,6 +1500,11 @@ class IsmsRiskTreatmentProcess(IsmsRecord):
         if not isinstance(self.isms_id, IsmsRiskTreatmentProcessIsmsId):
             self.isms_id = IsmsRiskTreatmentProcessIsmsId(self.isms_id)
 
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
+
         if self.treatment_options_guidance is not None and not isinstance(self.treatment_options_guidance, str):
             self.treatment_options_guidance = str(self.treatment_options_guidance)
 
@@ -1424,6 +1519,9 @@ class IsmsRiskTreatmentProcess(IsmsRecord):
 
         if self.treatment_approval_workflow is not None and not isinstance(self.treatment_approval_workflow, str):
             self.treatment_approval_workflow = str(self.treatment_approval_workflow)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
         if self.document_reference is not None and not isinstance(self.document_reference, str):
             self.document_reference = str(self.document_reference)
@@ -1481,7 +1579,7 @@ class IsmsRiskTreatmentProcess(IsmsRecord):
 
 
 @dataclass(repr=False)
-class IsmsRiskTreatmentPlan(IsmsRecord):
+class IsmsRiskTreatmentPlan(YAMLRoot):
     """
     A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's
     approval of the plan and of the residual risk.
@@ -1506,6 +1604,7 @@ class IsmsRiskTreatmentPlan(IsmsRecord):
     plan_risk_owner_approval: Optional[str] = None
     plan_residual_risk_acceptance: Optional[str] = None
     plan_completion_date: Optional[Union[str, XSDDate]] = None
+    description: Optional[str] = None
     document_reference: Optional[str] = None
     document_version: Optional[str] = None
     document_author: Optional[str] = None
@@ -1529,6 +1628,11 @@ class IsmsRiskTreatmentPlan(IsmsRecord):
             self.MissingRequiredField("isms_id")
         if not isinstance(self.isms_id, IsmsRiskTreatmentPlanIsmsId):
             self.isms_id = IsmsRiskTreatmentPlanIsmsId(self.isms_id)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if self.implementation_state is not None and not isinstance(self.implementation_state, IsmsImplementationStatus):
             self.implementation_state = IsmsImplementationStatus(self.implementation_state)
@@ -1567,6 +1671,9 @@ class IsmsRiskTreatmentPlan(IsmsRecord):
         if self.plan_completion_date is not None and not isinstance(self.plan_completion_date, XSDDate):
             self.plan_completion_date = XSDDate(self.plan_completion_date)
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         if self.document_reference is not None and not isinstance(self.document_reference, str):
             self.document_reference = str(self.document_reference)
 
@@ -1623,7 +1730,7 @@ class IsmsRiskTreatmentPlan(IsmsRecord):
 
 
 @dataclass(repr=False)
-class IsmsStatementOfApplicability(IsmsRecord):
+class IsmsStatementOfApplicability(YAMLRoot):
     """
     The Statement of Applicability: each control the organization needs, with why it is included and whether it is in
     place, and each Annex A control it leaves out, with why.
@@ -1638,6 +1745,7 @@ class IsmsStatementOfApplicability(IsmsRecord):
     isms_id: Union[str, IsmsStatementOfApplicabilityIsmsId] = None
     title: str = None
     soa_entries: Optional[Union[Union[dict, "IsmsApplicabilityEntry"], list[Union[dict, "IsmsApplicabilityEntry"]]]] = empty_list()
+    description: Optional[str] = None
     document_reference: Optional[str] = None
     document_version: Optional[str] = None
     document_author: Optional[str] = None
@@ -1662,7 +1770,15 @@ class IsmsStatementOfApplicability(IsmsRecord):
         if not isinstance(self.isms_id, IsmsStatementOfApplicabilityIsmsId):
             self.isms_id = IsmsStatementOfApplicabilityIsmsId(self.isms_id)
 
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
+
         self._normalize_inlined_as_list(slot_name="soa_entries", slot_type=IsmsApplicabilityEntry, key_name="entry_justification", keyed=False)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
         if self.document_reference is not None and not isinstance(self.document_reference, str):
             self.document_reference = str(self.document_reference)
@@ -1836,7 +1952,7 @@ class IsmsExcludedControl(IsmsApplicabilityEntry):
 
 
 @dataclass(repr=False)
-class IsmsControl(IsmsRecord):
+class IsmsControl(YAMLRoot):
     """
     A control the organization has determined it needs to treat its risks: what it does in the organization's words,
     which Annex A controls it answers to, who owns it, how far it is in place and how well it works.
@@ -1863,12 +1979,18 @@ class IsmsControl(IsmsRecord):
     control_effectiveness: Optional[str] = None
     control_last_tested: Optional[Union[str, XSDDate]] = None
     control_evidence: Optional[Union[str, list[str]]] = empty_list()
+    description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.isms_id):
             self.MissingRequiredField("isms_id")
         if not isinstance(self.isms_id, IsmsControlIsmsId):
             self.isms_id = IsmsControlIsmsId(self.isms_id)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if not isinstance(self.relevant_controls, list):
             self.relevant_controls = [self.relevant_controls] if self.relevant_controls is not None else []
@@ -1914,11 +2036,14 @@ class IsmsControl(IsmsRecord):
             self.control_evidence = [self.control_evidence] if self.control_evidence is not None else []
         self.control_evidence = [v if isinstance(v, str) else str(v) for v in self.control_evidence]
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class IsmsAsset(IsmsRecord):
+class IsmsAsset(YAMLRoot):
     """
     An item in the inventory of information and other associated assets: what it is, who owns and looks after it,
     where it is, how it is classified and how much it matters.
@@ -1939,12 +2064,18 @@ class IsmsAsset(IsmsRecord):
     asset_classification: Optional[str] = None
     asset_location: Optional[str] = None
     asset_criticality: Optional[str] = None
+    description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.isms_id):
             self.MissingRequiredField("isms_id")
         if not isinstance(self.isms_id, IsmsAssetIsmsId):
             self.isms_id = IsmsAssetIsmsId(self.isms_id)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if not isinstance(self.relevant_controls, list):
             self.relevant_controls = [self.relevant_controls] if self.relevant_controls is not None else []
@@ -1968,11 +2099,14 @@ class IsmsAsset(IsmsRecord):
         if self.asset_criticality is not None and not isinstance(self.asset_criticality, str):
             self.asset_criticality = str(self.asset_criticality)
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class IsmsResource(IsmsRecord):
+class IsmsResource(YAMLRoot):
     """
     A resource provided for the ISMS, such as people, time, tools or budget.
     """
@@ -1991,12 +2125,18 @@ class IsmsResource(IsmsRecord):
     resource_allocated_to: Optional[str] = None
     resource_cost: Optional[str] = None
     resource_availability: Optional[str] = None
+    description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.isms_id):
             self.MissingRequiredField("isms_id")
         if not isinstance(self.isms_id, IsmsResourceIsmsId):
             self.isms_id = IsmsResourceIsmsId(self.isms_id)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if self.resource_category is not None and not isinstance(self.resource_category, str):
             self.resource_category = str(self.resource_category)
@@ -2016,11 +2156,14 @@ class IsmsResource(IsmsRecord):
         if self.resource_availability is not None and not isinstance(self.resource_availability, str):
             self.resource_availability = str(self.resource_availability)
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class IsmsCompetenceRecord(IsmsRecord):
+class IsmsCompetenceRecord(YAMLRoot):
     """
     The evidence of one person's competence for work that affects information security, and what is done to close any
     gap.
@@ -2043,6 +2186,7 @@ class IsmsCompetenceRecord(IsmsRecord):
     competence_assessment_date: Optional[Union[str, XSDDate]] = None
     competence_gaps: Optional[Union[str, list[str]]] = empty_list()
     competence_actions: Optional[Union[str, list[str]]] = empty_list()
+    description: Optional[str] = None
     document_reference: Optional[str] = None
     document_version: Optional[str] = None
     document_author: Optional[str] = None
@@ -2066,6 +2210,11 @@ class IsmsCompetenceRecord(IsmsRecord):
             self.MissingRequiredField("isms_id")
         if not isinstance(self.isms_id, IsmsCompetenceRecordIsmsId):
             self.isms_id = IsmsCompetenceRecordIsmsId(self.isms_id)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if self.competence_person is not None and not isinstance(self.competence_person, str):
             self.competence_person = str(self.competence_person)
@@ -2100,6 +2249,9 @@ class IsmsCompetenceRecord(IsmsRecord):
             self.competence_actions = [self.competence_actions] if self.competence_actions is not None else []
         self.competence_actions = [v if isinstance(v, str) else str(v) for v in self.competence_actions]
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         if self.document_reference is not None and not isinstance(self.document_reference, str):
             self.document_reference = str(self.document_reference)
 
@@ -2156,7 +2308,7 @@ class IsmsCompetenceRecord(IsmsRecord):
 
 
 @dataclass(repr=False)
-class IsmsAwarenessProgramme(IsmsRecord):
+class IsmsAwarenessProgramme(YAMLRoot):
     """
     The programme that makes people working for the organization aware of the policy, their part in the ISMS and what
     failing it would mean.
@@ -2176,6 +2328,7 @@ class IsmsAwarenessProgramme(IsmsRecord):
     awareness_frequency: Optional[str] = None
     awareness_completion_tracking: Optional[str] = None
     awareness_effectiveness: Optional[str] = None
+    description: Optional[str] = None
     document_reference: Optional[str] = None
     document_version: Optional[str] = None
     document_author: Optional[str] = None
@@ -2200,6 +2353,11 @@ class IsmsAwarenessProgramme(IsmsRecord):
         if not isinstance(self.isms_id, IsmsAwarenessProgrammeIsmsId):
             self.isms_id = IsmsAwarenessProgrammeIsmsId(self.isms_id)
 
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
+
         if not isinstance(self.awareness_topics, list):
             self.awareness_topics = [self.awareness_topics] if self.awareness_topics is not None else []
         self.awareness_topics = [v if isinstance(v, str) else str(v) for v in self.awareness_topics]
@@ -2219,6 +2377,9 @@ class IsmsAwarenessProgramme(IsmsRecord):
 
         if self.awareness_effectiveness is not None and not isinstance(self.awareness_effectiveness, str):
             self.awareness_effectiveness = str(self.awareness_effectiveness)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
         if self.document_reference is not None and not isinstance(self.document_reference, str):
             self.document_reference = str(self.document_reference)
@@ -2276,7 +2437,7 @@ class IsmsAwarenessProgramme(IsmsRecord):
 
 
 @dataclass(repr=False)
-class IsmsCommunicationPlan(IsmsRecord):
+class IsmsCommunicationPlan(YAMLRoot):
     """
     The plan for communication about the ISMS, inside the organization and outside it.
     """
@@ -2290,6 +2451,7 @@ class IsmsCommunicationPlan(IsmsRecord):
     isms_id: Union[str, IsmsCommunicationPlanIsmsId] = None
     title: str = None
     communication_items: Optional[Union[Union[dict, "IsmsCommunication"], list[Union[dict, "IsmsCommunication"]]]] = empty_list()
+    description: Optional[str] = None
     document_reference: Optional[str] = None
     document_version: Optional[str] = None
     document_author: Optional[str] = None
@@ -2314,7 +2476,15 @@ class IsmsCommunicationPlan(IsmsRecord):
         if not isinstance(self.isms_id, IsmsCommunicationPlanIsmsId):
             self.isms_id = IsmsCommunicationPlanIsmsId(self.isms_id)
 
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
+
         self._normalize_inlined_as_list(slot_name="communication_items", slot_type=IsmsCommunication, key_name="communication_subject", keyed=False)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
         if self.document_reference is not None and not isinstance(self.document_reference, str):
             self.document_reference = str(self.document_reference)
@@ -2419,7 +2589,7 @@ class IsmsCommunication(YAMLRoot):
 
 
 @dataclass(repr=False)
-class IsmsDocumentedInformation(IsmsRecord):
+class IsmsDocumentedInformation(YAMLRoot):
     """
     A piece of documented information the ISMS keeps under control that no more specific record describes, such as a
     procedure, a standard, a plan or a report.
@@ -2432,8 +2602,9 @@ class IsmsDocumentedInformation(IsmsRecord):
     class_model_uri: ClassVar[URIRef] = ISO27001.IsmsDocumentedInformation
 
     isms_id: Union[str, IsmsDocumentedInformationIsmsId] = None
-    title: str = None
     document_kind: Union[str, "IsmsDocumentKind"] = None
+    title: str = None
+    description: Optional[str] = None
     document_reference: Optional[str] = None
     document_version: Optional[str] = None
     document_author: Optional[str] = None
@@ -2463,6 +2634,14 @@ class IsmsDocumentedInformation(IsmsRecord):
         if not isinstance(self.document_kind, IsmsDocumentKind):
             self.document_kind = IsmsDocumentKind(self.document_kind)
 
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         if self.document_reference is not None and not isinstance(self.document_reference, str):
             self.document_reference = str(self.document_reference)
 
@@ -2519,7 +2698,7 @@ class IsmsDocumentedInformation(IsmsRecord):
 
 
 @dataclass(repr=False)
-class IsmsOperationalProcedure(IsmsRecord):
+class IsmsOperationalProcedure(YAMLRoot):
     """
     A procedure by which the organization plans and controls the processes that meet its information security
     requirements.
@@ -2539,6 +2718,7 @@ class IsmsOperationalProcedure(IsmsRecord):
     procedure_control_measures: Optional[Union[str, list[str]]] = empty_list()
     procedure_roles: Optional[Union[Union[str, IsmsRoleIsmsId], list[Union[str, IsmsRoleIsmsId]]]] = empty_list()
     procedure_change_control: Optional[str] = None
+    description: Optional[str] = None
     document_reference: Optional[str] = None
     document_version: Optional[str] = None
     document_author: Optional[str] = None
@@ -2563,6 +2743,11 @@ class IsmsOperationalProcedure(IsmsRecord):
         if not isinstance(self.isms_id, IsmsOperationalProcedureIsmsId):
             self.isms_id = IsmsOperationalProcedureIsmsId(self.isms_id)
 
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
+
         if not isinstance(self.relevant_controls, list):
             self.relevant_controls = [self.relevant_controls] if self.relevant_controls is not None else []
         self.relevant_controls = [v if isinstance(v, IsmsControlIsmsId) else IsmsControlIsmsId(v) for v in self.relevant_controls]
@@ -2583,6 +2768,9 @@ class IsmsOperationalProcedure(IsmsRecord):
 
         if self.procedure_change_control is not None and not isinstance(self.procedure_change_control, str):
             self.procedure_change_control = str(self.procedure_change_control)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
         if self.document_reference is not None and not isinstance(self.document_reference, str):
             self.document_reference = str(self.document_reference)
@@ -2640,7 +2828,7 @@ class IsmsOperationalProcedure(IsmsRecord):
 
 
 @dataclass(repr=False)
-class IsmsMonitoringProgramme(IsmsRecord):
+class IsmsMonitoringProgramme(YAMLRoot):
     """
     The programme of monitoring, measurement, analysis and evaluation of information security performance and of the
     ISMS's effectiveness.
@@ -2655,6 +2843,7 @@ class IsmsMonitoringProgramme(IsmsRecord):
     isms_id: Union[str, IsmsMonitoringProgrammeIsmsId] = None
     title: str = None
     monitoring_items: Optional[Union[Union[dict, "IsmsMonitoringItem"], list[Union[dict, "IsmsMonitoringItem"]]]] = empty_list()
+    description: Optional[str] = None
     document_reference: Optional[str] = None
     document_version: Optional[str] = None
     document_author: Optional[str] = None
@@ -2679,7 +2868,15 @@ class IsmsMonitoringProgramme(IsmsRecord):
         if not isinstance(self.isms_id, IsmsMonitoringProgrammeIsmsId):
             self.isms_id = IsmsMonitoringProgrammeIsmsId(self.isms_id)
 
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
+
         self._normalize_inlined_as_list(slot_name="monitoring_items", slot_type=IsmsMonitoringItem, key_name="monitoring_metric", keyed=False)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
         if self.document_reference is not None and not isinstance(self.document_reference, str):
             self.document_reference = str(self.document_reference)
@@ -2801,7 +2998,7 @@ class IsmsMonitoringItem(YAMLRoot):
 
 
 @dataclass(repr=False)
-class IsmsAuditProgramme(IsmsRecord):
+class IsmsAuditProgramme(YAMLRoot):
     """
     An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors
     they need.
@@ -2821,6 +3018,7 @@ class IsmsAuditProgramme(IsmsRecord):
     programme_resources: Optional[str] = None
     programme_auditor_qualifications: Optional[str] = None
     programme_status: Optional[str] = None
+    description: Optional[str] = None
     document_reference: Optional[str] = None
     document_version: Optional[str] = None
     document_author: Optional[str] = None
@@ -2845,6 +3043,11 @@ class IsmsAuditProgramme(IsmsRecord):
         if not isinstance(self.isms_id, IsmsAuditProgrammeIsmsId):
             self.isms_id = IsmsAuditProgrammeIsmsId(self.isms_id)
 
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
+
         if self.programme_period is not None and not isinstance(self.programme_period, str):
             self.programme_period = str(self.programme_period)
 
@@ -2863,6 +3066,9 @@ class IsmsAuditProgramme(IsmsRecord):
 
         if self.programme_status is not None and not isinstance(self.programme_status, str):
             self.programme_status = str(self.programme_status)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
         if self.document_reference is not None and not isinstance(self.document_reference, str):
             self.document_reference = str(self.document_reference)
@@ -2920,7 +3126,7 @@ class IsmsAuditProgramme(IsmsRecord):
 
 
 @dataclass(repr=False)
-class IsmsAudit(IsmsRecord):
+class IsmsAudit(YAMLRoot):
     """
     An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope,
     criteria, team, findings and conclusion.
@@ -2933,8 +3139,8 @@ class IsmsAudit(IsmsRecord):
     class_model_uri: ClassVar[URIRef] = ISO27001.IsmsAudit
 
     isms_id: Union[str, IsmsAuditIsmsId] = None
-    title: str = None
     audit_type: Union[str, "IsmsAuditType"] = None
+    title: str = None
     audit_standards: Optional[Union[Union[str, "IsmsManagementSystemStandard"], list[Union[str, "IsmsManagementSystemStandard"]]]] = empty_list()
     audit_scope: Optional[str] = None
     audit_criteria: Optional[Union[str, list[str]]] = empty_list()
@@ -2949,6 +3155,7 @@ class IsmsAudit(IsmsRecord):
     audit_conclusion: Optional[str] = None
     audit_report_date: Optional[Union[str, XSDDate]] = None
     audit_report_distribution: Optional[Union[str, list[str]]] = empty_list()
+    description: Optional[str] = None
     document_reference: Optional[str] = None
     document_version: Optional[str] = None
     document_author: Optional[str] = None
@@ -2977,6 +3184,11 @@ class IsmsAudit(IsmsRecord):
             self.MissingRequiredField("audit_type")
         if not isinstance(self.audit_type, IsmsAuditType):
             self.audit_type = IsmsAuditType(self.audit_type)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if not isinstance(self.audit_standards, list):
             self.audit_standards = [self.audit_standards] if self.audit_standards is not None else []
@@ -3025,6 +3237,9 @@ class IsmsAudit(IsmsRecord):
             self.audit_report_distribution = [self.audit_report_distribution] if self.audit_report_distribution is not None else []
         self.audit_report_distribution = [v if isinstance(v, str) else str(v) for v in self.audit_report_distribution]
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         if self.document_reference is not None and not isinstance(self.document_reference, str):
             self.document_reference = str(self.document_reference)
 
@@ -3081,7 +3296,7 @@ class IsmsAudit(IsmsRecord):
 
 
 @dataclass(repr=False)
-class IsmsAuditFinding(IsmsRecord):
+class IsmsAuditFinding(YAMLRoot):
     """
     One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it
     concerns, its evidence and how it is closed.
@@ -3094,8 +3309,8 @@ class IsmsAuditFinding(IsmsRecord):
     class_model_uri: ClassVar[URIRef] = ISO27001.IsmsAuditFinding
 
     isms_id: Union[str, IsmsAuditFindingIsmsId] = None
-    title: str = None
     finding_type: Union[str, "IsmsAuditFindingType"] = None
+    title: str = None
     finding_requirement: Optional[Union[str, IsmsRequirementReference]] = None
     finding_control: Optional[Union[str, IsmsControlIsmsId]] = None
     finding_evidence: Optional[str] = None
@@ -3106,6 +3321,7 @@ class IsmsAuditFinding(IsmsRecord):
     finding_corrective_action: Optional[Union[str, IsmsCorrectiveActionIsmsId]] = None
     finding_closure_status: Optional[str] = None
     finding_closure_date: Optional[Union[str, XSDDate]] = None
+    description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.isms_id):
@@ -3117,6 +3333,11 @@ class IsmsAuditFinding(IsmsRecord):
             self.MissingRequiredField("finding_type")
         if not isinstance(self.finding_type, IsmsAuditFindingType):
             self.finding_type = IsmsAuditFindingType(self.finding_type)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if self.finding_requirement is not None and not isinstance(self.finding_requirement, IsmsRequirementReference):
             self.finding_requirement = IsmsRequirementReference(self.finding_requirement)
@@ -3148,11 +3369,14 @@ class IsmsAuditFinding(IsmsRecord):
         if self.finding_closure_date is not None and not isinstance(self.finding_closure_date, XSDDate):
             self.finding_closure_date = XSDDate(self.finding_closure_date)
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class IsmsManagementReview(IsmsRecord):
+class IsmsManagementReview(YAMLRoot):
     """
     A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.
     """
@@ -3164,8 +3388,8 @@ class IsmsManagementReview(IsmsRecord):
     class_model_uri: ClassVar[URIRef] = ISO27001.IsmsManagementReview
 
     isms_id: Union[str, IsmsManagementReviewIsmsId] = None
-    title: str = None
     review_held_on: Union[str, XSDDate] = None
+    title: str = None
     review_attendees: Optional[Union[str, list[str]]] = empty_list()
     review_previous_actions: Optional[str] = None
     review_context_changes: Optional[str] = None
@@ -3180,6 +3404,7 @@ class IsmsManagementReview(IsmsRecord):
     review_decisions: Optional[Union[str, list[str]]] = empty_list()
     review_actions: Optional[Union[str, list[str]]] = empty_list()
     review_next_date: Optional[Union[str, XSDDate]] = None
+    description: Optional[str] = None
     document_reference: Optional[str] = None
     document_version: Optional[str] = None
     document_author: Optional[str] = None
@@ -3208,6 +3433,11 @@ class IsmsManagementReview(IsmsRecord):
             self.MissingRequiredField("review_held_on")
         if not isinstance(self.review_held_on, XSDDate):
             self.review_held_on = XSDDate(self.review_held_on)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if not isinstance(self.review_attendees, list):
             self.review_attendees = [self.review_attendees] if self.review_attendees is not None else []
@@ -3255,6 +3485,9 @@ class IsmsManagementReview(IsmsRecord):
         if self.review_next_date is not None and not isinstance(self.review_next_date, XSDDate):
             self.review_next_date = XSDDate(self.review_next_date)
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         if self.document_reference is not None and not isinstance(self.document_reference, str):
             self.document_reference = str(self.document_reference)
 
@@ -3311,7 +3544,7 @@ class IsmsManagementReview(IsmsRecord):
 
 
 @dataclass(repr=False)
-class IsmsNonconformity(IsmsRecord):
+class IsmsNonconformity(YAMLRoot):
     """
     A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was
     closed.
@@ -3336,12 +3569,18 @@ class IsmsNonconformity(IsmsRecord):
     nonconformity_status: Optional[str] = None
     nonconformity_closure_date: Optional[Union[str, XSDDate]] = None
     nonconformity_closure_evidence: Optional[str] = None
+    description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.isms_id):
             self.MissingRequiredField("isms_id")
         if not isinstance(self.isms_id, IsmsNonconformityIsmsId):
             self.isms_id = IsmsNonconformityIsmsId(self.isms_id)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if self.nonconformity_source is not None and not isinstance(self.nonconformity_source, str):
             self.nonconformity_source = str(self.nonconformity_source)
@@ -3377,11 +3616,14 @@ class IsmsNonconformity(IsmsRecord):
         if self.nonconformity_closure_evidence is not None and not isinstance(self.nonconformity_closure_evidence, str):
             self.nonconformity_closure_evidence = str(self.nonconformity_closure_evidence)
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class IsmsCorrectiveAction(IsmsRecord):
+class IsmsCorrectiveAction(YAMLRoot):
     """
     An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it
     worked.
@@ -3406,12 +3648,18 @@ class IsmsCorrectiveAction(IsmsRecord):
     action_effective: Optional[Union[bool, Bool]] = None
     action_isms_changes: Optional[str] = None
     action_status: Optional[str] = None
+    description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.isms_id):
             self.MissingRequiredField("isms_id")
         if not isinstance(self.isms_id, IsmsCorrectiveActionIsmsId):
             self.isms_id = IsmsCorrectiveActionIsmsId(self.isms_id)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if self.responsible_role is not None and not isinstance(self.responsible_role, IsmsRoleIsmsId):
             self.responsible_role = IsmsRoleIsmsId(self.responsible_role)
@@ -3447,11 +3695,14 @@ class IsmsCorrectiveAction(IsmsRecord):
         if self.action_status is not None and not isinstance(self.action_status, str):
             self.action_status = str(self.action_status)
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class IsmsImprovementOpportunity(IsmsRecord):
+class IsmsImprovementOpportunity(YAMLRoot):
     """
     An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.
     """
@@ -3475,12 +3726,18 @@ class IsmsImprovementOpportunity(IsmsRecord):
     improvement_completion_date: Optional[Union[str, XSDDate]] = None
     improvement_outcome: Optional[str] = None
     improvement_status: Optional[str] = None
+    description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.isms_id):
             self.MissingRequiredField("isms_id")
         if not isinstance(self.isms_id, IsmsImprovementOpportunityIsmsId):
             self.isms_id = IsmsImprovementOpportunityIsmsId(self.isms_id)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if self.responsible_role is not None and not isinstance(self.responsible_role, IsmsRoleIsmsId):
             self.responsible_role = IsmsRoleIsmsId(self.responsible_role)
@@ -3515,11 +3772,14 @@ class IsmsImprovementOpportunity(IsmsRecord):
         if self.improvement_status is not None and not isinstance(self.improvement_status, str):
             self.improvement_status = str(self.improvement_status)
 
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class IsmsSecurityEvent(IsmsRecord):
+class IsmsSecurityEvent(YAMLRoot):
     """
     An information security event someone reported, and the assessment of whether it is an incident. An event assessed
     as an incident is recorded as an IsmsSecurityIncident.
@@ -3538,12 +3798,18 @@ class IsmsSecurityEvent(IsmsRecord):
     event_occurred_at: Optional[Union[str, XSDDateTime]] = None
     event_reporter: Optional[str] = None
     event_assessment: Optional[str] = None
+    description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.isms_id):
             self.MissingRequiredField("isms_id")
         if not isinstance(self.isms_id, IsmsSecurityEventIsmsId):
             self.isms_id = IsmsSecurityEventIsmsId(self.isms_id)
+
+        if self._is_empty(self.title):
+            self.MissingRequiredField("title")
+        if not isinstance(self.title, str):
+            self.title = str(self.title)
 
         if not isinstance(self.affected_assets, list):
             self.affected_assets = [self.affected_assets] if self.affected_assets is not None else []
@@ -3559,6 +3825,9 @@ class IsmsSecurityEvent(IsmsRecord):
 
         if self.event_assessment is not None and not isinstance(self.event_assessment, str):
             self.event_assessment = str(self.event_assessment)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
         super().__post_init__(**kwargs)
         self.unknown_event_type = str(self.class_name)
@@ -5268,8 +5537,8 @@ slots.ismsSecurityIncident__incident_closed_at = Slot(uri=ISO27001.incident_clos
 slots.ismsSecurityIncident__incident_review = Slot(uri=ISO27001.incident_review, name="ismsSecurityIncident__incident_review", curie=ISO27001.curie('incident_review'),
                    model_uri=ISO27001.ismsSecurityIncident__incident_review, domain=None, range=Optional[str])
 
-slots.IsmsRecord_title = Slot(uri=SCHEMA.name, name="IsmsRecord_title", curie=SCHEMA.curie('name'),
-                   model_uri=ISO27001.IsmsRecord_title, domain=IsmsRecord, range=str,
+slots.IsmsRecordMixin_title = Slot(uri=SCHEMA.name, name="IsmsRecordMixin_title", curie=SCHEMA.curie('name'),
+                   model_uri=ISO27001.IsmsRecordMixin_title, domain=None, range=str,
                    pattern=re.compile(r'^\s*\S'))
 
 slots.IsmsIncludedControl_implementation_state = Slot(uri=ISO27001.implementation_state, name="IsmsIncludedControl_implementation_state", curie=ISO27001.curie('implementation_state'),

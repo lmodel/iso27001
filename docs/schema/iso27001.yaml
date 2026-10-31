@@ -1493,9 +1493,9 @@ slots:
     from_schema: https://w3id.org/lmodel/iso27001
     slot_uri: iso27001:isms_id
     identifier: true
-    owner: IsmsRecord
+    owner: IsmsRecordMixin
     domain_of:
-    - IsmsRecord
+    - IsmsRecordMixin
     range: uriorcurie
     required: true
   title:
@@ -1509,9 +1509,9 @@ slots:
     mappings:
     - schema:name
     slot_uri: schema:name
-    owner: IsmsRecord
+    owner: IsmsRecordMixin
     domain_of:
-    - IsmsRecord
+    - IsmsRecordMixin
     range: string
   description:
     name: description
@@ -1524,9 +1524,9 @@ slots:
     mappings:
     - schema:description
     slot_uri: schema:description
-    owner: IsmsRecord
+    owner: IsmsRecordMixin
     domain_of:
-    - IsmsRecord
+    - IsmsRecordMixin
     range: string
   responsible_role:
     name: responsible_role
@@ -4998,8 +4998,8 @@ slots:
     domain_of:
     - IsmsSecurityIncident
     range: string
-  IsmsRecord_title:
-    name: IsmsRecord_title
+  IsmsRecordMixin_title:
+    name: IsmsRecordMixin_title
     definition_uri: https://w3id.org/lmodel/iso27001/title
     description: The name the organization gives the record.
     comments:
@@ -5009,12 +5009,12 @@ slots:
     mappings:
     - schema:name
     is_a: title
-    domain: IsmsRecord
+    domain: IsmsRecordMixin
     slot_uri: schema:name
     alias: title
-    owner: IsmsRecord
+    owner: IsmsRecordMixin
     domain_of:
-    - IsmsRecord
+    - IsmsRecordMixin
     is_usage_slot: true
     usage_slot_name: title
     range: string
@@ -5053,23 +5053,28 @@ slots:
     range: IsmsAnnexAControl
     required: true
 classes:
-  IsmsRecord:
-    name: IsmsRecord
-    definition_uri: https://w3id.org/lmodel/iso27001/IsmsRecord
-    description: 'Anything the ISMS keeps a record of that other records can refer
-      to: it has an identifier, a title and a description.'
+  IsmsRecordMixin:
+    name: IsmsRecordMixin
+    definition_uri: https://w3id.org/lmodel/iso27001/IsmsRecordMixin
+    description: 'What every record of the ISMS has, so that other records can refer
+      to it: an identifier, a title and a description.'
+    comments:
+    - 'It is a mixin, not a base class, so that the adapt copy can re-root some record
+      classes on LOKF''s Concept and leave the others as they are: lokf adapt replaces
+      isms_id with LOKF''s id, and a class that declares id itself must descend from
+      Concept.'
     from_schema: https://w3id.org/lmodel/iso27001
-    abstract: true
+    mixin: true
     slots:
     - isms_id
-    - IsmsRecord_title
+    - IsmsRecordMixin_title
     - description
     slot_usage:
       title:
         name: title
         required: true
         pattern: ^\s*\S
-    class_uri: iso27001:IsmsRecord
+    class_uri: iso27001:IsmsRecordMixin
   IsmsDocumentControlMixin:
     name: IsmsDocumentControlMixin
     definition_uri: https://w3id.org/lmodel/iso27001/IsmsDocumentControlMixin
@@ -5179,11 +5184,9 @@ classes:
     from_schema: https://w3id.org/lmodel/iso27001
     related_mappings:
     - oscal:SystemSecurityPlan
-    is_a: IsmsRecord
+    mixins:
+    - IsmsRecordMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsManagementSystem__isms_organization
     - ismsManagementSystem__isms_top_management
     - ismsManagementSystem__isms_governing_body
@@ -5229,6 +5232,9 @@ classes:
     - ismsManagementSystem__isms_corrective_actions
     - ismsManagementSystem__isms_improvements
     - ismsManagementSystem__isms_security_events
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     attributes:
       isms_organization:
         name: isms_organization
@@ -5542,11 +5548,9 @@ classes:
     - spdx_core:Organization
     broad_mappings:
     - oscal:Party
-    is_a: IsmsRecord
+    mixins:
+    - IsmsRecordMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsOrganization__organization_legal_name
     - ismsOrganization__organization_trading_names
     - ismsOrganization__organization_kind
@@ -5558,6 +5562,9 @@ classes:
     - ismsOrganization__organization_parent
     - ismsOrganization__organization_subsidiaries
     - ismsOrganization__organization_climate_change_relevant
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     attributes:
       organization_legal_name:
         name: organization_legal_name
@@ -5622,11 +5629,9 @@ classes:
     in_subset:
     - isms_core
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
+    mixins:
+    - IsmsRecordMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsInterestedParty__party_category
     - ismsInterestedParty__party_relationship
     - ismsInterestedParty__party_requirements
@@ -5634,6 +5639,9 @@ classes:
     - ismsInterestedParty__party_climate_change_requirements
     - ismsInterestedParty__party_communication_needs
     - ismsInterestedParty__party_contact
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     attributes:
       party_category:
         name: party_category
@@ -5681,13 +5689,10 @@ classes:
     - isms_core
     - isms_documented_information
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
     mixins:
+    - IsmsRecordMixin
     - IsmsDocumentControlMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsPolicy__policy_statement
     - ismsPolicy__policy_objectives_framework
     - ismsPolicy__policy_commitments
@@ -5695,6 +5700,9 @@ classes:
     - ismsPolicy__policy_communication_date
     - ismsPolicy__policy_acknowledgement_required
     - ismsPolicy__policy_management_systems
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     - ismsDocumentControlMixin__document_reference
     - ismsDocumentControlMixin__document_version
     - ismsDocumentControlMixin__document_author
@@ -5754,17 +5762,17 @@ classes:
     - isms_annex_a
     - isms_documented_information
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
     mixins:
+    - IsmsRecordMixin
     - IsmsDocumentControlMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - relevant_controls
     - ismsTopicSpecificPolicy__topic_policy_topic
     - ismsTopicSpecificPolicy__topic_policy_parent
     - ismsTopicSpecificPolicy__topic_policy_audience
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     - ismsDocumentControlMixin__document_reference
     - ismsDocumentControlMixin__document_version
     - ismsDocumentControlMixin__document_author
@@ -5808,11 +5816,9 @@ classes:
     from_schema: https://w3id.org/lmodel/iso27001
     close_mappings:
     - oscal:Role
-    is_a: IsmsRecord
+    mixins:
+    - IsmsRecordMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsRole__role_category
     - ismsRole__role_responsibilities
     - ismsRole__role_authorities
@@ -5820,6 +5826,9 @@ classes:
     - ismsRole__role_holders
     - ismsRole__role_delegation
     - ismsRole__role_reports_to
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     attributes:
       role_category:
         name: role_category
@@ -5859,11 +5868,9 @@ classes:
     in_subset:
     - isms_core
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
+    mixins:
+    - IsmsRecordMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - responsible_role
     - relevant_controls
     - ismsObjective__objective_statement
@@ -5877,6 +5884,9 @@ classes:
     - ismsObjective__objective_risks
     - ismsObjective__objective_action_plan
     - ismsObjective__objective_resources
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     attributes:
       objective_statement:
         name: objective_statement
@@ -5930,13 +5940,10 @@ classes:
     - isms_risk_management
     - isms_documented_information
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
     mixins:
+    - IsmsRecordMixin
     - IsmsDocumentControlMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsRiskAssessmentProcess__risk_acceptance_criteria
     - ismsRiskAssessmentProcess__risk_assessment_criteria
     - ismsRiskAssessmentProcess__risk_assessment_method
@@ -5945,6 +5952,9 @@ classes:
     - ismsRiskAssessmentProcess__risk_matrix
     - ismsRiskAssessmentProcess__risk_assessment_frequency
     - ismsRiskAssessmentProcess__risk_assessment_triggers
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     - ismsDocumentControlMixin__document_reference
     - ismsDocumentControlMixin__document_version
     - ismsDocumentControlMixin__document_author
@@ -6001,13 +6011,10 @@ classes:
     in_subset:
     - isms_risk_management
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
     mixins:
+    - IsmsRecordMixin
     - IsmsDocumentControlMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsRiskAssessment__assessment_scope
     - ismsRiskAssessment__assessment_date
     - ismsRiskAssessment__assessment_assessor
@@ -6016,6 +6023,9 @@ classes:
     - ismsRiskAssessment__assessment_summary
     - ismsRiskAssessment__assessment_recommendations
     - ismsRiskAssessment__assessment_next_date
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     - ismsDocumentControlMixin__document_reference
     - ismsDocumentControlMixin__document_version
     - ismsDocumentControlMixin__document_author
@@ -6077,11 +6087,9 @@ classes:
     in_subset:
     - isms_risk_management
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
+    mixins:
+    - IsmsRecordMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - affected_assets
     - affected_security_properties
     - ismsRisk__risk_source
@@ -6095,6 +6103,9 @@ classes:
     - ismsRisk__risk_residual_level
     - ismsRisk__risk_treatment_option
     - ismsRisk__risk_treatment_priority
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     attributes:
       risk_source:
         name: risk_source
@@ -6153,18 +6164,18 @@ classes:
     - isms_risk_management
     - isms_documented_information
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
     mixins:
+    - IsmsRecordMixin
     - IsmsDocumentControlMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsRiskTreatmentProcess__treatment_options_guidance
     - ismsRiskTreatmentProcess__treatment_control_selection
     - ismsRiskTreatmentProcess__treatment_annex_a_comparison
     - ismsRiskTreatmentProcess__treatment_soa_template
     - ismsRiskTreatmentProcess__treatment_approval_workflow
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     - ismsDocumentControlMixin__document_reference
     - ismsDocumentControlMixin__document_version
     - ismsDocumentControlMixin__document_author
@@ -6216,13 +6227,10 @@ classes:
     from_schema: https://w3id.org/lmodel/iso27001
     related_mappings:
     - oscal:PlanOfActionAndMilestones
-    is_a: IsmsRecord
     mixins:
+    - IsmsRecordMixin
     - IsmsDocumentControlMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - implementation_state
     - ismsRiskTreatmentPlan__plan_scope
     - ismsRiskTreatmentPlan__plan_risks
@@ -6234,6 +6242,9 @@ classes:
     - ismsRiskTreatmentPlan__plan_risk_owner_approval
     - ismsRiskTreatmentPlan__plan_residual_risk_acceptance
     - ismsRiskTreatmentPlan__plan_completion_date
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     - ismsDocumentControlMixin__document_reference
     - ismsDocumentControlMixin__document_version
     - ismsDocumentControlMixin__document_author
@@ -6306,14 +6317,14 @@ classes:
     from_schema: https://w3id.org/lmodel/iso27001
     related_mappings:
     - oscal:SspControlImplementation
-    is_a: IsmsRecord
     mixins:
+    - IsmsRecordMixin
     - IsmsDocumentControlMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsStatementOfApplicability__soa_entries
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     - ismsDocumentControlMixin__document_reference
     - ismsDocumentControlMixin__document_version
     - ismsDocumentControlMixin__document_author
@@ -6456,11 +6467,9 @@ classes:
     related_mappings:
     - oscal:Control
     - nist_sp_800_53:Control
-    is_a: IsmsRecord
+    mixins:
+    - IsmsRecordMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - relevant_controls
     - implementation_state
     - ismsControl__control_annex_a_controls
@@ -6474,6 +6483,9 @@ classes:
     - ismsControl__control_effectiveness
     - ismsControl__control_last_tested
     - ismsControl__control_evidence
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     attributes:
       control_annex_a_controls:
         name: control_annex_a_controls
@@ -6533,11 +6545,9 @@ classes:
     related_mappings:
     - oscal:SspInventoryItem
     - spdx_software:Package
-    is_a: IsmsRecord
+    mixins:
+    - IsmsRecordMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - relevant_controls
     - ismsAsset__asset_category
     - ismsAsset__asset_owner
@@ -6545,6 +6555,9 @@ classes:
     - ismsAsset__asset_classification
     - ismsAsset__asset_location
     - ismsAsset__asset_criticality
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     attributes:
       asset_category:
         name: asset_category
@@ -6578,17 +6591,18 @@ classes:
     in_subset:
     - isms_core
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
+    mixins:
+    - IsmsRecordMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsResource__resource_category
     - ismsResource__resource_quantity
     - ismsResource__resource_allocation_date
     - ismsResource__resource_allocated_to
     - ismsResource__resource_cost
     - ismsResource__resource_availability
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     attributes:
       resource_category:
         name: resource_category
@@ -6624,13 +6638,10 @@ classes:
     - isms_core
     - isms_documented_information
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
     mixins:
+    - IsmsRecordMixin
     - IsmsDocumentControlMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsCompetenceRecord__competence_person
     - ismsCompetenceRecord__competence_role
     - ismsCompetenceRecord__competence_required
@@ -6640,6 +6651,9 @@ classes:
     - ismsCompetenceRecord__competence_assessment_date
     - ismsCompetenceRecord__competence_gaps
     - ismsCompetenceRecord__competence_actions
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     - ismsDocumentControlMixin__document_reference
     - ismsDocumentControlMixin__document_version
     - ismsDocumentControlMixin__document_author
@@ -6706,19 +6720,19 @@ classes:
     in_subset:
     - isms_core
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
     mixins:
+    - IsmsRecordMixin
     - IsmsDocumentControlMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsAwarenessProgramme__awareness_topics
     - ismsAwarenessProgramme__awareness_methods
     - ismsAwarenessProgramme__awareness_audience
     - ismsAwarenessProgramme__awareness_frequency
     - ismsAwarenessProgramme__awareness_completion_tracking
     - ismsAwarenessProgramme__awareness_effectiveness
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     - ismsDocumentControlMixin__document_reference
     - ismsDocumentControlMixin__document_version
     - ismsDocumentControlMixin__document_author
@@ -6771,14 +6785,14 @@ classes:
     - isms_core
     - isms_documented_information
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
     mixins:
+    - IsmsRecordMixin
     - IsmsDocumentControlMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsCommunicationPlan__communication_items
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     - ismsDocumentControlMixin__document_reference
     - ismsDocumentControlMixin__document_version
     - ismsDocumentControlMixin__document_author
@@ -6860,14 +6874,14 @@ classes:
     in_subset:
     - isms_documented_information
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
     mixins:
+    - IsmsRecordMixin
     - IsmsDocumentControlMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsDocumentedInformation__document_kind
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     - ismsDocumentControlMixin__document_reference
     - ismsDocumentControlMixin__document_version
     - ismsDocumentControlMixin__document_author
@@ -6904,19 +6918,19 @@ classes:
     in_subset:
     - isms_documented_information
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
     mixins:
+    - IsmsRecordMixin
     - IsmsDocumentControlMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - relevant_controls
     - ismsOperationalProcedure__procedure_scope
     - ismsOperationalProcedure__procedure_criteria
     - ismsOperationalProcedure__procedure_control_measures
     - ismsOperationalProcedure__procedure_roles
     - ismsOperationalProcedure__procedure_change_control
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     - ismsDocumentControlMixin__document_reference
     - ismsDocumentControlMixin__document_version
     - ismsDocumentControlMixin__document_author
@@ -6967,14 +6981,14 @@ classes:
     - isms_performance_evaluation
     - isms_documented_information
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
     mixins:
+    - IsmsRecordMixin
     - IsmsDocumentControlMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsMonitoringProgramme__monitoring_items
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     - ismsDocumentControlMixin__document_reference
     - ismsDocumentControlMixin__document_version
     - ismsDocumentControlMixin__document_author
@@ -7073,19 +7087,19 @@ classes:
     from_schema: https://w3id.org/lmodel/iso27001
     related_mappings:
     - oscal:AssessmentPlan
-    is_a: IsmsRecord
     mixins:
+    - IsmsRecordMixin
     - IsmsDocumentControlMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsAuditProgramme__programme_period
     - ismsAuditProgramme__programme_audits
     - ismsAuditProgramme__programme_frequency_rationale
     - ismsAuditProgramme__programme_resources
     - ismsAuditProgramme__programme_auditor_qualifications
     - ismsAuditProgramme__programme_status
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     - ismsDocumentControlMixin__document_reference
     - ismsDocumentControlMixin__document_version
     - ismsDocumentControlMixin__document_author
@@ -7142,13 +7156,10 @@ classes:
     from_schema: https://w3id.org/lmodel/iso27001
     related_mappings:
     - oscal:AssessmentPlan
-    is_a: IsmsRecord
     mixins:
+    - IsmsRecordMixin
     - IsmsDocumentControlMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsAudit__audit_type
     - ismsAudit__audit_standards
     - ismsAudit__audit_scope
@@ -7164,6 +7175,9 @@ classes:
     - ismsAudit__audit_conclusion
     - ismsAudit__audit_report_date
     - ismsAudit__audit_report_distribution
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     - ismsDocumentControlMixin__document_reference
     - ismsDocumentControlMixin__document_version
     - ismsDocumentControlMixin__document_author
@@ -7257,11 +7271,9 @@ classes:
     in_subset:
     - isms_performance_evaluation
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
+    mixins:
+    - IsmsRecordMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsAuditFinding__finding_type
     - ismsAuditFinding__finding_requirement
     - ismsAuditFinding__finding_control
@@ -7273,6 +7285,9 @@ classes:
     - ismsAuditFinding__finding_corrective_action
     - ismsAuditFinding__finding_closure_status
     - ismsAuditFinding__finding_closure_date
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     attributes:
       finding_type:
         name: finding_type
@@ -7328,13 +7343,10 @@ classes:
     - isms_performance_evaluation
     - isms_documented_information
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
     mixins:
+    - IsmsRecordMixin
     - IsmsDocumentControlMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsManagementReview__review_held_on
     - ismsManagementReview__review_attendees
     - ismsManagementReview__review_previous_actions
@@ -7350,6 +7362,9 @@ classes:
     - ismsManagementReview__review_decisions
     - ismsManagementReview__review_actions
     - ismsManagementReview__review_next_date
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     - ismsDocumentControlMixin__document_reference
     - ismsDocumentControlMixin__document_version
     - ismsDocumentControlMixin__document_author
@@ -7433,11 +7448,9 @@ classes:
     in_subset:
     - isms_improvement
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
+    mixins:
+    - IsmsRecordMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - ismsNonconformity__nonconformity_source
     - ismsNonconformity__nonconformity_detected_on
     - ismsNonconformity__nonconformity_detected_by
@@ -7449,6 +7462,9 @@ classes:
     - ismsNonconformity__nonconformity_status
     - ismsNonconformity__nonconformity_closure_date
     - ismsNonconformity__nonconformity_closure_evidence
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     attributes:
       nonconformity_source:
         name: nonconformity_source
@@ -7503,11 +7519,9 @@ classes:
     from_schema: https://w3id.org/lmodel/iso27001
     related_mappings:
     - oscal:PoamItem
-    is_a: IsmsRecord
+    mixins:
+    - IsmsRecordMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - responsible_role
     - ismsCorrectiveAction__action_nonconformities
     - ismsCorrectiveAction__action_root_cause
@@ -7519,6 +7533,9 @@ classes:
     - ismsCorrectiveAction__action_effective
     - ismsCorrectiveAction__action_isms_changes
     - ismsCorrectiveAction__action_status
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     attributes:
       action_nonconformities:
         name: action_nonconformities
@@ -7569,11 +7586,9 @@ classes:
     in_subset:
     - isms_improvement
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
+    mixins:
+    - IsmsRecordMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - responsible_role
     - ismsImprovementOpportunity__improvement_source
     - ismsImprovementOpportunity__improvement_identified_on
@@ -7585,6 +7600,9 @@ classes:
     - ismsImprovementOpportunity__improvement_completion_date
     - ismsImprovementOpportunity__improvement_outcome
     - ismsImprovementOpportunity__improvement_status
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     attributes:
       improvement_source:
         name: improvement_source
@@ -7634,16 +7652,17 @@ classes:
     in_subset:
     - isms_annex_a
     from_schema: https://w3id.org/lmodel/iso27001
-    is_a: IsmsRecord
+    mixins:
+    - IsmsRecordMixin
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - affected_assets
     - ismsSecurityEvent__event_type
     - ismsSecurityEvent__event_occurred_at
     - ismsSecurityEvent__event_reporter
     - ismsSecurityEvent__event_assessment
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     attributes:
       event_type:
         name: event_type
@@ -7677,14 +7696,14 @@ classes:
     from_schema: https://w3id.org/lmodel/iso27001
     is_a: IsmsSecurityEvent
     slots:
-    - isms_id
-    - IsmsRecord_title
-    - description
     - affected_assets
     - ismsSecurityEvent__event_type
     - ismsSecurityEvent__event_occurred_at
     - ismsSecurityEvent__event_reporter
     - ismsSecurityEvent__event_assessment
+    - isms_id
+    - IsmsRecordMixin_title
+    - description
     - affected_security_properties
     - ismsSecurityIncident__incident_category
     - ismsSecurityIncident__incident_severity
@@ -7765,6 +7784,6 @@ classes:
     class_uri: iso27001:IsmsSecurityIncident
 metamodel_version: 1.12.0
 source_file: iso27001.yaml
-source_file_date: '2026-10-30T23:42:12'
-source_file_size: 77656
+source_file_date: '2026-10-31T00:01:48'
+source_file_size: 78223
 

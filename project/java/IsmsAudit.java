@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsAudit extends IsmsRecord {
+public class IsmsAudit  {
 
   private String auditType;
   private List<String> auditStandards;
@@ -31,6 +31,9 @@ public class IsmsAudit extends IsmsRecord {
   private String auditConclusion;
   private LocalDate auditReportDate;
   private List<String> auditReportDistribution;
+  private URI ismsId;
+  private String title;
+  private String description;
   private String documentReference;
   private String documentVersion;
   private String documentAuthor;

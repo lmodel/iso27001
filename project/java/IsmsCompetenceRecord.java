@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsCompetenceRecord extends IsmsRecord {
+public class IsmsCompetenceRecord  {
 
   private String competencePerson;
   private IsmsRole competenceRole;
@@ -25,6 +25,9 @@ public class IsmsCompetenceRecord extends IsmsRecord {
   private LocalDate competenceAssessmentDate;
   private List<String> competenceGaps;
   private List<String> competenceActions;
+  private URI ismsId;
+  private String title;
+  private String description;
   private String documentReference;
   private String documentVersion;
   private String documentAuthor;

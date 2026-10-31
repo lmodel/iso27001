@@ -5,10 +5,10 @@
  classDiagram
     class IsmsAudit
     click IsmsAudit href "../IsmsAudit"
+      IsmsRecordMixin <|-- IsmsAudit
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       IsmsDocumentControlMixin <|-- IsmsAudit
         click IsmsDocumentControlMixin href "../IsmsDocumentControlMixin"
-      IsmsRecord <|-- IsmsAudit
-        click IsmsRecord href "../IsmsRecord"
       
       IsmsAudit : audit_auditees
         

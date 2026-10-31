@@ -769,8 +769,8 @@ inline bool from_string(const char* str, IsmsManagementSystemStandard& out) {
     return false;
 }
 
-/// Anything the ISMS keeps a record of that other records can refer to: it has an identifier, a title and a description.
-struct IsmsRecord {
+/// What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.
+struct IsmsRecordMixin {
     /// The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
     std::string isms_id;
     /// The name the organization gives the record.
@@ -820,7 +820,7 @@ struct IsmsDocumentControlMixin {
 
 
 /// One organization's information security management system: its scope and context, and every record it keeps, each kind in a list of its own.
-struct IsmsManagementSystem : public IsmsRecord {
+struct IsmsManagementSystem : public IsmsRecordMixin {
     /// The organization that runs the ISMS.
     std::optional<IsmsOrganization> isms_organization = std::nullopt;
     /// The person or group that directs and controls the organization at the highest level.
@@ -915,7 +915,7 @@ struct IsmsManagementSystem : public IsmsRecord {
 
 
 /// The organization that runs the ISMS, with what it needs to know about itself to understand its context.
-struct IsmsOrganization : public IsmsRecord {
+struct IsmsOrganization : public IsmsRecordMixin {
     /// The organization's registered legal name.
     std::optional<std::string> organization_legal_name = std::nullopt;
     /// Other names the organization trades under.
@@ -942,7 +942,7 @@ struct IsmsOrganization : public IsmsRecord {
 
 
 /// A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it, such as staff, customers, regulators or suppliers.
-struct IsmsInterestedParty : public IsmsRecord {
+struct IsmsInterestedParty : public IsmsRecordMixin {
     /// What kind of interested party it is, in the organization's own terms.
     std::optional<std::string> party_category = std::nullopt;
     /// How the party relates to the organization.
@@ -961,7 +961,7 @@ struct IsmsInterestedParty : public IsmsRecord {
 
 
 /// The information security policy that top management sets: the organization's commitment and the frame for its information security objectives.
-struct IsmsPolicy : public IsmsRecord, public IsmsDocumentControlMixin {
+struct IsmsPolicy : public IsmsRecordMixin, public IsmsDocumentControlMixin {
     /// The policy's own statement, in the organization's words.
     std::optional<std::string> policy_statement = std::nullopt;
     /// How the policy frames the setting of information security objectives.
@@ -980,7 +980,7 @@ struct IsmsPolicy : public IsmsRecord, public IsmsDocumentControlMixin {
 
 
 /// A policy on one topic of information security, such as access control or backup, that supports the information security policy.
-struct IsmsTopicSpecificPolicy : public IsmsRecord, public IsmsDocumentControlMixin {
+struct IsmsTopicSpecificPolicy : public IsmsRecordMixin, public IsmsDocumentControlMixin {
     /// The organization's controls that the record concerns.
     std::vector<IsmsControl> relevant_controls = {};
     /// The topic the policy covers.
@@ -993,7 +993,7 @@ struct IsmsTopicSpecificPolicy : public IsmsRecord, public IsmsDocumentControlMi
 
 
 /// A role in the ISMS, with the responsibilities and authorities it carries and who holds it.
-struct IsmsRole : public IsmsRecord {
+struct IsmsRole : public IsmsRecordMixin {
     /// What kind of role it is, in the organization's own terms.
     std::optional<std::string> role_category = std::nullopt;
     /// The responsibilities assigned to the role.
@@ -1012,7 +1012,7 @@ struct IsmsRole : public IsmsRecord {
 
 
 /// An information security objective: a measurable result the organization aims for, with how it plans to reach it and how it measures progress.
-struct IsmsObjective : public IsmsRecord {
+struct IsmsObjective : public IsmsRecordMixin {
     /// The role that answers for the record's activity or outcome.
     std::optional<IsmsRole> responsible_role = std::nullopt;
     /// The organization's controls that the record concerns.
@@ -1043,7 +1043,7 @@ struct IsmsObjective : public IsmsRecord {
 
 
 /// The organization's process for assessing information security risks: its criteria for accepting risk and for assessing it, its scales and method, and when it runs.
-struct IsmsRiskAssessmentProcess : public IsmsRecord, public IsmsDocumentControlMixin {
+struct IsmsRiskAssessmentProcess : public IsmsRecordMixin, public IsmsDocumentControlMixin {
     /// The criteria for accepting a risk.
     std::optional<std::string> risk_acceptance_criteria = std::nullopt;
     /// The criteria for carrying out a risk assessment.
@@ -1064,7 +1064,7 @@ struct IsmsRiskAssessmentProcess : public IsmsRecord, public IsmsDocumentControl
 
 
 /// One risk assessment carried out under the risk assessment process, and what it found.
-struct IsmsRiskAssessment : public IsmsRecord, public IsmsDocumentControlMixin {
+struct IsmsRiskAssessment : public IsmsRecordMixin, public IsmsDocumentControlMixin {
     /// What the assessment covered.
     std::optional<std::string> assessment_scope = std::nullopt;
     /// When the assessment was carried out.
@@ -1085,7 +1085,7 @@ struct IsmsRiskAssessment : public IsmsRecord, public IsmsDocumentControlMixin {
 
 
 /// An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated.
-struct IsmsRisk : public IsmsRecord {
+struct IsmsRisk : public IsmsRecordMixin {
     /// The assets the risk, event or incident affects.
     std::vector<IsmsAsset> affected_assets = {};
     /// Which of confidentiality, integrity and availability the risk or incident threatens.
@@ -1116,7 +1116,7 @@ struct IsmsRisk : public IsmsRecord {
 
 
 /// The organization's process for treating information security risks: how it chooses treatments and controls, checks them against Annex A, and produces the Statement of Applicability.
-struct IsmsRiskTreatmentProcess : public IsmsRecord, public IsmsDocumentControlMixin {
+struct IsmsRiskTreatmentProcess : public IsmsRecordMixin, public IsmsDocumentControlMixin {
     /// How a treatment option is chosen for a risk.
     std::optional<std::string> treatment_options_guidance = std::nullopt;
     /// How the controls a treatment needs are chosen.
@@ -1131,7 +1131,7 @@ struct IsmsRiskTreatmentProcess : public IsmsRecord, public IsmsDocumentControlM
 
 
 /// A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's approval of the plan and of the residual risk.
-struct IsmsRiskTreatmentPlan : public IsmsRecord, public IsmsDocumentControlMixin {
+struct IsmsRiskTreatmentPlan : public IsmsRecordMixin, public IsmsDocumentControlMixin {
     /// How far the control or the plan has been put into effect.
     std::optional<IsmsImplementationStatus> implementation_state = std::nullopt;
     /// What the plan covers.
@@ -1158,7 +1158,7 @@ struct IsmsRiskTreatmentPlan : public IsmsRecord, public IsmsDocumentControlMixi
 
 
 /// The Statement of Applicability: each control the organization needs, with why it is included and whether it is in place, and each Annex A control it leaves out, with why.
-struct IsmsStatementOfApplicability : public IsmsRecord, public IsmsDocumentControlMixin {
+struct IsmsStatementOfApplicability : public IsmsRecordMixin, public IsmsDocumentControlMixin {
     /// The statement's entries, one for each control included or Annex A control excluded.
     std::vector<IsmsApplicabilityEntry> soa_entries = {};
 };
@@ -1196,7 +1196,7 @@ struct IsmsExcludedControl : public IsmsApplicabilityEntry {
 
 
 /// A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.
-struct IsmsControl : public IsmsRecord {
+struct IsmsControl : public IsmsRecordMixin {
     /// The organization's controls that the record concerns.
     std::vector<IsmsControl> relevant_controls = {};
     /// How far the control or the plan has been put into effect.
@@ -1227,7 +1227,7 @@ struct IsmsControl : public IsmsRecord {
 
 
 /// An item in the inventory of information and other associated assets: what it is, who owns and looks after it, where it is, how it is classified and how much it matters.
-struct IsmsAsset : public IsmsRecord {
+struct IsmsAsset : public IsmsRecordMixin {
     /// The organization's controls that the record concerns.
     std::vector<IsmsControl> relevant_controls = {};
     /// What kind of asset it is, such as information, software, hardware or a service.
@@ -1246,7 +1246,7 @@ struct IsmsAsset : public IsmsRecord {
 
 
 /// A resource provided for the ISMS, such as people, time, tools or budget.
-struct IsmsResource : public IsmsRecord {
+struct IsmsResource : public IsmsRecordMixin {
     /// What kind of resource it is.
     std::optional<std::string> resource_category = std::nullopt;
     /// How much of the resource is provided.
@@ -1263,7 +1263,7 @@ struct IsmsResource : public IsmsRecord {
 
 
 /// The evidence of one person's competence for work that affects information security, and what is done to close any gap.
-struct IsmsCompetenceRecord : public IsmsRecord, public IsmsDocumentControlMixin {
+struct IsmsCompetenceRecord : public IsmsRecordMixin, public IsmsDocumentControlMixin {
     /// The person the record is about.
     std::optional<std::string> competence_person = std::nullopt;
     /// The role the person holds.
@@ -1286,7 +1286,7 @@ struct IsmsCompetenceRecord : public IsmsRecord, public IsmsDocumentControlMixin
 
 
 /// The programme that makes people working for the organization aware of the policy, their part in the ISMS and what failing it would mean.
-struct IsmsAwarenessProgramme : public IsmsRecord, public IsmsDocumentControlMixin {
+struct IsmsAwarenessProgramme : public IsmsRecordMixin, public IsmsDocumentControlMixin {
     /// The topics the programme covers.
     std::vector<std::string> awareness_topics = {};
     /// How the programme is delivered.
@@ -1303,7 +1303,7 @@ struct IsmsAwarenessProgramme : public IsmsRecord, public IsmsDocumentControlMix
 
 
 /// The plan for communication about the ISMS, inside the organization and outside it.
-struct IsmsCommunicationPlan : public IsmsRecord, public IsmsDocumentControlMixin {
+struct IsmsCommunicationPlan : public IsmsRecordMixin, public IsmsDocumentControlMixin {
     /// The communications the plan provides for.
     std::vector<IsmsCommunication> communication_items = {};
 };
@@ -1329,14 +1329,14 @@ struct IsmsCommunication {
 
 
 /// A piece of documented information the ISMS keeps under control that no more specific record describes, such as a procedure, a standard, a plan or a report.
-struct IsmsDocumentedInformation : public IsmsRecord, public IsmsDocumentControlMixin {
+struct IsmsDocumentedInformation : public IsmsRecordMixin, public IsmsDocumentControlMixin {
     /// What kind of documented information it is.
     IsmsDocumentKind document_kind;
 };
 
 
 /// A procedure by which the organization plans and controls the processes that meet its information security requirements.
-struct IsmsOperationalProcedure : public IsmsRecord, public IsmsDocumentControlMixin {
+struct IsmsOperationalProcedure : public IsmsRecordMixin, public IsmsDocumentControlMixin {
     /// The organization's controls that the record concerns.
     std::vector<IsmsControl> relevant_controls = {};
     /// What the procedure covers.
@@ -1353,7 +1353,7 @@ struct IsmsOperationalProcedure : public IsmsRecord, public IsmsDocumentControlM
 
 
 /// The programme of monitoring, measurement, analysis and evaluation of information security performance and of the ISMS's effectiveness.
-struct IsmsMonitoringProgramme : public IsmsRecord, public IsmsDocumentControlMixin {
+struct IsmsMonitoringProgramme : public IsmsRecordMixin, public IsmsDocumentControlMixin {
     /// What the programme monitors and measures.
     std::vector<IsmsMonitoringItem> monitoring_items = {};
 };
@@ -1387,7 +1387,7 @@ struct IsmsMonitoringItem {
 
 
 /// An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors they need.
-struct IsmsAuditProgramme : public IsmsRecord, public IsmsDocumentControlMixin {
+struct IsmsAuditProgramme : public IsmsRecordMixin, public IsmsDocumentControlMixin {
     /// The period the programme covers.
     std::optional<std::string> programme_period = std::nullopt;
     /// The audits the programme plans.
@@ -1404,7 +1404,7 @@ struct IsmsAuditProgramme : public IsmsRecord, public IsmsDocumentControlMixin {
 
 
 /// An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope, criteria, team, findings and conclusion.
-struct IsmsAudit : public IsmsRecord, public IsmsDocumentControlMixin {
+struct IsmsAudit : public IsmsRecordMixin, public IsmsDocumentControlMixin {
     /// Who carries out the audit, relative to the organization.
     IsmsAuditType audit_type;
     /// The management system standards the audit covers.
@@ -1439,7 +1439,7 @@ struct IsmsAudit : public IsmsRecord, public IsmsDocumentControlMixin {
 
 
 /// One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it concerns, its evidence and how it is closed.
-struct IsmsAuditFinding : public IsmsRecord {
+struct IsmsAuditFinding : public IsmsRecordMixin {
     /// What kind of finding it is.
     IsmsAuditFindingType finding_type;
     /// The clause or Annex A control of ISO/IEC 27001:2022 the finding concerns, by number.
@@ -1466,7 +1466,7 @@ struct IsmsAuditFinding : public IsmsRecord {
 
 
 /// A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.
-struct IsmsManagementReview : public IsmsRecord, public IsmsDocumentControlMixin {
+struct IsmsManagementReview : public IsmsRecordMixin, public IsmsDocumentControlMixin {
     /// When the review was held.
     std::string review_held_on;
     /// Who attended the review.
@@ -1501,7 +1501,7 @@ struct IsmsManagementReview : public IsmsRecord, public IsmsDocumentControlMixin
 
 
 /// A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was closed.
-struct IsmsNonconformity : public IsmsRecord {
+struct IsmsNonconformity : public IsmsRecordMixin {
     /// How the nonconformity came to light, such as an audit, a review or an incident.
     std::optional<std::string> nonconformity_source = std::nullopt;
     /// When the nonconformity was found.
@@ -1528,7 +1528,7 @@ struct IsmsNonconformity : public IsmsRecord {
 
 
 /// An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it worked.
-struct IsmsCorrectiveAction : public IsmsRecord {
+struct IsmsCorrectiveAction : public IsmsRecordMixin {
     /// The role that answers for the record's activity or outcome.
     std::optional<IsmsRole> responsible_role = std::nullopt;
     /// The nonconformities the action addresses.
@@ -1555,7 +1555,7 @@ struct IsmsCorrectiveAction : public IsmsRecord {
 
 
 /// An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.
-struct IsmsImprovementOpportunity : public IsmsRecord {
+struct IsmsImprovementOpportunity : public IsmsRecordMixin {
     /// The role that answers for the record's activity or outcome.
     std::optional<IsmsRole> responsible_role = std::nullopt;
     /// Where the opportunity came from, such as a review, an audit or daily work.
@@ -1582,7 +1582,7 @@ struct IsmsImprovementOpportunity : public IsmsRecord {
 
 
 /// An information security event someone reported, and the assessment of whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.
-struct IsmsSecurityEvent : public IsmsRecord {
+struct IsmsSecurityEvent : public IsmsRecordMixin {
     /// The assets the risk, event or incident affects.
     std::vector<IsmsAsset> affected_assets = {};
     /// The kind of record: IsmsSecurityEvent, or IsmsSecurityIncident for an event assessed as an incident.

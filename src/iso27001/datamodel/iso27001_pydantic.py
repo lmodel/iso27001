@@ -647,26 +647,30 @@ class IsmsManagementSystemStandard(str, Enum):
 
 
 
-class IsmsRecord(ConfiguredBaseModel):
+class IsmsRecordMixin(ConfiguredBaseModel):
     """
-    Anything the ISMS keeps a record of that other records can refer to: it has an identifier, a title and a description.
+    What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'comments': ['It is a mixin, not a base class, so that the adapt copy can '
+                      "re-root some record classes on LOKF's Concept and leave the "
+                      "others as they are: lokf adapt replaces isms_id with LOKF's id, "
+                      'and a class that declares id itself must descend from Concept.'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
+         'mixin': True,
          'slot_usage': {'title': {'name': 'title',
                                   'pattern': '^\\s*\\S',
                                   'required': True}}})
 
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
     title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
                       "lokf adapt folds it into LOKF's slot and a knowledge bundle "
                       'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
                       "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
                       'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:description'} })
 
     @field_validator('title')
@@ -711,13 +715,14 @@ class IsmsDocumentControlMixin(ConfiguredBaseModel):
     document_external_source: Optional[str] = Field(default=None, description="""Who the document came from, when it comes from outside.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
 
 
-class IsmsManagementSystem(IsmsRecord):
+class IsmsManagementSystem(IsmsRecordMixin):
     """
     One organization's information security management system: its scope and context, and every record it keeps, each kind in a list of its own.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '4.4'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_core'],
+         'mixins': ['IsmsRecordMixin'],
          'related_mappings': ['oscal:SystemSecurityPlan'],
          'tree_root': True})
 
@@ -778,16 +783,16 @@ class IsmsManagementSystem(IsmsRecord):
     isms_corrective_actions: Optional[list[IsmsCorrectiveAction]] = Field(default=None, description="""The corrective actions taken.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsManagementSystem']} })
     isms_improvements: Optional[list[IsmsImprovementOpportunity]] = Field(default=None, description="""The opportunities for improvement identified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsManagementSystem']} })
     isms_security_events: Optional[list[Union[IsmsSecurityEvent,IsmsSecurityIncident]]] = Field(default=None, description="""The information security events reported, the incidents among them.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsManagementSystem']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
     title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
                       "lokf adapt folds it into LOKF's slot and a knowledge bundle "
                       'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
                       "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
                       'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:description'} })
 
     @field_validator('title')
@@ -804,7 +809,7 @@ class IsmsManagementSystem(IsmsRecord):
         return v
 
 
-class IsmsOrganization(IsmsRecord):
+class IsmsOrganization(IsmsRecordMixin):
     """
     The organization that runs the ISMS, with what it needs to know about itself to understand its context.
     """
@@ -812,7 +817,8 @@ class IsmsOrganization(IsmsRecord):
          'broad_mappings': ['oscal:Party'],
          'close_mappings': ['spdx_core:Organization'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['isms_core']})
+         'in_subset': ['isms_core'],
+         'mixins': ['IsmsRecordMixin']})
 
     organization_legal_name: Optional[str] = Field(default=None, description="""The organization's registered legal name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsOrganization']} })
     organization_trading_names: Optional[list[str]] = Field(default=None, description="""Other names the organization trades under.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsOrganization']} })
@@ -829,16 +835,16 @@ class IsmsOrganization(IsmsRecord):
                                                          '1:2024'},
                          'iso27001_clause': {'tag': 'iso27001_clause', 'value': '4.1'}},
          'domain_of': ['IsmsOrganization']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
     title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
                       "lokf adapt folds it into LOKF's slot and a knowledge bundle "
                       'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
                       "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
                       'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:description'} })
 
     @field_validator('title')
@@ -855,13 +861,14 @@ class IsmsOrganization(IsmsRecord):
         return v
 
 
-class IsmsInterestedParty(IsmsRecord):
+class IsmsInterestedParty(IsmsRecordMixin):
     """
     A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it, such as staff, customers, regulators or suppliers.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '4.2'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['isms_core']})
+         'in_subset': ['isms_core'],
+         'mixins': ['IsmsRecordMixin']})
 
     party_category: Optional[str] = Field(default=None, description="""What kind of interested party it is, in the organization's own terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsInterestedParty']} })
     party_relationship: Optional[str] = Field(default=None, description="""How the party relates to the organization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsInterestedParty']} })
@@ -874,16 +881,16 @@ class IsmsInterestedParty(IsmsRecord):
          'domain_of': ['IsmsInterestedParty']} })
     party_communication_needs: Optional[str] = Field(default=None, description="""What the party needs to be told, and how.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsInterestedParty']} })
     party_contact: Optional[str] = Field(default=None, description="""How to reach the party.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsInterestedParty']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
     title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
                       "lokf adapt folds it into LOKF's slot and a knowledge bundle "
                       'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
                       "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
                       'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:description'} })
 
     @field_validator('title')
@@ -900,14 +907,14 @@ class IsmsInterestedParty(IsmsRecord):
         return v
 
 
-class IsmsPolicy(IsmsDocumentControlMixin, IsmsRecord):
+class IsmsPolicy(IsmsDocumentControlMixin, IsmsRecordMixin):
     """
     The information security policy that top management sets: the organization's commitment and the frame for its information security objectives.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '5.2'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_core', 'isms_documented_information'],
-         'mixins': ['IsmsDocumentControlMixin']})
+         'mixins': ['IsmsRecordMixin', 'IsmsDocumentControlMixin']})
 
     policy_statement: Optional[str] = Field(default=None, description="""The policy's own statement, in the organization's words.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsPolicy']} })
     policy_objectives_framework: Optional[str] = Field(default=None, description="""How the policy frames the setting of information security objectives.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsPolicy']} })
@@ -916,6 +923,17 @@ class IsmsPolicy(IsmsDocumentControlMixin, IsmsRecord):
     policy_communication_date: Optional[date] = Field(default=None, description="""When the policy was communicated within the organization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsPolicy']} })
     policy_acknowledgement_required: Optional[bool] = Field(default=None, description="""Whether staff must acknowledge the policy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsPolicy']} })
     policy_management_systems: Optional[list[IsmsManagementSystemStandard]] = Field(default=None, description="""The other management system standards the ISMS is integrated with under the same policy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsPolicy']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:description'} })
     document_reference: Optional[str] = Field(default=None, description="""The reference the organization's document control gives it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_version: Optional[str] = Field(default=None, description="""The version of the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_author: Optional[str] = Field(default=None, description="""Who wrote the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
@@ -933,17 +951,6 @@ class IsmsPolicy(IsmsDocumentControlMixin, IsmsRecord):
     document_change_control: Optional[str] = Field(default=None, description="""How changes to the document are controlled, such as version control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_origin: Optional[bool] = Field(default=None, description="""Whether the document comes from outside the organization and is kept because the ISMS needs it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_source: Optional[str] = Field(default=None, description="""Who the document came from, when it comes from outside.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
-    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
-                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
-                      'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
-                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
-                      'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:description'} })
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -959,14 +966,14 @@ class IsmsPolicy(IsmsDocumentControlMixin, IsmsRecord):
         return v
 
 
-class IsmsTopicSpecificPolicy(IsmsDocumentControlMixin, IsmsRecord):
+class IsmsTopicSpecificPolicy(IsmsDocumentControlMixin, IsmsRecordMixin):
     """
     A policy on one topic of information security, such as access control or backup, that supports the information security policy.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'annex_a_control': {'tag': 'annex_a_control', 'value': '5.1'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_annex_a', 'isms_documented_information'],
-         'mixins': ['IsmsDocumentControlMixin']})
+         'mixins': ['IsmsRecordMixin', 'IsmsDocumentControlMixin']})
 
     relevant_controls: Optional[list[str]] = Field(default=None, description="""The organization's controls that the record concerns.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsTopicSpecificPolicy',
                        'IsmsObjective',
@@ -976,6 +983,17 @@ class IsmsTopicSpecificPolicy(IsmsDocumentControlMixin, IsmsRecord):
     topic_policy_topic: Optional[str] = Field(default=None, description="""The topic the policy covers.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsTopicSpecificPolicy']} })
     topic_policy_parent: Optional[str] = Field(default=None, description="""The information security policy this policy supports.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsTopicSpecificPolicy']} })
     topic_policy_audience: Optional[str] = Field(default=None, description="""Whom the policy is written for.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsTopicSpecificPolicy']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:description'} })
     document_reference: Optional[str] = Field(default=None, description="""The reference the organization's document control gives it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_version: Optional[str] = Field(default=None, description="""The version of the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_author: Optional[str] = Field(default=None, description="""Who wrote the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
@@ -993,17 +1011,6 @@ class IsmsTopicSpecificPolicy(IsmsDocumentControlMixin, IsmsRecord):
     document_change_control: Optional[str] = Field(default=None, description="""How changes to the document are controlled, such as version control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_origin: Optional[bool] = Field(default=None, description="""Whether the document comes from outside the organization and is kept because the ISMS needs it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_source: Optional[str] = Field(default=None, description="""Who the document came from, when it comes from outside.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
-    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
-                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
-                      'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
-                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
-                      'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:description'} })
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -1019,14 +1026,15 @@ class IsmsTopicSpecificPolicy(IsmsDocumentControlMixin, IsmsRecord):
         return v
 
 
-class IsmsRole(IsmsRecord):
+class IsmsRole(IsmsRecordMixin):
     """
     A role in the ISMS, with the responsibilities and authorities it carries and who holds it.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '5.3'}},
          'close_mappings': ['oscal:Role'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['isms_core']})
+         'in_subset': ['isms_core'],
+         'mixins': ['IsmsRecordMixin']})
 
     role_category: Optional[str] = Field(default=None, description="""What kind of role it is, in the organization's own terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRole']} })
     role_responsibilities: Optional[list[str]] = Field(default=None, description="""The responsibilities assigned to the role.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRole']} })
@@ -1035,16 +1043,16 @@ class IsmsRole(IsmsRecord):
     role_holders: Optional[list[str]] = Field(default=None, description="""The people who hold the role.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRole']} })
     role_delegation: Optional[str] = Field(default=None, description="""How the role may delegate its responsibilities.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRole']} })
     role_reports_to: Optional[str] = Field(default=None, description="""The role this role reports to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRole']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
     title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
                       "lokf adapt folds it into LOKF's slot and a knowledge bundle "
                       'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
                       "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
                       'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:description'} })
 
     @field_validator('title')
@@ -1061,13 +1069,14 @@ class IsmsRole(IsmsRecord):
         return v
 
 
-class IsmsObjective(IsmsRecord):
+class IsmsObjective(IsmsRecordMixin):
     """
     An information security objective: a measurable result the organization aims for, with how it plans to reach it and how it measures progress.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '6.2'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['isms_core']})
+         'in_subset': ['isms_core'],
+         'mixins': ['IsmsRecordMixin']})
 
     responsible_role: Optional[str] = Field(default=None, description="""The role that answers for the record's activity or outcome.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsObjective',
                        'IsmsIncludedControl',
@@ -1091,16 +1100,16 @@ class IsmsObjective(IsmsRecord):
     objective_risks: Optional[list[str]] = Field(default=None, description="""The risks the objective concerns.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsObjective']} })
     objective_action_plan: Optional[str] = Field(default=None, description="""What will be done to reach the objective.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsObjective']} })
     objective_resources: Optional[str] = Field(default=None, description="""The resources needed to reach the objective.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsObjective']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
     title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
                       "lokf adapt folds it into LOKF's slot and a knowledge bundle "
                       'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
                       "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
                       'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:description'} })
 
     @field_validator('title')
@@ -1117,7 +1126,7 @@ class IsmsObjective(IsmsRecord):
         return v
 
 
-class IsmsRiskAssessmentProcess(IsmsDocumentControlMixin, IsmsRecord):
+class IsmsRiskAssessmentProcess(IsmsDocumentControlMixin, IsmsRecordMixin):
     """
     The organization's process for assessing information security risks: its criteria for accepting risk and for assessing it, its scales and method, and when it runs.
     """
@@ -1125,7 +1134,7 @@ class IsmsRiskAssessmentProcess(IsmsDocumentControlMixin, IsmsRecord):
                                              'value': '6.1.2'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_risk_management', 'isms_documented_information'],
-         'mixins': ['IsmsDocumentControlMixin']})
+         'mixins': ['IsmsRecordMixin', 'IsmsDocumentControlMixin']})
 
     risk_acceptance_criteria: Optional[str] = Field(default=None, description="""The criteria for accepting a risk.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskAssessmentProcess']} })
     risk_assessment_criteria: Optional[str] = Field(default=None, description="""The criteria for carrying out a risk assessment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskAssessmentProcess']} })
@@ -1135,6 +1144,17 @@ class IsmsRiskAssessmentProcess(IsmsDocumentControlMixin, IsmsRecord):
     risk_matrix: Optional[str] = Field(default=None, description="""How likelihood and consequence combine into a risk level.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskAssessmentProcess']} })
     risk_assessment_frequency: Optional[str] = Field(default=None, description="""How often risks are assessed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskAssessmentProcess']} })
     risk_assessment_triggers: Optional[list[str]] = Field(default=None, description="""The events that start a risk assessment outside the planned ones.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskAssessmentProcess']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:description'} })
     document_reference: Optional[str] = Field(default=None, description="""The reference the organization's document control gives it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_version: Optional[str] = Field(default=None, description="""The version of the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_author: Optional[str] = Field(default=None, description="""Who wrote the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
@@ -1152,17 +1172,6 @@ class IsmsRiskAssessmentProcess(IsmsDocumentControlMixin, IsmsRecord):
     document_change_control: Optional[str] = Field(default=None, description="""How changes to the document are controlled, such as version control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_origin: Optional[bool] = Field(default=None, description="""Whether the document comes from outside the organization and is kept because the ISMS needs it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_source: Optional[str] = Field(default=None, description="""Who the document came from, when it comes from outside.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
-    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
-                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
-                      'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
-                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
-                      'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:description'} })
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -1178,14 +1187,14 @@ class IsmsRiskAssessmentProcess(IsmsDocumentControlMixin, IsmsRecord):
         return v
 
 
-class IsmsRiskAssessment(IsmsDocumentControlMixin, IsmsRecord):
+class IsmsRiskAssessment(IsmsDocumentControlMixin, IsmsRecordMixin):
     """
     One risk assessment carried out under the risk assessment process, and what it found.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '8.2'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_risk_management'],
-         'mixins': ['IsmsDocumentControlMixin']})
+         'mixins': ['IsmsRecordMixin', 'IsmsDocumentControlMixin']})
 
     assessment_scope: Optional[str] = Field(default=None, description="""What the assessment covered.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskAssessment']} })
     assessment_date: Optional[date] = Field(default=None, description="""When the assessment was carried out.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskAssessment']} })
@@ -1195,6 +1204,17 @@ class IsmsRiskAssessment(IsmsDocumentControlMixin, IsmsRecord):
     assessment_summary: Optional[str] = Field(default=None, description="""A summary of what the assessment found.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskAssessment']} })
     assessment_recommendations: Optional[list[str]] = Field(default=None, description="""What the assessment recommends.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskAssessment']} })
     assessment_next_date: Optional[date] = Field(default=None, description="""When the next assessment is planned.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskAssessment']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:description'} })
     document_reference: Optional[str] = Field(default=None, description="""The reference the organization's document control gives it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_version: Optional[str] = Field(default=None, description="""The version of the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_author: Optional[str] = Field(default=None, description="""Who wrote the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
@@ -1212,17 +1232,6 @@ class IsmsRiskAssessment(IsmsDocumentControlMixin, IsmsRecord):
     document_change_control: Optional[str] = Field(default=None, description="""How changes to the document are controlled, such as version control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_origin: Optional[bool] = Field(default=None, description="""Whether the document comes from outside the organization and is kept because the ISMS needs it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_source: Optional[str] = Field(default=None, description="""Who the document came from, when it comes from outside.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
-    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
-                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
-                      'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
-                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
-                      'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:description'} })
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -1238,14 +1247,15 @@ class IsmsRiskAssessment(IsmsDocumentControlMixin, IsmsRecord):
         return v
 
 
-class IsmsRisk(IsmsRecord):
+class IsmsRisk(IsmsRecordMixin):
     """
     An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '6.1.2'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['isms_risk_management']})
+         'in_subset': ['isms_risk_management'],
+         'mixins': ['IsmsRecordMixin']})
 
     affected_assets: Optional[list[str]] = Field(default=None, description="""The assets the risk, event or incident affects.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRisk', 'IsmsSecurityEvent']} })
     affected_security_properties: Optional[list[IsmsSecurityProperty]] = Field(default=None, description="""Which of confidentiality, integrity and availability the risk or incident threatens.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRisk', 'IsmsSecurityIncident']} })
@@ -1260,16 +1270,16 @@ class IsmsRisk(IsmsRecord):
     risk_residual_level: Optional[IsmsRiskLevel] = Field(default=None, description="""The risk's level after controls.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRisk']} })
     risk_treatment_option: Optional[IsmsRiskTreatmentOption] = Field(default=None, description="""The treatment chosen for the risk.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRisk']} })
     risk_treatment_priority: Optional[str] = Field(default=None, description="""How soon the risk is to be treated, in the organization's own terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRisk']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
     title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
                       "lokf adapt folds it into LOKF's slot and a knowledge bundle "
                       'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
                       "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
                       'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:description'} })
 
     @field_validator('title')
@@ -1286,7 +1296,7 @@ class IsmsRisk(IsmsRecord):
         return v
 
 
-class IsmsRiskTreatmentProcess(IsmsDocumentControlMixin, IsmsRecord):
+class IsmsRiskTreatmentProcess(IsmsDocumentControlMixin, IsmsRecordMixin):
     """
     The organization's process for treating information security risks: how it chooses treatments and controls, checks them against Annex A, and produces the Statement of Applicability.
     """
@@ -1294,13 +1304,24 @@ class IsmsRiskTreatmentProcess(IsmsDocumentControlMixin, IsmsRecord):
                                              'value': '6.1.3'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_risk_management', 'isms_documented_information'],
-         'mixins': ['IsmsDocumentControlMixin']})
+         'mixins': ['IsmsRecordMixin', 'IsmsDocumentControlMixin']})
 
     treatment_options_guidance: Optional[str] = Field(default=None, description="""How a treatment option is chosen for a risk.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskTreatmentProcess']} })
     treatment_control_selection: Optional[str] = Field(default=None, description="""How the controls a treatment needs are chosen.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskTreatmentProcess']} })
     treatment_annex_a_comparison: Optional[str] = Field(default=None, description="""How the chosen controls are compared with Annex A, so that no necessary control is left out.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskTreatmentProcess']} })
     treatment_soa_template: Optional[str] = Field(default=None, description="""The template the Statement of Applicability follows.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskTreatmentProcess']} })
     treatment_approval_workflow: Optional[str] = Field(default=None, description="""How a treatment plan and its residual risks are approved.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskTreatmentProcess']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:description'} })
     document_reference: Optional[str] = Field(default=None, description="""The reference the organization's document control gives it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_version: Optional[str] = Field(default=None, description="""The version of the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_author: Optional[str] = Field(default=None, description="""Who wrote the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
@@ -1318,17 +1339,6 @@ class IsmsRiskTreatmentProcess(IsmsDocumentControlMixin, IsmsRecord):
     document_change_control: Optional[str] = Field(default=None, description="""How changes to the document are controlled, such as version control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_origin: Optional[bool] = Field(default=None, description="""Whether the document comes from outside the organization and is kept because the ISMS needs it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_source: Optional[str] = Field(default=None, description="""Who the document came from, when it comes from outside.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
-    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
-                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
-                      'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
-                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
-                      'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:description'} })
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -1344,7 +1354,7 @@ class IsmsRiskTreatmentProcess(IsmsDocumentControlMixin, IsmsRecord):
         return v
 
 
-class IsmsRiskTreatmentPlan(IsmsDocumentControlMixin, IsmsRecord):
+class IsmsRiskTreatmentPlan(IsmsDocumentControlMixin, IsmsRecordMixin):
     """
     A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's approval of the plan and of the residual risk.
     """
@@ -1352,7 +1362,7 @@ class IsmsRiskTreatmentPlan(IsmsDocumentControlMixin, IsmsRecord):
                                              'value': '6.1.3'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_risk_management', 'isms_documented_information'],
-         'mixins': ['IsmsDocumentControlMixin'],
+         'mixins': ['IsmsRecordMixin', 'IsmsDocumentControlMixin'],
          'related_mappings': ['oscal:PlanOfActionAndMilestones']})
 
     implementation_state: Optional[IsmsImplementationStatus] = Field(default=None, description="""How far the control or the plan has been put into effect.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskTreatmentPlan', 'IsmsIncludedControl', 'IsmsControl']} })
@@ -1366,6 +1376,17 @@ class IsmsRiskTreatmentPlan(IsmsDocumentControlMixin, IsmsRecord):
     plan_risk_owner_approval: Optional[str] = Field(default=None, description="""The risk owner who approved the plan.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskTreatmentPlan']} })
     plan_residual_risk_acceptance: Optional[str] = Field(default=None, description="""How the risk owners accepted the risk that remains.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskTreatmentPlan']} })
     plan_completion_date: Optional[date] = Field(default=None, description="""When the plan was completed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRiskTreatmentPlan']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:description'} })
     document_reference: Optional[str] = Field(default=None, description="""The reference the organization's document control gives it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_version: Optional[str] = Field(default=None, description="""The version of the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_author: Optional[str] = Field(default=None, description="""Who wrote the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
@@ -1383,17 +1404,6 @@ class IsmsRiskTreatmentPlan(IsmsDocumentControlMixin, IsmsRecord):
     document_change_control: Optional[str] = Field(default=None, description="""How changes to the document are controlled, such as version control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_origin: Optional[bool] = Field(default=None, description="""Whether the document comes from outside the organization and is kept because the ISMS needs it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_source: Optional[str] = Field(default=None, description="""Who the document came from, when it comes from outside.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
-    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
-                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
-                      'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
-                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
-                      'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:description'} })
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -1409,7 +1419,7 @@ class IsmsRiskTreatmentPlan(IsmsDocumentControlMixin, IsmsRecord):
         return v
 
 
-class IsmsStatementOfApplicability(IsmsDocumentControlMixin, IsmsRecord):
+class IsmsStatementOfApplicability(IsmsDocumentControlMixin, IsmsRecordMixin):
     """
     The Statement of Applicability: each control the organization needs, with why it is included and whether it is in place, and each Annex A control it leaves out, with why.
     """
@@ -1417,10 +1427,21 @@ class IsmsStatementOfApplicability(IsmsDocumentControlMixin, IsmsRecord):
                                              'value': '6.1.3'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_annex_a', 'isms_documented_information'],
-         'mixins': ['IsmsDocumentControlMixin'],
+         'mixins': ['IsmsRecordMixin', 'IsmsDocumentControlMixin'],
          'related_mappings': ['oscal:SspControlImplementation']})
 
     soa_entries: Optional[list[Union[IsmsIncludedControl,IsmsExcludedControl]]] = Field(default=None, description="""The statement's entries, one for each control included or Annex A control excluded.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsStatementOfApplicability']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:description'} })
     document_reference: Optional[str] = Field(default=None, description="""The reference the organization's document control gives it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_version: Optional[str] = Field(default=None, description="""The version of the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_author: Optional[str] = Field(default=None, description="""Who wrote the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
@@ -1438,17 +1459,6 @@ class IsmsStatementOfApplicability(IsmsDocumentControlMixin, IsmsRecord):
     document_change_control: Optional[str] = Field(default=None, description="""How changes to the document are controlled, such as version control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_origin: Optional[bool] = Field(default=None, description="""Whether the document comes from outside the organization and is kept because the ISMS needs it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_source: Optional[str] = Field(default=None, description="""Who the document came from, when it comes from outside.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
-    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
-                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
-                      'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
-                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
-                      'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:description'} })
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -1563,7 +1573,7 @@ class IsmsExcludedControl(IsmsApplicabilityEntry):
         return v
 
 
-class IsmsControl(IsmsRecord):
+class IsmsControl(IsmsRecordMixin):
     """
     A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.
     """
@@ -1574,6 +1584,7 @@ class IsmsControl(IsmsRecord):
                       'another source names no Annex A control.'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_annex_a'],
+         'mixins': ['IsmsRecordMixin'],
          'related_mappings': ['oscal:Control', 'nist_sp_800_53:Control']})
 
     relevant_controls: Optional[list[str]] = Field(default=None, description="""The organization's controls that the record concerns.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsTopicSpecificPolicy',
@@ -1593,16 +1604,16 @@ class IsmsControl(IsmsRecord):
     control_effectiveness: Optional[str] = Field(default=None, description="""How well the control works, in the organization's own terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsControl']} })
     control_last_tested: Optional[date] = Field(default=None, description="""When the control was last tested.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsControl']} })
     control_evidence: Optional[list[str]] = Field(default=None, description="""Where the evidence that the control is in place is kept.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsControl']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
     title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
                       "lokf adapt folds it into LOKF's slot and a knowledge bundle "
                       'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
                       "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
                       'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:description'} })
 
     @field_validator('title')
@@ -1619,13 +1630,14 @@ class IsmsControl(IsmsRecord):
         return v
 
 
-class IsmsAsset(IsmsRecord):
+class IsmsAsset(IsmsRecordMixin):
     """
     An item in the inventory of information and other associated assets: what it is, who owns and looks after it, where it is, how it is classified and how much it matters.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'annex_a_control': {'tag': 'annex_a_control', 'value': '5.9'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_annex_a'],
+         'mixins': ['IsmsRecordMixin'],
          'related_mappings': ['oscal:SspInventoryItem', 'spdx_software:Package']})
 
     relevant_controls: Optional[list[str]] = Field(default=None, description="""The organization's controls that the record concerns.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsTopicSpecificPolicy',
@@ -1639,16 +1651,16 @@ class IsmsAsset(IsmsRecord):
     asset_classification: Optional[str] = Field(default=None, description="""The information classification the asset carries.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAsset']} })
     asset_location: Optional[str] = Field(default=None, description="""Where the asset is, physically or logically.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAsset']} })
     asset_criticality: Optional[str] = Field(default=None, description="""How much the asset matters, in the organization's own terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAsset']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
     title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
                       "lokf adapt folds it into LOKF's slot and a knowledge bundle "
                       'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
                       "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
                       'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:description'} })
 
     @field_validator('title')
@@ -1665,13 +1677,14 @@ class IsmsAsset(IsmsRecord):
         return v
 
 
-class IsmsResource(IsmsRecord):
+class IsmsResource(IsmsRecordMixin):
     """
     A resource provided for the ISMS, such as people, time, tools or budget.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '7.1'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['isms_core']})
+         'in_subset': ['isms_core'],
+         'mixins': ['IsmsRecordMixin']})
 
     resource_category: Optional[str] = Field(default=None, description="""What kind of resource it is.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsResource']} })
     resource_quantity: Optional[str] = Field(default=None, description="""How much of the resource is provided.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsResource']} })
@@ -1679,16 +1692,16 @@ class IsmsResource(IsmsRecord):
     resource_allocated_to: Optional[str] = Field(default=None, description="""What the resource is allocated to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsResource']} })
     resource_cost: Optional[str] = Field(default=None, description="""What the resource costs.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsResource']} })
     resource_availability: Optional[str] = Field(default=None, description="""Whether the resource is available now, in the organization's own terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsResource']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
     title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
                       "lokf adapt folds it into LOKF's slot and a knowledge bundle "
                       'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
                       "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
                       'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:description'} })
 
     @field_validator('title')
@@ -1705,14 +1718,14 @@ class IsmsResource(IsmsRecord):
         return v
 
 
-class IsmsCompetenceRecord(IsmsDocumentControlMixin, IsmsRecord):
+class IsmsCompetenceRecord(IsmsDocumentControlMixin, IsmsRecordMixin):
     """
     The evidence of one person's competence for work that affects information security, and what is done to close any gap.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '7.2'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_core', 'isms_documented_information'],
-         'mixins': ['IsmsDocumentControlMixin']})
+         'mixins': ['IsmsRecordMixin', 'IsmsDocumentControlMixin']})
 
     competence_person: Optional[str] = Field(default=None, description="""The person the record is about.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsCompetenceRecord']} })
     competence_role: Optional[str] = Field(default=None, description="""The role the person holds.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsCompetenceRecord']} })
@@ -1723,6 +1736,17 @@ class IsmsCompetenceRecord(IsmsDocumentControlMixin, IsmsRecord):
     competence_assessment_date: Optional[date] = Field(default=None, description="""When the person's competence was last assessed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsCompetenceRecord']} })
     competence_gaps: Optional[list[str]] = Field(default=None, description="""The gaps the assessment found.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsCompetenceRecord']} })
     competence_actions: Optional[list[str]] = Field(default=None, description="""What is done to close the gaps.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsCompetenceRecord']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:description'} })
     document_reference: Optional[str] = Field(default=None, description="""The reference the organization's document control gives it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_version: Optional[str] = Field(default=None, description="""The version of the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_author: Optional[str] = Field(default=None, description="""Who wrote the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
@@ -1740,17 +1764,6 @@ class IsmsCompetenceRecord(IsmsDocumentControlMixin, IsmsRecord):
     document_change_control: Optional[str] = Field(default=None, description="""How changes to the document are controlled, such as version control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_origin: Optional[bool] = Field(default=None, description="""Whether the document comes from outside the organization and is kept because the ISMS needs it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_source: Optional[str] = Field(default=None, description="""Who the document came from, when it comes from outside.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
-    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
-                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
-                      'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
-                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
-                      'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:description'} })
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -1766,14 +1779,14 @@ class IsmsCompetenceRecord(IsmsDocumentControlMixin, IsmsRecord):
         return v
 
 
-class IsmsAwarenessProgramme(IsmsDocumentControlMixin, IsmsRecord):
+class IsmsAwarenessProgramme(IsmsDocumentControlMixin, IsmsRecordMixin):
     """
     The programme that makes people working for the organization aware of the policy, their part in the ISMS and what failing it would mean.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '7.3'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_core'],
-         'mixins': ['IsmsDocumentControlMixin']})
+         'mixins': ['IsmsRecordMixin', 'IsmsDocumentControlMixin']})
 
     awareness_topics: Optional[list[str]] = Field(default=None, description="""The topics the programme covers.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAwarenessProgramme']} })
     awareness_methods: Optional[list[str]] = Field(default=None, description="""How the programme is delivered.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAwarenessProgramme']} })
@@ -1781,6 +1794,17 @@ class IsmsAwarenessProgramme(IsmsDocumentControlMixin, IsmsRecord):
     awareness_frequency: Optional[str] = Field(default=None, description="""How often the programme runs.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAwarenessProgramme']} })
     awareness_completion_tracking: Optional[str] = Field(default=None, description="""How completion is tracked.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAwarenessProgramme']} })
     awareness_effectiveness: Optional[str] = Field(default=None, description="""How the programme's effect is measured.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAwarenessProgramme']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:description'} })
     document_reference: Optional[str] = Field(default=None, description="""The reference the organization's document control gives it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_version: Optional[str] = Field(default=None, description="""The version of the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_author: Optional[str] = Field(default=None, description="""Who wrote the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
@@ -1798,17 +1822,6 @@ class IsmsAwarenessProgramme(IsmsDocumentControlMixin, IsmsRecord):
     document_change_control: Optional[str] = Field(default=None, description="""How changes to the document are controlled, such as version control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_origin: Optional[bool] = Field(default=None, description="""Whether the document comes from outside the organization and is kept because the ISMS needs it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_source: Optional[str] = Field(default=None, description="""Who the document came from, when it comes from outside.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
-    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
-                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
-                      'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
-                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
-                      'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:description'} })
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -1824,16 +1837,27 @@ class IsmsAwarenessProgramme(IsmsDocumentControlMixin, IsmsRecord):
         return v
 
 
-class IsmsCommunicationPlan(IsmsDocumentControlMixin, IsmsRecord):
+class IsmsCommunicationPlan(IsmsDocumentControlMixin, IsmsRecordMixin):
     """
     The plan for communication about the ISMS, inside the organization and outside it.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '7.4'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_core', 'isms_documented_information'],
-         'mixins': ['IsmsDocumentControlMixin']})
+         'mixins': ['IsmsRecordMixin', 'IsmsDocumentControlMixin']})
 
     communication_items: Optional[list[IsmsCommunication]] = Field(default=None, description="""The communications the plan provides for.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsCommunicationPlan']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:description'} })
     document_reference: Optional[str] = Field(default=None, description="""The reference the organization's document control gives it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_version: Optional[str] = Field(default=None, description="""The version of the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_author: Optional[str] = Field(default=None, description="""Who wrote the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
@@ -1851,17 +1875,6 @@ class IsmsCommunicationPlan(IsmsDocumentControlMixin, IsmsRecord):
     document_change_control: Optional[str] = Field(default=None, description="""How changes to the document are controlled, such as version control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_origin: Optional[bool] = Field(default=None, description="""Whether the document comes from outside the organization and is kept because the ISMS needs it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_source: Optional[str] = Field(default=None, description="""Who the document came from, when it comes from outside.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
-    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
-                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
-                      'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
-                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
-                      'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:description'} })
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -1899,16 +1912,27 @@ class IsmsCommunication(ConfiguredBaseModel):
     communication_records_required: Optional[bool] = Field(default=None, description="""Whether a record of the communication is kept.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsCommunication']} })
 
 
-class IsmsDocumentedInformation(IsmsDocumentControlMixin, IsmsRecord):
+class IsmsDocumentedInformation(IsmsDocumentControlMixin, IsmsRecordMixin):
     """
     A piece of documented information the ISMS keeps under control that no more specific record describes, such as a procedure, a standard, a plan or a report.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '7.5'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_documented_information'],
-         'mixins': ['IsmsDocumentControlMixin']})
+         'mixins': ['IsmsRecordMixin', 'IsmsDocumentControlMixin']})
 
     document_kind: IsmsDocumentKind = Field(default=..., description="""What kind of documented information it is.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentedInformation']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:description'} })
     document_reference: Optional[str] = Field(default=None, description="""The reference the organization's document control gives it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_version: Optional[str] = Field(default=None, description="""The version of the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_author: Optional[str] = Field(default=None, description="""Who wrote the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
@@ -1926,17 +1950,6 @@ class IsmsDocumentedInformation(IsmsDocumentControlMixin, IsmsRecord):
     document_change_control: Optional[str] = Field(default=None, description="""How changes to the document are controlled, such as version control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_origin: Optional[bool] = Field(default=None, description="""Whether the document comes from outside the organization and is kept because the ISMS needs it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_source: Optional[str] = Field(default=None, description="""Who the document came from, when it comes from outside.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
-    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
-                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
-                      'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
-                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
-                      'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:description'} })
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -1952,14 +1965,14 @@ class IsmsDocumentedInformation(IsmsDocumentControlMixin, IsmsRecord):
         return v
 
 
-class IsmsOperationalProcedure(IsmsDocumentControlMixin, IsmsRecord):
+class IsmsOperationalProcedure(IsmsDocumentControlMixin, IsmsRecordMixin):
     """
     A procedure by which the organization plans and controls the processes that meet its information security requirements.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '8.1'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_documented_information'],
-         'mixins': ['IsmsDocumentControlMixin']})
+         'mixins': ['IsmsRecordMixin', 'IsmsDocumentControlMixin']})
 
     relevant_controls: Optional[list[str]] = Field(default=None, description="""The organization's controls that the record concerns.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsTopicSpecificPolicy',
                        'IsmsObjective',
@@ -1971,6 +1984,17 @@ class IsmsOperationalProcedure(IsmsDocumentControlMixin, IsmsRecord):
     procedure_control_measures: Optional[list[str]] = Field(default=None, description="""The measures that control the processes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsOperationalProcedure']} })
     procedure_roles: Optional[list[str]] = Field(default=None, description="""The roles that carry out the procedure.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsOperationalProcedure']} })
     procedure_change_control: Optional[str] = Field(default=None, description="""How changes to the processes are controlled.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsOperationalProcedure']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:description'} })
     document_reference: Optional[str] = Field(default=None, description="""The reference the organization's document control gives it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_version: Optional[str] = Field(default=None, description="""The version of the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_author: Optional[str] = Field(default=None, description="""Who wrote the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
@@ -1988,17 +2012,6 @@ class IsmsOperationalProcedure(IsmsDocumentControlMixin, IsmsRecord):
     document_change_control: Optional[str] = Field(default=None, description="""How changes to the document are controlled, such as version control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_origin: Optional[bool] = Field(default=None, description="""Whether the document comes from outside the organization and is kept because the ISMS needs it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_source: Optional[str] = Field(default=None, description="""Who the document came from, when it comes from outside.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
-    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
-                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
-                      'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
-                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
-                      'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:description'} })
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -2014,16 +2027,27 @@ class IsmsOperationalProcedure(IsmsDocumentControlMixin, IsmsRecord):
         return v
 
 
-class IsmsMonitoringProgramme(IsmsDocumentControlMixin, IsmsRecord):
+class IsmsMonitoringProgramme(IsmsDocumentControlMixin, IsmsRecordMixin):
     """
     The programme of monitoring, measurement, analysis and evaluation of information security performance and of the ISMS's effectiveness.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '9.1'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_performance_evaluation', 'isms_documented_information'],
-         'mixins': ['IsmsDocumentControlMixin']})
+         'mixins': ['IsmsRecordMixin', 'IsmsDocumentControlMixin']})
 
     monitoring_items: Optional[list[IsmsMonitoringItem]] = Field(default=None, description="""What the programme monitors and measures.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsMonitoringProgramme']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:description'} })
     document_reference: Optional[str] = Field(default=None, description="""The reference the organization's document control gives it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_version: Optional[str] = Field(default=None, description="""The version of the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_author: Optional[str] = Field(default=None, description="""Who wrote the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
@@ -2041,17 +2065,6 @@ class IsmsMonitoringProgramme(IsmsDocumentControlMixin, IsmsRecord):
     document_change_control: Optional[str] = Field(default=None, description="""How changes to the document are controlled, such as version control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_origin: Optional[bool] = Field(default=None, description="""Whether the document comes from outside the organization and is kept because the ISMS needs it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_source: Optional[str] = Field(default=None, description="""Who the document came from, when it comes from outside.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
-    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
-                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
-                      'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
-                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
-                      'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:description'} })
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -2093,7 +2106,7 @@ class IsmsMonitoringItem(ConfiguredBaseModel):
     monitoring_trend: Optional[str] = Field(default=None, description="""Which way the value is moving.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsMonitoringItem']} })
 
 
-class IsmsAuditProgramme(IsmsDocumentControlMixin, IsmsRecord):
+class IsmsAuditProgramme(IsmsDocumentControlMixin, IsmsRecordMixin):
     """
     An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors they need.
     """
@@ -2101,7 +2114,7 @@ class IsmsAuditProgramme(IsmsDocumentControlMixin, IsmsRecord):
                                              'value': '9.2.2'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_performance_evaluation', 'isms_documented_information'],
-         'mixins': ['IsmsDocumentControlMixin'],
+         'mixins': ['IsmsRecordMixin', 'IsmsDocumentControlMixin'],
          'related_mappings': ['oscal:AssessmentPlan']})
 
     programme_period: Optional[str] = Field(default=None, description="""The period the programme covers.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAuditProgramme']} })
@@ -2110,6 +2123,17 @@ class IsmsAuditProgramme(IsmsDocumentControlMixin, IsmsRecord):
     programme_resources: Optional[str] = Field(default=None, description="""The resources the programme needs.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAuditProgramme']} })
     programme_auditor_qualifications: Optional[str] = Field(default=None, description="""The qualifications the auditors need.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAuditProgramme']} })
     programme_status: Optional[str] = Field(default=None, description="""Where the programme stands, in the organization's own terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAuditProgramme']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:description'} })
     document_reference: Optional[str] = Field(default=None, description="""The reference the organization's document control gives it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_version: Optional[str] = Field(default=None, description="""The version of the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_author: Optional[str] = Field(default=None, description="""Who wrote the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
@@ -2127,17 +2151,6 @@ class IsmsAuditProgramme(IsmsDocumentControlMixin, IsmsRecord):
     document_change_control: Optional[str] = Field(default=None, description="""How changes to the document are controlled, such as version control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_origin: Optional[bool] = Field(default=None, description="""Whether the document comes from outside the organization and is kept because the ISMS needs it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_source: Optional[str] = Field(default=None, description="""Who the document came from, when it comes from outside.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
-    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
-                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
-                      'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
-                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
-                      'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:description'} })
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -2153,7 +2166,7 @@ class IsmsAuditProgramme(IsmsDocumentControlMixin, IsmsRecord):
         return v
 
 
-class IsmsAudit(IsmsDocumentControlMixin, IsmsRecord):
+class IsmsAudit(IsmsDocumentControlMixin, IsmsRecordMixin):
     """
     An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope, criteria, team, findings and conclusion.
     """
@@ -2162,7 +2175,7 @@ class IsmsAudit(IsmsDocumentControlMixin, IsmsRecord):
                       'standard in audit_standards.'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_performance_evaluation', 'isms_documented_information'],
-         'mixins': ['IsmsDocumentControlMixin'],
+         'mixins': ['IsmsRecordMixin', 'IsmsDocumentControlMixin'],
          'related_mappings': ['oscal:AssessmentPlan']})
 
     audit_type: IsmsAuditType = Field(default=..., description="""Who carries out the audit, relative to the organization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAudit']} })
@@ -2180,6 +2193,17 @@ class IsmsAudit(IsmsDocumentControlMixin, IsmsRecord):
     audit_conclusion: Optional[str] = Field(default=None, description="""The audit's overall conclusion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAudit']} })
     audit_report_date: Optional[date] = Field(default=None, description="""When the audit report was issued.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAudit']} })
     audit_report_distribution: Optional[list[str]] = Field(default=None, description="""Who received the audit report.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAudit']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:description'} })
     document_reference: Optional[str] = Field(default=None, description="""The reference the organization's document control gives it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_version: Optional[str] = Field(default=None, description="""The version of the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_author: Optional[str] = Field(default=None, description="""Who wrote the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
@@ -2197,17 +2221,6 @@ class IsmsAudit(IsmsDocumentControlMixin, IsmsRecord):
     document_change_control: Optional[str] = Field(default=None, description="""How changes to the document are controlled, such as version control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_origin: Optional[bool] = Field(default=None, description="""Whether the document comes from outside the organization and is kept because the ISMS needs it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_source: Optional[str] = Field(default=None, description="""Who the document came from, when it comes from outside.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
-    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
-                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
-                      'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
-                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
-                      'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:description'} })
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -2223,13 +2236,14 @@ class IsmsAudit(IsmsDocumentControlMixin, IsmsRecord):
         return v
 
 
-class IsmsAuditFinding(IsmsRecord):
+class IsmsAuditFinding(IsmsRecordMixin):
     """
     One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it concerns, its evidence and how it is closed.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '9.2'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['isms_performance_evaluation']})
+         'in_subset': ['isms_performance_evaluation'],
+         'mixins': ['IsmsRecordMixin']})
 
     finding_type: IsmsAuditFindingType = Field(default=..., description="""What kind of finding it is.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAuditFinding']} })
     finding_requirement: Optional[str] = Field(default=None, description="""The clause or Annex A control of ISO/IEC 27001:2022 the finding concerns, by number.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAuditFinding']} })
@@ -2242,16 +2256,16 @@ class IsmsAuditFinding(IsmsRecord):
     finding_corrective_action: Optional[str] = Field(default=None, description="""The corrective action the finding led to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAuditFinding']} })
     finding_closure_status: Optional[str] = Field(default=None, description="""Whether the finding is closed, in the organization's own terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAuditFinding']} })
     finding_closure_date: Optional[date] = Field(default=None, description="""When the finding was closed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsAuditFinding']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
     title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
                       "lokf adapt folds it into LOKF's slot and a knowledge bundle "
                       'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
                       "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
                       'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:description'} })
 
     @field_validator('title')
@@ -2268,14 +2282,14 @@ class IsmsAuditFinding(IsmsRecord):
         return v
 
 
-class IsmsManagementReview(IsmsDocumentControlMixin, IsmsRecord):
+class IsmsManagementReview(IsmsDocumentControlMixin, IsmsRecordMixin):
     """
     A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '9.3'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_performance_evaluation', 'isms_documented_information'],
-         'mixins': ['IsmsDocumentControlMixin']})
+         'mixins': ['IsmsRecordMixin', 'IsmsDocumentControlMixin']})
 
     review_held_on: date = Field(default=..., description="""When the review was held.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsManagementReview']} })
     review_attendees: Optional[list[str]] = Field(default=None, description="""Who attended the review.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsManagementReview']} })
@@ -2292,6 +2306,17 @@ class IsmsManagementReview(IsmsDocumentControlMixin, IsmsRecord):
     review_decisions: Optional[list[str]] = Field(default=None, description="""What the review decided.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsManagementReview']} })
     review_actions: Optional[list[str]] = Field(default=None, description="""What the review asked to be done.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsManagementReview']} })
     review_next_date: Optional[date] = Field(default=None, description="""When the next review is planned.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsManagementReview']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['IsmsRecordMixin'],
+         'slot_uri': 'schema:description'} })
     document_reference: Optional[str] = Field(default=None, description="""The reference the organization's document control gives it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_version: Optional[str] = Field(default=None, description="""The version of the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_author: Optional[str] = Field(default=None, description="""Who wrote the document.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
@@ -2309,17 +2334,6 @@ class IsmsManagementReview(IsmsDocumentControlMixin, IsmsRecord):
     document_change_control: Optional[str] = Field(default=None, description="""How changes to the document are controlled, such as version control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_origin: Optional[bool] = Field(default=None, description="""Whether the document comes from outside the organization and is kept because the ISMS needs it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
     document_external_source: Optional[str] = Field(default=None, description="""Who the document came from, when it comes from outside.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsDocumentControlMixin']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
-    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
-                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
-                      'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:name'} })
-    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
-                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
-                      'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
-         'slot_uri': 'schema:description'} })
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -2335,14 +2349,15 @@ class IsmsManagementReview(IsmsDocumentControlMixin, IsmsRecord):
         return v
 
 
-class IsmsNonconformity(IsmsRecord):
+class IsmsNonconformity(IsmsRecordMixin):
     """
     A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was closed.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '10.2'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['isms_improvement']})
+         'in_subset': ['isms_improvement'],
+         'mixins': ['IsmsRecordMixin']})
 
     nonconformity_source: Optional[str] = Field(default=None, description="""How the nonconformity came to light, such as an audit, a review or an incident.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsNonconformity']} })
     nonconformity_detected_on: Optional[date] = Field(default=None, description="""When the nonconformity was found.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsNonconformity']} })
@@ -2355,16 +2370,16 @@ class IsmsNonconformity(IsmsRecord):
     nonconformity_status: Optional[str] = Field(default=None, description="""Where the nonconformity stands, in the organization's own terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsNonconformity']} })
     nonconformity_closure_date: Optional[date] = Field(default=None, description="""When it was closed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsNonconformity']} })
     nonconformity_closure_evidence: Optional[str] = Field(default=None, description="""What shows that it is closed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsNonconformity']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
     title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
                       "lokf adapt folds it into LOKF's slot and a knowledge bundle "
                       'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
                       "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
                       'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:description'} })
 
     @field_validator('title')
@@ -2381,7 +2396,7 @@ class IsmsNonconformity(IsmsRecord):
         return v
 
 
-class IsmsCorrectiveAction(IsmsRecord):
+class IsmsCorrectiveAction(IsmsRecordMixin):
     """
     An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it worked.
     """
@@ -2389,6 +2404,7 @@ class IsmsCorrectiveAction(IsmsRecord):
                                              'value': '10.2'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'in_subset': ['isms_improvement'],
+         'mixins': ['IsmsRecordMixin'],
          'related_mappings': ['oscal:PoamItem']})
 
     responsible_role: Optional[str] = Field(default=None, description="""The role that answers for the record's activity or outcome.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsObjective',
@@ -2407,16 +2423,16 @@ class IsmsCorrectiveAction(IsmsRecord):
     action_effective: Optional[bool] = Field(default=None, description="""Whether the review found the action effective.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsCorrectiveAction']} })
     action_isms_changes: Optional[str] = Field(default=None, description="""The changes to the ISMS the action needs.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsCorrectiveAction']} })
     action_status: Optional[str] = Field(default=None, description="""Where the action stands, in the organization's own terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsCorrectiveAction']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
     title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
                       "lokf adapt folds it into LOKF's slot and a knowledge bundle "
                       'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
                       "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
                       'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:description'} })
 
     @field_validator('title')
@@ -2433,14 +2449,15 @@ class IsmsCorrectiveAction(IsmsRecord):
         return v
 
 
-class IsmsImprovementOpportunity(IsmsRecord):
+class IsmsImprovementOpportunity(IsmsRecordMixin):
     """
     An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '10.1'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['isms_improvement']})
+         'in_subset': ['isms_improvement'],
+         'mixins': ['IsmsRecordMixin']})
 
     responsible_role: Optional[str] = Field(default=None, description="""The role that answers for the record's activity or outcome.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsObjective',
                        'IsmsIncludedControl',
@@ -2458,16 +2475,16 @@ class IsmsImprovementOpportunity(IsmsRecord):
     improvement_completion_date: Optional[date] = Field(default=None, description="""When it was made.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsImprovementOpportunity']} })
     improvement_outcome: Optional[str] = Field(default=None, description="""What the improvement brought.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsImprovementOpportunity']} })
     improvement_status: Optional[str] = Field(default=None, description="""Where it stands, in the organization's own terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsImprovementOpportunity']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
     title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
                       "lokf adapt folds it into LOKF's slot and a knowledge bundle "
                       'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
                       "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
                       'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:description'} })
 
     @field_validator('title')
@@ -2484,30 +2501,31 @@ class IsmsImprovementOpportunity(IsmsRecord):
         return v
 
 
-class IsmsSecurityEvent(IsmsRecord):
+class IsmsSecurityEvent(IsmsRecordMixin):
     """
     An information security event someone reported, and the assessment of whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'annex_a_control': {'tag': 'annex_a_control',
                                              'value': '5.25'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
-         'in_subset': ['isms_annex_a']})
+         'in_subset': ['isms_annex_a'],
+         'mixins': ['IsmsRecordMixin']})
 
     affected_assets: Optional[list[str]] = Field(default=None, description="""The assets the risk, event or incident affects.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRisk', 'IsmsSecurityEvent']} })
     event_type: Literal["IsmsSecurityEvent"] = Field(default="IsmsSecurityEvent", description="""The kind of record: IsmsSecurityEvent, or IsmsSecurityIncident for an event assessed as an incident.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['IsmsSecurityEvent']} })
     event_occurred_at: Optional[datetime ] = Field(default=None, description="""When the event happened, or when it was first noticed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsSecurityEvent']} })
     event_reporter: Optional[str] = Field(default=None, description="""Who reported the event.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsSecurityEvent']} })
     event_assessment: Optional[str] = Field(default=None, description="""What the assessment of the event found.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsSecurityEvent']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
     title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
                       "lokf adapt folds it into LOKF's slot and a knowledge bundle "
                       'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
                       "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
                       'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:description'} })
 
     @field_validator('title')
@@ -2557,16 +2575,16 @@ class IsmsSecurityIncident(IsmsSecurityEvent):
     event_occurred_at: Optional[datetime ] = Field(default=None, description="""When the event happened, or when it was first noticed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsSecurityEvent']} })
     event_reporter: Optional[str] = Field(default=None, description="""Who reported the event.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsSecurityEvent']} })
     event_assessment: Optional[str] = Field(default=None, description="""What the assessment of the event found.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsSecurityEvent']} })
-    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecord']} })
+    isms_id: str = Field(default=..., description="""The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['IsmsRecordMixin']} })
     title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
                       "lokf adapt folds it into LOKF's slot and a knowledge bundle "
                       'reads one title key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:name'} })
     description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
                       "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
                       'bundle reads one description key.'],
-         'domain_of': ['IsmsRecord'],
+         'domain_of': ['IsmsRecordMixin'],
          'slot_uri': 'schema:description'} })
 
     @field_validator('title')
@@ -2585,7 +2603,7 @@ class IsmsSecurityIncident(IsmsSecurityEvent):
 
 # Model rebuild
 # see https://pydantic-docs.helpmanual.io/usage/models/#rebuilding-a-model
-IsmsRecord.model_rebuild()
+IsmsRecordMixin.model_rebuild()
 IsmsDocumentControlMixin.model_rebuild()
 IsmsManagementSystem.model_rebuild()
 IsmsOrganization.model_rebuild()

@@ -7,16 +7,6 @@ display_name: IsmsControl
 document_category: IsmsControl
 weight: 20
 fields:
-- id: isms_id
-  description: The record's identifier, unique among the ISMS's records, such as a
-    URI or a CURIE. Other records refer to the record by it.
-  display_name: isms_id
-- id: title
-  description: The name the organization gives the record.
-  display_name: IsmsRecord_title
-- id: description
-  description: What the record says or describes, in the organization's own words.
-  display_name: description
 - id: relevant_controls
   description: The organization's controls that the record concerns.
   display_name: relevant_controls
@@ -61,3 +51,13 @@ fields:
   description: Where the evidence that the control is in place is kept.
   display_name: ismsControl__control_evidence
   cardinality: multi
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecordMixin_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description

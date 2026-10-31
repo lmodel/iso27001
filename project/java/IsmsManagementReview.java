@@ -14,7 +14,7 @@ import lombok.*;
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class IsmsManagementReview extends IsmsRecord {
+public class IsmsManagementReview  {
 
   private LocalDate reviewHeldOn;
   private List<String> reviewAttendees;
@@ -31,6 +31,9 @@ public class IsmsManagementReview extends IsmsRecord {
   private List<String> reviewDecisions;
   private List<String> reviewActions;
   private LocalDate reviewNextDate;
+  private URI ismsId;
+  private String title;
+  private String description;
   private String documentReference;
   private String documentVersion;
   private String documentAuthor;

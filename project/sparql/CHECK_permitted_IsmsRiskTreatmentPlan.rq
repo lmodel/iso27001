@@ -25,6 +25,9 @@ SELECT ?g ?s ?p WHERE {
    iso27001:plan_risk_owner_approval,
    iso27001:plan_residual_risk_acceptance,
    iso27001:plan_completion_date,
+   iso27001:isms_id,
+   schema:name,
+   schema:description,
    iso27001:document_reference,
    iso27001:document_version,
    iso27001:document_author,
@@ -42,9 +45,6 @@ SELECT ?g ?s ?p WHERE {
    iso27001:document_change_control,
    iso27001:document_external_origin,
    iso27001:document_external_source,
-   iso27001:isms_id,
-   schema:name,
-   schema:description,
    rdf:type ))
  }
  

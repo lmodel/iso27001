@@ -5,8 +5,8 @@
  classDiagram
     class IsmsImprovementOpportunity
     click IsmsImprovementOpportunity href "../IsmsImprovementOpportunity"
-      IsmsRecord <|-- IsmsImprovementOpportunity
-        click IsmsRecord href "../IsmsRecord"
+      IsmsRecordMixin <|-- IsmsImprovementOpportunity
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       
       IsmsImprovementOpportunity : description
         

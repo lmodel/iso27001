@@ -6,16 +6,6 @@ display_name: IsmsAuditProgramme
 document_category: IsmsAuditProgramme
 weight: 20
 fields:
-- id: isms_id
-  description: The record's identifier, unique among the ISMS's records, such as a
-    URI or a CURIE. Other records refer to the record by it.
-  display_name: isms_id
-- id: title
-  description: The name the organization gives the record.
-  display_name: IsmsRecord_title
-- id: description
-  description: What the record says or describes, in the organization's own words.
-  display_name: description
 - id: programme_period
   description: The period the programme covers.
   display_name: ismsAuditProgramme__programme_period
@@ -35,6 +25,16 @@ fields:
 - id: programme_status
   description: Where the programme stands, in the organization's own terms.
   display_name: ismsAuditProgramme__programme_status
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecordMixin_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description
 - id: document_reference
   description: The reference the organization's document control gives it.
   display_name: ismsDocumentControlMixin__document_reference

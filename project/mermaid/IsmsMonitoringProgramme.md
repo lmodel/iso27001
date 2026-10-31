@@ -5,10 +5,10 @@
  classDiagram
     class IsmsMonitoringProgramme
     click IsmsMonitoringProgramme href "../IsmsMonitoringProgramme"
+      IsmsRecordMixin <|-- IsmsMonitoringProgramme
+        click IsmsRecordMixin href "../IsmsRecordMixin"
       IsmsDocumentControlMixin <|-- IsmsMonitoringProgramme
         click IsmsDocumentControlMixin href "../IsmsDocumentControlMixin"
-      IsmsRecord <|-- IsmsMonitoringProgramme
-        click IsmsRecord href "../IsmsRecord"
       
       IsmsMonitoringProgramme : description
         
