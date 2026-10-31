@@ -1,0 +1,5 @@
+# One measure on its own.
+monitoring_metric: Critical patches applied within 14 days
+monitoring_method: Patch management report
+monitoring_frequency: monthly
+monitoring_target: "95%"

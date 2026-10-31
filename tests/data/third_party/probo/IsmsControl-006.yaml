@@ -1,0 +1,9 @@
+isms_id: probo:list-of-your-assets
+title: List of your assets
+control_annex_a_controls:
+  - a_5_9
+  - a_7_9
+control_theme: organizational
+control_text: The assets storing/processing data are potential vulnerabilities that need to
+  be known, properly managed, and secured to reduce your risk exposure
+implementation_state: not_started

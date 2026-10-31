@@ -1,0 +1,7 @@
+# Fails at: /soa_entries/0
+# Invalid: every entry says why the control is included or excluded. The
+# validator tries each kind, so it reports the entry, not the key.
+isms_id: acme:soa-2026
+title: Statement of Applicability 2026
+soa_entries:
+  - entry_annex_a_control: a_7_5

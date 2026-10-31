@@ -31,6 +31,7 @@ Usage::
 
 The script is idempotent: running it twice on a clean tree is a no-op.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -64,18 +65,26 @@ import yaml as _pyyaml  # only for parsing the leading TSV #-metadata block
 
 # SKOS / OWL predicate -> LinkML mapping slot.
 SSSOM_PREDICATE_TO_LINKML_SLOT: dict[str, str] = {
-    "skos:exactMatch":         "exact_mappings",
-    "skos:closeMatch":          "close_mappings",
-    "skos:broadMatch":          "broad_mappings",
-    "skos:narrowMatch":         "narrow_mappings",
-    "skos:relatedMatch":        "related_mappings",
-    "owl:equivalentClass":      "exact_mappings",
-    "owl:equivalentProperty":   "exact_mappings",
+    "skos:exactMatch": "exact_mappings",
+    "skos:closeMatch": "close_mappings",
+    "skos:broadMatch": "broad_mappings",
+    "skos:narrowMatch": "narrow_mappings",
+    "skos:relatedMatch": "related_mappings",
+    "owl:equivalentClass": "exact_mappings",
+    "owl:equivalentProperty": "exact_mappings",
 }
 
 # Prefixes intrinsic to LinkML / SSSOM; never need to be declared on a schema.
 _BUILTIN_PREFIXES = {
-    "sssom", "owl", "rdf", "rdfs", "skos", "semapv", "linkml", "xsd", "dcterms",
+    "sssom",
+    "owl",
+    "rdf",
+    "rdfs",
+    "skos",
+    "semapv",
+    "linkml",
+    "xsd",
+    "dcterms",
 }
 
 _MAPPING_SLOT_ORDER = (
@@ -89,8 +98,16 @@ _MAPPING_SLOT_ORDER = (
 # Where mapping slots should sit within an element body (used only when none
 # of the five mapping slots are present yet, so we know where to splice).
 _POST_MAPPING_ANCHORS = (
-    "aliases", "in_subset", "permissible_values", "attributes", "slots",
-    "slot_usage", "rules", "comments", "annotations", "pattern",
+    "aliases",
+    "in_subset",
+    "permissible_values",
+    "attributes",
+    "slots",
+    "slot_usage",
+    "rules",
+    "comments",
+    "annotations",
+    "pattern",
 )
 
 
@@ -161,7 +178,7 @@ class MappingIndex:
             local: str | None = None
             for px in prefs_with_colon:
                 if subject.startswith(px):
-                    local = subject[len(px):]
+                    local = subject[len(px) :]
                     break
             if local is None:
                 continue
@@ -271,7 +288,7 @@ def _insert_mapping_slot(
             insert_pos = keys.index(s) + 1
     # 2. before next mapping slot
     if insert_pos is None:
-        for s in _MAPPING_SLOT_ORDER[slot_idx + 1:]:
+        for s in _MAPPING_SLOT_ORDER[slot_idx + 1 :]:
             if s in body:
                 insert_pos = keys.index(s)
                 break
@@ -300,7 +317,7 @@ def _merge_mappings(
     When ``is_permissible_value`` is True the LinkML ``meaning`` slot
     (singleton CURIE) is preferred for the first ``exact_mappings`` entry,
     per the LinkML PermissibleValue model. Any additional exact mappings
-    still land in ``exact_mappings`` so no information is lost.
+    are still written to ``exact_mappings``, so no information is lost.
     """
     touched = False
     links_added = 0
@@ -348,9 +365,16 @@ def _merge_mappings(
 # (LinkML conventional order: description, meaning, title, aliases, ...).
 _PV_PRE_MEANING_KEYS = ("meaning", "description", "title")
 _PV_POST_MEANING_KEYS = (
-    "title", "aliases", "annotations", "comments", "in_subset",
-    "exact_mappings", "close_mappings", "broad_mappings",
-    "narrow_mappings", "related_mappings",
+    "title",
+    "aliases",
+    "annotations",
+    "comments",
+    "in_subset",
+    "exact_mappings",
+    "close_mappings",
+    "broad_mappings",
+    "narrow_mappings",
+    "related_mappings",
 )
 
 
@@ -478,16 +502,16 @@ def overlay_file(
                         if not pv_slot_map:
                             continue
                         touched, n_added = _merge_mappings(
-                            pv_body, pv_slot_map, is_permissible_value=True,
+                            pv_body,
+                            pv_slot_map,
+                            is_permissible_value=True,
                         )
                         if touched:
                             elements_updated += 1
                             links_added += n_added
                             used_prefixes |= mappings.used_prefixes_for(pv_name)
 
-    prefixes_changed = _ensure_prefixes(
-        data, used_prefixes, mappings.prefix_uris, own
-    )
+    prefixes_changed = _ensure_prefixes(data, used_prefixes, mappings.prefix_uris, own)
 
     if elements_updated or prefixes_changed:
         with open(schema_path, "w", encoding="utf-8") as fh:
@@ -504,32 +528,39 @@ def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     src = p.add_mutually_exclusive_group()
     src.add_argument(
-        "--schema-dir", type=Path,
+        "--schema-dir",
+        type=Path,
         help="directory containing LinkML schema YAML files",
     )
     src.add_argument(
-        "--schema", type=Path,
+        "--schema",
+        type=Path,
         help="single LinkML schema YAML file",
     )
     p.add_argument(
-        "--mappings-dir", type=Path, required=True,
+        "--mappings-dir",
+        type=Path,
+        required=True,
         help="directory containing *.sssom.tsv mapping files",
     )
     p.add_argument(
-        "--subject-prefix", action="append", default=[],
+        "--subject-prefix",
+        action="append",
+        default=[],
         help="extra CURIE prefix (without colon) to treat as a subject-side "
-             "match in addition to those discovered from each schema "
-             "(repeatable)",
+        "match in addition to those discovered from each schema "
+        "(repeatable)",
     )
     args = p.parse_args(argv)
 
     if not args.schema_dir and not args.schema:
-        print("ERROR: one of --schema-dir or --schema is required",
-              file=sys.stderr)
+        print("ERROR: one of --schema-dir or --schema is required", file=sys.stderr)
         return 1
     if not args.mappings_dir.is_dir():
-        print(f"ERROR: mappings-dir {args.mappings_dir} is not a directory",
-              file=sys.stderr)
+        print(
+            f"ERROR: mappings-dir {args.mappings_dir} is not a directory",
+            file=sys.stderr,
+        )
         return 1
 
     if args.schema:
@@ -539,8 +570,10 @@ def main(argv: list[str] | None = None) -> int:
         schemas = [args.schema]
     else:
         if not args.schema_dir.is_dir():
-            print(f"ERROR: schema-dir {args.schema_dir} is not a directory",
-                  file=sys.stderr)
+            print(
+                f"ERROR: schema-dir {args.schema_dir} is not a directory",
+                file=sys.stderr,
+            )
             return 1
         schemas = sorted(args.schema_dir.glob("*.yaml"))
         if not schemas:
@@ -549,8 +582,7 @@ def main(argv: list[str] | None = None) -> int:
 
     mappings = load_mappings(args.mappings_dir)
     if not mappings.rows:
-        print(f"No mapping rows loaded from {args.mappings_dir}",
-              file=sys.stderr)
+        print(f"No mapping rows loaded from {args.mappings_dir}", file=sys.stderr)
         return 0
 
     extra_prefixes = {px.rstrip(":") for px in args.subject_prefix if px}

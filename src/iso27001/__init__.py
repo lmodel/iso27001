@@ -1,3 +1,8 @@
+"""iso27001.
+
+ISO 27001 / ISMS: LinkML Schema
+"""
+
 try:
     from iso27001._version import __version__, __version_tuple__
 except ImportError:  # pragma: no cover

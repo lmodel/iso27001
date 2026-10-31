@@ -1,0 +1,6 @@
+# Fails at: /incident_category
+# Invalid: a category is one of IsmsIncidentCategory's values.
+isms_id: acme:incident-2026-004
+title: Mailbox taken over by phishing
+event_type: IsmsSecurityIncident
+incident_category: credential_theft

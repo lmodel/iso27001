@@ -1,0 +1,35 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsResource
+schema_generating: true
+description: A resource provided for the ISMS, such as people, time, tools or budget.
+display_name: IsmsResource
+document_category: IsmsResource
+weight: 20
+fields:
+- id: resource_category
+  description: What kind of resource it is.
+  display_name: ismsResource__resource_category
+- id: resource_quantity
+  description: How much of the resource is provided.
+  display_name: ismsResource__resource_quantity
+- id: resource_allocation_date
+  description: When the resource was allocated.
+  display_name: ismsResource__resource_allocation_date
+- id: resource_allocated_to
+  description: What the resource is allocated to.
+  display_name: ismsResource__resource_allocated_to
+- id: resource_cost
+  description: What the resource costs.
+  display_name: ismsResource__resource_cost
+- id: resource_availability
+  description: Whether the resource is available now, in the organization's own terms.
+  display_name: ismsResource__resource_availability
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecordMixin_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description

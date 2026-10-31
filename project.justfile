@@ -20,7 +20,9 @@ _ensure_probo_output:
     -rm -rf examples/output/third_party/probo/*.*
 ## Add your own just recipes here. This is imported by the main justfile.
 
-# Apply curated SSSOM mapping TSVs to the generated LinkML schema YAMLs.
+# Apply curated SSSOM mapping TSVs to the public schema, and to no other
+# file in its folder: the overlay template and a licence holder's private
+# overlay sit beside it.
 # Merges SKOS exact/close/broad/narrow/related matches into the matching
 # class / enum / type bodies and declares any referenced object-side prefixes.
 # Idempotent: re-running on a clean tree produces no further changes. Run
@@ -28,32 +30,30 @@ _ensure_probo_output:
 [group('model development')]
 apply-sssom-overlay:
   uv run python scripts/apply_sssom_overlay.py \
-    --schema-dir src/iso27001/schema \
+    --schema {{source_schema_path}} \
     --mappings-dir src/iso27001/mappings
 
 # ============== Supplemental generator recipes (beyond gen-project defaults) ==============
-# gen-project already covers: graphql, jsonldcontext, jsonld, jsonschema, owl,
-# prefixmap, proto, python, shex, shacl, sqlddl, excel, typescript.
-# Explicit in main justfile: java, typescript (dup), owl (dup), pydantic (→ datamodel/).
-# The recipes below cover the remaining available generators.
-# Run all at once with: just gen-project-extended
+# gen-project already covers graphql, jsonldcontext, jsonld, jsonschema, owl,
+# prefixmap, proto, python, shex, shacl, sqlddl and excel, and the main
+# justfile adds java, typescript, owl and pydantic. The recipes below cover
+# the other generators LinkML ships. Run them all with `just gen-project-extended`.
+# Each runs the stock generator, except gen-dbml-artifact, whose wrapper
+# scripts/gen_dbml_patched.py explains why it is still needed.
 
 # ---- Schema / metadata formats ----
 
-# NOTE: recipe named gen-merged-schema to avoid conflict with CDM's gen-linkml recipe
 # Generate a single self-contained merged LinkML YAML with all imports resolved
 [group('model development - extended')]
 gen-merged-schema:
   mkdir -p {{dest}}/linkml
   uv run gen-linkml --mergeimports -o {{dest}}/linkml/{{schema_name}}.merged.linkml.yaml {{source_schema_path}}
 
-# gen-yaml CLI hits the linkml-runtime 1.11.0 RepresenterError (JsonObj missing SafeDumper representer).
-# Use the same patched script as _gen-yaml until linkml-runtime > 1.11.0 lands.
-# Generate resolved YAML schema (patched yamlgen)
+# Generate resolved YAML schema
 [group('model development - extended')]
 gen-yaml-artifact:
   mkdir -p {{dest}}/yaml
-  uv run python scripts//gen_yaml_patched.py {{source_schema_path}} > {{dest}}/yaml/{{schema_name}}.yaml
+  uv run gen-yaml {{source_schema_path}} > {{dest}}/yaml/{{schema_name}}.yaml
 
 # Generate SSSOM mapping TSV from schema slot_uri / mappings
 [group('model development - extended')]
@@ -93,7 +93,7 @@ gen-erdiagram-artifact:
   mkdir -p {{dest}}/erdiagram
   uv run gen-erdiagram --mergeimports -f mermaid {{source_schema_path}} > {{dest}}/erdiagram/{{schema_name}}.er.md
 
-# Generate PlantUML diagram (stdout → single file)
+# Generate PlantUML diagram as a single file
 [group('model development - extended')]
 gen-plantuml-artifact:
   mkdir -p {{dest}}/plantuml
@@ -101,14 +101,11 @@ gen-plantuml-artifact:
 
 # ---- Data / query formats ----
 
-# gen-rdf embeds ./cdm_*.context.jsonld refs that rdflib resolves against the
-# schema @base URL (https://w3id.org/lmodel/…), returning HTTP 404. Patched
-# script strips those refs; all prefix bindings are in the merged context.
 # Generate RDF/Turtle representation of the schema
 [group('model development - extended')]
 gen-rdf-artifact:
   mkdir -p {{dest}}/rdf
-  uv run python scripts//gen_rdf_patched.py --mergeimports -o {{dest}}/rdf/{{schema_name}}.ttl {{source_schema_path}}
+  uv run gen-rdf --mergeimports -o {{dest}}/rdf/{{schema_name}}.ttl {{source_schema_path}}
 
 # Generate a directory of SPARQL validation queries (one query per constraint)
 [group('model development - extended')]
@@ -128,7 +125,7 @@ gen-csv-artifact:
 [group('model development - extended')]
 gen-dbml-artifact:
   mkdir -p {{dest}}/dbml
-  uv run python3 scripts//gen_dbml_patched.py -s {{source_schema_path}} -o {{dest}}/dbml/{{schema_name}}.dbml
+  uv run python scripts/gen_dbml_patched.py -s {{source_schema_path}} -o {{dest}}/dbml/{{schema_name}}.dbml
 
 # Generate SQLAlchemy ORM models
 [group('model development - extended')]
@@ -156,7 +153,7 @@ gen-typedb-artifact:
 
 # ---- Language bindings ----
 
-# Generate Go structs (stdout → single file)
+# Generate Go structs as a single file
 [group('model development - extended')]
 gen-golang-artifact:
   mkdir -p {{dest}}/golang
@@ -178,17 +175,13 @@ gen-cpp-artifact:
 [group('model development - extended')]
 gen-pandera-artifact:
   mkdir -p {{dest}}/pandera
-  uv run python3 scripts//gen_pandera_patched.py {{source_schema_path}} > {{dest}}/pandera/{{schema_name}}_pandera.py
+  uv run gen-pandera {{source_schema_path}} > {{dest}}/pandera/{{schema_name}}_pandera.py
 
 # Generate Markdown data dictionary (single combined file)
-# NOTE Bug 12: gen-markdown-datadict creates a new ERDiagramGenerator (and
-# therefore re-loads the full CDM schema) for every one of the 2500+ CDM
-# classes, hanging indefinitely.  scripts/gen_markdown_datadict_patched.py
-# overrides _generate_class_diagram to cache one ERDiagramGenerator instance.
 [group('model development - extended')]
 gen-markdown-datadict-artifact:
   mkdir -p {{dest}}/markdown-datadict
-  uv run python3 scripts//gen_markdown_datadict_patched.py --mergeimports {{source_schema_path}} > {{dest}}/markdown-datadict/{{schema_name}}.md
+  uv run gen-markdown-datadict --mergeimports {{source_schema_path}} > {{dest}}/markdown-datadict/{{schema_name}}.md
 
 # Generate GOLR (SOLR) view configurations (one JSON per class)
 [group('model development - extended')]
@@ -225,3 +218,31 @@ gen-project-extended: \
   gen-pandera-artifact \
   gen-markdown-datadict-artifact \
   gen-golr-artifact
+
+# ============ Knowledge bundle: the adapted domain schema ============
+
+# `.lokf/iso27001.yaml` is the copy `lokf adapt` writes from the schema so
+# that it can sit beside `.lokf/lokf.yaml` (`lokf adapt --help` lists the
+# moves). The roots are the classes a knowledge concept may use as its
+# `type`: the records that describe how an organization runs its ISMS and
+# stay true for a while, which a repository's knowledge would document. They
+# are the information security policy, a topic-specific policy, a role, a
+# control, an asset, a piece of documented information and an operational
+# procedure. Records of events and of work done (risk assessments, audits and
+# findings, reviews, nonconformities, incidents) and the ISMS container are
+# data an ISMS tool keeps, so they stay plain classes. The recipes run the
+# `lokf` the sidecar's floor pins (0.9.0 or later); LOKF_CMD runs another,
+# such as a checkout:
+# LOKF_CMD="uv run --project ../lokf lokf" just lokf-adapt
+lokf_cmd := env_var_or_default("LOKF_CMD", "uv run --project .lokf lokf")
+lokf_adapt_roots := "--root IsmsPolicy --root IsmsTopicSpecificPolicy --root IsmsRole --root IsmsControl --root IsmsAsset --root IsmsDocumentedInformation --root IsmsOperationalProcedure"
+
+# Rewrite .lokf/iso27001.yaml from the schema (run after every schema change)
+[group('knowledge bundle')]
+lokf-adapt:
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/iso27001.yaml
+
+# Fail when .lokf/iso27001.yaml is stale against the schema or .lokf/lokf.yaml
+[group('knowledge bundle')]
+lokf-adapt-check:
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/iso27001.yaml --check

@@ -1,15 +1,13 @@
 # Auto generated from iso27001.yaml by namespacegen.py version: 0.0.1
-# Generation date: 2026-06-01T19:41:20
 # Schema: iso27001
 #
 # id: https://w3id.org/lmodel/iso27001
-# description: A comprehensive LinkML schema modeling ISMS entities, workflows, and traceability links aligned to
-#              ISO/IEC 27001:2022 clause and Annex references. Designed for open data publication, automated
-#              validation, and integration with governance, risk, and compliance (GRC) systems. This schema
-#              captures: - ISMS lifecycle (establish, implement, maintain, improve) - Risk assessment and
-#              treatment processes (Clause 6.1) - Annex A control catalog structures organized by domain - Audit,
-#              measurement, and continual improvement artifacts
-# license: https://www.apache.org/licenses/LICENSE-2.0
+# description: A LinkML model of the records an organization keeps to run an information security management
+#              system (ISMS) to ISO/IEC 27001:2022 with Amendment 1:2024: its context and scope, policies, roles
+#              and objectives, risks and their treatment, its controls and Statement of Applicability, the support
+#              and operation it needs, its audits and management reviews, and its nonconformities, corrective
+#              actions and improvements. The 93 reference controls of Annex A appear by their numbers alone.
+# license: Apache-2.0
 
 from collections import defaultdict
 from typing import Iterable, Dict, Tuple
@@ -33,34 +31,13 @@ class BiolinkNameSpace:
     """
 
     _namespaces = [
-        CurieNamespace('attack', 'https://w3id.org/lmodel/attack/'),
-        CurieNamespace('capec', 'https://w3id.org/lmodel/capec/'),
-        CurieNamespace('cis_controls', 'https://w3id.org/lmodel/cis-controls/'),
-        CurieNamespace('cve', 'https://w3id.org/lmodel/cve/'),
-        CurieNamespace('cwe', 'https://w3id.org/lmodel/cwe/'),
-        CurieNamespace('d3f', 'https://d3fend.mitre.org/ontologies/d3fend.owl#'),
-        CurieNamespace('dcterms', 'http://purl.org/dc/terms/'),
-        CurieNamespace('iso', 'https://www.iso.org/standard/'),
         CurieNamespace('iso27001', 'https://w3id.org/lmodel/iso27001/'),
-        CurieNamespace('iso27002', 'https://w3id.org/lmodel/iso27002/'),
-        CurieNamespace('iso29100', 'https://w3id.org/lmodel/iso29100/'),
-        CurieNamespace('iso42001', 'https://w3id.org/lmodel/iso42001/'),
-        CurieNamespace('kev_catalog', 'https://w3id.org/lmodel/kev-catalog/'),
         CurieNamespace('linkml', 'https://w3id.org/linkml/'),
-        CurieNamespace('nist_csf_v2', 'https://w3id.org/lmodel/nist-csf-v2/'),
-        CurieNamespace('nist_sp_800_171', 'https://w3id.org/lmodel/nist-sp-800-171/'),
-        CurieNamespace('nist_sp_800_218', 'https://w3id.org/lmodel/nist-sp-800-218/'),
         CurieNamespace('nist_sp_800_53', 'https://w3id.org/lmodel/nist-sp-800-53/'),
-        CurieNamespace('nvd', 'https://w3id.org/lmodel/nist-nvd/'),
-        CurieNamespace('ocsf', 'https://w3id.org/lmodel/ocsf/'),
         CurieNamespace('oscal', 'https://w3id.org/lmodel/oscal/'),
-        CurieNamespace('prov', 'http://www.w3.org/ns/prov#'),
         CurieNamespace('schema', 'http://schema.org/'),
-        CurieNamespace('semapv', 'https://w3id.org/semapv/vocab/'),
-        CurieNamespace('skos', 'http://www.w3.org/2004/02/skos/core#'),
-        CurieNamespace('slsa', 'https://w3id.org/lmodel/slsa/'),
-        CurieNamespace('spdx', 'https://w3id.org/lmodel/spdx/'),
-        CurieNamespace('stix', 'https://w3id.org/lmodel/stix/'),
+        CurieNamespace('spdx_core', 'https://spdx.org/rdf/3.0.1/terms/Core/'),
+        CurieNamespace('spdx_software', 'https://spdx.org/rdf/3.0.1/terms/Software/'),
         CurieNamespace('xsd', 'http://www.w3.org/2001/XMLSchema#'),
     ]
 

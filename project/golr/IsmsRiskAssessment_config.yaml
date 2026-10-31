@@ -1,0 +1,98 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsRiskAssessment
+schema_generating: true
+description: One risk assessment carried out under the risk assessment process, and
+  what it found.
+display_name: IsmsRiskAssessment
+document_category: IsmsRiskAssessment
+weight: 20
+fields:
+- id: assessment_scope
+  description: What the assessment covered.
+  display_name: ismsRiskAssessment__assessment_scope
+- id: assessment_date
+  description: When the assessment was carried out.
+  display_name: ismsRiskAssessment__assessment_date
+- id: assessment_assessor
+  description: Who carried out the assessment.
+  display_name: ismsRiskAssessment__assessment_assessor
+- id: assessment_method_used
+  description: The method this assessment applied.
+  display_name: ismsRiskAssessment__assessment_method_used
+- id: assessment_risks
+  description: The risks the assessment identified.
+  display_name: ismsRiskAssessment__assessment_risks
+  cardinality: multi
+- id: assessment_summary
+  description: A summary of what the assessment found.
+  display_name: ismsRiskAssessment__assessment_summary
+- id: assessment_recommendations
+  description: What the assessment recommends.
+  display_name: ismsRiskAssessment__assessment_recommendations
+  cardinality: multi
+- id: assessment_next_date
+  description: When the next assessment is planned.
+  display_name: ismsRiskAssessment__assessment_next_date
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecordMixin_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description
+- id: document_reference
+  description: The reference the organization's document control gives it.
+  display_name: ismsDocumentControlMixin__document_reference
+- id: document_version
+  description: The version of the document.
+  display_name: ismsDocumentControlMixin__document_version
+- id: document_author
+  description: Who wrote the document.
+  display_name: ismsDocumentControlMixin__document_author
+- id: document_owner
+  description: Who answers for the document's content and upkeep.
+  display_name: ismsDocumentControlMixin__document_owner
+- id: document_approver
+  description: Who approved the document.
+  display_name: ismsDocumentControlMixin__document_approver
+- id: document_approval_date
+  description: When the document was approved.
+  display_name: ismsDocumentControlMixin__document_approval_date
+- id: document_effective_date
+  description: When the document takes effect.
+  display_name: ismsDocumentControlMixin__document_effective_date
+- id: document_last_review_date
+  description: When the document was last reviewed.
+  display_name: ismsDocumentControlMixin__document_last_review_date
+- id: document_next_review_date
+  description: When the document is next due for review.
+  display_name: ismsDocumentControlMixin__document_next_review_date
+- id: document_status
+  description: Where the document stands in its life, in the organization's own terms,
+    such as draft, approved or withdrawn.
+  display_name: ismsDocumentControlMixin__document_status
+- id: document_classification
+  description: The information classification the document carries.
+  display_name: ismsDocumentControlMixin__document_classification
+- id: document_retention
+  description: How long the document is kept, as an ISO 8601 duration.
+  display_name: ismsDocumentControlMixin__document_retention
+- id: document_distribution
+  description: How the document is distributed, accessed, retrieved and used.
+  display_name: ismsDocumentControlMixin__document_distribution
+  cardinality: multi
+- id: document_storage
+  description: How the document is stored and preserved, so that it stays legible.
+  display_name: ismsDocumentControlMixin__document_storage
+- id: document_change_control
+  description: How changes to the document are controlled, such as version control.
+  display_name: ismsDocumentControlMixin__document_change_control
+- id: document_external_origin
+  description: Whether the document comes from outside the organization and is kept
+    because the ISMS needs it.
+  display_name: ismsDocumentControlMixin__document_external_origin
+- id: document_external_source
+  description: Who the document came from, when it comes from outside.
+  display_name: ismsDocumentControlMixin__document_external_source

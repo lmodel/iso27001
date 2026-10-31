@@ -1,0 +1,12 @@
+# A procedure for operational planning and control.
+isms_id: acme:procedure-change
+title: Change management procedure
+procedure_scope: Changes to production systems.
+procedure_criteria: Every change is risk-rated and approved before release.
+procedure_control_measures:
+  - A second engineer reviews each change.
+procedure_roles:
+  - acme:role-change-manager
+relevant_controls:
+  - acme:control-change
+procedure_change_control: The procedure itself changes through the same process.

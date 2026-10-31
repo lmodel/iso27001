@@ -1,0 +1,8 @@
+# One communication on its own.
+communication_subject: Incidents that affect customer orders
+communication_purpose: Tell customers what happened and what to do.
+communication_audience: Affected business customers
+communication_frequency: as needed
+communication_method: Email from the account manager
+responsible_role: acme:role-ciso
+communication_records_required: true

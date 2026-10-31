@@ -1,9 +1,103 @@
-This project includes original code, schema structure, and documentation
-licensed under Apache License 2.0.
+ISO/IEC 27001 ISMS LinkML Schema (iso27001)
+Copyright 2026 Noel McLoughlin
 
-ISO/IEC standards publications, including ISO/IEC 27001 and ISO/IEC 27002,
-are copyrighted by ISO. This repository does not relicense or sublicense
-ISO standards text.
+The code in this repository is licensed under the Apache License,
+Version 2.0 (see LICENSE). Some of the content it carries is third-party
+work under its own terms, listed below.
 
-If you need to reproduce or redistribute ISO standards text in software,
-documentation, or generated artifacts, obtain permission from ISO.
+ISO/IEC 27001
+-------------
+
+src/iso27001/schema/*.yaml, src/iso27001/datamodel/ and project/ model
+the records an organization keeps to run an information security
+management system to ISO/IEC 27001:2022, Information security,
+cybersecurity and privacy protection - Information security management
+systems - Requirements (third edition, 2022-10), with Amendment 1:2024,
+Climate action changes. They are this project's own work, written in its
+own words, and cite the standard's clauses and Annex A controls by number
+only. They reproduce no text of the standard, which is copyright ISO and
+IEC, and they are not endorsed by ISO or IEC. This repository's licence
+grants no right to reproduce or redistribute that text; obtain the
+standard and any licence to reuse its text from ISO or your national
+standards body.
+
+src/iso27001/schema/iso27001-overlay.template.yaml lists the schema's
+elements with empty placeholders and holds no text of the standard. A
+licence holder may fill a private copy of it, which .gitignore keeps out
+of this repository; that copy must never be committed or distributed.
+
+ISO Open Data
+-------------
+
+src/iso27001/schema/iso-open-data/iso_deliverables_metadata.jsonl holds
+ISO's records of ISO/IEC 27001:2022, ISO/IEC 27001:2022/Amd 1:2024,
+ISO/IEC 27002:2022 and ISO/IEC 27000:2026, taken on 2026-10-28 from
+https://isopublicstorageprod.blob.core.windows.net/opendata/_latest/iso_deliverables_metadata/json/iso_deliverables_metadata.jsonl.
+Each line is ISO's record as published, without its "scope" field.
+scripts/check_upstream_release.py pins each line by its hash and compares
+it with the live dataset.
+
+  This work is based on the iso_deliverables_metadata dataset from ISO
+  Open Data (https://www.iso.org/open-data.html), licensed under ODC
+  Attribution License (ODC-By) v1.0
+  (https://opendatacommons.org/licenses/by/1-0/)
+
+Probo's mitigations
+-------------------
+
+tests/data/third_party/probo/ holds a copy of the mitigations list from
+Probo (https://github.com/getprobo/probo), mitigations.json, and test
+fixtures that tests/data/third_party/probo/convert.py derives from it.
+They are Probo's work, used under the MIT License that
+tests/data/third_party/probo/LICENSE carries:
+
+  Copyright 2025 Probo Inc
+
+linkml-project-copier
+---------------------
+
+This project was generated from linkml-project-copier
+(https://github.com/linkml/linkml-project-copier), and its justfile,
+configuration and documentation scaffolding derive from that template:
+
+  The MIT License (MIT)
+  Copyright (c) 2025 David Linke
+
+  Permission is hereby granted, free of charge, to any person obtaining a
+  copy of this software and associated documentation files (the
+  "Software"), to deal in the Software without restriction, including
+  without limitation the rights to use, copy, modify, merge, publish,
+  distribute, sublicense, and/or sell copies of the Software, and to permit
+  persons to whom the Software is furnished to do so, subject to the
+  following conditions:
+
+  The above copyright notice and this permission notice shall be included
+  in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+  NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+  USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Knowledge bundle
+----------------
+
+This product maintains its documentation as a Linked Open Knowledge Format
+(LOKF) bundle under .lokf/: https://lokf.nolan-nichols.com/specification/
+
+LOKF is a semantic profile of the Open Knowledge Format (OKF) specification
+by Google Cloud Platform:
+https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/main/SPEC.md
+
+The scripts under .lokf/scripts/ and .lokf/m365/ and the
+knowledge-librarian, knowledge-registrar, knowledge-release and
+knowledge-sync workflows under .github/workflows/ are copies of the
+ktl-sidecar templates in knowledge-trust-ladder
+(https://github.com/noelmcloughlin/knowledge-trust-ladder). The site under
+website/ and the knowledge-website workflow derive from the ktl-website
+templates in the same repository, and website/NOTICE lists the part
+adapted from the LOKF toolkit's site. All of them are licensed under the
+Apache License, Version 2.0.

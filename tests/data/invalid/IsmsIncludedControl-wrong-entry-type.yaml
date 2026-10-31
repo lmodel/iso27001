@@ -1,0 +1,6 @@
+# Fails at: /entry_type
+# Invalid: the designator names the entry's own class.
+entry_type: IsmsExcludedControl
+entry_annex_a_control: a_8_5
+entry_justification: Needed to treat the phishing risk.
+implementation_state: implemented

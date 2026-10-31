@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
 """Generate an empty overlay scaffold from the public iso27001 schema.
 
-The scaffold lists every class, slot, and enum permissible value with empty
-placeholder fields (`description`, `comments`) for a license owner to fill in
-with verbatim normative ISO/IEC text. The scaffold itself contains NO
-copyrighted text and is safe to commit.
+The scaffold lists every class with its attributes, every slot, and every
+enum with its permissible values, each with empty placeholder fields
+(`description`, and `comments` on a class) for a licence holder to fill in
+with the standard's wording. The scaffold itself holds no text of the
+standard and is safe to commit; tests/test_overlay.py checks both that and
+that the committed scaffold is the one this script writes.
 
 Usage:
     uv run python scripts/create_overlay_template.py \
         --public src/iso27001/schema/iso27001.yaml \
         --output src/iso27001/schema/iso27001-overlay.template.yaml
 """
+
 from __future__ import annotations
 
 import argparse
@@ -43,10 +46,12 @@ HEADER = """\
 # The populated `iso27001-overlay.yaml` is ignored by git (see .gitignore)
 # and must NOT be redistributed. Apply it locally with:
 #     just overlay-licensed-text
+# which writes the merged schema under tmp/ only.
 #
-# Merge semantics: deep-merge over iso27001.yaml. For each element, only the
-# `description` and `comments` keys are overlaid; all structural fields
-# (slots, ranges, mappings, annotations) are preserved from the public schema.
+# Merge semantics: deep-merge over iso27001.yaml. For each class, attribute,
+# slot, enum and permissible value, only descriptive keys are overlaid; all
+# structural fields (slots, ranges, mappings, annotations) are kept from the
+# public schema.
 # =============================================================================
 
 id: https://w3id.org/lmodel/iso27001/overlay
@@ -67,7 +72,15 @@ def build_scaffold(public: dict) -> dict:
 
     classes = public.get("classes") or {}
     if classes:
-        out["classes"] = {name: _placeholder() for name in sorted(classes)}
+        out["classes"] = {}
+        for name in sorted(classes):
+            entry = _placeholder()
+            attributes = (classes[name] or {}).get("attributes") or {}
+            if attributes:
+                entry["attributes"] = {
+                    attr: {"description": ""} for attr in sorted(attributes)
+                }
+            out["classes"][name] = entry
 
     slots = public.get("slots") or {}
     if slots:
@@ -87,11 +100,11 @@ def build_scaffold(public: dict) -> dict:
     return out
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--public", required=True, type=Path)
     ap.add_argument("--output", required=True, type=Path)
-    args = ap.parse_args()
+    args = ap.parse_args(argv)
 
     public = yaml.safe_load(args.public.read_text(encoding="utf-8"))
     scaffold = build_scaffold(public)

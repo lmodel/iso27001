@@ -1,0 +1,5 @@
+# Fails at: /
+# Invalid: an included entry says whether the control is in place.
+entry_type: IsmsIncludedControl
+entry_annex_a_control: a_8_5
+entry_justification: Needed to treat the phishing risk.

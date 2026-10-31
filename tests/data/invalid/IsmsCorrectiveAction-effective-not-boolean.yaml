@@ -1,0 +1,5 @@
+# Fails at: /action_effective
+# Invalid: whether the action was effective is true or false.
+isms_id: acme:action-access-review-records
+title: Give the access review an owner
+action_effective: mostly

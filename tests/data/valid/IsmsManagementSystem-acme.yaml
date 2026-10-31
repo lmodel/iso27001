@@ -1,0 +1,152 @@
+# A whole ISMS with one record of each kind it lists, which refer to one
+# another by isms_id.
+isms_id: acme:isms
+title: Acme Widgets ISMS
+isms_scope: >-
+  The design, sale and delivery of machine parts through the online shop,
+  and the systems and people that support them, at the Dublin office.
+isms_scope_boundaries:
+  - The Dublin office and the cloud services it uses.
+isms_scope_exclusions:
+  - The German subsidiary, until it joins in 2027.
+isms_interfaces:
+  - The payment provider handles card data.
+isms_processes: The ISMS processes follow the plan, do, check and act cycle.
+isms_internal_issues:
+  - A small security team.
+isms_external_issues:
+  - Customers ask for evidence of security.
+isms_risk_and_opportunity_actions:
+  - Use certification to win larger customers.
+isms_planned_changes:
+  - Add the German subsidiary in 2027.
+isms_external_services:
+  - Cloud mail provider
+isms_top_management: Managing Director
+isms_governing_body: Board of directors
+isms_leadership_evidence:
+  - The board approves the policy and the security budget each year.
+isms_certification_status: certified
+isms_certification_body: Example Certification Ltd
+isms_certification_date: "2025-06-30"
+isms_recertification_date: "2028-06-30"
+isms_organization:
+  isms_id: acme:organization
+  title: Acme Widgets Ltd
+  organization_climate_change_relevant: false
+isms_interested_parties:
+  - isms_id: acme:party-customers
+    title: Business customers
+isms_policy:
+  isms_id: acme:policy-information-security
+  title: Information security policy
+isms_topic_specific_policies:
+  - isms_id: acme:policy-access-control
+    title: Access control policy
+    topic_policy_parent: acme:policy-information-security
+isms_roles:
+  - isms_id: acme:role-ciso
+    title: Chief Information Security Officer
+    role_reports_to: acme:role-managing-director
+  - isms_id: acme:role-managing-director
+    title: Managing Director
+isms_objectives:
+  - isms_id: acme:objective-phishing-reports
+    title: Report suspected phishing
+    responsible_role: acme:role-ciso
+isms_risk_assessment_process:
+  isms_id: acme:process-risk-assessment
+  title: Information security risk assessment process
+isms_risk_treatment_process:
+  isms_id: acme:process-risk-treatment
+  title: Information security risk treatment process
+isms_risk_assessments:
+  - isms_id: acme:assessment-2026
+    title: Risk assessment 2026
+    assessment_risks:
+      - acme:risk-phishing
+isms_risks:
+  - isms_id: acme:risk-phishing
+    title: Credentials taken by phishing
+    affected_assets:
+      - acme:asset-mail
+    risk_treatment_option: modify
+isms_risk_treatment_plans:
+  - isms_id: acme:plan-phishing
+    title: Treat the phishing risk
+    plan_risks:
+      - acme:risk-phishing
+    plan_controls:
+      - acme:control-mfa
+isms_statement_of_applicability:
+  isms_id: acme:soa-2026
+  title: Statement of Applicability 2026
+  soa_entries:
+    - entry_type: IsmsIncludedControl
+      entry_annex_a_control: a_8_5
+      entry_justification: Needed to treat the phishing risk.
+      included_control: acme:control-mfa
+      implementation_state: in_progress
+isms_controls:
+  - isms_id: acme:control-mfa
+    title: Multi-factor sign-in
+    control_annex_a_controls:
+      - a_8_5
+isms_assets:
+  - isms_id: acme:asset-mail
+    title: Mail service
+isms_resources:
+  - isms_id: acme:resource-security-team
+    title: Security team
+isms_competence_records:
+  - isms_id: acme:competence-analyst
+    title: Competence of the security analyst
+isms_awareness_programme:
+  isms_id: acme:awareness-2026
+  title: Security awareness 2026
+isms_communication_plan:
+  isms_id: acme:communication-plan
+  title: ISMS communication plan
+isms_documented_information:
+  - isms_id: acme:doc-audit-plan-2026
+    title: Audit plan, spring 2026
+    document_kind: plan
+isms_operational_procedures:
+  - isms_id: acme:procedure-change
+    title: Change management procedure
+isms_monitoring_programme:
+  isms_id: acme:monitoring-2026
+  title: Monitoring and measurement 2026
+isms_audit_programmes:
+  - isms_id: acme:audit-programme-2026
+    title: Internal audit programme 2026
+    programme_audits:
+      - acme:audit-2026-internal
+isms_audits:
+  - isms_id: acme:audit-2026-internal
+    title: Internal audit, spring 2026
+    audit_type: first_party
+    audit_plan: acme:doc-audit-plan-2026
+isms_management_reviews:
+  - isms_id: acme:review-2026
+    title: Management review 2026
+    review_held_on: "2026-05-12"
+isms_nonconformities:
+  - isms_id: acme:nonconformity-access-review
+    title: Access reviews not recorded
+isms_corrective_actions:
+  - isms_id: acme:action-access-review-records
+    title: Give the access review an owner
+    action_nonconformities:
+      - acme:nonconformity-access-review
+isms_improvements:
+  - isms_id: acme:improvement-automate-access-review
+    title: Automate the access review
+isms_security_events:
+  - isms_id: acme:event-2026-031
+    title: Suspicious invoice message
+    event_type: IsmsSecurityEvent
+  - isms_id: acme:incident-2026-004
+    title: Mailbox taken over by phishing
+    event_type: IsmsSecurityIncident
+    incident_category: account_compromise

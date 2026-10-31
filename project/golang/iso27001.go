@@ -4,1284 +4,1222 @@ package iso27001
 import (
 	"time"
 )
-// The four control domains defined in ISO/IEC 27001:2022 Annex A, corresponding to Clauses 5-8 of ISO/IEC 27002:2022.
-type ControlCategory string
+// The four themes Annex A sorts its controls into, which ISO/IEC 27002:2022 also uses.
+type IsmsControlTheme string
 
 const (
-	// Organizational controls (Annex A.5) - policies, roles, asset management, access control, supplier relationships, incident management, compliance.
-	ControlCategoryOrganizational ControlCategory = "organizational"
-	// People controls (Annex A.6) - screening, employment terms, awareness, disciplinary process, termination responsibilities, remote working.
-	ControlCategoryPeople ControlCategory = "people"
-	// Physical controls (Annex A.7) - perimeters, entry controls, equipment protection, secure areas, media handling, cabling, maintenance.
-	ControlCategoryPhysical ControlCategory = "physical"
-	// Technological controls (Annex A.8) - endpoint security, access restrictions, authentication, malware protection, logging, cryptography, secure development.
-	ControlCategoryTechnological ControlCategory = "technological"
+	// The organizational controls, numbered A.5.1 to A.5.37.
+	IsmsControlThemeOrganizational IsmsControlTheme = "organizational"
+	// The people controls, numbered A.6.1 to A.6.8.
+	IsmsControlThemePeople IsmsControlTheme = "people"
+	// The physical controls, numbered A.7.1 to A.7.14.
+	IsmsControlThemePhysical IsmsControlTheme = "physical"
+	// The technological controls, numbered A.8.1 to A.8.34.
+	IsmsControlThemeTechnological IsmsControlTheme = "technological"
 )
-// Lifecycle status of a security control, used in Statement of Applicability and control tracking.
-type ImplementationStatus string
+// The 93 reference controls of Annex A, by their numbers. The values carry no titles: the titles and the control text are ISO's.
+type IsmsAnnexAControl string
 
 const (
-	// Control identified but no implementation activities begun.
-	ImplementationStatusNotStarted ImplementationStatus = "not_started"
-	// Control scheduled for implementation with defined timeline.
-	ImplementationStatusPlanned ImplementationStatus = "planned"
-	// Implementation actively underway but not yet complete.
-	ImplementationStatusInProgress ImplementationStatus = "in_progress"
-	// Control fully implemented and operational.
-	ImplementationStatusImplemented ImplementationStatus = "implemented"
-	// Control excluded from scope with documented justification per 6.1.3 d).
-	ImplementationStatusNotApplicable ImplementationStatus = "not_applicable"
+	IsmsAnnexAControlA51 IsmsAnnexAControl = "a_5_1"
+	IsmsAnnexAControlA52 IsmsAnnexAControl = "a_5_2"
+	IsmsAnnexAControlA53 IsmsAnnexAControl = "a_5_3"
+	IsmsAnnexAControlA54 IsmsAnnexAControl = "a_5_4"
+	IsmsAnnexAControlA55 IsmsAnnexAControl = "a_5_5"
+	IsmsAnnexAControlA56 IsmsAnnexAControl = "a_5_6"
+	IsmsAnnexAControlA57 IsmsAnnexAControl = "a_5_7"
+	IsmsAnnexAControlA58 IsmsAnnexAControl = "a_5_8"
+	IsmsAnnexAControlA59 IsmsAnnexAControl = "a_5_9"
+	IsmsAnnexAControlA510 IsmsAnnexAControl = "a_5_10"
+	IsmsAnnexAControlA511 IsmsAnnexAControl = "a_5_11"
+	IsmsAnnexAControlA512 IsmsAnnexAControl = "a_5_12"
+	IsmsAnnexAControlA513 IsmsAnnexAControl = "a_5_13"
+	IsmsAnnexAControlA514 IsmsAnnexAControl = "a_5_14"
+	IsmsAnnexAControlA515 IsmsAnnexAControl = "a_5_15"
+	IsmsAnnexAControlA516 IsmsAnnexAControl = "a_5_16"
+	IsmsAnnexAControlA517 IsmsAnnexAControl = "a_5_17"
+	IsmsAnnexAControlA518 IsmsAnnexAControl = "a_5_18"
+	IsmsAnnexAControlA519 IsmsAnnexAControl = "a_5_19"
+	IsmsAnnexAControlA520 IsmsAnnexAControl = "a_5_20"
+	IsmsAnnexAControlA521 IsmsAnnexAControl = "a_5_21"
+	IsmsAnnexAControlA522 IsmsAnnexAControl = "a_5_22"
+	IsmsAnnexAControlA523 IsmsAnnexAControl = "a_5_23"
+	IsmsAnnexAControlA524 IsmsAnnexAControl = "a_5_24"
+	IsmsAnnexAControlA525 IsmsAnnexAControl = "a_5_25"
+	IsmsAnnexAControlA526 IsmsAnnexAControl = "a_5_26"
+	IsmsAnnexAControlA527 IsmsAnnexAControl = "a_5_27"
+	IsmsAnnexAControlA528 IsmsAnnexAControl = "a_5_28"
+	IsmsAnnexAControlA529 IsmsAnnexAControl = "a_5_29"
+	IsmsAnnexAControlA530 IsmsAnnexAControl = "a_5_30"
+	IsmsAnnexAControlA531 IsmsAnnexAControl = "a_5_31"
+	IsmsAnnexAControlA532 IsmsAnnexAControl = "a_5_32"
+	IsmsAnnexAControlA533 IsmsAnnexAControl = "a_5_33"
+	IsmsAnnexAControlA534 IsmsAnnexAControl = "a_5_34"
+	IsmsAnnexAControlA535 IsmsAnnexAControl = "a_5_35"
+	IsmsAnnexAControlA536 IsmsAnnexAControl = "a_5_36"
+	IsmsAnnexAControlA537 IsmsAnnexAControl = "a_5_37"
+	IsmsAnnexAControlA61 IsmsAnnexAControl = "a_6_1"
+	IsmsAnnexAControlA62 IsmsAnnexAControl = "a_6_2"
+	IsmsAnnexAControlA63 IsmsAnnexAControl = "a_6_3"
+	IsmsAnnexAControlA64 IsmsAnnexAControl = "a_6_4"
+	IsmsAnnexAControlA65 IsmsAnnexAControl = "a_6_5"
+	IsmsAnnexAControlA66 IsmsAnnexAControl = "a_6_6"
+	IsmsAnnexAControlA67 IsmsAnnexAControl = "a_6_7"
+	IsmsAnnexAControlA68 IsmsAnnexAControl = "a_6_8"
+	IsmsAnnexAControlA71 IsmsAnnexAControl = "a_7_1"
+	IsmsAnnexAControlA72 IsmsAnnexAControl = "a_7_2"
+	IsmsAnnexAControlA73 IsmsAnnexAControl = "a_7_3"
+	IsmsAnnexAControlA74 IsmsAnnexAControl = "a_7_4"
+	IsmsAnnexAControlA75 IsmsAnnexAControl = "a_7_5"
+	IsmsAnnexAControlA76 IsmsAnnexAControl = "a_7_6"
+	IsmsAnnexAControlA77 IsmsAnnexAControl = "a_7_7"
+	IsmsAnnexAControlA78 IsmsAnnexAControl = "a_7_8"
+	IsmsAnnexAControlA79 IsmsAnnexAControl = "a_7_9"
+	IsmsAnnexAControlA710 IsmsAnnexAControl = "a_7_10"
+	IsmsAnnexAControlA711 IsmsAnnexAControl = "a_7_11"
+	IsmsAnnexAControlA712 IsmsAnnexAControl = "a_7_12"
+	IsmsAnnexAControlA713 IsmsAnnexAControl = "a_7_13"
+	IsmsAnnexAControlA714 IsmsAnnexAControl = "a_7_14"
+	IsmsAnnexAControlA81 IsmsAnnexAControl = "a_8_1"
+	IsmsAnnexAControlA82 IsmsAnnexAControl = "a_8_2"
+	IsmsAnnexAControlA83 IsmsAnnexAControl = "a_8_3"
+	IsmsAnnexAControlA84 IsmsAnnexAControl = "a_8_4"
+	IsmsAnnexAControlA85 IsmsAnnexAControl = "a_8_5"
+	IsmsAnnexAControlA86 IsmsAnnexAControl = "a_8_6"
+	IsmsAnnexAControlA87 IsmsAnnexAControl = "a_8_7"
+	IsmsAnnexAControlA88 IsmsAnnexAControl = "a_8_8"
+	IsmsAnnexAControlA89 IsmsAnnexAControl = "a_8_9"
+	IsmsAnnexAControlA810 IsmsAnnexAControl = "a_8_10"
+	IsmsAnnexAControlA811 IsmsAnnexAControl = "a_8_11"
+	IsmsAnnexAControlA812 IsmsAnnexAControl = "a_8_12"
+	IsmsAnnexAControlA813 IsmsAnnexAControl = "a_8_13"
+	IsmsAnnexAControlA814 IsmsAnnexAControl = "a_8_14"
+	IsmsAnnexAControlA815 IsmsAnnexAControl = "a_8_15"
+	IsmsAnnexAControlA816 IsmsAnnexAControl = "a_8_16"
+	IsmsAnnexAControlA817 IsmsAnnexAControl = "a_8_17"
+	IsmsAnnexAControlA818 IsmsAnnexAControl = "a_8_18"
+	IsmsAnnexAControlA819 IsmsAnnexAControl = "a_8_19"
+	IsmsAnnexAControlA820 IsmsAnnexAControl = "a_8_20"
+	IsmsAnnexAControlA821 IsmsAnnexAControl = "a_8_21"
+	IsmsAnnexAControlA822 IsmsAnnexAControl = "a_8_22"
+	IsmsAnnexAControlA823 IsmsAnnexAControl = "a_8_23"
+	IsmsAnnexAControlA824 IsmsAnnexAControl = "a_8_24"
+	IsmsAnnexAControlA825 IsmsAnnexAControl = "a_8_25"
+	IsmsAnnexAControlA826 IsmsAnnexAControl = "a_8_26"
+	IsmsAnnexAControlA827 IsmsAnnexAControl = "a_8_27"
+	IsmsAnnexAControlA828 IsmsAnnexAControl = "a_8_28"
+	IsmsAnnexAControlA829 IsmsAnnexAControl = "a_8_29"
+	IsmsAnnexAControlA830 IsmsAnnexAControl = "a_8_30"
+	IsmsAnnexAControlA831 IsmsAnnexAControl = "a_8_31"
+	IsmsAnnexAControlA832 IsmsAnnexAControl = "a_8_32"
+	IsmsAnnexAControlA833 IsmsAnnexAControl = "a_8_33"
+	IsmsAnnexAControlA834 IsmsAnnexAControl = "a_8_34"
 )
-// Standard risk treatment options per ISO 31000 and ISO 27005.
-type RiskTreatmentOption string
+// How far a control or a plan has been put into effect.
+type IsmsImplementationStatus string
 
 const (
-	// Apply controls to change the risk level (reduce likelihood or impact).
-	RiskTreatmentOptionModify RiskTreatmentOption = "modify"
-	// Accept the risk without further treatment, within risk appetite. Requires risk owner approval.
-	RiskTreatmentOptionAccept RiskTreatmentOption = "accept"
-	// Eliminate the risk by removing the activity or asset that creates it.
-	RiskTreatmentOptionAvoid RiskTreatmentOption = "avoid"
-	// Transfer or share risk with external parties (e.g., insurance, outsourcing).
-	RiskTreatmentOptionShare RiskTreatmentOption = "share"
+	// Nothing has been done yet.
+	IsmsImplementationStatusNotStarted IsmsImplementationStatus = "not_started"
+	// The work is planned, with a timeline.
+	IsmsImplementationStatusPlanned IsmsImplementationStatus = "planned"
+	// The work is under way.
+	IsmsImplementationStatusInProgress IsmsImplementationStatus = "in_progress"
+	// The work is done and in operation.
+	IsmsImplementationStatusImplemented IsmsImplementationStatus = "implemented"
 )
-// Qualitative risk rating derived from likelihood x impact analysis.
-type RiskLevel string
+// The ways of treating a risk, by the names ISO/IEC 27005 gives them.
+type IsmsRiskTreatmentOption string
 
 const (
-	// Negligible risk requiring no immediate action.
-	RiskLevelVeryLow RiskLevel = "very_low"
-	// Minor risk manageable through routine procedures.
-	RiskLevelLow RiskLevel = "low"
-	// Moderate risk requiring management attention and planned controls.
-	RiskLevelMedium RiskLevel = "medium"
-	// Significant risk requiring priority treatment and escalation.
-	RiskLevelHigh RiskLevel = "high"
-	// Severe risk threatening organizational objectives; requires immediate executive action and resource allocation.
-	RiskLevelCritical RiskLevel = "critical"
+	// Change the risk with controls that lower its likelihood or its consequences.
+	IsmsRiskTreatmentOptionModify IsmsRiskTreatmentOption = "modify"
+	// Keep the risk as it is, with the risk owner's approval.
+	IsmsRiskTreatmentOptionRetain IsmsRiskTreatmentOption = "retain"
+	// Remove the risk by stopping or changing what gives rise to it.
+	IsmsRiskTreatmentOptionAvoid IsmsRiskTreatmentOption = "avoid"
+	// Share the risk with another party, such as an insurer or a supplier.
+	IsmsRiskTreatmentOptionShare IsmsRiskTreatmentOption = "share"
 )
-// Categories of documented information required or recommended by ISO 27001.
-type DocumentType string
+// A five-point scale of risk level, for an organization that adopts it. ISO/IEC 27001 leaves the scale to the organization.
+type IsmsRiskLevel string
 
 const (
-	// High-level statement of intent and direction (e.g., IS policy per 5.2).
-	DocumentTypePolicy DocumentType = "policy"
-	// Documented steps for performing activities consistently.
-	DocumentTypeProcedure DocumentType = "procedure"
-	// Mandatory requirements for specific technologies or processes.
-	DocumentTypeStandard DocumentType = "standard"
-	// Recommended practices that support policies and procedures.
-	DocumentTypeGuideline DocumentType = "guideline"
-	// Evidence of activities performed or results achieved.
-	DocumentTypeRecord DocumentType = "record"
-	// Documented approach for achieving objectives (e.g., risk treatment plan).
-	DocumentTypePlan DocumentType = "plan"
-	// Formal output of assessment, audit, or review activities.
-	DocumentTypeReport DocumentType = "report"
+	// Small enough to need no action.
+	IsmsRiskLevelVeryLow IsmsRiskLevel = "very_low"
+	// Managed by routine procedures.
+	IsmsRiskLevelLow IsmsRiskLevel = "low"
+	// Needs management's attention and planned controls.
+	IsmsRiskLevelMedium IsmsRiskLevel = "medium"
+	// Needs treatment first and escalation.
+	IsmsRiskLevelHigh IsmsRiskLevel = "high"
+	// Threatens the organization's objectives and needs action at once.
+	IsmsRiskLevelCritical IsmsRiskLevel = "critical"
 )
-// Classification of internal audit findings.
-type AuditFindingType string
+// A five-point scale of likelihood, for an organization that adopts it. ISO/IEC 27001 leaves the scale to the organization.
+type IsmsLikelihood string
 
 const (
-	// Significant failure to fulfill a requirement that affects ISMS capability to achieve intended outcomes.
-	AuditFindingTypeMajorNonconformity AuditFindingType = "major_nonconformity"
-	// Isolated lapse that does not significantly affect ISMS effectiveness.
-	AuditFindingTypeMinorNonconformity AuditFindingType = "minor_nonconformity"
-	// Noted condition that could lead to nonconformity if not addressed.
-	AuditFindingTypeObservation AuditFindingType = "observation"
-	// Evidence of effective implementation exceeding requirements.
-	AuditFindingTypePositiveFinding AuditFindingType = "positive_finding"
+	// Not expected to happen.
+	IsmsLikelihoodRare IsmsLikelihood = "rare"
+	// Could happen, but is not expected to.
+	IsmsLikelihoodUnlikely IsmsLikelihood = "unlikely"
+	// Might happen at some point.
+	IsmsLikelihoodPossible IsmsLikelihood = "possible"
+	// Will probably happen.
+	IsmsLikelihoodLikely IsmsLikelihood = "likely"
+	// Expected to happen.
+	IsmsLikelihoodAlmostCertain IsmsLikelihood = "almost_certain"
 )
-// Qualitative likelihood scale for risk assessment.
-type LikelihoodRating string
+// A five-point scale of consequence, for an organization that adopts it. ISO/IEC 27001 leaves the scale to the organization.
+type IsmsImpact string
 
 const (
-	// Highly unlikely to occur (< 5% probability).
-	LikelihoodRatingRare LikelihoodRating = "rare"
-	// Not expected but possible (5-20% probability).
-	LikelihoodRatingUnlikely LikelihoodRating = "unlikely"
-	// May occur at some point (20-50% probability).
-	LikelihoodRatingPossible LikelihoodRating = "possible"
-	// Probably will occur (50-80% probability).
-	LikelihoodRatingLikely LikelihoodRating = "likely"
-	// Expected to occur in most circumstances (> 80% probability).
-	LikelihoodRatingAlmostCertain LikelihoodRating = "almost_certain"
+	// No noticeable effect on operations or objectives.
+	IsmsImpactNegligible IsmsImpact = "negligible"
+	// An effect normal operations absorb.
+	IsmsImpactMinor IsmsImpact = "minor"
+	// An effect that needs management to step in.
+	IsmsImpactModerate IsmsImpact = "moderate"
+	// A serious effect on objectives, reputation or compliance.
+	IsmsImpactMajor IsmsImpact = "major"
+	// An effect that threatens the organization's survival.
+	IsmsImpactSevere IsmsImpact = "severe"
 )
-// Information security properties whose loss is considered when identifying risks per ISO/IEC 27001:2022 Clause 6.1.2 c) 1).
-type CIAProperty string
+// The three properties of information that information security preserves, as ISO/IEC 27000 names them.
+type IsmsSecurityProperty string
 
 const (
-	// Property of information not being made available or disclosed to unauthorized entities.
-	CIAPropertyConfidentiality CIAProperty = "confidentiality"
-	// Property of accuracy and completeness of information.
-	CIAPropertyIntegrity CIAProperty = "integrity"
-	// Property of being accessible and usable on demand by an authorized entity.
-	CIAPropertyAvailability CIAProperty = "availability"
+	// Only those allowed to see the information can see it.
+	IsmsSecurityPropertyConfidentiality IsmsSecurityProperty = "confidentiality"
+	// The information is accurate and complete.
+	IsmsSecurityPropertyIntegrity IsmsSecurityProperty = "integrity"
+	// Those allowed to use the information can use it when they need it.
+	IsmsSecurityPropertyAvailability IsmsSecurityProperty = "availability"
 )
-// Classification of audits referenced by ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1 (audit programmes).
-type AuditType string
+// The kinds of documented information an IsmsDocumentedInformation record holds. Policies have records of their own.
+type IsmsDocumentKind string
 
 const (
-	// First-party audit conducted by the organization itself per 9.2.
-	AuditTypeInternal AuditType = "internal"
-	// Audit conducted by a party with an interest in the organization (e.g., customer).
-	AuditTypeExternalSecondParty AuditType = "external_second_party"
-	// Independent audit by a certification body or other third party.
-	AuditTypeExternalThirdParty AuditType = "external_third_party"
-	// Periodic third-party audit between certification and recertification.
-	AuditTypeSurveillance AuditType = "surveillance"
-	// Third-party audit conducted to renew certification.
-	AuditTypeRecertification AuditType = "recertification"
-	// Audit performed jointly against two or more management system standards.
-	AuditTypeCombined AuditType = "combined"
+	// The steps for carrying out an activity the same way each time.
+	IsmsDocumentKindProcedure IsmsDocumentKind = "procedure"
+	// Mandatory requirements for a technology or a process.
+	IsmsDocumentKindStandard IsmsDocumentKind = "standard"
+	// Recommended practice that supports a policy or a procedure.
+	IsmsDocumentKindGuideline IsmsDocumentKind = "guideline"
+	// Evidence of what was done or achieved.
+	IsmsDocumentKindRecord IsmsDocumentKind = "record"
+	// How the organization means to reach an objective.
+	IsmsDocumentKindPlan IsmsDocumentKind = "plan"
+	// The formal output of an assessment, audit or review.
+	IsmsDocumentKindReport IsmsDocumentKind = "report"
 )
-// Identifiers of the 93 reference information security controls listed in ISO/IEC 27001:2022 Annex A (as also titled in ISO/IEC 27002:2022). Control text and titles are normative ISO content and are not reproduced here.
-type AnnexAControlId string
+// Who carries out an audit, relative to the organization audited, as ISO 19011 sorts audits.
+type IsmsAuditType string
 
 const (
-	AnnexAControlIdA51 AnnexAControlId = "a_5_1"
-	AnnexAControlIdA52 AnnexAControlId = "a_5_2"
-	AnnexAControlIdA53 AnnexAControlId = "a_5_3"
-	AnnexAControlIdA54 AnnexAControlId = "a_5_4"
-	AnnexAControlIdA55 AnnexAControlId = "a_5_5"
-	AnnexAControlIdA56 AnnexAControlId = "a_5_6"
-	AnnexAControlIdA57 AnnexAControlId = "a_5_7"
-	AnnexAControlIdA58 AnnexAControlId = "a_5_8"
-	AnnexAControlIdA59 AnnexAControlId = "a_5_9"
-	AnnexAControlIdA510 AnnexAControlId = "a_5_10"
-	AnnexAControlIdA511 AnnexAControlId = "a_5_11"
-	AnnexAControlIdA512 AnnexAControlId = "a_5_12"
-	AnnexAControlIdA513 AnnexAControlId = "a_5_13"
-	AnnexAControlIdA514 AnnexAControlId = "a_5_14"
-	AnnexAControlIdA515 AnnexAControlId = "a_5_15"
-	AnnexAControlIdA516 AnnexAControlId = "a_5_16"
-	AnnexAControlIdA517 AnnexAControlId = "a_5_17"
-	AnnexAControlIdA518 AnnexAControlId = "a_5_18"
-	AnnexAControlIdA519 AnnexAControlId = "a_5_19"
-	AnnexAControlIdA520 AnnexAControlId = "a_5_20"
-	AnnexAControlIdA521 AnnexAControlId = "a_5_21"
-	AnnexAControlIdA522 AnnexAControlId = "a_5_22"
-	AnnexAControlIdA523 AnnexAControlId = "a_5_23"
-	AnnexAControlIdA524 AnnexAControlId = "a_5_24"
-	AnnexAControlIdA525 AnnexAControlId = "a_5_25"
-	AnnexAControlIdA526 AnnexAControlId = "a_5_26"
-	AnnexAControlIdA527 AnnexAControlId = "a_5_27"
-	AnnexAControlIdA528 AnnexAControlId = "a_5_28"
-	AnnexAControlIdA529 AnnexAControlId = "a_5_29"
-	AnnexAControlIdA530 AnnexAControlId = "a_5_30"
-	AnnexAControlIdA531 AnnexAControlId = "a_5_31"
-	AnnexAControlIdA532 AnnexAControlId = "a_5_32"
-	AnnexAControlIdA533 AnnexAControlId = "a_5_33"
-	AnnexAControlIdA534 AnnexAControlId = "a_5_34"
-	AnnexAControlIdA535 AnnexAControlId = "a_5_35"
-	AnnexAControlIdA536 AnnexAControlId = "a_5_36"
-	AnnexAControlIdA537 AnnexAControlId = "a_5_37"
-	AnnexAControlIdA61 AnnexAControlId = "a_6_1"
-	AnnexAControlIdA62 AnnexAControlId = "a_6_2"
-	AnnexAControlIdA63 AnnexAControlId = "a_6_3"
-	AnnexAControlIdA64 AnnexAControlId = "a_6_4"
-	AnnexAControlIdA65 AnnexAControlId = "a_6_5"
-	AnnexAControlIdA66 AnnexAControlId = "a_6_6"
-	AnnexAControlIdA67 AnnexAControlId = "a_6_7"
-	AnnexAControlIdA68 AnnexAControlId = "a_6_8"
-	AnnexAControlIdA71 AnnexAControlId = "a_7_1"
-	AnnexAControlIdA72 AnnexAControlId = "a_7_2"
-	AnnexAControlIdA73 AnnexAControlId = "a_7_3"
-	AnnexAControlIdA74 AnnexAControlId = "a_7_4"
-	AnnexAControlIdA75 AnnexAControlId = "a_7_5"
-	AnnexAControlIdA76 AnnexAControlId = "a_7_6"
-	AnnexAControlIdA77 AnnexAControlId = "a_7_7"
-	AnnexAControlIdA78 AnnexAControlId = "a_7_8"
-	AnnexAControlIdA79 AnnexAControlId = "a_7_9"
-	AnnexAControlIdA710 AnnexAControlId = "a_7_10"
-	AnnexAControlIdA711 AnnexAControlId = "a_7_11"
-	AnnexAControlIdA712 AnnexAControlId = "a_7_12"
-	AnnexAControlIdA713 AnnexAControlId = "a_7_13"
-	AnnexAControlIdA714 AnnexAControlId = "a_7_14"
-	AnnexAControlIdA81 AnnexAControlId = "a_8_1"
-	AnnexAControlIdA82 AnnexAControlId = "a_8_2"
-	AnnexAControlIdA83 AnnexAControlId = "a_8_3"
-	AnnexAControlIdA84 AnnexAControlId = "a_8_4"
-	AnnexAControlIdA85 AnnexAControlId = "a_8_5"
-	AnnexAControlIdA86 AnnexAControlId = "a_8_6"
-	AnnexAControlIdA87 AnnexAControlId = "a_8_7"
-	AnnexAControlIdA88 AnnexAControlId = "a_8_8"
-	AnnexAControlIdA89 AnnexAControlId = "a_8_9"
-	AnnexAControlIdA810 AnnexAControlId = "a_8_10"
-	AnnexAControlIdA811 AnnexAControlId = "a_8_11"
-	AnnexAControlIdA812 AnnexAControlId = "a_8_12"
-	AnnexAControlIdA813 AnnexAControlId = "a_8_13"
-	AnnexAControlIdA814 AnnexAControlId = "a_8_14"
-	AnnexAControlIdA815 AnnexAControlId = "a_8_15"
-	AnnexAControlIdA816 AnnexAControlId = "a_8_16"
-	AnnexAControlIdA817 AnnexAControlId = "a_8_17"
-	AnnexAControlIdA818 AnnexAControlId = "a_8_18"
-	AnnexAControlIdA819 AnnexAControlId = "a_8_19"
-	AnnexAControlIdA820 AnnexAControlId = "a_8_20"
-	AnnexAControlIdA821 AnnexAControlId = "a_8_21"
-	AnnexAControlIdA822 AnnexAControlId = "a_8_22"
-	AnnexAControlIdA823 AnnexAControlId = "a_8_23"
-	AnnexAControlIdA824 AnnexAControlId = "a_8_24"
-	AnnexAControlIdA825 AnnexAControlId = "a_8_25"
-	AnnexAControlIdA826 AnnexAControlId = "a_8_26"
-	AnnexAControlIdA827 AnnexAControlId = "a_8_27"
-	AnnexAControlIdA828 AnnexAControlId = "a_8_28"
-	AnnexAControlIdA829 AnnexAControlId = "a_8_29"
-	AnnexAControlIdA830 AnnexAControlId = "a_8_30"
-	AnnexAControlIdA831 AnnexAControlId = "a_8_31"
-	AnnexAControlIdA832 AnnexAControlId = "a_8_32"
-	AnnexAControlIdA833 AnnexAControlId = "a_8_33"
-	AnnexAControlIdA834 AnnexAControlId = "a_8_34"
+	// The organization audits itself; an internal audit.
+	IsmsAuditTypeFirstParty IsmsAuditType = "first_party"
+	// A party with an interest in the organization audits it, such as a customer.
+	IsmsAuditTypeSecondParty IsmsAuditType = "second_party"
+	// An independent body audits it, such as a certification body or a regulator.
+	IsmsAuditTypeThirdParty IsmsAuditType = "third_party"
 )
-// Categories of information security incident used to classify events and incidents per ISO/IEC 27001:2022 Annex A controls A.5.24-A.5.28 and ISO/IEC 27035 incident management guidance.
-type SecurityIncidentCategory string
+// The kinds of audit finding.
+type IsmsAuditFindingType string
 
 const (
-	// Malicious software, including viruses, worms, trojans, and ransomware.
-	SecurityIncidentCategoryMalware SecurityIncidentCategory = "malware"
-	// Malware encrypting or exfiltrating data for extortion.
-	SecurityIncidentCategoryRansomware SecurityIncidentCategory = "ransomware"
-	// Social-engineering attempt to obtain credentials or trigger malicious action.
-	SecurityIncidentCategoryPhishing SecurityIncidentCategory = "phishing"
-	// Manipulation of people to disclose information or perform unsafe actions.
-	SecurityIncidentCategorySocialEngineering SecurityIncidentCategory = "social_engineering"
-	// Access to systems or data by a party without authorization.
-	SecurityIncidentCategoryUnauthorizedAccess SecurityIncidentCategory = "unauthorized_access"
-	// Unauthorized control of a legitimate user or service account.
-	SecurityIncidentCategoryAccountCompromise SecurityIncidentCategory = "account_compromise"
-	// Authorized user exceeding or misusing their granted privileges.
-	SecurityIncidentCategoryPrivilegeMisuse SecurityIncidentCategory = "privilege_misuse"
-	// Confirmed disclosure of confidential or personal information.
-	SecurityIncidentCategoryDataBreach SecurityIncidentCategory = "data_breach"
-	// Loss of integrity or availability of information, including accidental deletion.
-	SecurityIncidentCategoryDataLoss SecurityIncidentCategory = "data_loss"
-	// Disruption of availability through volumetric, protocol, or application attacks.
-	SecurityIncidentCategoryDenialOfService SecurityIncidentCategory = "denial_of_service"
-	// Attack targeting a web application (e.g., injection, XSS, broken auth).
-	SecurityIncidentCategoryWebApplicationAttack SecurityIncidentCategory = "web_application_attack"
-	// Incident originating from a supplier, partner, or third-party component.
-	SecurityIncidentCategorySupplyChain SecurityIncidentCategory = "supply_chain"
-	// Malicious or negligent action by an internal party.
-	SecurityIncidentCategoryInsiderThreat SecurityIncidentCategory = "insider_threat"
-	// Theft, loss, or damage of physical assets or unauthorized physical access.
-	SecurityIncidentCategoryPhysicalSecurity SecurityIncidentCategory = "physical_security"
-	// Misconfiguration leading to security exposure.
-	SecurityIncidentCategoryConfigurationError SecurityIncidentCategory = "configuration_error"
-	// Weak, broken, or misused cryptography.
-	SecurityIncidentCategoryCryptographicFailure SecurityIncidentCategory = "cryptographic_failure"
-	// Failure to comply with information security policies or procedures.
-	SecurityIncidentCategoryPolicyViolation SecurityIncidentCategory = "policy_violation"
-	// Other incident type not covered by the listed categories.
-	SecurityIncidentCategoryOther SecurityIncidentCategory = "other"
+	// A requirement not met in a way that puts the ISMS's intended results in doubt.
+	IsmsAuditFindingTypeMajorNonconformity IsmsAuditFindingType = "major_nonconformity"
+	// A requirement not met in an isolated way that leaves the ISMS's intended results in reach.
+	IsmsAuditFindingTypeMinorNonconformity IsmsAuditFindingType = "minor_nonconformity"
+	// A condition that could lead to a nonconformity if left alone.
+	IsmsAuditFindingTypeObservation IsmsAuditFindingType = "observation"
+	// Evidence of practice that works well.
+	IsmsAuditFindingTypePositiveFinding IsmsAuditFindingType = "positive_finding"
 )
-// Other ISO/IEC management system standards with which the ISMS may be integrated or aligned (e.g., harmonized structure of Annex SL).
-type RelatedManagementSystem string
+// Kinds of information security incident, for sorting incidents. ISO/IEC 27001 sets no list of its own.
+type IsmsIncidentCategory string
+
+const (
+	// Malicious software, such as a virus, a worm or a trojan.
+	IsmsIncidentCategoryMalware IsmsIncidentCategory = "malware"
+	// Malware that encrypts or takes data to extort money.
+	IsmsIncidentCategoryRansomware IsmsIncidentCategory = "ransomware"
+	// A message that tries to trick someone into giving up credentials or acting.
+	IsmsIncidentCategoryPhishing IsmsIncidentCategory = "phishing"
+	// Manipulating people into disclosing information or acting unsafely.
+	IsmsIncidentCategorySocialEngineering IsmsIncidentCategory = "social_engineering"
+	// Access to systems or data by someone not allowed it.
+	IsmsIncidentCategoryUnauthorizedAccess IsmsIncidentCategory = "unauthorized_access"
+	// Someone else taking control of a legitimate account.
+	IsmsIncidentCategoryAccountCompromise IsmsIncidentCategory = "account_compromise"
+	// An authorized user going beyond or misusing their privileges.
+	IsmsIncidentCategoryPrivilegeMisuse IsmsIncidentCategory = "privilege_misuse"
+	// Confidential or personal information disclosed.
+	IsmsIncidentCategoryDataBreach IsmsIncidentCategory = "data_breach"
+	// Information lost or corrupted, by accident or otherwise.
+	IsmsIncidentCategoryDataLoss IsmsIncidentCategory = "data_loss"
+	// Systems made unavailable by flooding or attack.
+	IsmsIncidentCategoryDenialOfService IsmsIncidentCategory = "denial_of_service"
+	// An attack on a web application, such as an injection.
+	IsmsIncidentCategoryWebApplicationAttack IsmsIncidentCategory = "web_application_attack"
+	// An incident that starts at a supplier, a partner or a third-party component.
+	IsmsIncidentCategorySupplyChain IsmsIncidentCategory = "supply_chain"
+	// Harm done by someone inside the organization, on purpose or by neglect.
+	IsmsIncidentCategoryInsiderThreat IsmsIncidentCategory = "insider_threat"
+	// Theft, loss or damage of physical assets, or physical access without permission.
+	IsmsIncidentCategoryPhysicalSecurity IsmsIncidentCategory = "physical_security"
+	// A misconfiguration that exposes something.
+	IsmsIncidentCategoryConfigurationError IsmsIncidentCategory = "configuration_error"
+	// Cryptography that is weak, broken or misused.
+	IsmsIncidentCategoryCryptographicFailure IsmsIncidentCategory = "cryptographic_failure"
+	// A breach of the organization's security policies or procedures.
+	IsmsIncidentCategoryPolicyViolation IsmsIncidentCategory = "policy_violation"
+	// Any incident the other categories do not fit.
+	IsmsIncidentCategoryOther IsmsIncidentCategory = "other"
+)
+// Management system standards an ISMS may be integrated with or audited beside, each written to ISO's harmonized structure.
+type IsmsManagementSystemStandard string
 
 const (
 	// Information security management systems.
-	RelatedManagementSystemIsoIec27001 RelatedManagementSystem = "iso_iec_27001"
-	// Privacy information management systems (PIMS).
-	RelatedManagementSystemIsoIec27701 RelatedManagementSystem = "iso_iec_27701"
-	// Information security for cloud services.
-	RelatedManagementSystemIsoIec27017 RelatedManagementSystem = "iso_iec_27017"
-	// Protection of personally identifiable information in public clouds.
-	RelatedManagementSystemIsoIec27018 RelatedManagementSystem = "iso_iec_27018"
+	IsmsManagementSystemStandardIsoIec27001 IsmsManagementSystemStandard = "iso_iec_27001"
+	// Privacy information management systems.
+	IsmsManagementSystemStandardIsoIec27701 IsmsManagementSystemStandard = "iso_iec_27701"
 	// Artificial intelligence management systems.
-	RelatedManagementSystemIsoIec42001 RelatedManagementSystem = "iso_iec_42001"
+	IsmsManagementSystemStandardIsoIec42001 IsmsManagementSystemStandard = "iso_iec_42001"
 	// Quality management systems.
-	RelatedManagementSystemIso9001 RelatedManagementSystem = "iso_9001"
+	IsmsManagementSystemStandardIso9001 IsmsManagementSystemStandard = "iso_9001"
 	// Environmental management systems.
-	RelatedManagementSystemIso14001 RelatedManagementSystem = "iso_14001"
+	IsmsManagementSystemStandardIso14001 IsmsManagementSystemStandard = "iso_14001"
 	// Business continuity management systems.
-	RelatedManagementSystemIso22301 RelatedManagementSystem = "iso_22301"
-	// IT service management systems.
-	RelatedManagementSystemIsoIec200001 RelatedManagementSystem = "iso_iec_20000_1"
-	// Risk management - guidelines.
-	RelatedManagementSystemIso31000 RelatedManagementSystem = "iso_31000"
+	IsmsManagementSystemStandardIso22301 IsmsManagementSystemStandard = "iso_22301"
+	// Service management systems.
+	IsmsManagementSystemStandardIsoIec200001 IsmsManagementSystemStandard = "iso_iec_20000_1"
 )
-// Qualitative impact scale for risk assessment.
-type ImpactRating string
-
-const (
-	// No significant impact on operations or objectives.
-	ImpactRatingNegligible ImpactRating = "negligible"
-	// Limited impact, easily absorbed by normal operations.
-	ImpactRatingMinor ImpactRating = "minor"
-	// Noticeable impact requiring management intervention.
-	ImpactRatingModerate ImpactRating = "moderate"
-	// Serious impact on objectives, reputation, or compliance.
-	ImpactRatingMajor ImpactRating = "major"
-	// Catastrophic impact threatening organizational viability.
-	ImpactRatingSevere ImpactRating = "severe"
-)
-// Abstract base class for all entities with an identifier, name, and description. Provides common identification and documentation slots.
-type NamedEntity struct {
-	// Unique identifier for this entity instance.
-	Id string `json:"id"`
-	// Human-readable name or title.
-	Name string `json:"name"`
-	// Detailed description of the entity.
+// What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.
+type IsmsRecordMixin struct {
+	// The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+	IsmsId string `json:"isms_id"`
+	// The name the organization gives the record.
+	Title string `json:"title"`
+	// What the record says or describes, in the organization's own words.
 	Description *string `json:"description,omitempty"`
-	// Date when the entity was created.
-	CreatedDate *time.Time `json:"created_date,omitempty"`
-	// Date when the entity was last modified.
-	ModifiedDate *time.Time `json:"modified_date,omitempty"`
-	// Version identifier for the entity.
-	Version *string `json:"version,omitempty"`
 }
 
-// Abstract class for documented information per Clause 7.5. Captures metadata required for document control.
-type DocumentedInformation struct {
-	// Embedded types for inheritance
-	NamedEntity `json:",inline"`
-	// Classification of the documented information.
-	DocumentType DocumentType `json:"document_type,omitempty"`
-	// Unique reference number for document control.
+// The control that documented information is kept under: who wrote, owns and approved it, when it takes effect and is reviewed, how it is classified, distributed, stored and changed, how long it is retained, and whether it came from outside the organization.
+type IsmsDocumentControlMixin struct {
+	// The reference the organization's document control gives it.
 	DocumentReference *string `json:"document_reference,omitempty"`
-	// Person who created the document.
-	Author *string `json:"author,omitempty"`
-	// Person accountable for the document content and maintenance.
-	Owner *string `json:"owner,omitempty"`
-	// Person who approved the document.
-	ApprovedBy *string `json:"approved_by,omitempty"`
-	// Date when the document was approved.
-	ApprovedDate *time.Time `json:"approved_date,omitempty"`
-	// Date when the document becomes effective.
-	EffectiveDate *time.Time `json:"effective_date,omitempty"`
-	// Date when the document is due for review.
-	ReviewDate *time.Time `json:"review_date,omitempty"`
-	// Current status of the document or entity.
-	Status *string `json:"status,omitempty"`
-	// Information classification level.
-	Classification *string `json:"classification,omitempty"`
-	// Duration for which the document is retained.
-	RetentionPeriod *string `json:"retention_period,omitempty"`
-	// Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
-	DistributionControls []string `json:"distribution_controls,omitempty"`
-	// Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
-	StorageAndPreservation *string `json:"storage_and_preservation,omitempty"`
-	// Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
-	ChangeControlMethod *string `json:"change_control_method,omitempty"`
-	// Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
-	ExternalOrigin *bool `json:"external_origin,omitempty"`
-	// Source or provider of the externally originated documented information, per Clause 7.5.3.
-	ExternalOriginSource *string `json:"external_origin_source,omitempty"`
+	// The version of the document.
+	DocumentVersion *string `json:"document_version,omitempty"`
+	// Who wrote the document.
+	DocumentAuthor *string `json:"document_author,omitempty"`
+	// Who answers for the document's content and upkeep.
+	DocumentOwner *string `json:"document_owner,omitempty"`
+	// Who approved the document.
+	DocumentApprover *string `json:"document_approver,omitempty"`
+	// When the document was approved.
+	DocumentApprovalDate *time.Time `json:"document_approval_date,omitempty"`
+	// When the document takes effect.
+	DocumentEffectiveDate *time.Time `json:"document_effective_date,omitempty"`
+	// When the document was last reviewed.
+	DocumentLastReviewDate *time.Time `json:"document_last_review_date,omitempty"`
+	// When the document is next due for review.
+	DocumentNextReviewDate *time.Time `json:"document_next_review_date,omitempty"`
+	// Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+	DocumentStatus *string `json:"document_status,omitempty"`
+	// The information classification the document carries.
+	DocumentClassification *string `json:"document_classification,omitempty"`
+	// How long the document is kept, as an ISO 8601 duration.
+	DocumentRetention *string `json:"document_retention,omitempty"`
+	// How the document is distributed, accessed, retrieved and used.
+	DocumentDistribution []string `json:"document_distribution,omitempty"`
+	// How the document is stored and preserved, so that it stays legible.
+	DocumentStorage *string `json:"document_storage,omitempty"`
+	// How changes to the document are controlled, such as version control.
+	DocumentChangeControl *string `json:"document_change_control,omitempty"`
+	// Whether the document comes from outside the organization and is kept because the ISMS needs it.
+	DocumentExternalOrigin *bool `json:"document_external_origin,omitempty"`
+	// Who the document came from, when it comes from outside.
+	DocumentExternalSource *string `json:"document_external_source,omitempty"`
 }
 
-// Top-level container representing an organization's complete ISMS per ISO 27001. Aggregates all components required to support the full ISMS lifecycle.
-type InformationSecurityManagementSystem struct {
+// One organization's information security management system: its scope and context, and every record it keeps, each kind in a list of its own.
+type IsmsManagementSystem struct {
 	// Embedded types for inheritance
-	NamedEntity `json:",inline"`
-	// Reference to the organization operating the ISMS.
-	Organization *OrganizationId `json:"organization,omitempty"`
-	// The person or group of people who direct and control the organization at the highest level, accountable for the ISMS per Clause 5.1.
-	TopManagement *string `json:"top_management,omitempty"`
-	// The governing body to which top management reports, where applicable (e.g., board of directors). Referenced in ISO/IEC 27001:2022 Clause 5.1 NOTE.
-	GoverningBody *string `json:"governing_body,omitempty"`
-	// Evidence of leadership and commitment with respect to the ISMS as required by Clause 5.1 a-h).
-	LeadershipCommitmentEvidence []string `json:"leadership_commitment_evidence,omitempty"`
-	// Documented statement of ISMS scope per 4.3.
-	ScopeStatement *string `json:"scope_statement,omitempty"`
-	// Defined boundaries of the ISMS scope.
-	ScopeBoundaries []string `json:"scope_boundaries,omitempty"`
-	// Any exclusions from scope with justification.
-	ScopeExclusions []string `json:"scope_exclusions,omitempty"`
-	// Interfaces and dependencies between activities performed by the organization and those performed by other organizations, considered when determining the ISMS scope per Clause 4.3 c).
-	InterfacesAndDependencies []string `json:"interfaces_and_dependencies,omitempty"`
-	// Description of the processes needed for the ISMS and their interactions, per Clause 4.4.
-	ProcessesAndInteractions *string `json:"processes_and_interactions,omitempty"`
-	// Internal issues relevant to ISMS per 4.1.
-	ContextInternalIssues []string `json:"context_internal_issues,omitempty"`
-	// External issues relevant to ISMS per 4.1.
-	ContextExternalIssues []string `json:"context_external_issues,omitempty"`
-	// Stakeholders relevant to the ISMS.
-	InterestedParties []InterestedPartyId `json:"interested_parties,omitempty"`
-	// Reference to the information security policy.
-	InformationSecurityPolicy *InformationSecurityPolicyId `json:"information_security_policy,omitempty"`
-	// Information security objectives.
-	Objectives []InformationSecurityObjectiveId `json:"objectives,omitempty"`
-	// Actions to address risks and opportunities determined per Clause 6.1.1, including how they are integrated into ISMS processes and how their effectiveness is evaluated.
-	RisksAndOpportunitiesActions []string `json:"risks_and_opportunities_actions,omitempty"`
-	// Changes to the ISMS planned and controlled per Clause 6.3 and 8.1 (planning of changes; control of planned changes).
-	PlannedChanges []string `json:"planned_changes,omitempty"`
-	// Externally provided processes, products or services relevant to the ISMS that are controlled per Clause 8.1.
-	ExternallyProvidedServices []string `json:"externally_provided_services,omitempty"`
-	// Reference to the risk assessment process.
-	RiskAssessmentProcess *RiskAssessmentProcessId `json:"risk_assessment_process,omitempty"`
-	// Reference to the risk treatment process.
-	RiskTreatmentProcess *RiskTreatmentProcessId `json:"risk_treatment_process,omitempty"`
-	// Reference to the Statement of Applicability.
-	StatementOfApplicability *StatementOfApplicabilityId `json:"statement_of_applicability,omitempty"`
-	// Security controls applied in the ISMS.
-	Controls []SecurityControlId `json:"controls,omitempty"`
-	// Information security roles defined in the ISMS.
-	Roles []RoleId `json:"roles,omitempty"`
-	// Resources provided for the ISMS.
-	Resources []ResourceId `json:"resources,omitempty"`
-	// Competence records for personnel.
-	CompetenceRecords []CompetenceRecordId `json:"competence_records,omitempty"`
-	// Reference to the awareness program.
-	AwarenessProgram *AwarenessProgramId `json:"awareness_program,omitempty"`
-	// Reference to the communication plan.
-	CommunicationPlan *CommunicationPlanId `json:"communication_plan,omitempty"`
-	// Register of documented information.
-	DocumentedInformationRegister []DocumentedInformationId `json:"documented_information_register,omitempty"`
-	// Operational procedures.
-	OperationalProcedures []OperationalProcedureId `json:"operational_procedures,omitempty"`
-	// Risk assessment instances.
-	RiskAssessments []RiskAssessmentId `json:"risk_assessments,omitempty"`
-	// Risk treatment plans.
-	RiskTreatmentPlans []RiskTreatmentPlanId `json:"risk_treatment_plans,omitempty"`
-	// Reference to the monitoring program.
-	MonitoringProgram *MonitoringProgramId `json:"monitoring_program,omitempty"`
-	// Internal audit instances.
-	InternalAudits []InternalAuditId `json:"internal_audits,omitempty"`
-	// Management review instances.
-	ManagementReviews []ManagementReviewId `json:"management_reviews,omitempty"`
-	// Nonconformities identified.
-	Nonconformities []NonconformityId `json:"nonconformities,omitempty"`
-	// Corrective actions.
-	CorrectiveActions []CorrectiveActionId `json:"corrective_actions,omitempty"`
-	// Improvement opportunities tracked.
-	Improvements []ImprovementOpportunityId `json:"improvements,omitempty"`
-	// Current certification status.
-	CertificationStatus *string `json:"certification_status,omitempty"`
-	// Accredited certification body.
-	CertificationBody *string `json:"certification_body,omitempty"`
-	// Date certification was achieved.
-	CertificationDate *time.Time `json:"certification_date,omitempty"`
-	// Date recertification is due.
-	RecertificationDate *time.Time `json:"recertification_date,omitempty"`
+	IsmsRecordMixin `json:",inline"`
+	// The organization that runs the ISMS.
+	IsmsOrganization *IsmsOrganization `json:"isms_organization,omitempty"`
+	// The person or group that directs and controls the organization at the highest level.
+	IsmsTopManagement *string `json:"isms_top_management,omitempty"`
+	// The body top management answers to, such as a board, where there is one.
+	IsmsGoverningBody *string `json:"isms_governing_body,omitempty"`
+	// What shows that top management leads and commits to the ISMS.
+	IsmsLeadershipEvidence []string `json:"isms_leadership_evidence,omitempty"`
+	// The scope of the ISMS, as the organization states it.
+	IsmsScope *string `json:"isms_scope,omitempty"`
+	// Where the scope of the ISMS ends.
+	IsmsScopeBoundaries []string `json:"isms_scope_boundaries,omitempty"`
+	// What the scope leaves out, each with the reason.
+	IsmsScopeExclusions []string `json:"isms_scope_exclusions,omitempty"`
+	// The interfaces and dependencies between what the organization does and what other organizations do, which the scope takes into account.
+	IsmsInterfaces []string `json:"isms_interfaces,omitempty"`
+	// The processes the ISMS needs and how they interact.
+	IsmsProcesses *string `json:"isms_processes,omitempty"`
+	// The internal issues that bear on the ISMS.
+	IsmsInternalIssues []string `json:"isms_internal_issues,omitempty"`
+	// The external issues that bear on the ISMS.
+	IsmsExternalIssues []string `json:"isms_external_issues,omitempty"`
+	// The actions planned to address the ISMS's risks and opportunities, and how they fit into its processes.
+	IsmsRiskAndOpportunityActions []string `json:"isms_risk_and_opportunity_actions,omitempty"`
+	// The changes to the ISMS that are planned.
+	IsmsPlannedChanges []string `json:"isms_planned_changes,omitempty"`
+	// The processes, products or services from outside the organization that the ISMS relies on and controls.
+	IsmsExternalServices []string `json:"isms_external_services,omitempty"`
+	// Where the ISMS stands with certification, in the organization's own terms.
+	IsmsCertificationStatus *string `json:"isms_certification_status,omitempty"`
+	// The body that certifies the ISMS.
+	IsmsCertificationBody *string `json:"isms_certification_body,omitempty"`
+	// When the ISMS was certified.
+	IsmsCertificationDate *time.Time `json:"isms_certification_date,omitempty"`
+	// When the ISMS is next due for recertification.
+	IsmsRecertificationDate *time.Time `json:"isms_recertification_date,omitempty"`
+	// The interested parties the ISMS takes into account.
+	IsmsInterestedParties []IsmsInterestedParty `json:"isms_interested_parties,omitempty"`
+	// The information security policy.
+	IsmsPolicy *IsmsPolicy `json:"isms_policy,omitempty"`
+	// The topic-specific policies under the information security policy.
+	IsmsTopicSpecificPolicies []IsmsTopicSpecificPolicy `json:"isms_topic_specific_policies,omitempty"`
+	// The roles that carry the ISMS's responsibilities and authorities.
+	IsmsRoles []IsmsRole `json:"isms_roles,omitempty"`
+	// The information security objectives.
+	IsmsObjectives []IsmsObjective `json:"isms_objectives,omitempty"`
+	// The information security risk assessment process.
+	IsmsRiskAssessmentProcess *IsmsRiskAssessmentProcess `json:"isms_risk_assessment_process,omitempty"`
+	// The information security risk treatment process.
+	IsmsRiskTreatmentProcess *IsmsRiskTreatmentProcess `json:"isms_risk_treatment_process,omitempty"`
+	// The risk assessments carried out.
+	IsmsRiskAssessments []IsmsRiskAssessment `json:"isms_risk_assessments,omitempty"`
+	// The risks identified, the risk register.
+	IsmsRisks []IsmsRisk `json:"isms_risks,omitempty"`
+	// The risk treatment plans.
+	IsmsRiskTreatmentPlans []IsmsRiskTreatmentPlan `json:"isms_risk_treatment_plans,omitempty"`
+	// The Statement of Applicability.
+	IsmsStatementOfApplicability *IsmsStatementOfApplicability `json:"isms_statement_of_applicability,omitempty"`
+	// The controls the organization has determined it needs.
+	IsmsControls []IsmsControl `json:"isms_controls,omitempty"`
+	// The inventory of information and other associated assets.
+	IsmsAssets []IsmsAsset `json:"isms_assets,omitempty"`
+	// The resources provided for the ISMS.
+	IsmsResources []IsmsResource `json:"isms_resources,omitempty"`
+	// The records of competence.
+	IsmsCompetenceRecords []IsmsCompetenceRecord `json:"isms_competence_records,omitempty"`
+	// The awareness programme.
+	IsmsAwarenessProgramme *IsmsAwarenessProgramme `json:"isms_awareness_programme,omitempty"`
+	// The plan for communication about the ISMS.
+	IsmsCommunicationPlan *IsmsCommunicationPlan `json:"isms_communication_plan,omitempty"`
+	// The documented information the ISMS keeps that no more specific list holds, such as procedures, plans and reports.
+	IsmsDocumentedInformation []IsmsDocumentedInformation `json:"isms_documented_information,omitempty"`
+	// The procedures for operational planning and control.
+	IsmsOperationalProcedures []IsmsOperationalProcedure `json:"isms_operational_procedures,omitempty"`
+	// The programme of monitoring and measurement.
+	IsmsMonitoringProgramme *IsmsMonitoringProgramme `json:"isms_monitoring_programme,omitempty"`
+	// The audit programmes.
+	IsmsAuditProgrammes []IsmsAuditProgramme `json:"isms_audit_programmes,omitempty"`
+	// The audits of the ISMS, internal and external.
+	IsmsAudits []IsmsAudit `json:"isms_audits,omitempty"`
+	// The management reviews.
+	IsmsManagementReviews []IsmsManagementReview `json:"isms_management_reviews,omitempty"`
+	// The nonconformities found.
+	IsmsNonconformities []IsmsNonconformity `json:"isms_nonconformities,omitempty"`
+	// The corrective actions taken.
+	IsmsCorrectiveActions []IsmsCorrectiveAction `json:"isms_corrective_actions,omitempty"`
+	// The opportunities for improvement identified.
+	IsmsImprovements []IsmsImprovementOpportunity `json:"isms_improvements,omitempty"`
+	// The information security events reported, the incidents among them.
+	IsmsSecurityEvents []IsmsSecurityEvent `json:"isms_security_events,omitempty"`
 }
 
-// The organization establishing and operating the ISMS. Captures context needed for Clause 4.1 (understanding the organization).
-type Organization struct {
+// The organization that runs the ISMS, with what it needs to know about itself to understand its context.
+type IsmsOrganization struct {
 	// Embedded types for inheritance
-	NamedEntity `json:",inline"`
-	// Legal registered name of the organization.
-	LegalName *string `json:"legal_name,omitempty"`
-	// Names under which the organization conducts business.
-	TradingNames []string `json:"trading_names,omitempty"`
-	// Type of organization (e.g., corporation, government, nonprofit).
-	OrganizationType *string `json:"organization_type,omitempty"`
-	// Primary industry sector of the organization.
-	IndustrySector *string `json:"industry_sector,omitempty"`
-	// Organization size classification.
-	SizeCategory *string `json:"size_category,omitempty"`
-	// Approximate number of employees.
-	EmployeeCount *int `json:"employee_count,omitempty"`
-	// Countries or regions where the organization operates.
-	GeographicLocations []string `json:"geographic_locations,omitempty"`
-	// Jurisdictions whose regulations apply to the organization.
-	RegulatoryJurisdictions []string `json:"regulatory_jurisdictions,omitempty"`
-	// Parent organization if applicable.
-	ParentOrganization *string `json:"parent_organization,omitempty"`
-	// Subsidiary organizations if applicable.
-	Subsidiaries []string `json:"subsidiaries,omitempty"`
-	// Whether climate change has been determined to be a relevant issue for the organization's context, per Clause 4.1 as amended by Amd. 1:2024.
-	ClimateChangeRelevant *bool `json:"climate_change_relevant,omitempty"`
+	IsmsRecordMixin `json:",inline"`
+	// The organization's registered legal name.
+	OrganizationLegalName *string `json:"organization_legal_name,omitempty"`
+	// Other names the organization trades under.
+	OrganizationTradingNames []string `json:"organization_trading_names,omitempty"`
+	// What kind of organization it is, such as a company, an agency or a charity.
+	OrganizationKind *string `json:"organization_kind,omitempty"`
+	// The organization's main industry sector.
+	OrganizationSector *string `json:"organization_sector,omitempty"`
+	// How the organization classes its own size.
+	OrganizationSize *string `json:"organization_size,omitempty"`
+	// About how many people the organization employs.
+	OrganizationEmployeeCount *int `json:"organization_employee_count,omitempty"`
+	// The countries or regions the organization works in.
+	OrganizationLocations []string `json:"organization_locations,omitempty"`
+	// The jurisdictions whose laws and regulations apply to the organization.
+	OrganizationJurisdictions []string `json:"organization_jurisdictions,omitempty"`
+	// The organization's parent, if it has one.
+	OrganizationParent *string `json:"organization_parent,omitempty"`
+	// The organization's subsidiaries, if it has any.
+	OrganizationSubsidiaries []string `json:"organization_subsidiaries,omitempty"`
+	// Whether the organization has determined that climate change is a relevant issue for its ISMS.
+	OrganizationClimateChangeRelevant *bool `json:"organization_climate_change_relevant,omitempty"`
 }
 
-// A stakeholder whose needs and expectations are relevant to the ISMS per 4.2. Includes internal parties (employees, management) and external parties (customers, regulators, suppliers).
-type InterestedParty struct {
+// A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it, such as staff, customers, regulators or suppliers.
+type IsmsInterestedParty struct {
 	// Embedded types for inheritance
-	NamedEntity `json:",inline"`
-	// Category of interested party.
-	PartyType *string `json:"party_type,omitempty"`
-	// Nature of the relationship with the organization.
-	Relationship *string `json:"relationship,omitempty"`
-	// Requirements of the interested party.
-	Requirements []string `json:"requirements,omitempty"`
-	// Requirements of the interested party that the organization has determined will be addressed through the ISMS, per Clause 4.2 c).
-	AddressedRequirements []string `json:"addressed_requirements,omitempty"`
-	// Climate-change-related requirements of the interested party, per ISO/IEC 27001:2022 Clause 4.2 NOTE 2 as added by Amd. 1:2024.
-	ClimateChangeRelatedRequirements []string `json:"climate_change_related_requirements,omitempty"`
-	// Communication requirements for this party.
-	CommunicationNeeds *string `json:"communication_needs,omitempty"`
-	// Contact details for the party.
-	ContactInformation *string `json:"contact_information,omitempty"`
+	IsmsRecordMixin `json:",inline"`
+	// What kind of interested party it is, in the organization's own terms.
+	PartyCategory *string `json:"party_category,omitempty"`
+	// How the party relates to the organization.
+	PartyRelationship *string `json:"party_relationship,omitempty"`
+	// The party's requirements that bear on information security.
+	PartyRequirements []string `json:"party_requirements,omitempty"`
+	// Which of those requirements the ISMS addresses.
+	PartyAddressedRequirements []string `json:"party_addressed_requirements,omitempty"`
+	// The party's requirements that concern climate change.
+	PartyClimateChangeRequirements []string `json:"party_climate_change_requirements,omitempty"`
+	// What the party needs to be told, and how.
+	PartyCommunicationNeeds *string `json:"party_communication_needs,omitempty"`
+	// How to reach the party.
+	PartyContact *string `json:"party_contact,omitempty"`
 }
 
-// The information security policy established by top management per Clause 5.2. Provides framework for setting objectives and demonstrates commitment.
-type InformationSecurityPolicy struct {
+// The information security policy that top management sets: the organization's commitment and the frame for its information security objectives.
+type IsmsPolicy struct {
 	// Embedded types for inheritance
-	DocumentedInformation `json:",inline"`
-	// The core policy statement text.
+	IsmsRecordMixin `json:",inline"`
+	IsmsDocumentControlMixin `json:",inline"`
+	// The policy's own statement, in the organization's words.
 	PolicyStatement *string `json:"policy_statement,omitempty"`
-	// Framework for setting information security objectives.
+	// How the policy frames the setting of information security objectives.
 	PolicyObjectivesFramework *string `json:"policy_objectives_framework,omitempty"`
-	// Statements of commitment included in the policy.
-	CommitmentStatements []string `json:"commitment_statements,omitempty"`
-	// Statement of policy applicability.
-	ApplicabilityStatement *string `json:"applicability_statement,omitempty"`
-	// Date when the policy was communicated.
-	CommunicationDate *time.Time `json:"communication_date,omitempty"`
-	// Whether acknowledgment is required from personnel.
-	AcknowledgmentRequired *bool `json:"acknowledgment_required,omitempty"`
-	// Date of the most recent information security policy review.
-	LastPolicyReviewDate *time.Time `json:"last_policy_review_date,omitempty"`
-	// Planned date of the next information security policy review.
-	NextPolicyReviewDate *time.Time `json:"next_policy_review_date,omitempty"`
-	// Topic-specific policies supporting this policy.
-	RelatedTopicPolicies []TopicSpecificPolicyId `json:"related_topic_policies,omitempty"`
-	// Other ISO/IEC management system standards with which the ISMS is integrated or aligned (per the harmonized structure of Annex SL).
-	IntegratedManagementSystems []RelatedManagementSystem `json:"integrated_management_systems,omitempty"`
+	// The commitments the policy makes.
+	PolicyCommitments []string `json:"policy_commitments,omitempty"`
+	// To whom and to what the policy applies.
+	PolicyApplicability *string `json:"policy_applicability,omitempty"`
+	// When the policy was communicated within the organization.
+	PolicyCommunicationDate *time.Time `json:"policy_communication_date,omitempty"`
+	// Whether staff must acknowledge the policy.
+	PolicyAcknowledgementRequired *bool `json:"policy_acknowledgement_required,omitempty"`
+	// The other management system standards the ISMS is integrated with under the same policy.
+	PolicyManagementSystems []IsmsManagementSystemStandard `json:"policy_management_systems,omitempty"`
 }
 
-// A policy addressing a specific information security topic, supporting the overarching information security policy.
-type TopicSpecificPolicy struct {
+// A policy on one topic of information security, such as access control or backup, that supports the information security policy.
+type IsmsTopicSpecificPolicy struct {
 	// Embedded types for inheritance
-	DocumentedInformation `json:",inline"`
-	// The specific topic addressed by the policy.
-	TopicArea *string `json:"topic_area,omitempty"`
-	// The parent policy this topic-specific policy supports.
-	ParentPolicy *InformationSecurityPolicyId `json:"parent_policy,omitempty"`
-	// Controls related to this policy.
-	ApplicableControls []SecurityControlId `json:"applicable_controls,omitempty"`
-	// Intended audience for the policy or document.
-	TargetAudience *string `json:"target_audience,omitempty"`
+	IsmsRecordMixin `json:",inline"`
+	IsmsDocumentControlMixin `json:",inline"`
+	// The organization's controls that the record concerns.
+	RelevantControls []IsmsControlId `json:"relevant_controls,omitempty"`
+	// The topic the policy covers.
+	TopicPolicyTopic *string `json:"topic_policy_topic,omitempty"`
+	// The information security policy this policy supports.
+	TopicPolicyParent *IsmsPolicyId `json:"topic_policy_parent,omitempty"`
+	// Whom the policy is written for.
+	TopicPolicyAudience *string `json:"topic_policy_audience,omitempty"`
 }
 
-// An information security role with defined responsibilities and authorities per Clause 5.3.
-type Role struct {
+// A role in the ISMS, with the responsibilities and authorities it carries and who holds it.
+type IsmsRole struct {
 	// Embedded types for inheritance
-	NamedEntity `json:",inline"`
-	// Category of the role.
-	RoleType *string `json:"role_type,omitempty"`
-	// Responsibilities assigned to the role.
-	Responsibilities []string `json:"responsibilities,omitempty"`
-	// Authorities granted to the role.
-	Authorities []string `json:"authorities,omitempty"`
+	IsmsRecordMixin `json:",inline"`
+	// What kind of role it is, in the organization's own terms.
+	RoleCategory *string `json:"role_category,omitempty"`
+	// The responsibilities assigned to the role.
+	RoleResponsibilities []string `json:"role_responsibilities,omitempty"`
+	// The authorities the role carries.
+	RoleAuthorities []string `json:"role_authorities,omitempty"`
 	// What the role is accountable for.
-	Accountability *string `json:"accountability,omitempty"`
-	// Person(s) assigned to this role.
-	AssignedTo []string `json:"assigned_to,omitempty"`
-	// Rules for delegating responsibilities.
-	DelegationRules *string `json:"delegation_rules,omitempty"`
-	// To whom this role reports.
-	ReportingLine *string `json:"reporting_line,omitempty"`
+	RoleAccountability *string `json:"role_accountability,omitempty"`
+	// The people who hold the role.
+	RoleHolders []string `json:"role_holders,omitempty"`
+	// How the role may delegate its responsibilities.
+	RoleDelegation *string `json:"role_delegation,omitempty"`
+	// The role this role reports to.
+	RoleReportsTo *IsmsRoleId `json:"role_reports_to,omitempty"`
 }
 
-// A measurable information security objective per Clause 6.2, established at relevant functions and levels of the organization.
-type InformationSecurityObjective struct {
+// An information security objective: a measurable result the organization aims for, with how it plans to reach it and how it measures progress.
+type IsmsObjective struct {
 	// Embedded types for inheritance
-	NamedEntity `json:",inline"`
-	// Clear statement of the objective.
+	IsmsRecordMixin `json:",inline"`
+	// The role that answers for the record's activity or outcome.
+	ResponsibleRole *IsmsRoleId `json:"responsible_role,omitempty"`
+	// The organization's controls that the record concerns.
+	RelevantControls []IsmsControlId `json:"relevant_controls,omitempty"`
+	// The objective, as the organization states it.
 	ObjectiveStatement *string `json:"objective_statement,omitempty"`
-	// Target value for the objective metric.
-	TargetValue *string `json:"target_value,omitempty"`
-	// Current measured value.
-	CurrentValue *string `json:"current_value,omitempty"`
-	// Definition of how the objective is measured.
-	MetricDefinition *string `json:"metric_definition,omitempty"`
-	// Method used to measure the metric.
-	MeasurementMethod *string `json:"measurement_method,omitempty"`
-	// How often measurement is performed.
-	MeasurementFrequency *string `json:"measurement_frequency,omitempty"`
-	// Role responsible for the objective or control.
-	ResponsibleRole *RoleId `json:"responsible_role,omitempty"`
-	// Target date for achieving the objective.
-	TargetDate *time.Time `json:"target_date,omitempty"`
-	// Current status of objective achievement.
-	AchievementStatus *string `json:"achievement_status,omitempty"`
-	// Associated risks.
-	RelatedRisks []RiskId `json:"related_risks,omitempty"`
-	// Other controls related to this one.
-	RelatedControls []SecurityControlId `json:"related_controls,omitempty"`
-	// Plan for achieving the objective.
-	ActionPlan *string `json:"action_plan,omitempty"`
-	// Resources required to achieve the information security objective.
-	ObjectiveResourcesRequired *string `json:"objective_resources_required,omitempty"`
+	// The value the objective aims for.
+	ObjectiveTarget *string `json:"objective_target,omitempty"`
+	// The value last measured.
+	ObjectiveCurrentValue *string `json:"objective_current_value,omitempty"`
+	// How the objective's value is defined.
+	ObjectiveMetric *string `json:"objective_metric,omitempty"`
+	// How the value is measured.
+	ObjectiveMeasurementMethod *string `json:"objective_measurement_method,omitempty"`
+	// How often the value is measured.
+	ObjectiveMeasurementFrequency *string `json:"objective_measurement_frequency,omitempty"`
+	// When the objective is to be reached.
+	ObjectiveTargetDate *time.Time `json:"objective_target_date,omitempty"`
+	// How far the objective has been reached, in the organization's own terms.
+	ObjectiveAchievement *string `json:"objective_achievement,omitempty"`
+	// The risks the objective concerns.
+	ObjectiveRisks []IsmsRiskId `json:"objective_risks,omitempty"`
+	// What will be done to reach the objective.
+	ObjectiveActionPlan *string `json:"objective_action_plan,omitempty"`
+	// The resources needed to reach the objective.
+	ObjectiveResources *string `json:"objective_resources,omitempty"`
 }
 
-// The documented risk assessment process per Clause 6.1.2, defining criteria and methodology for identifying, analyzing, and evaluating risks.
-type RiskAssessmentProcess struct {
+// The organization's process for assessing information security risks: its criteria for accepting risk and for assessing it, its scales and method, and when it runs.
+type IsmsRiskAssessmentProcess struct {
 	// Embedded types for inheritance
-	DocumentedInformation `json:",inline"`
-	// Criteria for accepting risks.
+	IsmsRecordMixin `json:",inline"`
+	IsmsDocumentControlMixin `json:",inline"`
+	// The criteria for accepting a risk.
 	RiskAcceptanceCriteria *string `json:"risk_acceptance_criteria,omitempty"`
-	// Criteria for performing risk assessments.
-	AssessmentCriteria *string `json:"assessment_criteria,omitempty"`
-	// Methodology used for risk assessment.
-	AssessmentMethodology *string `json:"assessment_methodology,omitempty"`
-	// Scale used for likelihood rating.
-	LikelihoodScale *string `json:"likelihood_scale,omitempty"`
-	// Scale used for impact rating.
-	ImpactScale *string `json:"impact_scale,omitempty"`
-	// Risk matrix or calculation method.
+	// The criteria for carrying out a risk assessment.
+	RiskAssessmentCriteria *string `json:"risk_assessment_criteria,omitempty"`
+	// The method used to identify, analyse and evaluate risks.
+	RiskAssessmentMethod *string `json:"risk_assessment_method,omitempty"`
+	// The scale for rating likelihood.
+	RiskLikelihoodScale *string `json:"risk_likelihood_scale,omitempty"`
+	// The scale for rating consequences.
+	RiskImpactScale *string `json:"risk_impact_scale,omitempty"`
+	// How likelihood and consequence combine into a risk level.
 	RiskMatrix *string `json:"risk_matrix,omitempty"`
-	// Planned frequency of risk assessments.
-	AssessmentFrequency *string `json:"assessment_frequency,omitempty"`
-	// Events that trigger risk assessment outside planned schedule.
-	TriggerEvents []string `json:"trigger_events,omitempty"`
+	// How often risks are assessed.
+	RiskAssessmentFrequency *string `json:"risk_assessment_frequency,omitempty"`
+	// The events that start a risk assessment outside the planned ones.
+	RiskAssessmentTriggers []string `json:"risk_assessment_triggers,omitempty"`
 }
 
-// An instance of risk assessment performed per Clause 8.2, identifying and evaluating information security risks.
-type RiskAssessment struct {
+// One risk assessment carried out under the risk assessment process, and what it found.
+type IsmsRiskAssessment struct {
 	// Embedded types for inheritance
-	DocumentedInformation `json:",inline"`
-	// Scope of the assessment.
+	IsmsRecordMixin `json:",inline"`
+	IsmsDocumentControlMixin `json:",inline"`
+	// What the assessment covered.
 	AssessmentScope *string `json:"assessment_scope,omitempty"`
-	// Date the assessment was conducted.
+	// When the assessment was carried out.
 	AssessmentDate *time.Time `json:"assessment_date,omitempty"`
-	// Person or team who conducted the assessment.
-	Assessor *string `json:"assessor,omitempty"`
-	// Specific methodology applied in this assessment.
-	MethodologyUsed *string `json:"methodology_used,omitempty"`
-	// Risks identified in this assessment.
-	RisksIdentified []RiskId `json:"risks_identified,omitempty"`
-	// Summary of assessment findings.
-	SummaryFindings *string `json:"summary_findings,omitempty"`
-	// Recommendations from the assessment.
-	Recommendations []string `json:"recommendations,omitempty"`
-	// Planned date for next assessment.
-	NextAssessmentDate *time.Time `json:"next_assessment_date,omitempty"`
+	// Who carried out the assessment.
+	AssessmentAssessor *string `json:"assessment_assessor,omitempty"`
+	// The method this assessment applied.
+	AssessmentMethodUsed *string `json:"assessment_method_used,omitempty"`
+	// The risks the assessment identified.
+	AssessmentRisks []IsmsRiskId `json:"assessment_risks,omitempty"`
+	// A summary of what the assessment found.
+	AssessmentSummary *string `json:"assessment_summary,omitempty"`
+	// What the assessment recommends.
+	AssessmentRecommendations []string `json:"assessment_recommendations,omitempty"`
+	// When the next assessment is planned.
+	AssessmentNextDate *time.Time `json:"assessment_next_date,omitempty"`
 }
 
-// An identified information security risk that may affect information security properties within the ISMS scope.
-type Risk struct {
+// An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated.
+type IsmsRisk struct {
 	// Embedded types for inheritance
-	NamedEntity `json:",inline"`
-	// Source or origin of the risk.
+	IsmsRecordMixin `json:",inline"`
+	// The assets the risk, event or incident affects.
+	AffectedAssets []IsmsAssetId `json:"affected_assets,omitempty"`
+	// Which of confidentiality, integrity and availability the risk or incident threatens.
+	AffectedSecurityProperties []IsmsSecurityProperty `json:"affected_security_properties,omitempty"`
+	// Where the risk comes from.
 	RiskSource *string `json:"risk_source,omitempty"`
-	// Description of the threat exploiting the vulnerability.
-	ThreatDescription *string `json:"threat_description,omitempty"`
-	// Description of the vulnerability that could be exploited.
-	VulnerabilityDescription *string `json:"vulnerability_description,omitempty"`
-	// Assets affected by this risk or incident.
-	AffectedAssets []AssetId `json:"affected_assets,omitempty"`
-	// Which CIA properties are affected (confidentiality, integrity, availability).
-	AffectedCiaProperties []CIAProperty `json:"affected_cia_properties,omitempty"`
-	// Person accountable for managing the risk.
+	// The threat that could cause harm.
+	RiskThreat *string `json:"risk_threat,omitempty"`
+	// The weakness the threat could exploit.
+	RiskVulnerability *string `json:"risk_vulnerability,omitempty"`
+	// The person who is accountable for the risk and has the authority to manage it.
 	RiskOwner *string `json:"risk_owner,omitempty"`
-	// Assessed likelihood of risk occurrence.
-	Likelihood LikelihoodRating `json:"likelihood,omitempty"`
-	// Assessed impact if risk materializes.
-	Impact ImpactRating `json:"impact,omitempty"`
-	// Risk level before controls are applied.
-	InherentRiskLevel RiskLevel `json:"inherent_risk_level,omitempty"`
-	// Controls currently in place affecting this risk.
-	ExistingControls []SecurityControlId `json:"existing_controls,omitempty"`
-	// Risk level after controls are applied.
-	ResidualRiskLevel RiskLevel `json:"residual_risk_level,omitempty"`
-	// Selected treatment option for the risk.
-	RiskTreatmentOption RiskTreatmentOption `json:"risk_treatment_option,omitempty"`
-	// Priority for treating this risk.
-	TreatmentPriority *string `json:"treatment_priority,omitempty"`
-	// Risk treatment plan addressing this risk.
-	RelatedTreatmentPlan *RiskTreatmentPlanId `json:"related_treatment_plan,omitempty"`
+	// How likely the risk is.
+	RiskLikelihood IsmsLikelihood `json:"risk_likelihood,omitempty"`
+	// How severe the consequences would be.
+	RiskImpact IsmsImpact `json:"risk_impact,omitempty"`
+	// The risk's level before controls.
+	RiskInherentLevel IsmsRiskLevel `json:"risk_inherent_level,omitempty"`
+	// The organization's controls already acting on the risk.
+	RiskExistingControls []IsmsControlId `json:"risk_existing_controls,omitempty"`
+	// The risk's level after controls.
+	RiskResidualLevel IsmsRiskLevel `json:"risk_residual_level,omitempty"`
+	// The treatment chosen for the risk.
+	RiskTreatmentOption IsmsRiskTreatmentOption `json:"risk_treatment_option,omitempty"`
+	// How soon the risk is to be treated, in the organization's own terms.
+	RiskTreatmentPriority *string `json:"risk_treatment_priority,omitempty"`
 }
 
-// The documented risk treatment process per Clause 6.1.3, defining how treatment options are selected and controls determined.
-type RiskTreatmentProcess struct {
+// The organization's process for treating information security risks: how it chooses treatments and controls, checks them against Annex A, and produces the Statement of Applicability.
+type IsmsRiskTreatmentProcess struct {
 	// Embedded types for inheritance
-	DocumentedInformation `json:",inline"`
-	// Guidance on selecting treatment options.
+	IsmsRecordMixin `json:",inline"`
+	IsmsDocumentControlMixin `json:",inline"`
+	// How a treatment option is chosen for a risk.
 	TreatmentOptionsGuidance *string `json:"treatment_options_guidance,omitempty"`
-	// Criteria for selecting controls.
-	ControlSelectionCriteria *string `json:"control_selection_criteria,omitempty"`
-	// Description of how controls determined as necessary are compared with those in Annex A to verify that no necessary controls have been omitted, per Clause 6.1.3 c).
-	AnnexAOmissionVerification *string `json:"annex_a_omission_verification,omitempty"`
-	// Template used for Statement of Applicability.
-	SoaTemplate *string `json:"soa_template,omitempty"`
-	// Workflow for approving risk treatment.
-	ApprovalWorkflow *string `json:"approval_workflow,omitempty"`
+	// How the controls a treatment needs are chosen.
+	TreatmentControlSelection *string `json:"treatment_control_selection,omitempty"`
+	// How the chosen controls are compared with Annex A, so that no necessary control is left out.
+	TreatmentAnnexAComparison *string `json:"treatment_annex_a_comparison,omitempty"`
+	// The template the Statement of Applicability follows.
+	TreatmentSoaTemplate *string `json:"treatment_soa_template,omitempty"`
+	// How a treatment plan and its residual risks are approved.
+	TreatmentApprovalWorkflow *string `json:"treatment_approval_workflow,omitempty"`
 }
 
-// A risk treatment plan documenting planned actions to address identified risks through selected controls.
-type RiskTreatmentPlan struct {
+// A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's approval of the plan and of the residual risk.
+type IsmsRiskTreatmentPlan struct {
 	// Embedded types for inheritance
-	DocumentedInformation `json:",inline"`
-	// Scope of the plan.
+	IsmsRecordMixin `json:",inline"`
+	IsmsDocumentControlMixin `json:",inline"`
+	// How far the control or the plan has been put into effect.
+	ImplementationState IsmsImplementationStatus `json:"implementation_state,omitempty"`
+	// What the plan covers.
 	PlanScope *string `json:"plan_scope,omitempty"`
-	// Risks addressed by this plan.
-	RisksAddressed []RiskId `json:"risks_addressed,omitempty"`
-	// Actions to be taken for treatment.
-	TreatmentActions []string `json:"treatment_actions,omitempty"`
-	// Controls to be implemented as part of treatment.
-	ControlsToImplement []SecurityControlId `json:"controls_to_implement,omitempty"`
-	// Resources required for implementation.
-	ResourcesRequired *string `json:"resources_required,omitempty"`
-	// Parties responsible for implementation.
-	ResponsibleParties []string `json:"responsible_parties,omitempty"`
-	// Timeline for implementation.
-	ImplementationTimeline *string `json:"implementation_timeline,omitempty"`
-	// Risk owner who approved the plan.
-	RiskOwnerApproval *string `json:"risk_owner_approval,omitempty"`
-	// Date when the risk treatment plan was approved.
-	ApprovedDate *time.Time `json:"approved_date,omitempty"`
-	// Documentation of residual risk acceptance.
-	ResidualRiskAcceptance *string `json:"residual_risk_acceptance,omitempty"`
-	// Current implementation status.
-	ImplementationStatus ImplementationStatus `json:"implementation_status,omitempty"`
-	// Date when implementation was completed.
-	CompletionDate *time.Time `json:"completion_date,omitempty"`
+	// The risks the plan treats.
+	PlanRisks []IsmsRiskId `json:"plan_risks,omitempty"`
+	// The actions the plan takes.
+	PlanActions []string `json:"plan_actions,omitempty"`
+	// The controls the plan puts in place.
+	PlanControls []IsmsControlId `json:"plan_controls,omitempty"`
+	// The resources the plan needs.
+	PlanResources *string `json:"plan_resources,omitempty"`
+	// Who carries out the plan.
+	PlanResponsibleParties []string `json:"plan_responsible_parties,omitempty"`
+	// When the plan's actions are to happen.
+	PlanTimeline *string `json:"plan_timeline,omitempty"`
+	// The risk owner who approved the plan.
+	PlanRiskOwnerApproval *string `json:"plan_risk_owner_approval,omitempty"`
+	// How the risk owners accepted the risk that remains.
+	PlanResidualRiskAcceptance *string `json:"plan_residual_risk_acceptance,omitempty"`
+	// When the plan was completed.
+	PlanCompletionDate *time.Time `json:"plan_completion_date,omitempty"`
 }
 
-// The Statement of Applicability (SoA) recording which controls apply, their rationale, and current implementation state.
-type StatementOfApplicability struct {
+// The Statement of Applicability: each control the organization needs, with why it is included and whether it is in place, and each Annex A control it leaves out, with why.
+type IsmsStatementOfApplicability struct {
 	// Embedded types for inheritance
-	DocumentedInformation `json:",inline"`
-	// Individual control entries in the SoA.
-	SoaEntries []SoAEntry `json:"soa_entries,omitempty"`
-	// Total number of controls in scope.
-	TotalControls *int `json:"total_controls,omitempty"`
-	// Number of implemented controls.
-	ImplementedCount *int `json:"implemented_count,omitempty"`
-	// Number of controls planned for implementation.
-	PlannedCount *int `json:"planned_count,omitempty"`
-	// Number of controls marked not applicable.
-	NotApplicableCount *int `json:"not_applicable_count,omitempty"`
-	// Date of last review.
-	LastReviewDate *time.Time `json:"last_review_date,omitempty"`
-	// Person who approved the document.
-	ApprovedBy *string `json:"approved_by,omitempty"`
+	IsmsRecordMixin `json:",inline"`
+	IsmsDocumentControlMixin `json:",inline"`
+	// The statement's entries, one for each control included or Annex A control excluded.
+	SoaEntries []IsmsApplicabilityEntry `json:"soa_entries,omitempty"`
 }
 
-// A single entry in the Statement of Applicability, documenting the applicability and implementation status of one control.
-type SoAEntry struct {
-	// Reference to the control (e.g., A.5.1).
-	ControlReference *SecurityControlId `json:"control_reference,omitempty"`
-	// Whether the control is applicable.
-	IsApplicable *bool `json:"is_applicable,omitempty"`
-	// Justification for including the control.
-	InclusionJustification *string `json:"inclusion_justification,omitempty"`
-	// Justification for excluding the control.
-	ExclusionJustification *string `json:"exclusion_justification,omitempty"`
-	// Current implementation status.
-	ImplementationStatus ImplementationStatus `json:"implementation_status,omitempty"`
-	// Evidence of control implementation.
-	ImplementationEvidence *string `json:"implementation_evidence,omitempty"`
-	// Role responsible for the objective or control.
-	ResponsibleRole *RoleId `json:"responsible_role,omitempty"`
-	// Target date for implementing the control.
-	TargetImplementationDate *time.Time `json:"target_implementation_date,omitempty"`
+// One entry of the Statement of Applicability, which either includes a control or excludes an Annex A control, and says why.
+type IsmsApplicabilityEntry struct {
+	// The Annex A control a Statement of Applicability entry concerns.
+	EntryAnnexAControl IsmsAnnexAControl `json:"entry_annex_a_control,omitempty"`
+	// The kind of entry: IsmsIncludedControl or IsmsExcludedControl.
+	EntryType *string `json:"entry_type,omitempty"`
+	// Why the control is included or excluded.
+	EntryJustification string `json:"entry_justification"`
 }
 
-// A security control from Annex A of ISO/IEC 27001:2022, derived from ISO/IEC 27002:2022. Represents a measure that modifies risk.
-type SecurityControl struct {
+// An entry that includes a control the organization needs, from Annex A or from elsewhere, and says whether it is in place.
+type IsmsIncludedControl struct {
 	// Embedded types for inheritance
-	NamedEntity `json:",inline"`
-	// Control identifier from Annex A (e.g., a_5_1, a_8_24).
-	ControlId AnnexAControlId `json:"control_id,omitempty"`
-	// Title of the control.
-	ControlTitle *string `json:"control_title,omitempty"`
-	// Domain category of the control.
-	ControlCategory ControlCategory `json:"control_category,omitempty"`
-	// Organization-authored control statement or external control summary.
+	IsmsApplicabilityEntry `json:",inline"`
+	// How far the control or the plan has been put into effect.
+	ImplementationState IsmsImplementationStatus `json:"implementation_state"`
+	// The role that answers for the record's activity or outcome.
+	ResponsibleRole *IsmsRoleId `json:"responsible_role,omitempty"`
+	// The organization's control the entry includes.
+	IncludedControl *IsmsControlId `json:"included_control,omitempty"`
+	// What shows that the control is in place.
+	IncludedEvidence *string `json:"included_evidence,omitempty"`
+	// When the control is to be in place, if it is not yet.
+	IncludedTargetDate *time.Time `json:"included_target_date,omitempty"`
+}
+
+// An entry that leaves out an Annex A control the organization does not need, and says why.
+type IsmsExcludedControl struct {
+	// Embedded types for inheritance
+	IsmsApplicabilityEntry `json:",inline"`
+}
+
+// A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.
+type IsmsControl struct {
+	// Embedded types for inheritance
+	IsmsRecordMixin `json:",inline"`
+	// The organization's controls that the record concerns.
+	RelevantControls []IsmsControlId `json:"relevant_controls,omitempty"`
+	// How far the control or the plan has been put into effect.
+	ImplementationState IsmsImplementationStatus `json:"implementation_state,omitempty"`
+	// The Annex A controls the control answers to.
+	ControlAnnexAControls []IsmsAnnexAControl `json:"control_annex_a_controls,omitempty"`
+	// Which of Annex A's four themes the control belongs to.
+	ControlTheme IsmsControlTheme `json:"control_theme,omitempty"`
+	// What the control does, in the organization's own words.
 	ControlText *string `json:"control_text,omitempty"`
-	// Organization-authored implementation notes for the control.
-	ImplementationGuidance *string `json:"implementation_guidance,omitempty"`
-	// Other controls related to this one.
-	RelatedControls []SecurityControlId `json:"related_controls,omitempty"`
-	// Threats this control addresses.
-	ApplicableThreats []string `json:"applicable_threats,omitempty"`
-	// Asset types this control applies to.
-	ApplicableAssets []string `json:"applicable_assets,omitempty"`
-	// Person responsible for the control.
+	// The organization's notes on putting the control in place.
+	ControlGuidance *string `json:"control_guidance,omitempty"`
+	// The threats the control acts against.
+	ControlThreats []string `json:"control_threats,omitempty"`
+	// The kinds of asset the control applies to.
+	ControlAssetTypes []string `json:"control_asset_types,omitempty"`
+	// The person who owns the control.
 	ControlOwner *string `json:"control_owner,omitempty"`
-	// Current implementation status.
-	ImplementationStatus ImplementationStatus `json:"implementation_status,omitempty"`
-	// Date the control was implemented.
-	ImplementationDate *time.Time `json:"implementation_date,omitempty"`
-	// Rating of control effectiveness.
-	EffectivenessRating *string `json:"effectiveness_rating,omitempty"`
-	// Date the control was last tested.
-	LastTestDate *time.Time `json:"last_test_date,omitempty"`
-	// References to evidence of implementation.
-	EvidenceReferences []string `json:"evidence_references,omitempty"`
+	// When the control was put in place.
+	ControlImplementationDate *time.Time `json:"control_implementation_date,omitempty"`
+	// How well the control works, in the organization's own terms.
+	ControlEffectiveness *string `json:"control_effectiveness,omitempty"`
+	// When the control was last tested.
+	ControlLastTested *time.Time `json:"control_last_tested,omitempty"`
+	// Where the evidence that the control is in place is kept.
+	ControlEvidence []string `json:"control_evidence,omitempty"`
 }
 
-// A resource provided for the ISMS per Clause 7.1, including personnel, infrastructure, technology, and budget.
-type Resource struct {
+// An item in the inventory of information and other associated assets: what it is, who owns and looks after it, where it is, how it is classified and how much it matters.
+type IsmsAsset struct {
 	// Embedded types for inheritance
-	NamedEntity `json:",inline"`
-	// Type of resource.
-	ResourceType *string `json:"resource_type,omitempty"`
-	// Quantity of the resource.
-	Quantity *string `json:"quantity,omitempty"`
-	// Date the resource was allocated.
-	AllocationDate *time.Time `json:"allocation_date,omitempty"`
+	IsmsRecordMixin `json:",inline"`
+	// The organization's controls that the record concerns.
+	RelevantControls []IsmsControlId `json:"relevant_controls,omitempty"`
+	// What kind of asset it is, such as information, software, hardware or a service.
+	AssetCategory *string `json:"asset_category,omitempty"`
+	// Who owns the asset.
+	AssetOwner *string `json:"asset_owner,omitempty"`
+	// Who looks after the asset from day to day.
+	AssetCustodian *string `json:"asset_custodian,omitempty"`
+	// The information classification the asset carries.
+	AssetClassification *string `json:"asset_classification,omitempty"`
+	// Where the asset is, physically or logically.
+	AssetLocation *string `json:"asset_location,omitempty"`
+	// How much the asset matters, in the organization's own terms.
+	AssetCriticality *string `json:"asset_criticality,omitempty"`
+}
+
+// A resource provided for the ISMS, such as people, time, tools or budget.
+type IsmsResource struct {
+	// Embedded types for inheritance
+	IsmsRecordMixin `json:",inline"`
+	// What kind of resource it is.
+	ResourceCategory *string `json:"resource_category,omitempty"`
+	// How much of the resource is provided.
+	ResourceQuantity *string `json:"resource_quantity,omitempty"`
+	// When the resource was allocated.
+	ResourceAllocationDate *time.Time `json:"resource_allocation_date,omitempty"`
 	// What the resource is allocated to.
-	AllocatedTo *string `json:"allocated_to,omitempty"`
-	// Cost of the resource.
-	Cost *string `json:"cost,omitempty"`
-	// Current availability of the resource.
-	AvailabilityStatus *string `json:"availability_status,omitempty"`
+	ResourceAllocatedTo *string `json:"resource_allocated_to,omitempty"`
+	// What the resource costs.
+	ResourceCost *string `json:"resource_cost,omitempty"`
+	// Whether the resource is available now, in the organization's own terms.
+	ResourceAvailability *string `json:"resource_availability,omitempty"`
 }
 
-// Evidence of competence for personnel affecting information security performance per Clause 7.2 d).
-type CompetenceRecord struct {
+// The evidence of one person's competence for work that affects information security, and what is done to close any gap.
+type IsmsCompetenceRecord struct {
 	// Embedded types for inheritance
-	DocumentedInformation `json:",inline"`
-	// Name of the person.
-	PersonName *string `json:"person_name,omitempty"`
-	// Role of the person.
-	PersonRole *string `json:"person_role,omitempty"`
-	// Competencies required for the role.
-	RequiredCompetencies []string `json:"required_competencies,omitempty"`
-	// Education qualifications.
-	EducationRecords []string `json:"education_records,omitempty"`
-	// Training completed.
-	TrainingRecords []string `json:"training_records,omitempty"`
-	// Relevant experience.
-	ExperienceRecords []string `json:"experience_records,omitempty"`
-	// Date of last competency assessment.
-	CompetencyAssessmentDate *time.Time `json:"competency_assessment_date,omitempty"`
-	// Identified competency gaps.
-	CompetencyGaps []string `json:"competency_gaps,omitempty"`
-	// Actions to address competency gaps.
-	DevelopmentActions []string `json:"development_actions,omitempty"`
+	IsmsRecordMixin `json:",inline"`
+	IsmsDocumentControlMixin `json:",inline"`
+	// The person the record is about.
+	CompetencePerson *string `json:"competence_person,omitempty"`
+	// The role the person holds.
+	CompetenceRole *IsmsRoleId `json:"competence_role,omitempty"`
+	// The competences the role needs.
+	CompetenceRequired []string `json:"competence_required,omitempty"`
+	// The person's relevant education.
+	CompetenceEducation []string `json:"competence_education,omitempty"`
+	// The training the person has completed.
+	CompetenceTraining []string `json:"competence_training,omitempty"`
+	// The person's relevant experience.
+	CompetenceExperience []string `json:"competence_experience,omitempty"`
+	// When the person's competence was last assessed.
+	CompetenceAssessmentDate *time.Time `json:"competence_assessment_date,omitempty"`
+	// The gaps the assessment found.
+	CompetenceGaps []string `json:"competence_gaps,omitempty"`
+	// What is done to close the gaps.
+	CompetenceActions []string `json:"competence_actions,omitempty"`
 }
 
-// The awareness program ensuring personnel understand their information security responsibilities per Clause 7.3.
-type AwarenessProgram struct {
+// The programme that makes people working for the organization aware of the policy, their part in the ISMS and what failing it would mean.
+type IsmsAwarenessProgramme struct {
 	// Embedded types for inheritance
-	DocumentedInformation `json:",inline"`
-	// Topics covered in awareness program.
+	IsmsRecordMixin `json:",inline"`
+	IsmsDocumentControlMixin `json:",inline"`
+	// The topics the programme covers.
 	AwarenessTopics []string `json:"awareness_topics,omitempty"`
-	// Methods used to deliver awareness content.
-	DeliveryMethods []string `json:"delivery_methods,omitempty"`
-	// Intended audience for the policy or document.
-	TargetAudience *string `json:"target_audience,omitempty"`
-	// Frequency of the activity.
-	Frequency *string `json:"frequency,omitempty"`
+	// How the programme is delivered.
+	AwarenessMethods []string `json:"awareness_methods,omitempty"`
+	// Whom the programme is for.
+	AwarenessAudience *string `json:"awareness_audience,omitempty"`
+	// How often the programme runs.
+	AwarenessFrequency *string `json:"awareness_frequency,omitempty"`
 	// How completion is tracked.
-	CompletionTracking *string `json:"completion_tracking,omitempty"`
-	// How effectiveness is measured.
-	EffectivenessMeasures *string `json:"effectiveness_measures,omitempty"`
+	AwarenessCompletionTracking *string `json:"awareness_completion_tracking,omitempty"`
+	// How the programme's effect is measured.
+	AwarenessEffectiveness *string `json:"awareness_effectiveness,omitempty"`
 }
 
-// Plan for internal and external communications relevant to the ISMS per Clause 7.4.
-type CommunicationPlan struct {
+// The plan for communication about the ISMS, inside the organization and outside it.
+type IsmsCommunicationPlan struct {
 	// Embedded types for inheritance
-	DocumentedInformation `json:",inline"`
-	// Communication items in the plan.
-	CommunicationItems []CommunicationItem `json:"communication_items,omitempty"`
+	IsmsRecordMixin `json:",inline"`
+	IsmsDocumentControlMixin `json:",inline"`
+	// The communications the plan provides for.
+	CommunicationItems []IsmsCommunication `json:"communication_items,omitempty"`
 }
 
-// A single communication requirement within the communication plan.
-type CommunicationItem struct {
-	// Subject of the communication.
-	Subject *string `json:"subject,omitempty"`
-	// Purpose of the communication.
-	Purpose *string `json:"purpose,omitempty"`
-	// Target audience.
-	Audience *string `json:"audience,omitempty"`
-	// Frequency of the activity.
-	Frequency *string `json:"frequency,omitempty"`
-	// Method of communication.
-	Method *string `json:"method,omitempty"`
-	// Party responsible for the activity.
-	ResponsibleParty *string `json:"responsible_party,omitempty"`
-	// Whether records are required.
-	RecordsRequired *bool `json:"records_required,omitempty"`
+// One communication the plan provides for: what about, why, to whom, how often, how, and who communicates.
+type IsmsCommunication struct {
+	// The role that answers for the record's activity or outcome.
+	ResponsibleRole *IsmsRoleId `json:"responsible_role,omitempty"`
+	// What the communication is about.
+	CommunicationSubject string `json:"communication_subject"`
+	// Why it is communicated.
+	CommunicationPurpose *string `json:"communication_purpose,omitempty"`
+	// To whom it is communicated.
+	CommunicationAudience *string `json:"communication_audience,omitempty"`
+	// How often it is communicated.
+	CommunicationFrequency *string `json:"communication_frequency,omitempty"`
+	// How it is communicated.
+	CommunicationMethod *string `json:"communication_method,omitempty"`
+	// Whether a record of the communication is kept.
+	CommunicationRecordsRequired *bool `json:"communication_records_required,omitempty"`
 }
 
-// A documented procedure for operational planning and control per Clause 8.1.
-type OperationalProcedure struct {
+// A piece of documented information the ISMS keeps under control that no more specific record describes, such as a procedure, a standard, a plan or a report.
+type IsmsDocumentedInformation struct {
 	// Embedded types for inheritance
-	DocumentedInformation `json:",inline"`
-	// Scope of the procedure.
+	IsmsRecordMixin `json:",inline"`
+	IsmsDocumentControlMixin `json:",inline"`
+	// What kind of documented information it is.
+	DocumentKind IsmsDocumentKind `json:"document_kind"`
+}
+
+// A procedure by which the organization plans and controls the processes that meet its information security requirements.
+type IsmsOperationalProcedure struct {
+	// Embedded types for inheritance
+	IsmsRecordMixin `json:",inline"`
+	IsmsDocumentControlMixin `json:",inline"`
+	// The organization's controls that the record concerns.
+	RelevantControls []IsmsControlId `json:"relevant_controls,omitempty"`
+	// What the procedure covers.
 	ProcedureScope *string `json:"procedure_scope,omitempty"`
-	// Criteria established for the process.
-	ProcessCriteria *string `json:"process_criteria,omitempty"`
-	// Control measures implemented.
-	ControlMeasures []string `json:"control_measures,omitempty"`
-	// Roles responsible for the procedure.
-	ResponsibleRoles []RoleId `json:"responsible_roles,omitempty"`
-	// Other controls related to this one.
-	RelatedControls []SecurityControlId `json:"related_controls,omitempty"`
-	// Requirements for controlling changes.
-	ChangeControlRequirements *string `json:"change_control_requirements,omitempty"`
+	// The criteria the processes are run to.
+	ProcedureCriteria *string `json:"procedure_criteria,omitempty"`
+	// The measures that control the processes.
+	ProcedureControlMeasures []string `json:"procedure_control_measures,omitempty"`
+	// The roles that carry out the procedure.
+	ProcedureRoles []IsmsRoleId `json:"procedure_roles,omitempty"`
+	// How changes to the processes are controlled.
+	ProcedureChangeControl *string `json:"procedure_change_control,omitempty"`
 }
 
-// The program for monitoring, measurement, analysis, and evaluation per Clause 9.1.
-type MonitoringProgram struct {
+// The programme of monitoring, measurement, analysis and evaluation of information security performance and of the ISMS's effectiveness.
+type IsmsMonitoringProgramme struct {
 	// Embedded types for inheritance
-	DocumentedInformation `json:",inline"`
-	// Items to be monitored.
-	MonitoringItems []MonitoringItem `json:"monitoring_items,omitempty"`
+	IsmsRecordMixin `json:",inline"`
+	IsmsDocumentControlMixin `json:",inline"`
+	// What the programme monitors and measures.
+	MonitoringItems []IsmsMonitoringItem `json:"monitoring_items,omitempty"`
 }
 
-// A single item to be monitored and measured per 9.1.
-type MonitoringItem struct {
-	// Name of the metric.
-	MetricName *string `json:"metric_name,omitempty"`
-	// Description of what is measured.
-	MetricDescription *string `json:"metric_description,omitempty"`
-	// Method used to measure the metric.
-	MeasurementMethod *string `json:"measurement_method,omitempty"`
-	// How often measurement is performed.
-	MeasurementFrequency *string `json:"measurement_frequency,omitempty"`
-	// Party responsible for the activity.
-	ResponsibleParty *string `json:"responsible_party,omitempty"`
-	// How often analysis is performed.
-	AnalysisFrequency *string `json:"analysis_frequency,omitempty"`
-	// Person performing analysis.
-	Analyst *string `json:"analyst,omitempty"`
-	// Target threshold value.
-	TargetThreshold *string `json:"target_threshold,omitempty"`
-	// Threshold triggering alerts.
-	AlertThreshold *string `json:"alert_threshold,omitempty"`
-	// Current measured value.
-	CurrentValue *string `json:"current_value,omitempty"`
-	// Current trend direction.
-	Trend *string `json:"trend,omitempty"`
+// One thing the monitoring programme measures: what, how, how often and by whom it is measured and analysed, and against what thresholds.
+type IsmsMonitoringItem struct {
+	// The role that answers for the record's activity or outcome.
+	ResponsibleRole *IsmsRoleId `json:"responsible_role,omitempty"`
+	// The name of what is measured.
+	MonitoringMetric string `json:"monitoring_metric"`
+	// What the measurement shows.
+	MonitoringDescription *string `json:"monitoring_description,omitempty"`
+	// How it is measured.
+	MonitoringMethod *string `json:"monitoring_method,omitempty"`
+	// How often it is measured.
+	MonitoringFrequency *string `json:"monitoring_frequency,omitempty"`
+	// How often the results are analysed and evaluated.
+	MonitoringAnalysisFrequency *string `json:"monitoring_analysis_frequency,omitempty"`
+	// Who analyses and evaluates the results.
+	MonitoringAnalyst *string `json:"monitoring_analyst,omitempty"`
+	// The value aimed for.
+	MonitoringTarget *string `json:"monitoring_target,omitempty"`
+	// The value that calls for action.
+	MonitoringAlertThreshold *string `json:"monitoring_alert_threshold,omitempty"`
+	// The value last measured.
+	MonitoringCurrentValue *string `json:"monitoring_current_value,omitempty"`
+	// Which way the value is moving.
+	MonitoringTrend *string `json:"monitoring_trend,omitempty"`
 }
 
-// An internal audit instance per Clause 9.2, assessing ISMS conformance and effectiveness.
-type InternalAudit struct {
+// An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors they need.
+type IsmsAuditProgramme struct {
 	// Embedded types for inheritance
-	DocumentedInformation `json:",inline"`
-	// Reference identifier for the audit.
-	AuditReference *string `json:"audit_reference,omitempty"`
-	// Type of audit per ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1.
-	AuditType AuditType `json:"audit_type,omitempty"`
-	// Scope of the audit.
-	AuditScope *string `json:"audit_scope,omitempty"`
-	// Criteria against which audit is conducted.
-	AuditCriteria []string `json:"audit_criteria,omitempty"`
-	// Objectives of the audit.
-	AuditObjectives []string `json:"audit_objectives,omitempty"`
-	// Start date of audit period.
-	AuditPeriodStart *time.Time `json:"audit_period_start,omitempty"`
-	// End date of audit period.
-	AuditPeriodEnd *time.Time `json:"audit_period_end,omitempty"`
-	// Lead auditor for the audit.
-	LeadAuditor *string `json:"lead_auditor,omitempty"`
-	// Audit team members.
-	AuditTeam []string `json:"audit_team,omitempty"`
-	// Representatives from audited areas.
-	AuditeeRepresentatives []string `json:"auditee_representatives,omitempty"`
-	// Audit plan document reference.
-	AuditPlan *string `json:"audit_plan,omitempty"`
-	// Audit findings.
-	Findings []AuditFindingId `json:"findings,omitempty"`
-	// Positive observations noted.
-	PositiveObservations []string `json:"positive_observations,omitempty"`
-	// Overall audit conclusion.
-	AuditConclusion *string `json:"audit_conclusion,omitempty"`
-	// Date the report was issued.
-	ReportDate *time.Time `json:"report_date,omitempty"`
-	// Distribution list for the report.
-	ReportDistribution []string `json:"report_distribution,omitempty"`
-}
-
-// The internal audit programme per 9.2.2, planning audit activities over a defined period.
-type AuditProgramme struct {
-	// Embedded types for inheritance
-	DocumentedInformation `json:",inline"`
-	// Period covered by the audit programme.
+	IsmsRecordMixin `json:",inline"`
+	IsmsDocumentControlMixin `json:",inline"`
+	// The period the programme covers.
 	ProgrammePeriod *string `json:"programme_period,omitempty"`
-	// Audits planned in this programme.
-	PlannedAudits []InternalAuditId `json:"planned_audits,omitempty"`
-	// Rationale for audit frequency decisions.
-	AuditFrequencyRationale *string `json:"audit_frequency_rationale,omitempty"`
-	// Resource requirements for the programme.
-	ResourceRequirements *string `json:"resource_requirements,omitempty"`
-	// Required qualifications for auditors.
-	AuditorQualifications *string `json:"auditor_qualifications,omitempty"`
-	// Current status of the programme.
+	// The audits the programme plans.
+	ProgrammeAudits []IsmsAuditId `json:"programme_audits,omitempty"`
+	// Why the audits happen as often as they do.
+	ProgrammeFrequencyRationale *string `json:"programme_frequency_rationale,omitempty"`
+	// The resources the programme needs.
+	ProgrammeResources *string `json:"programme_resources,omitempty"`
+	// The qualifications the auditors need.
+	ProgrammeAuditorQualifications *string `json:"programme_auditor_qualifications,omitempty"`
+	// Where the programme stands, in the organization's own terms.
 	ProgrammeStatus *string `json:"programme_status,omitempty"`
 }
 
-// A finding from an internal audit, including nonconformities, observations, and positive findings.
-type AuditFinding struct {
+// An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope, criteria, team, findings and conclusion.
+type IsmsAudit struct {
 	// Embedded types for inheritance
-	NamedEntity `json:",inline"`
-	// Type of audit finding.
-	FindingType AuditFindingType `json:"finding_type,omitempty"`
-	// Reference to standard clause.
-	ClauseReference *string `json:"clause_reference,omitempty"`
-	// Reference to the control (e.g., A.5.1).
-	ControlReference *SecurityControlId `json:"control_reference,omitempty"`
-	// Description of the finding.
-	FindingDescription *string `json:"finding_description,omitempty"`
-	// Evidence supporting the finding.
-	ObjectiveEvidence *string `json:"objective_evidence,omitempty"`
-	// Analysis of root cause.
-	RootCauseAnalysis *string `json:"root_cause_analysis,omitempty"`
-	// Risk implications of the finding.
-	RiskImplication *string `json:"risk_implication,omitempty"`
-	// Recommended action to address finding.
-	RecommendedAction *string `json:"recommended_action,omitempty"`
-	// Response from the auditee.
-	AuditeeResponse *string `json:"auditee_response,omitempty"`
-	// Corrective action linked to this finding.
-	LinkedCorrectiveAction *CorrectiveActionId `json:"linked_corrective_action,omitempty"`
-	// Status of finding closure.
-	ClosureStatus *string `json:"closure_status,omitempty"`
-	// Date the finding was closed.
-	ClosureDate *time.Time `json:"closure_date,omitempty"`
+	IsmsRecordMixin `json:",inline"`
+	IsmsDocumentControlMixin `json:",inline"`
+	// Who carries out the audit, relative to the organization.
+	AuditType IsmsAuditType `json:"audit_type"`
+	// The management system standards the audit covers.
+	AuditStandards []IsmsManagementSystemStandard `json:"audit_standards,omitempty"`
+	// What the audit covers.
+	AuditScope *string `json:"audit_scope,omitempty"`
+	// What the audit compares the ISMS against.
+	AuditCriteria []string `json:"audit_criteria,omitempty"`
+	// What the audit sets out to establish.
+	AuditObjectives []string `json:"audit_objectives,omitempty"`
+	// When the audit began.
+	AuditPeriodStart *time.Time `json:"audit_period_start,omitempty"`
+	// When the audit ended.
+	AuditPeriodEnd *time.Time `json:"audit_period_end,omitempty"`
+	// Who led the audit.
+	AuditLead *string `json:"audit_lead,omitempty"`
+	// Who else audited.
+	AuditTeam []string `json:"audit_team,omitempty"`
+	// Who represented the parts of the organization audited.
+	AuditAuditees []string `json:"audit_auditees,omitempty"`
+	// The documented information that holds the audit plan.
+	AuditPlan *IsmsDocumentedInformationId `json:"audit_plan,omitempty"`
+	// What the audit found, good and bad.
+	AuditFindings []IsmsAuditFinding `json:"audit_findings,omitempty"`
+	// The audit's overall conclusion.
+	AuditConclusion *string `json:"audit_conclusion,omitempty"`
+	// When the audit report was issued.
+	AuditReportDate *time.Time `json:"audit_report_date,omitempty"`
+	// Who received the audit report.
+	AuditReportDistribution []string `json:"audit_report_distribution,omitempty"`
 }
 
-// A management review per Clause 9.3, conducted by top management to evaluate ongoing ISMS performance and fitness for purpose.
-type ManagementReview struct {
+// One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it concerns, its evidence and how it is closed.
+type IsmsAuditFinding struct {
 	// Embedded types for inheritance
-	DocumentedInformation `json:",inline"`
-	// Date when the management review was conducted.
-	ReviewDate *time.Time `json:"review_date,omitempty"`
-	// Attendees of the review.
-	Attendees []string `json:"attendees,omitempty"`
-	// Status of actions from previous reviews.
-	PreviousActionsStatus *string `json:"previous_actions_status,omitempty"`
-	// Changes in context since last review.
-	ContextChanges *string `json:"context_changes,omitempty"`
-	// Changes in interested party requirements.
-	InterestedPartyChanges *string `json:"interested_party_changes,omitempty"`
-	// Feedback from interested parties considered in the management review.
-	InterestedPartyFeedback *string `json:"interested_party_feedback,omitempty"`
-	// Trends in information security performance.
-	PerformanceTrends *string `json:"performance_trends,omitempty"`
-	// Summary of audit results.
-	AuditResultsSummary *string `json:"audit_results_summary,omitempty"`
-	// Results of risk assessment.
-	RiskAssessmentResults *string `json:"risk_assessment_results,omitempty"`
-	// Status of the risk treatment plan considered in the management review.
-	RiskTreatmentStatus *string `json:"risk_treatment_status,omitempty"`
-	// Changes in risks and opportunities considered in the management review, per Clause 9.3.2 f).
-	RisksAndOpportunitiesChanges *string `json:"risks_and_opportunities_changes,omitempty"`
-	// Opportunities for improvement identified.
-	ImprovementOpportunities []string `json:"improvement_opportunities,omitempty"`
-	// Decisions made in the review.
-	Decisions []string `json:"decisions,omitempty"`
-	// Action items from the review.
-	ActionItems []string `json:"action_items,omitempty"`
-	// Planned date for next review.
-	NextReviewDate *time.Time `json:"next_review_date,omitempty"`
+	IsmsRecordMixin `json:",inline"`
+	// What kind of finding it is.
+	FindingType IsmsAuditFindingType `json:"finding_type"`
+	// The clause or Annex A control of ISO/IEC 27001:2022 the finding concerns, by number.
+	FindingRequirement *string `json:"finding_requirement,omitempty"`
+	// The organization's control the finding concerns.
+	FindingControl *IsmsControlId `json:"finding_control,omitempty"`
+	// The objective evidence for the finding.
+	FindingEvidence *string `json:"finding_evidence,omitempty"`
+	// What the analysis of the finding's cause found.
+	FindingRootCause *string `json:"finding_root_cause,omitempty"`
+	// What the finding means for risk.
+	FindingRisk *string `json:"finding_risk,omitempty"`
+	// What the auditor recommends.
+	FindingRecommendation *string `json:"finding_recommendation,omitempty"`
+	// How the auditee responded.
+	FindingAuditeeResponse *string `json:"finding_auditee_response,omitempty"`
+	// The corrective action the finding led to.
+	FindingCorrectiveAction *IsmsCorrectiveActionId `json:"finding_corrective_action,omitempty"`
+	// Whether the finding is closed, in the organization's own terms.
+	FindingClosureStatus *string `json:"finding_closure_status,omitempty"`
+	// When the finding was closed.
+	FindingClosureDate *time.Time `json:"finding_closure_date,omitempty"`
 }
 
-// A nonconformity identified per Clause 10.2, representing failure to fulfill a requirement.
-type Nonconformity struct {
+// A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.
+type IsmsManagementReview struct {
 	// Embedded types for inheritance
-	NamedEntity `json:",inline"`
-	// Source of nonconformity detection.
+	IsmsRecordMixin `json:",inline"`
+	IsmsDocumentControlMixin `json:",inline"`
+	// When the review was held.
+	ReviewHeldOn time.Time `json:"review_held_on"`
+	// Who attended the review.
+	ReviewAttendees []string `json:"review_attendees,omitempty"`
+	// Where the actions from earlier reviews stand.
+	ReviewPreviousActions *string `json:"review_previous_actions,omitempty"`
+	// How the issues that bear on the ISMS have changed.
+	ReviewContextChanges *string `json:"review_context_changes,omitempty"`
+	// How interested parties' needs and expectations have changed.
+	ReviewInterestedPartyChanges *string `json:"review_interested_party_changes,omitempty"`
+	// What interested parties said.
+	ReviewInterestedPartyFeedback *string `json:"review_interested_party_feedback,omitempty"`
+	// The trends in information security performance.
+	ReviewPerformanceTrends *string `json:"review_performance_trends,omitempty"`
+	// What the audits found.
+	ReviewAuditResults *string `json:"review_audit_results,omitempty"`
+	// What the risk assessments found.
+	ReviewRiskAssessmentResults *string `json:"review_risk_assessment_results,omitempty"`
+	// Where risk treatment stands.
+	ReviewRiskTreatmentStatus *string `json:"review_risk_treatment_status,omitempty"`
+	// How risks and opportunities have changed.
+	ReviewRisksAndOpportunities *string `json:"review_risks_and_opportunities,omitempty"`
+	// The opportunities for improvement raised.
+	ReviewImprovementOpportunities []string `json:"review_improvement_opportunities,omitempty"`
+	// What the review decided.
+	ReviewDecisions []string `json:"review_decisions,omitempty"`
+	// What the review asked to be done.
+	ReviewActions []string `json:"review_actions,omitempty"`
+	// When the next review is planned.
+	ReviewNextDate *time.Time `json:"review_next_date,omitempty"`
+}
+
+// A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was closed.
+type IsmsNonconformity struct {
+	// Embedded types for inheritance
+	IsmsRecordMixin `json:",inline"`
+	// How the nonconformity came to light, such as an audit, a review or an incident.
 	NonconformitySource *string `json:"nonconformity_source,omitempty"`
-	// Date the nonconformity was detected.
-	DetectionDate *time.Time `json:"detection_date,omitempty"`
-	// Person or process that detected the nonconformity.
-	DetectedBy *string `json:"detected_by,omitempty"`
-	// Requirement that was not fulfilled.
-	RequirementViolated *string `json:"requirement_violated,omitempty"`
-	// Description of the nonconformity.
-	NonconformityDescription *string `json:"nonconformity_description,omitempty"`
-	// Immediate actions taken to control/correct.
-	ImmediateActions []string `json:"immediate_actions,omitempty"`
-	// How consequences were dealt with.
-	ConsequencesAddressed *string `json:"consequences_addressed,omitempty"`
-	// Root cause of the nonconformity.
-	RootCause *string `json:"root_cause,omitempty"`
-	// Check for similar nonconformities elsewhere.
-	SimilarNonconformitiesCheck *string `json:"similar_nonconformities_check,omitempty"`
-	// Corrective actions addressing this nonconformity.
-	LinkedCorrectiveActions []CorrectiveActionId `json:"linked_corrective_actions,omitempty"`
-	// Current status of the document or entity.
-	Status *string `json:"status,omitempty"`
-	// Date the finding was closed.
-	ClosureDate *time.Time `json:"closure_date,omitempty"`
-	// Evidence supporting closure.
-	ClosureEvidence *string `json:"closure_evidence,omitempty"`
+	// When the nonconformity was found.
+	NonconformityDetectedOn *time.Time `json:"nonconformity_detected_on,omitempty"`
+	// Who or what found it.
+	NonconformityDetectedBy *string `json:"nonconformity_detected_by,omitempty"`
+	// The requirement that was not met, of ISO/IEC 27001, of the organization or of an interested party.
+	NonconformityRequirement *string `json:"nonconformity_requirement,omitempty"`
+	// What was done at once to control and correct it.
+	NonconformityImmediateActions []string `json:"nonconformity_immediate_actions,omitempty"`
+	// How its consequences were dealt with.
+	NonconformityConsequences *string `json:"nonconformity_consequences,omitempty"`
+	// What caused it.
+	NonconformityRootCause *string `json:"nonconformity_root_cause,omitempty"`
+	// Whether similar nonconformities exist or could occur, and where.
+	NonconformitySimilarCheck *string `json:"nonconformity_similar_check,omitempty"`
+	// Where the nonconformity stands, in the organization's own terms.
+	NonconformityStatus *string `json:"nonconformity_status,omitempty"`
+	// When it was closed.
+	NonconformityClosureDate *time.Time `json:"nonconformity_closure_date,omitempty"`
+	// What shows that it is closed.
+	NonconformityClosureEvidence *string `json:"nonconformity_closure_evidence,omitempty"`
 }
 
-// A corrective action per Clause 10.2 to address the root cause of a nonconformity and reduce the likelihood of recurrence.
-type CorrectiveAction struct {
+// An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it worked.
+type IsmsCorrectiveAction struct {
 	// Embedded types for inheritance
-	NamedEntity `json:",inline"`
-	// Nonconformity this action addresses.
-	LinkedNonconformity *NonconformityId `json:"linked_nonconformity,omitempty"`
-	// Description of the action.
-	ActionDescription *string `json:"action_description,omitempty"`
-	// Root cause this action addresses.
-	RootCauseAddressed *string `json:"root_cause_addressed,omitempty"`
-	// Party responsible for the activity.
-	ResponsibleParty *string `json:"responsible_party,omitempty"`
-	// Target date for completing the action.
-	TargetCompletionDate *time.Time `json:"target_completion_date,omitempty"`
-	// Actual date the action was completed.
-	ActualCompletionDate *time.Time `json:"actual_completion_date,omitempty"`
-	// Resources required for implementation.
-	ResourcesRequired *string `json:"resources_required,omitempty"`
-	// Criteria for evaluating effectiveness.
-	EffectivenessCriteria *string `json:"effectiveness_criteria,omitempty"`
-	// Date effectiveness was reviewed.
-	EffectivenessReviewDate *time.Time `json:"effectiveness_review_date,omitempty"`
-	// Whether effectiveness was verified.
-	EffectivenessVerified *bool `json:"effectiveness_verified,omitempty"`
-	// Changes to ISMS required as a result.
-	IsmsChangesRequired *string `json:"isms_changes_required,omitempty"`
-	// Current status of the document or entity.
-	Status *string `json:"status,omitempty"`
+	IsmsRecordMixin `json:",inline"`
+	// The role that answers for the record's activity or outcome.
+	ResponsibleRole *IsmsRoleId `json:"responsible_role,omitempty"`
+	// The nonconformities the action addresses.
+	ActionNonconformities []IsmsNonconformityId `json:"action_nonconformities,omitempty"`
+	// The cause the action removes.
+	ActionRootCause *string `json:"action_root_cause,omitempty"`
+	// When the action is to be complete.
+	ActionTargetDate *time.Time `json:"action_target_date,omitempty"`
+	// When the action was complete.
+	ActionCompletionDate *time.Time `json:"action_completion_date,omitempty"`
+	// The resources the action needs.
+	ActionResources *string `json:"action_resources,omitempty"`
+	// How the action's effect will be judged.
+	ActionEffectivenessCriteria *string `json:"action_effectiveness_criteria,omitempty"`
+	// When the action's effect was reviewed.
+	ActionEffectivenessReviewDate *time.Time `json:"action_effectiveness_review_date,omitempty"`
+	// Whether the review found the action effective.
+	ActionEffective *bool `json:"action_effective,omitempty"`
+	// The changes to the ISMS the action needs.
+	ActionIsmsChanges *string `json:"action_isms_changes,omitempty"`
+	// Where the action stands, in the organization's own terms.
+	ActionStatus *string `json:"action_status,omitempty"`
 }
 
-// An opportunity for continual improvement per Clause 10.1, enhancing overall ISMS performance.
-type ImprovementOpportunity struct {
+// An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.
+type IsmsImprovementOpportunity struct {
 	// Embedded types for inheritance
-	NamedEntity `json:",inline"`
-	// Source of the improvement opportunity.
+	IsmsRecordMixin `json:",inline"`
+	// The role that answers for the record's activity or outcome.
+	ResponsibleRole *IsmsRoleId `json:"responsible_role,omitempty"`
+	// Where the opportunity came from, such as a review, an audit or daily work.
 	ImprovementSource *string `json:"improvement_source,omitempty"`
-	// Date identified.
-	IdentificationDate *time.Time `json:"identification_date,omitempty"`
-	// Person who identified it.
-	IdentifiedBy *string `json:"identified_by,omitempty"`
-	// Description of the improvement.
-	ImprovementDescription *string `json:"improvement_description,omitempty"`
-	// Expected benefit from implementation.
-	ExpectedBenefit *string `json:"expected_benefit,omitempty"`
-	// Priority level.
-	Priority *string `json:"priority,omitempty"`
-	// Plan for implementing the improvement.
-	ImplementationPlan *string `json:"implementation_plan,omitempty"`
-	// Party responsible for the activity.
-	ResponsibleParty *string `json:"responsible_party,omitempty"`
-	// Target date for achieving the objective.
-	TargetDate *time.Time `json:"target_date,omitempty"`
-	// Actual date the action was completed.
-	ActualCompletionDate *time.Time `json:"actual_completion_date,omitempty"`
-	// Assessment of actual outcomes.
-	OutcomeAssessment *string `json:"outcome_assessment,omitempty"`
-	// Current status of the document or entity.
-	Status *string `json:"status,omitempty"`
+	// When the opportunity was identified.
+	ImprovementIdentifiedOn *time.Time `json:"improvement_identified_on,omitempty"`
+	// Who identified it.
+	ImprovementIdentifiedBy *string `json:"improvement_identified_by,omitempty"`
+	// What the improvement is expected to bring.
+	ImprovementBenefit *string `json:"improvement_benefit,omitempty"`
+	// How soon it is to be acted on, in the organization's own terms.
+	ImprovementPriority *string `json:"improvement_priority,omitempty"`
+	// How the improvement is to be made.
+	ImprovementPlan *string `json:"improvement_plan,omitempty"`
+	// When the improvement is to be made.
+	ImprovementTargetDate *time.Time `json:"improvement_target_date,omitempty"`
+	// When it was made.
+	ImprovementCompletionDate *time.Time `json:"improvement_completion_date,omitempty"`
+	// What the improvement brought.
+	ImprovementOutcome *string `json:"improvement_outcome,omitempty"`
+	// Where it stands, in the organization's own terms.
+	ImprovementStatus *string `json:"improvement_status,omitempty"`
 }
 
-// An information asset or associated asset requiring protection, per Annex A control 5.9.
-type Asset struct {
+// An information security event someone reported, and the assessment of whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.
+type IsmsSecurityEvent struct {
 	// Embedded types for inheritance
-	NamedEntity `json:",inline"`
-	// Type of asset.
-	AssetType *string `json:"asset_type,omitempty"`
-	// Owner of the asset.
-	AssetOwner *string `json:"asset_owner,omitempty"`
-	// Custodian responsible for day-to-day protection.
-	AssetCustodian *string `json:"asset_custodian,omitempty"`
-	// Information classification level.
-	Classification *string `json:"classification,omitempty"`
-	// Physical or logical location.
-	Location *string `json:"location,omitempty"`
-	// Criticality rating of the asset.
-	Criticality *string `json:"criticality,omitempty"`
-	// Associated risks.
-	RelatedRisks []RiskId `json:"related_risks,omitempty"`
-	// Controls related to this policy.
-	ApplicableControls []SecurityControlId `json:"applicable_controls,omitempty"`
+	IsmsRecordMixin `json:",inline"`
+	// The assets the risk, event or incident affects.
+	AffectedAssets []IsmsAssetId `json:"affected_assets,omitempty"`
+	// The kind of record: IsmsSecurityEvent, or IsmsSecurityIncident for an event assessed as an incident.
+	EventType *string `json:"event_type,omitempty"`
+	// When the event happened, or when it was first noticed.
+	EventOccurredAt *time.Time `json:"event_occurred_at,omitempty"`
+	// Who reported the event.
+	EventReporter *string `json:"event_reporter,omitempty"`
+	// What the assessment of the event found.
+	EventAssessment *string `json:"event_assessment,omitempty"`
 }
 
-// An information security event per A.5.25, which may or may not be categorized as an incident.
-type InformationSecurityEvent struct {
+// An information security event assessed as an incident: its category and severity, how it was detected, contained, eradicated and recovered from, the evidence collected, who was told, and what was learned.
+type IsmsSecurityIncident struct {
 	// Embedded types for inheritance
-	NamedEntity `json:",inline"`
-	// Date and time of the event.
-	EventDatetime *time.Time `json:"event_datetime,omitempty"`
-	// Person who reported the event.
-	Reporter *string `json:"reporter,omitempty"`
-	// Description of the event.
-	EventDescription *string `json:"event_description,omitempty"`
-	// Assets affected by this risk or incident.
-	AffectedAssets []AssetId `json:"affected_assets,omitempty"`
-	// Initial assessment of the event.
-	InitialAssessment *string `json:"initial_assessment,omitempty"`
-	// Whether the event was categorized as an incident.
-	CategorizedAsIncident *bool `json:"categorized_as_incident,omitempty"`
-	// Linked incident if categorized.
-	LinkedIncident *InformationSecurityIncidentId `json:"linked_incident,omitempty"`
-}
-
-// An information security incident per A.5.26, requiring response per documented procedures.
-type InformationSecurityIncident struct {
-	// Embedded types for inheritance
-	NamedEntity `json:",inline"`
-	// Date and time the incident occurred or was detected.
-	IncidentDatetime *time.Time `json:"incident_datetime,omitempty"`
-	// Category of incident.
-	IncidentCategory SecurityIncidentCategory `json:"incident_category,omitempty"`
-	// Severity rating of the incident.
-	Severity RiskLevel `json:"severity,omitempty"`
-	// Assets affected by this risk or incident.
-	AffectedAssets []AssetId `json:"affected_assets,omitempty"`
-	// CIA properties affected by the incident.
-	AffectedCia []CIAProperty `json:"affected_cia,omitempty"`
-	// Description of the incident.
-	IncidentDescription *string `json:"incident_description,omitempty"`
+	IsmsSecurityEvent `json:",inline"`
+	// Which of confidentiality, integrity and availability the risk or incident threatens.
+	AffectedSecurityProperties []IsmsSecurityProperty `json:"affected_security_properties,omitempty"`
+	// What kind of incident it is.
+	IncidentCategory IsmsIncidentCategory `json:"incident_category,omitempty"`
+	// How severe the incident is.
+	IncidentSeverity IsmsRiskLevel `json:"incident_severity,omitempty"`
 	// How the incident was detected.
-	DetectionMethod *string `json:"detection_method,omitempty"`
-	// Actions taken in response.
-	ResponseActions []string `json:"response_actions,omitempty"`
-	// Actions to contain the incident.
-	ContainmentActions []string `json:"containment_actions,omitempty"`
-	// Actions to eradicate the cause.
-	EradicationActions []string `json:"eradication_actions,omitempty"`
-	// Actions to recover normal operations.
-	RecoveryActions []string `json:"recovery_actions,omitempty"`
-	// Root cause of the nonconformity.
-	RootCause *string `json:"root_cause,omitempty"`
-	// Lessons learned from the incident.
-	LessonsLearned []string `json:"lessons_learned,omitempty"`
-	// Evidence collected.
-	EvidenceCollected []string `json:"evidence_collected,omitempty"`
-	// Whether notification to authorities/parties was required.
-	NotificationRequired *bool `json:"notification_required,omitempty"`
-	// Notifications that were made.
-	NotificationsMade []string `json:"notifications_made,omitempty"`
-	// Date and time of incident closure.
-	ClosureDatetime *time.Time `json:"closure_datetime,omitempty"`
-	// Post-incident review findings.
-	PostIncidentReview *string `json:"post_incident_review,omitempty"`
+	IncidentDetectionMethod *string `json:"incident_detection_method,omitempty"`
+	// What was done in response.
+	IncidentResponseActions []string `json:"incident_response_actions,omitempty"`
+	// What was done to contain it.
+	IncidentContainmentActions []string `json:"incident_containment_actions,omitempty"`
+	// What was done to remove its cause.
+	IncidentEradicationActions []string `json:"incident_eradication_actions,omitempty"`
+	// What was done to restore normal operation.
+	IncidentRecoveryActions []string `json:"incident_recovery_actions,omitempty"`
+	// What caused the incident.
+	IncidentRootCause *string `json:"incident_root_cause,omitempty"`
+	// What the organization learned from it.
+	IncidentLessonsLearned []string `json:"incident_lessons_learned,omitempty"`
+	// The evidence collected about it.
+	IncidentEvidence []string `json:"incident_evidence,omitempty"`
+	// Whether authorities or other parties had to be told.
+	IncidentNotificationRequired *bool `json:"incident_notification_required,omitempty"`
+	// Whom the organization told, and when.
+	IncidentNotifications []string `json:"incident_notifications,omitempty"`
+	// When the incident was closed.
+	IncidentClosedAt *time.Time `json:"incident_closed_at,omitempty"`
+	// What the review after the incident found.
+	IncidentReview *string `json:"incident_review,omitempty"`
 }
 
-type OrganizationId string
+type IsmsControlId string
 
-type InterestedPartyId string
+type IsmsPolicyId string
 
-type InformationSecurityPolicyId string
+type IsmsRoleId string
 
-type InformationSecurityObjectiveId string
+type IsmsRiskId string
 
-type RiskAssessmentProcessId string
+type IsmsAssetId string
 
-type RiskTreatmentProcessId string
+type IsmsAuditId string
 
-type StatementOfApplicabilityId string
+type IsmsDocumentedInformationId string
 
-type SecurityControlId string
+type IsmsCorrectiveActionId string
 
-type RoleId string
-
-type ResourceId string
-
-type CompetenceRecordId string
-
-type AwarenessProgramId string
-
-type CommunicationPlanId string
-
-type DocumentedInformationId string
-
-type OperationalProcedureId string
-
-type RiskAssessmentId string
-
-type RiskTreatmentPlanId string
-
-type MonitoringProgramId string
-
-type InternalAuditId string
-
-type ManagementReviewId string
-
-type NonconformityId string
-
-type CorrectiveActionId string
-
-type ImprovementOpportunityId string
-
-type TopicSpecificPolicyId string
-
-type RiskId string
-
-type AssetId string
-
-type AuditFindingId string
-
-type InformationSecurityIncidentId string
+type IsmsNonconformityId string
 
 

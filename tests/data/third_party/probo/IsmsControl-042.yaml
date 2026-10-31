@@ -1,0 +1,12 @@
+isms_id: probo:set-up-dependancy-vulnerability-alerts
+title: Set-up dependancy vulnerability alerts
+control_annex_a_controls:
+  - a_8_8
+  - a_8_29
+  - a_5_7
+  - a_8_20
+control_theme: technological
+control_text: It ensures your project stays secure and up-to-date without manual tracking
+  of dependencies. It also reduces the risk of using outdated or insecure libraries in your
+  codebase
+implementation_state: not_started

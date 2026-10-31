@@ -1,0 +1,11 @@
+isms_id: probo:enforce-sso
+title: Enforce SSO when possible
+control_annex_a_controls:
+  - a_5_16
+  - a_5_17
+control_theme: organizational
+control_text: To minimize the risk of unauthorized access, it's important to centralize and
+  secure authentication across your organization. Single Sign-On (SSO) enhances security by
+  enabling better control over account access, enforcing consistent security policies (e.g.,
+  2FA), and making it easier to revoke access when someone leaves the organization
+implementation_state: not_started

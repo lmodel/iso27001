@@ -1,0 +1,9 @@
+isms_id: probo:synchronize-clock-on-infra
+title: Synchronize clock on infra
+control_annex_a_controls:
+  - a_8_17
+control_theme: technological
+control_text: Accurate timestamps are critical for correlating logs, investigating incidents,
+  and maintaining consistent audit trails. A centralized clock source reduces confusion, improves
+  analysis, and streamlines incident management
+implementation_state: not_started

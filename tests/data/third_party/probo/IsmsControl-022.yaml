@@ -1,0 +1,9 @@
+isms_id: probo:require-signed-nda-with-critical-third-parties
+title: Require signed NDA with critical third parties
+control_annex_a_controls:
+  - a_6_6
+control_theme: people
+control_text: NDAs formalize confidentiality expectations and legal protections, minimizing
+  the risk of data leakage or misuse by external entities who handle or access proprietary
+  information
+implementation_state: not_started

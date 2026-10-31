@@ -1,0 +1,8 @@
+# The risk treatment process.
+isms_id: acme:process-risk-treatment
+title: Information security risk treatment process
+treatment_options_guidance: Modify a risk above medium; retain one at or below low.
+treatment_control_selection: Controls are chosen from Annex A and from supplier guidance.
+treatment_annex_a_comparison: Each control chosen is checked against the Annex A list.
+treatment_soa_template: TPL-SOA in the document management system.
+treatment_approval_workflow: The risk owner approves the plan and the residual risk.

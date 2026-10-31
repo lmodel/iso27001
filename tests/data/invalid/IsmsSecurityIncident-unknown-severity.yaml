@@ -1,0 +1,6 @@
+# Fails at: /incident_severity
+# Invalid: a severity is one of the five values of IsmsRiskLevel.
+isms_id: acme:incident-2026-004
+title: Mailbox taken over by phishing
+event_type: IsmsSecurityIncident
+incident_severity: sev1

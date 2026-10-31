@@ -1,0 +1,35 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsSecurityEvent
+schema_generating: true
+description: An information security event someone reported, and the assessment of
+  whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.
+display_name: IsmsSecurityEvent
+document_category: IsmsSecurityEvent
+weight: 20
+fields:
+- id: affected_assets
+  description: The assets the risk, event or incident affects.
+  display_name: affected_assets
+  cardinality: multi
+- id: event_type
+  description: 'The kind of record: IsmsSecurityEvent, or IsmsSecurityIncident for
+    an event assessed as an incident.'
+  display_name: ismsSecurityEvent__event_type
+- id: event_occurred_at
+  description: When the event happened, or when it was first noticed.
+  display_name: ismsSecurityEvent__event_occurred_at
+- id: event_reporter
+  description: Who reported the event.
+  display_name: ismsSecurityEvent__event_reporter
+- id: event_assessment
+  description: What the assessment of the event found.
+  display_name: ismsSecurityEvent__event_assessment
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecordMixin_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description

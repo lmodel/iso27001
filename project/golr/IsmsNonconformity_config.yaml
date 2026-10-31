@@ -1,0 +1,54 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsNonconformity
+schema_generating: true
+description: 'A nonconformity: a requirement not met, how it was found and contained,
+  its consequences and cause, and how it was closed.'
+display_name: IsmsNonconformity
+document_category: IsmsNonconformity
+weight: 20
+fields:
+- id: nonconformity_source
+  description: How the nonconformity came to light, such as an audit, a review or
+    an incident.
+  display_name: ismsNonconformity__nonconformity_source
+- id: nonconformity_detected_on
+  description: When the nonconformity was found.
+  display_name: ismsNonconformity__nonconformity_detected_on
+- id: nonconformity_detected_by
+  description: Who or what found it.
+  display_name: ismsNonconformity__nonconformity_detected_by
+- id: nonconformity_requirement
+  description: The requirement that was not met, of ISO/IEC 27001, of the organization
+    or of an interested party.
+  display_name: ismsNonconformity__nonconformity_requirement
+- id: nonconformity_immediate_actions
+  description: What was done at once to control and correct it.
+  display_name: ismsNonconformity__nonconformity_immediate_actions
+  cardinality: multi
+- id: nonconformity_consequences
+  description: How its consequences were dealt with.
+  display_name: ismsNonconformity__nonconformity_consequences
+- id: nonconformity_root_cause
+  description: What caused it.
+  display_name: ismsNonconformity__nonconformity_root_cause
+- id: nonconformity_similar_check
+  description: Whether similar nonconformities exist or could occur, and where.
+  display_name: ismsNonconformity__nonconformity_similar_check
+- id: nonconformity_status
+  description: Where the nonconformity stands, in the organization's own terms.
+  display_name: ismsNonconformity__nonconformity_status
+- id: nonconformity_closure_date
+  description: When it was closed.
+  display_name: ismsNonconformity__nonconformity_closure_date
+- id: nonconformity_closure_evidence
+  description: What shows that it is closed.
+  display_name: ismsNonconformity__nonconformity_closure_evidence
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecordMixin_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description

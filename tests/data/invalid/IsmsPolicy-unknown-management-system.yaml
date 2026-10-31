@@ -1,0 +1,6 @@
+# Fails at: /policy_management_systems/0
+# Invalid: ISO 31000 gives guidelines and is no management system standard.
+isms_id: acme:policy-information-security
+title: Information security policy
+policy_management_systems:
+  - iso_31000

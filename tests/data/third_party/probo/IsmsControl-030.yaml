@@ -1,0 +1,12 @@
+isms_id: probo:evaluate-your-vendors
+title: Evaluate your vendors
+control_annex_a_controls:
+  - a_7_14
+  - a_5_19
+  - a_5_20
+  - a_5_21
+  - a_5_22
+control_theme: physical
+control_text: Create an inventory of your vendors, evaluate their risk level and review them
+  regularly
+implementation_state: not_started

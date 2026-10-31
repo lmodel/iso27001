@@ -1,0 +1,17 @@
+# A plan that treats a risk with a control, in progress.
+isms_id: acme:plan-phishing
+title: Treat the phishing risk
+plan_scope: Mail and identity systems.
+plan_risks:
+  - acme:risk-phishing
+plan_actions:
+  - Turn on multi-factor authentication for every mailbox.
+plan_controls:
+  - acme:control-mfa
+plan_resources: Identity provider licences.
+plan_responsible_parties:
+  - IT Operations
+plan_timeline: By the end of the second quarter of 2026.
+plan_risk_owner_approval: Head of IT Operations
+plan_residual_risk_acceptance: The residual medium risk is accepted until the next assessment.
+implementation_state: in_progress

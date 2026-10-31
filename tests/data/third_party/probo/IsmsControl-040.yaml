@@ -1,0 +1,8 @@
+isms_id: probo:scan-for-security-updates
+title: Scan for Security updates
+control_annex_a_controls:
+  - a_8_8
+control_theme: technological
+control_text: An automated security scanning software on your infrastructure components enables
+  you to fix potential vulnerabilities as soon as they are uncovered
+implementation_state: not_started

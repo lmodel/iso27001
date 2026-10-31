@@ -1,0 +1,5 @@
+# Fails at: /event_occurred_at
+# Invalid: when an event happened is an ISO 8601 date and time.
+isms_id: acme:event-2026-031
+title: Suspicious invoice message
+event_occurred_at: yesterday morning

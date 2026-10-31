@@ -1,0 +1,7 @@
+# Fails at: /
+# Invalid: applicable_controls was the old schema's key; the class declares
+# relevant_controls instead.
+isms_id: acme:policy-access-control
+title: Access control policy
+applicable_controls:
+  - acme:control-access-review

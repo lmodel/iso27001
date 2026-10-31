@@ -1,0 +1,11 @@
+# An asset in the inventory.
+isms_id: acme:asset-mail
+title: Mail service
+asset_category: service
+asset_owner: Head of IT Operations
+asset_custodian: IT Operations
+asset_classification: internal
+asset_location: Cloud mail provider, EU region.
+asset_criticality: high
+relevant_controls:
+  - acme:control-mfa

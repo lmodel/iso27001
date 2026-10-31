@@ -1,0 +1,73 @@
+PREFIX linkml: <https://w3id.org/linkml/>
+PREFIX iso27001: <https://w3id.org/lmodel/iso27001/>
+PREFIX schema: <http://schema.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX oscal: <https://w3id.org/lmodel/oscal/>
+PREFIX nist_sp_800_53: <https://w3id.org/lmodel/nist-sp-800-53/>
+PREFIX spdx_core: <https://spdx.org/rdf/3.0.1/terms/Core/>
+PREFIX spdx_software: <https://spdx.org/rdf/3.0.1/terms/Software/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX shex: <http://www.w3.org/ns/shex#>
+
+SELECT ?g ?s ?p WHERE {
+ GRAPH ?g {
+  ?s rdf:type iso27001:IsmsManagementSystem ;
+     ?p ?o .
+  FILTER ( ?p NOT IN (
+   iso27001:isms_organization,
+   iso27001:isms_top_management,
+   iso27001:isms_governing_body,
+   iso27001:isms_leadership_evidence,
+   iso27001:isms_scope,
+   iso27001:isms_scope_boundaries,
+   iso27001:isms_scope_exclusions,
+   iso27001:isms_interfaces,
+   iso27001:isms_processes,
+   iso27001:isms_internal_issues,
+   iso27001:isms_external_issues,
+   iso27001:isms_risk_and_opportunity_actions,
+   iso27001:isms_planned_changes,
+   iso27001:isms_external_services,
+   iso27001:isms_certification_status,
+   iso27001:isms_certification_body,
+   iso27001:isms_certification_date,
+   iso27001:isms_recertification_date,
+   iso27001:isms_interested_parties,
+   iso27001:isms_policy,
+   iso27001:isms_topic_specific_policies,
+   iso27001:isms_roles,
+   iso27001:isms_objectives,
+   iso27001:isms_risk_assessment_process,
+   iso27001:isms_risk_treatment_process,
+   iso27001:isms_risk_assessments,
+   iso27001:isms_risks,
+   iso27001:isms_risk_treatment_plans,
+   iso27001:isms_statement_of_applicability,
+   iso27001:isms_controls,
+   iso27001:isms_assets,
+   iso27001:isms_resources,
+   iso27001:isms_competence_records,
+   iso27001:isms_awareness_programme,
+   iso27001:isms_communication_plan,
+   iso27001:isms_documented_information,
+   iso27001:isms_operational_procedures,
+   iso27001:isms_monitoring_programme,
+   iso27001:isms_audit_programmes,
+   iso27001:isms_audits,
+   iso27001:isms_management_reviews,
+   iso27001:isms_nonconformities,
+   iso27001:isms_corrective_actions,
+   iso27001:isms_improvements,
+   iso27001:isms_security_events,
+   iso27001:isms_id,
+   schema:name,
+   schema:description,
+   rdf:type ))
+ }
+ 
+} 
+
+
+
+
+

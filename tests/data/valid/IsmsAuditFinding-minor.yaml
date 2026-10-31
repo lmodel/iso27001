@@ -1,0 +1,8 @@
+# An audit finding on its own, citing a clause by number.
+isms_id: acme:finding-2026-03
+title: Supplier list out of date
+finding_type: minor_nonconformity
+finding_requirement: "8.1"
+finding_evidence: Two suppliers on the list ended their contracts in 2025.
+finding_recommendation: Review the supplier list each quarter.
+finding_closure_status: open

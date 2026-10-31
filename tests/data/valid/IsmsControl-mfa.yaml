@@ -1,0 +1,20 @@
+# An organization's control that answers to an Annex A control, in its own
+# words.
+isms_id: acme:control-mfa
+title: Multi-factor sign-in
+control_annex_a_controls:
+  - a_8_5
+control_theme: technological
+control_text: Every sign-in to mail and the shop's admin pages asks for a second factor.
+control_guidance: Use the identity provider's push approval; keep hardware keys for admins.
+control_threats:
+  - phishing
+control_asset_types:
+  - cloud service
+control_owner: Head of IT Operations
+implementation_state: in_progress
+control_effectiveness: not yet measured
+control_evidence:
+  - Identity provider enrolment report.
+relevant_controls:
+  - acme:control-access-review

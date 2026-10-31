@@ -1,0 +1,6 @@
+# Fails at: /document_kind
+# Invalid: a policy is an IsmsPolicy or an IsmsTopicSpecificPolicy, not a
+# kind of IsmsDocumentedInformation.
+isms_id: acme:doc-backup-policy
+title: Backup policy
+document_kind: policy

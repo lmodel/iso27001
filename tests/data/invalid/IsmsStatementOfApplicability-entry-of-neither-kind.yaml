@@ -1,0 +1,8 @@
+# Fails at: /soa_entries/0
+# Invalid: an entry is an included or an excluded control, and one that
+# names no Annex A control and says nothing of its state is neither. The
+# validator tries each kind, so it reports the entry, not a key.
+isms_id: acme:soa-2026
+title: Statement of Applicability 2026
+soa_entries:
+  - entry_justification: Not needed.

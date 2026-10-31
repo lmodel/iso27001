@@ -1,0 +1,5 @@
+# Fails at: /risk_impact
+# Invalid: the impact is one of the five values of IsmsImpact.
+isms_id: acme:risk-phishing
+title: Credentials taken by phishing
+risk_impact: catastrophic

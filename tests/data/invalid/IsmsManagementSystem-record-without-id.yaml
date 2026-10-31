@@ -1,0 +1,7 @@
+# Fails at: /isms_risks/0
+# Invalid: a record inlined in the ISMS still needs its isms_id, which
+# references use.
+isms_id: acme:isms
+title: Acme Widgets ISMS
+isms_risks:
+  - title: Credentials taken by phishing

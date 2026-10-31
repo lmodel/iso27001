@@ -1,0 +1,11 @@
+isms_id: probo:protect-your-employees-devices
+title: Protect your employees devices
+control_annex_a_controls:
+  - a_8_1
+  - a_7_8
+  - a_7_7
+control_theme: technological
+control_text: Mobile devices store and access sensitive data; proper configuration (screen
+  lock, FileVault, firewall, etc.) reduces vulnerabilities and maintains compliance with security
+  policies
+implementation_state: not_started

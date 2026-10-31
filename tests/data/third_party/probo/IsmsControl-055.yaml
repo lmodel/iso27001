@@ -1,0 +1,9 @@
+isms_id: probo:implement-an-mdm
+title: Implement an MDM
+control_annex_a_controls:
+  - a_8_19
+control_theme: technological
+control_text: An MDM enforces consistent security policies, ensures encryption and up-to-date
+  patches, and can remotely lock or wipe devices if they’re lost, reducing the risk of data
+  breaches and unauthorized access
+implementation_state: not_started

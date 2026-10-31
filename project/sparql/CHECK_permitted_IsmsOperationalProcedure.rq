@@ -1,0 +1,51 @@
+PREFIX linkml: <https://w3id.org/linkml/>
+PREFIX iso27001: <https://w3id.org/lmodel/iso27001/>
+PREFIX schema: <http://schema.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX oscal: <https://w3id.org/lmodel/oscal/>
+PREFIX nist_sp_800_53: <https://w3id.org/lmodel/nist-sp-800-53/>
+PREFIX spdx_core: <https://spdx.org/rdf/3.0.1/terms/Core/>
+PREFIX spdx_software: <https://spdx.org/rdf/3.0.1/terms/Software/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX shex: <http://www.w3.org/ns/shex#>
+
+SELECT ?g ?s ?p WHERE {
+ GRAPH ?g {
+  ?s rdf:type iso27001:IsmsOperationalProcedure ;
+     ?p ?o .
+  FILTER ( ?p NOT IN (
+   iso27001:relevant_controls,
+   iso27001:procedure_scope,
+   iso27001:procedure_criteria,
+   iso27001:procedure_control_measures,
+   iso27001:procedure_roles,
+   iso27001:procedure_change_control,
+   iso27001:isms_id,
+   schema:name,
+   schema:description,
+   iso27001:document_reference,
+   iso27001:document_version,
+   iso27001:document_author,
+   iso27001:document_owner,
+   iso27001:document_approver,
+   iso27001:document_approval_date,
+   iso27001:document_effective_date,
+   iso27001:document_last_review_date,
+   iso27001:document_next_review_date,
+   iso27001:document_status,
+   iso27001:document_classification,
+   iso27001:document_retention,
+   iso27001:document_distribution,
+   iso27001:document_storage,
+   iso27001:document_change_control,
+   iso27001:document_external_origin,
+   iso27001:document_external_source,
+   rdf:type ))
+ }
+ 
+} 
+
+
+
+
+

@@ -1,392 +1,739 @@
 Class Name	Parent Class	YAML Class Name	Description	Flags	Slot Name	YAML Slot Name	Range	Card	Slot Description	URI
-Asset	NamedEntity	Asset	An information asset or associated asset requiring protection, per Annex A control 5.9.							
-					asset_type		str	0..1	Type of asset.	iso27001:asset_type
-					asset_owner		str	0..1	Owner of the asset.	iso27001:asset_owner
-					asset_custodian		str	0..1	Custodian responsible for day-to-day protection.	iso27001:asset_custodian
-					classification		str	0..1	Information classification level.	iso27001:classification
-					location		str	0..1	Physical or logical location.	iso27001:location
-					criticality		str	0..1	Criticality rating of the asset.	iso27001:criticality
-					related_risks		*Risk	0..*	Associated risks.	iso27001:related_risks
-					applicable_controls		*SecurityControl	0..*	Controls related to this policy.	iso27001:applicable_controls
-AuditFinding	NamedEntity	AuditFinding	A finding from an internal audit, including nonconformities, observations, and positive findings.							
-					finding_type		AuditFindingType	0..1	Type of audit finding.	iso27001:finding_type
-					clause_reference		str	0..1	Reference to standard clause.	iso27001:clause_reference
-					control_reference		*SecurityControl	0..1	Reference to the control (e.g., A.5.1).	iso27001:control_reference
-					finding_description		str	0..1	Description of the finding.	iso27001:finding_description
-					objective_evidence		str	0..1	Evidence supporting the finding.	iso27001:objective_evidence
-					root_cause_analysis		str	0..1	Analysis of root cause.	iso27001:root_cause_analysis
-					risk_implication		str	0..1	Risk implications of the finding.	iso27001:risk_implication
-					recommended_action		str	0..1	Recommended action to address finding.	iso27001:recommended_action
-					auditee_response		str	0..1	Response from the auditee.	iso27001:auditee_response
-					linked_corrective_action		*CorrectiveAction	0..1	Corrective action linked to this finding.	iso27001:linked_corrective_action
-					closure_status		str	0..1	Status of finding closure.	iso27001:closure_status
-					closure_date		XSDDate	0..1	Date the finding was closed.	iso27001:closure_date
-AuditProgramme	DocumentedInformation	AuditProgramme	The internal audit programme per 9.2.2, planning audit activities over a defined period.							
-					programme_period		str	0..1	Period covered by the audit programme.	iso27001:programme_period
-					planned_audits		*InternalAudit	0..*	Audits planned in this programme.	iso27001:planned_audits
-					audit_frequency_rationale		str	0..1	Rationale for audit frequency decisions.	iso27001:audit_frequency_rationale
-					resource_requirements		str	0..1	Resource requirements for the programme.	iso27001:resource_requirements
-					auditor_qualifications		str	0..1	Required qualifications for auditors.	iso27001:auditor_qualifications
-					programme_status		str	0..1	Current status of the programme.	iso27001:programme_status
-AwarenessProgram	DocumentedInformation	AwarenessProgram	The awareness program ensuring personnel understand their information security responsibilities per Clause 7.3.							
-					awareness_topics		str	0..*	Topics covered in awareness program.	iso27001:awareness_topics
-					delivery_methods		str	0..*	Methods used to deliver awareness content.	iso27001:delivery_methods
-					target_audience		str	0..1	Intended audience for the policy or document.	iso27001:target_audience
-					frequency		str	0..1	Frequency of the activity.	iso27001:frequency
-					completion_tracking		str	0..1	How completion is tracked.	iso27001:completion_tracking
-					effectiveness_measures		str	0..1	How effectiveness is measured.	iso27001:effectiveness_measures
-CommunicationItem		CommunicationItem	A single communication requirement within the communication plan.							
-					subject		str	0..1	Subject of the communication.	iso27001:subject
-					purpose		str	0..1	Purpose of the communication.	iso27001:purpose
-					audience		str	0..1	Target audience.	iso27001:audience
-					frequency		str	0..1	Frequency of the activity.	iso27001:frequency
-					method		str	0..1	Method of communication.	iso27001:method
-					responsible_party		str	0..1	Party responsible for the activity.	iso27001:responsible_party
-					records_required		Bool	0..1	Whether records are required.	iso27001:records_required
-CommunicationPlan	DocumentedInformation	CommunicationPlan	Plan for internal and external communications relevant to the ISMS per Clause 7.4.							
-					communication_items		CommunicationItem	0..*	Communication items in the plan.	iso27001:communication_items
-CompetenceRecord	DocumentedInformation	CompetenceRecord	Evidence of competence for personnel affecting information security performance per Clause 7.2 d).							
-					person_name		str	0..1	Name of the person.	iso27001:person_name
-					person_role		str	0..1	Role of the person.	iso27001:person_role
-					required_competencies		str	0..*	Competencies required for the role.	iso27001:required_competencies
-					education_records		str	0..*	Education qualifications.	iso27001:education_records
-					training_records		str	0..*	Training completed.	iso27001:training_records
-					experience_records		str	0..*	Relevant experience.	iso27001:experience_records
-					competency_assessment_date		XSDDate	0..1	Date of last competency assessment.	iso27001:competency_assessment_date
-					competency_gaps		str	0..*	Identified competency gaps.	iso27001:competency_gaps
-					development_actions		str	0..*	Actions to address competency gaps.	iso27001:development_actions
-CorrectiveAction	NamedEntity	CorrectiveAction	A corrective action per Clause 10.2 to address the root cause of a nonconformity and reduce the likelihood of recurrence.							
-					linked_nonconformity		*Nonconformity	0..1	Nonconformity this action addresses.	iso27001:linked_nonconformity
-					action_description		str	0..1	Description of the action.	iso27001:action_description
-					root_cause_addressed		str	0..1	Root cause this action addresses.	iso27001:root_cause_addressed
-					responsible_party		str	0..1	Party responsible for the activity.	iso27001:responsible_party
-					target_completion_date		XSDDate	0..1	Target date for completing the action.	iso27001:target_completion_date
-					actual_completion_date		XSDDate	0..1	Actual date the action was completed.	iso27001:actual_completion_date
-					resources_required		str	0..1	Resources required for implementation.	iso27001:resources_required
-					effectiveness_criteria		str	0..1	Criteria for evaluating effectiveness.	iso27001:effectiveness_criteria
-					effectiveness_review_date		XSDDate	0..1	Date effectiveness was reviewed.	iso27001:effectiveness_review_date
-					effectiveness_verified		Bool	0..1	Whether effectiveness was verified.	iso27001:effectiveness_verified
-					isms_changes_required		str	0..1	Changes to ISMS required as a result.	iso27001:isms_changes_required
-					status		str	0..1	Current status of the document or entity.	iso27001:status
-DocumentedInformation	NamedEntity	DocumentedInformation	Abstract class for documented information per Clause 7.5. Captures metadata required for document control.							
-					document_type		DocumentType	0..1	Classification of the documented information.	iso27001:document_type
-					document_reference		str	0..1	Unique reference number for document control.	iso27001:document_reference
-					author		str	0..1	Person who created the document.	iso27001:author
-					owner		str	0..1	Person accountable for the document content and maintenance.	iso27001:owner
-					approved_by		str	0..1	Person who approved the document.	iso27001:approved_by
-					approved_date		XSDDate	0..1	Date when the document was approved.	iso27001:approved_date
-					effective_date		XSDDate	0..1	Date when the document becomes effective.	iso27001:effective_date
-					review_date		XSDDate	0..1	Date when the document is due for review.	iso27001:review_date
-					status		str	0..1	Current status of the document or entity.	iso27001:status
-					classification		str	0..1	Information classification level.	iso27001:classification
-					retention_period		DurationType	0..1	Duration for which the document is retained.	iso27001:retention_period
-					distribution_controls		str	0..*	Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).	iso27001:distribution_controls
-					storage_and_preservation		str	0..1	Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).	iso27001:storage_and_preservation
-					change_control_method		str	0..1	Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).	iso27001:change_control_method
-					external_origin		Bool	0..1	Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.	iso27001:external_origin
-					external_origin_source		str	0..1	Source or provider of the externally originated documented information, per Clause 7.5.3.	iso27001:external_origin_source
-ImprovementOpportunity	NamedEntity	ImprovementOpportunity	An opportunity for continual improvement per Clause 10.1, enhancing overall ISMS performance.							
-					improvement_source		str	0..1	Source of the improvement opportunity.	iso27001:improvement_source
-					identification_date		XSDDate	0..1	Date identified.	iso27001:identification_date
-					identified_by		str	0..1	Person who identified it.	iso27001:identified_by
-					improvement_description		str	0..1	Description of the improvement.	iso27001:improvement_description
-					expected_benefit		str	0..1	Expected benefit from implementation.	iso27001:expected_benefit
-					priority		str	0..1	Priority level.	iso27001:priority
-					implementation_plan		str	0..1	Plan for implementing the improvement.	iso27001:implementation_plan
-					responsible_party		str	0..1	Party responsible for the activity.	iso27001:responsible_party
-					target_date		XSDDate	0..1	Target date for achieving the objective.	iso27001:target_date
-					actual_completion_date		XSDDate	0..1	Actual date the action was completed.	iso27001:actual_completion_date
-					outcome_assessment		str	0..1	Assessment of actual outcomes.	iso27001:outcome_assessment
-					status		str	0..1	Current status of the document or entity.	iso27001:status
-InformationSecurityEvent	NamedEntity	InformationSecurityEvent	An information security event per A.5.25, which may or may not be categorized as an incident.							
-					event_datetime		XSDDateTime	0..1	Date and time of the event.	iso27001:event_datetime
-					reporter		str	0..1	Person who reported the event.	iso27001:reporter
-					event_description		str	0..1	Description of the event.	iso27001:event_description
-					affected_assets		*Asset	0..*	Assets affected by this risk or incident.	iso27001:affected_assets
-					initial_assessment		str	0..1	Initial assessment of the event.	iso27001:initial_assessment
-					categorized_as_incident		Bool	0..1	Whether the event was categorized as an incident.	iso27001:categorized_as_incident
-					linked_incident		*InformationSecurityIncident	0..1	Linked incident if categorized.	iso27001:linked_incident
-InformationSecurityIncident	NamedEntity	InformationSecurityIncident	An information security incident per A.5.26, requiring response per documented procedures.							
-					incident_datetime		XSDDateTime	0..1	Date and time the incident occurred or was detected.	iso27001:incident_datetime
-					incident_category		SecurityIncidentCategory	0..1	Category of incident.	iso27001:incident_category
-					severity		RiskLevel	0..1	Severity rating of the incident.	iso27001:severity
-					affected_assets		*Asset	0..*	Assets affected by this risk or incident.	iso27001:affected_assets
-					affected_cia		CIAProperty	0..*	CIA properties affected by the incident.	iso27001:affected_cia
-					incident_description		str	0..1	Description of the incident.	iso27001:incident_description
-					detection_method		str	0..1	How the incident was detected.	iso27001:detection_method
-					response_actions		str	0..*	Actions taken in response.	iso27001:response_actions
-					containment_actions		str	0..*	Actions to contain the incident.	iso27001:containment_actions
-					eradication_actions		str	0..*	Actions to eradicate the cause.	iso27001:eradication_actions
-					recovery_actions		str	0..*	Actions to recover normal operations.	iso27001:recovery_actions
-					root_cause		str	0..1	Root cause of the nonconformity.	iso27001:root_cause
-					lessons_learned		str	0..*	Lessons learned from the incident.	iso27001:lessons_learned
-					evidence_collected		str	0..*	Evidence collected.	iso27001:evidence_collected
-					notification_required		Bool	0..1	Whether notification to authorities/parties was required.	iso27001:notification_required
-					notifications_made		str	0..*	Notifications that were made.	iso27001:notifications_made
-					closure_datetime		XSDDateTime	0..1	Date and time of incident closure.	iso27001:closure_datetime
-					post_incident_review		str	0..1	Post-incident review findings.	iso27001:post_incident_review
-InformationSecurityManagementSystem	NamedEntity	InformationSecurityManagementSystem	Top-level container representing an organization's complete ISMS per ISO 27001. Aggregates all components required to support the full ISMS lifecycle.							
-					organization		*Organization	0..1	Reference to the organization operating the ISMS.	iso27001:organization
-					top_management		str	0..1	The person or group of people who direct and control the organization at the highest level, accountable for the ISMS per Clause 5.1.	iso27001:top_management
-					governing_body		str	0..1	The governing body to which top management reports, where applicable (e.g., board of directors). Referenced in ISO/IEC 27001:2022 Clause 5.1 NOTE.	iso27001:governing_body
-					leadership_commitment_evidence		str	0..*	Evidence of leadership and commitment with respect to the ISMS as required by Clause 5.1 a-h).	iso27001:leadership_commitment_evidence
-					scope_statement		str	0..1	Documented statement of ISMS scope per 4.3.	iso27001:scope_statement
-					scope_boundaries		str	0..*	Defined boundaries of the ISMS scope.	iso27001:scope_boundaries
-					scope_exclusions		str	0..*	Any exclusions from scope with justification.	iso27001:scope_exclusions
-					interfaces_and_dependencies		str	0..*	Interfaces and dependencies between activities performed by the organization and those performed by other organizations, considered when determining the ISMS scope per Clause 4.3 c).	iso27001:interfaces_and_dependencies
-					processes_and_interactions		str	0..1	Description of the processes needed for the ISMS and their interactions, per Clause 4.4.	iso27001:processes_and_interactions
-					context_internal_issues		str	0..*	Internal issues relevant to ISMS per 4.1.	iso27001:context_internal_issues
-					context_external_issues		str	0..*	External issues relevant to ISMS per 4.1.	iso27001:context_external_issues
-					interested_parties		*InterestedParty	0..*	Stakeholders relevant to the ISMS.	iso27001:interested_parties
-					information_security_policy		*InformationSecurityPolicy	0..1	Reference to the information security policy.	iso27001:information_security_policy
-					objectives		*InformationSecurityObjective	0..*	Information security objectives.	iso27001:objectives
-					risks_and_opportunities_actions		str	0..*	Actions to address risks and opportunities determined per Clause 6.1.1, including how they are integrated into ISMS processes and how their effectiveness is evaluated.	iso27001:risks_and_opportunities_actions
-					planned_changes		str	0..*	Changes to the ISMS planned and controlled per Clause 6.3 and 8.1 (planning of changes; control of planned changes).	iso27001:planned_changes
-					externally_provided_services		str	0..*	Externally provided processes, products or services relevant to the ISMS that are controlled per Clause 8.1.	iso27001:externally_provided_services
-					risk_assessment_process		*RiskAssessmentProcess	0..1	Reference to the risk assessment process.	iso27001:risk_assessment_process
-					risk_treatment_process		*RiskTreatmentProcess	0..1	Reference to the risk treatment process.	iso27001:risk_treatment_process
-					statement_of_applicability		*StatementOfApplicability	0..1	Reference to the Statement of Applicability.	iso27001:statement_of_applicability
-					controls		*SecurityControl	0..*	Security controls applied in the ISMS.	iso27001:controls
-					roles		*Role	0..*	Information security roles defined in the ISMS.	iso27001:roles
-					resources		*Resource	0..*	Resources provided for the ISMS.	iso27001:resources
-					competence_records		*CompetenceRecord	0..*	Competence records for personnel.	iso27001:competence_records
-					awareness_program		*AwarenessProgram	0..1	Reference to the awareness program.	iso27001:awareness_program
-					communication_plan		*CommunicationPlan	0..1	Reference to the communication plan.	iso27001:communication_plan
-					documented_information_register		*DocumentedInformation	0..*	Register of documented information.	iso27001:documented_information_register
-					operational_procedures		*OperationalProcedure	0..*	Operational procedures.	iso27001:operational_procedures
-					risk_assessments		*RiskAssessment	0..*	Risk assessment instances.	iso27001:risk_assessments
-					risk_treatment_plans		*RiskTreatmentPlan	0..*	Risk treatment plans.	iso27001:risk_treatment_plans
-					monitoring_program		*MonitoringProgram	0..1	Reference to the monitoring program.	iso27001:monitoring_program
-					internal_audits		*InternalAudit	0..*	Internal audit instances.	iso27001:internal_audits
-					management_reviews		*ManagementReview	0..*	Management review instances.	iso27001:management_reviews
-					nonconformities		*Nonconformity	0..*	Nonconformities identified.	iso27001:nonconformities
-					corrective_actions		*CorrectiveAction	0..*	Corrective actions.	iso27001:corrective_actions
-					improvements		*ImprovementOpportunity	0..*	Improvement opportunities tracked.	iso27001:improvements
-					certification_status		str	0..1	Current certification status.	iso27001:certification_status
-					certification_body		str	0..1	Accredited certification body.	iso27001:certification_body
-					certification_date		XSDDate	0..1	Date certification was achieved.	iso27001:certification_date
-					recertification_date		XSDDate	0..1	Date recertification is due.	iso27001:recertification_date
-InformationSecurityObjective	NamedEntity	InformationSecurityObjective	A measurable information security objective per Clause 6.2, established at relevant functions and levels of the organization.							
-					objective_statement		str	0..1	Clear statement of the objective.	iso27001:objective_statement
-					target_value		str	0..1	Target value for the objective metric.	iso27001:target_value
-					current_value		str	0..1	Current measured value.	iso27001:current_value
-					metric_definition		str	0..1	Definition of how the objective is measured.	iso27001:metric_definition
-					measurement_method		str	0..1	Method used to measure the metric.	iso27001:measurement_method
-					measurement_frequency		str	0..1	How often measurement is performed.	iso27001:measurement_frequency
-					responsible_role		*Role	0..1	Role responsible for the objective or control.	iso27001:responsible_role
-					target_date		XSDDate	0..1	Target date for achieving the objective.	iso27001:target_date
-					achievement_status		str	0..1	Current status of objective achievement.	iso27001:achievement_status
-					related_risks		*Risk	0..*	Associated risks.	iso27001:related_risks
-					related_controls		*SecurityControl	0..*	Other controls related to this one.	iso27001:related_controls
-					action_plan		str	0..1	Plan for achieving the objective.	iso27001:action_plan
-					objective_resources_required		str	0..1	Resources required to achieve the information security objective.	iso27001:objective_resources_required
-InformationSecurityPolicy	DocumentedInformation	InformationSecurityPolicy	The information security policy established by top management per Clause 5.2. Provides framework for setting objectives and demonstrates commitment.							
-					policy_statement		str	0..1	The core policy statement text.	iso27001:policy_statement
-					policy_objectives_framework		str	0..1	Framework for setting information security objectives.	iso27001:policy_objectives_framework
-					commitment_statements		str	0..*	Statements of commitment included in the policy.	iso27001:commitment_statements
-					applicability_statement		str	0..1	Statement of policy applicability.	iso27001:applicability_statement
-					communication_date		XSDDate	0..1	Date when the policy was communicated.	iso27001:communication_date
-					acknowledgment_required		Bool	0..1	Whether acknowledgment is required from personnel.	iso27001:acknowledgment_required
-					last_policy_review_date		XSDDate	0..1	Date of the most recent information security policy review.	iso27001:last_policy_review_date
-					next_policy_review_date		XSDDate	0..1	Planned date of the next information security policy review.	iso27001:next_policy_review_date
-					related_topic_policies		*TopicSpecificPolicy	0..*	Topic-specific policies supporting this policy.	iso27001:related_topic_policies
-					integrated_management_systems		RelatedManagementSystem	0..*	Other ISO/IEC management system standards with which the ISMS is integrated or aligned (per the harmonized structure of Annex SL).	iso27001:integrated_management_systems
-InterestedParty	NamedEntity	InterestedParty	A stakeholder whose needs and expectations are relevant to the ISMS per 4.2. Includes internal parties (employees, management) and external parties (customers, regulators, suppliers).							
-					party_type		str	0..1	Category of interested party.	iso27001:party_type
-					relationship		str	0..1	Nature of the relationship with the organization.	iso27001:relationship
-					requirements		str	0..*	Requirements of the interested party.	iso27001:requirements
-					addressed_requirements		str	0..*	Requirements of the interested party that the organization has determined will be addressed through the ISMS, per Clause 4.2 c).	iso27001:addressed_requirements
-					climate_change_related_requirements		str	0..*	Climate-change-related requirements of the interested party, per ISO/IEC 27001:2022 Clause 4.2 NOTE 2 as added by Amd. 1:2024.	iso27001:climate_change_related_requirements
-					communication_needs		str	0..1	Communication requirements for this party.	iso27001:communication_needs
-					contact_information		str	0..1	Contact details for the party.	iso27001:contact_information
-InternalAudit	DocumentedInformation	InternalAudit	An internal audit instance per Clause 9.2, assessing ISMS conformance and effectiveness.							
-					audit_reference		str	0..1	Reference identifier for the audit.	iso27001:audit_reference
-					audit_type		AuditType	0..1	Type of audit per ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1.	iso27001:audit_type
-					audit_scope		str	0..1	Scope of the audit.	iso27001:audit_scope
-					audit_criteria		str	0..*	Criteria against which audit is conducted.	iso27001:audit_criteria
-					audit_objectives		str	0..*	Objectives of the audit.	iso27001:audit_objectives
-					audit_period_start		XSDDate	0..1	Start date of audit period.	iso27001:audit_period_start
-					audit_period_end		XSDDate	0..1	End date of audit period.	iso27001:audit_period_end
-					lead_auditor		str	0..1	Lead auditor for the audit.	iso27001:lead_auditor
-					audit_team		str	0..*	Audit team members.	iso27001:audit_team
-					auditee_representatives		str	0..*	Representatives from audited areas.	iso27001:auditee_representatives
-					audit_plan		str	0..1	Audit plan document reference.	iso27001:audit_plan
-					findings		*AuditFinding	0..*	Audit findings.	iso27001:findings
-					positive_observations		str	0..*	Positive observations noted.	iso27001:positive_observations
-					audit_conclusion		str	0..1	Overall audit conclusion.	iso27001:audit_conclusion
-					report_date		XSDDate	0..1	Date the report was issued.	iso27001:report_date
-					report_distribution		str	0..*	Distribution list for the report.	iso27001:report_distribution
-ManagementReview	DocumentedInformation	ManagementReview	A management review per Clause 9.3, conducted by top management to evaluate ongoing ISMS performance and fitness for purpose.							
-					review_date	ManagementReview_review_date	XSDDate	0..1	Date when the management review was conducted.	iso27001:review_date
-					attendees		str	0..*	Attendees of the review.	iso27001:attendees
-					previous_actions_status		str	0..1	Status of actions from previous reviews.	iso27001:previous_actions_status
-					context_changes		str	0..1	Changes in context since last review.	iso27001:context_changes
-					interested_party_changes		str	0..1	Changes in interested party requirements.	iso27001:interested_party_changes
-					interested_party_feedback		str	0..1	Feedback from interested parties considered in the management review.	iso27001:interested_party_feedback
-					performance_trends		str	0..1	Trends in information security performance.	iso27001:performance_trends
-					audit_results_summary		str	0..1	Summary of audit results.	iso27001:audit_results_summary
-					risk_assessment_results		str	0..1	Results of risk assessment.	iso27001:risk_assessment_results
-					risk_treatment_status		str	0..1	Status of the risk treatment plan considered in the management review.	iso27001:risk_treatment_status
-					risks_and_opportunities_changes		str	0..1	Changes in risks and opportunities considered in the management review, per Clause 9.3.2 f).	iso27001:risks_and_opportunities_changes
-					improvement_opportunities		str	0..*	Opportunities for improvement identified.	iso27001:improvement_opportunities
-					decisions		str	0..*	Decisions made in the review.	iso27001:decisions
-					action_items		str	0..*	Action items from the review.	iso27001:action_items
-					next_review_date		XSDDate	0..1	Planned date for next review.	iso27001:next_review_date
-MonitoringItem		MonitoringItem	A single item to be monitored and measured per 9.1.							
-					metric_name		str	0..1	Name of the metric.	iso27001:metric_name
-					metric_description		str	0..1	Description of what is measured.	iso27001:metric_description
-					measurement_method		str	0..1	Method used to measure the metric.	iso27001:measurement_method
-					measurement_frequency		str	0..1	How often measurement is performed.	iso27001:measurement_frequency
-					responsible_party		str	0..1	Party responsible for the activity.	iso27001:responsible_party
-					analysis_frequency		str	0..1	How often analysis is performed.	iso27001:analysis_frequency
-					analyst		str	0..1	Person performing analysis.	iso27001:analyst
-					target_threshold		str	0..1	Target threshold value.	iso27001:target_threshold
-					alert_threshold		str	0..1	Threshold triggering alerts.	iso27001:alert_threshold
-					current_value		str	0..1	Current measured value.	iso27001:current_value
-					trend		str	0..1	Current trend direction.	iso27001:trend
-MonitoringProgram	DocumentedInformation	MonitoringProgram	The program for monitoring, measurement, analysis, and evaluation per Clause 9.1.							
-					monitoring_items		MonitoringItem	0..*	Items to be monitored.	iso27001:monitoring_items
-NamedEntity		NamedEntity	Abstract base class for all entities with an identifier, name, and description. Provides common identification and documentation slots.							
-				I	id	NamedEntity_id	URIorCURIE	1..1	Unique identifier for this entity instance.	iso27001:id
-					name		str	1..1	Human-readable name or title.	iso27001:name
-					description		str	0..1	Detailed description of the entity.	iso27001:description
-					created_date		XSDDate	0..1	Date when the entity was created.	iso27001:created_date
-					modified_date		XSDDate	0..1	Date when the entity was last modified.	iso27001:modified_date
-					version		str	0..1	Version identifier for the entity.	iso27001:version
-Nonconformity	NamedEntity	Nonconformity	A nonconformity identified per Clause 10.2, representing failure to fulfill a requirement.							
-					nonconformity_source		str	0..1	Source of nonconformity detection.	iso27001:nonconformity_source
-					detection_date		XSDDate	0..1	Date the nonconformity was detected.	iso27001:detection_date
-					detected_by		str	0..1	Person or process that detected the nonconformity.	iso27001:detected_by
-					requirement_violated		str	0..1	Requirement that was not fulfilled.	iso27001:requirement_violated
-					nonconformity_description		str	0..1	Description of the nonconformity.	iso27001:nonconformity_description
-					immediate_actions		str	0..*	Immediate actions taken to control/correct.	iso27001:immediate_actions
-					consequences_addressed		str	0..1	How consequences were dealt with.	iso27001:consequences_addressed
-					root_cause		str	0..1	Root cause of the nonconformity.	iso27001:root_cause
-					similar_nonconformities_check		str	0..1	Check for similar nonconformities elsewhere.	iso27001:similar_nonconformities_check
-					linked_corrective_actions		*CorrectiveAction	0..*	Corrective actions addressing this nonconformity.	iso27001:linked_corrective_actions
-					status		str	0..1	Current status of the document or entity.	iso27001:status
-					closure_date		XSDDate	0..1	Date the finding was closed.	iso27001:closure_date
-					closure_evidence		str	0..1	Evidence supporting closure.	iso27001:closure_evidence
-OperationalProcedure	DocumentedInformation	OperationalProcedure	A documented procedure for operational planning and control per Clause 8.1.							
-					procedure_scope		str	0..1	Scope of the procedure.	iso27001:procedure_scope
-					process_criteria		str	0..1	Criteria established for the process.	iso27001:process_criteria
-					control_measures		str	0..*	Control measures implemented.	iso27001:control_measures
-					responsible_roles		*Role	0..*	Roles responsible for the procedure.	iso27001:responsible_roles
-					related_controls		*SecurityControl	0..*	Other controls related to this one.	iso27001:related_controls
-					change_control_requirements		str	0..1	Requirements for controlling changes.	iso27001:change_control_requirements
-Organization	NamedEntity	Organization	The organization establishing and operating the ISMS. Captures context needed for Clause 4.1 (understanding the organization).							
-					legal_name		str	0..1	Legal registered name of the organization.	iso27001:legal_name
-					trading_names		str	0..*	Names under which the organization conducts business.	iso27001:trading_names
-					organization_type		str	0..1	Type of organization (e.g., corporation, government, nonprofit).	iso27001:organization_type
-					industry_sector		str	0..1	Primary industry sector of the organization.	iso27001:industry_sector
-					size_category		str	0..1	Organization size classification.	iso27001:size_category
-					employee_count		PositiveIntegerType	0..1	Approximate number of employees.	iso27001:employee_count
-					geographic_locations		str	0..*	Countries or regions where the organization operates.	iso27001:geographic_locations
-					regulatory_jurisdictions		str	0..*	Jurisdictions whose regulations apply to the organization.	iso27001:regulatory_jurisdictions
-					parent_organization		str	0..1	Parent organization if applicable.	iso27001:parent_organization
-					subsidiaries		str	0..*	Subsidiary organizations if applicable.	iso27001:subsidiaries
-					climate_change_relevant		Bool	0..1	Whether climate change has been determined to be a relevant issue for the organization's context, per Clause 4.1 as amended by Amd. 1:2024.	iso27001:climate_change_relevant
-Resource	NamedEntity	Resource	A resource provided for the ISMS per Clause 7.1, including personnel, infrastructure, technology, and budget.							
-					resource_type		str	0..1	Type of resource.	iso27001:resource_type
-					quantity		str	0..1	Quantity of the resource.	iso27001:quantity
-					allocation_date		XSDDate	0..1	Date the resource was allocated.	iso27001:allocation_date
-					allocated_to		str	0..1	What the resource is allocated to.	iso27001:allocated_to
-					cost		str	0..1	Cost of the resource.	iso27001:cost
-					availability_status		str	0..1	Current availability of the resource.	iso27001:availability_status
-Risk	NamedEntity	Risk	An identified information security risk that may affect information security properties within the ISMS scope.							
-					risk_source		str	0..1	Source or origin of the risk.	iso27001:risk_source
-					threat_description		str	0..1	Description of the threat exploiting the vulnerability.	iso27001:threat_description
-					vulnerability_description		str	0..1	Description of the vulnerability that could be exploited.	iso27001:vulnerability_description
-					affected_assets		*Asset	0..*	Assets affected by this risk or incident.	iso27001:affected_assets
-					affected_cia_properties		CIAProperty	0..*	Which CIA properties are affected (confidentiality, integrity, availability).	iso27001:affected_cia_properties
-					risk_owner		str	0..1	Person accountable for managing the risk.	iso27001:risk_owner
-					likelihood		LikelihoodRating	0..1	Assessed likelihood of risk occurrence.	iso27001:likelihood
-					impact		ImpactRating	0..1	Assessed impact if risk materializes.	iso27001:impact
-					inherent_risk_level		RiskLevel	0..1	Risk level before controls are applied.	iso27001:inherent_risk_level
-					existing_controls		*SecurityControl	0..*	Controls currently in place affecting this risk.	iso27001:existing_controls
-					residual_risk_level		RiskLevel	0..1	Risk level after controls are applied.	iso27001:residual_risk_level
-					risk_treatment_option		RiskTreatmentOption	0..1	Selected treatment option for the risk.	iso27001:risk_treatment_option
-					treatment_priority		str	0..1	Priority for treating this risk.	iso27001:treatment_priority
-					related_treatment_plan		*RiskTreatmentPlan	0..1	Risk treatment plan addressing this risk.	iso27001:related_treatment_plan
-RiskAssessment	DocumentedInformation	RiskAssessment	An instance of risk assessment performed per Clause 8.2, identifying and evaluating information security risks.							
-					assessment_scope		str	0..1	Scope of the assessment.	iso27001:assessment_scope
-					assessment_date		XSDDate	0..1	Date the assessment was conducted.	iso27001:assessment_date
-					assessor		str	0..1	Person or team who conducted the assessment.	iso27001:assessor
-					methodology_used		str	0..1	Specific methodology applied in this assessment.	iso27001:methodology_used
-					risks_identified		*Risk	0..*	Risks identified in this assessment.	iso27001:risks_identified
-					summary_findings		str	0..1	Summary of assessment findings.	iso27001:summary_findings
-					recommendations		str	0..*	Recommendations from the assessment.	iso27001:recommendations
-					next_assessment_date		XSDDate	0..1	Planned date for next assessment.	iso27001:next_assessment_date
-RiskAssessmentProcess	DocumentedInformation	RiskAssessmentProcess	The documented risk assessment process per Clause 6.1.2, defining criteria and methodology for identifying, analyzing, and evaluating risks.							
-					risk_acceptance_criteria		str	0..1	Criteria for accepting risks.	iso27001:risk_acceptance_criteria
-					assessment_criteria		str	0..1	Criteria for performing risk assessments.	iso27001:assessment_criteria
-					assessment_methodology		str	0..1	Methodology used for risk assessment.	iso27001:assessment_methodology
-					likelihood_scale		str	0..1	Scale used for likelihood rating.	iso27001:likelihood_scale
-					impact_scale		str	0..1	Scale used for impact rating.	iso27001:impact_scale
-					risk_matrix		str	0..1	Risk matrix or calculation method.	iso27001:risk_matrix
-					assessment_frequency		str	0..1	Planned frequency of risk assessments.	iso27001:assessment_frequency
-					trigger_events		str	0..*	Events that trigger risk assessment outside planned schedule.	iso27001:trigger_events
-RiskTreatmentPlan	DocumentedInformation	RiskTreatmentPlan	A risk treatment plan documenting planned actions to address identified risks through selected controls.							
-					plan_scope		str	0..1	Scope of the plan.	iso27001:plan_scope
-					risks_addressed		*Risk	0..*	Risks addressed by this plan.	iso27001:risks_addressed
-					treatment_actions		str	0..*	Actions to be taken for treatment.	iso27001:treatment_actions
-					controls_to_implement		*SecurityControl	0..*	Controls to be implemented as part of treatment.	iso27001:controls_to_implement
-					resources_required		str	0..1	Resources required for implementation.	iso27001:resources_required
-					responsible_parties		str	0..*	Parties responsible for implementation.	iso27001:responsible_parties
-					implementation_timeline		str	0..1	Timeline for implementation.	iso27001:implementation_timeline
-					risk_owner_approval		str	0..1	Risk owner who approved the plan.	iso27001:risk_owner_approval
-					approved_date	RiskTreatmentPlan_approved_date	XSDDate	0..1	Date when the risk treatment plan was approved.	iso27001:approved_date
-					residual_risk_acceptance		str	0..1	Documentation of residual risk acceptance.	iso27001:residual_risk_acceptance
-					implementation_status		ImplementationStatus	0..1	Current implementation status.	iso27001:implementation_status
-					completion_date		XSDDate	0..1	Date when implementation was completed.	iso27001:completion_date
-RiskTreatmentProcess	DocumentedInformation	RiskTreatmentProcess	The documented risk treatment process per Clause 6.1.3, defining how treatment options are selected and controls determined.							
-					treatment_options_guidance		str	0..1	Guidance on selecting treatment options.	iso27001:treatment_options_guidance
-					control_selection_criteria		str	0..1	Criteria for selecting controls.	iso27001:control_selection_criteria
-					annex_a_omission_verification		str	0..1	Description of how controls determined as necessary are compared with those in Annex A to verify that no necessary controls have been omitted, per Clause 6.1.3 c).	iso27001:annex_a_omission_verification
-					soa_template		str	0..1	Template used for Statement of Applicability.	iso27001:soa_template
-					approval_workflow		str	0..1	Workflow for approving risk treatment.	iso27001:approval_workflow
-Role	NamedEntity	Role	An information security role with defined responsibilities and authorities per Clause 5.3.							
-					role_type		str	0..1	Category of the role.	iso27001:role_type
-					responsibilities		str	0..*	Responsibilities assigned to the role.	iso27001:responsibilities
-					authorities		str	0..*	Authorities granted to the role.	iso27001:authorities
-					accountability		str	0..1	What the role is accountable for.	iso27001:accountability
-					assigned_to		str	0..*	Person(s) assigned to this role.	iso27001:assigned_to
-					delegation_rules		str	0..1	Rules for delegating responsibilities.	iso27001:delegation_rules
-					reporting_line		str	0..1	To whom this role reports.	iso27001:reporting_line
-SecurityControl	NamedEntity	SecurityControl	A security control from Annex A of ISO/IEC 27001:2022, derived from ISO/IEC 27002:2022. Represents a measure that modifies risk.							
-					control_id		AnnexAControlId	0..1	Control identifier from Annex A (e.g., a_5_1, a_8_24).	iso27001:control_id
-					control_title		str	0..1	Title of the control.	iso27001:control_title
-					control_category		ControlCategory	0..1	Domain category of the control.	iso27001:control_category
-					control_text		str	0..1	Organization-authored control statement or external control summary.	iso27001:control_text
-					implementation_guidance		str	0..1	Organization-authored implementation notes for the control.	iso27001:implementation_guidance
-					related_controls		*SecurityControl	0..*	Other controls related to this one.	iso27001:related_controls
-					applicable_threats		str	0..*	Threats this control addresses.	iso27001:applicable_threats
-					applicable_assets		str	0..*	Asset types this control applies to.	iso27001:applicable_assets
-					control_owner		str	0..1	Person responsible for the control.	iso27001:control_owner
-					implementation_status		ImplementationStatus	0..1	Current implementation status.	iso27001:implementation_status
-					implementation_date		XSDDate	0..1	Date the control was implemented.	iso27001:implementation_date
-					effectiveness_rating		str	0..1	Rating of control effectiveness.	iso27001:effectiveness_rating
-					last_test_date		XSDDate	0..1	Date the control was last tested.	iso27001:last_test_date
-					evidence_references		str	0..*	References to evidence of implementation.	iso27001:evidence_references
-SoAEntry		SoAEntry	A single entry in the Statement of Applicability, documenting the applicability and implementation status of one control.							
-					control_reference		*SecurityControl	0..1	Reference to the control (e.g., A.5.1).	iso27001:control_reference
-					is_applicable		Bool	0..1	Whether the control is applicable.	iso27001:is_applicable
-					inclusion_justification		str	0..1	Justification for including the control.	iso27001:inclusion_justification
-					exclusion_justification		str	0..1	Justification for excluding the control.	iso27001:exclusion_justification
-					implementation_status		ImplementationStatus	0..1	Current implementation status.	iso27001:implementation_status
-					implementation_evidence		str	0..1	Evidence of control implementation.	iso27001:implementation_evidence
-					responsible_role		*Role	0..1	Role responsible for the objective or control.	iso27001:responsible_role
-					target_implementation_date		XSDDate	0..1	Target date for implementing the control.	iso27001:target_implementation_date
-StatementOfApplicability	DocumentedInformation	StatementOfApplicability	The Statement of Applicability (SoA) recording which controls apply, their rationale, and current implementation state.							
-					soa_entries		SoAEntry	0..*	Individual control entries in the SoA.	iso27001:soa_entries
-					total_controls		UnsignedShortType	0..1	Total number of controls in scope.	iso27001:total_controls
-					implemented_count		UnsignedShortType	0..1	Number of implemented controls.	iso27001:implemented_count
-					planned_count		UnsignedShortType	0..1	Number of controls planned for implementation.	iso27001:planned_count
-					not_applicable_count		UnsignedShortType	0..1	Number of controls marked not applicable.	iso27001:not_applicable_count
-					last_review_date		XSDDate	0..1	Date of last review.	iso27001:last_review_date
-TopicSpecificPolicy	DocumentedInformation	TopicSpecificPolicy	A policy addressing a specific information security topic, supporting the overarching information security policy.							
-					topic_area		str	0..1	The specific topic addressed by the policy.	iso27001:topic_area
-					parent_policy		*InformationSecurityPolicy	0..1	The parent policy this topic-specific policy supports.	iso27001:parent_policy
-					applicable_controls		*SecurityControl	0..*	Controls related to this policy.	iso27001:applicable_controls
-					target_audience		str	0..1	Intended audience for the policy or document.	iso27001:target_audience
+IsmsApplicabilityEntry		IsmsApplicabilityEntry	One entry of the Statement of Applicability, which either includes a control or excludes an Annex A control, and says why.							
+					entry_annex_a_control		IsmsAnnexAControl	0..1	The Annex A control a Statement of Applicability entry concerns.	iso27001:entry_annex_a_control
+					entry_type	ismsApplicabilityEntry__entry_type	str	0..1	The kind of entry: IsmsIncludedControl or IsmsExcludedControl.	iso27001:entry_type
+					entry_justification	ismsApplicabilityEntry__entry_justification	str	1..1	Why the control is included or excluded.	iso27001:entry_justification
+IsmsAsset		IsmsAsset	An item in the inventory of information and other associated assets: what it is, who owns and looks after it, where it is, how it is classified and how much it matters.							
+					relevant_controls		*IsmsControl	0..*	The organization's controls that the record concerns.	iso27001:relevant_controls
+					asset_category	ismsAsset__asset_category	str	0..1	What kind of asset it is, such as information, software, hardware or a service.	iso27001:asset_category
+					asset_owner	ismsAsset__asset_owner	str	0..1	Who owns the asset.	iso27001:asset_owner
+					asset_custodian	ismsAsset__asset_custodian	str	0..1	Who looks after the asset from day to day.	iso27001:asset_custodian
+					asset_classification	ismsAsset__asset_classification	str	0..1	The information classification the asset carries.	iso27001:asset_classification
+					asset_location	ismsAsset__asset_location	str	0..1	Where the asset is, physically or logically.	iso27001:asset_location
+					asset_criticality	ismsAsset__asset_criticality	str	0..1	How much the asset matters, in the organization's own terms.	iso27001:asset_criticality
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+IsmsAudit		IsmsAudit	An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope, criteria, team, findings and conclusion.							
+					audit_type	ismsAudit__audit_type	IsmsAuditType	1..1	Who carries out the audit, relative to the organization.	iso27001:audit_type
+					audit_standards	ismsAudit__audit_standards	IsmsManagementSystemStandard	0..*	The management system standards the audit covers.	iso27001:audit_standards
+					audit_scope	ismsAudit__audit_scope	str	0..1	What the audit covers.	iso27001:audit_scope
+					audit_criteria	ismsAudit__audit_criteria	str	0..*	What the audit compares the ISMS against.	iso27001:audit_criteria
+					audit_objectives	ismsAudit__audit_objectives	str	0..*	What the audit sets out to establish.	iso27001:audit_objectives
+					audit_period_start	ismsAudit__audit_period_start	XSDDate	0..1	When the audit began.	iso27001:audit_period_start
+					audit_period_end	ismsAudit__audit_period_end	XSDDate	0..1	When the audit ended.	iso27001:audit_period_end
+					audit_lead	ismsAudit__audit_lead	str	0..1	Who led the audit.	iso27001:audit_lead
+					audit_team	ismsAudit__audit_team	str	0..*	Who else audited.	iso27001:audit_team
+					audit_auditees	ismsAudit__audit_auditees	str	0..*	Who represented the parts of the organization audited.	iso27001:audit_auditees
+					audit_plan	ismsAudit__audit_plan	*IsmsDocumentedInformation	0..1	The documented information that holds the audit plan.	iso27001:audit_plan
+					audit_findings	ismsAudit__audit_findings	IsmsAuditFinding	0..*	What the audit found, good and bad.	iso27001:audit_findings
+					audit_conclusion	ismsAudit__audit_conclusion	str	0..1	The audit's overall conclusion.	iso27001:audit_conclusion
+					audit_report_date	ismsAudit__audit_report_date	XSDDate	0..1	When the audit report was issued.	iso27001:audit_report_date
+					audit_report_distribution	ismsAudit__audit_report_distribution	str	0..*	Who received the audit report.	iso27001:audit_report_distribution
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+					document_reference	ismsDocumentControlMixin__document_reference	str	0..1	The reference the organization's document control gives it.	iso27001:document_reference
+					document_version	ismsDocumentControlMixin__document_version	str	0..1	The version of the document.	iso27001:document_version
+					document_author	ismsDocumentControlMixin__document_author	str	0..1	Who wrote the document.	iso27001:document_author
+					document_owner	ismsDocumentControlMixin__document_owner	str	0..1	Who answers for the document's content and upkeep.	iso27001:document_owner
+					document_approver	ismsDocumentControlMixin__document_approver	str	0..1	Who approved the document.	iso27001:document_approver
+					document_approval_date	ismsDocumentControlMixin__document_approval_date	XSDDate	0..1	When the document was approved.	iso27001:document_approval_date
+					document_effective_date	ismsDocumentControlMixin__document_effective_date	XSDDate	0..1	When the document takes effect.	iso27001:document_effective_date
+					document_last_review_date	ismsDocumentControlMixin__document_last_review_date	XSDDate	0..1	When the document was last reviewed.	iso27001:document_last_review_date
+					document_next_review_date	ismsDocumentControlMixin__document_next_review_date	XSDDate	0..1	When the document is next due for review.	iso27001:document_next_review_date
+					document_status	ismsDocumentControlMixin__document_status	str	0..1	Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.	iso27001:document_status
+					document_classification	ismsDocumentControlMixin__document_classification	str	0..1	The information classification the document carries.	iso27001:document_classification
+					document_retention	ismsDocumentControlMixin__document_retention	IsmsDuration	0..1	How long the document is kept, as an ISO 8601 duration.	iso27001:document_retention
+					document_distribution	ismsDocumentControlMixin__document_distribution	str	0..*	How the document is distributed, accessed, retrieved and used.	iso27001:document_distribution
+					document_storage	ismsDocumentControlMixin__document_storage	str	0..1	How the document is stored and preserved, so that it stays legible.	iso27001:document_storage
+					document_change_control	ismsDocumentControlMixin__document_change_control	str	0..1	How changes to the document are controlled, such as version control.	iso27001:document_change_control
+					document_external_origin	ismsDocumentControlMixin__document_external_origin	Bool	0..1	Whether the document comes from outside the organization and is kept because the ISMS needs it.	iso27001:document_external_origin
+					document_external_source	ismsDocumentControlMixin__document_external_source	str	0..1	Who the document came from, when it comes from outside.	iso27001:document_external_source
+IsmsAuditFinding		IsmsAuditFinding	One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it concerns, its evidence and how it is closed.							
+					finding_type	ismsAuditFinding__finding_type	IsmsAuditFindingType	1..1	What kind of finding it is.	iso27001:finding_type
+					finding_requirement	ismsAuditFinding__finding_requirement	IsmsRequirementReference	0..1	The clause or Annex A control of ISO/IEC 27001:2022 the finding concerns, by number.	iso27001:finding_requirement
+					finding_control	ismsAuditFinding__finding_control	*IsmsControl	0..1	The organization's control the finding concerns.	iso27001:finding_control
+					finding_evidence	ismsAuditFinding__finding_evidence	str	0..1	The objective evidence for the finding.	iso27001:finding_evidence
+					finding_root_cause	ismsAuditFinding__finding_root_cause	str	0..1	What the analysis of the finding's cause found.	iso27001:finding_root_cause
+					finding_risk	ismsAuditFinding__finding_risk	str	0..1	What the finding means for risk.	iso27001:finding_risk
+					finding_recommendation	ismsAuditFinding__finding_recommendation	str	0..1	What the auditor recommends.	iso27001:finding_recommendation
+					finding_auditee_response	ismsAuditFinding__finding_auditee_response	str	0..1	How the auditee responded.	iso27001:finding_auditee_response
+					finding_corrective_action	ismsAuditFinding__finding_corrective_action	*IsmsCorrectiveAction	0..1	The corrective action the finding led to.	iso27001:finding_corrective_action
+					finding_closure_status	ismsAuditFinding__finding_closure_status	str	0..1	Whether the finding is closed, in the organization's own terms.	iso27001:finding_closure_status
+					finding_closure_date	ismsAuditFinding__finding_closure_date	XSDDate	0..1	When the finding was closed.	iso27001:finding_closure_date
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+IsmsAuditProgramme		IsmsAuditProgramme	An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors they need.							
+					programme_period	ismsAuditProgramme__programme_period	str	0..1	The period the programme covers.	iso27001:programme_period
+					programme_audits	ismsAuditProgramme__programme_audits	*IsmsAudit	0..*	The audits the programme plans.	iso27001:programme_audits
+					programme_frequency_rationale	ismsAuditProgramme__programme_frequency_rationale	str	0..1	Why the audits happen as often as they do.	iso27001:programme_frequency_rationale
+					programme_resources	ismsAuditProgramme__programme_resources	str	0..1	The resources the programme needs.	iso27001:programme_resources
+					programme_auditor_qualifications	ismsAuditProgramme__programme_auditor_qualifications	str	0..1	The qualifications the auditors need.	iso27001:programme_auditor_qualifications
+					programme_status	ismsAuditProgramme__programme_status	str	0..1	Where the programme stands, in the organization's own terms.	iso27001:programme_status
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+					document_reference	ismsDocumentControlMixin__document_reference	str	0..1	The reference the organization's document control gives it.	iso27001:document_reference
+					document_version	ismsDocumentControlMixin__document_version	str	0..1	The version of the document.	iso27001:document_version
+					document_author	ismsDocumentControlMixin__document_author	str	0..1	Who wrote the document.	iso27001:document_author
+					document_owner	ismsDocumentControlMixin__document_owner	str	0..1	Who answers for the document's content and upkeep.	iso27001:document_owner
+					document_approver	ismsDocumentControlMixin__document_approver	str	0..1	Who approved the document.	iso27001:document_approver
+					document_approval_date	ismsDocumentControlMixin__document_approval_date	XSDDate	0..1	When the document was approved.	iso27001:document_approval_date
+					document_effective_date	ismsDocumentControlMixin__document_effective_date	XSDDate	0..1	When the document takes effect.	iso27001:document_effective_date
+					document_last_review_date	ismsDocumentControlMixin__document_last_review_date	XSDDate	0..1	When the document was last reviewed.	iso27001:document_last_review_date
+					document_next_review_date	ismsDocumentControlMixin__document_next_review_date	XSDDate	0..1	When the document is next due for review.	iso27001:document_next_review_date
+					document_status	ismsDocumentControlMixin__document_status	str	0..1	Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.	iso27001:document_status
+					document_classification	ismsDocumentControlMixin__document_classification	str	0..1	The information classification the document carries.	iso27001:document_classification
+					document_retention	ismsDocumentControlMixin__document_retention	IsmsDuration	0..1	How long the document is kept, as an ISO 8601 duration.	iso27001:document_retention
+					document_distribution	ismsDocumentControlMixin__document_distribution	str	0..*	How the document is distributed, accessed, retrieved and used.	iso27001:document_distribution
+					document_storage	ismsDocumentControlMixin__document_storage	str	0..1	How the document is stored and preserved, so that it stays legible.	iso27001:document_storage
+					document_change_control	ismsDocumentControlMixin__document_change_control	str	0..1	How changes to the document are controlled, such as version control.	iso27001:document_change_control
+					document_external_origin	ismsDocumentControlMixin__document_external_origin	Bool	0..1	Whether the document comes from outside the organization and is kept because the ISMS needs it.	iso27001:document_external_origin
+					document_external_source	ismsDocumentControlMixin__document_external_source	str	0..1	Who the document came from, when it comes from outside.	iso27001:document_external_source
+IsmsAwarenessProgramme		IsmsAwarenessProgramme	The programme that makes people working for the organization aware of the policy, their part in the ISMS and what failing it would mean.							
+					awareness_topics	ismsAwarenessProgramme__awareness_topics	str	0..*	The topics the programme covers.	iso27001:awareness_topics
+					awareness_methods	ismsAwarenessProgramme__awareness_methods	str	0..*	How the programme is delivered.	iso27001:awareness_methods
+					awareness_audience	ismsAwarenessProgramme__awareness_audience	str	0..1	Whom the programme is for.	iso27001:awareness_audience
+					awareness_frequency	ismsAwarenessProgramme__awareness_frequency	str	0..1	How often the programme runs.	iso27001:awareness_frequency
+					awareness_completion_tracking	ismsAwarenessProgramme__awareness_completion_tracking	str	0..1	How completion is tracked.	iso27001:awareness_completion_tracking
+					awareness_effectiveness	ismsAwarenessProgramme__awareness_effectiveness	str	0..1	How the programme's effect is measured.	iso27001:awareness_effectiveness
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+					document_reference	ismsDocumentControlMixin__document_reference	str	0..1	The reference the organization's document control gives it.	iso27001:document_reference
+					document_version	ismsDocumentControlMixin__document_version	str	0..1	The version of the document.	iso27001:document_version
+					document_author	ismsDocumentControlMixin__document_author	str	0..1	Who wrote the document.	iso27001:document_author
+					document_owner	ismsDocumentControlMixin__document_owner	str	0..1	Who answers for the document's content and upkeep.	iso27001:document_owner
+					document_approver	ismsDocumentControlMixin__document_approver	str	0..1	Who approved the document.	iso27001:document_approver
+					document_approval_date	ismsDocumentControlMixin__document_approval_date	XSDDate	0..1	When the document was approved.	iso27001:document_approval_date
+					document_effective_date	ismsDocumentControlMixin__document_effective_date	XSDDate	0..1	When the document takes effect.	iso27001:document_effective_date
+					document_last_review_date	ismsDocumentControlMixin__document_last_review_date	XSDDate	0..1	When the document was last reviewed.	iso27001:document_last_review_date
+					document_next_review_date	ismsDocumentControlMixin__document_next_review_date	XSDDate	0..1	When the document is next due for review.	iso27001:document_next_review_date
+					document_status	ismsDocumentControlMixin__document_status	str	0..1	Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.	iso27001:document_status
+					document_classification	ismsDocumentControlMixin__document_classification	str	0..1	The information classification the document carries.	iso27001:document_classification
+					document_retention	ismsDocumentControlMixin__document_retention	IsmsDuration	0..1	How long the document is kept, as an ISO 8601 duration.	iso27001:document_retention
+					document_distribution	ismsDocumentControlMixin__document_distribution	str	0..*	How the document is distributed, accessed, retrieved and used.	iso27001:document_distribution
+					document_storage	ismsDocumentControlMixin__document_storage	str	0..1	How the document is stored and preserved, so that it stays legible.	iso27001:document_storage
+					document_change_control	ismsDocumentControlMixin__document_change_control	str	0..1	How changes to the document are controlled, such as version control.	iso27001:document_change_control
+					document_external_origin	ismsDocumentControlMixin__document_external_origin	Bool	0..1	Whether the document comes from outside the organization and is kept because the ISMS needs it.	iso27001:document_external_origin
+					document_external_source	ismsDocumentControlMixin__document_external_source	str	0..1	Who the document came from, when it comes from outside.	iso27001:document_external_source
+IsmsCommunication		IsmsCommunication	One communication the plan provides for: what about, why, to whom, how often, how, and who communicates.							
+					responsible_role		*IsmsRole	0..1	The role that answers for the record's activity or outcome.	iso27001:responsible_role
+					communication_subject	ismsCommunication__communication_subject	str	1..1	What the communication is about.	iso27001:communication_subject
+					communication_purpose	ismsCommunication__communication_purpose	str	0..1	Why it is communicated.	iso27001:communication_purpose
+					communication_audience	ismsCommunication__communication_audience	str	0..1	To whom it is communicated.	iso27001:communication_audience
+					communication_frequency	ismsCommunication__communication_frequency	str	0..1	How often it is communicated.	iso27001:communication_frequency
+					communication_method	ismsCommunication__communication_method	str	0..1	How it is communicated.	iso27001:communication_method
+					communication_records_required	ismsCommunication__communication_records_required	Bool	0..1	Whether a record of the communication is kept.	iso27001:communication_records_required
+IsmsCommunicationPlan		IsmsCommunicationPlan	The plan for communication about the ISMS, inside the organization and outside it.							
+					communication_items	ismsCommunicationPlan__communication_items	IsmsCommunication	0..*	The communications the plan provides for.	iso27001:communication_items
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+					document_reference	ismsDocumentControlMixin__document_reference	str	0..1	The reference the organization's document control gives it.	iso27001:document_reference
+					document_version	ismsDocumentControlMixin__document_version	str	0..1	The version of the document.	iso27001:document_version
+					document_author	ismsDocumentControlMixin__document_author	str	0..1	Who wrote the document.	iso27001:document_author
+					document_owner	ismsDocumentControlMixin__document_owner	str	0..1	Who answers for the document's content and upkeep.	iso27001:document_owner
+					document_approver	ismsDocumentControlMixin__document_approver	str	0..1	Who approved the document.	iso27001:document_approver
+					document_approval_date	ismsDocumentControlMixin__document_approval_date	XSDDate	0..1	When the document was approved.	iso27001:document_approval_date
+					document_effective_date	ismsDocumentControlMixin__document_effective_date	XSDDate	0..1	When the document takes effect.	iso27001:document_effective_date
+					document_last_review_date	ismsDocumentControlMixin__document_last_review_date	XSDDate	0..1	When the document was last reviewed.	iso27001:document_last_review_date
+					document_next_review_date	ismsDocumentControlMixin__document_next_review_date	XSDDate	0..1	When the document is next due for review.	iso27001:document_next_review_date
+					document_status	ismsDocumentControlMixin__document_status	str	0..1	Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.	iso27001:document_status
+					document_classification	ismsDocumentControlMixin__document_classification	str	0..1	The information classification the document carries.	iso27001:document_classification
+					document_retention	ismsDocumentControlMixin__document_retention	IsmsDuration	0..1	How long the document is kept, as an ISO 8601 duration.	iso27001:document_retention
+					document_distribution	ismsDocumentControlMixin__document_distribution	str	0..*	How the document is distributed, accessed, retrieved and used.	iso27001:document_distribution
+					document_storage	ismsDocumentControlMixin__document_storage	str	0..1	How the document is stored and preserved, so that it stays legible.	iso27001:document_storage
+					document_change_control	ismsDocumentControlMixin__document_change_control	str	0..1	How changes to the document are controlled, such as version control.	iso27001:document_change_control
+					document_external_origin	ismsDocumentControlMixin__document_external_origin	Bool	0..1	Whether the document comes from outside the organization and is kept because the ISMS needs it.	iso27001:document_external_origin
+					document_external_source	ismsDocumentControlMixin__document_external_source	str	0..1	Who the document came from, when it comes from outside.	iso27001:document_external_source
+IsmsCompetenceRecord		IsmsCompetenceRecord	The evidence of one person's competence for work that affects information security, and what is done to close any gap.							
+					competence_person	ismsCompetenceRecord__competence_person	str	0..1	The person the record is about.	iso27001:competence_person
+					competence_role	ismsCompetenceRecord__competence_role	*IsmsRole	0..1	The role the person holds.	iso27001:competence_role
+					competence_required	ismsCompetenceRecord__competence_required	str	0..*	The competences the role needs.	iso27001:competence_required
+					competence_education	ismsCompetenceRecord__competence_education	str	0..*	The person's relevant education.	iso27001:competence_education
+					competence_training	ismsCompetenceRecord__competence_training	str	0..*	The training the person has completed.	iso27001:competence_training
+					competence_experience	ismsCompetenceRecord__competence_experience	str	0..*	The person's relevant experience.	iso27001:competence_experience
+					competence_assessment_date	ismsCompetenceRecord__competence_assessment_date	XSDDate	0..1	When the person's competence was last assessed.	iso27001:competence_assessment_date
+					competence_gaps	ismsCompetenceRecord__competence_gaps	str	0..*	The gaps the assessment found.	iso27001:competence_gaps
+					competence_actions	ismsCompetenceRecord__competence_actions	str	0..*	What is done to close the gaps.	iso27001:competence_actions
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+					document_reference	ismsDocumentControlMixin__document_reference	str	0..1	The reference the organization's document control gives it.	iso27001:document_reference
+					document_version	ismsDocumentControlMixin__document_version	str	0..1	The version of the document.	iso27001:document_version
+					document_author	ismsDocumentControlMixin__document_author	str	0..1	Who wrote the document.	iso27001:document_author
+					document_owner	ismsDocumentControlMixin__document_owner	str	0..1	Who answers for the document's content and upkeep.	iso27001:document_owner
+					document_approver	ismsDocumentControlMixin__document_approver	str	0..1	Who approved the document.	iso27001:document_approver
+					document_approval_date	ismsDocumentControlMixin__document_approval_date	XSDDate	0..1	When the document was approved.	iso27001:document_approval_date
+					document_effective_date	ismsDocumentControlMixin__document_effective_date	XSDDate	0..1	When the document takes effect.	iso27001:document_effective_date
+					document_last_review_date	ismsDocumentControlMixin__document_last_review_date	XSDDate	0..1	When the document was last reviewed.	iso27001:document_last_review_date
+					document_next_review_date	ismsDocumentControlMixin__document_next_review_date	XSDDate	0..1	When the document is next due for review.	iso27001:document_next_review_date
+					document_status	ismsDocumentControlMixin__document_status	str	0..1	Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.	iso27001:document_status
+					document_classification	ismsDocumentControlMixin__document_classification	str	0..1	The information classification the document carries.	iso27001:document_classification
+					document_retention	ismsDocumentControlMixin__document_retention	IsmsDuration	0..1	How long the document is kept, as an ISO 8601 duration.	iso27001:document_retention
+					document_distribution	ismsDocumentControlMixin__document_distribution	str	0..*	How the document is distributed, accessed, retrieved and used.	iso27001:document_distribution
+					document_storage	ismsDocumentControlMixin__document_storage	str	0..1	How the document is stored and preserved, so that it stays legible.	iso27001:document_storage
+					document_change_control	ismsDocumentControlMixin__document_change_control	str	0..1	How changes to the document are controlled, such as version control.	iso27001:document_change_control
+					document_external_origin	ismsDocumentControlMixin__document_external_origin	Bool	0..1	Whether the document comes from outside the organization and is kept because the ISMS needs it.	iso27001:document_external_origin
+					document_external_source	ismsDocumentControlMixin__document_external_source	str	0..1	Who the document came from, when it comes from outside.	iso27001:document_external_source
+IsmsControl		IsmsControl	A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.							
+					relevant_controls		*IsmsControl	0..*	The organization's controls that the record concerns.	iso27001:relevant_controls
+					implementation_state		IsmsImplementationStatus	0..1	How far the control or the plan has been put into effect.	iso27001:implementation_state
+					control_annex_a_controls	ismsControl__control_annex_a_controls	IsmsAnnexAControl	0..*	The Annex A controls the control answers to.	iso27001:control_annex_a_controls
+					control_theme	ismsControl__control_theme	IsmsControlTheme	0..1	Which of Annex A's four themes the control belongs to.	iso27001:control_theme
+					control_text	ismsControl__control_text	str	0..1	What the control does, in the organization's own words.	iso27001:control_text
+					control_guidance	ismsControl__control_guidance	str	0..1	The organization's notes on putting the control in place.	iso27001:control_guidance
+					control_threats	ismsControl__control_threats	str	0..*	The threats the control acts against.	iso27001:control_threats
+					control_asset_types	ismsControl__control_asset_types	str	0..*	The kinds of asset the control applies to.	iso27001:control_asset_types
+					control_owner	ismsControl__control_owner	str	0..1	The person who owns the control.	iso27001:control_owner
+					control_implementation_date	ismsControl__control_implementation_date	XSDDate	0..1	When the control was put in place.	iso27001:control_implementation_date
+					control_effectiveness	ismsControl__control_effectiveness	str	0..1	How well the control works, in the organization's own terms.	iso27001:control_effectiveness
+					control_last_tested	ismsControl__control_last_tested	XSDDate	0..1	When the control was last tested.	iso27001:control_last_tested
+					control_evidence	ismsControl__control_evidence	str	0..*	Where the evidence that the control is in place is kept.	iso27001:control_evidence
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+IsmsCorrectiveAction		IsmsCorrectiveAction	An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it worked.							
+					responsible_role		*IsmsRole	0..1	The role that answers for the record's activity or outcome.	iso27001:responsible_role
+					action_nonconformities	ismsCorrectiveAction__action_nonconformities	*IsmsNonconformity	0..*	The nonconformities the action addresses.	iso27001:action_nonconformities
+					action_root_cause	ismsCorrectiveAction__action_root_cause	str	0..1	The cause the action removes.	iso27001:action_root_cause
+					action_target_date	ismsCorrectiveAction__action_target_date	XSDDate	0..1	When the action is to be complete.	iso27001:action_target_date
+					action_completion_date	ismsCorrectiveAction__action_completion_date	XSDDate	0..1	When the action was complete.	iso27001:action_completion_date
+					action_resources	ismsCorrectiveAction__action_resources	str	0..1	The resources the action needs.	iso27001:action_resources
+					action_effectiveness_criteria	ismsCorrectiveAction__action_effectiveness_criteria	str	0..1	How the action's effect will be judged.	iso27001:action_effectiveness_criteria
+					action_effectiveness_review_date	ismsCorrectiveAction__action_effectiveness_review_date	XSDDate	0..1	When the action's effect was reviewed.	iso27001:action_effectiveness_review_date
+					action_effective	ismsCorrectiveAction__action_effective	Bool	0..1	Whether the review found the action effective.	iso27001:action_effective
+					action_isms_changes	ismsCorrectiveAction__action_isms_changes	str	0..1	The changes to the ISMS the action needs.	iso27001:action_isms_changes
+					action_status	ismsCorrectiveAction__action_status	str	0..1	Where the action stands, in the organization's own terms.	iso27001:action_status
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+IsmsDocumentControlMixin		IsmsDocumentControlMixin	The control that documented information is kept under: who wrote, owns and approved it, when it takes effect and is reviewed, how it is classified, distributed, stored and changed, how long it is retained, and whether it came from outside the organization.							
+					document_reference	ismsDocumentControlMixin__document_reference	str	0..1	The reference the organization's document control gives it.	iso27001:document_reference
+					document_version	ismsDocumentControlMixin__document_version	str	0..1	The version of the document.	iso27001:document_version
+					document_author	ismsDocumentControlMixin__document_author	str	0..1	Who wrote the document.	iso27001:document_author
+					document_owner	ismsDocumentControlMixin__document_owner	str	0..1	Who answers for the document's content and upkeep.	iso27001:document_owner
+					document_approver	ismsDocumentControlMixin__document_approver	str	0..1	Who approved the document.	iso27001:document_approver
+					document_approval_date	ismsDocumentControlMixin__document_approval_date	XSDDate	0..1	When the document was approved.	iso27001:document_approval_date
+					document_effective_date	ismsDocumentControlMixin__document_effective_date	XSDDate	0..1	When the document takes effect.	iso27001:document_effective_date
+					document_last_review_date	ismsDocumentControlMixin__document_last_review_date	XSDDate	0..1	When the document was last reviewed.	iso27001:document_last_review_date
+					document_next_review_date	ismsDocumentControlMixin__document_next_review_date	XSDDate	0..1	When the document is next due for review.	iso27001:document_next_review_date
+					document_status	ismsDocumentControlMixin__document_status	str	0..1	Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.	iso27001:document_status
+					document_classification	ismsDocumentControlMixin__document_classification	str	0..1	The information classification the document carries.	iso27001:document_classification
+					document_retention	ismsDocumentControlMixin__document_retention	IsmsDuration	0..1	How long the document is kept, as an ISO 8601 duration.	iso27001:document_retention
+					document_distribution	ismsDocumentControlMixin__document_distribution	str	0..*	How the document is distributed, accessed, retrieved and used.	iso27001:document_distribution
+					document_storage	ismsDocumentControlMixin__document_storage	str	0..1	How the document is stored and preserved, so that it stays legible.	iso27001:document_storage
+					document_change_control	ismsDocumentControlMixin__document_change_control	str	0..1	How changes to the document are controlled, such as version control.	iso27001:document_change_control
+					document_external_origin	ismsDocumentControlMixin__document_external_origin	Bool	0..1	Whether the document comes from outside the organization and is kept because the ISMS needs it.	iso27001:document_external_origin
+					document_external_source	ismsDocumentControlMixin__document_external_source	str	0..1	Who the document came from, when it comes from outside.	iso27001:document_external_source
+IsmsDocumentedInformation		IsmsDocumentedInformation	A piece of documented information the ISMS keeps under control that no more specific record describes, such as a procedure, a standard, a plan or a report.							
+					document_kind	ismsDocumentedInformation__document_kind	IsmsDocumentKind	1..1	What kind of documented information it is.	iso27001:document_kind
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+					document_reference	ismsDocumentControlMixin__document_reference	str	0..1	The reference the organization's document control gives it.	iso27001:document_reference
+					document_version	ismsDocumentControlMixin__document_version	str	0..1	The version of the document.	iso27001:document_version
+					document_author	ismsDocumentControlMixin__document_author	str	0..1	Who wrote the document.	iso27001:document_author
+					document_owner	ismsDocumentControlMixin__document_owner	str	0..1	Who answers for the document's content and upkeep.	iso27001:document_owner
+					document_approver	ismsDocumentControlMixin__document_approver	str	0..1	Who approved the document.	iso27001:document_approver
+					document_approval_date	ismsDocumentControlMixin__document_approval_date	XSDDate	0..1	When the document was approved.	iso27001:document_approval_date
+					document_effective_date	ismsDocumentControlMixin__document_effective_date	XSDDate	0..1	When the document takes effect.	iso27001:document_effective_date
+					document_last_review_date	ismsDocumentControlMixin__document_last_review_date	XSDDate	0..1	When the document was last reviewed.	iso27001:document_last_review_date
+					document_next_review_date	ismsDocumentControlMixin__document_next_review_date	XSDDate	0..1	When the document is next due for review.	iso27001:document_next_review_date
+					document_status	ismsDocumentControlMixin__document_status	str	0..1	Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.	iso27001:document_status
+					document_classification	ismsDocumentControlMixin__document_classification	str	0..1	The information classification the document carries.	iso27001:document_classification
+					document_retention	ismsDocumentControlMixin__document_retention	IsmsDuration	0..1	How long the document is kept, as an ISO 8601 duration.	iso27001:document_retention
+					document_distribution	ismsDocumentControlMixin__document_distribution	str	0..*	How the document is distributed, accessed, retrieved and used.	iso27001:document_distribution
+					document_storage	ismsDocumentControlMixin__document_storage	str	0..1	How the document is stored and preserved, so that it stays legible.	iso27001:document_storage
+					document_change_control	ismsDocumentControlMixin__document_change_control	str	0..1	How changes to the document are controlled, such as version control.	iso27001:document_change_control
+					document_external_origin	ismsDocumentControlMixin__document_external_origin	Bool	0..1	Whether the document comes from outside the organization and is kept because the ISMS needs it.	iso27001:document_external_origin
+					document_external_source	ismsDocumentControlMixin__document_external_source	str	0..1	Who the document came from, when it comes from outside.	iso27001:document_external_source
+IsmsExcludedControl	IsmsApplicabilityEntry	IsmsExcludedControl	An entry that leaves out an Annex A control the organization does not need, and says why.							
+					entry_annex_a_control	IsmsExcludedControl_entry_annex_a_control	IsmsAnnexAControl	1..1	The Annex A control a Statement of Applicability entry concerns.	iso27001:entry_annex_a_control
+IsmsImprovementOpportunity		IsmsImprovementOpportunity	An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.							
+					responsible_role		*IsmsRole	0..1	The role that answers for the record's activity or outcome.	iso27001:responsible_role
+					improvement_source	ismsImprovementOpportunity__improvement_source	str	0..1	Where the opportunity came from, such as a review, an audit or daily work.	iso27001:improvement_source
+					improvement_identified_on	ismsImprovementOpportunity__improvement_identified_on	XSDDate	0..1	When the opportunity was identified.	iso27001:improvement_identified_on
+					improvement_identified_by	ismsImprovementOpportunity__improvement_identified_by	str	0..1	Who identified it.	iso27001:improvement_identified_by
+					improvement_benefit	ismsImprovementOpportunity__improvement_benefit	str	0..1	What the improvement is expected to bring.	iso27001:improvement_benefit
+					improvement_priority	ismsImprovementOpportunity__improvement_priority	str	0..1	How soon it is to be acted on, in the organization's own terms.	iso27001:improvement_priority
+					improvement_plan	ismsImprovementOpportunity__improvement_plan	str	0..1	How the improvement is to be made.	iso27001:improvement_plan
+					improvement_target_date	ismsImprovementOpportunity__improvement_target_date	XSDDate	0..1	When the improvement is to be made.	iso27001:improvement_target_date
+					improvement_completion_date	ismsImprovementOpportunity__improvement_completion_date	XSDDate	0..1	When it was made.	iso27001:improvement_completion_date
+					improvement_outcome	ismsImprovementOpportunity__improvement_outcome	str	0..1	What the improvement brought.	iso27001:improvement_outcome
+					improvement_status	ismsImprovementOpportunity__improvement_status	str	0..1	Where it stands, in the organization's own terms.	iso27001:improvement_status
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+IsmsIncludedControl	IsmsApplicabilityEntry	IsmsIncludedControl	An entry that includes a control the organization needs, from Annex A or from elsewhere, and says whether it is in place.							
+					implementation_state	IsmsIncludedControl_implementation_state	IsmsImplementationStatus	1..1	How far the control or the plan has been put into effect.	iso27001:implementation_state
+					responsible_role		*IsmsRole	0..1	The role that answers for the record's activity or outcome.	iso27001:responsible_role
+					included_control	ismsIncludedControl__included_control	*IsmsControl	0..1	The organization's control the entry includes.	iso27001:included_control
+					included_evidence	ismsIncludedControl__included_evidence	str	0..1	What shows that the control is in place.	iso27001:included_evidence
+					included_target_date	ismsIncludedControl__included_target_date	XSDDate	0..1	When the control is to be in place, if it is not yet.	iso27001:included_target_date
+IsmsInterestedParty		IsmsInterestedParty	A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it, such as staff, customers, regulators or suppliers.							
+					party_category	ismsInterestedParty__party_category	str	0..1	What kind of interested party it is, in the organization's own terms.	iso27001:party_category
+					party_relationship	ismsInterestedParty__party_relationship	str	0..1	How the party relates to the organization.	iso27001:party_relationship
+					party_requirements	ismsInterestedParty__party_requirements	str	0..*	The party's requirements that bear on information security.	iso27001:party_requirements
+					party_addressed_requirements	ismsInterestedParty__party_addressed_requirements	str	0..*	Which of those requirements the ISMS addresses.	iso27001:party_addressed_requirements
+					party_climate_change_requirements	ismsInterestedParty__party_climate_change_requirements	str	0..*	The party's requirements that concern climate change.	iso27001:party_climate_change_requirements
+					party_communication_needs	ismsInterestedParty__party_communication_needs	str	0..1	What the party needs to be told, and how.	iso27001:party_communication_needs
+					party_contact	ismsInterestedParty__party_contact	str	0..1	How to reach the party.	iso27001:party_contact
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+IsmsManagementReview		IsmsManagementReview	A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.							
+					review_held_on	ismsManagementReview__review_held_on	XSDDate	1..1	When the review was held.	iso27001:review_held_on
+					review_attendees	ismsManagementReview__review_attendees	str	0..*	Who attended the review.	iso27001:review_attendees
+					review_previous_actions	ismsManagementReview__review_previous_actions	str	0..1	Where the actions from earlier reviews stand.	iso27001:review_previous_actions
+					review_context_changes	ismsManagementReview__review_context_changes	str	0..1	How the issues that bear on the ISMS have changed.	iso27001:review_context_changes
+					review_interested_party_changes	ismsManagementReview__review_interested_party_changes	str	0..1	How interested parties' needs and expectations have changed.	iso27001:review_interested_party_changes
+					review_interested_party_feedback	ismsManagementReview__review_interested_party_feedback	str	0..1	What interested parties said.	iso27001:review_interested_party_feedback
+					review_performance_trends	ismsManagementReview__review_performance_trends	str	0..1	The trends in information security performance.	iso27001:review_performance_trends
+					review_audit_results	ismsManagementReview__review_audit_results	str	0..1	What the audits found.	iso27001:review_audit_results
+					review_risk_assessment_results	ismsManagementReview__review_risk_assessment_results	str	0..1	What the risk assessments found.	iso27001:review_risk_assessment_results
+					review_risk_treatment_status	ismsManagementReview__review_risk_treatment_status	str	0..1	Where risk treatment stands.	iso27001:review_risk_treatment_status
+					review_risks_and_opportunities	ismsManagementReview__review_risks_and_opportunities	str	0..1	How risks and opportunities have changed.	iso27001:review_risks_and_opportunities
+					review_improvement_opportunities	ismsManagementReview__review_improvement_opportunities	str	0..*	The opportunities for improvement raised.	iso27001:review_improvement_opportunities
+					review_decisions	ismsManagementReview__review_decisions	str	0..*	What the review decided.	iso27001:review_decisions
+					review_actions	ismsManagementReview__review_actions	str	0..*	What the review asked to be done.	iso27001:review_actions
+					review_next_date	ismsManagementReview__review_next_date	XSDDate	0..1	When the next review is planned.	iso27001:review_next_date
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+					document_reference	ismsDocumentControlMixin__document_reference	str	0..1	The reference the organization's document control gives it.	iso27001:document_reference
+					document_version	ismsDocumentControlMixin__document_version	str	0..1	The version of the document.	iso27001:document_version
+					document_author	ismsDocumentControlMixin__document_author	str	0..1	Who wrote the document.	iso27001:document_author
+					document_owner	ismsDocumentControlMixin__document_owner	str	0..1	Who answers for the document's content and upkeep.	iso27001:document_owner
+					document_approver	ismsDocumentControlMixin__document_approver	str	0..1	Who approved the document.	iso27001:document_approver
+					document_approval_date	ismsDocumentControlMixin__document_approval_date	XSDDate	0..1	When the document was approved.	iso27001:document_approval_date
+					document_effective_date	ismsDocumentControlMixin__document_effective_date	XSDDate	0..1	When the document takes effect.	iso27001:document_effective_date
+					document_last_review_date	ismsDocumentControlMixin__document_last_review_date	XSDDate	0..1	When the document was last reviewed.	iso27001:document_last_review_date
+					document_next_review_date	ismsDocumentControlMixin__document_next_review_date	XSDDate	0..1	When the document is next due for review.	iso27001:document_next_review_date
+					document_status	ismsDocumentControlMixin__document_status	str	0..1	Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.	iso27001:document_status
+					document_classification	ismsDocumentControlMixin__document_classification	str	0..1	The information classification the document carries.	iso27001:document_classification
+					document_retention	ismsDocumentControlMixin__document_retention	IsmsDuration	0..1	How long the document is kept, as an ISO 8601 duration.	iso27001:document_retention
+					document_distribution	ismsDocumentControlMixin__document_distribution	str	0..*	How the document is distributed, accessed, retrieved and used.	iso27001:document_distribution
+					document_storage	ismsDocumentControlMixin__document_storage	str	0..1	How the document is stored and preserved, so that it stays legible.	iso27001:document_storage
+					document_change_control	ismsDocumentControlMixin__document_change_control	str	0..1	How changes to the document are controlled, such as version control.	iso27001:document_change_control
+					document_external_origin	ismsDocumentControlMixin__document_external_origin	Bool	0..1	Whether the document comes from outside the organization and is kept because the ISMS needs it.	iso27001:document_external_origin
+					document_external_source	ismsDocumentControlMixin__document_external_source	str	0..1	Who the document came from, when it comes from outside.	iso27001:document_external_source
+IsmsManagementSystem		IsmsManagementSystem	One organization's information security management system: its scope and context, and every record it keeps, each kind in a list of its own.							
+					isms_organization	ismsManagementSystem__isms_organization	IsmsOrganization	0..1	The organization that runs the ISMS.	iso27001:isms_organization
+					isms_top_management	ismsManagementSystem__isms_top_management	str	0..1	The person or group that directs and controls the organization at the highest level.	iso27001:isms_top_management
+					isms_governing_body	ismsManagementSystem__isms_governing_body	str	0..1	The body top management answers to, such as a board, where there is one.	iso27001:isms_governing_body
+					isms_leadership_evidence	ismsManagementSystem__isms_leadership_evidence	str	0..*	What shows that top management leads and commits to the ISMS.	iso27001:isms_leadership_evidence
+					isms_scope	ismsManagementSystem__isms_scope	str	0..1	The scope of the ISMS, as the organization states it.	iso27001:isms_scope
+					isms_scope_boundaries	ismsManagementSystem__isms_scope_boundaries	str	0..*	Where the scope of the ISMS ends.	iso27001:isms_scope_boundaries
+					isms_scope_exclusions	ismsManagementSystem__isms_scope_exclusions	str	0..*	What the scope leaves out, each with the reason.	iso27001:isms_scope_exclusions
+					isms_interfaces	ismsManagementSystem__isms_interfaces	str	0..*	The interfaces and dependencies between what the organization does and what other organizations do, which the scope takes into account.	iso27001:isms_interfaces
+					isms_processes	ismsManagementSystem__isms_processes	str	0..1	The processes the ISMS needs and how they interact.	iso27001:isms_processes
+					isms_internal_issues	ismsManagementSystem__isms_internal_issues	str	0..*	The internal issues that bear on the ISMS.	iso27001:isms_internal_issues
+					isms_external_issues	ismsManagementSystem__isms_external_issues	str	0..*	The external issues that bear on the ISMS.	iso27001:isms_external_issues
+					isms_risk_and_opportunity_actions	ismsManagementSystem__isms_risk_and_opportunity_actions	str	0..*	The actions planned to address the ISMS's risks and opportunities, and how they fit into its processes.	iso27001:isms_risk_and_opportunity_actions
+					isms_planned_changes	ismsManagementSystem__isms_planned_changes	str	0..*	The changes to the ISMS that are planned.	iso27001:isms_planned_changes
+					isms_external_services	ismsManagementSystem__isms_external_services	str	0..*	The processes, products or services from outside the organization that the ISMS relies on and controls.	iso27001:isms_external_services
+					isms_certification_status	ismsManagementSystem__isms_certification_status	str	0..1	Where the ISMS stands with certification, in the organization's own terms.	iso27001:isms_certification_status
+					isms_certification_body	ismsManagementSystem__isms_certification_body	str	0..1	The body that certifies the ISMS.	iso27001:isms_certification_body
+					isms_certification_date	ismsManagementSystem__isms_certification_date	XSDDate	0..1	When the ISMS was certified.	iso27001:isms_certification_date
+					isms_recertification_date	ismsManagementSystem__isms_recertification_date	XSDDate	0..1	When the ISMS is next due for recertification.	iso27001:isms_recertification_date
+					isms_interested_parties	ismsManagementSystem__isms_interested_parties	IsmsInterestedParty	0..*	The interested parties the ISMS takes into account.	iso27001:isms_interested_parties
+					isms_policy	ismsManagementSystem__isms_policy	IsmsPolicy	0..1	The information security policy.	iso27001:isms_policy
+					isms_topic_specific_policies	ismsManagementSystem__isms_topic_specific_policies	IsmsTopicSpecificPolicy	0..*	The topic-specific policies under the information security policy.	iso27001:isms_topic_specific_policies
+					isms_roles	ismsManagementSystem__isms_roles	IsmsRole	0..*	The roles that carry the ISMS's responsibilities and authorities.	iso27001:isms_roles
+					isms_objectives	ismsManagementSystem__isms_objectives	IsmsObjective	0..*	The information security objectives.	iso27001:isms_objectives
+					isms_risk_assessment_process	ismsManagementSystem__isms_risk_assessment_process	IsmsRiskAssessmentProcess	0..1	The information security risk assessment process.	iso27001:isms_risk_assessment_process
+					isms_risk_treatment_process	ismsManagementSystem__isms_risk_treatment_process	IsmsRiskTreatmentProcess	0..1	The information security risk treatment process.	iso27001:isms_risk_treatment_process
+					isms_risk_assessments	ismsManagementSystem__isms_risk_assessments	IsmsRiskAssessment	0..*	The risk assessments carried out.	iso27001:isms_risk_assessments
+					isms_risks	ismsManagementSystem__isms_risks	IsmsRisk	0..*	The risks identified, the risk register.	iso27001:isms_risks
+					isms_risk_treatment_plans	ismsManagementSystem__isms_risk_treatment_plans	IsmsRiskTreatmentPlan	0..*	The risk treatment plans.	iso27001:isms_risk_treatment_plans
+					isms_statement_of_applicability	ismsManagementSystem__isms_statement_of_applicability	IsmsStatementOfApplicability	0..1	The Statement of Applicability.	iso27001:isms_statement_of_applicability
+					isms_controls	ismsManagementSystem__isms_controls	IsmsControl	0..*	The controls the organization has determined it needs.	iso27001:isms_controls
+					isms_assets	ismsManagementSystem__isms_assets	IsmsAsset	0..*	The inventory of information and other associated assets.	iso27001:isms_assets
+					isms_resources	ismsManagementSystem__isms_resources	IsmsResource	0..*	The resources provided for the ISMS.	iso27001:isms_resources
+					isms_competence_records	ismsManagementSystem__isms_competence_records	IsmsCompetenceRecord	0..*	The records of competence.	iso27001:isms_competence_records
+					isms_awareness_programme	ismsManagementSystem__isms_awareness_programme	IsmsAwarenessProgramme	0..1	The awareness programme.	iso27001:isms_awareness_programme
+					isms_communication_plan	ismsManagementSystem__isms_communication_plan	IsmsCommunicationPlan	0..1	The plan for communication about the ISMS.	iso27001:isms_communication_plan
+					isms_documented_information	ismsManagementSystem__isms_documented_information	IsmsDocumentedInformation	0..*	The documented information the ISMS keeps that no more specific list holds, such as procedures, plans and reports.	iso27001:isms_documented_information
+					isms_operational_procedures	ismsManagementSystem__isms_operational_procedures	IsmsOperationalProcedure	0..*	The procedures for operational planning and control.	iso27001:isms_operational_procedures
+					isms_monitoring_programme	ismsManagementSystem__isms_monitoring_programme	IsmsMonitoringProgramme	0..1	The programme of monitoring and measurement.	iso27001:isms_monitoring_programme
+					isms_audit_programmes	ismsManagementSystem__isms_audit_programmes	IsmsAuditProgramme	0..*	The audit programmes.	iso27001:isms_audit_programmes
+					isms_audits	ismsManagementSystem__isms_audits	IsmsAudit	0..*	The audits of the ISMS, internal and external.	iso27001:isms_audits
+					isms_management_reviews	ismsManagementSystem__isms_management_reviews	IsmsManagementReview	0..*	The management reviews.	iso27001:isms_management_reviews
+					isms_nonconformities	ismsManagementSystem__isms_nonconformities	IsmsNonconformity	0..*	The nonconformities found.	iso27001:isms_nonconformities
+					isms_corrective_actions	ismsManagementSystem__isms_corrective_actions	IsmsCorrectiveAction	0..*	The corrective actions taken.	iso27001:isms_corrective_actions
+					isms_improvements	ismsManagementSystem__isms_improvements	IsmsImprovementOpportunity	0..*	The opportunities for improvement identified.	iso27001:isms_improvements
+					isms_security_events	ismsManagementSystem__isms_security_events	IsmsSecurityEvent	0..*	The information security events reported, the incidents among them.	iso27001:isms_security_events
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+IsmsMonitoringItem		IsmsMonitoringItem	One thing the monitoring programme measures: what, how, how often and by whom it is measured and analysed, and against what thresholds.							
+					responsible_role		*IsmsRole	0..1	The role that answers for the record's activity or outcome.	iso27001:responsible_role
+					monitoring_metric	ismsMonitoringItem__monitoring_metric	str	1..1	The name of what is measured.	iso27001:monitoring_metric
+					monitoring_description	ismsMonitoringItem__monitoring_description	str	0..1	What the measurement shows.	iso27001:monitoring_description
+					monitoring_method	ismsMonitoringItem__monitoring_method	str	0..1	How it is measured.	iso27001:monitoring_method
+					monitoring_frequency	ismsMonitoringItem__monitoring_frequency	str	0..1	How often it is measured.	iso27001:monitoring_frequency
+					monitoring_analysis_frequency	ismsMonitoringItem__monitoring_analysis_frequency	str	0..1	How often the results are analysed and evaluated.	iso27001:monitoring_analysis_frequency
+					monitoring_analyst	ismsMonitoringItem__monitoring_analyst	str	0..1	Who analyses and evaluates the results.	iso27001:monitoring_analyst
+					monitoring_target	ismsMonitoringItem__monitoring_target	str	0..1	The value aimed for.	iso27001:monitoring_target
+					monitoring_alert_threshold	ismsMonitoringItem__monitoring_alert_threshold	str	0..1	The value that calls for action.	iso27001:monitoring_alert_threshold
+					monitoring_current_value	ismsMonitoringItem__monitoring_current_value	str	0..1	The value last measured.	iso27001:monitoring_current_value
+					monitoring_trend	ismsMonitoringItem__monitoring_trend	str	0..1	Which way the value is moving.	iso27001:monitoring_trend
+IsmsMonitoringProgramme		IsmsMonitoringProgramme	The programme of monitoring, measurement, analysis and evaluation of information security performance and of the ISMS's effectiveness.							
+					monitoring_items	ismsMonitoringProgramme__monitoring_items	IsmsMonitoringItem	0..*	What the programme monitors and measures.	iso27001:monitoring_items
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+					document_reference	ismsDocumentControlMixin__document_reference	str	0..1	The reference the organization's document control gives it.	iso27001:document_reference
+					document_version	ismsDocumentControlMixin__document_version	str	0..1	The version of the document.	iso27001:document_version
+					document_author	ismsDocumentControlMixin__document_author	str	0..1	Who wrote the document.	iso27001:document_author
+					document_owner	ismsDocumentControlMixin__document_owner	str	0..1	Who answers for the document's content and upkeep.	iso27001:document_owner
+					document_approver	ismsDocumentControlMixin__document_approver	str	0..1	Who approved the document.	iso27001:document_approver
+					document_approval_date	ismsDocumentControlMixin__document_approval_date	XSDDate	0..1	When the document was approved.	iso27001:document_approval_date
+					document_effective_date	ismsDocumentControlMixin__document_effective_date	XSDDate	0..1	When the document takes effect.	iso27001:document_effective_date
+					document_last_review_date	ismsDocumentControlMixin__document_last_review_date	XSDDate	0..1	When the document was last reviewed.	iso27001:document_last_review_date
+					document_next_review_date	ismsDocumentControlMixin__document_next_review_date	XSDDate	0..1	When the document is next due for review.	iso27001:document_next_review_date
+					document_status	ismsDocumentControlMixin__document_status	str	0..1	Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.	iso27001:document_status
+					document_classification	ismsDocumentControlMixin__document_classification	str	0..1	The information classification the document carries.	iso27001:document_classification
+					document_retention	ismsDocumentControlMixin__document_retention	IsmsDuration	0..1	How long the document is kept, as an ISO 8601 duration.	iso27001:document_retention
+					document_distribution	ismsDocumentControlMixin__document_distribution	str	0..*	How the document is distributed, accessed, retrieved and used.	iso27001:document_distribution
+					document_storage	ismsDocumentControlMixin__document_storage	str	0..1	How the document is stored and preserved, so that it stays legible.	iso27001:document_storage
+					document_change_control	ismsDocumentControlMixin__document_change_control	str	0..1	How changes to the document are controlled, such as version control.	iso27001:document_change_control
+					document_external_origin	ismsDocumentControlMixin__document_external_origin	Bool	0..1	Whether the document comes from outside the organization and is kept because the ISMS needs it.	iso27001:document_external_origin
+					document_external_source	ismsDocumentControlMixin__document_external_source	str	0..1	Who the document came from, when it comes from outside.	iso27001:document_external_source
+IsmsNonconformity		IsmsNonconformity	A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was closed.							
+					nonconformity_source	ismsNonconformity__nonconformity_source	str	0..1	How the nonconformity came to light, such as an audit, a review or an incident.	iso27001:nonconformity_source
+					nonconformity_detected_on	ismsNonconformity__nonconformity_detected_on	XSDDate	0..1	When the nonconformity was found.	iso27001:nonconformity_detected_on
+					nonconformity_detected_by	ismsNonconformity__nonconformity_detected_by	str	0..1	Who or what found it.	iso27001:nonconformity_detected_by
+					nonconformity_requirement	ismsNonconformity__nonconformity_requirement	str	0..1	The requirement that was not met, of ISO/IEC 27001, of the organization or of an interested party.	iso27001:nonconformity_requirement
+					nonconformity_immediate_actions	ismsNonconformity__nonconformity_immediate_actions	str	0..*	What was done at once to control and correct it.	iso27001:nonconformity_immediate_actions
+					nonconformity_consequences	ismsNonconformity__nonconformity_consequences	str	0..1	How its consequences were dealt with.	iso27001:nonconformity_consequences
+					nonconformity_root_cause	ismsNonconformity__nonconformity_root_cause	str	0..1	What caused it.	iso27001:nonconformity_root_cause
+					nonconformity_similar_check	ismsNonconformity__nonconformity_similar_check	str	0..1	Whether similar nonconformities exist or could occur, and where.	iso27001:nonconformity_similar_check
+					nonconformity_status	ismsNonconformity__nonconformity_status	str	0..1	Where the nonconformity stands, in the organization's own terms.	iso27001:nonconformity_status
+					nonconformity_closure_date	ismsNonconformity__nonconformity_closure_date	XSDDate	0..1	When it was closed.	iso27001:nonconformity_closure_date
+					nonconformity_closure_evidence	ismsNonconformity__nonconformity_closure_evidence	str	0..1	What shows that it is closed.	iso27001:nonconformity_closure_evidence
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+IsmsObjective		IsmsObjective	An information security objective: a measurable result the organization aims for, with how it plans to reach it and how it measures progress.							
+					responsible_role		*IsmsRole	0..1	The role that answers for the record's activity or outcome.	iso27001:responsible_role
+					relevant_controls		*IsmsControl	0..*	The organization's controls that the record concerns.	iso27001:relevant_controls
+					objective_statement	ismsObjective__objective_statement	str	0..1	The objective, as the organization states it.	iso27001:objective_statement
+					objective_target	ismsObjective__objective_target	str	0..1	The value the objective aims for.	iso27001:objective_target
+					objective_current_value	ismsObjective__objective_current_value	str	0..1	The value last measured.	iso27001:objective_current_value
+					objective_metric	ismsObjective__objective_metric	str	0..1	How the objective's value is defined.	iso27001:objective_metric
+					objective_measurement_method	ismsObjective__objective_measurement_method	str	0..1	How the value is measured.	iso27001:objective_measurement_method
+					objective_measurement_frequency	ismsObjective__objective_measurement_frequency	str	0..1	How often the value is measured.	iso27001:objective_measurement_frequency
+					objective_target_date	ismsObjective__objective_target_date	XSDDate	0..1	When the objective is to be reached.	iso27001:objective_target_date
+					objective_achievement	ismsObjective__objective_achievement	str	0..1	How far the objective has been reached, in the organization's own terms.	iso27001:objective_achievement
+					objective_risks	ismsObjective__objective_risks	*IsmsRisk	0..*	The risks the objective concerns.	iso27001:objective_risks
+					objective_action_plan	ismsObjective__objective_action_plan	str	0..1	What will be done to reach the objective.	iso27001:objective_action_plan
+					objective_resources	ismsObjective__objective_resources	str	0..1	The resources needed to reach the objective.	iso27001:objective_resources
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+IsmsOperationalProcedure		IsmsOperationalProcedure	A procedure by which the organization plans and controls the processes that meet its information security requirements.							
+					relevant_controls		*IsmsControl	0..*	The organization's controls that the record concerns.	iso27001:relevant_controls
+					procedure_scope	ismsOperationalProcedure__procedure_scope	str	0..1	What the procedure covers.	iso27001:procedure_scope
+					procedure_criteria	ismsOperationalProcedure__procedure_criteria	str	0..1	The criteria the processes are run to.	iso27001:procedure_criteria
+					procedure_control_measures	ismsOperationalProcedure__procedure_control_measures	str	0..*	The measures that control the processes.	iso27001:procedure_control_measures
+					procedure_roles	ismsOperationalProcedure__procedure_roles	*IsmsRole	0..*	The roles that carry out the procedure.	iso27001:procedure_roles
+					procedure_change_control	ismsOperationalProcedure__procedure_change_control	str	0..1	How changes to the processes are controlled.	iso27001:procedure_change_control
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+					document_reference	ismsDocumentControlMixin__document_reference	str	0..1	The reference the organization's document control gives it.	iso27001:document_reference
+					document_version	ismsDocumentControlMixin__document_version	str	0..1	The version of the document.	iso27001:document_version
+					document_author	ismsDocumentControlMixin__document_author	str	0..1	Who wrote the document.	iso27001:document_author
+					document_owner	ismsDocumentControlMixin__document_owner	str	0..1	Who answers for the document's content and upkeep.	iso27001:document_owner
+					document_approver	ismsDocumentControlMixin__document_approver	str	0..1	Who approved the document.	iso27001:document_approver
+					document_approval_date	ismsDocumentControlMixin__document_approval_date	XSDDate	0..1	When the document was approved.	iso27001:document_approval_date
+					document_effective_date	ismsDocumentControlMixin__document_effective_date	XSDDate	0..1	When the document takes effect.	iso27001:document_effective_date
+					document_last_review_date	ismsDocumentControlMixin__document_last_review_date	XSDDate	0..1	When the document was last reviewed.	iso27001:document_last_review_date
+					document_next_review_date	ismsDocumentControlMixin__document_next_review_date	XSDDate	0..1	When the document is next due for review.	iso27001:document_next_review_date
+					document_status	ismsDocumentControlMixin__document_status	str	0..1	Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.	iso27001:document_status
+					document_classification	ismsDocumentControlMixin__document_classification	str	0..1	The information classification the document carries.	iso27001:document_classification
+					document_retention	ismsDocumentControlMixin__document_retention	IsmsDuration	0..1	How long the document is kept, as an ISO 8601 duration.	iso27001:document_retention
+					document_distribution	ismsDocumentControlMixin__document_distribution	str	0..*	How the document is distributed, accessed, retrieved and used.	iso27001:document_distribution
+					document_storage	ismsDocumentControlMixin__document_storage	str	0..1	How the document is stored and preserved, so that it stays legible.	iso27001:document_storage
+					document_change_control	ismsDocumentControlMixin__document_change_control	str	0..1	How changes to the document are controlled, such as version control.	iso27001:document_change_control
+					document_external_origin	ismsDocumentControlMixin__document_external_origin	Bool	0..1	Whether the document comes from outside the organization and is kept because the ISMS needs it.	iso27001:document_external_origin
+					document_external_source	ismsDocumentControlMixin__document_external_source	str	0..1	Who the document came from, when it comes from outside.	iso27001:document_external_source
+IsmsOrganization		IsmsOrganization	The organization that runs the ISMS, with what it needs to know about itself to understand its context.							
+					organization_legal_name	ismsOrganization__organization_legal_name	str	0..1	The organization's registered legal name.	iso27001:organization_legal_name
+					organization_trading_names	ismsOrganization__organization_trading_names	str	0..*	Other names the organization trades under.	iso27001:organization_trading_names
+					organization_kind	ismsOrganization__organization_kind	str	0..1	What kind of organization it is, such as a company, an agency or a charity.	iso27001:organization_kind
+					organization_sector	ismsOrganization__organization_sector	str	0..1	The organization's main industry sector.	iso27001:organization_sector
+					organization_size	ismsOrganization__organization_size	str	0..1	How the organization classes its own size.	iso27001:organization_size
+					organization_employee_count	ismsOrganization__organization_employee_count	int	0..1	About how many people the organization employs.	iso27001:organization_employee_count
+					organization_locations	ismsOrganization__organization_locations	str	0..*	The countries or regions the organization works in.	iso27001:organization_locations
+					organization_jurisdictions	ismsOrganization__organization_jurisdictions	str	0..*	The jurisdictions whose laws and regulations apply to the organization.	iso27001:organization_jurisdictions
+					organization_parent	ismsOrganization__organization_parent	str	0..1	The organization's parent, if it has one.	iso27001:organization_parent
+					organization_subsidiaries	ismsOrganization__organization_subsidiaries	str	0..*	The organization's subsidiaries, if it has any.	iso27001:organization_subsidiaries
+					organization_climate_change_relevant	ismsOrganization__organization_climate_change_relevant	Bool	0..1	Whether the organization has determined that climate change is a relevant issue for its ISMS.	iso27001:organization_climate_change_relevant
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+IsmsPolicy		IsmsPolicy	The information security policy that top management sets: the organization's commitment and the frame for its information security objectives.							
+					policy_statement	ismsPolicy__policy_statement	str	0..1	The policy's own statement, in the organization's words.	iso27001:policy_statement
+					policy_objectives_framework	ismsPolicy__policy_objectives_framework	str	0..1	How the policy frames the setting of information security objectives.	iso27001:policy_objectives_framework
+					policy_commitments	ismsPolicy__policy_commitments	str	0..*	The commitments the policy makes.	iso27001:policy_commitments
+					policy_applicability	ismsPolicy__policy_applicability	str	0..1	To whom and to what the policy applies.	iso27001:policy_applicability
+					policy_communication_date	ismsPolicy__policy_communication_date	XSDDate	0..1	When the policy was communicated within the organization.	iso27001:policy_communication_date
+					policy_acknowledgement_required	ismsPolicy__policy_acknowledgement_required	Bool	0..1	Whether staff must acknowledge the policy.	iso27001:policy_acknowledgement_required
+					policy_management_systems	ismsPolicy__policy_management_systems	IsmsManagementSystemStandard	0..*	The other management system standards the ISMS is integrated with under the same policy.	iso27001:policy_management_systems
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+					document_reference	ismsDocumentControlMixin__document_reference	str	0..1	The reference the organization's document control gives it.	iso27001:document_reference
+					document_version	ismsDocumentControlMixin__document_version	str	0..1	The version of the document.	iso27001:document_version
+					document_author	ismsDocumentControlMixin__document_author	str	0..1	Who wrote the document.	iso27001:document_author
+					document_owner	ismsDocumentControlMixin__document_owner	str	0..1	Who answers for the document's content and upkeep.	iso27001:document_owner
+					document_approver	ismsDocumentControlMixin__document_approver	str	0..1	Who approved the document.	iso27001:document_approver
+					document_approval_date	ismsDocumentControlMixin__document_approval_date	XSDDate	0..1	When the document was approved.	iso27001:document_approval_date
+					document_effective_date	ismsDocumentControlMixin__document_effective_date	XSDDate	0..1	When the document takes effect.	iso27001:document_effective_date
+					document_last_review_date	ismsDocumentControlMixin__document_last_review_date	XSDDate	0..1	When the document was last reviewed.	iso27001:document_last_review_date
+					document_next_review_date	ismsDocumentControlMixin__document_next_review_date	XSDDate	0..1	When the document is next due for review.	iso27001:document_next_review_date
+					document_status	ismsDocumentControlMixin__document_status	str	0..1	Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.	iso27001:document_status
+					document_classification	ismsDocumentControlMixin__document_classification	str	0..1	The information classification the document carries.	iso27001:document_classification
+					document_retention	ismsDocumentControlMixin__document_retention	IsmsDuration	0..1	How long the document is kept, as an ISO 8601 duration.	iso27001:document_retention
+					document_distribution	ismsDocumentControlMixin__document_distribution	str	0..*	How the document is distributed, accessed, retrieved and used.	iso27001:document_distribution
+					document_storage	ismsDocumentControlMixin__document_storage	str	0..1	How the document is stored and preserved, so that it stays legible.	iso27001:document_storage
+					document_change_control	ismsDocumentControlMixin__document_change_control	str	0..1	How changes to the document are controlled, such as version control.	iso27001:document_change_control
+					document_external_origin	ismsDocumentControlMixin__document_external_origin	Bool	0..1	Whether the document comes from outside the organization and is kept because the ISMS needs it.	iso27001:document_external_origin
+					document_external_source	ismsDocumentControlMixin__document_external_source	str	0..1	Who the document came from, when it comes from outside.	iso27001:document_external_source
+IsmsRecordMixin		IsmsRecordMixin	What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.							
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+IsmsResource		IsmsResource	A resource provided for the ISMS, such as people, time, tools or budget.							
+					resource_category	ismsResource__resource_category	str	0..1	What kind of resource it is.	iso27001:resource_category
+					resource_quantity	ismsResource__resource_quantity	str	0..1	How much of the resource is provided.	iso27001:resource_quantity
+					resource_allocation_date	ismsResource__resource_allocation_date	XSDDate	0..1	When the resource was allocated.	iso27001:resource_allocation_date
+					resource_allocated_to	ismsResource__resource_allocated_to	str	0..1	What the resource is allocated to.	iso27001:resource_allocated_to
+					resource_cost	ismsResource__resource_cost	str	0..1	What the resource costs.	iso27001:resource_cost
+					resource_availability	ismsResource__resource_availability	str	0..1	Whether the resource is available now, in the organization's own terms.	iso27001:resource_availability
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+IsmsRisk		IsmsRisk	An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated.							
+					affected_assets		*IsmsAsset	0..*	The assets the risk, event or incident affects.	iso27001:affected_assets
+					affected_security_properties		IsmsSecurityProperty	0..*	Which of confidentiality, integrity and availability the risk or incident threatens.	iso27001:affected_security_properties
+					risk_source	ismsRisk__risk_source	str	0..1	Where the risk comes from.	iso27001:risk_source
+					risk_threat	ismsRisk__risk_threat	str	0..1	The threat that could cause harm.	iso27001:risk_threat
+					risk_vulnerability	ismsRisk__risk_vulnerability	str	0..1	The weakness the threat could exploit.	iso27001:risk_vulnerability
+					risk_owner	ismsRisk__risk_owner	str	0..1	The person who is accountable for the risk and has the authority to manage it.	iso27001:risk_owner
+					risk_likelihood	ismsRisk__risk_likelihood	IsmsLikelihood	0..1	How likely the risk is.	iso27001:risk_likelihood
+					risk_impact	ismsRisk__risk_impact	IsmsImpact	0..1	How severe the consequences would be.	iso27001:risk_impact
+					risk_inherent_level	ismsRisk__risk_inherent_level	IsmsRiskLevel	0..1	The risk's level before controls.	iso27001:risk_inherent_level
+					risk_existing_controls	ismsRisk__risk_existing_controls	*IsmsControl	0..*	The organization's controls already acting on the risk.	iso27001:risk_existing_controls
+					risk_residual_level	ismsRisk__risk_residual_level	IsmsRiskLevel	0..1	The risk's level after controls.	iso27001:risk_residual_level
+					risk_treatment_option	ismsRisk__risk_treatment_option	IsmsRiskTreatmentOption	0..1	The treatment chosen for the risk.	iso27001:risk_treatment_option
+					risk_treatment_priority	ismsRisk__risk_treatment_priority	str	0..1	How soon the risk is to be treated, in the organization's own terms.	iso27001:risk_treatment_priority
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+IsmsRiskAssessment		IsmsRiskAssessment	One risk assessment carried out under the risk assessment process, and what it found.							
+					assessment_scope	ismsRiskAssessment__assessment_scope	str	0..1	What the assessment covered.	iso27001:assessment_scope
+					assessment_date	ismsRiskAssessment__assessment_date	XSDDate	0..1	When the assessment was carried out.	iso27001:assessment_date
+					assessment_assessor	ismsRiskAssessment__assessment_assessor	str	0..1	Who carried out the assessment.	iso27001:assessment_assessor
+					assessment_method_used	ismsRiskAssessment__assessment_method_used	str	0..1	The method this assessment applied.	iso27001:assessment_method_used
+					assessment_risks	ismsRiskAssessment__assessment_risks	*IsmsRisk	0..*	The risks the assessment identified.	iso27001:assessment_risks
+					assessment_summary	ismsRiskAssessment__assessment_summary	str	0..1	A summary of what the assessment found.	iso27001:assessment_summary
+					assessment_recommendations	ismsRiskAssessment__assessment_recommendations	str	0..*	What the assessment recommends.	iso27001:assessment_recommendations
+					assessment_next_date	ismsRiskAssessment__assessment_next_date	XSDDate	0..1	When the next assessment is planned.	iso27001:assessment_next_date
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+					document_reference	ismsDocumentControlMixin__document_reference	str	0..1	The reference the organization's document control gives it.	iso27001:document_reference
+					document_version	ismsDocumentControlMixin__document_version	str	0..1	The version of the document.	iso27001:document_version
+					document_author	ismsDocumentControlMixin__document_author	str	0..1	Who wrote the document.	iso27001:document_author
+					document_owner	ismsDocumentControlMixin__document_owner	str	0..1	Who answers for the document's content and upkeep.	iso27001:document_owner
+					document_approver	ismsDocumentControlMixin__document_approver	str	0..1	Who approved the document.	iso27001:document_approver
+					document_approval_date	ismsDocumentControlMixin__document_approval_date	XSDDate	0..1	When the document was approved.	iso27001:document_approval_date
+					document_effective_date	ismsDocumentControlMixin__document_effective_date	XSDDate	0..1	When the document takes effect.	iso27001:document_effective_date
+					document_last_review_date	ismsDocumentControlMixin__document_last_review_date	XSDDate	0..1	When the document was last reviewed.	iso27001:document_last_review_date
+					document_next_review_date	ismsDocumentControlMixin__document_next_review_date	XSDDate	0..1	When the document is next due for review.	iso27001:document_next_review_date
+					document_status	ismsDocumentControlMixin__document_status	str	0..1	Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.	iso27001:document_status
+					document_classification	ismsDocumentControlMixin__document_classification	str	0..1	The information classification the document carries.	iso27001:document_classification
+					document_retention	ismsDocumentControlMixin__document_retention	IsmsDuration	0..1	How long the document is kept, as an ISO 8601 duration.	iso27001:document_retention
+					document_distribution	ismsDocumentControlMixin__document_distribution	str	0..*	How the document is distributed, accessed, retrieved and used.	iso27001:document_distribution
+					document_storage	ismsDocumentControlMixin__document_storage	str	0..1	How the document is stored and preserved, so that it stays legible.	iso27001:document_storage
+					document_change_control	ismsDocumentControlMixin__document_change_control	str	0..1	How changes to the document are controlled, such as version control.	iso27001:document_change_control
+					document_external_origin	ismsDocumentControlMixin__document_external_origin	Bool	0..1	Whether the document comes from outside the organization and is kept because the ISMS needs it.	iso27001:document_external_origin
+					document_external_source	ismsDocumentControlMixin__document_external_source	str	0..1	Who the document came from, when it comes from outside.	iso27001:document_external_source
+IsmsRiskAssessmentProcess		IsmsRiskAssessmentProcess	The organization's process for assessing information security risks: its criteria for accepting risk and for assessing it, its scales and method, and when it runs.							
+					risk_acceptance_criteria	ismsRiskAssessmentProcess__risk_acceptance_criteria	str	0..1	The criteria for accepting a risk.	iso27001:risk_acceptance_criteria
+					risk_assessment_criteria	ismsRiskAssessmentProcess__risk_assessment_criteria	str	0..1	The criteria for carrying out a risk assessment.	iso27001:risk_assessment_criteria
+					risk_assessment_method	ismsRiskAssessmentProcess__risk_assessment_method	str	0..1	The method used to identify, analyse and evaluate risks.	iso27001:risk_assessment_method
+					risk_likelihood_scale	ismsRiskAssessmentProcess__risk_likelihood_scale	str	0..1	The scale for rating likelihood.	iso27001:risk_likelihood_scale
+					risk_impact_scale	ismsRiskAssessmentProcess__risk_impact_scale	str	0..1	The scale for rating consequences.	iso27001:risk_impact_scale
+					risk_matrix	ismsRiskAssessmentProcess__risk_matrix	str	0..1	How likelihood and consequence combine into a risk level.	iso27001:risk_matrix
+					risk_assessment_frequency	ismsRiskAssessmentProcess__risk_assessment_frequency	str	0..1	How often risks are assessed.	iso27001:risk_assessment_frequency
+					risk_assessment_triggers	ismsRiskAssessmentProcess__risk_assessment_triggers	str	0..*	The events that start a risk assessment outside the planned ones.	iso27001:risk_assessment_triggers
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+					document_reference	ismsDocumentControlMixin__document_reference	str	0..1	The reference the organization's document control gives it.	iso27001:document_reference
+					document_version	ismsDocumentControlMixin__document_version	str	0..1	The version of the document.	iso27001:document_version
+					document_author	ismsDocumentControlMixin__document_author	str	0..1	Who wrote the document.	iso27001:document_author
+					document_owner	ismsDocumentControlMixin__document_owner	str	0..1	Who answers for the document's content and upkeep.	iso27001:document_owner
+					document_approver	ismsDocumentControlMixin__document_approver	str	0..1	Who approved the document.	iso27001:document_approver
+					document_approval_date	ismsDocumentControlMixin__document_approval_date	XSDDate	0..1	When the document was approved.	iso27001:document_approval_date
+					document_effective_date	ismsDocumentControlMixin__document_effective_date	XSDDate	0..1	When the document takes effect.	iso27001:document_effective_date
+					document_last_review_date	ismsDocumentControlMixin__document_last_review_date	XSDDate	0..1	When the document was last reviewed.	iso27001:document_last_review_date
+					document_next_review_date	ismsDocumentControlMixin__document_next_review_date	XSDDate	0..1	When the document is next due for review.	iso27001:document_next_review_date
+					document_status	ismsDocumentControlMixin__document_status	str	0..1	Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.	iso27001:document_status
+					document_classification	ismsDocumentControlMixin__document_classification	str	0..1	The information classification the document carries.	iso27001:document_classification
+					document_retention	ismsDocumentControlMixin__document_retention	IsmsDuration	0..1	How long the document is kept, as an ISO 8601 duration.	iso27001:document_retention
+					document_distribution	ismsDocumentControlMixin__document_distribution	str	0..*	How the document is distributed, accessed, retrieved and used.	iso27001:document_distribution
+					document_storage	ismsDocumentControlMixin__document_storage	str	0..1	How the document is stored and preserved, so that it stays legible.	iso27001:document_storage
+					document_change_control	ismsDocumentControlMixin__document_change_control	str	0..1	How changes to the document are controlled, such as version control.	iso27001:document_change_control
+					document_external_origin	ismsDocumentControlMixin__document_external_origin	Bool	0..1	Whether the document comes from outside the organization and is kept because the ISMS needs it.	iso27001:document_external_origin
+					document_external_source	ismsDocumentControlMixin__document_external_source	str	0..1	Who the document came from, when it comes from outside.	iso27001:document_external_source
+IsmsRiskTreatmentPlan		IsmsRiskTreatmentPlan	A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's approval of the plan and of the residual risk.							
+					implementation_state		IsmsImplementationStatus	0..1	How far the control or the plan has been put into effect.	iso27001:implementation_state
+					plan_scope	ismsRiskTreatmentPlan__plan_scope	str	0..1	What the plan covers.	iso27001:plan_scope
+					plan_risks	ismsRiskTreatmentPlan__plan_risks	*IsmsRisk	0..*	The risks the plan treats.	iso27001:plan_risks
+					plan_actions	ismsRiskTreatmentPlan__plan_actions	str	0..*	The actions the plan takes.	iso27001:plan_actions
+					plan_controls	ismsRiskTreatmentPlan__plan_controls	*IsmsControl	0..*	The controls the plan puts in place.	iso27001:plan_controls
+					plan_resources	ismsRiskTreatmentPlan__plan_resources	str	0..1	The resources the plan needs.	iso27001:plan_resources
+					plan_responsible_parties	ismsRiskTreatmentPlan__plan_responsible_parties	str	0..*	Who carries out the plan.	iso27001:plan_responsible_parties
+					plan_timeline	ismsRiskTreatmentPlan__plan_timeline	str	0..1	When the plan's actions are to happen.	iso27001:plan_timeline
+					plan_risk_owner_approval	ismsRiskTreatmentPlan__plan_risk_owner_approval	str	0..1	The risk owner who approved the plan.	iso27001:plan_risk_owner_approval
+					plan_residual_risk_acceptance	ismsRiskTreatmentPlan__plan_residual_risk_acceptance	str	0..1	How the risk owners accepted the risk that remains.	iso27001:plan_residual_risk_acceptance
+					plan_completion_date	ismsRiskTreatmentPlan__plan_completion_date	XSDDate	0..1	When the plan was completed.	iso27001:plan_completion_date
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+					document_reference	ismsDocumentControlMixin__document_reference	str	0..1	The reference the organization's document control gives it.	iso27001:document_reference
+					document_version	ismsDocumentControlMixin__document_version	str	0..1	The version of the document.	iso27001:document_version
+					document_author	ismsDocumentControlMixin__document_author	str	0..1	Who wrote the document.	iso27001:document_author
+					document_owner	ismsDocumentControlMixin__document_owner	str	0..1	Who answers for the document's content and upkeep.	iso27001:document_owner
+					document_approver	ismsDocumentControlMixin__document_approver	str	0..1	Who approved the document.	iso27001:document_approver
+					document_approval_date	ismsDocumentControlMixin__document_approval_date	XSDDate	0..1	When the document was approved.	iso27001:document_approval_date
+					document_effective_date	ismsDocumentControlMixin__document_effective_date	XSDDate	0..1	When the document takes effect.	iso27001:document_effective_date
+					document_last_review_date	ismsDocumentControlMixin__document_last_review_date	XSDDate	0..1	When the document was last reviewed.	iso27001:document_last_review_date
+					document_next_review_date	ismsDocumentControlMixin__document_next_review_date	XSDDate	0..1	When the document is next due for review.	iso27001:document_next_review_date
+					document_status	ismsDocumentControlMixin__document_status	str	0..1	Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.	iso27001:document_status
+					document_classification	ismsDocumentControlMixin__document_classification	str	0..1	The information classification the document carries.	iso27001:document_classification
+					document_retention	ismsDocumentControlMixin__document_retention	IsmsDuration	0..1	How long the document is kept, as an ISO 8601 duration.	iso27001:document_retention
+					document_distribution	ismsDocumentControlMixin__document_distribution	str	0..*	How the document is distributed, accessed, retrieved and used.	iso27001:document_distribution
+					document_storage	ismsDocumentControlMixin__document_storage	str	0..1	How the document is stored and preserved, so that it stays legible.	iso27001:document_storage
+					document_change_control	ismsDocumentControlMixin__document_change_control	str	0..1	How changes to the document are controlled, such as version control.	iso27001:document_change_control
+					document_external_origin	ismsDocumentControlMixin__document_external_origin	Bool	0..1	Whether the document comes from outside the organization and is kept because the ISMS needs it.	iso27001:document_external_origin
+					document_external_source	ismsDocumentControlMixin__document_external_source	str	0..1	Who the document came from, when it comes from outside.	iso27001:document_external_source
+IsmsRiskTreatmentProcess		IsmsRiskTreatmentProcess	The organization's process for treating information security risks: how it chooses treatments and controls, checks them against Annex A, and produces the Statement of Applicability.							
+					treatment_options_guidance	ismsRiskTreatmentProcess__treatment_options_guidance	str	0..1	How a treatment option is chosen for a risk.	iso27001:treatment_options_guidance
+					treatment_control_selection	ismsRiskTreatmentProcess__treatment_control_selection	str	0..1	How the controls a treatment needs are chosen.	iso27001:treatment_control_selection
+					treatment_annex_a_comparison	ismsRiskTreatmentProcess__treatment_annex_a_comparison	str	0..1	How the chosen controls are compared with Annex A, so that no necessary control is left out.	iso27001:treatment_annex_a_comparison
+					treatment_soa_template	ismsRiskTreatmentProcess__treatment_soa_template	str	0..1	The template the Statement of Applicability follows.	iso27001:treatment_soa_template
+					treatment_approval_workflow	ismsRiskTreatmentProcess__treatment_approval_workflow	str	0..1	How a treatment plan and its residual risks are approved.	iso27001:treatment_approval_workflow
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+					document_reference	ismsDocumentControlMixin__document_reference	str	0..1	The reference the organization's document control gives it.	iso27001:document_reference
+					document_version	ismsDocumentControlMixin__document_version	str	0..1	The version of the document.	iso27001:document_version
+					document_author	ismsDocumentControlMixin__document_author	str	0..1	Who wrote the document.	iso27001:document_author
+					document_owner	ismsDocumentControlMixin__document_owner	str	0..1	Who answers for the document's content and upkeep.	iso27001:document_owner
+					document_approver	ismsDocumentControlMixin__document_approver	str	0..1	Who approved the document.	iso27001:document_approver
+					document_approval_date	ismsDocumentControlMixin__document_approval_date	XSDDate	0..1	When the document was approved.	iso27001:document_approval_date
+					document_effective_date	ismsDocumentControlMixin__document_effective_date	XSDDate	0..1	When the document takes effect.	iso27001:document_effective_date
+					document_last_review_date	ismsDocumentControlMixin__document_last_review_date	XSDDate	0..1	When the document was last reviewed.	iso27001:document_last_review_date
+					document_next_review_date	ismsDocumentControlMixin__document_next_review_date	XSDDate	0..1	When the document is next due for review.	iso27001:document_next_review_date
+					document_status	ismsDocumentControlMixin__document_status	str	0..1	Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.	iso27001:document_status
+					document_classification	ismsDocumentControlMixin__document_classification	str	0..1	The information classification the document carries.	iso27001:document_classification
+					document_retention	ismsDocumentControlMixin__document_retention	IsmsDuration	0..1	How long the document is kept, as an ISO 8601 duration.	iso27001:document_retention
+					document_distribution	ismsDocumentControlMixin__document_distribution	str	0..*	How the document is distributed, accessed, retrieved and used.	iso27001:document_distribution
+					document_storage	ismsDocumentControlMixin__document_storage	str	0..1	How the document is stored and preserved, so that it stays legible.	iso27001:document_storage
+					document_change_control	ismsDocumentControlMixin__document_change_control	str	0..1	How changes to the document are controlled, such as version control.	iso27001:document_change_control
+					document_external_origin	ismsDocumentControlMixin__document_external_origin	Bool	0..1	Whether the document comes from outside the organization and is kept because the ISMS needs it.	iso27001:document_external_origin
+					document_external_source	ismsDocumentControlMixin__document_external_source	str	0..1	Who the document came from, when it comes from outside.	iso27001:document_external_source
+IsmsRole		IsmsRole	A role in the ISMS, with the responsibilities and authorities it carries and who holds it.							
+					role_category	ismsRole__role_category	str	0..1	What kind of role it is, in the organization's own terms.	iso27001:role_category
+					role_responsibilities	ismsRole__role_responsibilities	str	0..*	The responsibilities assigned to the role.	iso27001:role_responsibilities
+					role_authorities	ismsRole__role_authorities	str	0..*	The authorities the role carries.	iso27001:role_authorities
+					role_accountability	ismsRole__role_accountability	str	0..1	What the role is accountable for.	iso27001:role_accountability
+					role_holders	ismsRole__role_holders	str	0..*	The people who hold the role.	iso27001:role_holders
+					role_delegation	ismsRole__role_delegation	str	0..1	How the role may delegate its responsibilities.	iso27001:role_delegation
+					role_reports_to	ismsRole__role_reports_to	*IsmsRole	0..1	The role this role reports to.	iso27001:role_reports_to
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+IsmsSecurityEvent		IsmsSecurityEvent	An information security event someone reported, and the assessment of whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.							
+					affected_assets		*IsmsAsset	0..*	The assets the risk, event or incident affects.	iso27001:affected_assets
+					event_type	ismsSecurityEvent__event_type	str	0..1	The kind of record: IsmsSecurityEvent, or IsmsSecurityIncident for an event assessed as an incident.	iso27001:event_type
+					event_occurred_at	ismsSecurityEvent__event_occurred_at	XSDDateTime	0..1	When the event happened, or when it was first noticed.	iso27001:event_occurred_at
+					event_reporter	ismsSecurityEvent__event_reporter	str	0..1	Who reported the event.	iso27001:event_reporter
+					event_assessment	ismsSecurityEvent__event_assessment	str	0..1	What the assessment of the event found.	iso27001:event_assessment
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+IsmsSecurityIncident	IsmsSecurityEvent	IsmsSecurityIncident	An information security event assessed as an incident: its category and severity, how it was detected, contained, eradicated and recovered from, the evidence collected, who was told, and what was learned.							
+					affected_security_properties		IsmsSecurityProperty	0..*	Which of confidentiality, integrity and availability the risk or incident threatens.	iso27001:affected_security_properties
+					incident_category	ismsSecurityIncident__incident_category	IsmsIncidentCategory	0..1	What kind of incident it is.	iso27001:incident_category
+					incident_severity	ismsSecurityIncident__incident_severity	IsmsRiskLevel	0..1	How severe the incident is.	iso27001:incident_severity
+					incident_detection_method	ismsSecurityIncident__incident_detection_method	str	0..1	How the incident was detected.	iso27001:incident_detection_method
+					incident_response_actions	ismsSecurityIncident__incident_response_actions	str	0..*	What was done in response.	iso27001:incident_response_actions
+					incident_containment_actions	ismsSecurityIncident__incident_containment_actions	str	0..*	What was done to contain it.	iso27001:incident_containment_actions
+					incident_eradication_actions	ismsSecurityIncident__incident_eradication_actions	str	0..*	What was done to remove its cause.	iso27001:incident_eradication_actions
+					incident_recovery_actions	ismsSecurityIncident__incident_recovery_actions	str	0..*	What was done to restore normal operation.	iso27001:incident_recovery_actions
+					incident_root_cause	ismsSecurityIncident__incident_root_cause	str	0..1	What caused the incident.	iso27001:incident_root_cause
+					incident_lessons_learned	ismsSecurityIncident__incident_lessons_learned	str	0..*	What the organization learned from it.	iso27001:incident_lessons_learned
+					incident_evidence	ismsSecurityIncident__incident_evidence	str	0..*	The evidence collected about it.	iso27001:incident_evidence
+					incident_notification_required	ismsSecurityIncident__incident_notification_required	Bool	0..1	Whether authorities or other parties had to be told.	iso27001:incident_notification_required
+					incident_notifications	ismsSecurityIncident__incident_notifications	str	0..*	Whom the organization told, and when.	iso27001:incident_notifications
+					incident_closed_at	ismsSecurityIncident__incident_closed_at	XSDDateTime	0..1	When the incident was closed.	iso27001:incident_closed_at
+					incident_review	ismsSecurityIncident__incident_review	str	0..1	What the review after the incident found.	iso27001:incident_review
+IsmsStatementOfApplicability		IsmsStatementOfApplicability	The Statement of Applicability: each control the organization needs, with why it is included and whether it is in place, and each Annex A control it leaves out, with why.							
+					soa_entries	ismsStatementOfApplicability__soa_entries	IsmsApplicabilityEntry	0..*	The statement's entries, one for each control included or Annex A control excluded.	iso27001:soa_entries
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+					document_reference	ismsDocumentControlMixin__document_reference	str	0..1	The reference the organization's document control gives it.	iso27001:document_reference
+					document_version	ismsDocumentControlMixin__document_version	str	0..1	The version of the document.	iso27001:document_version
+					document_author	ismsDocumentControlMixin__document_author	str	0..1	Who wrote the document.	iso27001:document_author
+					document_owner	ismsDocumentControlMixin__document_owner	str	0..1	Who answers for the document's content and upkeep.	iso27001:document_owner
+					document_approver	ismsDocumentControlMixin__document_approver	str	0..1	Who approved the document.	iso27001:document_approver
+					document_approval_date	ismsDocumentControlMixin__document_approval_date	XSDDate	0..1	When the document was approved.	iso27001:document_approval_date
+					document_effective_date	ismsDocumentControlMixin__document_effective_date	XSDDate	0..1	When the document takes effect.	iso27001:document_effective_date
+					document_last_review_date	ismsDocumentControlMixin__document_last_review_date	XSDDate	0..1	When the document was last reviewed.	iso27001:document_last_review_date
+					document_next_review_date	ismsDocumentControlMixin__document_next_review_date	XSDDate	0..1	When the document is next due for review.	iso27001:document_next_review_date
+					document_status	ismsDocumentControlMixin__document_status	str	0..1	Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.	iso27001:document_status
+					document_classification	ismsDocumentControlMixin__document_classification	str	0..1	The information classification the document carries.	iso27001:document_classification
+					document_retention	ismsDocumentControlMixin__document_retention	IsmsDuration	0..1	How long the document is kept, as an ISO 8601 duration.	iso27001:document_retention
+					document_distribution	ismsDocumentControlMixin__document_distribution	str	0..*	How the document is distributed, accessed, retrieved and used.	iso27001:document_distribution
+					document_storage	ismsDocumentControlMixin__document_storage	str	0..1	How the document is stored and preserved, so that it stays legible.	iso27001:document_storage
+					document_change_control	ismsDocumentControlMixin__document_change_control	str	0..1	How changes to the document are controlled, such as version control.	iso27001:document_change_control
+					document_external_origin	ismsDocumentControlMixin__document_external_origin	Bool	0..1	Whether the document comes from outside the organization and is kept because the ISMS needs it.	iso27001:document_external_origin
+					document_external_source	ismsDocumentControlMixin__document_external_source	str	0..1	Who the document came from, when it comes from outside.	iso27001:document_external_source
+IsmsTopicSpecificPolicy		IsmsTopicSpecificPolicy	A policy on one topic of information security, such as access control or backup, that supports the information security policy.							
+					relevant_controls		*IsmsControl	0..*	The organization's controls that the record concerns.	iso27001:relevant_controls
+					topic_policy_topic	ismsTopicSpecificPolicy__topic_policy_topic	str	0..1	The topic the policy covers.	iso27001:topic_policy_topic
+					topic_policy_parent	ismsTopicSpecificPolicy__topic_policy_parent	*IsmsPolicy	0..1	The information security policy this policy supports.	iso27001:topic_policy_parent
+					topic_policy_audience	ismsTopicSpecificPolicy__topic_policy_audience	str	0..1	Whom the policy is written for.	iso27001:topic_policy_audience
+				I	isms_id		URIorCURIE	1..1	The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.	iso27001:isms_id
+					title	IsmsRecordMixin_title	str	1..1	The name the organization gives the record.	schema:name
+					description		str	0..1	What the record says or describes, in the organization's own words.	schema:description
+					document_reference	ismsDocumentControlMixin__document_reference	str	0..1	The reference the organization's document control gives it.	iso27001:document_reference
+					document_version	ismsDocumentControlMixin__document_version	str	0..1	The version of the document.	iso27001:document_version
+					document_author	ismsDocumentControlMixin__document_author	str	0..1	Who wrote the document.	iso27001:document_author
+					document_owner	ismsDocumentControlMixin__document_owner	str	0..1	Who answers for the document's content and upkeep.	iso27001:document_owner
+					document_approver	ismsDocumentControlMixin__document_approver	str	0..1	Who approved the document.	iso27001:document_approver
+					document_approval_date	ismsDocumentControlMixin__document_approval_date	XSDDate	0..1	When the document was approved.	iso27001:document_approval_date
+					document_effective_date	ismsDocumentControlMixin__document_effective_date	XSDDate	0..1	When the document takes effect.	iso27001:document_effective_date
+					document_last_review_date	ismsDocumentControlMixin__document_last_review_date	XSDDate	0..1	When the document was last reviewed.	iso27001:document_last_review_date
+					document_next_review_date	ismsDocumentControlMixin__document_next_review_date	XSDDate	0..1	When the document is next due for review.	iso27001:document_next_review_date
+					document_status	ismsDocumentControlMixin__document_status	str	0..1	Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.	iso27001:document_status
+					document_classification	ismsDocumentControlMixin__document_classification	str	0..1	The information classification the document carries.	iso27001:document_classification
+					document_retention	ismsDocumentControlMixin__document_retention	IsmsDuration	0..1	How long the document is kept, as an ISO 8601 duration.	iso27001:document_retention
+					document_distribution	ismsDocumentControlMixin__document_distribution	str	0..*	How the document is distributed, accessed, retrieved and used.	iso27001:document_distribution
+					document_storage	ismsDocumentControlMixin__document_storage	str	0..1	How the document is stored and preserved, so that it stays legible.	iso27001:document_storage
+					document_change_control	ismsDocumentControlMixin__document_change_control	str	0..1	How changes to the document are controlled, such as version control.	iso27001:document_change_control
+					document_external_origin	ismsDocumentControlMixin__document_external_origin	Bool	0..1	Whether the document comes from outside the organization and is kept because the ISMS needs it.	iso27001:document_external_origin
+					document_external_source	ismsDocumentControlMixin__document_external_source	str	0..1	Who the document came from, when it comes from outside.	iso27001:document_external_source
 

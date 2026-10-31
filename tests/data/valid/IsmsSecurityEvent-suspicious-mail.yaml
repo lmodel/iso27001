@@ -1,0 +1,9 @@
+# A reported event that the assessment found not to be an incident.
+isms_id: acme:event-2026-031
+title: Suspicious invoice message
+event_type: IsmsSecurityEvent
+event_occurred_at: "2026-03-03T09:12:00Z"
+event_reporter: Accounts team
+affected_assets:
+  - acme:asset-mail
+event_assessment: A phishing test message; no action needed.

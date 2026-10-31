@@ -1,0 +1,11 @@
+isms_id: probo:encrypt-your-data-in-transit
+title: Encrypt your data in transit
+control_annex_a_controls:
+  - a_8_11
+  - a_8_20
+control_theme: technological
+control_text: Data sent over networks can be intercepted and read - the encryption ensure
+  it won’t be intelligible. It secure it from potential threats
+control_guidance: If you don’t have your own network or are not using FTP, you only need to
+  focus on web traffic
+implementation_state: not_started

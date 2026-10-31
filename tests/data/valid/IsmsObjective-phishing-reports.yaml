@@ -1,0 +1,18 @@
+# A measurable objective with its metric, target and the risk it concerns.
+isms_id: acme:objective-phishing-reports
+title: Report suspected phishing
+objective_statement: At least 80% of staff report the quarterly phishing test.
+objective_target: "80%"
+objective_current_value: "64%"
+objective_metric: Share of staff who report the test message within a day.
+objective_measurement_method: Quarterly simulated phishing campaign.
+objective_measurement_frequency: quarterly
+responsible_role: acme:role-ciso
+objective_target_date: "2026-12-31"
+objective_achievement: on track
+objective_risks:
+  - acme:risk-phishing
+relevant_controls:
+  - acme:control-awareness
+objective_action_plan: Short monthly lessons, and a report button in the mail client.
+objective_resources: Two days of the security team's time each quarter.

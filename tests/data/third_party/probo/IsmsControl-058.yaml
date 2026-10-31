@@ -1,0 +1,9 @@
+isms_id: probo:document-your-development-lifecycle
+title: Document your development lifecycle
+control_annex_a_controls:
+  - a_8_25
+  - a_8_9
+control_theme: technological
+control_text: Formalizing a proper development lifecycle helps your engineer in their jobs
+  and helps you to scale your team. It reduces the chances of human error
+implementation_state: not_started

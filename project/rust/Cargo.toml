@@ -1,6 +1,6 @@
 [package]
 name = "iso27001"
-version = "1.0.0"
+version = "2022/Amd 1:2024"
 edition = "2021"
 
 [lib]

@@ -1,0 +1,6 @@
+# Fails at: /control_annex_a_controls/0
+# Invalid: Annex A's organizational controls run from A.5.1 to A.5.37.
+isms_id: acme:control-extra
+title: An extra control
+control_annex_a_controls:
+  - a_5_38

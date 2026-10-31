@@ -4,940 +4,887 @@ Project {
   name: 'iso27001'
 }
 
-Table NamedEntity {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
+Table IsmsRecordMixin {
+isms_id varchar [not null, primary key]
+title varchar [not null]
 description varchar
-created_date date
-modified_date date
-version varchar
 }
 
-Table DocumentedInformation {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
-description varchar
-created_date date
-modified_date date
-version varchar
-document_type varchar
+Table IsmsDocumentControlMixin {
 document_reference varchar
-author varchar
-owner varchar
-approved_by varchar
-approved_date date
-effective_date date
-review_date date
-status varchar
-classification varchar
-retention_period varchar
-distribution_controls varchar
-storage_and_preservation varchar
-change_control_method varchar
-external_origin boolean
-external_origin_source varchar
+document_version varchar
+document_author varchar
+document_owner varchar
+document_approver varchar
+document_approval_date date
+document_effective_date date
+document_last_review_date date
+document_next_review_date date
+document_status varchar
+document_classification varchar
+document_retention varchar
+document_distribution varchar
+document_storage varchar
+document_change_control varchar
+document_external_origin boolean
+document_external_source varchar
 }
 
-Table InformationSecurityManagementSystem {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
+Table IsmsManagementSystem {
+isms_organization varchar
+isms_top_management varchar
+isms_governing_body varchar
+isms_leadership_evidence varchar
+isms_scope varchar
+isms_scope_boundaries varchar
+isms_scope_exclusions varchar
+isms_interfaces varchar
+isms_processes varchar
+isms_internal_issues varchar
+isms_external_issues varchar
+isms_risk_and_opportunity_actions varchar
+isms_planned_changes varchar
+isms_external_services varchar
+isms_certification_status varchar
+isms_certification_body varchar
+isms_certification_date date
+isms_recertification_date date
+isms_interested_parties varchar
+isms_policy varchar
+isms_topic_specific_policies varchar
+isms_roles varchar
+isms_objectives varchar
+isms_risk_assessment_process varchar
+isms_risk_treatment_process varchar
+isms_risk_assessments varchar
+isms_risks varchar
+isms_risk_treatment_plans varchar
+isms_statement_of_applicability varchar
+isms_controls varchar
+isms_assets varchar
+isms_resources varchar
+isms_competence_records varchar
+isms_awareness_programme varchar
+isms_communication_plan varchar
+isms_documented_information varchar
+isms_operational_procedures varchar
+isms_monitoring_programme varchar
+isms_audit_programmes varchar
+isms_audits varchar
+isms_management_reviews varchar
+isms_nonconformities varchar
+isms_corrective_actions varchar
+isms_improvements varchar
+isms_security_events varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
 description varchar
-created_date date
-modified_date date
-version varchar
-organization varchar
-top_management varchar
-governing_body varchar
-leadership_commitment_evidence varchar
-scope_statement varchar
-scope_boundaries varchar
-scope_exclusions varchar
-interfaces_and_dependencies varchar
-processes_and_interactions varchar
-context_internal_issues varchar
-context_external_issues varchar
-interested_parties varchar
-information_security_policy varchar
-objectives varchar
-risks_and_opportunities_actions varchar
-planned_changes varchar
-externally_provided_services varchar
-risk_assessment_process varchar
-risk_treatment_process varchar
-statement_of_applicability varchar
-controls varchar
-roles varchar
-resources varchar
-competence_records varchar
-awareness_program varchar
-communication_plan varchar
-documented_information_register varchar
-operational_procedures varchar
-risk_assessments varchar
-risk_treatment_plans varchar
-monitoring_program varchar
-internal_audits varchar
-management_reviews varchar
-nonconformities varchar
-corrective_actions varchar
-improvements varchar
-certification_status varchar
-certification_body varchar
-certification_date date
-recertification_date date
 }
 
-Table Organization {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
+Table IsmsOrganization {
+organization_legal_name varchar
+organization_trading_names varchar
+organization_kind varchar
+organization_sector varchar
+organization_size varchar
+organization_employee_count int
+organization_locations varchar
+organization_jurisdictions varchar
+organization_parent varchar
+organization_subsidiaries varchar
+organization_climate_change_relevant boolean
+isms_id varchar [not null, primary key]
+title varchar [not null]
 description varchar
-created_date date
-modified_date date
-version varchar
-legal_name varchar
-trading_names varchar
-organization_type varchar
-industry_sector varchar
-size_category varchar
-employee_count varchar
-geographic_locations varchar
-regulatory_jurisdictions varchar
-parent_organization varchar
-subsidiaries varchar
-climate_change_relevant boolean
 }
 
-Table InterestedParty {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
+Table IsmsInterestedParty {
+party_category varchar
+party_relationship varchar
+party_requirements varchar
+party_addressed_requirements varchar
+party_climate_change_requirements varchar
+party_communication_needs varchar
+party_contact varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
 description varchar
-created_date date
-modified_date date
-version varchar
-party_type varchar
-relationship varchar
-requirements varchar
-addressed_requirements varchar
-climate_change_related_requirements varchar
-communication_needs varchar
-contact_information varchar
 }
 
-Table InformationSecurityPolicy {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
-description varchar
-created_date date
-modified_date date
-version varchar
-document_type varchar
-document_reference varchar
-author varchar
-owner varchar
-approved_by varchar
-approved_date date
-effective_date date
-review_date date
-status varchar
-classification varchar
-retention_period varchar
-distribution_controls varchar
-storage_and_preservation varchar
-change_control_method varchar
-external_origin boolean
-external_origin_source varchar
+Table IsmsPolicy {
 policy_statement varchar
 policy_objectives_framework varchar
-commitment_statements varchar
-applicability_statement varchar
-communication_date date
-acknowledgment_required boolean
-last_policy_review_date date
-next_policy_review_date date
-related_topic_policies varchar
-integrated_management_systems varchar
-}
-
-Table TopicSpecificPolicy {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
+policy_commitments varchar
+policy_applicability varchar
+policy_communication_date date
+policy_acknowledgement_required boolean
+policy_management_systems varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
 description varchar
-created_date date
-modified_date date
-version varchar
-document_type varchar
 document_reference varchar
-author varchar
-owner varchar
-approved_by varchar
-approved_date date
-effective_date date
-review_date date
-status varchar
-classification varchar
-retention_period varchar
-distribution_controls varchar
-storage_and_preservation varchar
-change_control_method varchar
-external_origin boolean
-external_origin_source varchar
-topic_area varchar
-parent_policy varchar
-applicable_controls varchar
-target_audience varchar
+document_version varchar
+document_author varchar
+document_owner varchar
+document_approver varchar
+document_approval_date date
+document_effective_date date
+document_last_review_date date
+document_next_review_date date
+document_status varchar
+document_classification varchar
+document_retention varchar
+document_distribution varchar
+document_storage varchar
+document_change_control varchar
+document_external_origin boolean
+document_external_source varchar
 }
 
-Table Role {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
+Table IsmsTopicSpecificPolicy {
+relevant_controls varchar
+topic_policy_topic varchar
+topic_policy_parent varchar
+topic_policy_audience varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
 description varchar
-created_date date
-modified_date date
-version varchar
-role_type varchar
-responsibilities varchar
-authorities varchar
-accountability varchar
-assigned_to varchar
-delegation_rules varchar
-reporting_line varchar
+document_reference varchar
+document_version varchar
+document_author varchar
+document_owner varchar
+document_approver varchar
+document_approval_date date
+document_effective_date date
+document_last_review_date date
+document_next_review_date date
+document_status varchar
+document_classification varchar
+document_retention varchar
+document_distribution varchar
+document_storage varchar
+document_change_control varchar
+document_external_origin boolean
+document_external_source varchar
 }
 
-Table InformationSecurityObjective {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
+Table IsmsRole {
+role_category varchar
+role_responsibilities varchar
+role_authorities varchar
+role_accountability varchar
+role_holders varchar
+role_delegation varchar
+role_reports_to varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
 description varchar
-created_date date
-modified_date date
-version varchar
-objective_statement varchar
-target_value varchar
-current_value varchar
-metric_definition varchar
-measurement_method varchar
-measurement_frequency varchar
+}
+
+Table IsmsObjective {
 responsible_role varchar
-target_date date
-achievement_status varchar
-related_risks varchar
-related_controls varchar
-action_plan varchar
-objective_resources_required varchar
+relevant_controls varchar
+objective_statement varchar
+objective_target varchar
+objective_current_value varchar
+objective_metric varchar
+objective_measurement_method varchar
+objective_measurement_frequency varchar
+objective_target_date date
+objective_achievement varchar
+objective_risks varchar
+objective_action_plan varchar
+objective_resources varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 }
 
-Table RiskAssessmentProcess {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
-description varchar
-created_date date
-modified_date date
-version varchar
-document_type varchar
-document_reference varchar
-author varchar
-owner varchar
-approved_by varchar
-approved_date date
-effective_date date
-review_date date
-status varchar
-classification varchar
-retention_period varchar
-distribution_controls varchar
-storage_and_preservation varchar
-change_control_method varchar
-external_origin boolean
-external_origin_source varchar
+Table IsmsRiskAssessmentProcess {
 risk_acceptance_criteria varchar
-assessment_criteria varchar
-assessment_methodology varchar
-likelihood_scale varchar
-impact_scale varchar
+risk_assessment_criteria varchar
+risk_assessment_method varchar
+risk_likelihood_scale varchar
+risk_impact_scale varchar
 risk_matrix varchar
-assessment_frequency varchar
-trigger_events varchar
+risk_assessment_frequency varchar
+risk_assessment_triggers varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
+document_reference varchar
+document_version varchar
+document_author varchar
+document_owner varchar
+document_approver varchar
+document_approval_date date
+document_effective_date date
+document_last_review_date date
+document_next_review_date date
+document_status varchar
+document_classification varchar
+document_retention varchar
+document_distribution varchar
+document_storage varchar
+document_change_control varchar
+document_external_origin boolean
+document_external_source varchar
 }
 
-Table RiskAssessment {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
-description varchar
-created_date date
-modified_date date
-version varchar
-document_type varchar
-document_reference varchar
-author varchar
-owner varchar
-approved_by varchar
-approved_date date
-effective_date date
-review_date date
-status varchar
-classification varchar
-retention_period varchar
-distribution_controls varchar
-storage_and_preservation varchar
-change_control_method varchar
-external_origin boolean
-external_origin_source varchar
+Table IsmsRiskAssessment {
 assessment_scope varchar
 assessment_date date
-assessor varchar
-methodology_used varchar
-risks_identified varchar
-summary_findings varchar
-recommendations varchar
-next_assessment_date date
+assessment_assessor varchar
+assessment_method_used varchar
+assessment_risks varchar
+assessment_summary varchar
+assessment_recommendations varchar
+assessment_next_date date
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
+document_reference varchar
+document_version varchar
+document_author varchar
+document_owner varchar
+document_approver varchar
+document_approval_date date
+document_effective_date date
+document_last_review_date date
+document_next_review_date date
+document_status varchar
+document_classification varchar
+document_retention varchar
+document_distribution varchar
+document_storage varchar
+document_change_control varchar
+document_external_origin boolean
+document_external_source varchar
 }
 
-Table Risk {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
-description varchar
-created_date date
-modified_date date
-version varchar
-risk_source varchar
-threat_description varchar
-vulnerability_description varchar
+Table IsmsRisk {
 affected_assets varchar
-affected_cia_properties varchar
+affected_security_properties varchar
+risk_source varchar
+risk_threat varchar
+risk_vulnerability varchar
 risk_owner varchar
-likelihood varchar
-impact varchar
-inherent_risk_level varchar
-existing_controls varchar
-residual_risk_level varchar
+risk_likelihood varchar
+risk_impact varchar
+risk_inherent_level varchar
+risk_existing_controls varchar
+risk_residual_level varchar
 risk_treatment_option varchar
-treatment_priority varchar
-related_treatment_plan varchar
+risk_treatment_priority varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 }
 
-Table RiskTreatmentProcess {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
-description varchar
-created_date date
-modified_date date
-version varchar
-document_type varchar
-document_reference varchar
-author varchar
-owner varchar
-approved_by varchar
-approved_date date
-effective_date date
-review_date date
-status varchar
-classification varchar
-retention_period varchar
-distribution_controls varchar
-storage_and_preservation varchar
-change_control_method varchar
-external_origin boolean
-external_origin_source varchar
+Table IsmsRiskTreatmentProcess {
 treatment_options_guidance varchar
-control_selection_criteria varchar
-annex_a_omission_verification varchar
-soa_template varchar
-approval_workflow varchar
+treatment_control_selection varchar
+treatment_annex_a_comparison varchar
+treatment_soa_template varchar
+treatment_approval_workflow varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
+document_reference varchar
+document_version varchar
+document_author varchar
+document_owner varchar
+document_approver varchar
+document_approval_date date
+document_effective_date date
+document_last_review_date date
+document_next_review_date date
+document_status varchar
+document_classification varchar
+document_retention varchar
+document_distribution varchar
+document_storage varchar
+document_change_control varchar
+document_external_origin boolean
+document_external_source varchar
 }
 
-Table RiskTreatmentPlan {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
-description varchar
-created_date date
-modified_date date
-version varchar
-document_type varchar
-document_reference varchar
-author varchar
-owner varchar
-approved_by varchar
-effective_date date
-review_date date
-status varchar
-classification varchar
-retention_period varchar
-distribution_controls varchar
-storage_and_preservation varchar
-change_control_method varchar
-external_origin boolean
-external_origin_source varchar
+Table IsmsRiskTreatmentPlan {
+implementation_state varchar
 plan_scope varchar
-risks_addressed varchar
-treatment_actions varchar
-controls_to_implement varchar
-resources_required varchar
-responsible_parties varchar
-implementation_timeline varchar
-risk_owner_approval varchar
-RiskTreatmentPlan_approved_date date
-residual_risk_acceptance varchar
-implementation_status varchar
-completion_date date
-approved_date date
+plan_risks varchar
+plan_actions varchar
+plan_controls varchar
+plan_resources varchar
+plan_responsible_parties varchar
+plan_timeline varchar
+plan_risk_owner_approval varchar
+plan_residual_risk_acceptance varchar
+plan_completion_date date
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
+document_reference varchar
+document_version varchar
+document_author varchar
+document_owner varchar
+document_approver varchar
+document_approval_date date
+document_effective_date date
+document_last_review_date date
+document_next_review_date date
+document_status varchar
+document_classification varchar
+document_retention varchar
+document_distribution varchar
+document_storage varchar
+document_change_control varchar
+document_external_origin boolean
+document_external_source varchar
 }
 
-Table StatementOfApplicability {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
-description varchar
-created_date date
-modified_date date
-version varchar
-document_type varchar
-document_reference varchar
-author varchar
-owner varchar
-approved_date date
-effective_date date
-review_date date
-status varchar
-classification varchar
-retention_period varchar
-distribution_controls varchar
-storage_and_preservation varchar
-change_control_method varchar
-external_origin boolean
-external_origin_source varchar
+Table IsmsStatementOfApplicability {
 soa_entries varchar
-total_controls varchar
-implemented_count varchar
-planned_count varchar
-not_applicable_count varchar
-last_review_date date
-approved_by varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
+document_reference varchar
+document_version varchar
+document_author varchar
+document_owner varchar
+document_approver varchar
+document_approval_date date
+document_effective_date date
+document_last_review_date date
+document_next_review_date date
+document_status varchar
+document_classification varchar
+document_retention varchar
+document_distribution varchar
+document_storage varchar
+document_change_control varchar
+document_external_origin boolean
+document_external_source varchar
 }
 
-Table SoAEntry {
-control_reference varchar
-is_applicable boolean
-inclusion_justification varchar
-exclusion_justification varchar
-implementation_status varchar
-implementation_evidence varchar
+Table IsmsApplicabilityEntry {
+entry_annex_a_control varchar
+entry_type varchar
+entry_justification varchar [not null]
+}
+
+Table IsmsIncludedControl {
+implementation_state varchar [not null]
 responsible_role varchar
-target_implementation_date date
+included_control varchar
+included_evidence varchar
+included_target_date date
+entry_annex_a_control varchar
+entry_type varchar
+entry_justification varchar [not null]
 }
 
-Table SecurityControl {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
-description varchar
-created_date date
-modified_date date
-version varchar
-control_id varchar
-control_title varchar
-control_category varchar
+Table IsmsExcludedControl {
+entry_annex_a_control varchar [not null]
+entry_type varchar
+entry_justification varchar [not null]
+}
+
+Table IsmsControl {
+relevant_controls varchar
+implementation_state varchar
+control_annex_a_controls varchar
+control_theme varchar
 control_text varchar
-implementation_guidance varchar
-related_controls varchar
-applicable_threats varchar
-applicable_assets varchar
+control_guidance varchar
+control_threats varchar
+control_asset_types varchar
 control_owner varchar
-implementation_status varchar
-implementation_date date
-effectiveness_rating varchar
-last_test_date date
-evidence_references varchar
+control_implementation_date date
+control_effectiveness varchar
+control_last_tested date
+control_evidence varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 }
 
-Table Resource {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
+Table IsmsAsset {
+relevant_controls varchar
+asset_category varchar
+asset_owner varchar
+asset_custodian varchar
+asset_classification varchar
+asset_location varchar
+asset_criticality varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
 description varchar
-created_date date
-modified_date date
-version varchar
-resource_type varchar
-quantity varchar
-allocation_date date
-allocated_to varchar
-cost varchar
-availability_status varchar
 }
 
-Table CompetenceRecord {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
+Table IsmsResource {
+resource_category varchar
+resource_quantity varchar
+resource_allocation_date date
+resource_allocated_to varchar
+resource_cost varchar
+resource_availability varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
 description varchar
-created_date date
-modified_date date
-version varchar
-document_type varchar
+}
+
+Table IsmsCompetenceRecord {
+competence_person varchar
+competence_role varchar
+competence_required varchar
+competence_education varchar
+competence_training varchar
+competence_experience varchar
+competence_assessment_date date
+competence_gaps varchar
+competence_actions varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 document_reference varchar
-author varchar
-owner varchar
-approved_by varchar
-approved_date date
-effective_date date
-review_date date
-status varchar
-classification varchar
-retention_period varchar
-distribution_controls varchar
-storage_and_preservation varchar
-change_control_method varchar
-external_origin boolean
-external_origin_source varchar
-person_name varchar
-person_role varchar
-required_competencies varchar
-education_records varchar
-training_records varchar
-experience_records varchar
-competency_assessment_date date
-competency_gaps varchar
-development_actions varchar
+document_version varchar
+document_author varchar
+document_owner varchar
+document_approver varchar
+document_approval_date date
+document_effective_date date
+document_last_review_date date
+document_next_review_date date
+document_status varchar
+document_classification varchar
+document_retention varchar
+document_distribution varchar
+document_storage varchar
+document_change_control varchar
+document_external_origin boolean
+document_external_source varchar
 }
 
-Table AwarenessProgram {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
-description varchar
-created_date date
-modified_date date
-version varchar
-document_type varchar
-document_reference varchar
-author varchar
-owner varchar
-approved_by varchar
-approved_date date
-effective_date date
-review_date date
-status varchar
-classification varchar
-retention_period varchar
-distribution_controls varchar
-storage_and_preservation varchar
-change_control_method varchar
-external_origin boolean
-external_origin_source varchar
+Table IsmsAwarenessProgramme {
 awareness_topics varchar
-delivery_methods varchar
-target_audience varchar
-frequency varchar
-completion_tracking varchar
-effectiveness_measures varchar
+awareness_methods varchar
+awareness_audience varchar
+awareness_frequency varchar
+awareness_completion_tracking varchar
+awareness_effectiveness varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
+document_reference varchar
+document_version varchar
+document_author varchar
+document_owner varchar
+document_approver varchar
+document_approval_date date
+document_effective_date date
+document_last_review_date date
+document_next_review_date date
+document_status varchar
+document_classification varchar
+document_retention varchar
+document_distribution varchar
+document_storage varchar
+document_change_control varchar
+document_external_origin boolean
+document_external_source varchar
 }
 
-Table CommunicationPlan {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
-description varchar
-created_date date
-modified_date date
-version varchar
-document_type varchar
-document_reference varchar
-author varchar
-owner varchar
-approved_by varchar
-approved_date date
-effective_date date
-review_date date
-status varchar
-classification varchar
-retention_period varchar
-distribution_controls varchar
-storage_and_preservation varchar
-change_control_method varchar
-external_origin boolean
-external_origin_source varchar
+Table IsmsCommunicationPlan {
 communication_items varchar
-}
-
-Table CommunicationItem {
-subject varchar
-purpose varchar
-audience varchar
-frequency varchar
-method varchar
-responsible_party varchar
-records_required boolean
-}
-
-Table OperationalProcedure {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
+isms_id varchar [not null, primary key]
+title varchar [not null]
 description varchar
-created_date date
-modified_date date
-version varchar
-document_type varchar
 document_reference varchar
-author varchar
-owner varchar
-approved_by varchar
-approved_date date
-effective_date date
-review_date date
-status varchar
-classification varchar
-retention_period varchar
-distribution_controls varchar
-storage_and_preservation varchar
-change_control_method varchar
-external_origin boolean
-external_origin_source varchar
+document_version varchar
+document_author varchar
+document_owner varchar
+document_approver varchar
+document_approval_date date
+document_effective_date date
+document_last_review_date date
+document_next_review_date date
+document_status varchar
+document_classification varchar
+document_retention varchar
+document_distribution varchar
+document_storage varchar
+document_change_control varchar
+document_external_origin boolean
+document_external_source varchar
+}
+
+Table IsmsCommunication {
+responsible_role varchar
+communication_subject varchar [not null]
+communication_purpose varchar
+communication_audience varchar
+communication_frequency varchar
+communication_method varchar
+communication_records_required boolean
+}
+
+Table IsmsDocumentedInformation {
+document_kind varchar [not null]
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
+document_reference varchar
+document_version varchar
+document_author varchar
+document_owner varchar
+document_approver varchar
+document_approval_date date
+document_effective_date date
+document_last_review_date date
+document_next_review_date date
+document_status varchar
+document_classification varchar
+document_retention varchar
+document_distribution varchar
+document_storage varchar
+document_change_control varchar
+document_external_origin boolean
+document_external_source varchar
+}
+
+Table IsmsOperationalProcedure {
+relevant_controls varchar
 procedure_scope varchar
-process_criteria varchar
-control_measures varchar
-responsible_roles varchar
-related_controls varchar
-change_control_requirements varchar
+procedure_criteria varchar
+procedure_control_measures varchar
+procedure_roles varchar
+procedure_change_control varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
+document_reference varchar
+document_version varchar
+document_author varchar
+document_owner varchar
+document_approver varchar
+document_approval_date date
+document_effective_date date
+document_last_review_date date
+document_next_review_date date
+document_status varchar
+document_classification varchar
+document_retention varchar
+document_distribution varchar
+document_storage varchar
+document_change_control varchar
+document_external_origin boolean
+document_external_source varchar
 }
 
-Table MonitoringProgram {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
-description varchar
-created_date date
-modified_date date
-version varchar
-document_type varchar
-document_reference varchar
-author varchar
-owner varchar
-approved_by varchar
-approved_date date
-effective_date date
-review_date date
-status varchar
-classification varchar
-retention_period varchar
-distribution_controls varchar
-storage_and_preservation varchar
-change_control_method varchar
-external_origin boolean
-external_origin_source varchar
+Table IsmsMonitoringProgramme {
 monitoring_items varchar
-}
-
-Table MonitoringItem {
-metric_name varchar
-metric_description varchar
-measurement_method varchar
-measurement_frequency varchar
-responsible_party varchar
-analysis_frequency varchar
-analyst varchar
-target_threshold varchar
-alert_threshold varchar
-current_value varchar
-trend varchar
-}
-
-Table InternalAudit {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
+isms_id varchar [not null, primary key]
+title varchar [not null]
 description varchar
-created_date date
-modified_date date
-version varchar
-document_type varchar
 document_reference varchar
-author varchar
-owner varchar
-approved_by varchar
-approved_date date
-effective_date date
-review_date date
-status varchar
-classification varchar
-retention_period varchar
-distribution_controls varchar
-storage_and_preservation varchar
-change_control_method varchar
-external_origin boolean
-external_origin_source varchar
-audit_reference varchar
-audit_type varchar
+document_version varchar
+document_author varchar
+document_owner varchar
+document_approver varchar
+document_approval_date date
+document_effective_date date
+document_last_review_date date
+document_next_review_date date
+document_status varchar
+document_classification varchar
+document_retention varchar
+document_distribution varchar
+document_storage varchar
+document_change_control varchar
+document_external_origin boolean
+document_external_source varchar
+}
+
+Table IsmsMonitoringItem {
+responsible_role varchar
+monitoring_metric varchar [not null]
+monitoring_description varchar
+monitoring_method varchar
+monitoring_frequency varchar
+monitoring_analysis_frequency varchar
+monitoring_analyst varchar
+monitoring_target varchar
+monitoring_alert_threshold varchar
+monitoring_current_value varchar
+monitoring_trend varchar
+}
+
+Table IsmsAuditProgramme {
+programme_period varchar
+programme_audits varchar
+programme_frequency_rationale varchar
+programme_resources varchar
+programme_auditor_qualifications varchar
+programme_status varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
+document_reference varchar
+document_version varchar
+document_author varchar
+document_owner varchar
+document_approver varchar
+document_approval_date date
+document_effective_date date
+document_last_review_date date
+document_next_review_date date
+document_status varchar
+document_classification varchar
+document_retention varchar
+document_distribution varchar
+document_storage varchar
+document_change_control varchar
+document_external_origin boolean
+document_external_source varchar
+}
+
+Table IsmsAudit {
+audit_type varchar [not null]
+audit_standards varchar
 audit_scope varchar
 audit_criteria varchar
 audit_objectives varchar
 audit_period_start date
 audit_period_end date
-lead_auditor varchar
+audit_lead varchar
 audit_team varchar
-auditee_representatives varchar
+audit_auditees varchar
 audit_plan varchar
-findings varchar
-positive_observations varchar
+audit_findings varchar
 audit_conclusion varchar
-report_date date
-report_distribution varchar
-}
-
-Table AuditProgramme {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
+audit_report_date date
+audit_report_distribution varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
 description varchar
-created_date date
-modified_date date
-version varchar
-document_type varchar
 document_reference varchar
-author varchar
-owner varchar
-approved_by varchar
-approved_date date
-effective_date date
-review_date date
-status varchar
-classification varchar
-retention_period varchar
-distribution_controls varchar
-storage_and_preservation varchar
-change_control_method varchar
-external_origin boolean
-external_origin_source varchar
-programme_period varchar
-planned_audits varchar
-audit_frequency_rationale varchar
-resource_requirements varchar
-auditor_qualifications varchar
-programme_status varchar
+document_version varchar
+document_author varchar
+document_owner varchar
+document_approver varchar
+document_approval_date date
+document_effective_date date
+document_last_review_date date
+document_next_review_date date
+document_status varchar
+document_classification varchar
+document_retention varchar
+document_distribution varchar
+document_storage varchar
+document_change_control varchar
+document_external_origin boolean
+document_external_source varchar
 }
 
-Table AuditFinding {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
+Table IsmsAuditFinding {
+finding_type varchar [not null]
+finding_requirement varchar
+finding_control varchar
+finding_evidence varchar
+finding_root_cause varchar
+finding_risk varchar
+finding_recommendation varchar
+finding_auditee_response varchar
+finding_corrective_action varchar
+finding_closure_status varchar
+finding_closure_date date
+isms_id varchar [not null, primary key]
+title varchar [not null]
 description varchar
-created_date date
-modified_date date
-version varchar
-finding_type varchar
-clause_reference varchar
-control_reference varchar
-finding_description varchar
-objective_evidence varchar
-root_cause_analysis varchar
-risk_implication varchar
-recommended_action varchar
-auditee_response varchar
-linked_corrective_action varchar
-closure_status varchar
-closure_date date
 }
 
-Table ManagementReview {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
+Table IsmsManagementReview {
+review_held_on date [not null]
+review_attendees varchar
+review_previous_actions varchar
+review_context_changes varchar
+review_interested_party_changes varchar
+review_interested_party_feedback varchar
+review_performance_trends varchar
+review_audit_results varchar
+review_risk_assessment_results varchar
+review_risk_treatment_status varchar
+review_risks_and_opportunities varchar
+review_improvement_opportunities varchar
+review_decisions varchar
+review_actions varchar
+review_next_date date
+isms_id varchar [not null, primary key]
+title varchar [not null]
 description varchar
-created_date date
-modified_date date
-version varchar
-document_type varchar
 document_reference varchar
-author varchar
-owner varchar
-approved_by varchar
-approved_date date
-effective_date date
-status varchar
-classification varchar
-retention_period varchar
-distribution_controls varchar
-storage_and_preservation varchar
-change_control_method varchar
-external_origin boolean
-external_origin_source varchar
-ManagementReview_review_date date
-attendees varchar
-previous_actions_status varchar
-context_changes varchar
-interested_party_changes varchar
-interested_party_feedback varchar
-performance_trends varchar
-audit_results_summary varchar
-risk_assessment_results varchar
-risk_treatment_status varchar
-risks_and_opportunities_changes varchar
-improvement_opportunities varchar
-decisions varchar
-action_items varchar
-next_review_date date
-review_date date
+document_version varchar
+document_author varchar
+document_owner varchar
+document_approver varchar
+document_approval_date date
+document_effective_date date
+document_last_review_date date
+document_next_review_date date
+document_status varchar
+document_classification varchar
+document_retention varchar
+document_distribution varchar
+document_storage varchar
+document_change_control varchar
+document_external_origin boolean
+document_external_source varchar
 }
 
-Table Nonconformity {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
-description varchar
-created_date date
-modified_date date
-version varchar
+Table IsmsNonconformity {
 nonconformity_source varchar
-detection_date date
-detected_by varchar
-requirement_violated varchar
-nonconformity_description varchar
-immediate_actions varchar
-consequences_addressed varchar
-root_cause varchar
-similar_nonconformities_check varchar
-linked_corrective_actions varchar
-status varchar
-closure_date date
-closure_evidence varchar
+nonconformity_detected_on date
+nonconformity_detected_by varchar
+nonconformity_requirement varchar
+nonconformity_immediate_actions varchar
+nonconformity_consequences varchar
+nonconformity_root_cause varchar
+nonconformity_similar_check varchar
+nonconformity_status varchar
+nonconformity_closure_date date
+nonconformity_closure_evidence varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 }
 
-Table CorrectiveAction {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
+Table IsmsCorrectiveAction {
+responsible_role varchar
+action_nonconformities varchar
+action_root_cause varchar
+action_target_date date
+action_completion_date date
+action_resources varchar
+action_effectiveness_criteria varchar
+action_effectiveness_review_date date
+action_effective boolean
+action_isms_changes varchar
+action_status varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
 description varchar
-created_date date
-modified_date date
-version varchar
-linked_nonconformity varchar
-action_description varchar
-root_cause_addressed varchar
-responsible_party varchar
-target_completion_date date
-actual_completion_date date
-resources_required varchar
-effectiveness_criteria varchar
-effectiveness_review_date date
-effectiveness_verified boolean
-isms_changes_required varchar
-status varchar
 }
 
-Table ImprovementOpportunity {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
-description varchar
-created_date date
-modified_date date
-version varchar
+Table IsmsImprovementOpportunity {
+responsible_role varchar
 improvement_source varchar
-identification_date date
-identified_by varchar
-improvement_description varchar
-expected_benefit varchar
-priority varchar
-implementation_plan varchar
-responsible_party varchar
-target_date date
-actual_completion_date date
-outcome_assessment varchar
-status varchar
+improvement_identified_on date
+improvement_identified_by varchar
+improvement_benefit varchar
+improvement_priority varchar
+improvement_plan varchar
+improvement_target_date date
+improvement_completion_date date
+improvement_outcome varchar
+improvement_status varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 }
 
-Table Asset {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
-description varchar
-created_date date
-modified_date date
-version varchar
-asset_type varchar
-asset_owner varchar
-asset_custodian varchar
-classification varchar
-location varchar
-criticality varchar
-related_risks varchar
-applicable_controls varchar
-}
-
-Table InformationSecurityEvent {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
-description varchar
-created_date date
-modified_date date
-version varchar
-event_datetime datetime
-reporter varchar
-event_description varchar
+Table IsmsSecurityEvent {
 affected_assets varchar
-initial_assessment varchar
-categorized_as_incident boolean
-linked_incident varchar
+event_type varchar
+event_occurred_at datetime
+event_reporter varchar
+event_assessment varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 }
 
-Table InformationSecurityIncident {
-NamedEntity_id varchar [not null, primary key]
-name varchar [not null]
-description varchar
-created_date date
-modified_date date
-version varchar
-incident_datetime datetime
+Table IsmsSecurityIncident {
+affected_security_properties varchar
 incident_category varchar
-severity varchar
+incident_severity varchar
+incident_detection_method varchar
+incident_response_actions varchar
+incident_containment_actions varchar
+incident_eradication_actions varchar
+incident_recovery_actions varchar
+incident_root_cause varchar
+incident_lessons_learned varchar
+incident_evidence varchar
+incident_notification_required boolean
+incident_notifications varchar
+incident_closed_at datetime
+incident_review varchar
 affected_assets varchar
-affected_cia varchar
-incident_description varchar
-detection_method varchar
-response_actions varchar
-containment_actions varchar
-eradication_actions varchar
-recovery_actions varchar
-root_cause varchar
-lessons_learned varchar
-evidence_collected varchar
-notification_required boolean
-notifications_made varchar
-closure_datetime datetime
-post_incident_review varchar
+event_type varchar
+event_occurred_at datetime
+event_reporter varchar
+event_assessment varchar
+isms_id varchar [not null, primary key]
+title varchar [not null]
+description varchar
 }
 
-Ref: InformationSecurityManagementSystem.organization > Organization.NamedEntity_id
-Ref: InformationSecurityManagementSystem.interested_parties > InterestedParty.NamedEntity_id
-Ref: InformationSecurityManagementSystem.information_security_policy > InformationSecurityPolicy.NamedEntity_id
-Ref: InformationSecurityManagementSystem.objectives > InformationSecurityObjective.NamedEntity_id
-Ref: InformationSecurityManagementSystem.risk_assessment_process > RiskAssessmentProcess.NamedEntity_id
-Ref: InformationSecurityManagementSystem.risk_treatment_process > RiskTreatmentProcess.NamedEntity_id
-Ref: InformationSecurityManagementSystem.statement_of_applicability > StatementOfApplicability.NamedEntity_id
-Ref: InformationSecurityManagementSystem.controls > SecurityControl.NamedEntity_id
-Ref: InformationSecurityManagementSystem.roles > Role.NamedEntity_id
-Ref: InformationSecurityManagementSystem.resources > Resource.NamedEntity_id
-Ref: InformationSecurityManagementSystem.competence_records > CompetenceRecord.NamedEntity_id
-Ref: InformationSecurityManagementSystem.awareness_program > AwarenessProgram.NamedEntity_id
-Ref: InformationSecurityManagementSystem.communication_plan > CommunicationPlan.NamedEntity_id
-Ref: InformationSecurityManagementSystem.documented_information_register > DocumentedInformation.NamedEntity_id
-Ref: InformationSecurityManagementSystem.operational_procedures > OperationalProcedure.NamedEntity_id
-Ref: InformationSecurityManagementSystem.risk_assessments > RiskAssessment.NamedEntity_id
-Ref: InformationSecurityManagementSystem.risk_treatment_plans > RiskTreatmentPlan.NamedEntity_id
-Ref: InformationSecurityManagementSystem.monitoring_program > MonitoringProgram.NamedEntity_id
-Ref: InformationSecurityManagementSystem.internal_audits > InternalAudit.NamedEntity_id
-Ref: InformationSecurityManagementSystem.management_reviews > ManagementReview.NamedEntity_id
-Ref: InformationSecurityManagementSystem.nonconformities > Nonconformity.NamedEntity_id
-Ref: InformationSecurityManagementSystem.corrective_actions > CorrectiveAction.NamedEntity_id
-Ref: InformationSecurityManagementSystem.improvements > ImprovementOpportunity.NamedEntity_id
-Ref: InformationSecurityPolicy.related_topic_policies > TopicSpecificPolicy.NamedEntity_id
-Ref: TopicSpecificPolicy.parent_policy > InformationSecurityPolicy.NamedEntity_id
-Ref: TopicSpecificPolicy.applicable_controls > SecurityControl.NamedEntity_id
-Ref: InformationSecurityObjective.responsible_role > Role.NamedEntity_id
-Ref: InformationSecurityObjective.related_risks > Risk.NamedEntity_id
-Ref: InformationSecurityObjective.related_controls > SecurityControl.NamedEntity_id
-Ref: RiskAssessment.risks_identified > Risk.NamedEntity_id
-Ref: Risk.affected_assets > Asset.NamedEntity_id
-Ref: Risk.existing_controls > SecurityControl.NamedEntity_id
-Ref: Risk.related_treatment_plan > RiskTreatmentPlan.NamedEntity_id
-Ref: RiskTreatmentPlan.risks_addressed > Risk.NamedEntity_id
-Ref: RiskTreatmentPlan.controls_to_implement > SecurityControl.NamedEntity_id
-Ref: SoAEntry.control_reference > SecurityControl.NamedEntity_id
-Ref: SoAEntry.responsible_role > Role.NamedEntity_id
-Ref: SecurityControl.related_controls > SecurityControl.NamedEntity_id
-Ref: OperationalProcedure.responsible_roles > Role.NamedEntity_id
-Ref: OperationalProcedure.related_controls > SecurityControl.NamedEntity_id
-Ref: InternalAudit.findings > AuditFinding.NamedEntity_id
-Ref: AuditProgramme.planned_audits > InternalAudit.NamedEntity_id
-Ref: AuditFinding.control_reference > SecurityControl.NamedEntity_id
-Ref: AuditFinding.linked_corrective_action > CorrectiveAction.NamedEntity_id
-Ref: Nonconformity.linked_corrective_actions > CorrectiveAction.NamedEntity_id
-Ref: CorrectiveAction.linked_nonconformity > Nonconformity.NamedEntity_id
-Ref: Asset.related_risks > Risk.NamedEntity_id
-Ref: Asset.applicable_controls > SecurityControl.NamedEntity_id
-Ref: InformationSecurityEvent.affected_assets > Asset.NamedEntity_id
-Ref: InformationSecurityEvent.linked_incident > InformationSecurityIncident.NamedEntity_id
-Ref: InformationSecurityIncident.affected_assets > Asset.NamedEntity_id
+Ref: IsmsManagementSystem.isms_organization > IsmsOrganization.isms_id
+Ref: IsmsManagementSystem.isms_interested_parties > IsmsInterestedParty.isms_id
+Ref: IsmsManagementSystem.isms_policy > IsmsPolicy.isms_id
+Ref: IsmsManagementSystem.isms_topic_specific_policies > IsmsTopicSpecificPolicy.isms_id
+Ref: IsmsManagementSystem.isms_roles > IsmsRole.isms_id
+Ref: IsmsManagementSystem.isms_objectives > IsmsObjective.isms_id
+Ref: IsmsManagementSystem.isms_risk_assessment_process > IsmsRiskAssessmentProcess.isms_id
+Ref: IsmsManagementSystem.isms_risk_treatment_process > IsmsRiskTreatmentProcess.isms_id
+Ref: IsmsManagementSystem.isms_risk_assessments > IsmsRiskAssessment.isms_id
+Ref: IsmsManagementSystem.isms_risks > IsmsRisk.isms_id
+Ref: IsmsManagementSystem.isms_risk_treatment_plans > IsmsRiskTreatmentPlan.isms_id
+Ref: IsmsManagementSystem.isms_statement_of_applicability > IsmsStatementOfApplicability.isms_id
+Ref: IsmsManagementSystem.isms_controls > IsmsControl.isms_id
+Ref: IsmsManagementSystem.isms_assets > IsmsAsset.isms_id
+Ref: IsmsManagementSystem.isms_resources > IsmsResource.isms_id
+Ref: IsmsManagementSystem.isms_competence_records > IsmsCompetenceRecord.isms_id
+Ref: IsmsManagementSystem.isms_awareness_programme > IsmsAwarenessProgramme.isms_id
+Ref: IsmsManagementSystem.isms_communication_plan > IsmsCommunicationPlan.isms_id
+Ref: IsmsManagementSystem.isms_documented_information > IsmsDocumentedInformation.isms_id
+Ref: IsmsManagementSystem.isms_operational_procedures > IsmsOperationalProcedure.isms_id
+Ref: IsmsManagementSystem.isms_monitoring_programme > IsmsMonitoringProgramme.isms_id
+Ref: IsmsManagementSystem.isms_audit_programmes > IsmsAuditProgramme.isms_id
+Ref: IsmsManagementSystem.isms_audits > IsmsAudit.isms_id
+Ref: IsmsManagementSystem.isms_management_reviews > IsmsManagementReview.isms_id
+Ref: IsmsManagementSystem.isms_nonconformities > IsmsNonconformity.isms_id
+Ref: IsmsManagementSystem.isms_corrective_actions > IsmsCorrectiveAction.isms_id
+Ref: IsmsManagementSystem.isms_improvements > IsmsImprovementOpportunity.isms_id
+Ref: IsmsManagementSystem.isms_security_events > IsmsSecurityEvent.isms_id
+Ref: IsmsTopicSpecificPolicy.relevant_controls > IsmsControl.isms_id
+Ref: IsmsTopicSpecificPolicy.topic_policy_parent > IsmsPolicy.isms_id
+Ref: IsmsRole.role_reports_to > IsmsRole.isms_id
+Ref: IsmsObjective.responsible_role > IsmsRole.isms_id
+Ref: IsmsObjective.relevant_controls > IsmsControl.isms_id
+Ref: IsmsObjective.objective_risks > IsmsRisk.isms_id
+Ref: IsmsRiskAssessment.assessment_risks > IsmsRisk.isms_id
+Ref: IsmsRisk.affected_assets > IsmsAsset.isms_id
+Ref: IsmsRisk.risk_existing_controls > IsmsControl.isms_id
+Ref: IsmsRiskTreatmentPlan.plan_risks > IsmsRisk.isms_id
+Ref: IsmsRiskTreatmentPlan.plan_controls > IsmsControl.isms_id
+Ref: IsmsIncludedControl.responsible_role > IsmsRole.isms_id
+Ref: IsmsIncludedControl.included_control > IsmsControl.isms_id
+Ref: IsmsControl.relevant_controls > IsmsControl.isms_id
+Ref: IsmsAsset.relevant_controls > IsmsControl.isms_id
+Ref: IsmsCompetenceRecord.competence_role > IsmsRole.isms_id
+Ref: IsmsCommunication.responsible_role > IsmsRole.isms_id
+Ref: IsmsOperationalProcedure.relevant_controls > IsmsControl.isms_id
+Ref: IsmsOperationalProcedure.procedure_roles > IsmsRole.isms_id
+Ref: IsmsMonitoringItem.responsible_role > IsmsRole.isms_id
+Ref: IsmsAuditProgramme.programme_audits > IsmsAudit.isms_id
+Ref: IsmsAudit.audit_plan > IsmsDocumentedInformation.isms_id
+Ref: IsmsAudit.audit_findings > IsmsAuditFinding.isms_id
+Ref: IsmsAuditFinding.finding_control > IsmsControl.isms_id
+Ref: IsmsAuditFinding.finding_corrective_action > IsmsCorrectiveAction.isms_id
+Ref: IsmsCorrectiveAction.responsible_role > IsmsRole.isms_id
+Ref: IsmsCorrectiveAction.action_nonconformities > IsmsNonconformity.isms_id
+Ref: IsmsImprovementOpportunity.responsible_role > IsmsRole.isms_id
+Ref: IsmsSecurityEvent.affected_assets > IsmsAsset.isms_id
+Ref: IsmsSecurityIncident.affected_assets > IsmsAsset.isms_id

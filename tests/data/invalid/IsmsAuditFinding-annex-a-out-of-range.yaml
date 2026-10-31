@@ -1,0 +1,6 @@
+# Fails at: /finding_requirement
+# Invalid: Annex A's controls are numbered A.5 to A.8.
+isms_id: acme:finding-2026-01
+title: Access reviews not recorded
+finding_type: minor_nonconformity
+finding_requirement: A.9.2

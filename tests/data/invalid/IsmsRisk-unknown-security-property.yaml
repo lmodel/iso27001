@@ -1,0 +1,6 @@
+# Fails at: /affected_security_properties/0
+# Invalid: the properties are confidentiality, integrity and availability.
+isms_id: acme:risk-phishing
+title: Credentials taken by phishing
+affected_security_properties:
+  - authenticity

@@ -1,0 +1,189 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsManagementSystem
+schema_generating: true
+description: 'One organization''s information security management system: its scope
+  and context, and every record it keeps, each kind in a list of its own.'
+display_name: IsmsManagementSystem
+document_category: IsmsManagementSystem
+weight: 20
+fields:
+- id: isms_organization
+  description: The organization that runs the ISMS.
+  display_name: ismsManagementSystem__isms_organization
+- id: isms_top_management
+  description: The person or group that directs and controls the organization at the
+    highest level.
+  display_name: ismsManagementSystem__isms_top_management
+- id: isms_governing_body
+  description: The body top management answers to, such as a board, where there is
+    one.
+  display_name: ismsManagementSystem__isms_governing_body
+- id: isms_leadership_evidence
+  description: What shows that top management leads and commits to the ISMS.
+  display_name: ismsManagementSystem__isms_leadership_evidence
+  cardinality: multi
+- id: isms_scope
+  description: The scope of the ISMS, as the organization states it.
+  display_name: ismsManagementSystem__isms_scope
+- id: isms_scope_boundaries
+  description: Where the scope of the ISMS ends.
+  display_name: ismsManagementSystem__isms_scope_boundaries
+  cardinality: multi
+- id: isms_scope_exclusions
+  description: What the scope leaves out, each with the reason.
+  display_name: ismsManagementSystem__isms_scope_exclusions
+  cardinality: multi
+- id: isms_interfaces
+  description: The interfaces and dependencies between what the organization does
+    and what other organizations do, which the scope takes into account.
+  display_name: ismsManagementSystem__isms_interfaces
+  cardinality: multi
+- id: isms_processes
+  description: The processes the ISMS needs and how they interact.
+  display_name: ismsManagementSystem__isms_processes
+- id: isms_internal_issues
+  description: The internal issues that bear on the ISMS.
+  display_name: ismsManagementSystem__isms_internal_issues
+  cardinality: multi
+- id: isms_external_issues
+  description: The external issues that bear on the ISMS.
+  display_name: ismsManagementSystem__isms_external_issues
+  cardinality: multi
+- id: isms_risk_and_opportunity_actions
+  description: The actions planned to address the ISMS's risks and opportunities,
+    and how they fit into its processes.
+  display_name: ismsManagementSystem__isms_risk_and_opportunity_actions
+  cardinality: multi
+- id: isms_planned_changes
+  description: The changes to the ISMS that are planned.
+  display_name: ismsManagementSystem__isms_planned_changes
+  cardinality: multi
+- id: isms_external_services
+  description: The processes, products or services from outside the organization that
+    the ISMS relies on and controls.
+  display_name: ismsManagementSystem__isms_external_services
+  cardinality: multi
+- id: isms_certification_status
+  description: Where the ISMS stands with certification, in the organization's own
+    terms.
+  display_name: ismsManagementSystem__isms_certification_status
+- id: isms_certification_body
+  description: The body that certifies the ISMS.
+  display_name: ismsManagementSystem__isms_certification_body
+- id: isms_certification_date
+  description: When the ISMS was certified.
+  display_name: ismsManagementSystem__isms_certification_date
+- id: isms_recertification_date
+  description: When the ISMS is next due for recertification.
+  display_name: ismsManagementSystem__isms_recertification_date
+- id: isms_interested_parties
+  description: The interested parties the ISMS takes into account.
+  display_name: ismsManagementSystem__isms_interested_parties
+  cardinality: multi
+- id: isms_policy
+  description: The information security policy.
+  display_name: ismsManagementSystem__isms_policy
+- id: isms_topic_specific_policies
+  description: The topic-specific policies under the information security policy.
+  display_name: ismsManagementSystem__isms_topic_specific_policies
+  cardinality: multi
+- id: isms_roles
+  description: The roles that carry the ISMS's responsibilities and authorities.
+  display_name: ismsManagementSystem__isms_roles
+  cardinality: multi
+- id: isms_objectives
+  description: The information security objectives.
+  display_name: ismsManagementSystem__isms_objectives
+  cardinality: multi
+- id: isms_risk_assessment_process
+  description: The information security risk assessment process.
+  display_name: ismsManagementSystem__isms_risk_assessment_process
+- id: isms_risk_treatment_process
+  description: The information security risk treatment process.
+  display_name: ismsManagementSystem__isms_risk_treatment_process
+- id: isms_risk_assessments
+  description: The risk assessments carried out.
+  display_name: ismsManagementSystem__isms_risk_assessments
+  cardinality: multi
+- id: isms_risks
+  description: The risks identified, the risk register.
+  display_name: ismsManagementSystem__isms_risks
+  cardinality: multi
+- id: isms_risk_treatment_plans
+  description: The risk treatment plans.
+  display_name: ismsManagementSystem__isms_risk_treatment_plans
+  cardinality: multi
+- id: isms_statement_of_applicability
+  description: The Statement of Applicability.
+  display_name: ismsManagementSystem__isms_statement_of_applicability
+- id: isms_controls
+  description: The controls the organization has determined it needs.
+  display_name: ismsManagementSystem__isms_controls
+  cardinality: multi
+- id: isms_assets
+  description: The inventory of information and other associated assets.
+  display_name: ismsManagementSystem__isms_assets
+  cardinality: multi
+- id: isms_resources
+  description: The resources provided for the ISMS.
+  display_name: ismsManagementSystem__isms_resources
+  cardinality: multi
+- id: isms_competence_records
+  description: The records of competence.
+  display_name: ismsManagementSystem__isms_competence_records
+  cardinality: multi
+- id: isms_awareness_programme
+  description: The awareness programme.
+  display_name: ismsManagementSystem__isms_awareness_programme
+- id: isms_communication_plan
+  description: The plan for communication about the ISMS.
+  display_name: ismsManagementSystem__isms_communication_plan
+- id: isms_documented_information
+  description: The documented information the ISMS keeps that no more specific list
+    holds, such as procedures, plans and reports.
+  display_name: ismsManagementSystem__isms_documented_information
+  cardinality: multi
+- id: isms_operational_procedures
+  description: The procedures for operational planning and control.
+  display_name: ismsManagementSystem__isms_operational_procedures
+  cardinality: multi
+- id: isms_monitoring_programme
+  description: The programme of monitoring and measurement.
+  display_name: ismsManagementSystem__isms_monitoring_programme
+- id: isms_audit_programmes
+  description: The audit programmes.
+  display_name: ismsManagementSystem__isms_audit_programmes
+  cardinality: multi
+- id: isms_audits
+  description: The audits of the ISMS, internal and external.
+  display_name: ismsManagementSystem__isms_audits
+  cardinality: multi
+- id: isms_management_reviews
+  description: The management reviews.
+  display_name: ismsManagementSystem__isms_management_reviews
+  cardinality: multi
+- id: isms_nonconformities
+  description: The nonconformities found.
+  display_name: ismsManagementSystem__isms_nonconformities
+  cardinality: multi
+- id: isms_corrective_actions
+  description: The corrective actions taken.
+  display_name: ismsManagementSystem__isms_corrective_actions
+  cardinality: multi
+- id: isms_improvements
+  description: The opportunities for improvement identified.
+  display_name: ismsManagementSystem__isms_improvements
+  cardinality: multi
+- id: isms_security_events
+  description: The information security events reported, the incidents among them.
+  display_name: ismsManagementSystem__isms_security_events
+  cardinality: multi
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecordMixin_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description

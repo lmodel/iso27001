@@ -1,0 +1,52 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsCorrectiveAction
+schema_generating: true
+description: An action that removes the cause of one or more nonconformities so that
+  they do not recur, and the check that it worked.
+display_name: IsmsCorrectiveAction
+document_category: IsmsCorrectiveAction
+weight: 20
+fields:
+- id: responsible_role
+  description: The role that answers for the record's activity or outcome.
+  display_name: responsible_role
+- id: action_nonconformities
+  description: The nonconformities the action addresses.
+  display_name: ismsCorrectiveAction__action_nonconformities
+  cardinality: multi
+- id: action_root_cause
+  description: The cause the action removes.
+  display_name: ismsCorrectiveAction__action_root_cause
+- id: action_target_date
+  description: When the action is to be complete.
+  display_name: ismsCorrectiveAction__action_target_date
+- id: action_completion_date
+  description: When the action was complete.
+  display_name: ismsCorrectiveAction__action_completion_date
+- id: action_resources
+  description: The resources the action needs.
+  display_name: ismsCorrectiveAction__action_resources
+- id: action_effectiveness_criteria
+  description: How the action's effect will be judged.
+  display_name: ismsCorrectiveAction__action_effectiveness_criteria
+- id: action_effectiveness_review_date
+  description: When the action's effect was reviewed.
+  display_name: ismsCorrectiveAction__action_effectiveness_review_date
+- id: action_effective
+  description: Whether the review found the action effective.
+  display_name: ismsCorrectiveAction__action_effective
+- id: action_isms_changes
+  description: The changes to the ISMS the action needs.
+  display_name: ismsCorrectiveAction__action_isms_changes
+- id: action_status
+  description: Where the action stands, in the organization's own terms.
+  display_name: ismsCorrectiveAction__action_status
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecordMixin_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description

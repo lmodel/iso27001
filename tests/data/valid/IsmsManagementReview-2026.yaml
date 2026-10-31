@@ -1,0 +1,23 @@
+# A management review with its inputs and outputs.
+isms_id: acme:review-2026
+title: Management review 2026
+review_held_on: "2026-05-12"
+review_attendees:
+  - Managing Director
+  - Chief Information Security Officer
+review_previous_actions: All three actions from 2025 are closed.
+review_context_changes: A new German subsidiary.
+review_interested_party_changes: Customers now ask for energy reporting.
+review_interested_party_feedback: No complaints about security.
+review_performance_trends: Phishing report rate rising.
+review_audit_results: One minor nonconformity in the spring audit.
+review_risk_assessment_results: One high risk, now under treatment.
+review_risk_treatment_status: Multi-factor sign-in half rolled out.
+review_risks_and_opportunities: The subsidiary brings new suppliers into scope.
+review_improvement_opportunities:
+  - Automate the access review.
+review_decisions:
+  - Extend the ISMS scope to the subsidiary.
+review_actions:
+  - Update the scope statement by July.
+review_next_date: "2027-05-11"

@@ -1,0 +1,12 @@
+isms_id: probo:implement-visitor-access-policies
+title: Keep track of visitors
+control_annex_a_controls:
+  - a_7_2
+control_theme: physical
+control_text: 'Even if you do most of your business online, you still have offices, computers
+  or even printed document: you need to make sure those assets are physically secured (we
+  will focus on the digital access later) regarding visitors'
+control_guidance: In your policies, we will mention that all visitors must be accompanied
+  by an employee at all times. On your end, you need to keep track of them (and accompany
+  them)
+implementation_state: not_started

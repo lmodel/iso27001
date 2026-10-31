@@ -1,0 +1,5 @@
+# Fails at: /assessment_date
+# Invalid: a date is an ISO 8601 date.
+isms_id: acme:assessment-2026
+title: Risk assessment 2026
+assessment_date: spring 2026

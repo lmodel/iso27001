@@ -1,2928 +1,2635 @@
--- # Abstract Class: NamedEntity Description: Abstract base class for all entities with an identifier, name, and description. Provides common identification and documentation slots.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Abstract Class: DocumentedInformation Description: Abstract class for documented information per Clause 7.5. Captures metadata required for document control.
---     * Slot: document_type Description: Classification of the documented information.
---     * Slot: document_reference Description: Unique reference number for document control.
---     * Slot: author Description: Person who created the document.
---     * Slot: owner Description: Person accountable for the document content and maintenance.
---     * Slot: approved_by Description: Person who approved the document.
---     * Slot: approved_date Description: Date when the document was approved.
---     * Slot: effective_date Description: Date when the document becomes effective.
---     * Slot: review_date Description: Date when the document is due for review.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: classification Description: Information classification level.
---     * Slot: retention_period Description: Duration for which the document is retained.
---     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
---     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
---     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
---     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: InformationSecurityManagementSystem Description: Top-level container representing an organization's complete ISMS per ISO 27001. Aggregates all components required to support the full ISMS lifecycle.
---     * Slot: organization Description: Reference to the organization operating the ISMS.
---     * Slot: top_management Description: The person or group of people who direct and control the organization at the highest level, accountable for the ISMS per Clause 5.1.
---     * Slot: governing_body Description: The governing body to which top management reports, where applicable (e.g., board of directors). Referenced in ISO/IEC 27001:2022 Clause 5.1 NOTE.
---     * Slot: scope_statement Description: Documented statement of ISMS scope per 4.3.
---     * Slot: processes_and_interactions Description: Description of the processes needed for the ISMS and their interactions, per Clause 4.4.
---     * Slot: information_security_policy Description: Reference to the information security policy.
---     * Slot: risk_assessment_process Description: Reference to the risk assessment process.
---     * Slot: risk_treatment_process Description: Reference to the risk treatment process.
---     * Slot: statement_of_applicability Description: Reference to the Statement of Applicability.
---     * Slot: awareness_program Description: Reference to the awareness program.
---     * Slot: communication_plan Description: Reference to the communication plan.
---     * Slot: monitoring_program Description: Reference to the monitoring program.
---     * Slot: certification_status Description: Current certification status.
---     * Slot: certification_body Description: Accredited certification body.
---     * Slot: certification_date Description: Date certification was achieved.
---     * Slot: recertification_date Description: Date recertification is due.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: Organization Description: The organization establishing and operating the ISMS. Captures context needed for Clause 4.1 (understanding the organization).
---     * Slot: legal_name Description: Legal registered name of the organization.
---     * Slot: organization_type Description: Type of organization (e.g., corporation, government, nonprofit).
---     * Slot: industry_sector Description: Primary industry sector of the organization.
---     * Slot: size_category Description: Organization size classification.
---     * Slot: employee_count Description: Approximate number of employees.
---     * Slot: parent_organization Description: Parent organization if applicable.
---     * Slot: climate_change_relevant Description: Whether climate change has been determined to be a relevant issue for the organization's context, per Clause 4.1 as amended by Amd. 1:2024.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: InterestedParty Description: A stakeholder whose needs and expectations are relevant to the ISMS per 4.2. Includes internal parties (employees, management) and external parties (customers, regulators, suppliers).
---     * Slot: party_type Description: Category of interested party.
---     * Slot: relationship Description: Nature of the relationship with the organization.
---     * Slot: communication_needs Description: Communication requirements for this party.
---     * Slot: contact_information Description: Contact details for the party.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: InformationSecurityPolicy Description: The information security policy established by top management per Clause 5.2. Provides framework for setting objectives and demonstrates commitment.
---     * Slot: policy_statement Description: The core policy statement text.
---     * Slot: policy_objectives_framework Description: Framework for setting information security objectives.
---     * Slot: applicability_statement Description: Statement of policy applicability.
---     * Slot: communication_date Description: Date when the policy was communicated.
---     * Slot: acknowledgment_required Description: Whether acknowledgment is required from personnel.
---     * Slot: last_policy_review_date Description: Date of the most recent information security policy review.
---     * Slot: next_policy_review_date Description: Planned date of the next information security policy review.
---     * Slot: document_type Description: Classification of the documented information.
---     * Slot: document_reference Description: Unique reference number for document control.
---     * Slot: author Description: Person who created the document.
---     * Slot: owner Description: Person accountable for the document content and maintenance.
---     * Slot: approved_by Description: Person who approved the document.
---     * Slot: approved_date Description: Date when the document was approved.
---     * Slot: effective_date Description: Date when the document becomes effective.
---     * Slot: review_date Description: Date when the document is due for review.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: classification Description: Information classification level.
---     * Slot: retention_period Description: Duration for which the document is retained.
---     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
---     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
---     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
---     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: TopicSpecificPolicy Description: A policy addressing a specific information security topic, supporting the overarching information security policy.
---     * Slot: topic_area Description: The specific topic addressed by the policy.
---     * Slot: parent_policy Description: The parent policy this topic-specific policy supports.
---     * Slot: target_audience Description: Intended audience for the policy or document.
---     * Slot: document_type Description: Classification of the documented information.
---     * Slot: document_reference Description: Unique reference number for document control.
---     * Slot: author Description: Person who created the document.
---     * Slot: owner Description: Person accountable for the document content and maintenance.
---     * Slot: approved_by Description: Person who approved the document.
---     * Slot: approved_date Description: Date when the document was approved.
---     * Slot: effective_date Description: Date when the document becomes effective.
---     * Slot: review_date Description: Date when the document is due for review.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: classification Description: Information classification level.
---     * Slot: retention_period Description: Duration for which the document is retained.
---     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
---     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
---     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
---     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: Role Description: An information security role with defined responsibilities and authorities per Clause 5.3.
---     * Slot: role_type Description: Category of the role.
---     * Slot: accountability Description: What the role is accountable for.
---     * Slot: delegation_rules Description: Rules for delegating responsibilities.
---     * Slot: reporting_line Description: To whom this role reports.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: InformationSecurityObjective Description: A measurable information security objective per Clause 6.2, established at relevant functions and levels of the organization.
---     * Slot: objective_statement Description: Clear statement of the objective.
---     * Slot: target_value Description: Target value for the objective metric.
---     * Slot: current_value Description: Current measured value.
---     * Slot: metric_definition Description: Definition of how the objective is measured.
---     * Slot: measurement_method Description: Method used to measure the metric.
---     * Slot: measurement_frequency Description: How often measurement is performed.
---     * Slot: responsible_role Description: Role responsible for the objective or control.
---     * Slot: target_date Description: Target date for achieving the objective.
---     * Slot: achievement_status Description: Current status of objective achievement.
---     * Slot: action_plan Description: Plan for achieving the objective.
---     * Slot: objective_resources_required Description: Resources required to achieve the information security objective.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: RiskAssessmentProcess Description: The documented risk assessment process per Clause 6.1.2, defining criteria and methodology for identifying, analyzing, and evaluating risks.
---     * Slot: risk_acceptance_criteria Description: Criteria for accepting risks.
---     * Slot: assessment_criteria Description: Criteria for performing risk assessments.
---     * Slot: assessment_methodology Description: Methodology used for risk assessment.
---     * Slot: likelihood_scale Description: Scale used for likelihood rating.
---     * Slot: impact_scale Description: Scale used for impact rating.
---     * Slot: risk_matrix Description: Risk matrix or calculation method.
---     * Slot: assessment_frequency Description: Planned frequency of risk assessments.
---     * Slot: document_type Description: Classification of the documented information.
---     * Slot: document_reference Description: Unique reference number for document control.
---     * Slot: author Description: Person who created the document.
---     * Slot: owner Description: Person accountable for the document content and maintenance.
---     * Slot: approved_by Description: Person who approved the document.
---     * Slot: approved_date Description: Date when the document was approved.
---     * Slot: effective_date Description: Date when the document becomes effective.
---     * Slot: review_date Description: Date when the document is due for review.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: classification Description: Information classification level.
---     * Slot: retention_period Description: Duration for which the document is retained.
---     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
---     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
---     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
---     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: RiskAssessment Description: An instance of risk assessment performed per Clause 8.2, identifying and evaluating information security risks.
---     * Slot: assessment_scope Description: Scope of the assessment.
---     * Slot: assessment_date Description: Date the assessment was conducted.
---     * Slot: assessor Description: Person or team who conducted the assessment.
---     * Slot: methodology_used Description: Specific methodology applied in this assessment.
---     * Slot: summary_findings Description: Summary of assessment findings.
---     * Slot: next_assessment_date Description: Planned date for next assessment.
---     * Slot: document_type Description: Classification of the documented information.
---     * Slot: document_reference Description: Unique reference number for document control.
---     * Slot: author Description: Person who created the document.
---     * Slot: owner Description: Person accountable for the document content and maintenance.
---     * Slot: approved_by Description: Person who approved the document.
---     * Slot: approved_date Description: Date when the document was approved.
---     * Slot: effective_date Description: Date when the document becomes effective.
---     * Slot: review_date Description: Date when the document is due for review.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: classification Description: Information classification level.
---     * Slot: retention_period Description: Duration for which the document is retained.
---     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
---     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
---     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
---     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: Risk Description: An identified information security risk that may affect information security properties within the ISMS scope.
---     * Slot: risk_source Description: Source or origin of the risk.
---     * Slot: threat_description Description: Description of the threat exploiting the vulnerability.
---     * Slot: vulnerability_description Description: Description of the vulnerability that could be exploited.
---     * Slot: risk_owner Description: Person accountable for managing the risk.
---     * Slot: likelihood Description: Assessed likelihood of risk occurrence.
---     * Slot: impact Description: Assessed impact if risk materializes.
---     * Slot: inherent_risk_level Description: Risk level before controls are applied.
---     * Slot: residual_risk_level Description: Risk level after controls are applied.
---     * Slot: risk_treatment_option Description: Selected treatment option for the risk.
---     * Slot: treatment_priority Description: Priority for treating this risk.
---     * Slot: related_treatment_plan Description: Risk treatment plan addressing this risk.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: RiskTreatmentProcess Description: The documented risk treatment process per Clause 6.1.3, defining how treatment options are selected and controls determined.
---     * Slot: treatment_options_guidance Description: Guidance on selecting treatment options.
---     * Slot: control_selection_criteria Description: Criteria for selecting controls.
---     * Slot: annex_a_omission_verification Description: Description of how controls determined as necessary are compared with those in Annex A to verify that no necessary controls have been omitted, per Clause 6.1.3 c).
---     * Slot: soa_template Description: Template used for Statement of Applicability.
---     * Slot: approval_workflow Description: Workflow for approving risk treatment.
---     * Slot: document_type Description: Classification of the documented information.
---     * Slot: document_reference Description: Unique reference number for document control.
---     * Slot: author Description: Person who created the document.
---     * Slot: owner Description: Person accountable for the document content and maintenance.
---     * Slot: approved_by Description: Person who approved the document.
---     * Slot: approved_date Description: Date when the document was approved.
---     * Slot: effective_date Description: Date when the document becomes effective.
---     * Slot: review_date Description: Date when the document is due for review.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: classification Description: Information classification level.
---     * Slot: retention_period Description: Duration for which the document is retained.
---     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
---     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
---     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
---     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: RiskTreatmentPlan Description: A risk treatment plan documenting planned actions to address identified risks through selected controls.
---     * Slot: plan_scope Description: Scope of the plan.
---     * Slot: resources_required Description: Resources required for implementation.
---     * Slot: implementation_timeline Description: Timeline for implementation.
---     * Slot: risk_owner_approval Description: Risk owner who approved the plan.
---     * Slot: approved_date Description: Date when the risk treatment plan was approved.
---     * Slot: residual_risk_acceptance Description: Documentation of residual risk acceptance.
---     * Slot: implementation_status Description: Current implementation status.
---     * Slot: completion_date Description: Date when implementation was completed.
---     * Slot: document_type Description: Classification of the documented information.
---     * Slot: document_reference Description: Unique reference number for document control.
---     * Slot: author Description: Person who created the document.
---     * Slot: owner Description: Person accountable for the document content and maintenance.
---     * Slot: approved_by Description: Person who approved the document.
---     * Slot: effective_date Description: Date when the document becomes effective.
---     * Slot: review_date Description: Date when the document is due for review.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: classification Description: Information classification level.
---     * Slot: retention_period Description: Duration for which the document is retained.
---     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
---     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
---     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
---     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: StatementOfApplicability Description: The Statement of Applicability (SoA) recording which controls apply, their rationale, and current implementation state.
---     * Slot: total_controls Description: Total number of controls in scope.
---     * Slot: implemented_count Description: Number of implemented controls.
---     * Slot: planned_count Description: Number of controls planned for implementation.
---     * Slot: not_applicable_count Description: Number of controls marked not applicable.
---     * Slot: last_review_date Description: Date of last review.
---     * Slot: approved_by Description: Person who approved the document.
---     * Slot: document_type Description: Classification of the documented information.
---     * Slot: document_reference Description: Unique reference number for document control.
---     * Slot: author Description: Person who created the document.
---     * Slot: owner Description: Person accountable for the document content and maintenance.
---     * Slot: approved_date Description: Date when the document was approved.
---     * Slot: effective_date Description: Date when the document becomes effective.
---     * Slot: review_date Description: Date when the document is due for review.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: classification Description: Information classification level.
---     * Slot: retention_period Description: Duration for which the document is retained.
---     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
---     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
---     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
---     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: SoAEntry Description: A single entry in the Statement of Applicability, documenting the applicability and implementation status of one control.
+-- # Class: IsmsRecordMixin Description: What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+-- # Class: IsmsDocumentControlMixin Description: The control that documented information is kept under. It records who wrote, owns and approved the information, when it takes effect and is reviewed, and how it is classified, distributed, stored and changed. It also records how long it is retained, and whether it came from outside the organization.
 --     * Slot: id
---     * Slot: control_reference Description: Reference to the control (e.g., A.5.1).
---     * Slot: is_applicable Description: Whether the control is applicable.
---     * Slot: inclusion_justification Description: Justification for including the control.
---     * Slot: exclusion_justification Description: Justification for excluding the control.
---     * Slot: implementation_status Description: Current implementation status.
---     * Slot: implementation_evidence Description: Evidence of control implementation.
---     * Slot: responsible_role Description: Role responsible for the objective or control.
---     * Slot: target_implementation_date Description: Target date for implementing the control.
--- # Class: SecurityControl Description: A security control from Annex A of ISO/IEC 27001:2022, derived from ISO/IEC 27002:2022. Represents a measure that modifies risk.
---     * Slot: control_id Description: Control identifier from Annex A (e.g., a_5_1, a_8_24).
---     * Slot: control_title Description: Title of the control.
---     * Slot: control_category Description: Domain category of the control.
---     * Slot: control_text Description: Organization-authored control statement or external control summary.
---     * Slot: implementation_guidance Description: Organization-authored implementation notes for the control.
---     * Slot: control_owner Description: Person responsible for the control.
---     * Slot: implementation_status Description: Current implementation status.
---     * Slot: implementation_date Description: Date the control was implemented.
---     * Slot: effectiveness_rating Description: Rating of control effectiveness.
---     * Slot: last_test_date Description: Date the control was last tested.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: Resource Description: A resource provided for the ISMS per Clause 7.1, including personnel, infrastructure, technology, and budget.
---     * Slot: resource_type Description: Type of resource.
---     * Slot: quantity Description: Quantity of the resource.
---     * Slot: allocation_date Description: Date the resource was allocated.
---     * Slot: allocated_to Description: What the resource is allocated to.
---     * Slot: cost Description: Cost of the resource.
---     * Slot: availability_status Description: Current availability of the resource.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: CompetenceRecord Description: Evidence of competence for personnel affecting information security performance per Clause 7.2 d).
---     * Slot: person_name Description: Name of the person.
---     * Slot: person_role Description: Role of the person.
---     * Slot: competency_assessment_date Description: Date of last competency assessment.
---     * Slot: document_type Description: Classification of the documented information.
---     * Slot: document_reference Description: Unique reference number for document control.
---     * Slot: author Description: Person who created the document.
---     * Slot: owner Description: Person accountable for the document content and maintenance.
---     * Slot: approved_by Description: Person who approved the document.
---     * Slot: approved_date Description: Date when the document was approved.
---     * Slot: effective_date Description: Date when the document becomes effective.
---     * Slot: review_date Description: Date when the document is due for review.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: classification Description: Information classification level.
---     * Slot: retention_period Description: Duration for which the document is retained.
---     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
---     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
---     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
---     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: AwarenessProgram Description: The awareness program ensuring personnel understand their information security responsibilities per Clause 7.3.
---     * Slot: target_audience Description: Intended audience for the policy or document.
---     * Slot: frequency Description: Frequency of the activity.
---     * Slot: completion_tracking Description: How completion is tracked.
---     * Slot: effectiveness_measures Description: How effectiveness is measured.
---     * Slot: document_type Description: Classification of the documented information.
---     * Slot: document_reference Description: Unique reference number for document control.
---     * Slot: author Description: Person who created the document.
---     * Slot: owner Description: Person accountable for the document content and maintenance.
---     * Slot: approved_by Description: Person who approved the document.
---     * Slot: approved_date Description: Date when the document was approved.
---     * Slot: effective_date Description: Date when the document becomes effective.
---     * Slot: review_date Description: Date when the document is due for review.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: classification Description: Information classification level.
---     * Slot: retention_period Description: Duration for which the document is retained.
---     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
---     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
---     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
---     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: CommunicationPlan Description: Plan for internal and external communications relevant to the ISMS per Clause 7.4.
---     * Slot: document_type Description: Classification of the documented information.
---     * Slot: document_reference Description: Unique reference number for document control.
---     * Slot: author Description: Person who created the document.
---     * Slot: owner Description: Person accountable for the document content and maintenance.
---     * Slot: approved_by Description: Person who approved the document.
---     * Slot: approved_date Description: Date when the document was approved.
---     * Slot: effective_date Description: Date when the document becomes effective.
---     * Slot: review_date Description: Date when the document is due for review.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: classification Description: Information classification level.
---     * Slot: retention_period Description: Duration for which the document is retained.
---     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
---     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
---     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
---     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: CommunicationItem Description: A single communication requirement within the communication plan.
+--     * Slot: document_reference Description: The reference the organization's document control gives it.
+--     * Slot: document_version Description: The version of the document.
+--     * Slot: document_author Description: Who wrote the document.
+--     * Slot: document_owner Description: Who answers for the document's content and upkeep.
+--     * Slot: document_approver Description: Who approved the document.
+--     * Slot: document_approval_date Description: When the document was approved.
+--     * Slot: document_effective_date Description: When the document takes effect.
+--     * Slot: document_last_review_date Description: When the document was last reviewed.
+--     * Slot: document_next_review_date Description: When the document is next due for review.
+--     * Slot: document_status Description: Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+--     * Slot: document_classification Description: The information classification the document carries.
+--     * Slot: document_retention Description: How long the document is kept, as an ISO 8601 duration.
+--     * Slot: document_storage Description: How the document is stored and preserved, so that it stays legible.
+--     * Slot: document_change_control Description: How changes to the document are controlled, such as version control.
+--     * Slot: document_external_origin Description: Whether the document comes from outside the organization and is kept because the ISMS needs it.
+--     * Slot: document_external_source Description: Who the document came from, when it comes from outside.
+-- # Class: IsmsManagementSystem Description: One organization's information security management system: its scope and context, and every record it keeps, each kind in a list of its own.
+--     * Slot: isms_top_management Description: The person or group that directs and controls the organization at the highest level.
+--     * Slot: isms_governing_body Description: The body top management answers to, such as a board, where there is one.
+--     * Slot: isms_scope Description: The scope of the ISMS, as the organization states it.
+--     * Slot: isms_processes Description: The processes the ISMS needs and how they interact.
+--     * Slot: isms_certification_status Description: Where the ISMS stands with certification, in the organization's own terms.
+--     * Slot: isms_certification_body Description: The body that certifies the ISMS.
+--     * Slot: isms_certification_date Description: When the ISMS was certified.
+--     * Slot: isms_recertification_date Description: When the ISMS is next due for recertification.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: isms_organization_isms_id Description: The organization that runs the ISMS.
+--     * Slot: isms_policy_isms_id Description: The information security policy.
+--     * Slot: isms_risk_assessment_process_isms_id Description: The information security risk assessment process.
+--     * Slot: isms_risk_treatment_process_isms_id Description: The information security risk treatment process.
+--     * Slot: isms_statement_of_applicability_isms_id Description: The Statement of Applicability.
+--     * Slot: isms_awareness_programme_isms_id Description: The awareness programme.
+--     * Slot: isms_communication_plan_isms_id Description: The plan for communication about the ISMS.
+--     * Slot: isms_monitoring_programme_isms_id Description: The programme of monitoring and measurement.
+-- # Class: IsmsOrganization Description: The organization that runs the ISMS, with what it needs to know about itself to understand its context.
+--     * Slot: organization_legal_name Description: The organization's registered legal name.
+--     * Slot: organization_kind Description: What kind of organization it is, such as a company, an agency or a charity.
+--     * Slot: organization_sector Description: The organization's main industry sector.
+--     * Slot: organization_size Description: How the organization classes its own size.
+--     * Slot: organization_employee_count Description: About how many people the organization employs.
+--     * Slot: organization_parent Description: The organization's parent, if it has one.
+--     * Slot: organization_climate_change_relevant Description: Whether the organization has determined that climate change is a relevant issue for its ISMS.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+-- # Class: IsmsInterestedParty Description: A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it, such as staff, customers, regulators or suppliers.
+--     * Slot: party_category Description: What kind of interested party it is, in the organization's own terms.
+--     * Slot: party_relationship Description: How the party relates to the organization.
+--     * Slot: party_communication_needs Description: What the party needs to be told, and how.
+--     * Slot: party_contact Description: How to reach the party.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsPolicy Description: The information security policy that top management sets: the organization's commitment and the frame for its information security objectives.
+--     * Slot: policy_statement Description: The policy's own statement, in the organization's words.
+--     * Slot: policy_objectives_framework Description: How the policy frames the setting of information security objectives.
+--     * Slot: policy_applicability Description: To whom and to what the policy applies.
+--     * Slot: policy_communication_date Description: When the policy was communicated within the organization.
+--     * Slot: policy_acknowledgement_required Description: Whether staff must acknowledge the policy.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: document_reference Description: The reference the organization's document control gives it.
+--     * Slot: document_version Description: The version of the document.
+--     * Slot: document_author Description: Who wrote the document.
+--     * Slot: document_owner Description: Who answers for the document's content and upkeep.
+--     * Slot: document_approver Description: Who approved the document.
+--     * Slot: document_approval_date Description: When the document was approved.
+--     * Slot: document_effective_date Description: When the document takes effect.
+--     * Slot: document_last_review_date Description: When the document was last reviewed.
+--     * Slot: document_next_review_date Description: When the document is next due for review.
+--     * Slot: document_status Description: Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+--     * Slot: document_classification Description: The information classification the document carries.
+--     * Slot: document_retention Description: How long the document is kept, as an ISO 8601 duration.
+--     * Slot: document_storage Description: How the document is stored and preserved, so that it stays legible.
+--     * Slot: document_change_control Description: How changes to the document are controlled, such as version control.
+--     * Slot: document_external_origin Description: Whether the document comes from outside the organization and is kept because the ISMS needs it.
+--     * Slot: document_external_source Description: Who the document came from, when it comes from outside.
+-- # Class: IsmsTopicSpecificPolicy Description: A policy on one topic of information security, such as access control or backup, that supports the information security policy.
+--     * Slot: topic_policy_topic Description: The topic the policy covers.
+--     * Slot: topic_policy_parent Description: The information security policy this policy supports.
+--     * Slot: topic_policy_audience Description: Whom the policy is written for.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: document_reference Description: The reference the organization's document control gives it.
+--     * Slot: document_version Description: The version of the document.
+--     * Slot: document_author Description: Who wrote the document.
+--     * Slot: document_owner Description: Who answers for the document's content and upkeep.
+--     * Slot: document_approver Description: Who approved the document.
+--     * Slot: document_approval_date Description: When the document was approved.
+--     * Slot: document_effective_date Description: When the document takes effect.
+--     * Slot: document_last_review_date Description: When the document was last reviewed.
+--     * Slot: document_next_review_date Description: When the document is next due for review.
+--     * Slot: document_status Description: Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+--     * Slot: document_classification Description: The information classification the document carries.
+--     * Slot: document_retention Description: How long the document is kept, as an ISO 8601 duration.
+--     * Slot: document_storage Description: How the document is stored and preserved, so that it stays legible.
+--     * Slot: document_change_control Description: How changes to the document are controlled, such as version control.
+--     * Slot: document_external_origin Description: Whether the document comes from outside the organization and is kept because the ISMS needs it.
+--     * Slot: document_external_source Description: Who the document came from, when it comes from outside.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsRole Description: A role in the ISMS, with the responsibilities and authorities it carries and who holds it.
+--     * Slot: role_category Description: What kind of role it is, in the organization's own terms.
+--     * Slot: role_accountability Description: What the role is accountable for.
+--     * Slot: role_delegation Description: How the role may delegate its responsibilities.
+--     * Slot: role_reports_to Description: The role this role reports to.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsObjective Description: An information security objective: a measurable result the organization aims for, with how it plans to reach it and how it measures progress.
+--     * Slot: responsible_role Description: The role that answers for the record's activity or outcome.
+--     * Slot: objective_statement Description: The objective, as the organization states it.
+--     * Slot: objective_target Description: The value the objective aims for.
+--     * Slot: objective_current_value Description: The value last measured.
+--     * Slot: objective_metric Description: How the objective's value is defined.
+--     * Slot: objective_measurement_method Description: How the value is measured.
+--     * Slot: objective_measurement_frequency Description: How often the value is measured.
+--     * Slot: objective_target_date Description: When the objective is to be reached.
+--     * Slot: objective_achievement Description: How far the objective has been reached, in the organization's own terms.
+--     * Slot: objective_action_plan Description: What will be done to reach the objective.
+--     * Slot: objective_resources Description: The resources needed to reach the objective.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsRiskAssessmentProcess Description: The organization's process for assessing information security risks: its criteria for accepting risk and for assessing it, its scales and method, and when it runs.
+--     * Slot: risk_acceptance_criteria Description: The criteria for accepting a risk.
+--     * Slot: risk_assessment_criteria Description: The criteria for carrying out a risk assessment.
+--     * Slot: risk_assessment_method Description: The method used to identify, analyse and evaluate risks.
+--     * Slot: risk_likelihood_scale Description: The scale for rating likelihood.
+--     * Slot: risk_impact_scale Description: The scale for rating consequences.
+--     * Slot: risk_matrix Description: How likelihood and consequence combine into a risk level.
+--     * Slot: risk_assessment_frequency Description: How often risks are assessed.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: document_reference Description: The reference the organization's document control gives it.
+--     * Slot: document_version Description: The version of the document.
+--     * Slot: document_author Description: Who wrote the document.
+--     * Slot: document_owner Description: Who answers for the document's content and upkeep.
+--     * Slot: document_approver Description: Who approved the document.
+--     * Slot: document_approval_date Description: When the document was approved.
+--     * Slot: document_effective_date Description: When the document takes effect.
+--     * Slot: document_last_review_date Description: When the document was last reviewed.
+--     * Slot: document_next_review_date Description: When the document is next due for review.
+--     * Slot: document_status Description: Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+--     * Slot: document_classification Description: The information classification the document carries.
+--     * Slot: document_retention Description: How long the document is kept, as an ISO 8601 duration.
+--     * Slot: document_storage Description: How the document is stored and preserved, so that it stays legible.
+--     * Slot: document_change_control Description: How changes to the document are controlled, such as version control.
+--     * Slot: document_external_origin Description: Whether the document comes from outside the organization and is kept because the ISMS needs it.
+--     * Slot: document_external_source Description: Who the document came from, when it comes from outside.
+-- # Class: IsmsRiskAssessment Description: One risk assessment carried out under the risk assessment process, and what it found.
+--     * Slot: assessment_scope Description: What the assessment covered.
+--     * Slot: assessment_date Description: When the assessment was carried out.
+--     * Slot: assessment_assessor Description: Who carried out the assessment.
+--     * Slot: assessment_method_used Description: The method this assessment applied.
+--     * Slot: assessment_summary Description: A summary of what the assessment found.
+--     * Slot: assessment_next_date Description: When the next assessment is planned.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: document_reference Description: The reference the organization's document control gives it.
+--     * Slot: document_version Description: The version of the document.
+--     * Slot: document_author Description: Who wrote the document.
+--     * Slot: document_owner Description: Who answers for the document's content and upkeep.
+--     * Slot: document_approver Description: Who approved the document.
+--     * Slot: document_approval_date Description: When the document was approved.
+--     * Slot: document_effective_date Description: When the document takes effect.
+--     * Slot: document_last_review_date Description: When the document was last reviewed.
+--     * Slot: document_next_review_date Description: When the document is next due for review.
+--     * Slot: document_status Description: Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+--     * Slot: document_classification Description: The information classification the document carries.
+--     * Slot: document_retention Description: How long the document is kept, as an ISO 8601 duration.
+--     * Slot: document_storage Description: How the document is stored and preserved, so that it stays legible.
+--     * Slot: document_change_control Description: How changes to the document are controlled, such as version control.
+--     * Slot: document_external_origin Description: Whether the document comes from outside the organization and is kept because the ISMS needs it.
+--     * Slot: document_external_source Description: Who the document came from, when it comes from outside.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsRisk Description: An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated.
+--     * Slot: risk_source Description: Where the risk comes from.
+--     * Slot: risk_threat Description: The threat that could cause harm.
+--     * Slot: risk_vulnerability Description: The weakness the threat could exploit.
+--     * Slot: risk_owner Description: The person who is accountable for the risk and has the authority to manage it.
+--     * Slot: risk_likelihood Description: How likely the risk is.
+--     * Slot: risk_impact Description: How severe the consequences would be.
+--     * Slot: risk_inherent_level Description: The risk's level before controls.
+--     * Slot: risk_residual_level Description: The risk's level after controls.
+--     * Slot: risk_treatment_option Description: The treatment chosen for the risk.
+--     * Slot: risk_treatment_priority Description: How soon the risk is to be treated, in the organization's own terms.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsRiskTreatmentProcess Description: The organization's process for treating information security risks: how it chooses treatments and controls, checks them against Annex A, and produces the Statement of Applicability.
+--     * Slot: treatment_options_guidance Description: How a treatment option is chosen for a risk.
+--     * Slot: treatment_control_selection Description: How the controls a treatment needs are chosen.
+--     * Slot: treatment_annex_a_comparison Description: How the chosen controls are compared with Annex A, so that no necessary control is left out.
+--     * Slot: treatment_soa_template Description: The template the Statement of Applicability follows.
+--     * Slot: treatment_approval_workflow Description: How a treatment plan and its residual risks are approved.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: document_reference Description: The reference the organization's document control gives it.
+--     * Slot: document_version Description: The version of the document.
+--     * Slot: document_author Description: Who wrote the document.
+--     * Slot: document_owner Description: Who answers for the document's content and upkeep.
+--     * Slot: document_approver Description: Who approved the document.
+--     * Slot: document_approval_date Description: When the document was approved.
+--     * Slot: document_effective_date Description: When the document takes effect.
+--     * Slot: document_last_review_date Description: When the document was last reviewed.
+--     * Slot: document_next_review_date Description: When the document is next due for review.
+--     * Slot: document_status Description: Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+--     * Slot: document_classification Description: The information classification the document carries.
+--     * Slot: document_retention Description: How long the document is kept, as an ISO 8601 duration.
+--     * Slot: document_storage Description: How the document is stored and preserved, so that it stays legible.
+--     * Slot: document_change_control Description: How changes to the document are controlled, such as version control.
+--     * Slot: document_external_origin Description: Whether the document comes from outside the organization and is kept because the ISMS needs it.
+--     * Slot: document_external_source Description: Who the document came from, when it comes from outside.
+-- # Class: IsmsRiskTreatmentPlan Description: A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's approval of the plan and of the residual risk.
+--     * Slot: implementation_state Description: How far the control or the plan has been put into effect.
+--     * Slot: plan_scope Description: What the plan covers.
+--     * Slot: plan_resources Description: The resources the plan needs.
+--     * Slot: plan_timeline Description: When the plan's actions are to happen.
+--     * Slot: plan_risk_owner_approval Description: The risk owner who approved the plan.
+--     * Slot: plan_residual_risk_acceptance Description: How the risk owners accepted the risk that remains.
+--     * Slot: plan_completion_date Description: When the plan was completed.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: document_reference Description: The reference the organization's document control gives it.
+--     * Slot: document_version Description: The version of the document.
+--     * Slot: document_author Description: Who wrote the document.
+--     * Slot: document_owner Description: Who answers for the document's content and upkeep.
+--     * Slot: document_approver Description: Who approved the document.
+--     * Slot: document_approval_date Description: When the document was approved.
+--     * Slot: document_effective_date Description: When the document takes effect.
+--     * Slot: document_last_review_date Description: When the document was last reviewed.
+--     * Slot: document_next_review_date Description: When the document is next due for review.
+--     * Slot: document_status Description: Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+--     * Slot: document_classification Description: The information classification the document carries.
+--     * Slot: document_retention Description: How long the document is kept, as an ISO 8601 duration.
+--     * Slot: document_storage Description: How the document is stored and preserved, so that it stays legible.
+--     * Slot: document_change_control Description: How changes to the document are controlled, such as version control.
+--     * Slot: document_external_origin Description: Whether the document comes from outside the organization and is kept because the ISMS needs it.
+--     * Slot: document_external_source Description: Who the document came from, when it comes from outside.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsStatementOfApplicability Description: The Statement of Applicability: each control the organization needs, with why it is included and whether it is in place, and each Annex A control it leaves out, with why.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: document_reference Description: The reference the organization's document control gives it.
+--     * Slot: document_version Description: The version of the document.
+--     * Slot: document_author Description: Who wrote the document.
+--     * Slot: document_owner Description: Who answers for the document's content and upkeep.
+--     * Slot: document_approver Description: Who approved the document.
+--     * Slot: document_approval_date Description: When the document was approved.
+--     * Slot: document_effective_date Description: When the document takes effect.
+--     * Slot: document_last_review_date Description: When the document was last reviewed.
+--     * Slot: document_next_review_date Description: When the document is next due for review.
+--     * Slot: document_status Description: Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+--     * Slot: document_classification Description: The information classification the document carries.
+--     * Slot: document_retention Description: How long the document is kept, as an ISO 8601 duration.
+--     * Slot: document_storage Description: How the document is stored and preserved, so that it stays legible.
+--     * Slot: document_change_control Description: How changes to the document are controlled, such as version control.
+--     * Slot: document_external_origin Description: Whether the document comes from outside the organization and is kept because the ISMS needs it.
+--     * Slot: document_external_source Description: Who the document came from, when it comes from outside.
+-- # Abstract Class: IsmsApplicabilityEntry Description: One entry of the Statement of Applicability, which either includes a control or excludes an Annex A control, and says why.
 --     * Slot: id
---     * Slot: subject Description: Subject of the communication.
---     * Slot: purpose Description: Purpose of the communication.
---     * Slot: audience Description: Target audience.
---     * Slot: frequency Description: Frequency of the activity.
---     * Slot: method Description: Method of communication.
---     * Slot: responsible_party Description: Party responsible for the activity.
---     * Slot: records_required Description: Whether records are required.
--- # Class: OperationalProcedure Description: A documented procedure for operational planning and control per Clause 8.1.
---     * Slot: procedure_scope Description: Scope of the procedure.
---     * Slot: process_criteria Description: Criteria established for the process.
---     * Slot: change_control_requirements Description: Requirements for controlling changes.
---     * Slot: document_type Description: Classification of the documented information.
---     * Slot: document_reference Description: Unique reference number for document control.
---     * Slot: author Description: Person who created the document.
---     * Slot: owner Description: Person accountable for the document content and maintenance.
---     * Slot: approved_by Description: Person who approved the document.
---     * Slot: approved_date Description: Date when the document was approved.
---     * Slot: effective_date Description: Date when the document becomes effective.
---     * Slot: review_date Description: Date when the document is due for review.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: classification Description: Information classification level.
---     * Slot: retention_period Description: Duration for which the document is retained.
---     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
---     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
---     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
---     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: MonitoringProgram Description: The program for monitoring, measurement, analysis, and evaluation per Clause 9.1.
---     * Slot: document_type Description: Classification of the documented information.
---     * Slot: document_reference Description: Unique reference number for document control.
---     * Slot: author Description: Person who created the document.
---     * Slot: owner Description: Person accountable for the document content and maintenance.
---     * Slot: approved_by Description: Person who approved the document.
---     * Slot: approved_date Description: Date when the document was approved.
---     * Slot: effective_date Description: Date when the document becomes effective.
---     * Slot: review_date Description: Date when the document is due for review.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: classification Description: Information classification level.
---     * Slot: retention_period Description: Duration for which the document is retained.
---     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
---     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
---     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
---     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: MonitoringItem Description: A single item to be monitored and measured per 9.1.
+--     * Slot: entry_annex_a_control Description: The Annex A control a Statement of Applicability entry concerns.
+--     * Slot: entry_type Description: The kind of entry: IsmsIncludedControl or IsmsExcludedControl.
+--     * Slot: entry_justification Description: Why the control is included or excluded.
+--     * Slot: IsmsStatementOfApplicability_isms_id Description: Autocreated FK slot
+-- # Class: IsmsIncludedControl Description: An entry that includes a control the organization needs, from Annex A or from elsewhere, and says whether it is in place.
 --     * Slot: id
---     * Slot: metric_name Description: Name of the metric.
---     * Slot: metric_description Description: Description of what is measured.
---     * Slot: measurement_method Description: Method used to measure the metric.
---     * Slot: measurement_frequency Description: How often measurement is performed.
---     * Slot: responsible_party Description: Party responsible for the activity.
---     * Slot: analysis_frequency Description: How often analysis is performed.
---     * Slot: analyst Description: Person performing analysis.
---     * Slot: target_threshold Description: Target threshold value.
---     * Slot: alert_threshold Description: Threshold triggering alerts.
---     * Slot: current_value Description: Current measured value.
---     * Slot: trend Description: Current trend direction.
--- # Class: InternalAudit Description: An internal audit instance per Clause 9.2, assessing ISMS conformance and effectiveness.
---     * Slot: audit_reference Description: Reference identifier for the audit.
---     * Slot: audit_type Description: Type of audit per ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1.
---     * Slot: audit_scope Description: Scope of the audit.
---     * Slot: audit_period_start Description: Start date of audit period.
---     * Slot: audit_period_end Description: End date of audit period.
---     * Slot: lead_auditor Description: Lead auditor for the audit.
---     * Slot: audit_plan Description: Audit plan document reference.
---     * Slot: audit_conclusion Description: Overall audit conclusion.
---     * Slot: report_date Description: Date the report was issued.
---     * Slot: document_type Description: Classification of the documented information.
---     * Slot: document_reference Description: Unique reference number for document control.
---     * Slot: author Description: Person who created the document.
---     * Slot: owner Description: Person accountable for the document content and maintenance.
---     * Slot: approved_by Description: Person who approved the document.
---     * Slot: approved_date Description: Date when the document was approved.
---     * Slot: effective_date Description: Date when the document becomes effective.
---     * Slot: review_date Description: Date when the document is due for review.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: classification Description: Information classification level.
---     * Slot: retention_period Description: Duration for which the document is retained.
---     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
---     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
---     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
---     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: AuditProgramme Description: The internal audit programme per 9.2.2, planning audit activities over a defined period.
---     * Slot: programme_period Description: Period covered by the audit programme.
---     * Slot: audit_frequency_rationale Description: Rationale for audit frequency decisions.
---     * Slot: resource_requirements Description: Resource requirements for the programme.
---     * Slot: auditor_qualifications Description: Required qualifications for auditors.
---     * Slot: programme_status Description: Current status of the programme.
---     * Slot: document_type Description: Classification of the documented information.
---     * Slot: document_reference Description: Unique reference number for document control.
---     * Slot: author Description: Person who created the document.
---     * Slot: owner Description: Person accountable for the document content and maintenance.
---     * Slot: approved_by Description: Person who approved the document.
---     * Slot: approved_date Description: Date when the document was approved.
---     * Slot: effective_date Description: Date when the document becomes effective.
---     * Slot: review_date Description: Date when the document is due for review.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: classification Description: Information classification level.
---     * Slot: retention_period Description: Duration for which the document is retained.
---     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
---     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
---     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
---     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: AuditFinding Description: A finding from an internal audit, including nonconformities, observations, and positive findings.
---     * Slot: finding_type Description: Type of audit finding.
---     * Slot: clause_reference Description: Reference to standard clause.
---     * Slot: control_reference Description: Reference to the control (e.g., A.5.1).
---     * Slot: finding_description Description: Description of the finding.
---     * Slot: objective_evidence Description: Evidence supporting the finding.
---     * Slot: root_cause_analysis Description: Analysis of root cause.
---     * Slot: risk_implication Description: Risk implications of the finding.
---     * Slot: recommended_action Description: Recommended action to address finding.
---     * Slot: auditee_response Description: Response from the auditee.
---     * Slot: linked_corrective_action Description: Corrective action linked to this finding.
---     * Slot: closure_status Description: Status of finding closure.
---     * Slot: closure_date Description: Date the finding was closed.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: ManagementReview Description: A management review per Clause 9.3, conducted by top management to evaluate ongoing ISMS performance and fitness for purpose.
---     * Slot: review_date Description: Date when the management review was conducted.
---     * Slot: previous_actions_status Description: Status of actions from previous reviews.
---     * Slot: context_changes Description: Changes in context since last review.
---     * Slot: interested_party_changes Description: Changes in interested party requirements.
---     * Slot: interested_party_feedback Description: Feedback from interested parties considered in the management review.
---     * Slot: performance_trends Description: Trends in information security performance.
---     * Slot: audit_results_summary Description: Summary of audit results.
---     * Slot: risk_assessment_results Description: Results of risk assessment.
---     * Slot: risk_treatment_status Description: Status of the risk treatment plan considered in the management review.
---     * Slot: risks_and_opportunities_changes Description: Changes in risks and opportunities considered in the management review, per Clause 9.3.2 f).
---     * Slot: next_review_date Description: Planned date for next review.
---     * Slot: document_type Description: Classification of the documented information.
---     * Slot: document_reference Description: Unique reference number for document control.
---     * Slot: author Description: Person who created the document.
---     * Slot: owner Description: Person accountable for the document content and maintenance.
---     * Slot: approved_by Description: Person who approved the document.
---     * Slot: approved_date Description: Date when the document was approved.
---     * Slot: effective_date Description: Date when the document becomes effective.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: classification Description: Information classification level.
---     * Slot: retention_period Description: Duration for which the document is retained.
---     * Slot: storage_and_preservation Description: Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
---     * Slot: change_control_method Description: Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
---     * Slot: external_origin Description: Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
---     * Slot: external_origin_source Description: Source or provider of the externally originated documented information, per Clause 7.5.3.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: Nonconformity Description: A nonconformity identified per Clause 10.2, representing failure to fulfill a requirement.
---     * Slot: nonconformity_source Description: Source of nonconformity detection.
---     * Slot: detection_date Description: Date the nonconformity was detected.
---     * Slot: detected_by Description: Person or process that detected the nonconformity.
---     * Slot: requirement_violated Description: Requirement that was not fulfilled.
---     * Slot: nonconformity_description Description: Description of the nonconformity.
---     * Slot: consequences_addressed Description: How consequences were dealt with.
---     * Slot: root_cause Description: Root cause of the nonconformity.
---     * Slot: similar_nonconformities_check Description: Check for similar nonconformities elsewhere.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: closure_date Description: Date the finding was closed.
---     * Slot: closure_evidence Description: Evidence supporting closure.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: CorrectiveAction Description: A corrective action per Clause 10.2 to address the root cause of a nonconformity and reduce the likelihood of recurrence.
---     * Slot: linked_nonconformity Description: Nonconformity this action addresses.
---     * Slot: action_description Description: Description of the action.
---     * Slot: root_cause_addressed Description: Root cause this action addresses.
---     * Slot: responsible_party Description: Party responsible for the activity.
---     * Slot: target_completion_date Description: Target date for completing the action.
---     * Slot: actual_completion_date Description: Actual date the action was completed.
---     * Slot: resources_required Description: Resources required for implementation.
---     * Slot: effectiveness_criteria Description: Criteria for evaluating effectiveness.
---     * Slot: effectiveness_review_date Description: Date effectiveness was reviewed.
---     * Slot: effectiveness_verified Description: Whether effectiveness was verified.
---     * Slot: isms_changes_required Description: Changes to ISMS required as a result.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: ImprovementOpportunity Description: An opportunity for continual improvement per Clause 10.1, enhancing overall ISMS performance.
---     * Slot: improvement_source Description: Source of the improvement opportunity.
---     * Slot: identification_date Description: Date identified.
---     * Slot: identified_by Description: Person who identified it.
---     * Slot: improvement_description Description: Description of the improvement.
---     * Slot: expected_benefit Description: Expected benefit from implementation.
---     * Slot: priority Description: Priority level.
---     * Slot: implementation_plan Description: Plan for implementing the improvement.
---     * Slot: responsible_party Description: Party responsible for the activity.
---     * Slot: target_date Description: Target date for achieving the objective.
---     * Slot: actual_completion_date Description: Actual date the action was completed.
---     * Slot: outcome_assessment Description: Assessment of actual outcomes.
---     * Slot: status Description: Current status of the document or entity.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: Asset Description: An information asset or associated asset requiring protection, per Annex A control 5.9.
---     * Slot: asset_type Description: Type of asset.
---     * Slot: asset_owner Description: Owner of the asset.
---     * Slot: asset_custodian Description: Custodian responsible for day-to-day protection.
---     * Slot: classification Description: Information classification level.
---     * Slot: location Description: Physical or logical location.
---     * Slot: criticality Description: Criticality rating of the asset.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: InformationSecurityEvent Description: An information security event per A.5.25, which may or may not be categorized as an incident.
---     * Slot: event_datetime Description: Date and time of the event.
---     * Slot: reporter Description: Person who reported the event.
---     * Slot: event_description Description: Description of the event.
---     * Slot: initial_assessment Description: Initial assessment of the event.
---     * Slot: categorized_as_incident Description: Whether the event was categorized as an incident.
---     * Slot: linked_incident Description: Linked incident if categorized.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: InformationSecurityIncident Description: An information security incident per A.5.26, requiring response per documented procedures.
---     * Slot: incident_datetime Description: Date and time the incident occurred or was detected.
---     * Slot: incident_category Description: Category of incident.
---     * Slot: severity Description: Severity rating of the incident.
---     * Slot: incident_description Description: Description of the incident.
---     * Slot: detection_method Description: How the incident was detected.
---     * Slot: root_cause Description: Root cause of the nonconformity.
---     * Slot: notification_required Description: Whether notification to authorities/parties was required.
---     * Slot: closure_datetime Description: Date and time of incident closure.
---     * Slot: post_incident_review Description: Post-incident review findings.
---     * Slot: id Description: Unique identifier for this entity instance.
---     * Slot: name Description: Human-readable name or title.
---     * Slot: description Description: Detailed description of the entity.
---     * Slot: created_date Description: Date when the entity was created.
---     * Slot: modified_date Description: Date when the entity was last modified.
---     * Slot: version Description: Version identifier for the entity.
--- # Class: DocumentedInformation_distribution_controls
---     * Slot: DocumentedInformation_id Description: Autocreated FK slot
---     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
--- # Class: InformationSecurityManagementSystem_leadership_commitment_evidence
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: leadership_commitment_evidence Description: Evidence of leadership and commitment with respect to the ISMS as required by Clause 5.1 a-h).
--- # Class: InformationSecurityManagementSystem_scope_boundaries
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: scope_boundaries Description: Defined boundaries of the ISMS scope.
--- # Class: InformationSecurityManagementSystem_scope_exclusions
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: scope_exclusions Description: Any exclusions from scope with justification.
--- # Class: InformationSecurityManagementSystem_interfaces_and_dependencies
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: interfaces_and_dependencies Description: Interfaces and dependencies between activities performed by the organization and those performed by other organizations, considered when determining the ISMS scope per Clause 4.3 c).
--- # Class: InformationSecurityManagementSystem_context_internal_issues
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: context_internal_issues Description: Internal issues relevant to ISMS per 4.1.
--- # Class: InformationSecurityManagementSystem_context_external_issues
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: context_external_issues Description: External issues relevant to ISMS per 4.1.
--- # Class: InformationSecurityManagementSystem_interested_parties
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: interested_parties_id Description: Stakeholders relevant to the ISMS.
--- # Class: InformationSecurityManagementSystem_objectives
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: objectives_id Description: Information security objectives.
--- # Class: InformationSecurityManagementSystem_risks_and_opportunities_actions
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: risks_and_opportunities_actions Description: Actions to address risks and opportunities determined per Clause 6.1.1, including how they are integrated into ISMS processes and how their effectiveness is evaluated.
--- # Class: InformationSecurityManagementSystem_planned_changes
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: planned_changes Description: Changes to the ISMS planned and controlled per Clause 6.3 and 8.1 (planning of changes; control of planned changes).
--- # Class: InformationSecurityManagementSystem_externally_provided_services
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: externally_provided_services Description: Externally provided processes, products or services relevant to the ISMS that are controlled per Clause 8.1.
--- # Class: InformationSecurityManagementSystem_controls
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: controls_id Description: Security controls applied in the ISMS.
--- # Class: InformationSecurityManagementSystem_roles
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: roles_id Description: Information security roles defined in the ISMS.
--- # Class: InformationSecurityManagementSystem_resources
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: resources_id Description: Resources provided for the ISMS.
--- # Class: InformationSecurityManagementSystem_competence_records
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: competence_records_id Description: Competence records for personnel.
--- # Class: InformationSecurityManagementSystem_documented_information_register
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: documented_information_register_id Description: Register of documented information.
--- # Class: InformationSecurityManagementSystem_operational_procedures
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: operational_procedures_id Description: Operational procedures.
--- # Class: InformationSecurityManagementSystem_risk_assessments
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: risk_assessments_id Description: Risk assessment instances.
--- # Class: InformationSecurityManagementSystem_risk_treatment_plans
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: risk_treatment_plans_id Description: Risk treatment plans.
--- # Class: InformationSecurityManagementSystem_internal_audits
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: internal_audits_id Description: Internal audit instances.
--- # Class: InformationSecurityManagementSystem_management_reviews
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: management_reviews_id Description: Management review instances.
--- # Class: InformationSecurityManagementSystem_nonconformities
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: nonconformities_id Description: Nonconformities identified.
--- # Class: InformationSecurityManagementSystem_corrective_actions
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: corrective_actions_id Description: Corrective actions.
--- # Class: InformationSecurityManagementSystem_improvements
---     * Slot: InformationSecurityManagementSystem_id Description: Autocreated FK slot
---     * Slot: improvements_id Description: Improvement opportunities tracked.
--- # Class: Organization_trading_names
---     * Slot: Organization_id Description: Autocreated FK slot
---     * Slot: trading_names Description: Names under which the organization conducts business.
--- # Class: Organization_geographic_locations
---     * Slot: Organization_id Description: Autocreated FK slot
---     * Slot: geographic_locations Description: Countries or regions where the organization operates.
--- # Class: Organization_regulatory_jurisdictions
---     * Slot: Organization_id Description: Autocreated FK slot
---     * Slot: regulatory_jurisdictions Description: Jurisdictions whose regulations apply to the organization.
--- # Class: Organization_subsidiaries
---     * Slot: Organization_id Description: Autocreated FK slot
---     * Slot: subsidiaries Description: Subsidiary organizations if applicable.
--- # Class: InterestedParty_requirements
---     * Slot: InterestedParty_id Description: Autocreated FK slot
---     * Slot: requirements Description: Requirements of the interested party.
--- # Class: InterestedParty_addressed_requirements
---     * Slot: InterestedParty_id Description: Autocreated FK slot
---     * Slot: addressed_requirements Description: Requirements of the interested party that the organization has determined will be addressed through the ISMS, per Clause 4.2 c).
--- # Class: InterestedParty_climate_change_related_requirements
---     * Slot: InterestedParty_id Description: Autocreated FK slot
---     * Slot: climate_change_related_requirements Description: Climate-change-related requirements of the interested party, per ISO/IEC 27001:2022 Clause 4.2 NOTE 2 as added by Amd. 1:2024.
--- # Class: InformationSecurityPolicy_commitment_statements
---     * Slot: InformationSecurityPolicy_id Description: Autocreated FK slot
---     * Slot: commitment_statements Description: Statements of commitment included in the policy.
--- # Class: InformationSecurityPolicy_related_topic_policies
---     * Slot: InformationSecurityPolicy_id Description: Autocreated FK slot
---     * Slot: related_topic_policies_id Description: Topic-specific policies supporting this policy.
--- # Class: InformationSecurityPolicy_integrated_management_systems
---     * Slot: InformationSecurityPolicy_id Description: Autocreated FK slot
---     * Slot: integrated_management_systems Description: Other ISO/IEC management system standards with which the ISMS is integrated or aligned (per the harmonized structure of Annex SL).
--- # Class: InformationSecurityPolicy_distribution_controls
---     * Slot: InformationSecurityPolicy_id Description: Autocreated FK slot
---     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
--- # Class: TopicSpecificPolicy_applicable_controls
---     * Slot: TopicSpecificPolicy_id Description: Autocreated FK slot
---     * Slot: applicable_controls_id Description: Controls related to this policy.
--- # Class: TopicSpecificPolicy_distribution_controls
---     * Slot: TopicSpecificPolicy_id Description: Autocreated FK slot
---     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
--- # Class: Role_responsibilities
---     * Slot: Role_id Description: Autocreated FK slot
---     * Slot: responsibilities Description: Responsibilities assigned to the role.
--- # Class: Role_authorities
---     * Slot: Role_id Description: Autocreated FK slot
---     * Slot: authorities Description: Authorities granted to the role.
--- # Class: Role_assigned_to
---     * Slot: Role_id Description: Autocreated FK slot
---     * Slot: assigned_to Description: Person(s) assigned to this role.
--- # Class: InformationSecurityObjective_related_risks
---     * Slot: InformationSecurityObjective_id Description: Autocreated FK slot
---     * Slot: related_risks_id Description: Associated risks.
--- # Class: InformationSecurityObjective_related_controls
---     * Slot: InformationSecurityObjective_id Description: Autocreated FK slot
---     * Slot: related_controls_id Description: Other controls related to this one.
--- # Class: RiskAssessmentProcess_trigger_events
---     * Slot: RiskAssessmentProcess_id Description: Autocreated FK slot
---     * Slot: trigger_events Description: Events that trigger risk assessment outside planned schedule.
--- # Class: RiskAssessmentProcess_distribution_controls
---     * Slot: RiskAssessmentProcess_id Description: Autocreated FK slot
---     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
--- # Class: RiskAssessment_risks_identified
---     * Slot: RiskAssessment_id Description: Autocreated FK slot
---     * Slot: risks_identified_id Description: Risks identified in this assessment.
--- # Class: RiskAssessment_recommendations
---     * Slot: RiskAssessment_id Description: Autocreated FK slot
---     * Slot: recommendations Description: Recommendations from the assessment.
--- # Class: RiskAssessment_distribution_controls
---     * Slot: RiskAssessment_id Description: Autocreated FK slot
---     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
--- # Class: Risk_affected_assets
---     * Slot: Risk_id Description: Autocreated FK slot
---     * Slot: affected_assets_id Description: Assets affected by this risk or incident.
--- # Class: Risk_affected_cia_properties
---     * Slot: Risk_id Description: Autocreated FK slot
---     * Slot: affected_cia_properties Description: Which CIA properties are affected (confidentiality, integrity, availability).
--- # Class: Risk_existing_controls
---     * Slot: Risk_id Description: Autocreated FK slot
---     * Slot: existing_controls_id Description: Controls currently in place affecting this risk.
--- # Class: RiskTreatmentProcess_distribution_controls
---     * Slot: RiskTreatmentProcess_id Description: Autocreated FK slot
---     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
--- # Class: RiskTreatmentPlan_risks_addressed
---     * Slot: RiskTreatmentPlan_id Description: Autocreated FK slot
---     * Slot: risks_addressed_id Description: Risks addressed by this plan.
--- # Class: RiskTreatmentPlan_treatment_actions
---     * Slot: RiskTreatmentPlan_id Description: Autocreated FK slot
---     * Slot: treatment_actions Description: Actions to be taken for treatment.
--- # Class: RiskTreatmentPlan_controls_to_implement
---     * Slot: RiskTreatmentPlan_id Description: Autocreated FK slot
---     * Slot: controls_to_implement_id Description: Controls to be implemented as part of treatment.
--- # Class: RiskTreatmentPlan_responsible_parties
---     * Slot: RiskTreatmentPlan_id Description: Autocreated FK slot
---     * Slot: responsible_parties Description: Parties responsible for implementation.
--- # Class: RiskTreatmentPlan_distribution_controls
---     * Slot: RiskTreatmentPlan_id Description: Autocreated FK slot
---     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
--- # Class: StatementOfApplicability_soa_entries
---     * Slot: StatementOfApplicability_id Description: Autocreated FK slot
---     * Slot: soa_entries_id Description: Individual control entries in the SoA.
--- # Class: StatementOfApplicability_distribution_controls
---     * Slot: StatementOfApplicability_id Description: Autocreated FK slot
---     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
--- # Class: SecurityControl_related_controls
---     * Slot: SecurityControl_id Description: Autocreated FK slot
---     * Slot: related_controls_id Description: Other controls related to this one.
--- # Class: SecurityControl_applicable_threats
---     * Slot: SecurityControl_id Description: Autocreated FK slot
---     * Slot: applicable_threats Description: Threats this control addresses.
--- # Class: SecurityControl_applicable_assets
---     * Slot: SecurityControl_id Description: Autocreated FK slot
---     * Slot: applicable_assets Description: Asset types this control applies to.
--- # Class: SecurityControl_evidence_references
---     * Slot: SecurityControl_id Description: Autocreated FK slot
---     * Slot: evidence_references Description: References to evidence of implementation.
--- # Class: CompetenceRecord_required_competencies
---     * Slot: CompetenceRecord_id Description: Autocreated FK slot
---     * Slot: required_competencies Description: Competencies required for the role.
--- # Class: CompetenceRecord_education_records
---     * Slot: CompetenceRecord_id Description: Autocreated FK slot
---     * Slot: education_records Description: Education qualifications.
--- # Class: CompetenceRecord_training_records
---     * Slot: CompetenceRecord_id Description: Autocreated FK slot
---     * Slot: training_records Description: Training completed.
--- # Class: CompetenceRecord_experience_records
---     * Slot: CompetenceRecord_id Description: Autocreated FK slot
---     * Slot: experience_records Description: Relevant experience.
--- # Class: CompetenceRecord_competency_gaps
---     * Slot: CompetenceRecord_id Description: Autocreated FK slot
---     * Slot: competency_gaps Description: Identified competency gaps.
--- # Class: CompetenceRecord_development_actions
---     * Slot: CompetenceRecord_id Description: Autocreated FK slot
---     * Slot: development_actions Description: Actions to address competency gaps.
--- # Class: CompetenceRecord_distribution_controls
---     * Slot: CompetenceRecord_id Description: Autocreated FK slot
---     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
--- # Class: AwarenessProgram_awareness_topics
---     * Slot: AwarenessProgram_id Description: Autocreated FK slot
---     * Slot: awareness_topics Description: Topics covered in awareness program.
--- # Class: AwarenessProgram_delivery_methods
---     * Slot: AwarenessProgram_id Description: Autocreated FK slot
---     * Slot: delivery_methods Description: Methods used to deliver awareness content.
--- # Class: AwarenessProgram_distribution_controls
---     * Slot: AwarenessProgram_id Description: Autocreated FK slot
---     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
--- # Class: CommunicationPlan_communication_items
---     * Slot: CommunicationPlan_id Description: Autocreated FK slot
---     * Slot: communication_items_id Description: Communication items in the plan.
--- # Class: CommunicationPlan_distribution_controls
---     * Slot: CommunicationPlan_id Description: Autocreated FK slot
---     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
--- # Class: OperationalProcedure_control_measures
---     * Slot: OperationalProcedure_id Description: Autocreated FK slot
---     * Slot: control_measures Description: Control measures implemented.
--- # Class: OperationalProcedure_responsible_roles
---     * Slot: OperationalProcedure_id Description: Autocreated FK slot
---     * Slot: responsible_roles_id Description: Roles responsible for the procedure.
--- # Class: OperationalProcedure_related_controls
---     * Slot: OperationalProcedure_id Description: Autocreated FK slot
---     * Slot: related_controls_id Description: Other controls related to this one.
--- # Class: OperationalProcedure_distribution_controls
---     * Slot: OperationalProcedure_id Description: Autocreated FK slot
---     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
--- # Class: MonitoringProgram_monitoring_items
---     * Slot: MonitoringProgram_id Description: Autocreated FK slot
---     * Slot: monitoring_items_id Description: Items to be monitored.
--- # Class: MonitoringProgram_distribution_controls
---     * Slot: MonitoringProgram_id Description: Autocreated FK slot
---     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
--- # Class: InternalAudit_audit_criteria
---     * Slot: InternalAudit_id Description: Autocreated FK slot
---     * Slot: audit_criteria Description: Criteria against which audit is conducted.
--- # Class: InternalAudit_audit_objectives
---     * Slot: InternalAudit_id Description: Autocreated FK slot
---     * Slot: audit_objectives Description: Objectives of the audit.
--- # Class: InternalAudit_audit_team
---     * Slot: InternalAudit_id Description: Autocreated FK slot
---     * Slot: audit_team Description: Audit team members.
--- # Class: InternalAudit_auditee_representatives
---     * Slot: InternalAudit_id Description: Autocreated FK slot
---     * Slot: auditee_representatives Description: Representatives from audited areas.
--- # Class: InternalAudit_findings
---     * Slot: InternalAudit_id Description: Autocreated FK slot
---     * Slot: findings_id Description: Audit findings.
--- # Class: InternalAudit_positive_observations
---     * Slot: InternalAudit_id Description: Autocreated FK slot
---     * Slot: positive_observations Description: Positive observations noted.
--- # Class: InternalAudit_report_distribution
---     * Slot: InternalAudit_id Description: Autocreated FK slot
---     * Slot: report_distribution Description: Distribution list for the report.
--- # Class: InternalAudit_distribution_controls
---     * Slot: InternalAudit_id Description: Autocreated FK slot
---     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
--- # Class: AuditProgramme_planned_audits
---     * Slot: AuditProgramme_id Description: Autocreated FK slot
---     * Slot: planned_audits_id Description: Audits planned in this programme.
--- # Class: AuditProgramme_distribution_controls
---     * Slot: AuditProgramme_id Description: Autocreated FK slot
---     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
--- # Class: ManagementReview_attendees
---     * Slot: ManagementReview_id Description: Autocreated FK slot
---     * Slot: attendees Description: Attendees of the review.
--- # Class: ManagementReview_improvement_opportunities
---     * Slot: ManagementReview_id Description: Autocreated FK slot
---     * Slot: improvement_opportunities Description: Opportunities for improvement identified.
--- # Class: ManagementReview_decisions
---     * Slot: ManagementReview_id Description: Autocreated FK slot
---     * Slot: decisions Description: Decisions made in the review.
--- # Class: ManagementReview_action_items
---     * Slot: ManagementReview_id Description: Autocreated FK slot
---     * Slot: action_items Description: Action items from the review.
--- # Class: ManagementReview_distribution_controls
---     * Slot: ManagementReview_id Description: Autocreated FK slot
---     * Slot: distribution_controls Description: Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
--- # Class: Nonconformity_immediate_actions
---     * Slot: Nonconformity_id Description: Autocreated FK slot
---     * Slot: immediate_actions Description: Immediate actions taken to control/correct.
--- # Class: Nonconformity_linked_corrective_actions
---     * Slot: Nonconformity_id Description: Autocreated FK slot
---     * Slot: linked_corrective_actions_id Description: Corrective actions addressing this nonconformity.
--- # Class: Asset_related_risks
---     * Slot: Asset_id Description: Autocreated FK slot
---     * Slot: related_risks_id Description: Associated risks.
--- # Class: Asset_applicable_controls
---     * Slot: Asset_id Description: Autocreated FK slot
---     * Slot: applicable_controls_id Description: Controls related to this policy.
--- # Class: InformationSecurityEvent_affected_assets
---     * Slot: InformationSecurityEvent_id Description: Autocreated FK slot
---     * Slot: affected_assets_id Description: Assets affected by this risk or incident.
--- # Class: InformationSecurityIncident_affected_assets
---     * Slot: InformationSecurityIncident_id Description: Autocreated FK slot
---     * Slot: affected_assets_id Description: Assets affected by this risk or incident.
--- # Class: InformationSecurityIncident_affected_cia
---     * Slot: InformationSecurityIncident_id Description: Autocreated FK slot
---     * Slot: affected_cia Description: CIA properties affected by the incident.
--- # Class: InformationSecurityIncident_response_actions
---     * Slot: InformationSecurityIncident_id Description: Autocreated FK slot
---     * Slot: response_actions Description: Actions taken in response.
--- # Class: InformationSecurityIncident_containment_actions
---     * Slot: InformationSecurityIncident_id Description: Autocreated FK slot
---     * Slot: containment_actions Description: Actions to contain the incident.
--- # Class: InformationSecurityIncident_eradication_actions
---     * Slot: InformationSecurityIncident_id Description: Autocreated FK slot
---     * Slot: eradication_actions Description: Actions to eradicate the cause.
--- # Class: InformationSecurityIncident_recovery_actions
---     * Slot: InformationSecurityIncident_id Description: Autocreated FK slot
---     * Slot: recovery_actions Description: Actions to recover normal operations.
--- # Class: InformationSecurityIncident_lessons_learned
---     * Slot: InformationSecurityIncident_id Description: Autocreated FK slot
---     * Slot: lessons_learned Description: Lessons learned from the incident.
--- # Class: InformationSecurityIncident_evidence_collected
---     * Slot: InformationSecurityIncident_id Description: Autocreated FK slot
---     * Slot: evidence_collected Description: Evidence collected.
--- # Class: InformationSecurityIncident_notifications_made
---     * Slot: InformationSecurityIncident_id Description: Autocreated FK slot
---     * Slot: notifications_made Description: Notifications that were made.
+--     * Slot: implementation_state Description: How far the control or the plan has been put into effect.
+--     * Slot: responsible_role Description: The role that answers for the record's activity or outcome.
+--     * Slot: included_control Description: The organization's control the entry includes.
+--     * Slot: included_evidence Description: What shows that the control is in place.
+--     * Slot: included_target_date Description: When the control is to be in place, if it is not yet.
+--     * Slot: entry_annex_a_control Description: The Annex A control a Statement of Applicability entry concerns.
+--     * Slot: entry_type Description: The kind of entry: IsmsIncludedControl or IsmsExcludedControl.
+--     * Slot: entry_justification Description: Why the control is included or excluded.
+-- # Class: IsmsExcludedControl Description: An entry that leaves out an Annex A control the organization does not need, and says why.
+--     * Slot: id
+--     * Slot: entry_annex_a_control Description: The Annex A control a Statement of Applicability entry concerns.
+--     * Slot: entry_type Description: The kind of entry: IsmsIncludedControl or IsmsExcludedControl.
+--     * Slot: entry_justification Description: Why the control is included or excluded.
+-- # Class: IsmsControl Description: A control the organization has determined it needs to treat its risks. It records what the control does in the organization's words and which Annex A controls it answers to. It also records who owns it, how far it is in place and how well it works.
+--     * Slot: implementation_state Description: How far the control or the plan has been put into effect.
+--     * Slot: control_theme Description: Which of Annex A's four themes the control belongs to.
+--     * Slot: control_text Description: What the control does, in the organization's own words.
+--     * Slot: control_guidance Description: The organization's notes on putting the control in place.
+--     * Slot: control_owner Description: The person who owns the control.
+--     * Slot: control_implementation_date Description: When the control was put in place.
+--     * Slot: control_effectiveness Description: How well the control works, in the organization's own terms.
+--     * Slot: control_last_tested Description: When the control was last tested.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsAsset Description: An item in the inventory of information and other associated assets: what it is, who owns and looks after it, where it is, how it is classified and how much it matters.
+--     * Slot: asset_category Description: What kind of asset it is, such as information, software, hardware or a service.
+--     * Slot: asset_owner Description: Who owns the asset.
+--     * Slot: asset_custodian Description: Who looks after the asset from day to day.
+--     * Slot: asset_classification Description: The information classification the asset carries.
+--     * Slot: asset_location Description: Where the asset is, physically or logically.
+--     * Slot: asset_criticality Description: How much the asset matters, in the organization's own terms.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsResource Description: A resource provided for the ISMS, such as people, time, tools or budget.
+--     * Slot: resource_category Description: What kind of resource it is.
+--     * Slot: resource_quantity Description: How much of the resource is provided.
+--     * Slot: resource_allocation_date Description: When the resource was allocated.
+--     * Slot: resource_allocated_to Description: What the resource is allocated to.
+--     * Slot: resource_cost Description: What the resource costs.
+--     * Slot: resource_availability Description: Whether the resource is available now, in the organization's own terms.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsCompetenceRecord Description: The evidence of one person's competence for work that affects information security, and what is done to close any gap.
+--     * Slot: competence_person Description: The person the record is about.
+--     * Slot: competence_role Description: The role the person holds.
+--     * Slot: competence_assessment_date Description: When the person's competence was last assessed.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: document_reference Description: The reference the organization's document control gives it.
+--     * Slot: document_version Description: The version of the document.
+--     * Slot: document_author Description: Who wrote the document.
+--     * Slot: document_owner Description: Who answers for the document's content and upkeep.
+--     * Slot: document_approver Description: Who approved the document.
+--     * Slot: document_approval_date Description: When the document was approved.
+--     * Slot: document_effective_date Description: When the document takes effect.
+--     * Slot: document_last_review_date Description: When the document was last reviewed.
+--     * Slot: document_next_review_date Description: When the document is next due for review.
+--     * Slot: document_status Description: Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+--     * Slot: document_classification Description: The information classification the document carries.
+--     * Slot: document_retention Description: How long the document is kept, as an ISO 8601 duration.
+--     * Slot: document_storage Description: How the document is stored and preserved, so that it stays legible.
+--     * Slot: document_change_control Description: How changes to the document are controlled, such as version control.
+--     * Slot: document_external_origin Description: Whether the document comes from outside the organization and is kept because the ISMS needs it.
+--     * Slot: document_external_source Description: Who the document came from, when it comes from outside.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsAwarenessProgramme Description: The programme that makes people working for the organization aware of the policy, their part in the ISMS and what failing it would mean.
+--     * Slot: awareness_audience Description: Whom the programme is for.
+--     * Slot: awareness_frequency Description: How often the programme runs.
+--     * Slot: awareness_completion_tracking Description: How completion is tracked.
+--     * Slot: awareness_effectiveness Description: How the programme's effect is measured.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: document_reference Description: The reference the organization's document control gives it.
+--     * Slot: document_version Description: The version of the document.
+--     * Slot: document_author Description: Who wrote the document.
+--     * Slot: document_owner Description: Who answers for the document's content and upkeep.
+--     * Slot: document_approver Description: Who approved the document.
+--     * Slot: document_approval_date Description: When the document was approved.
+--     * Slot: document_effective_date Description: When the document takes effect.
+--     * Slot: document_last_review_date Description: When the document was last reviewed.
+--     * Slot: document_next_review_date Description: When the document is next due for review.
+--     * Slot: document_status Description: Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+--     * Slot: document_classification Description: The information classification the document carries.
+--     * Slot: document_retention Description: How long the document is kept, as an ISO 8601 duration.
+--     * Slot: document_storage Description: How the document is stored and preserved, so that it stays legible.
+--     * Slot: document_change_control Description: How changes to the document are controlled, such as version control.
+--     * Slot: document_external_origin Description: Whether the document comes from outside the organization and is kept because the ISMS needs it.
+--     * Slot: document_external_source Description: Who the document came from, when it comes from outside.
+-- # Class: IsmsCommunicationPlan Description: The plan for communication about the ISMS, inside the organization and outside it.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: document_reference Description: The reference the organization's document control gives it.
+--     * Slot: document_version Description: The version of the document.
+--     * Slot: document_author Description: Who wrote the document.
+--     * Slot: document_owner Description: Who answers for the document's content and upkeep.
+--     * Slot: document_approver Description: Who approved the document.
+--     * Slot: document_approval_date Description: When the document was approved.
+--     * Slot: document_effective_date Description: When the document takes effect.
+--     * Slot: document_last_review_date Description: When the document was last reviewed.
+--     * Slot: document_next_review_date Description: When the document is next due for review.
+--     * Slot: document_status Description: Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+--     * Slot: document_classification Description: The information classification the document carries.
+--     * Slot: document_retention Description: How long the document is kept, as an ISO 8601 duration.
+--     * Slot: document_storage Description: How the document is stored and preserved, so that it stays legible.
+--     * Slot: document_change_control Description: How changes to the document are controlled, such as version control.
+--     * Slot: document_external_origin Description: Whether the document comes from outside the organization and is kept because the ISMS needs it.
+--     * Slot: document_external_source Description: Who the document came from, when it comes from outside.
+-- # Class: IsmsCommunication Description: One communication the plan provides for: what about, why, to whom, how often, how, and who communicates.
+--     * Slot: id
+--     * Slot: responsible_role Description: The role that answers for the record's activity or outcome.
+--     * Slot: communication_subject Description: What the communication is about.
+--     * Slot: communication_purpose Description: Why it is communicated.
+--     * Slot: communication_audience Description: To whom it is communicated.
+--     * Slot: communication_frequency Description: How often it is communicated.
+--     * Slot: communication_method Description: How it is communicated.
+--     * Slot: communication_records_required Description: Whether a record of the communication is kept.
+--     * Slot: IsmsCommunicationPlan_isms_id Description: Autocreated FK slot
+-- # Class: IsmsDocumentedInformation Description: A piece of documented information the ISMS keeps under control that no more specific record describes, such as a procedure, a standard, a plan or a report.
+--     * Slot: document_kind Description: What kind of documented information it is.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: document_reference Description: The reference the organization's document control gives it.
+--     * Slot: document_version Description: The version of the document.
+--     * Slot: document_author Description: Who wrote the document.
+--     * Slot: document_owner Description: Who answers for the document's content and upkeep.
+--     * Slot: document_approver Description: Who approved the document.
+--     * Slot: document_approval_date Description: When the document was approved.
+--     * Slot: document_effective_date Description: When the document takes effect.
+--     * Slot: document_last_review_date Description: When the document was last reviewed.
+--     * Slot: document_next_review_date Description: When the document is next due for review.
+--     * Slot: document_status Description: Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+--     * Slot: document_classification Description: The information classification the document carries.
+--     * Slot: document_retention Description: How long the document is kept, as an ISO 8601 duration.
+--     * Slot: document_storage Description: How the document is stored and preserved, so that it stays legible.
+--     * Slot: document_change_control Description: How changes to the document are controlled, such as version control.
+--     * Slot: document_external_origin Description: Whether the document comes from outside the organization and is kept because the ISMS needs it.
+--     * Slot: document_external_source Description: Who the document came from, when it comes from outside.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsOperationalProcedure Description: A procedure by which the organization plans and controls the processes that meet its information security requirements.
+--     * Slot: procedure_scope Description: What the procedure covers.
+--     * Slot: procedure_criteria Description: The criteria the processes are run to.
+--     * Slot: procedure_change_control Description: How changes to the processes are controlled.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: document_reference Description: The reference the organization's document control gives it.
+--     * Slot: document_version Description: The version of the document.
+--     * Slot: document_author Description: Who wrote the document.
+--     * Slot: document_owner Description: Who answers for the document's content and upkeep.
+--     * Slot: document_approver Description: Who approved the document.
+--     * Slot: document_approval_date Description: When the document was approved.
+--     * Slot: document_effective_date Description: When the document takes effect.
+--     * Slot: document_last_review_date Description: When the document was last reviewed.
+--     * Slot: document_next_review_date Description: When the document is next due for review.
+--     * Slot: document_status Description: Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+--     * Slot: document_classification Description: The information classification the document carries.
+--     * Slot: document_retention Description: How long the document is kept, as an ISO 8601 duration.
+--     * Slot: document_storage Description: How the document is stored and preserved, so that it stays legible.
+--     * Slot: document_change_control Description: How changes to the document are controlled, such as version control.
+--     * Slot: document_external_origin Description: Whether the document comes from outside the organization and is kept because the ISMS needs it.
+--     * Slot: document_external_source Description: Who the document came from, when it comes from outside.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsMonitoringProgramme Description: The programme of monitoring, measurement, analysis and evaluation of information security performance and of the ISMS's effectiveness.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: document_reference Description: The reference the organization's document control gives it.
+--     * Slot: document_version Description: The version of the document.
+--     * Slot: document_author Description: Who wrote the document.
+--     * Slot: document_owner Description: Who answers for the document's content and upkeep.
+--     * Slot: document_approver Description: Who approved the document.
+--     * Slot: document_approval_date Description: When the document was approved.
+--     * Slot: document_effective_date Description: When the document takes effect.
+--     * Slot: document_last_review_date Description: When the document was last reviewed.
+--     * Slot: document_next_review_date Description: When the document is next due for review.
+--     * Slot: document_status Description: Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+--     * Slot: document_classification Description: The information classification the document carries.
+--     * Slot: document_retention Description: How long the document is kept, as an ISO 8601 duration.
+--     * Slot: document_storage Description: How the document is stored and preserved, so that it stays legible.
+--     * Slot: document_change_control Description: How changes to the document are controlled, such as version control.
+--     * Slot: document_external_origin Description: Whether the document comes from outside the organization and is kept because the ISMS needs it.
+--     * Slot: document_external_source Description: Who the document came from, when it comes from outside.
+-- # Class: IsmsMonitoringItem Description: One thing the monitoring programme measures: what, how, how often and by whom it is measured and analysed, and against what thresholds.
+--     * Slot: id
+--     * Slot: responsible_role Description: The role that answers for the record's activity or outcome.
+--     * Slot: monitoring_metric Description: The name of what is measured.
+--     * Slot: monitoring_description Description: What the measurement shows.
+--     * Slot: monitoring_method Description: How it is measured.
+--     * Slot: monitoring_frequency Description: How often it is measured.
+--     * Slot: monitoring_analysis_frequency Description: How often the results are analysed and evaluated.
+--     * Slot: monitoring_analyst Description: Who analyses and evaluates the results.
+--     * Slot: monitoring_target Description: The value aimed for.
+--     * Slot: monitoring_alert_threshold Description: The value that calls for action.
+--     * Slot: monitoring_current_value Description: The value last measured.
+--     * Slot: monitoring_trend Description: Which way the value is moving.
+--     * Slot: IsmsMonitoringProgramme_isms_id Description: Autocreated FK slot
+-- # Class: IsmsAuditProgramme Description: An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors they need.
+--     * Slot: programme_period Description: The period the programme covers.
+--     * Slot: programme_frequency_rationale Description: Why the audits happen as often as they do.
+--     * Slot: programme_resources Description: The resources the programme needs.
+--     * Slot: programme_auditor_qualifications Description: The qualifications the auditors need.
+--     * Slot: programme_status Description: Where the programme stands, in the organization's own terms.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: document_reference Description: The reference the organization's document control gives it.
+--     * Slot: document_version Description: The version of the document.
+--     * Slot: document_author Description: Who wrote the document.
+--     * Slot: document_owner Description: Who answers for the document's content and upkeep.
+--     * Slot: document_approver Description: Who approved the document.
+--     * Slot: document_approval_date Description: When the document was approved.
+--     * Slot: document_effective_date Description: When the document takes effect.
+--     * Slot: document_last_review_date Description: When the document was last reviewed.
+--     * Slot: document_next_review_date Description: When the document is next due for review.
+--     * Slot: document_status Description: Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+--     * Slot: document_classification Description: The information classification the document carries.
+--     * Slot: document_retention Description: How long the document is kept, as an ISO 8601 duration.
+--     * Slot: document_storage Description: How the document is stored and preserved, so that it stays legible.
+--     * Slot: document_change_control Description: How changes to the document are controlled, such as version control.
+--     * Slot: document_external_origin Description: Whether the document comes from outside the organization and is kept because the ISMS needs it.
+--     * Slot: document_external_source Description: Who the document came from, when it comes from outside.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsAudit Description: An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope, criteria, team, findings and conclusion.
+--     * Slot: audit_type Description: Who carries out the audit, relative to the organization.
+--     * Slot: audit_scope Description: What the audit covers.
+--     * Slot: audit_period_start Description: When the audit began.
+--     * Slot: audit_period_end Description: When the audit ended.
+--     * Slot: audit_lead Description: Who led the audit.
+--     * Slot: audit_plan Description: The documented information that holds the audit plan.
+--     * Slot: audit_conclusion Description: The audit's overall conclusion.
+--     * Slot: audit_report_date Description: When the audit report was issued.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: document_reference Description: The reference the organization's document control gives it.
+--     * Slot: document_version Description: The version of the document.
+--     * Slot: document_author Description: Who wrote the document.
+--     * Slot: document_owner Description: Who answers for the document's content and upkeep.
+--     * Slot: document_approver Description: Who approved the document.
+--     * Slot: document_approval_date Description: When the document was approved.
+--     * Slot: document_effective_date Description: When the document takes effect.
+--     * Slot: document_last_review_date Description: When the document was last reviewed.
+--     * Slot: document_next_review_date Description: When the document is next due for review.
+--     * Slot: document_status Description: Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+--     * Slot: document_classification Description: The information classification the document carries.
+--     * Slot: document_retention Description: How long the document is kept, as an ISO 8601 duration.
+--     * Slot: document_storage Description: How the document is stored and preserved, so that it stays legible.
+--     * Slot: document_change_control Description: How changes to the document are controlled, such as version control.
+--     * Slot: document_external_origin Description: Whether the document comes from outside the organization and is kept because the ISMS needs it.
+--     * Slot: document_external_source Description: Who the document came from, when it comes from outside.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsAuditFinding Description: One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it concerns, its evidence and how it is closed.
+--     * Slot: finding_type Description: What kind of finding it is.
+--     * Slot: finding_requirement Description: The clause or Annex A control of ISO/IEC 27001:2022 the finding concerns, by number.
+--     * Slot: finding_control Description: The organization's control the finding concerns.
+--     * Slot: finding_evidence Description: The objective evidence for the finding.
+--     * Slot: finding_root_cause Description: What the analysis of the finding's cause found.
+--     * Slot: finding_risk Description: What the finding means for risk.
+--     * Slot: finding_recommendation Description: What the auditor recommends.
+--     * Slot: finding_auditee_response Description: How the auditee responded.
+--     * Slot: finding_corrective_action Description: The corrective action the finding led to.
+--     * Slot: finding_closure_status Description: Whether the finding is closed, in the organization's own terms.
+--     * Slot: finding_closure_date Description: When the finding was closed.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: IsmsAudit_isms_id Description: Autocreated FK slot
+-- # Class: IsmsManagementReview Description: A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.
+--     * Slot: review_held_on Description: When the review was held.
+--     * Slot: review_previous_actions Description: Where the actions from earlier reviews stand.
+--     * Slot: review_context_changes Description: How the issues that bear on the ISMS have changed.
+--     * Slot: review_interested_party_changes Description: How interested parties' needs and expectations have changed.
+--     * Slot: review_interested_party_feedback Description: What interested parties said.
+--     * Slot: review_performance_trends Description: The trends in information security performance.
+--     * Slot: review_audit_results Description: What the audits found.
+--     * Slot: review_risk_assessment_results Description: What the risk assessments found.
+--     * Slot: review_risk_treatment_status Description: Where risk treatment stands.
+--     * Slot: review_risks_and_opportunities Description: How risks and opportunities have changed.
+--     * Slot: review_next_date Description: When the next review is planned.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: document_reference Description: The reference the organization's document control gives it.
+--     * Slot: document_version Description: The version of the document.
+--     * Slot: document_author Description: Who wrote the document.
+--     * Slot: document_owner Description: Who answers for the document's content and upkeep.
+--     * Slot: document_approver Description: Who approved the document.
+--     * Slot: document_approval_date Description: When the document was approved.
+--     * Slot: document_effective_date Description: When the document takes effect.
+--     * Slot: document_last_review_date Description: When the document was last reviewed.
+--     * Slot: document_next_review_date Description: When the document is next due for review.
+--     * Slot: document_status Description: Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+--     * Slot: document_classification Description: The information classification the document carries.
+--     * Slot: document_retention Description: How long the document is kept, as an ISO 8601 duration.
+--     * Slot: document_storage Description: How the document is stored and preserved, so that it stays legible.
+--     * Slot: document_change_control Description: How changes to the document are controlled, such as version control.
+--     * Slot: document_external_origin Description: Whether the document comes from outside the organization and is kept because the ISMS needs it.
+--     * Slot: document_external_source Description: Who the document came from, when it comes from outside.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsNonconformity Description: A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was closed.
+--     * Slot: nonconformity_source Description: How the nonconformity came to light, such as an audit, a review or an incident.
+--     * Slot: nonconformity_detected_on Description: When the nonconformity was found.
+--     * Slot: nonconformity_detected_by Description: Who or what found it.
+--     * Slot: nonconformity_requirement Description: The requirement that was not met, of ISO/IEC 27001, of the organization or of an interested party.
+--     * Slot: nonconformity_consequences Description: How its consequences were dealt with.
+--     * Slot: nonconformity_root_cause Description: What caused it.
+--     * Slot: nonconformity_similar_check Description: Whether similar nonconformities exist or could occur, and where.
+--     * Slot: nonconformity_status Description: Where the nonconformity stands, in the organization's own terms.
+--     * Slot: nonconformity_closure_date Description: When it was closed.
+--     * Slot: nonconformity_closure_evidence Description: What shows that it is closed.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsCorrectiveAction Description: An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it worked.
+--     * Slot: responsible_role Description: The role that answers for the record's activity or outcome.
+--     * Slot: action_root_cause Description: The cause the action removes.
+--     * Slot: action_target_date Description: When the action is to be complete.
+--     * Slot: action_completion_date Description: When the action was complete.
+--     * Slot: action_resources Description: The resources the action needs.
+--     * Slot: action_effectiveness_criteria Description: How the action's effect will be judged.
+--     * Slot: action_effectiveness_review_date Description: When the action's effect was reviewed.
+--     * Slot: action_effective Description: Whether the review found the action effective.
+--     * Slot: action_isms_changes Description: The changes to the ISMS the action needs.
+--     * Slot: action_status Description: Where the action stands, in the organization's own terms.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsImprovementOpportunity Description: An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.
+--     * Slot: responsible_role Description: The role that answers for the record's activity or outcome.
+--     * Slot: improvement_source Description: Where the opportunity came from, such as a review, an audit or daily work.
+--     * Slot: improvement_identified_on Description: When the opportunity was identified.
+--     * Slot: improvement_identified_by Description: Who identified it.
+--     * Slot: improvement_benefit Description: What the improvement is expected to bring.
+--     * Slot: improvement_priority Description: How soon it is to be acted on, in the organization's own terms.
+--     * Slot: improvement_plan Description: How the improvement is to be made.
+--     * Slot: improvement_target_date Description: When the improvement is to be made.
+--     * Slot: improvement_completion_date Description: When it was made.
+--     * Slot: improvement_outcome Description: What the improvement brought.
+--     * Slot: improvement_status Description: Where it stands, in the organization's own terms.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsSecurityEvent Description: An information security event someone reported, and the assessment of whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.
+--     * Slot: event_type Description: The kind of record: IsmsSecurityEvent, or IsmsSecurityIncident for an event assessed as an incident.
+--     * Slot: event_occurred_at Description: When the event happened, or when it was first noticed.
+--     * Slot: event_reporter Description: Who reported the event.
+--     * Slot: event_assessment Description: What the assessment of the event found.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+-- # Class: IsmsSecurityIncident Description: An information security event assessed as an incident: its category and severity, how it was detected, contained, eradicated and recovered from, the evidence collected, who was told, and what was learned.
+--     * Slot: incident_category Description: What kind of incident it is.
+--     * Slot: incident_severity Description: How severe the incident is.
+--     * Slot: incident_detection_method Description: How the incident was detected.
+--     * Slot: incident_root_cause Description: What caused the incident.
+--     * Slot: incident_notification_required Description: Whether authorities or other parties had to be told.
+--     * Slot: incident_closed_at Description: When the incident was closed.
+--     * Slot: incident_review Description: What the review after the incident found.
+--     * Slot: event_type Description: The kind of record: IsmsSecurityEvent, or IsmsSecurityIncident for an event assessed as an incident.
+--     * Slot: event_occurred_at Description: When the event happened, or when it was first noticed.
+--     * Slot: event_reporter Description: Who reported the event.
+--     * Slot: event_assessment Description: What the assessment of the event found.
+--     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+--     * Slot: title Description: The name the organization gives the record.
+--     * Slot: description Description: What the record says or describes, in the organization's own words.
+-- # Class: IsmsDocumentControlMixin_document_distribution
+--     * Slot: IsmsDocumentControlMixin_id Description: Autocreated FK slot
+--     * Slot: document_distribution Description: How the document is distributed, accessed, retrieved and used.
+-- # Class: IsmsManagementSystem_isms_leadership_evidence
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+--     * Slot: isms_leadership_evidence Description: What shows that top management leads and commits to the ISMS.
+-- # Class: IsmsManagementSystem_isms_scope_boundaries
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+--     * Slot: isms_scope_boundaries Description: Where the scope of the ISMS ends.
+-- # Class: IsmsManagementSystem_isms_scope_exclusions
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+--     * Slot: isms_scope_exclusions Description: What the scope leaves out, each with the reason.
+-- # Class: IsmsManagementSystem_isms_interfaces
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+--     * Slot: isms_interfaces Description: The interfaces and dependencies between what the organization does and what other organizations do, which the scope takes into account.
+-- # Class: IsmsManagementSystem_isms_internal_issues
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+--     * Slot: isms_internal_issues Description: The internal issues that bear on the ISMS.
+-- # Class: IsmsManagementSystem_isms_external_issues
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+--     * Slot: isms_external_issues Description: The external issues that bear on the ISMS.
+-- # Class: IsmsManagementSystem_isms_risk_and_opportunity_actions
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+--     * Slot: isms_risk_and_opportunity_actions Description: The actions planned to address the ISMS's risks and opportunities, and how they fit into its processes.
+-- # Class: IsmsManagementSystem_isms_planned_changes
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+--     * Slot: isms_planned_changes Description: The changes to the ISMS that are planned.
+-- # Class: IsmsManagementSystem_isms_external_services
+--     * Slot: IsmsManagementSystem_isms_id Description: Autocreated FK slot
+--     * Slot: isms_external_services Description: The processes, products or services from outside the organization that the ISMS relies on and controls.
+-- # Class: IsmsOrganization_organization_trading_names
+--     * Slot: IsmsOrganization_isms_id Description: Autocreated FK slot
+--     * Slot: organization_trading_names Description: Other names the organization trades under.
+-- # Class: IsmsOrganization_organization_locations
+--     * Slot: IsmsOrganization_isms_id Description: Autocreated FK slot
+--     * Slot: organization_locations Description: The countries or regions the organization works in.
+-- # Class: IsmsOrganization_organization_jurisdictions
+--     * Slot: IsmsOrganization_isms_id Description: Autocreated FK slot
+--     * Slot: organization_jurisdictions Description: The jurisdictions whose laws and regulations apply to the organization.
+-- # Class: IsmsOrganization_organization_subsidiaries
+--     * Slot: IsmsOrganization_isms_id Description: Autocreated FK slot
+--     * Slot: organization_subsidiaries Description: The organization's subsidiaries, if it has any.
+-- # Class: IsmsInterestedParty_party_requirements
+--     * Slot: IsmsInterestedParty_isms_id Description: Autocreated FK slot
+--     * Slot: party_requirements Description: The party's requirements that bear on information security.
+-- # Class: IsmsInterestedParty_party_addressed_requirements
+--     * Slot: IsmsInterestedParty_isms_id Description: Autocreated FK slot
+--     * Slot: party_addressed_requirements Description: Which of those requirements the ISMS addresses.
+-- # Class: IsmsInterestedParty_party_climate_change_requirements
+--     * Slot: IsmsInterestedParty_isms_id Description: Autocreated FK slot
+--     * Slot: party_climate_change_requirements Description: The party's requirements that concern climate change.
+-- # Class: IsmsPolicy_policy_commitments
+--     * Slot: IsmsPolicy_isms_id Description: Autocreated FK slot
+--     * Slot: policy_commitments Description: The commitments the policy makes.
+-- # Class: IsmsPolicy_policy_management_systems
+--     * Slot: IsmsPolicy_isms_id Description: Autocreated FK slot
+--     * Slot: policy_management_systems Description: The other management system standards the ISMS is integrated with under the same policy.
+-- # Class: IsmsPolicy_document_distribution
+--     * Slot: IsmsPolicy_isms_id Description: Autocreated FK slot
+--     * Slot: document_distribution Description: How the document is distributed, accessed, retrieved and used.
+-- # Class: IsmsTopicSpecificPolicy_relevant_controls
+--     * Slot: IsmsTopicSpecificPolicy_isms_id Description: Autocreated FK slot
+--     * Slot: relevant_controls_isms_id Description: The organization's controls that the record concerns.
+-- # Class: IsmsTopicSpecificPolicy_document_distribution
+--     * Slot: IsmsTopicSpecificPolicy_isms_id Description: Autocreated FK slot
+--     * Slot: document_distribution Description: How the document is distributed, accessed, retrieved and used.
+-- # Class: IsmsRole_role_responsibilities
+--     * Slot: IsmsRole_isms_id Description: Autocreated FK slot
+--     * Slot: role_responsibilities Description: The responsibilities assigned to the role.
+-- # Class: IsmsRole_role_authorities
+--     * Slot: IsmsRole_isms_id Description: Autocreated FK slot
+--     * Slot: role_authorities Description: The authorities the role carries.
+-- # Class: IsmsRole_role_holders
+--     * Slot: IsmsRole_isms_id Description: Autocreated FK slot
+--     * Slot: role_holders Description: The people who hold the role.
+-- # Class: IsmsObjective_relevant_controls
+--     * Slot: IsmsObjective_isms_id Description: Autocreated FK slot
+--     * Slot: relevant_controls_isms_id Description: The organization's controls that the record concerns.
+-- # Class: IsmsObjective_objective_risks
+--     * Slot: IsmsObjective_isms_id Description: Autocreated FK slot
+--     * Slot: objective_risks_isms_id Description: The risks the objective concerns.
+-- # Class: IsmsRiskAssessmentProcess_risk_assessment_triggers
+--     * Slot: IsmsRiskAssessmentProcess_isms_id Description: Autocreated FK slot
+--     * Slot: risk_assessment_triggers Description: The events that start a risk assessment outside the planned ones.
+-- # Class: IsmsRiskAssessmentProcess_document_distribution
+--     * Slot: IsmsRiskAssessmentProcess_isms_id Description: Autocreated FK slot
+--     * Slot: document_distribution Description: How the document is distributed, accessed, retrieved and used.
+-- # Class: IsmsRiskAssessment_assessment_risks
+--     * Slot: IsmsRiskAssessment_isms_id Description: Autocreated FK slot
+--     * Slot: assessment_risks_isms_id Description: The risks the assessment identified.
+-- # Class: IsmsRiskAssessment_assessment_recommendations
+--     * Slot: IsmsRiskAssessment_isms_id Description: Autocreated FK slot
+--     * Slot: assessment_recommendations Description: What the assessment recommends.
+-- # Class: IsmsRiskAssessment_document_distribution
+--     * Slot: IsmsRiskAssessment_isms_id Description: Autocreated FK slot
+--     * Slot: document_distribution Description: How the document is distributed, accessed, retrieved and used.
+-- # Class: IsmsRisk_affected_assets
+--     * Slot: IsmsRisk_isms_id Description: Autocreated FK slot
+--     * Slot: affected_assets_isms_id Description: The assets the risk, event or incident affects.
+-- # Class: IsmsRisk_affected_security_properties
+--     * Slot: IsmsRisk_isms_id Description: Autocreated FK slot
+--     * Slot: affected_security_properties Description: Which of confidentiality, integrity and availability the risk or incident threatens.
+-- # Class: IsmsRisk_risk_existing_controls
+--     * Slot: IsmsRisk_isms_id Description: Autocreated FK slot
+--     * Slot: risk_existing_controls_isms_id Description: The organization's controls already acting on the risk.
+-- # Class: IsmsRiskTreatmentProcess_document_distribution
+--     * Slot: IsmsRiskTreatmentProcess_isms_id Description: Autocreated FK slot
+--     * Slot: document_distribution Description: How the document is distributed, accessed, retrieved and used.
+-- # Class: IsmsRiskTreatmentPlan_plan_risks
+--     * Slot: IsmsRiskTreatmentPlan_isms_id Description: Autocreated FK slot
+--     * Slot: plan_risks_isms_id Description: The risks the plan treats.
+-- # Class: IsmsRiskTreatmentPlan_plan_actions
+--     * Slot: IsmsRiskTreatmentPlan_isms_id Description: Autocreated FK slot
+--     * Slot: plan_actions Description: The actions the plan takes.
+-- # Class: IsmsRiskTreatmentPlan_plan_controls
+--     * Slot: IsmsRiskTreatmentPlan_isms_id Description: Autocreated FK slot
+--     * Slot: plan_controls_isms_id Description: The controls the plan puts in place.
+-- # Class: IsmsRiskTreatmentPlan_plan_responsible_parties
+--     * Slot: IsmsRiskTreatmentPlan_isms_id Description: Autocreated FK slot
+--     * Slot: plan_responsible_parties Description: Who carries out the plan.
+-- # Class: IsmsRiskTreatmentPlan_document_distribution
+--     * Slot: IsmsRiskTreatmentPlan_isms_id Description: Autocreated FK slot
+--     * Slot: document_distribution Description: How the document is distributed, accessed, retrieved and used.
+-- # Class: IsmsStatementOfApplicability_document_distribution
+--     * Slot: IsmsStatementOfApplicability_isms_id Description: Autocreated FK slot
+--     * Slot: document_distribution Description: How the document is distributed, accessed, retrieved and used.
+-- # Class: IsmsControl_relevant_controls
+--     * Slot: IsmsControl_isms_id Description: Autocreated FK slot
+--     * Slot: relevant_controls_isms_id Description: The organization's controls that the record concerns.
+-- # Class: IsmsControl_control_annex_a_controls
+--     * Slot: IsmsControl_isms_id Description: Autocreated FK slot
+--     * Slot: control_annex_a_controls Description: The Annex A controls the control answers to.
+-- # Class: IsmsControl_control_threats
+--     * Slot: IsmsControl_isms_id Description: Autocreated FK slot
+--     * Slot: control_threats Description: The threats the control acts against.
+-- # Class: IsmsControl_control_asset_types
+--     * Slot: IsmsControl_isms_id Description: Autocreated FK slot
+--     * Slot: control_asset_types Description: The kinds of asset the control applies to.
+-- # Class: IsmsControl_control_evidence
+--     * Slot: IsmsControl_isms_id Description: Autocreated FK slot
+--     * Slot: control_evidence Description: Where the evidence that the control is in place is kept.
+-- # Class: IsmsAsset_relevant_controls
+--     * Slot: IsmsAsset_isms_id Description: Autocreated FK slot
+--     * Slot: relevant_controls_isms_id Description: The organization's controls that the record concerns.
+-- # Class: IsmsCompetenceRecord_competence_required
+--     * Slot: IsmsCompetenceRecord_isms_id Description: Autocreated FK slot
+--     * Slot: competence_required Description: The competences the role needs.
+-- # Class: IsmsCompetenceRecord_competence_education
+--     * Slot: IsmsCompetenceRecord_isms_id Description: Autocreated FK slot
+--     * Slot: competence_education Description: The person's relevant education.
+-- # Class: IsmsCompetenceRecord_competence_training
+--     * Slot: IsmsCompetenceRecord_isms_id Description: Autocreated FK slot
+--     * Slot: competence_training Description: The training the person has completed.
+-- # Class: IsmsCompetenceRecord_competence_experience
+--     * Slot: IsmsCompetenceRecord_isms_id Description: Autocreated FK slot
+--     * Slot: competence_experience Description: The person's relevant experience.
+-- # Class: IsmsCompetenceRecord_competence_gaps
+--     * Slot: IsmsCompetenceRecord_isms_id Description: Autocreated FK slot
+--     * Slot: competence_gaps Description: The gaps the assessment found.
+-- # Class: IsmsCompetenceRecord_competence_actions
+--     * Slot: IsmsCompetenceRecord_isms_id Description: Autocreated FK slot
+--     * Slot: competence_actions Description: What is done to close the gaps.
+-- # Class: IsmsCompetenceRecord_document_distribution
+--     * Slot: IsmsCompetenceRecord_isms_id Description: Autocreated FK slot
+--     * Slot: document_distribution Description: How the document is distributed, accessed, retrieved and used.
+-- # Class: IsmsAwarenessProgramme_awareness_topics
+--     * Slot: IsmsAwarenessProgramme_isms_id Description: Autocreated FK slot
+--     * Slot: awareness_topics Description: The topics the programme covers.
+-- # Class: IsmsAwarenessProgramme_awareness_methods
+--     * Slot: IsmsAwarenessProgramme_isms_id Description: Autocreated FK slot
+--     * Slot: awareness_methods Description: How the programme is delivered.
+-- # Class: IsmsAwarenessProgramme_document_distribution
+--     * Slot: IsmsAwarenessProgramme_isms_id Description: Autocreated FK slot
+--     * Slot: document_distribution Description: How the document is distributed, accessed, retrieved and used.
+-- # Class: IsmsCommunicationPlan_document_distribution
+--     * Slot: IsmsCommunicationPlan_isms_id Description: Autocreated FK slot
+--     * Slot: document_distribution Description: How the document is distributed, accessed, retrieved and used.
+-- # Class: IsmsDocumentedInformation_document_distribution
+--     * Slot: IsmsDocumentedInformation_isms_id Description: Autocreated FK slot
+--     * Slot: document_distribution Description: How the document is distributed, accessed, retrieved and used.
+-- # Class: IsmsOperationalProcedure_relevant_controls
+--     * Slot: IsmsOperationalProcedure_isms_id Description: Autocreated FK slot
+--     * Slot: relevant_controls_isms_id Description: The organization's controls that the record concerns.
+-- # Class: IsmsOperationalProcedure_procedure_control_measures
+--     * Slot: IsmsOperationalProcedure_isms_id Description: Autocreated FK slot
+--     * Slot: procedure_control_measures Description: The measures that control the processes.
+-- # Class: IsmsOperationalProcedure_procedure_roles
+--     * Slot: IsmsOperationalProcedure_isms_id Description: Autocreated FK slot
+--     * Slot: procedure_roles_isms_id Description: The roles that carry out the procedure.
+-- # Class: IsmsOperationalProcedure_document_distribution
+--     * Slot: IsmsOperationalProcedure_isms_id Description: Autocreated FK slot
+--     * Slot: document_distribution Description: How the document is distributed, accessed, retrieved and used.
+-- # Class: IsmsMonitoringProgramme_document_distribution
+--     * Slot: IsmsMonitoringProgramme_isms_id Description: Autocreated FK slot
+--     * Slot: document_distribution Description: How the document is distributed, accessed, retrieved and used.
+-- # Class: IsmsAuditProgramme_programme_audits
+--     * Slot: IsmsAuditProgramme_isms_id Description: Autocreated FK slot
+--     * Slot: programme_audits_isms_id Description: The audits the programme plans.
+-- # Class: IsmsAuditProgramme_document_distribution
+--     * Slot: IsmsAuditProgramme_isms_id Description: Autocreated FK slot
+--     * Slot: document_distribution Description: How the document is distributed, accessed, retrieved and used.
+-- # Class: IsmsAudit_audit_standards
+--     * Slot: IsmsAudit_isms_id Description: Autocreated FK slot
+--     * Slot: audit_standards Description: The management system standards the audit covers.
+-- # Class: IsmsAudit_audit_criteria
+--     * Slot: IsmsAudit_isms_id Description: Autocreated FK slot
+--     * Slot: audit_criteria Description: What the audit compares the ISMS against.
+-- # Class: IsmsAudit_audit_objectives
+--     * Slot: IsmsAudit_isms_id Description: Autocreated FK slot
+--     * Slot: audit_objectives Description: What the audit sets out to establish.
+-- # Class: IsmsAudit_audit_team
+--     * Slot: IsmsAudit_isms_id Description: Autocreated FK slot
+--     * Slot: audit_team Description: Who else audited.
+-- # Class: IsmsAudit_audit_auditees
+--     * Slot: IsmsAudit_isms_id Description: Autocreated FK slot
+--     * Slot: audit_auditees Description: Who represented the parts of the organization audited.
+-- # Class: IsmsAudit_audit_report_distribution
+--     * Slot: IsmsAudit_isms_id Description: Autocreated FK slot
+--     * Slot: audit_report_distribution Description: Who received the audit report.
+-- # Class: IsmsAudit_document_distribution
+--     * Slot: IsmsAudit_isms_id Description: Autocreated FK slot
+--     * Slot: document_distribution Description: How the document is distributed, accessed, retrieved and used.
+-- # Class: IsmsManagementReview_review_attendees
+--     * Slot: IsmsManagementReview_isms_id Description: Autocreated FK slot
+--     * Slot: review_attendees Description: Who attended the review.
+-- # Class: IsmsManagementReview_review_improvement_opportunities
+--     * Slot: IsmsManagementReview_isms_id Description: Autocreated FK slot
+--     * Slot: review_improvement_opportunities Description: The opportunities for improvement raised.
+-- # Class: IsmsManagementReview_review_decisions
+--     * Slot: IsmsManagementReview_isms_id Description: Autocreated FK slot
+--     * Slot: review_decisions Description: What the review decided.
+-- # Class: IsmsManagementReview_review_actions
+--     * Slot: IsmsManagementReview_isms_id Description: Autocreated FK slot
+--     * Slot: review_actions Description: What the review asked to be done.
+-- # Class: IsmsManagementReview_document_distribution
+--     * Slot: IsmsManagementReview_isms_id Description: Autocreated FK slot
+--     * Slot: document_distribution Description: How the document is distributed, accessed, retrieved and used.
+-- # Class: IsmsNonconformity_nonconformity_immediate_actions
+--     * Slot: IsmsNonconformity_isms_id Description: Autocreated FK slot
+--     * Slot: nonconformity_immediate_actions Description: What was done at once to control and correct it.
+-- # Class: IsmsCorrectiveAction_action_nonconformities
+--     * Slot: IsmsCorrectiveAction_isms_id Description: Autocreated FK slot
+--     * Slot: action_nonconformities_isms_id Description: The nonconformities the action addresses.
+-- # Class: IsmsSecurityEvent_affected_assets
+--     * Slot: IsmsSecurityEvent_isms_id Description: Autocreated FK slot
+--     * Slot: affected_assets_isms_id Description: The assets the risk, event or incident affects.
+-- # Class: IsmsSecurityIncident_affected_security_properties
+--     * Slot: IsmsSecurityIncident_isms_id Description: Autocreated FK slot
+--     * Slot: affected_security_properties Description: Which of confidentiality, integrity and availability the risk or incident threatens.
+-- # Class: IsmsSecurityIncident_incident_response_actions
+--     * Slot: IsmsSecurityIncident_isms_id Description: Autocreated FK slot
+--     * Slot: incident_response_actions Description: What was done in response.
+-- # Class: IsmsSecurityIncident_incident_containment_actions
+--     * Slot: IsmsSecurityIncident_isms_id Description: Autocreated FK slot
+--     * Slot: incident_containment_actions Description: What was done to contain it.
+-- # Class: IsmsSecurityIncident_incident_eradication_actions
+--     * Slot: IsmsSecurityIncident_isms_id Description: Autocreated FK slot
+--     * Slot: incident_eradication_actions Description: What was done to remove its cause.
+-- # Class: IsmsSecurityIncident_incident_recovery_actions
+--     * Slot: IsmsSecurityIncident_isms_id Description: Autocreated FK slot
+--     * Slot: incident_recovery_actions Description: What was done to restore normal operation.
+-- # Class: IsmsSecurityIncident_incident_lessons_learned
+--     * Slot: IsmsSecurityIncident_isms_id Description: Autocreated FK slot
+--     * Slot: incident_lessons_learned Description: What the organization learned from it.
+-- # Class: IsmsSecurityIncident_incident_evidence
+--     * Slot: IsmsSecurityIncident_isms_id Description: Autocreated FK slot
+--     * Slot: incident_evidence Description: The evidence collected about it.
+-- # Class: IsmsSecurityIncident_incident_notifications
+--     * Slot: IsmsSecurityIncident_isms_id Description: Autocreated FK slot
+--     * Slot: incident_notifications Description: Whom the organization told, and when.
+-- # Class: IsmsSecurityIncident_affected_assets
+--     * Slot: IsmsSecurityIncident_isms_id Description: Autocreated FK slot
+--     * Slot: affected_assets_isms_id Description: The assets the risk, event or incident affects.
 
-CREATE TABLE "NamedEntity" (
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
+CREATE TABLE "IsmsRecordMixin" (
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
 	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
+	PRIMARY KEY (isms_id)
 );
-CREATE INDEX "ix_NamedEntity_id" ON "NamedEntity" (id);
+CREATE INDEX "ix_IsmsRecordMixin_isms_id" ON "IsmsRecordMixin" (isms_id);
 
-CREATE TABLE "DocumentedInformation" (
-	document_type VARCHAR(9),
+CREATE TABLE "IsmsDocumentControlMixin" (
+	id INTEGER NOT NULL,
 	document_reference TEXT,
-	author TEXT,
-	owner TEXT,
-	approved_by TEXT,
-	approved_date DATE,
-	effective_date DATE,
-	review_date DATE,
-	status TEXT,
-	classification TEXT,
-	retention_period TEXT,
-	storage_and_preservation TEXT,
-	change_control_method TEXT,
-	external_origin BOOLEAN,
-	external_origin_source TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
+	document_version TEXT,
+	document_author TEXT,
+	document_owner TEXT,
+	document_approver TEXT,
+	document_approval_date DATE,
+	document_effective_date DATE,
+	document_last_review_date DATE,
+	document_next_review_date DATE,
+	document_status TEXT,
+	document_classification TEXT,
+	document_retention TEXT,
+	document_storage TEXT,
+	document_change_control TEXT,
+	document_external_origin BOOLEAN,
+	document_external_source TEXT,
 	PRIMARY KEY (id)
 );
-CREATE INDEX "ix_DocumentedInformation_id" ON "DocumentedInformation" (id);
+CREATE INDEX "ix_IsmsDocumentControlMixin_id" ON "IsmsDocumentControlMixin" (id);
 
-CREATE TABLE "Organization" (
-	legal_name TEXT,
-	organization_type TEXT,
-	industry_sector TEXT,
-	size_category TEXT,
-	employee_count INTEGER,
-	parent_organization TEXT,
-	climate_change_relevant BOOLEAN,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
+CREATE TABLE "IsmsOrganization" (
+	organization_legal_name TEXT,
+	organization_kind TEXT,
+	organization_sector TEXT,
+	organization_size TEXT,
+	organization_employee_count INTEGER,
+	organization_parent TEXT,
+	organization_climate_change_relevant BOOLEAN,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
 	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
+	PRIMARY KEY (isms_id)
 );
-CREATE INDEX "ix_Organization_id" ON "Organization" (id);
+CREATE INDEX "ix_IsmsOrganization_isms_id" ON "IsmsOrganization" (isms_id);
 
-CREATE TABLE "InterestedParty" (
-	party_type TEXT,
-	relationship TEXT,
-	communication_needs TEXT,
-	contact_information TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
-);
-CREATE INDEX "ix_InterestedParty_id" ON "InterestedParty" (id);
-
-CREATE TABLE "InformationSecurityPolicy" (
+CREATE TABLE "IsmsPolicy" (
 	policy_statement TEXT,
 	policy_objectives_framework TEXT,
-	applicability_statement TEXT,
-	communication_date DATE,
-	acknowledgment_required BOOLEAN,
-	last_policy_review_date DATE,
-	next_policy_review_date DATE,
-	document_type VARCHAR(9),
+	policy_applicability TEXT,
+	policy_communication_date DATE,
+	policy_acknowledgement_required BOOLEAN,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
 	document_reference TEXT,
-	author TEXT,
-	owner TEXT,
-	approved_by TEXT,
-	approved_date DATE,
-	effective_date DATE,
-	review_date DATE,
-	status TEXT,
-	classification TEXT,
-	retention_period TEXT,
-	storage_and_preservation TEXT,
-	change_control_method TEXT,
-	external_origin BOOLEAN,
-	external_origin_source TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
+	document_version TEXT,
+	document_author TEXT,
+	document_owner TEXT,
+	document_approver TEXT,
+	document_approval_date DATE,
+	document_effective_date DATE,
+	document_last_review_date DATE,
+	document_next_review_date DATE,
+	document_status TEXT,
+	document_classification TEXT,
+	document_retention TEXT,
+	document_storage TEXT,
+	document_change_control TEXT,
+	document_external_origin BOOLEAN,
+	document_external_source TEXT,
+	PRIMARY KEY (isms_id)
 );
-CREATE INDEX "ix_InformationSecurityPolicy_id" ON "InformationSecurityPolicy" (id);
+CREATE INDEX "ix_IsmsPolicy_isms_id" ON "IsmsPolicy" (isms_id);
 
-CREATE TABLE "Role" (
-	role_type TEXT,
-	accountability TEXT,
-	delegation_rules TEXT,
-	reporting_line TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
-);
-CREATE INDEX "ix_Role_id" ON "Role" (id);
-
-CREATE TABLE "RiskAssessmentProcess" (
+CREATE TABLE "IsmsRiskAssessmentProcess" (
 	risk_acceptance_criteria TEXT,
-	assessment_criteria TEXT,
-	assessment_methodology TEXT,
-	likelihood_scale TEXT,
-	impact_scale TEXT,
+	risk_assessment_criteria TEXT,
+	risk_assessment_method TEXT,
+	risk_likelihood_scale TEXT,
+	risk_impact_scale TEXT,
 	risk_matrix TEXT,
-	assessment_frequency TEXT,
-	document_type VARCHAR(9),
-	document_reference TEXT,
-	author TEXT,
-	owner TEXT,
-	approved_by TEXT,
-	approved_date DATE,
-	effective_date DATE,
-	review_date DATE,
-	status TEXT,
-	classification TEXT,
-	retention_period TEXT,
-	storage_and_preservation TEXT,
-	change_control_method TEXT,
-	external_origin BOOLEAN,
-	external_origin_source TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
+	risk_assessment_frequency TEXT,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
 	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
+	document_reference TEXT,
+	document_version TEXT,
+	document_author TEXT,
+	document_owner TEXT,
+	document_approver TEXT,
+	document_approval_date DATE,
+	document_effective_date DATE,
+	document_last_review_date DATE,
+	document_next_review_date DATE,
+	document_status TEXT,
+	document_classification TEXT,
+	document_retention TEXT,
+	document_storage TEXT,
+	document_change_control TEXT,
+	document_external_origin BOOLEAN,
+	document_external_source TEXT,
+	PRIMARY KEY (isms_id)
+);
+CREATE INDEX "ix_IsmsRiskAssessmentProcess_isms_id" ON "IsmsRiskAssessmentProcess" (isms_id);
+
+CREATE TABLE "IsmsRiskTreatmentProcess" (
+	treatment_options_guidance TEXT,
+	treatment_control_selection TEXT,
+	treatment_annex_a_comparison TEXT,
+	treatment_soa_template TEXT,
+	treatment_approval_workflow TEXT,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	document_reference TEXT,
+	document_version TEXT,
+	document_author TEXT,
+	document_owner TEXT,
+	document_approver TEXT,
+	document_approval_date DATE,
+	document_effective_date DATE,
+	document_last_review_date DATE,
+	document_next_review_date DATE,
+	document_status TEXT,
+	document_classification TEXT,
+	document_retention TEXT,
+	document_storage TEXT,
+	document_change_control TEXT,
+	document_external_origin BOOLEAN,
+	document_external_source TEXT,
+	PRIMARY KEY (isms_id)
+);
+CREATE INDEX "ix_IsmsRiskTreatmentProcess_isms_id" ON "IsmsRiskTreatmentProcess" (isms_id);
+
+CREATE TABLE "IsmsStatementOfApplicability" (
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	document_reference TEXT,
+	document_version TEXT,
+	document_author TEXT,
+	document_owner TEXT,
+	document_approver TEXT,
+	document_approval_date DATE,
+	document_effective_date DATE,
+	document_last_review_date DATE,
+	document_next_review_date DATE,
+	document_status TEXT,
+	document_classification TEXT,
+	document_retention TEXT,
+	document_storage TEXT,
+	document_change_control TEXT,
+	document_external_origin BOOLEAN,
+	document_external_source TEXT,
+	PRIMARY KEY (isms_id)
+);
+CREATE INDEX "ix_IsmsStatementOfApplicability_isms_id" ON "IsmsStatementOfApplicability" (isms_id);
+
+CREATE TABLE "IsmsExcludedControl" (
+	id INTEGER NOT NULL,
+	entry_annex_a_control VARCHAR(6) NOT NULL,
+	entry_type TEXT,
+	entry_justification TEXT NOT NULL,
 	PRIMARY KEY (id)
 );
-CREATE INDEX "ix_RiskAssessmentProcess_id" ON "RiskAssessmentProcess" (id);
+CREATE INDEX "ix_IsmsExcludedControl_id" ON "IsmsExcludedControl" (id);
 
-CREATE TABLE "RiskAssessment" (
+CREATE TABLE "IsmsAwarenessProgramme" (
+	awareness_audience TEXT,
+	awareness_frequency TEXT,
+	awareness_completion_tracking TEXT,
+	awareness_effectiveness TEXT,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	document_reference TEXT,
+	document_version TEXT,
+	document_author TEXT,
+	document_owner TEXT,
+	document_approver TEXT,
+	document_approval_date DATE,
+	document_effective_date DATE,
+	document_last_review_date DATE,
+	document_next_review_date DATE,
+	document_status TEXT,
+	document_classification TEXT,
+	document_retention TEXT,
+	document_storage TEXT,
+	document_change_control TEXT,
+	document_external_origin BOOLEAN,
+	document_external_source TEXT,
+	PRIMARY KEY (isms_id)
+);
+CREATE INDEX "ix_IsmsAwarenessProgramme_isms_id" ON "IsmsAwarenessProgramme" (isms_id);
+
+CREATE TABLE "IsmsCommunicationPlan" (
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	document_reference TEXT,
+	document_version TEXT,
+	document_author TEXT,
+	document_owner TEXT,
+	document_approver TEXT,
+	document_approval_date DATE,
+	document_effective_date DATE,
+	document_last_review_date DATE,
+	document_next_review_date DATE,
+	document_status TEXT,
+	document_classification TEXT,
+	document_retention TEXT,
+	document_storage TEXT,
+	document_change_control TEXT,
+	document_external_origin BOOLEAN,
+	document_external_source TEXT,
+	PRIMARY KEY (isms_id)
+);
+CREATE INDEX "ix_IsmsCommunicationPlan_isms_id" ON "IsmsCommunicationPlan" (isms_id);
+
+CREATE TABLE "IsmsMonitoringProgramme" (
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	document_reference TEXT,
+	document_version TEXT,
+	document_author TEXT,
+	document_owner TEXT,
+	document_approver TEXT,
+	document_approval_date DATE,
+	document_effective_date DATE,
+	document_last_review_date DATE,
+	document_next_review_date DATE,
+	document_status TEXT,
+	document_classification TEXT,
+	document_retention TEXT,
+	document_storage TEXT,
+	document_change_control TEXT,
+	document_external_origin BOOLEAN,
+	document_external_source TEXT,
+	PRIMARY KEY (isms_id)
+);
+CREATE INDEX "ix_IsmsMonitoringProgramme_isms_id" ON "IsmsMonitoringProgramme" (isms_id);
+
+CREATE TABLE "IsmsSecurityIncident" (
+	incident_category VARCHAR(22),
+	incident_severity VARCHAR(8),
+	incident_detection_method TEXT,
+	incident_root_cause TEXT,
+	incident_notification_required BOOLEAN,
+	incident_closed_at DATETIME,
+	incident_review TEXT,
+	event_type TEXT,
+	event_occurred_at DATETIME,
+	event_reporter TEXT,
+	event_assessment TEXT,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	PRIMARY KEY (isms_id)
+);
+CREATE INDEX "ix_IsmsSecurityIncident_isms_id" ON "IsmsSecurityIncident" (isms_id);
+
+CREATE TABLE "IsmsManagementSystem" (
+	isms_top_management TEXT,
+	isms_governing_body TEXT,
+	isms_scope TEXT,
+	isms_processes TEXT,
+	isms_certification_status TEXT,
+	isms_certification_body TEXT,
+	isms_certification_date DATE,
+	isms_recertification_date DATE,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	isms_organization_isms_id TEXT,
+	isms_policy_isms_id TEXT,
+	isms_risk_assessment_process_isms_id TEXT,
+	isms_risk_treatment_process_isms_id TEXT,
+	isms_statement_of_applicability_isms_id TEXT,
+	isms_awareness_programme_isms_id TEXT,
+	isms_communication_plan_isms_id TEXT,
+	isms_monitoring_programme_isms_id TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY(isms_organization_isms_id) REFERENCES "IsmsOrganization" (isms_id),
+	FOREIGN KEY(isms_policy_isms_id) REFERENCES "IsmsPolicy" (isms_id),
+	FOREIGN KEY(isms_risk_assessment_process_isms_id) REFERENCES "IsmsRiskAssessmentProcess" (isms_id),
+	FOREIGN KEY(isms_risk_treatment_process_isms_id) REFERENCES "IsmsRiskTreatmentProcess" (isms_id),
+	FOREIGN KEY(isms_statement_of_applicability_isms_id) REFERENCES "IsmsStatementOfApplicability" (isms_id),
+	FOREIGN KEY(isms_awareness_programme_isms_id) REFERENCES "IsmsAwarenessProgramme" (isms_id),
+	FOREIGN KEY(isms_communication_plan_isms_id) REFERENCES "IsmsCommunicationPlan" (isms_id),
+	FOREIGN KEY(isms_monitoring_programme_isms_id) REFERENCES "IsmsMonitoringProgramme" (isms_id)
+);
+CREATE INDEX "ix_IsmsManagementSystem_isms_id" ON "IsmsManagementSystem" (isms_id);
+
+CREATE TABLE "IsmsApplicabilityEntry" (
+	id INTEGER NOT NULL,
+	entry_annex_a_control VARCHAR(6),
+	entry_type TEXT,
+	entry_justification TEXT NOT NULL,
+	"IsmsStatementOfApplicability_isms_id" TEXT,
+	PRIMARY KEY (id),
+	FOREIGN KEY("IsmsStatementOfApplicability_isms_id") REFERENCES "IsmsStatementOfApplicability" (isms_id)
+);
+CREATE INDEX "ix_IsmsApplicabilityEntry_id" ON "IsmsApplicabilityEntry" (id);
+
+CREATE TABLE "IsmsDocumentControlMixin_document_distribution" (
+	"IsmsDocumentControlMixin_id" INTEGER,
+	document_distribution TEXT,
+	PRIMARY KEY ("IsmsDocumentControlMixin_id", document_distribution),
+	FOREIGN KEY("IsmsDocumentControlMixin_id") REFERENCES "IsmsDocumentControlMixin" (id)
+);
+CREATE INDEX "ix_IsmsDocumentControlMixin_document_distribution_IsmsDocumentControlMixin_id" ON "IsmsDocumentControlMixin_document_distribution" ("IsmsDocumentControlMixin_id");
+CREATE INDEX "ix_IsmsDocumentControlMixin_document_distribution_document_distribution" ON "IsmsDocumentControlMixin_document_distribution" (document_distribution);
+
+CREATE TABLE "IsmsOrganization_organization_trading_names" (
+	"IsmsOrganization_isms_id" TEXT,
+	organization_trading_names TEXT,
+	PRIMARY KEY ("IsmsOrganization_isms_id", organization_trading_names),
+	FOREIGN KEY("IsmsOrganization_isms_id") REFERENCES "IsmsOrganization" (isms_id)
+);
+CREATE INDEX "ix_IsmsOrganization_organization_trading_names_IsmsOrganization_isms_id" ON "IsmsOrganization_organization_trading_names" ("IsmsOrganization_isms_id");
+CREATE INDEX "ix_IsmsOrganization_organization_trading_names_organization_trading_names" ON "IsmsOrganization_organization_trading_names" (organization_trading_names);
+
+CREATE TABLE "IsmsOrganization_organization_locations" (
+	"IsmsOrganization_isms_id" TEXT,
+	organization_locations TEXT,
+	PRIMARY KEY ("IsmsOrganization_isms_id", organization_locations),
+	FOREIGN KEY("IsmsOrganization_isms_id") REFERENCES "IsmsOrganization" (isms_id)
+);
+CREATE INDEX "ix_IsmsOrganization_organization_locations_organization_locations" ON "IsmsOrganization_organization_locations" (organization_locations);
+CREATE INDEX "ix_IsmsOrganization_organization_locations_IsmsOrganization_isms_id" ON "IsmsOrganization_organization_locations" ("IsmsOrganization_isms_id");
+
+CREATE TABLE "IsmsOrganization_organization_jurisdictions" (
+	"IsmsOrganization_isms_id" TEXT,
+	organization_jurisdictions TEXT,
+	PRIMARY KEY ("IsmsOrganization_isms_id", organization_jurisdictions),
+	FOREIGN KEY("IsmsOrganization_isms_id") REFERENCES "IsmsOrganization" (isms_id)
+);
+CREATE INDEX "ix_IsmsOrganization_organization_jurisdictions_organization_jurisdictions" ON "IsmsOrganization_organization_jurisdictions" (organization_jurisdictions);
+CREATE INDEX "ix_IsmsOrganization_organization_jurisdictions_IsmsOrganization_isms_id" ON "IsmsOrganization_organization_jurisdictions" ("IsmsOrganization_isms_id");
+
+CREATE TABLE "IsmsOrganization_organization_subsidiaries" (
+	"IsmsOrganization_isms_id" TEXT,
+	organization_subsidiaries TEXT,
+	PRIMARY KEY ("IsmsOrganization_isms_id", organization_subsidiaries),
+	FOREIGN KEY("IsmsOrganization_isms_id") REFERENCES "IsmsOrganization" (isms_id)
+);
+CREATE INDEX "ix_IsmsOrganization_organization_subsidiaries_organization_subsidiaries" ON "IsmsOrganization_organization_subsidiaries" (organization_subsidiaries);
+CREATE INDEX "ix_IsmsOrganization_organization_subsidiaries_IsmsOrganization_isms_id" ON "IsmsOrganization_organization_subsidiaries" ("IsmsOrganization_isms_id");
+
+CREATE TABLE "IsmsPolicy_policy_commitments" (
+	"IsmsPolicy_isms_id" TEXT,
+	policy_commitments TEXT,
+	PRIMARY KEY ("IsmsPolicy_isms_id", policy_commitments),
+	FOREIGN KEY("IsmsPolicy_isms_id") REFERENCES "IsmsPolicy" (isms_id)
+);
+CREATE INDEX "ix_IsmsPolicy_policy_commitments_IsmsPolicy_isms_id" ON "IsmsPolicy_policy_commitments" ("IsmsPolicy_isms_id");
+CREATE INDEX "ix_IsmsPolicy_policy_commitments_policy_commitments" ON "IsmsPolicy_policy_commitments" (policy_commitments);
+
+CREATE TABLE "IsmsPolicy_policy_management_systems" (
+	"IsmsPolicy_isms_id" TEXT,
+	policy_management_systems VARCHAR(15),
+	PRIMARY KEY ("IsmsPolicy_isms_id", policy_management_systems),
+	FOREIGN KEY("IsmsPolicy_isms_id") REFERENCES "IsmsPolicy" (isms_id)
+);
+CREATE INDEX "ix_IsmsPolicy_policy_management_systems_policy_management_systems" ON "IsmsPolicy_policy_management_systems" (policy_management_systems);
+CREATE INDEX "ix_IsmsPolicy_policy_management_systems_IsmsPolicy_isms_id" ON "IsmsPolicy_policy_management_systems" ("IsmsPolicy_isms_id");
+
+CREATE TABLE "IsmsPolicy_document_distribution" (
+	"IsmsPolicy_isms_id" TEXT,
+	document_distribution TEXT,
+	PRIMARY KEY ("IsmsPolicy_isms_id", document_distribution),
+	FOREIGN KEY("IsmsPolicy_isms_id") REFERENCES "IsmsPolicy" (isms_id)
+);
+CREATE INDEX "ix_IsmsPolicy_document_distribution_IsmsPolicy_isms_id" ON "IsmsPolicy_document_distribution" ("IsmsPolicy_isms_id");
+CREATE INDEX "ix_IsmsPolicy_document_distribution_document_distribution" ON "IsmsPolicy_document_distribution" (document_distribution);
+
+CREATE TABLE "IsmsRiskAssessmentProcess_risk_assessment_triggers" (
+	"IsmsRiskAssessmentProcess_isms_id" TEXT,
+	risk_assessment_triggers TEXT,
+	PRIMARY KEY ("IsmsRiskAssessmentProcess_isms_id", risk_assessment_triggers),
+	FOREIGN KEY("IsmsRiskAssessmentProcess_isms_id") REFERENCES "IsmsRiskAssessmentProcess" (isms_id)
+);
+CREATE INDEX "ix_IsmsRiskAssessmentProcess_risk_assessment_triggers_IsmsRiskAssessmentProcess_isms_id" ON "IsmsRiskAssessmentProcess_risk_assessment_triggers" ("IsmsRiskAssessmentProcess_isms_id");
+CREATE INDEX "ix_IsmsRiskAssessmentProcess_risk_assessment_triggers_risk_assessment_triggers" ON "IsmsRiskAssessmentProcess_risk_assessment_triggers" (risk_assessment_triggers);
+
+CREATE TABLE "IsmsRiskAssessmentProcess_document_distribution" (
+	"IsmsRiskAssessmentProcess_isms_id" TEXT,
+	document_distribution TEXT,
+	PRIMARY KEY ("IsmsRiskAssessmentProcess_isms_id", document_distribution),
+	FOREIGN KEY("IsmsRiskAssessmentProcess_isms_id") REFERENCES "IsmsRiskAssessmentProcess" (isms_id)
+);
+CREATE INDEX "ix_IsmsRiskAssessmentProcess_document_distribution_document_distribution" ON "IsmsRiskAssessmentProcess_document_distribution" (document_distribution);
+CREATE INDEX "ix_IsmsRiskAssessmentProcess_document_distribution_IsmsRiskAssessmentProcess_isms_id" ON "IsmsRiskAssessmentProcess_document_distribution" ("IsmsRiskAssessmentProcess_isms_id");
+
+CREATE TABLE "IsmsRiskTreatmentProcess_document_distribution" (
+	"IsmsRiskTreatmentProcess_isms_id" TEXT,
+	document_distribution TEXT,
+	PRIMARY KEY ("IsmsRiskTreatmentProcess_isms_id", document_distribution),
+	FOREIGN KEY("IsmsRiskTreatmentProcess_isms_id") REFERENCES "IsmsRiskTreatmentProcess" (isms_id)
+);
+CREATE INDEX "ix_IsmsRiskTreatmentProcess_document_distribution_document_distribution" ON "IsmsRiskTreatmentProcess_document_distribution" (document_distribution);
+CREATE INDEX "ix_IsmsRiskTreatmentProcess_document_distribution_IsmsRiskTreatmentProcess_isms_id" ON "IsmsRiskTreatmentProcess_document_distribution" ("IsmsRiskTreatmentProcess_isms_id");
+
+CREATE TABLE "IsmsStatementOfApplicability_document_distribution" (
+	"IsmsStatementOfApplicability_isms_id" TEXT,
+	document_distribution TEXT,
+	PRIMARY KEY ("IsmsStatementOfApplicability_isms_id", document_distribution),
+	FOREIGN KEY("IsmsStatementOfApplicability_isms_id") REFERENCES "IsmsStatementOfApplicability" (isms_id)
+);
+CREATE INDEX "ix_IsmsStatementOfApplicability_document_distribution_IsmsStatementOfApplicability_isms_id" ON "IsmsStatementOfApplicability_document_distribution" ("IsmsStatementOfApplicability_isms_id");
+CREATE INDEX "ix_IsmsStatementOfApplicability_document_distribution_document_distribution" ON "IsmsStatementOfApplicability_document_distribution" (document_distribution);
+
+CREATE TABLE "IsmsAwarenessProgramme_awareness_topics" (
+	"IsmsAwarenessProgramme_isms_id" TEXT,
+	awareness_topics TEXT,
+	PRIMARY KEY ("IsmsAwarenessProgramme_isms_id", awareness_topics),
+	FOREIGN KEY("IsmsAwarenessProgramme_isms_id") REFERENCES "IsmsAwarenessProgramme" (isms_id)
+);
+CREATE INDEX "ix_IsmsAwarenessProgramme_awareness_topics_awareness_topics" ON "IsmsAwarenessProgramme_awareness_topics" (awareness_topics);
+CREATE INDEX "ix_IsmsAwarenessProgramme_awareness_topics_IsmsAwarenessProgramme_isms_id" ON "IsmsAwarenessProgramme_awareness_topics" ("IsmsAwarenessProgramme_isms_id");
+
+CREATE TABLE "IsmsAwarenessProgramme_awareness_methods" (
+	"IsmsAwarenessProgramme_isms_id" TEXT,
+	awareness_methods TEXT,
+	PRIMARY KEY ("IsmsAwarenessProgramme_isms_id", awareness_methods),
+	FOREIGN KEY("IsmsAwarenessProgramme_isms_id") REFERENCES "IsmsAwarenessProgramme" (isms_id)
+);
+CREATE INDEX "ix_IsmsAwarenessProgramme_awareness_methods_IsmsAwarenessProgramme_isms_id" ON "IsmsAwarenessProgramme_awareness_methods" ("IsmsAwarenessProgramme_isms_id");
+CREATE INDEX "ix_IsmsAwarenessProgramme_awareness_methods_awareness_methods" ON "IsmsAwarenessProgramme_awareness_methods" (awareness_methods);
+
+CREATE TABLE "IsmsAwarenessProgramme_document_distribution" (
+	"IsmsAwarenessProgramme_isms_id" TEXT,
+	document_distribution TEXT,
+	PRIMARY KEY ("IsmsAwarenessProgramme_isms_id", document_distribution),
+	FOREIGN KEY("IsmsAwarenessProgramme_isms_id") REFERENCES "IsmsAwarenessProgramme" (isms_id)
+);
+CREATE INDEX "ix_IsmsAwarenessProgramme_document_distribution_IsmsAwarenessProgramme_isms_id" ON "IsmsAwarenessProgramme_document_distribution" ("IsmsAwarenessProgramme_isms_id");
+CREATE INDEX "ix_IsmsAwarenessProgramme_document_distribution_document_distribution" ON "IsmsAwarenessProgramme_document_distribution" (document_distribution);
+
+CREATE TABLE "IsmsCommunicationPlan_document_distribution" (
+	"IsmsCommunicationPlan_isms_id" TEXT,
+	document_distribution TEXT,
+	PRIMARY KEY ("IsmsCommunicationPlan_isms_id", document_distribution),
+	FOREIGN KEY("IsmsCommunicationPlan_isms_id") REFERENCES "IsmsCommunicationPlan" (isms_id)
+);
+CREATE INDEX "ix_IsmsCommunicationPlan_document_distribution_IsmsCommunicationPlan_isms_id" ON "IsmsCommunicationPlan_document_distribution" ("IsmsCommunicationPlan_isms_id");
+CREATE INDEX "ix_IsmsCommunicationPlan_document_distribution_document_distribution" ON "IsmsCommunicationPlan_document_distribution" (document_distribution);
+
+CREATE TABLE "IsmsMonitoringProgramme_document_distribution" (
+	"IsmsMonitoringProgramme_isms_id" TEXT,
+	document_distribution TEXT,
+	PRIMARY KEY ("IsmsMonitoringProgramme_isms_id", document_distribution),
+	FOREIGN KEY("IsmsMonitoringProgramme_isms_id") REFERENCES "IsmsMonitoringProgramme" (isms_id)
+);
+CREATE INDEX "ix_IsmsMonitoringProgramme_document_distribution_document_distribution" ON "IsmsMonitoringProgramme_document_distribution" (document_distribution);
+CREATE INDEX "ix_IsmsMonitoringProgramme_document_distribution_IsmsMonitoringProgramme_isms_id" ON "IsmsMonitoringProgramme_document_distribution" ("IsmsMonitoringProgramme_isms_id");
+
+CREATE TABLE "IsmsSecurityIncident_affected_security_properties" (
+	"IsmsSecurityIncident_isms_id" TEXT,
+	affected_security_properties VARCHAR(15),
+	PRIMARY KEY ("IsmsSecurityIncident_isms_id", affected_security_properties),
+	FOREIGN KEY("IsmsSecurityIncident_isms_id") REFERENCES "IsmsSecurityIncident" (isms_id)
+);
+CREATE INDEX "ix_IsmsSecurityIncident_affected_security_properties_affected_security_properties" ON "IsmsSecurityIncident_affected_security_properties" (affected_security_properties);
+CREATE INDEX "ix_IsmsSecurityIncident_affected_security_properties_IsmsSecurityIncident_isms_id" ON "IsmsSecurityIncident_affected_security_properties" ("IsmsSecurityIncident_isms_id");
+
+CREATE TABLE "IsmsSecurityIncident_incident_response_actions" (
+	"IsmsSecurityIncident_isms_id" TEXT,
+	incident_response_actions TEXT,
+	PRIMARY KEY ("IsmsSecurityIncident_isms_id", incident_response_actions),
+	FOREIGN KEY("IsmsSecurityIncident_isms_id") REFERENCES "IsmsSecurityIncident" (isms_id)
+);
+CREATE INDEX "ix_IsmsSecurityIncident_incident_response_actions_incident_response_actions" ON "IsmsSecurityIncident_incident_response_actions" (incident_response_actions);
+CREATE INDEX "ix_IsmsSecurityIncident_incident_response_actions_IsmsSecurityIncident_isms_id" ON "IsmsSecurityIncident_incident_response_actions" ("IsmsSecurityIncident_isms_id");
+
+CREATE TABLE "IsmsSecurityIncident_incident_containment_actions" (
+	"IsmsSecurityIncident_isms_id" TEXT,
+	incident_containment_actions TEXT,
+	PRIMARY KEY ("IsmsSecurityIncident_isms_id", incident_containment_actions),
+	FOREIGN KEY("IsmsSecurityIncident_isms_id") REFERENCES "IsmsSecurityIncident" (isms_id)
+);
+CREATE INDEX "ix_IsmsSecurityIncident_incident_containment_actions_IsmsSecurityIncident_isms_id" ON "IsmsSecurityIncident_incident_containment_actions" ("IsmsSecurityIncident_isms_id");
+CREATE INDEX "ix_IsmsSecurityIncident_incident_containment_actions_incident_containment_actions" ON "IsmsSecurityIncident_incident_containment_actions" (incident_containment_actions);
+
+CREATE TABLE "IsmsSecurityIncident_incident_eradication_actions" (
+	"IsmsSecurityIncident_isms_id" TEXT,
+	incident_eradication_actions TEXT,
+	PRIMARY KEY ("IsmsSecurityIncident_isms_id", incident_eradication_actions),
+	FOREIGN KEY("IsmsSecurityIncident_isms_id") REFERENCES "IsmsSecurityIncident" (isms_id)
+);
+CREATE INDEX "ix_IsmsSecurityIncident_incident_eradication_actions_IsmsSecurityIncident_isms_id" ON "IsmsSecurityIncident_incident_eradication_actions" ("IsmsSecurityIncident_isms_id");
+CREATE INDEX "ix_IsmsSecurityIncident_incident_eradication_actions_incident_eradication_actions" ON "IsmsSecurityIncident_incident_eradication_actions" (incident_eradication_actions);
+
+CREATE TABLE "IsmsSecurityIncident_incident_recovery_actions" (
+	"IsmsSecurityIncident_isms_id" TEXT,
+	incident_recovery_actions TEXT,
+	PRIMARY KEY ("IsmsSecurityIncident_isms_id", incident_recovery_actions),
+	FOREIGN KEY("IsmsSecurityIncident_isms_id") REFERENCES "IsmsSecurityIncident" (isms_id)
+);
+CREATE INDEX "ix_IsmsSecurityIncident_incident_recovery_actions_IsmsSecurityIncident_isms_id" ON "IsmsSecurityIncident_incident_recovery_actions" ("IsmsSecurityIncident_isms_id");
+CREATE INDEX "ix_IsmsSecurityIncident_incident_recovery_actions_incident_recovery_actions" ON "IsmsSecurityIncident_incident_recovery_actions" (incident_recovery_actions);
+
+CREATE TABLE "IsmsSecurityIncident_incident_lessons_learned" (
+	"IsmsSecurityIncident_isms_id" TEXT,
+	incident_lessons_learned TEXT,
+	PRIMARY KEY ("IsmsSecurityIncident_isms_id", incident_lessons_learned),
+	FOREIGN KEY("IsmsSecurityIncident_isms_id") REFERENCES "IsmsSecurityIncident" (isms_id)
+);
+CREATE INDEX "ix_IsmsSecurityIncident_incident_lessons_learned_IsmsSecurityIncident_isms_id" ON "IsmsSecurityIncident_incident_lessons_learned" ("IsmsSecurityIncident_isms_id");
+CREATE INDEX "ix_IsmsSecurityIncident_incident_lessons_learned_incident_lessons_learned" ON "IsmsSecurityIncident_incident_lessons_learned" (incident_lessons_learned);
+
+CREATE TABLE "IsmsSecurityIncident_incident_evidence" (
+	"IsmsSecurityIncident_isms_id" TEXT,
+	incident_evidence TEXT,
+	PRIMARY KEY ("IsmsSecurityIncident_isms_id", incident_evidence),
+	FOREIGN KEY("IsmsSecurityIncident_isms_id") REFERENCES "IsmsSecurityIncident" (isms_id)
+);
+CREATE INDEX "ix_IsmsSecurityIncident_incident_evidence_IsmsSecurityIncident_isms_id" ON "IsmsSecurityIncident_incident_evidence" ("IsmsSecurityIncident_isms_id");
+CREATE INDEX "ix_IsmsSecurityIncident_incident_evidence_incident_evidence" ON "IsmsSecurityIncident_incident_evidence" (incident_evidence);
+
+CREATE TABLE "IsmsSecurityIncident_incident_notifications" (
+	"IsmsSecurityIncident_isms_id" TEXT,
+	incident_notifications TEXT,
+	PRIMARY KEY ("IsmsSecurityIncident_isms_id", incident_notifications),
+	FOREIGN KEY("IsmsSecurityIncident_isms_id") REFERENCES "IsmsSecurityIncident" (isms_id)
+);
+CREATE INDEX "ix_IsmsSecurityIncident_incident_notifications_IsmsSecurityIncident_isms_id" ON "IsmsSecurityIncident_incident_notifications" ("IsmsSecurityIncident_isms_id");
+CREATE INDEX "ix_IsmsSecurityIncident_incident_notifications_incident_notifications" ON "IsmsSecurityIncident_incident_notifications" (incident_notifications);
+
+CREATE TABLE "IsmsInterestedParty" (
+	party_category TEXT,
+	party_relationship TEXT,
+	party_communication_needs TEXT,
+	party_contact TEXT,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsInterestedParty_isms_id" ON "IsmsInterestedParty" (isms_id);
+
+CREATE TABLE "IsmsTopicSpecificPolicy" (
+	topic_policy_topic TEXT,
+	topic_policy_parent TEXT,
+	topic_policy_audience TEXT,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	document_reference TEXT,
+	document_version TEXT,
+	document_author TEXT,
+	document_owner TEXT,
+	document_approver TEXT,
+	document_approval_date DATE,
+	document_effective_date DATE,
+	document_last_review_date DATE,
+	document_next_review_date DATE,
+	document_status TEXT,
+	document_classification TEXT,
+	document_retention TEXT,
+	document_storage TEXT,
+	document_change_control TEXT,
+	document_external_origin BOOLEAN,
+	document_external_source TEXT,
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY(topic_policy_parent) REFERENCES "IsmsPolicy" (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsTopicSpecificPolicy_isms_id" ON "IsmsTopicSpecificPolicy" (isms_id);
+
+CREATE TABLE "IsmsRole" (
+	role_category TEXT,
+	role_accountability TEXT,
+	role_delegation TEXT,
+	role_reports_to TEXT,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY(role_reports_to) REFERENCES "IsmsRole" (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsRole_isms_id" ON "IsmsRole" (isms_id);
+
+CREATE TABLE "IsmsRiskAssessment" (
 	assessment_scope TEXT,
 	assessment_date DATE,
-	assessor TEXT,
-	methodology_used TEXT,
-	summary_findings TEXT,
-	next_assessment_date DATE,
-	document_type VARCHAR(9),
-	document_reference TEXT,
-	author TEXT,
-	owner TEXT,
-	approved_by TEXT,
-	approved_date DATE,
-	effective_date DATE,
-	review_date DATE,
-	status TEXT,
-	classification TEXT,
-	retention_period TEXT,
-	storage_and_preservation TEXT,
-	change_control_method TEXT,
-	external_origin BOOLEAN,
-	external_origin_source TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
+	assessment_assessor TEXT,
+	assessment_method_used TEXT,
+	assessment_summary TEXT,
+	assessment_next_date DATE,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
 	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
-);
-CREATE INDEX "ix_RiskAssessment_id" ON "RiskAssessment" (id);
-
-CREATE TABLE "RiskTreatmentProcess" (
-	treatment_options_guidance TEXT,
-	control_selection_criteria TEXT,
-	annex_a_omission_verification TEXT,
-	soa_template TEXT,
-	approval_workflow TEXT,
-	document_type VARCHAR(9),
 	document_reference TEXT,
-	author TEXT,
-	owner TEXT,
-	approved_by TEXT,
-	approved_date DATE,
-	effective_date DATE,
-	review_date DATE,
-	status TEXT,
-	classification TEXT,
-	retention_period TEXT,
-	storage_and_preservation TEXT,
-	change_control_method TEXT,
-	external_origin BOOLEAN,
-	external_origin_source TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
+	document_version TEXT,
+	document_author TEXT,
+	document_owner TEXT,
+	document_approver TEXT,
+	document_approval_date DATE,
+	document_effective_date DATE,
+	document_last_review_date DATE,
+	document_next_review_date DATE,
+	document_status TEXT,
+	document_classification TEXT,
+	document_retention TEXT,
+	document_storage TEXT,
+	document_change_control TEXT,
+	document_external_origin BOOLEAN,
+	document_external_source TEXT,
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
 );
-CREATE INDEX "ix_RiskTreatmentProcess_id" ON "RiskTreatmentProcess" (id);
+CREATE INDEX "ix_IsmsRiskAssessment_isms_id" ON "IsmsRiskAssessment" (isms_id);
 
-CREATE TABLE "RiskTreatmentPlan" (
+CREATE TABLE "IsmsRisk" (
+	risk_source TEXT,
+	risk_threat TEXT,
+	risk_vulnerability TEXT,
+	risk_owner TEXT,
+	risk_likelihood VARCHAR(14),
+	risk_impact VARCHAR(10),
+	risk_inherent_level VARCHAR(8),
+	risk_residual_level VARCHAR(8),
+	risk_treatment_option VARCHAR(6),
+	risk_treatment_priority TEXT,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsRisk_isms_id" ON "IsmsRisk" (isms_id);
+
+CREATE TABLE "IsmsRiskTreatmentPlan" (
+	implementation_state VARCHAR(11),
 	plan_scope TEXT,
-	resources_required TEXT,
-	implementation_timeline TEXT,
-	risk_owner_approval TEXT,
-	approved_date DATE,
-	residual_risk_acceptance TEXT,
-	implementation_status VARCHAR(14),
-	completion_date DATE,
-	document_type VARCHAR(9),
-	document_reference TEXT,
-	author TEXT,
-	owner TEXT,
-	approved_by TEXT,
-	effective_date DATE,
-	review_date DATE,
-	status TEXT,
-	classification TEXT,
-	retention_period TEXT,
-	storage_and_preservation TEXT,
-	change_control_method TEXT,
-	external_origin BOOLEAN,
-	external_origin_source TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
+	plan_resources TEXT,
+	plan_timeline TEXT,
+	plan_risk_owner_approval TEXT,
+	plan_residual_risk_acceptance TEXT,
+	plan_completion_date DATE,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
 	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
-);
-CREATE INDEX "ix_RiskTreatmentPlan_id" ON "RiskTreatmentPlan" (id);
-
-CREATE TABLE "StatementOfApplicability" (
-	total_controls INTEGER,
-	implemented_count INTEGER,
-	planned_count INTEGER,
-	not_applicable_count INTEGER,
-	last_review_date DATE,
-	approved_by TEXT,
-	document_type VARCHAR(9),
 	document_reference TEXT,
-	author TEXT,
-	owner TEXT,
-	approved_date DATE,
-	effective_date DATE,
-	review_date DATE,
-	status TEXT,
-	classification TEXT,
-	retention_period TEXT,
-	storage_and_preservation TEXT,
-	change_control_method TEXT,
-	external_origin BOOLEAN,
-	external_origin_source TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
+	document_version TEXT,
+	document_author TEXT,
+	document_owner TEXT,
+	document_approver TEXT,
+	document_approval_date DATE,
+	document_effective_date DATE,
+	document_last_review_date DATE,
+	document_next_review_date DATE,
+	document_status TEXT,
+	document_classification TEXT,
+	document_retention TEXT,
+	document_storage TEXT,
+	document_change_control TEXT,
+	document_external_origin BOOLEAN,
+	document_external_source TEXT,
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
 );
-CREATE INDEX "ix_StatementOfApplicability_id" ON "StatementOfApplicability" (id);
+CREATE INDEX "ix_IsmsRiskTreatmentPlan_isms_id" ON "IsmsRiskTreatmentPlan" (isms_id);
 
-CREATE TABLE "SecurityControl" (
-	control_id VARCHAR(6),
-	control_title TEXT,
-	control_category VARCHAR(14),
+CREATE TABLE "IsmsControl" (
+	implementation_state VARCHAR(11),
+	control_theme VARCHAR(14),
 	control_text TEXT,
-	implementation_guidance TEXT,
+	control_guidance TEXT,
 	control_owner TEXT,
-	implementation_status VARCHAR(14),
-	implementation_date DATE,
-	effectiveness_rating TEXT,
-	last_test_date DATE,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
+	control_implementation_date DATE,
+	control_effectiveness TEXT,
+	control_last_tested DATE,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
 	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
 );
-CREATE INDEX "ix_SecurityControl_id" ON "SecurityControl" (id);
+CREATE INDEX "ix_IsmsControl_isms_id" ON "IsmsControl" (isms_id);
 
-CREATE TABLE "Resource" (
-	resource_type TEXT,
-	quantity TEXT,
-	allocation_date DATE,
-	allocated_to TEXT,
-	cost TEXT,
-	availability_status TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
+CREATE TABLE "IsmsAsset" (
+	asset_category TEXT,
+	asset_owner TEXT,
+	asset_custodian TEXT,
+	asset_classification TEXT,
+	asset_location TEXT,
+	asset_criticality TEXT,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
 	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
 );
-CREATE INDEX "ix_Resource_id" ON "Resource" (id);
+CREATE INDEX "ix_IsmsAsset_isms_id" ON "IsmsAsset" (isms_id);
 
-CREATE TABLE "CompetenceRecord" (
-	person_name TEXT,
-	person_role TEXT,
-	competency_assessment_date DATE,
-	document_type VARCHAR(9),
+CREATE TABLE "IsmsResource" (
+	resource_category TEXT,
+	resource_quantity TEXT,
+	resource_allocation_date DATE,
+	resource_allocated_to TEXT,
+	resource_cost TEXT,
+	resource_availability TEXT,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsResource_isms_id" ON "IsmsResource" (isms_id);
+
+CREATE TABLE "IsmsDocumentedInformation" (
+	document_kind VARCHAR(9) NOT NULL,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
 	document_reference TEXT,
-	author TEXT,
-	owner TEXT,
-	approved_by TEXT,
-	approved_date DATE,
-	effective_date DATE,
-	review_date DATE,
-	status TEXT,
-	classification TEXT,
-	retention_period TEXT,
-	storage_and_preservation TEXT,
-	change_control_method TEXT,
-	external_origin BOOLEAN,
-	external_origin_source TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
+	document_version TEXT,
+	document_author TEXT,
+	document_owner TEXT,
+	document_approver TEXT,
+	document_approval_date DATE,
+	document_effective_date DATE,
+	document_last_review_date DATE,
+	document_next_review_date DATE,
+	document_status TEXT,
+	document_classification TEXT,
+	document_retention TEXT,
+	document_storage TEXT,
+	document_change_control TEXT,
+	document_external_origin BOOLEAN,
+	document_external_source TEXT,
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
 );
-CREATE INDEX "ix_CompetenceRecord_id" ON "CompetenceRecord" (id);
+CREATE INDEX "ix_IsmsDocumentedInformation_isms_id" ON "IsmsDocumentedInformation" (isms_id);
 
-CREATE TABLE "AwarenessProgram" (
-	target_audience TEXT,
-	frequency TEXT,
-	completion_tracking TEXT,
-	effectiveness_measures TEXT,
-	document_type VARCHAR(9),
-	document_reference TEXT,
-	author TEXT,
-	owner TEXT,
-	approved_by TEXT,
-	approved_date DATE,
-	effective_date DATE,
-	review_date DATE,
-	status TEXT,
-	classification TEXT,
-	retention_period TEXT,
-	storage_and_preservation TEXT,
-	change_control_method TEXT,
-	external_origin BOOLEAN,
-	external_origin_source TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
-);
-CREATE INDEX "ix_AwarenessProgram_id" ON "AwarenessProgram" (id);
-
-CREATE TABLE "CommunicationPlan" (
-	document_type VARCHAR(9),
-	document_reference TEXT,
-	author TEXT,
-	owner TEXT,
-	approved_by TEXT,
-	approved_date DATE,
-	effective_date DATE,
-	review_date DATE,
-	status TEXT,
-	classification TEXT,
-	retention_period TEXT,
-	storage_and_preservation TEXT,
-	change_control_method TEXT,
-	external_origin BOOLEAN,
-	external_origin_source TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
-);
-CREATE INDEX "ix_CommunicationPlan_id" ON "CommunicationPlan" (id);
-
-CREATE TABLE "CommunicationItem" (
-	id INTEGER NOT NULL,
-	subject TEXT,
-	purpose TEXT,
-	audience TEXT,
-	frequency TEXT,
-	method TEXT,
-	responsible_party TEXT,
-	records_required BOOLEAN,
-	PRIMARY KEY (id)
-);
-CREATE INDEX "ix_CommunicationItem_id" ON "CommunicationItem" (id);
-
-CREATE TABLE "OperationalProcedure" (
+CREATE TABLE "IsmsOperationalProcedure" (
 	procedure_scope TEXT,
-	process_criteria TEXT,
-	change_control_requirements TEXT,
-	document_type VARCHAR(9),
-	document_reference TEXT,
-	author TEXT,
-	owner TEXT,
-	approved_by TEXT,
-	approved_date DATE,
-	effective_date DATE,
-	review_date DATE,
-	status TEXT,
-	classification TEXT,
-	retention_period TEXT,
-	storage_and_preservation TEXT,
-	change_control_method TEXT,
-	external_origin BOOLEAN,
-	external_origin_source TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
+	procedure_criteria TEXT,
+	procedure_change_control TEXT,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
 	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
-);
-CREATE INDEX "ix_OperationalProcedure_id" ON "OperationalProcedure" (id);
-
-CREATE TABLE "MonitoringProgram" (
-	document_type VARCHAR(9),
 	document_reference TEXT,
-	author TEXT,
-	owner TEXT,
-	approved_by TEXT,
-	approved_date DATE,
-	effective_date DATE,
-	review_date DATE,
-	status TEXT,
-	classification TEXT,
-	retention_period TEXT,
-	storage_and_preservation TEXT,
-	change_control_method TEXT,
-	external_origin BOOLEAN,
-	external_origin_source TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
+	document_version TEXT,
+	document_author TEXT,
+	document_owner TEXT,
+	document_approver TEXT,
+	document_approval_date DATE,
+	document_effective_date DATE,
+	document_last_review_date DATE,
+	document_next_review_date DATE,
+	document_status TEXT,
+	document_classification TEXT,
+	document_retention TEXT,
+	document_storage TEXT,
+	document_change_control TEXT,
+	document_external_origin BOOLEAN,
+	document_external_source TEXT,
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
 );
-CREATE INDEX "ix_MonitoringProgram_id" ON "MonitoringProgram" (id);
+CREATE INDEX "ix_IsmsOperationalProcedure_isms_id" ON "IsmsOperationalProcedure" (isms_id);
 
-CREATE TABLE "MonitoringItem" (
+CREATE TABLE "IsmsAuditProgramme" (
+	programme_period TEXT,
+	programme_frequency_rationale TEXT,
+	programme_resources TEXT,
+	programme_auditor_qualifications TEXT,
+	programme_status TEXT,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	document_reference TEXT,
+	document_version TEXT,
+	document_author TEXT,
+	document_owner TEXT,
+	document_approver TEXT,
+	document_approval_date DATE,
+	document_effective_date DATE,
+	document_last_review_date DATE,
+	document_next_review_date DATE,
+	document_status TEXT,
+	document_classification TEXT,
+	document_retention TEXT,
+	document_storage TEXT,
+	document_change_control TEXT,
+	document_external_origin BOOLEAN,
+	document_external_source TEXT,
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsAuditProgramme_isms_id" ON "IsmsAuditProgramme" (isms_id);
+
+CREATE TABLE "IsmsManagementReview" (
+	review_held_on DATE NOT NULL,
+	review_previous_actions TEXT,
+	review_context_changes TEXT,
+	review_interested_party_changes TEXT,
+	review_interested_party_feedback TEXT,
+	review_performance_trends TEXT,
+	review_audit_results TEXT,
+	review_risk_assessment_results TEXT,
+	review_risk_treatment_status TEXT,
+	review_risks_and_opportunities TEXT,
+	review_next_date DATE,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	document_reference TEXT,
+	document_version TEXT,
+	document_author TEXT,
+	document_owner TEXT,
+	document_approver TEXT,
+	document_approval_date DATE,
+	document_effective_date DATE,
+	document_last_review_date DATE,
+	document_next_review_date DATE,
+	document_status TEXT,
+	document_classification TEXT,
+	document_retention TEXT,
+	document_storage TEXT,
+	document_change_control TEXT,
+	document_external_origin BOOLEAN,
+	document_external_source TEXT,
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsManagementReview_isms_id" ON "IsmsManagementReview" (isms_id);
+
+CREATE TABLE "IsmsNonconformity" (
+	nonconformity_source TEXT,
+	nonconformity_detected_on DATE,
+	nonconformity_detected_by TEXT,
+	nonconformity_requirement TEXT,
+	nonconformity_consequences TEXT,
+	nonconformity_root_cause TEXT,
+	nonconformity_similar_check TEXT,
+	nonconformity_status TEXT,
+	nonconformity_closure_date DATE,
+	nonconformity_closure_evidence TEXT,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsNonconformity_isms_id" ON "IsmsNonconformity" (isms_id);
+
+CREATE TABLE "IsmsSecurityEvent" (
+	event_type TEXT,
+	event_occurred_at DATETIME,
+	event_reporter TEXT,
+	event_assessment TEXT,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsSecurityEvent_isms_id" ON "IsmsSecurityEvent" (isms_id);
+
+CREATE TABLE "IsmsManagementSystem_isms_leadership_evidence" (
+	"IsmsManagementSystem_isms_id" TEXT,
+	isms_leadership_evidence TEXT,
+	PRIMARY KEY ("IsmsManagementSystem_isms_id", isms_leadership_evidence),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsManagementSystem_isms_leadership_evidence_isms_leadership_evidence" ON "IsmsManagementSystem_isms_leadership_evidence" (isms_leadership_evidence);
+CREATE INDEX "ix_IsmsManagementSystem_isms_leadership_evidence_IsmsManagementSystem_isms_id" ON "IsmsManagementSystem_isms_leadership_evidence" ("IsmsManagementSystem_isms_id");
+
+CREATE TABLE "IsmsManagementSystem_isms_scope_boundaries" (
+	"IsmsManagementSystem_isms_id" TEXT,
+	isms_scope_boundaries TEXT,
+	PRIMARY KEY ("IsmsManagementSystem_isms_id", isms_scope_boundaries),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsManagementSystem_isms_scope_boundaries_IsmsManagementSystem_isms_id" ON "IsmsManagementSystem_isms_scope_boundaries" ("IsmsManagementSystem_isms_id");
+CREATE INDEX "ix_IsmsManagementSystem_isms_scope_boundaries_isms_scope_boundaries" ON "IsmsManagementSystem_isms_scope_boundaries" (isms_scope_boundaries);
+
+CREATE TABLE "IsmsManagementSystem_isms_scope_exclusions" (
+	"IsmsManagementSystem_isms_id" TEXT,
+	isms_scope_exclusions TEXT,
+	PRIMARY KEY ("IsmsManagementSystem_isms_id", isms_scope_exclusions),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsManagementSystem_isms_scope_exclusions_isms_scope_exclusions" ON "IsmsManagementSystem_isms_scope_exclusions" (isms_scope_exclusions);
+CREATE INDEX "ix_IsmsManagementSystem_isms_scope_exclusions_IsmsManagementSystem_isms_id" ON "IsmsManagementSystem_isms_scope_exclusions" ("IsmsManagementSystem_isms_id");
+
+CREATE TABLE "IsmsManagementSystem_isms_interfaces" (
+	"IsmsManagementSystem_isms_id" TEXT,
+	isms_interfaces TEXT,
+	PRIMARY KEY ("IsmsManagementSystem_isms_id", isms_interfaces),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsManagementSystem_isms_interfaces_isms_interfaces" ON "IsmsManagementSystem_isms_interfaces" (isms_interfaces);
+CREATE INDEX "ix_IsmsManagementSystem_isms_interfaces_IsmsManagementSystem_isms_id" ON "IsmsManagementSystem_isms_interfaces" ("IsmsManagementSystem_isms_id");
+
+CREATE TABLE "IsmsManagementSystem_isms_internal_issues" (
+	"IsmsManagementSystem_isms_id" TEXT,
+	isms_internal_issues TEXT,
+	PRIMARY KEY ("IsmsManagementSystem_isms_id", isms_internal_issues),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsManagementSystem_isms_internal_issues_IsmsManagementSystem_isms_id" ON "IsmsManagementSystem_isms_internal_issues" ("IsmsManagementSystem_isms_id");
+CREATE INDEX "ix_IsmsManagementSystem_isms_internal_issues_isms_internal_issues" ON "IsmsManagementSystem_isms_internal_issues" (isms_internal_issues);
+
+CREATE TABLE "IsmsManagementSystem_isms_external_issues" (
+	"IsmsManagementSystem_isms_id" TEXT,
+	isms_external_issues TEXT,
+	PRIMARY KEY ("IsmsManagementSystem_isms_id", isms_external_issues),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsManagementSystem_isms_external_issues_isms_external_issues" ON "IsmsManagementSystem_isms_external_issues" (isms_external_issues);
+CREATE INDEX "ix_IsmsManagementSystem_isms_external_issues_IsmsManagementSystem_isms_id" ON "IsmsManagementSystem_isms_external_issues" ("IsmsManagementSystem_isms_id");
+
+CREATE TABLE "IsmsManagementSystem_isms_risk_and_opportunity_actions" (
+	"IsmsManagementSystem_isms_id" TEXT,
+	isms_risk_and_opportunity_actions TEXT,
+	PRIMARY KEY ("IsmsManagementSystem_isms_id", isms_risk_and_opportunity_actions),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsManagementSystem_isms_risk_and_opportunity_actions_IsmsManagementSystem_isms_id" ON "IsmsManagementSystem_isms_risk_and_opportunity_actions" ("IsmsManagementSystem_isms_id");
+CREATE INDEX "ix_IsmsManagementSystem_isms_risk_and_opportunity_actions_isms_risk_and_opportunity_actions" ON "IsmsManagementSystem_isms_risk_and_opportunity_actions" (isms_risk_and_opportunity_actions);
+
+CREATE TABLE "IsmsManagementSystem_isms_planned_changes" (
+	"IsmsManagementSystem_isms_id" TEXT,
+	isms_planned_changes TEXT,
+	PRIMARY KEY ("IsmsManagementSystem_isms_id", isms_planned_changes),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsManagementSystem_isms_planned_changes_IsmsManagementSystem_isms_id" ON "IsmsManagementSystem_isms_planned_changes" ("IsmsManagementSystem_isms_id");
+CREATE INDEX "ix_IsmsManagementSystem_isms_planned_changes_isms_planned_changes" ON "IsmsManagementSystem_isms_planned_changes" (isms_planned_changes);
+
+CREATE TABLE "IsmsManagementSystem_isms_external_services" (
+	"IsmsManagementSystem_isms_id" TEXT,
+	isms_external_services TEXT,
+	PRIMARY KEY ("IsmsManagementSystem_isms_id", isms_external_services),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsManagementSystem_isms_external_services_IsmsManagementSystem_isms_id" ON "IsmsManagementSystem_isms_external_services" ("IsmsManagementSystem_isms_id");
+CREATE INDEX "ix_IsmsManagementSystem_isms_external_services_isms_external_services" ON "IsmsManagementSystem_isms_external_services" (isms_external_services);
+
+CREATE TABLE "IsmsObjective" (
+	responsible_role TEXT,
+	objective_statement TEXT,
+	objective_target TEXT,
+	objective_current_value TEXT,
+	objective_metric TEXT,
+	objective_measurement_method TEXT,
+	objective_measurement_frequency TEXT,
+	objective_target_date DATE,
+	objective_achievement TEXT,
+	objective_action_plan TEXT,
+	objective_resources TEXT,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY(responsible_role) REFERENCES "IsmsRole" (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsObjective_isms_id" ON "IsmsObjective" (isms_id);
+
+CREATE TABLE "IsmsIncludedControl" (
 	id INTEGER NOT NULL,
-	metric_name TEXT,
-	metric_description TEXT,
-	measurement_method TEXT,
-	measurement_frequency TEXT,
-	responsible_party TEXT,
-	analysis_frequency TEXT,
-	analyst TEXT,
-	target_threshold TEXT,
-	alert_threshold TEXT,
-	current_value TEXT,
-	trend TEXT,
-	PRIMARY KEY (id)
+	implementation_state VARCHAR(11) NOT NULL,
+	responsible_role TEXT,
+	included_control TEXT,
+	included_evidence TEXT,
+	included_target_date DATE,
+	entry_annex_a_control VARCHAR(6),
+	entry_type TEXT,
+	entry_justification TEXT NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY(responsible_role) REFERENCES "IsmsRole" (isms_id),
+	FOREIGN KEY(included_control) REFERENCES "IsmsControl" (isms_id)
 );
-CREATE INDEX "ix_MonitoringItem_id" ON "MonitoringItem" (id);
+CREATE INDEX "ix_IsmsIncludedControl_id" ON "IsmsIncludedControl" (id);
 
-CREATE TABLE "InternalAudit" (
-	audit_reference TEXT,
-	audit_type VARCHAR(21),
+CREATE TABLE "IsmsCompetenceRecord" (
+	competence_person TEXT,
+	competence_role TEXT,
+	competence_assessment_date DATE,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
+	document_reference TEXT,
+	document_version TEXT,
+	document_author TEXT,
+	document_owner TEXT,
+	document_approver TEXT,
+	document_approval_date DATE,
+	document_effective_date DATE,
+	document_last_review_date DATE,
+	document_next_review_date DATE,
+	document_status TEXT,
+	document_classification TEXT,
+	document_retention TEXT,
+	document_storage TEXT,
+	document_change_control TEXT,
+	document_external_origin BOOLEAN,
+	document_external_source TEXT,
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY(competence_role) REFERENCES "IsmsRole" (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
+);
+CREATE INDEX "ix_IsmsCompetenceRecord_isms_id" ON "IsmsCompetenceRecord" (isms_id);
+
+CREATE TABLE "IsmsCommunication" (
+	id INTEGER NOT NULL,
+	responsible_role TEXT,
+	communication_subject TEXT NOT NULL,
+	communication_purpose TEXT,
+	communication_audience TEXT,
+	communication_frequency TEXT,
+	communication_method TEXT,
+	communication_records_required BOOLEAN,
+	"IsmsCommunicationPlan_isms_id" TEXT,
+	PRIMARY KEY (id),
+	FOREIGN KEY(responsible_role) REFERENCES "IsmsRole" (isms_id),
+	FOREIGN KEY("IsmsCommunicationPlan_isms_id") REFERENCES "IsmsCommunicationPlan" (isms_id)
+);
+CREATE INDEX "ix_IsmsCommunication_id" ON "IsmsCommunication" (id);
+
+CREATE TABLE "IsmsMonitoringItem" (
+	id INTEGER NOT NULL,
+	responsible_role TEXT,
+	monitoring_metric TEXT NOT NULL,
+	monitoring_description TEXT,
+	monitoring_method TEXT,
+	monitoring_frequency TEXT,
+	monitoring_analysis_frequency TEXT,
+	monitoring_analyst TEXT,
+	monitoring_target TEXT,
+	monitoring_alert_threshold TEXT,
+	monitoring_current_value TEXT,
+	monitoring_trend TEXT,
+	"IsmsMonitoringProgramme_isms_id" TEXT,
+	PRIMARY KEY (id),
+	FOREIGN KEY(responsible_role) REFERENCES "IsmsRole" (isms_id),
+	FOREIGN KEY("IsmsMonitoringProgramme_isms_id") REFERENCES "IsmsMonitoringProgramme" (isms_id)
+);
+CREATE INDEX "ix_IsmsMonitoringItem_id" ON "IsmsMonitoringItem" (id);
+
+CREATE TABLE "IsmsAudit" (
+	audit_type VARCHAR(12) NOT NULL,
 	audit_scope TEXT,
 	audit_period_start DATE,
 	audit_period_end DATE,
-	lead_auditor TEXT,
+	audit_lead TEXT,
 	audit_plan TEXT,
 	audit_conclusion TEXT,
-	report_date DATE,
-	document_type VARCHAR(9),
+	audit_report_date DATE,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
+	description TEXT,
 	document_reference TEXT,
-	author TEXT,
-	owner TEXT,
-	approved_by TEXT,
-	approved_date DATE,
-	effective_date DATE,
-	review_date DATE,
-	status TEXT,
-	classification TEXT,
-	retention_period TEXT,
-	storage_and_preservation TEXT,
-	change_control_method TEXT,
-	external_origin BOOLEAN,
-	external_origin_source TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
+	document_version TEXT,
+	document_author TEXT,
+	document_owner TEXT,
+	document_approver TEXT,
+	document_approval_date DATE,
+	document_effective_date DATE,
+	document_last_review_date DATE,
+	document_next_review_date DATE,
+	document_status TEXT,
+	document_classification TEXT,
+	document_retention TEXT,
+	document_storage TEXT,
+	document_change_control TEXT,
+	document_external_origin BOOLEAN,
+	document_external_source TEXT,
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY(audit_plan) REFERENCES "IsmsDocumentedInformation" (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
 );
-CREATE INDEX "ix_InternalAudit_id" ON "InternalAudit" (id);
+CREATE INDEX "ix_IsmsAudit_isms_id" ON "IsmsAudit" (isms_id);
 
-CREATE TABLE "AuditProgramme" (
-	programme_period TEXT,
-	audit_frequency_rationale TEXT,
-	resource_requirements TEXT,
-	auditor_qualifications TEXT,
-	programme_status TEXT,
-	document_type VARCHAR(9),
-	document_reference TEXT,
-	author TEXT,
-	owner TEXT,
-	approved_by TEXT,
-	approved_date DATE,
-	effective_date DATE,
-	review_date DATE,
-	status TEXT,
-	classification TEXT,
-	retention_period TEXT,
-	storage_and_preservation TEXT,
-	change_control_method TEXT,
-	external_origin BOOLEAN,
-	external_origin_source TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
+CREATE TABLE "IsmsCorrectiveAction" (
+	responsible_role TEXT,
+	action_root_cause TEXT,
+	action_target_date DATE,
+	action_completion_date DATE,
+	action_resources TEXT,
+	action_effectiveness_criteria TEXT,
+	action_effectiveness_review_date DATE,
+	action_effective BOOLEAN,
+	action_isms_changes TEXT,
+	action_status TEXT,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
 	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY(responsible_role) REFERENCES "IsmsRole" (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
 );
-CREATE INDEX "ix_AuditProgramme_id" ON "AuditProgramme" (id);
+CREATE INDEX "ix_IsmsCorrectiveAction_isms_id" ON "IsmsCorrectiveAction" (isms_id);
 
-CREATE TABLE "ManagementReview" (
-	review_date DATE,
-	previous_actions_status TEXT,
-	context_changes TEXT,
-	interested_party_changes TEXT,
-	interested_party_feedback TEXT,
-	performance_trends TEXT,
-	audit_results_summary TEXT,
-	risk_assessment_results TEXT,
-	risk_treatment_status TEXT,
-	risks_and_opportunities_changes TEXT,
-	next_review_date DATE,
-	document_type VARCHAR(9),
-	document_reference TEXT,
-	author TEXT,
-	owner TEXT,
-	approved_by TEXT,
-	approved_date DATE,
-	effective_date DATE,
-	status TEXT,
-	classification TEXT,
-	retention_period TEXT,
-	storage_and_preservation TEXT,
-	change_control_method TEXT,
-	external_origin BOOLEAN,
-	external_origin_source TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
-);
-CREATE INDEX "ix_ManagementReview_id" ON "ManagementReview" (id);
-
-CREATE TABLE "Nonconformity" (
-	nonconformity_source TEXT,
-	detection_date DATE,
-	detected_by TEXT,
-	requirement_violated TEXT,
-	nonconformity_description TEXT,
-	consequences_addressed TEXT,
-	root_cause TEXT,
-	similar_nonconformities_check TEXT,
-	status TEXT,
-	closure_date DATE,
-	closure_evidence TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
-);
-CREATE INDEX "ix_Nonconformity_id" ON "Nonconformity" (id);
-
-CREATE TABLE "ImprovementOpportunity" (
+CREATE TABLE "IsmsImprovementOpportunity" (
+	responsible_role TEXT,
 	improvement_source TEXT,
-	identification_date DATE,
-	identified_by TEXT,
-	improvement_description TEXT,
-	expected_benefit TEXT,
-	priority TEXT,
-	implementation_plan TEXT,
-	responsible_party TEXT,
-	target_date DATE,
-	actual_completion_date DATE,
-	outcome_assessment TEXT,
-	status TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
+	improvement_identified_on DATE,
+	improvement_identified_by TEXT,
+	improvement_benefit TEXT,
+	improvement_priority TEXT,
+	improvement_plan TEXT,
+	improvement_target_date DATE,
+	improvement_completion_date DATE,
+	improvement_outcome TEXT,
+	improvement_status TEXT,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
 	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
+	"IsmsManagementSystem_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY(responsible_role) REFERENCES "IsmsRole" (isms_id),
+	FOREIGN KEY("IsmsManagementSystem_isms_id") REFERENCES "IsmsManagementSystem" (isms_id)
 );
-CREATE INDEX "ix_ImprovementOpportunity_id" ON "ImprovementOpportunity" (id);
+CREATE INDEX "ix_IsmsImprovementOpportunity_isms_id" ON "IsmsImprovementOpportunity" (isms_id);
 
-CREATE TABLE "Asset" (
-	asset_type TEXT,
-	asset_owner TEXT,
-	asset_custodian TEXT,
-	classification TEXT,
-	location TEXT,
-	criticality TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
+CREATE TABLE "IsmsInterestedParty_party_requirements" (
+	"IsmsInterestedParty_isms_id" TEXT,
+	party_requirements TEXT,
+	PRIMARY KEY ("IsmsInterestedParty_isms_id", party_requirements),
+	FOREIGN KEY("IsmsInterestedParty_isms_id") REFERENCES "IsmsInterestedParty" (isms_id)
+);
+CREATE INDEX "ix_IsmsInterestedParty_party_requirements_party_requirements" ON "IsmsInterestedParty_party_requirements" (party_requirements);
+CREATE INDEX "ix_IsmsInterestedParty_party_requirements_IsmsInterestedParty_isms_id" ON "IsmsInterestedParty_party_requirements" ("IsmsInterestedParty_isms_id");
+
+CREATE TABLE "IsmsInterestedParty_party_addressed_requirements" (
+	"IsmsInterestedParty_isms_id" TEXT,
+	party_addressed_requirements TEXT,
+	PRIMARY KEY ("IsmsInterestedParty_isms_id", party_addressed_requirements),
+	FOREIGN KEY("IsmsInterestedParty_isms_id") REFERENCES "IsmsInterestedParty" (isms_id)
+);
+CREATE INDEX "ix_IsmsInterestedParty_party_addressed_requirements_party_addressed_requirements" ON "IsmsInterestedParty_party_addressed_requirements" (party_addressed_requirements);
+CREATE INDEX "ix_IsmsInterestedParty_party_addressed_requirements_IsmsInterestedParty_isms_id" ON "IsmsInterestedParty_party_addressed_requirements" ("IsmsInterestedParty_isms_id");
+
+CREATE TABLE "IsmsInterestedParty_party_climate_change_requirements" (
+	"IsmsInterestedParty_isms_id" TEXT,
+	party_climate_change_requirements TEXT,
+	PRIMARY KEY ("IsmsInterestedParty_isms_id", party_climate_change_requirements),
+	FOREIGN KEY("IsmsInterestedParty_isms_id") REFERENCES "IsmsInterestedParty" (isms_id)
+);
+CREATE INDEX "ix_IsmsInterestedParty_party_climate_change_requirements_party_climate_change_requirements" ON "IsmsInterestedParty_party_climate_change_requirements" (party_climate_change_requirements);
+CREATE INDEX "ix_IsmsInterestedParty_party_climate_change_requirements_IsmsInterestedParty_isms_id" ON "IsmsInterestedParty_party_climate_change_requirements" ("IsmsInterestedParty_isms_id");
+
+CREATE TABLE "IsmsTopicSpecificPolicy_relevant_controls" (
+	"IsmsTopicSpecificPolicy_isms_id" TEXT,
+	relevant_controls_isms_id TEXT,
+	PRIMARY KEY ("IsmsTopicSpecificPolicy_isms_id", relevant_controls_isms_id),
+	FOREIGN KEY("IsmsTopicSpecificPolicy_isms_id") REFERENCES "IsmsTopicSpecificPolicy" (isms_id),
+	FOREIGN KEY(relevant_controls_isms_id) REFERENCES "IsmsControl" (isms_id)
+);
+CREATE INDEX "ix_IsmsTopicSpecificPolicy_relevant_controls_IsmsTopicSpecificPolicy_isms_id" ON "IsmsTopicSpecificPolicy_relevant_controls" ("IsmsTopicSpecificPolicy_isms_id");
+CREATE INDEX "ix_IsmsTopicSpecificPolicy_relevant_controls_relevant_controls_isms_id" ON "IsmsTopicSpecificPolicy_relevant_controls" (relevant_controls_isms_id);
+
+CREATE TABLE "IsmsTopicSpecificPolicy_document_distribution" (
+	"IsmsTopicSpecificPolicy_isms_id" TEXT,
+	document_distribution TEXT,
+	PRIMARY KEY ("IsmsTopicSpecificPolicy_isms_id", document_distribution),
+	FOREIGN KEY("IsmsTopicSpecificPolicy_isms_id") REFERENCES "IsmsTopicSpecificPolicy" (isms_id)
+);
+CREATE INDEX "ix_IsmsTopicSpecificPolicy_document_distribution_document_distribution" ON "IsmsTopicSpecificPolicy_document_distribution" (document_distribution);
+CREATE INDEX "ix_IsmsTopicSpecificPolicy_document_distribution_IsmsTopicSpecificPolicy_isms_id" ON "IsmsTopicSpecificPolicy_document_distribution" ("IsmsTopicSpecificPolicy_isms_id");
+
+CREATE TABLE "IsmsRole_role_responsibilities" (
+	"IsmsRole_isms_id" TEXT,
+	role_responsibilities TEXT,
+	PRIMARY KEY ("IsmsRole_isms_id", role_responsibilities),
+	FOREIGN KEY("IsmsRole_isms_id") REFERENCES "IsmsRole" (isms_id)
+);
+CREATE INDEX "ix_IsmsRole_role_responsibilities_IsmsRole_isms_id" ON "IsmsRole_role_responsibilities" ("IsmsRole_isms_id");
+CREATE INDEX "ix_IsmsRole_role_responsibilities_role_responsibilities" ON "IsmsRole_role_responsibilities" (role_responsibilities);
+
+CREATE TABLE "IsmsRole_role_authorities" (
+	"IsmsRole_isms_id" TEXT,
+	role_authorities TEXT,
+	PRIMARY KEY ("IsmsRole_isms_id", role_authorities),
+	FOREIGN KEY("IsmsRole_isms_id") REFERENCES "IsmsRole" (isms_id)
+);
+CREATE INDEX "ix_IsmsRole_role_authorities_IsmsRole_isms_id" ON "IsmsRole_role_authorities" ("IsmsRole_isms_id");
+CREATE INDEX "ix_IsmsRole_role_authorities_role_authorities" ON "IsmsRole_role_authorities" (role_authorities);
+
+CREATE TABLE "IsmsRole_role_holders" (
+	"IsmsRole_isms_id" TEXT,
+	role_holders TEXT,
+	PRIMARY KEY ("IsmsRole_isms_id", role_holders),
+	FOREIGN KEY("IsmsRole_isms_id") REFERENCES "IsmsRole" (isms_id)
+);
+CREATE INDEX "ix_IsmsRole_role_holders_IsmsRole_isms_id" ON "IsmsRole_role_holders" ("IsmsRole_isms_id");
+CREATE INDEX "ix_IsmsRole_role_holders_role_holders" ON "IsmsRole_role_holders" (role_holders);
+
+CREATE TABLE "IsmsRiskAssessment_assessment_risks" (
+	"IsmsRiskAssessment_isms_id" TEXT,
+	assessment_risks_isms_id TEXT,
+	PRIMARY KEY ("IsmsRiskAssessment_isms_id", assessment_risks_isms_id),
+	FOREIGN KEY("IsmsRiskAssessment_isms_id") REFERENCES "IsmsRiskAssessment" (isms_id),
+	FOREIGN KEY(assessment_risks_isms_id) REFERENCES "IsmsRisk" (isms_id)
+);
+CREATE INDEX "ix_IsmsRiskAssessment_assessment_risks_IsmsRiskAssessment_isms_id" ON "IsmsRiskAssessment_assessment_risks" ("IsmsRiskAssessment_isms_id");
+CREATE INDEX "ix_IsmsRiskAssessment_assessment_risks_assessment_risks_isms_id" ON "IsmsRiskAssessment_assessment_risks" (assessment_risks_isms_id);
+
+CREATE TABLE "IsmsRiskAssessment_assessment_recommendations" (
+	"IsmsRiskAssessment_isms_id" TEXT,
+	assessment_recommendations TEXT,
+	PRIMARY KEY ("IsmsRiskAssessment_isms_id", assessment_recommendations),
+	FOREIGN KEY("IsmsRiskAssessment_isms_id") REFERENCES "IsmsRiskAssessment" (isms_id)
+);
+CREATE INDEX "ix_IsmsRiskAssessment_assessment_recommendations_IsmsRiskAssessment_isms_id" ON "IsmsRiskAssessment_assessment_recommendations" ("IsmsRiskAssessment_isms_id");
+CREATE INDEX "ix_IsmsRiskAssessment_assessment_recommendations_assessment_recommendations" ON "IsmsRiskAssessment_assessment_recommendations" (assessment_recommendations);
+
+CREATE TABLE "IsmsRiskAssessment_document_distribution" (
+	"IsmsRiskAssessment_isms_id" TEXT,
+	document_distribution TEXT,
+	PRIMARY KEY ("IsmsRiskAssessment_isms_id", document_distribution),
+	FOREIGN KEY("IsmsRiskAssessment_isms_id") REFERENCES "IsmsRiskAssessment" (isms_id)
+);
+CREATE INDEX "ix_IsmsRiskAssessment_document_distribution_IsmsRiskAssessment_isms_id" ON "IsmsRiskAssessment_document_distribution" ("IsmsRiskAssessment_isms_id");
+CREATE INDEX "ix_IsmsRiskAssessment_document_distribution_document_distribution" ON "IsmsRiskAssessment_document_distribution" (document_distribution);
+
+CREATE TABLE "IsmsRisk_affected_assets" (
+	"IsmsRisk_isms_id" TEXT,
+	affected_assets_isms_id TEXT,
+	PRIMARY KEY ("IsmsRisk_isms_id", affected_assets_isms_id),
+	FOREIGN KEY("IsmsRisk_isms_id") REFERENCES "IsmsRisk" (isms_id),
+	FOREIGN KEY(affected_assets_isms_id) REFERENCES "IsmsAsset" (isms_id)
+);
+CREATE INDEX "ix_IsmsRisk_affected_assets_affected_assets_isms_id" ON "IsmsRisk_affected_assets" (affected_assets_isms_id);
+CREATE INDEX "ix_IsmsRisk_affected_assets_IsmsRisk_isms_id" ON "IsmsRisk_affected_assets" ("IsmsRisk_isms_id");
+
+CREATE TABLE "IsmsRisk_affected_security_properties" (
+	"IsmsRisk_isms_id" TEXT,
+	affected_security_properties VARCHAR(15),
+	PRIMARY KEY ("IsmsRisk_isms_id", affected_security_properties),
+	FOREIGN KEY("IsmsRisk_isms_id") REFERENCES "IsmsRisk" (isms_id)
+);
+CREATE INDEX "ix_IsmsRisk_affected_security_properties_affected_security_properties" ON "IsmsRisk_affected_security_properties" (affected_security_properties);
+CREATE INDEX "ix_IsmsRisk_affected_security_properties_IsmsRisk_isms_id" ON "IsmsRisk_affected_security_properties" ("IsmsRisk_isms_id");
+
+CREATE TABLE "IsmsRisk_risk_existing_controls" (
+	"IsmsRisk_isms_id" TEXT,
+	risk_existing_controls_isms_id TEXT,
+	PRIMARY KEY ("IsmsRisk_isms_id", risk_existing_controls_isms_id),
+	FOREIGN KEY("IsmsRisk_isms_id") REFERENCES "IsmsRisk" (isms_id),
+	FOREIGN KEY(risk_existing_controls_isms_id) REFERENCES "IsmsControl" (isms_id)
+);
+CREATE INDEX "ix_IsmsRisk_risk_existing_controls_IsmsRisk_isms_id" ON "IsmsRisk_risk_existing_controls" ("IsmsRisk_isms_id");
+CREATE INDEX "ix_IsmsRisk_risk_existing_controls_risk_existing_controls_isms_id" ON "IsmsRisk_risk_existing_controls" (risk_existing_controls_isms_id);
+
+CREATE TABLE "IsmsRiskTreatmentPlan_plan_risks" (
+	"IsmsRiskTreatmentPlan_isms_id" TEXT,
+	plan_risks_isms_id TEXT,
+	PRIMARY KEY ("IsmsRiskTreatmentPlan_isms_id", plan_risks_isms_id),
+	FOREIGN KEY("IsmsRiskTreatmentPlan_isms_id") REFERENCES "IsmsRiskTreatmentPlan" (isms_id),
+	FOREIGN KEY(plan_risks_isms_id) REFERENCES "IsmsRisk" (isms_id)
+);
+CREATE INDEX "ix_IsmsRiskTreatmentPlan_plan_risks_IsmsRiskTreatmentPlan_isms_id" ON "IsmsRiskTreatmentPlan_plan_risks" ("IsmsRiskTreatmentPlan_isms_id");
+CREATE INDEX "ix_IsmsRiskTreatmentPlan_plan_risks_plan_risks_isms_id" ON "IsmsRiskTreatmentPlan_plan_risks" (plan_risks_isms_id);
+
+CREATE TABLE "IsmsRiskTreatmentPlan_plan_actions" (
+	"IsmsRiskTreatmentPlan_isms_id" TEXT,
+	plan_actions TEXT,
+	PRIMARY KEY ("IsmsRiskTreatmentPlan_isms_id", plan_actions),
+	FOREIGN KEY("IsmsRiskTreatmentPlan_isms_id") REFERENCES "IsmsRiskTreatmentPlan" (isms_id)
+);
+CREATE INDEX "ix_IsmsRiskTreatmentPlan_plan_actions_plan_actions" ON "IsmsRiskTreatmentPlan_plan_actions" (plan_actions);
+CREATE INDEX "ix_IsmsRiskTreatmentPlan_plan_actions_IsmsRiskTreatmentPlan_isms_id" ON "IsmsRiskTreatmentPlan_plan_actions" ("IsmsRiskTreatmentPlan_isms_id");
+
+CREATE TABLE "IsmsRiskTreatmentPlan_plan_controls" (
+	"IsmsRiskTreatmentPlan_isms_id" TEXT,
+	plan_controls_isms_id TEXT,
+	PRIMARY KEY ("IsmsRiskTreatmentPlan_isms_id", plan_controls_isms_id),
+	FOREIGN KEY("IsmsRiskTreatmentPlan_isms_id") REFERENCES "IsmsRiskTreatmentPlan" (isms_id),
+	FOREIGN KEY(plan_controls_isms_id) REFERENCES "IsmsControl" (isms_id)
+);
+CREATE INDEX "ix_IsmsRiskTreatmentPlan_plan_controls_plan_controls_isms_id" ON "IsmsRiskTreatmentPlan_plan_controls" (plan_controls_isms_id);
+CREATE INDEX "ix_IsmsRiskTreatmentPlan_plan_controls_IsmsRiskTreatmentPlan_isms_id" ON "IsmsRiskTreatmentPlan_plan_controls" ("IsmsRiskTreatmentPlan_isms_id");
+
+CREATE TABLE "IsmsRiskTreatmentPlan_plan_responsible_parties" (
+	"IsmsRiskTreatmentPlan_isms_id" TEXT,
+	plan_responsible_parties TEXT,
+	PRIMARY KEY ("IsmsRiskTreatmentPlan_isms_id", plan_responsible_parties),
+	FOREIGN KEY("IsmsRiskTreatmentPlan_isms_id") REFERENCES "IsmsRiskTreatmentPlan" (isms_id)
+);
+CREATE INDEX "ix_IsmsRiskTreatmentPlan_plan_responsible_parties_plan_responsible_parties" ON "IsmsRiskTreatmentPlan_plan_responsible_parties" (plan_responsible_parties);
+CREATE INDEX "ix_IsmsRiskTreatmentPlan_plan_responsible_parties_IsmsRiskTreatmentPlan_isms_id" ON "IsmsRiskTreatmentPlan_plan_responsible_parties" ("IsmsRiskTreatmentPlan_isms_id");
+
+CREATE TABLE "IsmsRiskTreatmentPlan_document_distribution" (
+	"IsmsRiskTreatmentPlan_isms_id" TEXT,
+	document_distribution TEXT,
+	PRIMARY KEY ("IsmsRiskTreatmentPlan_isms_id", document_distribution),
+	FOREIGN KEY("IsmsRiskTreatmentPlan_isms_id") REFERENCES "IsmsRiskTreatmentPlan" (isms_id)
+);
+CREATE INDEX "ix_IsmsRiskTreatmentPlan_document_distribution_document_distribution" ON "IsmsRiskTreatmentPlan_document_distribution" (document_distribution);
+CREATE INDEX "ix_IsmsRiskTreatmentPlan_document_distribution_IsmsRiskTreatmentPlan_isms_id" ON "IsmsRiskTreatmentPlan_document_distribution" ("IsmsRiskTreatmentPlan_isms_id");
+
+CREATE TABLE "IsmsControl_relevant_controls" (
+	"IsmsControl_isms_id" TEXT,
+	relevant_controls_isms_id TEXT,
+	PRIMARY KEY ("IsmsControl_isms_id", relevant_controls_isms_id),
+	FOREIGN KEY("IsmsControl_isms_id") REFERENCES "IsmsControl" (isms_id),
+	FOREIGN KEY(relevant_controls_isms_id) REFERENCES "IsmsControl" (isms_id)
+);
+CREATE INDEX "ix_IsmsControl_relevant_controls_relevant_controls_isms_id" ON "IsmsControl_relevant_controls" (relevant_controls_isms_id);
+CREATE INDEX "ix_IsmsControl_relevant_controls_IsmsControl_isms_id" ON "IsmsControl_relevant_controls" ("IsmsControl_isms_id");
+
+CREATE TABLE "IsmsControl_control_annex_a_controls" (
+	"IsmsControl_isms_id" TEXT,
+	control_annex_a_controls VARCHAR(6),
+	PRIMARY KEY ("IsmsControl_isms_id", control_annex_a_controls),
+	FOREIGN KEY("IsmsControl_isms_id") REFERENCES "IsmsControl" (isms_id)
+);
+CREATE INDEX "ix_IsmsControl_control_annex_a_controls_IsmsControl_isms_id" ON "IsmsControl_control_annex_a_controls" ("IsmsControl_isms_id");
+CREATE INDEX "ix_IsmsControl_control_annex_a_controls_control_annex_a_controls" ON "IsmsControl_control_annex_a_controls" (control_annex_a_controls);
+
+CREATE TABLE "IsmsControl_control_threats" (
+	"IsmsControl_isms_id" TEXT,
+	control_threats TEXT,
+	PRIMARY KEY ("IsmsControl_isms_id", control_threats),
+	FOREIGN KEY("IsmsControl_isms_id") REFERENCES "IsmsControl" (isms_id)
+);
+CREATE INDEX "ix_IsmsControl_control_threats_IsmsControl_isms_id" ON "IsmsControl_control_threats" ("IsmsControl_isms_id");
+CREATE INDEX "ix_IsmsControl_control_threats_control_threats" ON "IsmsControl_control_threats" (control_threats);
+
+CREATE TABLE "IsmsControl_control_asset_types" (
+	"IsmsControl_isms_id" TEXT,
+	control_asset_types TEXT,
+	PRIMARY KEY ("IsmsControl_isms_id", control_asset_types),
+	FOREIGN KEY("IsmsControl_isms_id") REFERENCES "IsmsControl" (isms_id)
+);
+CREATE INDEX "ix_IsmsControl_control_asset_types_IsmsControl_isms_id" ON "IsmsControl_control_asset_types" ("IsmsControl_isms_id");
+CREATE INDEX "ix_IsmsControl_control_asset_types_control_asset_types" ON "IsmsControl_control_asset_types" (control_asset_types);
+
+CREATE TABLE "IsmsControl_control_evidence" (
+	"IsmsControl_isms_id" TEXT,
+	control_evidence TEXT,
+	PRIMARY KEY ("IsmsControl_isms_id", control_evidence),
+	FOREIGN KEY("IsmsControl_isms_id") REFERENCES "IsmsControl" (isms_id)
+);
+CREATE INDEX "ix_IsmsControl_control_evidence_IsmsControl_isms_id" ON "IsmsControl_control_evidence" ("IsmsControl_isms_id");
+CREATE INDEX "ix_IsmsControl_control_evidence_control_evidence" ON "IsmsControl_control_evidence" (control_evidence);
+
+CREATE TABLE "IsmsAsset_relevant_controls" (
+	"IsmsAsset_isms_id" TEXT,
+	relevant_controls_isms_id TEXT,
+	PRIMARY KEY ("IsmsAsset_isms_id", relevant_controls_isms_id),
+	FOREIGN KEY("IsmsAsset_isms_id") REFERENCES "IsmsAsset" (isms_id),
+	FOREIGN KEY(relevant_controls_isms_id) REFERENCES "IsmsControl" (isms_id)
+);
+CREATE INDEX "ix_IsmsAsset_relevant_controls_relevant_controls_isms_id" ON "IsmsAsset_relevant_controls" (relevant_controls_isms_id);
+CREATE INDEX "ix_IsmsAsset_relevant_controls_IsmsAsset_isms_id" ON "IsmsAsset_relevant_controls" ("IsmsAsset_isms_id");
+
+CREATE TABLE "IsmsDocumentedInformation_document_distribution" (
+	"IsmsDocumentedInformation_isms_id" TEXT,
+	document_distribution TEXT,
+	PRIMARY KEY ("IsmsDocumentedInformation_isms_id", document_distribution),
+	FOREIGN KEY("IsmsDocumentedInformation_isms_id") REFERENCES "IsmsDocumentedInformation" (isms_id)
+);
+CREATE INDEX "ix_IsmsDocumentedInformation_document_distribution_document_distribution" ON "IsmsDocumentedInformation_document_distribution" (document_distribution);
+CREATE INDEX "ix_IsmsDocumentedInformation_document_distribution_IsmsDocumentedInformation_isms_id" ON "IsmsDocumentedInformation_document_distribution" ("IsmsDocumentedInformation_isms_id");
+
+CREATE TABLE "IsmsOperationalProcedure_relevant_controls" (
+	"IsmsOperationalProcedure_isms_id" TEXT,
+	relevant_controls_isms_id TEXT,
+	PRIMARY KEY ("IsmsOperationalProcedure_isms_id", relevant_controls_isms_id),
+	FOREIGN KEY("IsmsOperationalProcedure_isms_id") REFERENCES "IsmsOperationalProcedure" (isms_id),
+	FOREIGN KEY(relevant_controls_isms_id) REFERENCES "IsmsControl" (isms_id)
+);
+CREATE INDEX "ix_IsmsOperationalProcedure_relevant_controls_relevant_controls_isms_id" ON "IsmsOperationalProcedure_relevant_controls" (relevant_controls_isms_id);
+CREATE INDEX "ix_IsmsOperationalProcedure_relevant_controls_IsmsOperationalProcedure_isms_id" ON "IsmsOperationalProcedure_relevant_controls" ("IsmsOperationalProcedure_isms_id");
+
+CREATE TABLE "IsmsOperationalProcedure_procedure_control_measures" (
+	"IsmsOperationalProcedure_isms_id" TEXT,
+	procedure_control_measures TEXT,
+	PRIMARY KEY ("IsmsOperationalProcedure_isms_id", procedure_control_measures),
+	FOREIGN KEY("IsmsOperationalProcedure_isms_id") REFERENCES "IsmsOperationalProcedure" (isms_id)
+);
+CREATE INDEX "ix_IsmsOperationalProcedure_procedure_control_measures_procedure_control_measures" ON "IsmsOperationalProcedure_procedure_control_measures" (procedure_control_measures);
+CREATE INDEX "ix_IsmsOperationalProcedure_procedure_control_measures_IsmsOperationalProcedure_isms_id" ON "IsmsOperationalProcedure_procedure_control_measures" ("IsmsOperationalProcedure_isms_id");
+
+CREATE TABLE "IsmsOperationalProcedure_procedure_roles" (
+	"IsmsOperationalProcedure_isms_id" TEXT,
+	procedure_roles_isms_id TEXT,
+	PRIMARY KEY ("IsmsOperationalProcedure_isms_id", procedure_roles_isms_id),
+	FOREIGN KEY("IsmsOperationalProcedure_isms_id") REFERENCES "IsmsOperationalProcedure" (isms_id),
+	FOREIGN KEY(procedure_roles_isms_id) REFERENCES "IsmsRole" (isms_id)
+);
+CREATE INDEX "ix_IsmsOperationalProcedure_procedure_roles_procedure_roles_isms_id" ON "IsmsOperationalProcedure_procedure_roles" (procedure_roles_isms_id);
+CREATE INDEX "ix_IsmsOperationalProcedure_procedure_roles_IsmsOperationalProcedure_isms_id" ON "IsmsOperationalProcedure_procedure_roles" ("IsmsOperationalProcedure_isms_id");
+
+CREATE TABLE "IsmsOperationalProcedure_document_distribution" (
+	"IsmsOperationalProcedure_isms_id" TEXT,
+	document_distribution TEXT,
+	PRIMARY KEY ("IsmsOperationalProcedure_isms_id", document_distribution),
+	FOREIGN KEY("IsmsOperationalProcedure_isms_id") REFERENCES "IsmsOperationalProcedure" (isms_id)
+);
+CREATE INDEX "ix_IsmsOperationalProcedure_document_distribution_document_distribution" ON "IsmsOperationalProcedure_document_distribution" (document_distribution);
+CREATE INDEX "ix_IsmsOperationalProcedure_document_distribution_IsmsOperationalProcedure_isms_id" ON "IsmsOperationalProcedure_document_distribution" ("IsmsOperationalProcedure_isms_id");
+
+CREATE TABLE "IsmsAuditProgramme_document_distribution" (
+	"IsmsAuditProgramme_isms_id" TEXT,
+	document_distribution TEXT,
+	PRIMARY KEY ("IsmsAuditProgramme_isms_id", document_distribution),
+	FOREIGN KEY("IsmsAuditProgramme_isms_id") REFERENCES "IsmsAuditProgramme" (isms_id)
+);
+CREATE INDEX "ix_IsmsAuditProgramme_document_distribution_document_distribution" ON "IsmsAuditProgramme_document_distribution" (document_distribution);
+CREATE INDEX "ix_IsmsAuditProgramme_document_distribution_IsmsAuditProgramme_isms_id" ON "IsmsAuditProgramme_document_distribution" ("IsmsAuditProgramme_isms_id");
+
+CREATE TABLE "IsmsManagementReview_review_attendees" (
+	"IsmsManagementReview_isms_id" TEXT,
+	review_attendees TEXT,
+	PRIMARY KEY ("IsmsManagementReview_isms_id", review_attendees),
+	FOREIGN KEY("IsmsManagementReview_isms_id") REFERENCES "IsmsManagementReview" (isms_id)
+);
+CREATE INDEX "ix_IsmsManagementReview_review_attendees_IsmsManagementReview_isms_id" ON "IsmsManagementReview_review_attendees" ("IsmsManagementReview_isms_id");
+CREATE INDEX "ix_IsmsManagementReview_review_attendees_review_attendees" ON "IsmsManagementReview_review_attendees" (review_attendees);
+
+CREATE TABLE "IsmsManagementReview_review_improvement_opportunities" (
+	"IsmsManagementReview_isms_id" TEXT,
+	review_improvement_opportunities TEXT,
+	PRIMARY KEY ("IsmsManagementReview_isms_id", review_improvement_opportunities),
+	FOREIGN KEY("IsmsManagementReview_isms_id") REFERENCES "IsmsManagementReview" (isms_id)
+);
+CREATE INDEX "ix_IsmsManagementReview_review_improvement_opportunities_IsmsManagementReview_isms_id" ON "IsmsManagementReview_review_improvement_opportunities" ("IsmsManagementReview_isms_id");
+CREATE INDEX "ix_IsmsManagementReview_review_improvement_opportunities_review_improvement_opportunities" ON "IsmsManagementReview_review_improvement_opportunities" (review_improvement_opportunities);
+
+CREATE TABLE "IsmsManagementReview_review_decisions" (
+	"IsmsManagementReview_isms_id" TEXT,
+	review_decisions TEXT,
+	PRIMARY KEY ("IsmsManagementReview_isms_id", review_decisions),
+	FOREIGN KEY("IsmsManagementReview_isms_id") REFERENCES "IsmsManagementReview" (isms_id)
+);
+CREATE INDEX "ix_IsmsManagementReview_review_decisions_IsmsManagementReview_isms_id" ON "IsmsManagementReview_review_decisions" ("IsmsManagementReview_isms_id");
+CREATE INDEX "ix_IsmsManagementReview_review_decisions_review_decisions" ON "IsmsManagementReview_review_decisions" (review_decisions);
+
+CREATE TABLE "IsmsManagementReview_review_actions" (
+	"IsmsManagementReview_isms_id" TEXT,
+	review_actions TEXT,
+	PRIMARY KEY ("IsmsManagementReview_isms_id", review_actions),
+	FOREIGN KEY("IsmsManagementReview_isms_id") REFERENCES "IsmsManagementReview" (isms_id)
+);
+CREATE INDEX "ix_IsmsManagementReview_review_actions_IsmsManagementReview_isms_id" ON "IsmsManagementReview_review_actions" ("IsmsManagementReview_isms_id");
+CREATE INDEX "ix_IsmsManagementReview_review_actions_review_actions" ON "IsmsManagementReview_review_actions" (review_actions);
+
+CREATE TABLE "IsmsManagementReview_document_distribution" (
+	"IsmsManagementReview_isms_id" TEXT,
+	document_distribution TEXT,
+	PRIMARY KEY ("IsmsManagementReview_isms_id", document_distribution),
+	FOREIGN KEY("IsmsManagementReview_isms_id") REFERENCES "IsmsManagementReview" (isms_id)
+);
+CREATE INDEX "ix_IsmsManagementReview_document_distribution_IsmsManagementReview_isms_id" ON "IsmsManagementReview_document_distribution" ("IsmsManagementReview_isms_id");
+CREATE INDEX "ix_IsmsManagementReview_document_distribution_document_distribution" ON "IsmsManagementReview_document_distribution" (document_distribution);
+
+CREATE TABLE "IsmsNonconformity_nonconformity_immediate_actions" (
+	"IsmsNonconformity_isms_id" TEXT,
+	nonconformity_immediate_actions TEXT,
+	PRIMARY KEY ("IsmsNonconformity_isms_id", nonconformity_immediate_actions),
+	FOREIGN KEY("IsmsNonconformity_isms_id") REFERENCES "IsmsNonconformity" (isms_id)
+);
+CREATE INDEX "ix_IsmsNonconformity_nonconformity_immediate_actions_IsmsNonconformity_isms_id" ON "IsmsNonconformity_nonconformity_immediate_actions" ("IsmsNonconformity_isms_id");
+CREATE INDEX "ix_IsmsNonconformity_nonconformity_immediate_actions_nonconformity_immediate_actions" ON "IsmsNonconformity_nonconformity_immediate_actions" (nonconformity_immediate_actions);
+
+CREATE TABLE "IsmsSecurityEvent_affected_assets" (
+	"IsmsSecurityEvent_isms_id" TEXT,
+	affected_assets_isms_id TEXT,
+	PRIMARY KEY ("IsmsSecurityEvent_isms_id", affected_assets_isms_id),
+	FOREIGN KEY("IsmsSecurityEvent_isms_id") REFERENCES "IsmsSecurityEvent" (isms_id),
+	FOREIGN KEY(affected_assets_isms_id) REFERENCES "IsmsAsset" (isms_id)
+);
+CREATE INDEX "ix_IsmsSecurityEvent_affected_assets_affected_assets_isms_id" ON "IsmsSecurityEvent_affected_assets" (affected_assets_isms_id);
+CREATE INDEX "ix_IsmsSecurityEvent_affected_assets_IsmsSecurityEvent_isms_id" ON "IsmsSecurityEvent_affected_assets" ("IsmsSecurityEvent_isms_id");
+
+CREATE TABLE "IsmsSecurityIncident_affected_assets" (
+	"IsmsSecurityIncident_isms_id" TEXT,
+	affected_assets_isms_id TEXT,
+	PRIMARY KEY ("IsmsSecurityIncident_isms_id", affected_assets_isms_id),
+	FOREIGN KEY("IsmsSecurityIncident_isms_id") REFERENCES "IsmsSecurityIncident" (isms_id),
+	FOREIGN KEY(affected_assets_isms_id) REFERENCES "IsmsAsset" (isms_id)
+);
+CREATE INDEX "ix_IsmsSecurityIncident_affected_assets_affected_assets_isms_id" ON "IsmsSecurityIncident_affected_assets" (affected_assets_isms_id);
+CREATE INDEX "ix_IsmsSecurityIncident_affected_assets_IsmsSecurityIncident_isms_id" ON "IsmsSecurityIncident_affected_assets" ("IsmsSecurityIncident_isms_id");
+
+CREATE TABLE "IsmsAuditFinding" (
+	finding_type VARCHAR(19) NOT NULL,
+	finding_requirement TEXT,
+	finding_control TEXT,
+	finding_evidence TEXT,
+	finding_root_cause TEXT,
+	finding_risk TEXT,
+	finding_recommendation TEXT,
+	finding_auditee_response TEXT,
+	finding_corrective_action TEXT,
+	finding_closure_status TEXT,
+	finding_closure_date DATE,
+	isms_id TEXT NOT NULL,
+	title TEXT NOT NULL,
 	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
+	"IsmsAudit_isms_id" TEXT,
+	PRIMARY KEY (isms_id),
+	FOREIGN KEY(finding_control) REFERENCES "IsmsControl" (isms_id),
+	FOREIGN KEY(finding_corrective_action) REFERENCES "IsmsCorrectiveAction" (isms_id),
+	FOREIGN KEY("IsmsAudit_isms_id") REFERENCES "IsmsAudit" (isms_id)
 );
-CREATE INDEX "ix_Asset_id" ON "Asset" (id);
+CREATE INDEX "ix_IsmsAuditFinding_isms_id" ON "IsmsAuditFinding" (isms_id);
 
-CREATE TABLE "InformationSecurityIncident" (
-	incident_datetime DATETIME,
-	incident_category VARCHAR(22),
-	severity VARCHAR(8),
-	incident_description TEXT,
-	detection_method TEXT,
-	root_cause TEXT,
-	notification_required BOOLEAN,
-	closure_datetime DATETIME,
-	post_incident_review TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id)
+CREATE TABLE "IsmsObjective_relevant_controls" (
+	"IsmsObjective_isms_id" TEXT,
+	relevant_controls_isms_id TEXT,
+	PRIMARY KEY ("IsmsObjective_isms_id", relevant_controls_isms_id),
+	FOREIGN KEY("IsmsObjective_isms_id") REFERENCES "IsmsObjective" (isms_id),
+	FOREIGN KEY(relevant_controls_isms_id) REFERENCES "IsmsControl" (isms_id)
 );
-CREATE INDEX "ix_InformationSecurityIncident_id" ON "InformationSecurityIncident" (id);
+CREATE INDEX "ix_IsmsObjective_relevant_controls_IsmsObjective_isms_id" ON "IsmsObjective_relevant_controls" ("IsmsObjective_isms_id");
+CREATE INDEX "ix_IsmsObjective_relevant_controls_relevant_controls_isms_id" ON "IsmsObjective_relevant_controls" (relevant_controls_isms_id);
 
-CREATE TABLE "InformationSecurityManagementSystem" (
-	organization TEXT,
-	top_management TEXT,
-	governing_body TEXT,
-	scope_statement TEXT,
-	processes_and_interactions TEXT,
-	information_security_policy TEXT,
-	risk_assessment_process TEXT,
-	risk_treatment_process TEXT,
-	statement_of_applicability TEXT,
-	awareness_program TEXT,
-	communication_plan TEXT,
-	monitoring_program TEXT,
-	certification_status TEXT,
-	certification_body TEXT,
-	certification_date DATE,
-	recertification_date DATE,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id),
-	FOREIGN KEY(organization) REFERENCES "Organization" (id),
-	FOREIGN KEY(information_security_policy) REFERENCES "InformationSecurityPolicy" (id),
-	FOREIGN KEY(risk_assessment_process) REFERENCES "RiskAssessmentProcess" (id),
-	FOREIGN KEY(risk_treatment_process) REFERENCES "RiskTreatmentProcess" (id),
-	FOREIGN KEY(statement_of_applicability) REFERENCES "StatementOfApplicability" (id),
-	FOREIGN KEY(awareness_program) REFERENCES "AwarenessProgram" (id),
-	FOREIGN KEY(communication_plan) REFERENCES "CommunicationPlan" (id),
-	FOREIGN KEY(monitoring_program) REFERENCES "MonitoringProgram" (id)
+CREATE TABLE "IsmsObjective_objective_risks" (
+	"IsmsObjective_isms_id" TEXT,
+	objective_risks_isms_id TEXT,
+	PRIMARY KEY ("IsmsObjective_isms_id", objective_risks_isms_id),
+	FOREIGN KEY("IsmsObjective_isms_id") REFERENCES "IsmsObjective" (isms_id),
+	FOREIGN KEY(objective_risks_isms_id) REFERENCES "IsmsRisk" (isms_id)
 );
-CREATE INDEX "ix_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem" (id);
+CREATE INDEX "ix_IsmsObjective_objective_risks_objective_risks_isms_id" ON "IsmsObjective_objective_risks" (objective_risks_isms_id);
+CREATE INDEX "ix_IsmsObjective_objective_risks_IsmsObjective_isms_id" ON "IsmsObjective_objective_risks" ("IsmsObjective_isms_id");
 
-CREATE TABLE "TopicSpecificPolicy" (
-	topic_area TEXT,
-	parent_policy TEXT,
-	target_audience TEXT,
-	document_type VARCHAR(9),
-	document_reference TEXT,
-	author TEXT,
-	owner TEXT,
-	approved_by TEXT,
-	approved_date DATE,
-	effective_date DATE,
-	review_date DATE,
-	status TEXT,
-	classification TEXT,
-	retention_period TEXT,
-	storage_and_preservation TEXT,
-	change_control_method TEXT,
-	external_origin BOOLEAN,
-	external_origin_source TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id),
-	FOREIGN KEY(parent_policy) REFERENCES "InformationSecurityPolicy" (id)
+CREATE TABLE "IsmsCompetenceRecord_competence_required" (
+	"IsmsCompetenceRecord_isms_id" TEXT,
+	competence_required TEXT,
+	PRIMARY KEY ("IsmsCompetenceRecord_isms_id", competence_required),
+	FOREIGN KEY("IsmsCompetenceRecord_isms_id") REFERENCES "IsmsCompetenceRecord" (isms_id)
 );
-CREATE INDEX "ix_TopicSpecificPolicy_id" ON "TopicSpecificPolicy" (id);
+CREATE INDEX "ix_IsmsCompetenceRecord_competence_required_competence_required" ON "IsmsCompetenceRecord_competence_required" (competence_required);
+CREATE INDEX "ix_IsmsCompetenceRecord_competence_required_IsmsCompetenceRecord_isms_id" ON "IsmsCompetenceRecord_competence_required" ("IsmsCompetenceRecord_isms_id");
 
-CREATE TABLE "InformationSecurityObjective" (
-	objective_statement TEXT,
-	target_value TEXT,
-	current_value TEXT,
-	metric_definition TEXT,
-	measurement_method TEXT,
-	measurement_frequency TEXT,
-	responsible_role TEXT,
-	target_date DATE,
-	achievement_status TEXT,
-	action_plan TEXT,
-	objective_resources_required TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id),
-	FOREIGN KEY(responsible_role) REFERENCES "Role" (id)
+CREATE TABLE "IsmsCompetenceRecord_competence_education" (
+	"IsmsCompetenceRecord_isms_id" TEXT,
+	competence_education TEXT,
+	PRIMARY KEY ("IsmsCompetenceRecord_isms_id", competence_education),
+	FOREIGN KEY("IsmsCompetenceRecord_isms_id") REFERENCES "IsmsCompetenceRecord" (isms_id)
 );
-CREATE INDEX "ix_InformationSecurityObjective_id" ON "InformationSecurityObjective" (id);
+CREATE INDEX "ix_IsmsCompetenceRecord_competence_education_competence_education" ON "IsmsCompetenceRecord_competence_education" (competence_education);
+CREATE INDEX "ix_IsmsCompetenceRecord_competence_education_IsmsCompetenceRecord_isms_id" ON "IsmsCompetenceRecord_competence_education" ("IsmsCompetenceRecord_isms_id");
 
-CREATE TABLE "Risk" (
-	risk_source TEXT,
-	threat_description TEXT,
-	vulnerability_description TEXT,
-	risk_owner TEXT,
-	likelihood VARCHAR(14),
-	impact VARCHAR(10),
-	inherent_risk_level VARCHAR(8),
-	residual_risk_level VARCHAR(8),
-	risk_treatment_option VARCHAR(6),
-	treatment_priority TEXT,
-	related_treatment_plan TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id),
-	FOREIGN KEY(related_treatment_plan) REFERENCES "RiskTreatmentPlan" (id)
+CREATE TABLE "IsmsCompetenceRecord_competence_training" (
+	"IsmsCompetenceRecord_isms_id" TEXT,
+	competence_training TEXT,
+	PRIMARY KEY ("IsmsCompetenceRecord_isms_id", competence_training),
+	FOREIGN KEY("IsmsCompetenceRecord_isms_id") REFERENCES "IsmsCompetenceRecord" (isms_id)
 );
-CREATE INDEX "ix_Risk_id" ON "Risk" (id);
+CREATE INDEX "ix_IsmsCompetenceRecord_competence_training_IsmsCompetenceRecord_isms_id" ON "IsmsCompetenceRecord_competence_training" ("IsmsCompetenceRecord_isms_id");
+CREATE INDEX "ix_IsmsCompetenceRecord_competence_training_competence_training" ON "IsmsCompetenceRecord_competence_training" (competence_training);
 
-CREATE TABLE "SoAEntry" (
-	id INTEGER NOT NULL,
-	control_reference TEXT,
-	is_applicable BOOLEAN,
-	inclusion_justification TEXT,
-	exclusion_justification TEXT,
-	implementation_status VARCHAR(14),
-	implementation_evidence TEXT,
-	responsible_role TEXT,
-	target_implementation_date DATE,
-	PRIMARY KEY (id),
-	FOREIGN KEY(control_reference) REFERENCES "SecurityControl" (id),
-	FOREIGN KEY(responsible_role) REFERENCES "Role" (id)
+CREATE TABLE "IsmsCompetenceRecord_competence_experience" (
+	"IsmsCompetenceRecord_isms_id" TEXT,
+	competence_experience TEXT,
+	PRIMARY KEY ("IsmsCompetenceRecord_isms_id", competence_experience),
+	FOREIGN KEY("IsmsCompetenceRecord_isms_id") REFERENCES "IsmsCompetenceRecord" (isms_id)
 );
-CREATE INDEX "ix_SoAEntry_id" ON "SoAEntry" (id);
+CREATE INDEX "ix_IsmsCompetenceRecord_competence_experience_IsmsCompetenceRecord_isms_id" ON "IsmsCompetenceRecord_competence_experience" ("IsmsCompetenceRecord_isms_id");
+CREATE INDEX "ix_IsmsCompetenceRecord_competence_experience_competence_experience" ON "IsmsCompetenceRecord_competence_experience" (competence_experience);
 
-CREATE TABLE "CorrectiveAction" (
-	linked_nonconformity TEXT,
-	action_description TEXT,
-	root_cause_addressed TEXT,
-	responsible_party TEXT,
-	target_completion_date DATE,
-	actual_completion_date DATE,
-	resources_required TEXT,
-	effectiveness_criteria TEXT,
-	effectiveness_review_date DATE,
-	effectiveness_verified BOOLEAN,
-	isms_changes_required TEXT,
-	status TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id),
-	FOREIGN KEY(linked_nonconformity) REFERENCES "Nonconformity" (id)
+CREATE TABLE "IsmsCompetenceRecord_competence_gaps" (
+	"IsmsCompetenceRecord_isms_id" TEXT,
+	competence_gaps TEXT,
+	PRIMARY KEY ("IsmsCompetenceRecord_isms_id", competence_gaps),
+	FOREIGN KEY("IsmsCompetenceRecord_isms_id") REFERENCES "IsmsCompetenceRecord" (isms_id)
 );
-CREATE INDEX "ix_CorrectiveAction_id" ON "CorrectiveAction" (id);
+CREATE INDEX "ix_IsmsCompetenceRecord_competence_gaps_competence_gaps" ON "IsmsCompetenceRecord_competence_gaps" (competence_gaps);
+CREATE INDEX "ix_IsmsCompetenceRecord_competence_gaps_IsmsCompetenceRecord_isms_id" ON "IsmsCompetenceRecord_competence_gaps" ("IsmsCompetenceRecord_isms_id");
 
-CREATE TABLE "InformationSecurityEvent" (
-	event_datetime DATETIME,
-	reporter TEXT,
-	event_description TEXT,
-	initial_assessment TEXT,
-	categorized_as_incident BOOLEAN,
-	linked_incident TEXT,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id),
-	FOREIGN KEY(linked_incident) REFERENCES "InformationSecurityIncident" (id)
+CREATE TABLE "IsmsCompetenceRecord_competence_actions" (
+	"IsmsCompetenceRecord_isms_id" TEXT,
+	competence_actions TEXT,
+	PRIMARY KEY ("IsmsCompetenceRecord_isms_id", competence_actions),
+	FOREIGN KEY("IsmsCompetenceRecord_isms_id") REFERENCES "IsmsCompetenceRecord" (isms_id)
 );
-CREATE INDEX "ix_InformationSecurityEvent_id" ON "InformationSecurityEvent" (id);
+CREATE INDEX "ix_IsmsCompetenceRecord_competence_actions_competence_actions" ON "IsmsCompetenceRecord_competence_actions" (competence_actions);
+CREATE INDEX "ix_IsmsCompetenceRecord_competence_actions_IsmsCompetenceRecord_isms_id" ON "IsmsCompetenceRecord_competence_actions" ("IsmsCompetenceRecord_isms_id");
 
-CREATE TABLE "DocumentedInformation_distribution_controls" (
-	"DocumentedInformation_id" TEXT,
-	distribution_controls TEXT,
-	PRIMARY KEY ("DocumentedInformation_id", distribution_controls),
-	FOREIGN KEY("DocumentedInformation_id") REFERENCES "DocumentedInformation" (id)
+CREATE TABLE "IsmsCompetenceRecord_document_distribution" (
+	"IsmsCompetenceRecord_isms_id" TEXT,
+	document_distribution TEXT,
+	PRIMARY KEY ("IsmsCompetenceRecord_isms_id", document_distribution),
+	FOREIGN KEY("IsmsCompetenceRecord_isms_id") REFERENCES "IsmsCompetenceRecord" (isms_id)
 );
-CREATE INDEX "ix_DocumentedInformation_distribution_controls_DocumentedInformation_id" ON "DocumentedInformation_distribution_controls" ("DocumentedInformation_id");
-CREATE INDEX "ix_DocumentedInformation_distribution_controls_distribution_controls" ON "DocumentedInformation_distribution_controls" (distribution_controls);
+CREATE INDEX "ix_IsmsCompetenceRecord_document_distribution_document_distribution" ON "IsmsCompetenceRecord_document_distribution" (document_distribution);
+CREATE INDEX "ix_IsmsCompetenceRecord_document_distribution_IsmsCompetenceRecord_isms_id" ON "IsmsCompetenceRecord_document_distribution" ("IsmsCompetenceRecord_isms_id");
 
-CREATE TABLE "Organization_trading_names" (
-	"Organization_id" TEXT,
-	trading_names TEXT,
-	PRIMARY KEY ("Organization_id", trading_names),
-	FOREIGN KEY("Organization_id") REFERENCES "Organization" (id)
+CREATE TABLE "IsmsAuditProgramme_programme_audits" (
+	"IsmsAuditProgramme_isms_id" TEXT,
+	programme_audits_isms_id TEXT,
+	PRIMARY KEY ("IsmsAuditProgramme_isms_id", programme_audits_isms_id),
+	FOREIGN KEY("IsmsAuditProgramme_isms_id") REFERENCES "IsmsAuditProgramme" (isms_id),
+	FOREIGN KEY(programme_audits_isms_id) REFERENCES "IsmsAudit" (isms_id)
 );
-CREATE INDEX "ix_Organization_trading_names_Organization_id" ON "Organization_trading_names" ("Organization_id");
-CREATE INDEX "ix_Organization_trading_names_trading_names" ON "Organization_trading_names" (trading_names);
+CREATE INDEX "ix_IsmsAuditProgramme_programme_audits_programme_audits_isms_id" ON "IsmsAuditProgramme_programme_audits" (programme_audits_isms_id);
+CREATE INDEX "ix_IsmsAuditProgramme_programme_audits_IsmsAuditProgramme_isms_id" ON "IsmsAuditProgramme_programme_audits" ("IsmsAuditProgramme_isms_id");
 
-CREATE TABLE "Organization_geographic_locations" (
-	"Organization_id" TEXT,
-	geographic_locations TEXT,
-	PRIMARY KEY ("Organization_id", geographic_locations),
-	FOREIGN KEY("Organization_id") REFERENCES "Organization" (id)
+CREATE TABLE "IsmsAudit_audit_standards" (
+	"IsmsAudit_isms_id" TEXT,
+	audit_standards VARCHAR(15),
+	PRIMARY KEY ("IsmsAudit_isms_id", audit_standards),
+	FOREIGN KEY("IsmsAudit_isms_id") REFERENCES "IsmsAudit" (isms_id)
 );
-CREATE INDEX "ix_Organization_geographic_locations_Organization_id" ON "Organization_geographic_locations" ("Organization_id");
-CREATE INDEX "ix_Organization_geographic_locations_geographic_locations" ON "Organization_geographic_locations" (geographic_locations);
+CREATE INDEX "ix_IsmsAudit_audit_standards_IsmsAudit_isms_id" ON "IsmsAudit_audit_standards" ("IsmsAudit_isms_id");
+CREATE INDEX "ix_IsmsAudit_audit_standards_audit_standards" ON "IsmsAudit_audit_standards" (audit_standards);
 
-CREATE TABLE "Organization_regulatory_jurisdictions" (
-	"Organization_id" TEXT,
-	regulatory_jurisdictions TEXT,
-	PRIMARY KEY ("Organization_id", regulatory_jurisdictions),
-	FOREIGN KEY("Organization_id") REFERENCES "Organization" (id)
-);
-CREATE INDEX "ix_Organization_regulatory_jurisdictions_Organization_id" ON "Organization_regulatory_jurisdictions" ("Organization_id");
-CREATE INDEX "ix_Organization_regulatory_jurisdictions_regulatory_jurisdictions" ON "Organization_regulatory_jurisdictions" (regulatory_jurisdictions);
-
-CREATE TABLE "Organization_subsidiaries" (
-	"Organization_id" TEXT,
-	subsidiaries TEXT,
-	PRIMARY KEY ("Organization_id", subsidiaries),
-	FOREIGN KEY("Organization_id") REFERENCES "Organization" (id)
-);
-CREATE INDEX "ix_Organization_subsidiaries_subsidiaries" ON "Organization_subsidiaries" (subsidiaries);
-CREATE INDEX "ix_Organization_subsidiaries_Organization_id" ON "Organization_subsidiaries" ("Organization_id");
-
-CREATE TABLE "InterestedParty_requirements" (
-	"InterestedParty_id" TEXT,
-	requirements TEXT,
-	PRIMARY KEY ("InterestedParty_id", requirements),
-	FOREIGN KEY("InterestedParty_id") REFERENCES "InterestedParty" (id)
-);
-CREATE INDEX "ix_InterestedParty_requirements_InterestedParty_id" ON "InterestedParty_requirements" ("InterestedParty_id");
-CREATE INDEX "ix_InterestedParty_requirements_requirements" ON "InterestedParty_requirements" (requirements);
-
-CREATE TABLE "InterestedParty_addressed_requirements" (
-	"InterestedParty_id" TEXT,
-	addressed_requirements TEXT,
-	PRIMARY KEY ("InterestedParty_id", addressed_requirements),
-	FOREIGN KEY("InterestedParty_id") REFERENCES "InterestedParty" (id)
-);
-CREATE INDEX "ix_InterestedParty_addressed_requirements_InterestedParty_id" ON "InterestedParty_addressed_requirements" ("InterestedParty_id");
-CREATE INDEX "ix_InterestedParty_addressed_requirements_addressed_requirements" ON "InterestedParty_addressed_requirements" (addressed_requirements);
-
-CREATE TABLE "InterestedParty_climate_change_related_requirements" (
-	"InterestedParty_id" TEXT,
-	climate_change_related_requirements TEXT,
-	PRIMARY KEY ("InterestedParty_id", climate_change_related_requirements),
-	FOREIGN KEY("InterestedParty_id") REFERENCES "InterestedParty" (id)
-);
-CREATE INDEX "ix_InterestedParty_climate_change_related_requirements_InterestedParty_id" ON "InterestedParty_climate_change_related_requirements" ("InterestedParty_id");
-CREATE INDEX "ix_InterestedParty_climate_change_related_requirements_climate_change_related_requirements" ON "InterestedParty_climate_change_related_requirements" (climate_change_related_requirements);
-
-CREATE TABLE "InformationSecurityPolicy_commitment_statements" (
-	"InformationSecurityPolicy_id" TEXT,
-	commitment_statements TEXT,
-	PRIMARY KEY ("InformationSecurityPolicy_id", commitment_statements),
-	FOREIGN KEY("InformationSecurityPolicy_id") REFERENCES "InformationSecurityPolicy" (id)
-);
-CREATE INDEX "ix_InformationSecurityPolicy_commitment_statements_commitment_statements" ON "InformationSecurityPolicy_commitment_statements" (commitment_statements);
-CREATE INDEX "ix_InformationSecurityPolicy_commitment_statements_InformationSecurityPolicy_id" ON "InformationSecurityPolicy_commitment_statements" ("InformationSecurityPolicy_id");
-
-CREATE TABLE "InformationSecurityPolicy_integrated_management_systems" (
-	"InformationSecurityPolicy_id" TEXT,
-	integrated_management_systems VARCHAR(15),
-	PRIMARY KEY ("InformationSecurityPolicy_id", integrated_management_systems),
-	FOREIGN KEY("InformationSecurityPolicy_id") REFERENCES "InformationSecurityPolicy" (id)
-);
-CREATE INDEX "ix_InformationSecurityPolicy_integrated_management_systems_InformationSecurityPolicy_id" ON "InformationSecurityPolicy_integrated_management_systems" ("InformationSecurityPolicy_id");
-CREATE INDEX "ix_InformationSecurityPolicy_integrated_management_systems_integrated_management_systems" ON "InformationSecurityPolicy_integrated_management_systems" (integrated_management_systems);
-
-CREATE TABLE "InformationSecurityPolicy_distribution_controls" (
-	"InformationSecurityPolicy_id" TEXT,
-	distribution_controls TEXT,
-	PRIMARY KEY ("InformationSecurityPolicy_id", distribution_controls),
-	FOREIGN KEY("InformationSecurityPolicy_id") REFERENCES "InformationSecurityPolicy" (id)
-);
-CREATE INDEX "ix_InformationSecurityPolicy_distribution_controls_InformationSecurityPolicy_id" ON "InformationSecurityPolicy_distribution_controls" ("InformationSecurityPolicy_id");
-CREATE INDEX "ix_InformationSecurityPolicy_distribution_controls_distribution_controls" ON "InformationSecurityPolicy_distribution_controls" (distribution_controls);
-
-CREATE TABLE "Role_responsibilities" (
-	"Role_id" TEXT,
-	responsibilities TEXT,
-	PRIMARY KEY ("Role_id", responsibilities),
-	FOREIGN KEY("Role_id") REFERENCES "Role" (id)
-);
-CREATE INDEX "ix_Role_responsibilities_responsibilities" ON "Role_responsibilities" (responsibilities);
-CREATE INDEX "ix_Role_responsibilities_Role_id" ON "Role_responsibilities" ("Role_id");
-
-CREATE TABLE "Role_authorities" (
-	"Role_id" TEXT,
-	authorities TEXT,
-	PRIMARY KEY ("Role_id", authorities),
-	FOREIGN KEY("Role_id") REFERENCES "Role" (id)
-);
-CREATE INDEX "ix_Role_authorities_Role_id" ON "Role_authorities" ("Role_id");
-CREATE INDEX "ix_Role_authorities_authorities" ON "Role_authorities" (authorities);
-
-CREATE TABLE "Role_assigned_to" (
-	"Role_id" TEXT,
-	assigned_to TEXT,
-	PRIMARY KEY ("Role_id", assigned_to),
-	FOREIGN KEY("Role_id") REFERENCES "Role" (id)
-);
-CREATE INDEX "ix_Role_assigned_to_Role_id" ON "Role_assigned_to" ("Role_id");
-CREATE INDEX "ix_Role_assigned_to_assigned_to" ON "Role_assigned_to" (assigned_to);
-
-CREATE TABLE "RiskAssessmentProcess_trigger_events" (
-	"RiskAssessmentProcess_id" TEXT,
-	trigger_events TEXT,
-	PRIMARY KEY ("RiskAssessmentProcess_id", trigger_events),
-	FOREIGN KEY("RiskAssessmentProcess_id") REFERENCES "RiskAssessmentProcess" (id)
-);
-CREATE INDEX "ix_RiskAssessmentProcess_trigger_events_RiskAssessmentProcess_id" ON "RiskAssessmentProcess_trigger_events" ("RiskAssessmentProcess_id");
-CREATE INDEX "ix_RiskAssessmentProcess_trigger_events_trigger_events" ON "RiskAssessmentProcess_trigger_events" (trigger_events);
-
-CREATE TABLE "RiskAssessmentProcess_distribution_controls" (
-	"RiskAssessmentProcess_id" TEXT,
-	distribution_controls TEXT,
-	PRIMARY KEY ("RiskAssessmentProcess_id", distribution_controls),
-	FOREIGN KEY("RiskAssessmentProcess_id") REFERENCES "RiskAssessmentProcess" (id)
-);
-CREATE INDEX "ix_RiskAssessmentProcess_distribution_controls_RiskAssessmentProcess_id" ON "RiskAssessmentProcess_distribution_controls" ("RiskAssessmentProcess_id");
-CREATE INDEX "ix_RiskAssessmentProcess_distribution_controls_distribution_controls" ON "RiskAssessmentProcess_distribution_controls" (distribution_controls);
-
-CREATE TABLE "RiskAssessment_recommendations" (
-	"RiskAssessment_id" TEXT,
-	recommendations TEXT,
-	PRIMARY KEY ("RiskAssessment_id", recommendations),
-	FOREIGN KEY("RiskAssessment_id") REFERENCES "RiskAssessment" (id)
-);
-CREATE INDEX "ix_RiskAssessment_recommendations_RiskAssessment_id" ON "RiskAssessment_recommendations" ("RiskAssessment_id");
-CREATE INDEX "ix_RiskAssessment_recommendations_recommendations" ON "RiskAssessment_recommendations" (recommendations);
-
-CREATE TABLE "RiskAssessment_distribution_controls" (
-	"RiskAssessment_id" TEXT,
-	distribution_controls TEXT,
-	PRIMARY KEY ("RiskAssessment_id", distribution_controls),
-	FOREIGN KEY("RiskAssessment_id") REFERENCES "RiskAssessment" (id)
-);
-CREATE INDEX "ix_RiskAssessment_distribution_controls_RiskAssessment_id" ON "RiskAssessment_distribution_controls" ("RiskAssessment_id");
-CREATE INDEX "ix_RiskAssessment_distribution_controls_distribution_controls" ON "RiskAssessment_distribution_controls" (distribution_controls);
-
-CREATE TABLE "RiskTreatmentProcess_distribution_controls" (
-	"RiskTreatmentProcess_id" TEXT,
-	distribution_controls TEXT,
-	PRIMARY KEY ("RiskTreatmentProcess_id", distribution_controls),
-	FOREIGN KEY("RiskTreatmentProcess_id") REFERENCES "RiskTreatmentProcess" (id)
-);
-CREATE INDEX "ix_RiskTreatmentProcess_distribution_controls_RiskTreatmentProcess_id" ON "RiskTreatmentProcess_distribution_controls" ("RiskTreatmentProcess_id");
-CREATE INDEX "ix_RiskTreatmentProcess_distribution_controls_distribution_controls" ON "RiskTreatmentProcess_distribution_controls" (distribution_controls);
-
-CREATE TABLE "RiskTreatmentPlan_treatment_actions" (
-	"RiskTreatmentPlan_id" TEXT,
-	treatment_actions TEXT,
-	PRIMARY KEY ("RiskTreatmentPlan_id", treatment_actions),
-	FOREIGN KEY("RiskTreatmentPlan_id") REFERENCES "RiskTreatmentPlan" (id)
-);
-CREATE INDEX "ix_RiskTreatmentPlan_treatment_actions_RiskTreatmentPlan_id" ON "RiskTreatmentPlan_treatment_actions" ("RiskTreatmentPlan_id");
-CREATE INDEX "ix_RiskTreatmentPlan_treatment_actions_treatment_actions" ON "RiskTreatmentPlan_treatment_actions" (treatment_actions);
-
-CREATE TABLE "RiskTreatmentPlan_controls_to_implement" (
-	"RiskTreatmentPlan_id" TEXT,
-	controls_to_implement_id TEXT,
-	PRIMARY KEY ("RiskTreatmentPlan_id", controls_to_implement_id),
-	FOREIGN KEY("RiskTreatmentPlan_id") REFERENCES "RiskTreatmentPlan" (id),
-	FOREIGN KEY(controls_to_implement_id) REFERENCES "SecurityControl" (id)
-);
-CREATE INDEX "ix_RiskTreatmentPlan_controls_to_implement_RiskTreatmentPlan_id" ON "RiskTreatmentPlan_controls_to_implement" ("RiskTreatmentPlan_id");
-CREATE INDEX "ix_RiskTreatmentPlan_controls_to_implement_controls_to_implement_id" ON "RiskTreatmentPlan_controls_to_implement" (controls_to_implement_id);
-
-CREATE TABLE "RiskTreatmentPlan_responsible_parties" (
-	"RiskTreatmentPlan_id" TEXT,
-	responsible_parties TEXT,
-	PRIMARY KEY ("RiskTreatmentPlan_id", responsible_parties),
-	FOREIGN KEY("RiskTreatmentPlan_id") REFERENCES "RiskTreatmentPlan" (id)
-);
-CREATE INDEX "ix_RiskTreatmentPlan_responsible_parties_responsible_parties" ON "RiskTreatmentPlan_responsible_parties" (responsible_parties);
-CREATE INDEX "ix_RiskTreatmentPlan_responsible_parties_RiskTreatmentPlan_id" ON "RiskTreatmentPlan_responsible_parties" ("RiskTreatmentPlan_id");
-
-CREATE TABLE "RiskTreatmentPlan_distribution_controls" (
-	"RiskTreatmentPlan_id" TEXT,
-	distribution_controls TEXT,
-	PRIMARY KEY ("RiskTreatmentPlan_id", distribution_controls),
-	FOREIGN KEY("RiskTreatmentPlan_id") REFERENCES "RiskTreatmentPlan" (id)
-);
-CREATE INDEX "ix_RiskTreatmentPlan_distribution_controls_RiskTreatmentPlan_id" ON "RiskTreatmentPlan_distribution_controls" ("RiskTreatmentPlan_id");
-CREATE INDEX "ix_RiskTreatmentPlan_distribution_controls_distribution_controls" ON "RiskTreatmentPlan_distribution_controls" (distribution_controls);
-
-CREATE TABLE "StatementOfApplicability_distribution_controls" (
-	"StatementOfApplicability_id" TEXT,
-	distribution_controls TEXT,
-	PRIMARY KEY ("StatementOfApplicability_id", distribution_controls),
-	FOREIGN KEY("StatementOfApplicability_id") REFERENCES "StatementOfApplicability" (id)
-);
-CREATE INDEX "ix_StatementOfApplicability_distribution_controls_distribution_controls" ON "StatementOfApplicability_distribution_controls" (distribution_controls);
-CREATE INDEX "ix_StatementOfApplicability_distribution_controls_StatementOfApplicability_id" ON "StatementOfApplicability_distribution_controls" ("StatementOfApplicability_id");
-
-CREATE TABLE "SecurityControl_related_controls" (
-	"SecurityControl_id" TEXT,
-	related_controls_id TEXT,
-	PRIMARY KEY ("SecurityControl_id", related_controls_id),
-	FOREIGN KEY("SecurityControl_id") REFERENCES "SecurityControl" (id),
-	FOREIGN KEY(related_controls_id) REFERENCES "SecurityControl" (id)
-);
-CREATE INDEX "ix_SecurityControl_related_controls_related_controls_id" ON "SecurityControl_related_controls" (related_controls_id);
-CREATE INDEX "ix_SecurityControl_related_controls_SecurityControl_id" ON "SecurityControl_related_controls" ("SecurityControl_id");
-
-CREATE TABLE "SecurityControl_applicable_threats" (
-	"SecurityControl_id" TEXT,
-	applicable_threats TEXT,
-	PRIMARY KEY ("SecurityControl_id", applicable_threats),
-	FOREIGN KEY("SecurityControl_id") REFERENCES "SecurityControl" (id)
-);
-CREATE INDEX "ix_SecurityControl_applicable_threats_applicable_threats" ON "SecurityControl_applicable_threats" (applicable_threats);
-CREATE INDEX "ix_SecurityControl_applicable_threats_SecurityControl_id" ON "SecurityControl_applicable_threats" ("SecurityControl_id");
-
-CREATE TABLE "SecurityControl_applicable_assets" (
-	"SecurityControl_id" TEXT,
-	applicable_assets TEXT,
-	PRIMARY KEY ("SecurityControl_id", applicable_assets),
-	FOREIGN KEY("SecurityControl_id") REFERENCES "SecurityControl" (id)
-);
-CREATE INDEX "ix_SecurityControl_applicable_assets_SecurityControl_id" ON "SecurityControl_applicable_assets" ("SecurityControl_id");
-CREATE INDEX "ix_SecurityControl_applicable_assets_applicable_assets" ON "SecurityControl_applicable_assets" (applicable_assets);
-
-CREATE TABLE "SecurityControl_evidence_references" (
-	"SecurityControl_id" TEXT,
-	evidence_references TEXT,
-	PRIMARY KEY ("SecurityControl_id", evidence_references),
-	FOREIGN KEY("SecurityControl_id") REFERENCES "SecurityControl" (id)
-);
-CREATE INDEX "ix_SecurityControl_evidence_references_SecurityControl_id" ON "SecurityControl_evidence_references" ("SecurityControl_id");
-CREATE INDEX "ix_SecurityControl_evidence_references_evidence_references" ON "SecurityControl_evidence_references" (evidence_references);
-
-CREATE TABLE "CompetenceRecord_required_competencies" (
-	"CompetenceRecord_id" TEXT,
-	required_competencies TEXT,
-	PRIMARY KEY ("CompetenceRecord_id", required_competencies),
-	FOREIGN KEY("CompetenceRecord_id") REFERENCES "CompetenceRecord" (id)
-);
-CREATE INDEX "ix_CompetenceRecord_required_competencies_CompetenceRecord_id" ON "CompetenceRecord_required_competencies" ("CompetenceRecord_id");
-CREATE INDEX "ix_CompetenceRecord_required_competencies_required_competencies" ON "CompetenceRecord_required_competencies" (required_competencies);
-
-CREATE TABLE "CompetenceRecord_education_records" (
-	"CompetenceRecord_id" TEXT,
-	education_records TEXT,
-	PRIMARY KEY ("CompetenceRecord_id", education_records),
-	FOREIGN KEY("CompetenceRecord_id") REFERENCES "CompetenceRecord" (id)
-);
-CREATE INDEX "ix_CompetenceRecord_education_records_CompetenceRecord_id" ON "CompetenceRecord_education_records" ("CompetenceRecord_id");
-CREATE INDEX "ix_CompetenceRecord_education_records_education_records" ON "CompetenceRecord_education_records" (education_records);
-
-CREATE TABLE "CompetenceRecord_training_records" (
-	"CompetenceRecord_id" TEXT,
-	training_records TEXT,
-	PRIMARY KEY ("CompetenceRecord_id", training_records),
-	FOREIGN KEY("CompetenceRecord_id") REFERENCES "CompetenceRecord" (id)
-);
-CREATE INDEX "ix_CompetenceRecord_training_records_training_records" ON "CompetenceRecord_training_records" (training_records);
-CREATE INDEX "ix_CompetenceRecord_training_records_CompetenceRecord_id" ON "CompetenceRecord_training_records" ("CompetenceRecord_id");
-
-CREATE TABLE "CompetenceRecord_experience_records" (
-	"CompetenceRecord_id" TEXT,
-	experience_records TEXT,
-	PRIMARY KEY ("CompetenceRecord_id", experience_records),
-	FOREIGN KEY("CompetenceRecord_id") REFERENCES "CompetenceRecord" (id)
-);
-CREATE INDEX "ix_CompetenceRecord_experience_records_CompetenceRecord_id" ON "CompetenceRecord_experience_records" ("CompetenceRecord_id");
-CREATE INDEX "ix_CompetenceRecord_experience_records_experience_records" ON "CompetenceRecord_experience_records" (experience_records);
-
-CREATE TABLE "CompetenceRecord_competency_gaps" (
-	"CompetenceRecord_id" TEXT,
-	competency_gaps TEXT,
-	PRIMARY KEY ("CompetenceRecord_id", competency_gaps),
-	FOREIGN KEY("CompetenceRecord_id") REFERENCES "CompetenceRecord" (id)
-);
-CREATE INDEX "ix_CompetenceRecord_competency_gaps_CompetenceRecord_id" ON "CompetenceRecord_competency_gaps" ("CompetenceRecord_id");
-CREATE INDEX "ix_CompetenceRecord_competency_gaps_competency_gaps" ON "CompetenceRecord_competency_gaps" (competency_gaps);
-
-CREATE TABLE "CompetenceRecord_development_actions" (
-	"CompetenceRecord_id" TEXT,
-	development_actions TEXT,
-	PRIMARY KEY ("CompetenceRecord_id", development_actions),
-	FOREIGN KEY("CompetenceRecord_id") REFERENCES "CompetenceRecord" (id)
-);
-CREATE INDEX "ix_CompetenceRecord_development_actions_CompetenceRecord_id" ON "CompetenceRecord_development_actions" ("CompetenceRecord_id");
-CREATE INDEX "ix_CompetenceRecord_development_actions_development_actions" ON "CompetenceRecord_development_actions" (development_actions);
-
-CREATE TABLE "CompetenceRecord_distribution_controls" (
-	"CompetenceRecord_id" TEXT,
-	distribution_controls TEXT,
-	PRIMARY KEY ("CompetenceRecord_id", distribution_controls),
-	FOREIGN KEY("CompetenceRecord_id") REFERENCES "CompetenceRecord" (id)
-);
-CREATE INDEX "ix_CompetenceRecord_distribution_controls_CompetenceRecord_id" ON "CompetenceRecord_distribution_controls" ("CompetenceRecord_id");
-CREATE INDEX "ix_CompetenceRecord_distribution_controls_distribution_controls" ON "CompetenceRecord_distribution_controls" (distribution_controls);
-
-CREATE TABLE "AwarenessProgram_awareness_topics" (
-	"AwarenessProgram_id" TEXT,
-	awareness_topics TEXT,
-	PRIMARY KEY ("AwarenessProgram_id", awareness_topics),
-	FOREIGN KEY("AwarenessProgram_id") REFERENCES "AwarenessProgram" (id)
-);
-CREATE INDEX "ix_AwarenessProgram_awareness_topics_AwarenessProgram_id" ON "AwarenessProgram_awareness_topics" ("AwarenessProgram_id");
-CREATE INDEX "ix_AwarenessProgram_awareness_topics_awareness_topics" ON "AwarenessProgram_awareness_topics" (awareness_topics);
-
-CREATE TABLE "AwarenessProgram_delivery_methods" (
-	"AwarenessProgram_id" TEXT,
-	delivery_methods TEXT,
-	PRIMARY KEY ("AwarenessProgram_id", delivery_methods),
-	FOREIGN KEY("AwarenessProgram_id") REFERENCES "AwarenessProgram" (id)
-);
-CREATE INDEX "ix_AwarenessProgram_delivery_methods_AwarenessProgram_id" ON "AwarenessProgram_delivery_methods" ("AwarenessProgram_id");
-CREATE INDEX "ix_AwarenessProgram_delivery_methods_delivery_methods" ON "AwarenessProgram_delivery_methods" (delivery_methods);
-
-CREATE TABLE "AwarenessProgram_distribution_controls" (
-	"AwarenessProgram_id" TEXT,
-	distribution_controls TEXT,
-	PRIMARY KEY ("AwarenessProgram_id", distribution_controls),
-	FOREIGN KEY("AwarenessProgram_id") REFERENCES "AwarenessProgram" (id)
-);
-CREATE INDEX "ix_AwarenessProgram_distribution_controls_AwarenessProgram_id" ON "AwarenessProgram_distribution_controls" ("AwarenessProgram_id");
-CREATE INDEX "ix_AwarenessProgram_distribution_controls_distribution_controls" ON "AwarenessProgram_distribution_controls" (distribution_controls);
-
-CREATE TABLE "CommunicationPlan_communication_items" (
-	"CommunicationPlan_id" TEXT,
-	communication_items_id INTEGER,
-	PRIMARY KEY ("CommunicationPlan_id", communication_items_id),
-	FOREIGN KEY("CommunicationPlan_id") REFERENCES "CommunicationPlan" (id),
-	FOREIGN KEY(communication_items_id) REFERENCES "CommunicationItem" (id)
-);
-CREATE INDEX "ix_CommunicationPlan_communication_items_communication_items_id" ON "CommunicationPlan_communication_items" (communication_items_id);
-CREATE INDEX "ix_CommunicationPlan_communication_items_CommunicationPlan_id" ON "CommunicationPlan_communication_items" ("CommunicationPlan_id");
-
-CREATE TABLE "CommunicationPlan_distribution_controls" (
-	"CommunicationPlan_id" TEXT,
-	distribution_controls TEXT,
-	PRIMARY KEY ("CommunicationPlan_id", distribution_controls),
-	FOREIGN KEY("CommunicationPlan_id") REFERENCES "CommunicationPlan" (id)
-);
-CREATE INDEX "ix_CommunicationPlan_distribution_controls_distribution_controls" ON "CommunicationPlan_distribution_controls" (distribution_controls);
-CREATE INDEX "ix_CommunicationPlan_distribution_controls_CommunicationPlan_id" ON "CommunicationPlan_distribution_controls" ("CommunicationPlan_id");
-
-CREATE TABLE "OperationalProcedure_control_measures" (
-	"OperationalProcedure_id" TEXT,
-	control_measures TEXT,
-	PRIMARY KEY ("OperationalProcedure_id", control_measures),
-	FOREIGN KEY("OperationalProcedure_id") REFERENCES "OperationalProcedure" (id)
-);
-CREATE INDEX "ix_OperationalProcedure_control_measures_OperationalProcedure_id" ON "OperationalProcedure_control_measures" ("OperationalProcedure_id");
-CREATE INDEX "ix_OperationalProcedure_control_measures_control_measures" ON "OperationalProcedure_control_measures" (control_measures);
-
-CREATE TABLE "OperationalProcedure_responsible_roles" (
-	"OperationalProcedure_id" TEXT,
-	responsible_roles_id TEXT,
-	PRIMARY KEY ("OperationalProcedure_id", responsible_roles_id),
-	FOREIGN KEY("OperationalProcedure_id") REFERENCES "OperationalProcedure" (id),
-	FOREIGN KEY(responsible_roles_id) REFERENCES "Role" (id)
-);
-CREATE INDEX "ix_OperationalProcedure_responsible_roles_responsible_roles_id" ON "OperationalProcedure_responsible_roles" (responsible_roles_id);
-CREATE INDEX "ix_OperationalProcedure_responsible_roles_OperationalProcedure_id" ON "OperationalProcedure_responsible_roles" ("OperationalProcedure_id");
-
-CREATE TABLE "OperationalProcedure_related_controls" (
-	"OperationalProcedure_id" TEXT,
-	related_controls_id TEXT,
-	PRIMARY KEY ("OperationalProcedure_id", related_controls_id),
-	FOREIGN KEY("OperationalProcedure_id") REFERENCES "OperationalProcedure" (id),
-	FOREIGN KEY(related_controls_id) REFERENCES "SecurityControl" (id)
-);
-CREATE INDEX "ix_OperationalProcedure_related_controls_related_controls_id" ON "OperationalProcedure_related_controls" (related_controls_id);
-CREATE INDEX "ix_OperationalProcedure_related_controls_OperationalProcedure_id" ON "OperationalProcedure_related_controls" ("OperationalProcedure_id");
-
-CREATE TABLE "OperationalProcedure_distribution_controls" (
-	"OperationalProcedure_id" TEXT,
-	distribution_controls TEXT,
-	PRIMARY KEY ("OperationalProcedure_id", distribution_controls),
-	FOREIGN KEY("OperationalProcedure_id") REFERENCES "OperationalProcedure" (id)
-);
-CREATE INDEX "ix_OperationalProcedure_distribution_controls_distribution_controls" ON "OperationalProcedure_distribution_controls" (distribution_controls);
-CREATE INDEX "ix_OperationalProcedure_distribution_controls_OperationalProcedure_id" ON "OperationalProcedure_distribution_controls" ("OperationalProcedure_id");
-
-CREATE TABLE "MonitoringProgram_monitoring_items" (
-	"MonitoringProgram_id" TEXT,
-	monitoring_items_id INTEGER,
-	PRIMARY KEY ("MonitoringProgram_id", monitoring_items_id),
-	FOREIGN KEY("MonitoringProgram_id") REFERENCES "MonitoringProgram" (id),
-	FOREIGN KEY(monitoring_items_id) REFERENCES "MonitoringItem" (id)
-);
-CREATE INDEX "ix_MonitoringProgram_monitoring_items_MonitoringProgram_id" ON "MonitoringProgram_monitoring_items" ("MonitoringProgram_id");
-CREATE INDEX "ix_MonitoringProgram_monitoring_items_monitoring_items_id" ON "MonitoringProgram_monitoring_items" (monitoring_items_id);
-
-CREATE TABLE "MonitoringProgram_distribution_controls" (
-	"MonitoringProgram_id" TEXT,
-	distribution_controls TEXT,
-	PRIMARY KEY ("MonitoringProgram_id", distribution_controls),
-	FOREIGN KEY("MonitoringProgram_id") REFERENCES "MonitoringProgram" (id)
-);
-CREATE INDEX "ix_MonitoringProgram_distribution_controls_distribution_controls" ON "MonitoringProgram_distribution_controls" (distribution_controls);
-CREATE INDEX "ix_MonitoringProgram_distribution_controls_MonitoringProgram_id" ON "MonitoringProgram_distribution_controls" ("MonitoringProgram_id");
-
-CREATE TABLE "InternalAudit_audit_criteria" (
-	"InternalAudit_id" TEXT,
+CREATE TABLE "IsmsAudit_audit_criteria" (
+	"IsmsAudit_isms_id" TEXT,
 	audit_criteria TEXT,
-	PRIMARY KEY ("InternalAudit_id", audit_criteria),
-	FOREIGN KEY("InternalAudit_id") REFERENCES "InternalAudit" (id)
+	PRIMARY KEY ("IsmsAudit_isms_id", audit_criteria),
+	FOREIGN KEY("IsmsAudit_isms_id") REFERENCES "IsmsAudit" (isms_id)
 );
-CREATE INDEX "ix_InternalAudit_audit_criteria_InternalAudit_id" ON "InternalAudit_audit_criteria" ("InternalAudit_id");
-CREATE INDEX "ix_InternalAudit_audit_criteria_audit_criteria" ON "InternalAudit_audit_criteria" (audit_criteria);
+CREATE INDEX "ix_IsmsAudit_audit_criteria_audit_criteria" ON "IsmsAudit_audit_criteria" (audit_criteria);
+CREATE INDEX "ix_IsmsAudit_audit_criteria_IsmsAudit_isms_id" ON "IsmsAudit_audit_criteria" ("IsmsAudit_isms_id");
 
-CREATE TABLE "InternalAudit_audit_objectives" (
-	"InternalAudit_id" TEXT,
+CREATE TABLE "IsmsAudit_audit_objectives" (
+	"IsmsAudit_isms_id" TEXT,
 	audit_objectives TEXT,
-	PRIMARY KEY ("InternalAudit_id", audit_objectives),
-	FOREIGN KEY("InternalAudit_id") REFERENCES "InternalAudit" (id)
+	PRIMARY KEY ("IsmsAudit_isms_id", audit_objectives),
+	FOREIGN KEY("IsmsAudit_isms_id") REFERENCES "IsmsAudit" (isms_id)
 );
-CREATE INDEX "ix_InternalAudit_audit_objectives_InternalAudit_id" ON "InternalAudit_audit_objectives" ("InternalAudit_id");
-CREATE INDEX "ix_InternalAudit_audit_objectives_audit_objectives" ON "InternalAudit_audit_objectives" (audit_objectives);
+CREATE INDEX "ix_IsmsAudit_audit_objectives_audit_objectives" ON "IsmsAudit_audit_objectives" (audit_objectives);
+CREATE INDEX "ix_IsmsAudit_audit_objectives_IsmsAudit_isms_id" ON "IsmsAudit_audit_objectives" ("IsmsAudit_isms_id");
 
-CREATE TABLE "InternalAudit_audit_team" (
-	"InternalAudit_id" TEXT,
+CREATE TABLE "IsmsAudit_audit_team" (
+	"IsmsAudit_isms_id" TEXT,
 	audit_team TEXT,
-	PRIMARY KEY ("InternalAudit_id", audit_team),
-	FOREIGN KEY("InternalAudit_id") REFERENCES "InternalAudit" (id)
+	PRIMARY KEY ("IsmsAudit_isms_id", audit_team),
+	FOREIGN KEY("IsmsAudit_isms_id") REFERENCES "IsmsAudit" (isms_id)
 );
-CREATE INDEX "ix_InternalAudit_audit_team_InternalAudit_id" ON "InternalAudit_audit_team" ("InternalAudit_id");
-CREATE INDEX "ix_InternalAudit_audit_team_audit_team" ON "InternalAudit_audit_team" (audit_team);
+CREATE INDEX "ix_IsmsAudit_audit_team_IsmsAudit_isms_id" ON "IsmsAudit_audit_team" ("IsmsAudit_isms_id");
+CREATE INDEX "ix_IsmsAudit_audit_team_audit_team" ON "IsmsAudit_audit_team" (audit_team);
 
-CREATE TABLE "InternalAudit_auditee_representatives" (
-	"InternalAudit_id" TEXT,
-	auditee_representatives TEXT,
-	PRIMARY KEY ("InternalAudit_id", auditee_representatives),
-	FOREIGN KEY("InternalAudit_id") REFERENCES "InternalAudit" (id)
+CREATE TABLE "IsmsAudit_audit_auditees" (
+	"IsmsAudit_isms_id" TEXT,
+	audit_auditees TEXT,
+	PRIMARY KEY ("IsmsAudit_isms_id", audit_auditees),
+	FOREIGN KEY("IsmsAudit_isms_id") REFERENCES "IsmsAudit" (isms_id)
 );
-CREATE INDEX "ix_InternalAudit_auditee_representatives_InternalAudit_id" ON "InternalAudit_auditee_representatives" ("InternalAudit_id");
-CREATE INDEX "ix_InternalAudit_auditee_representatives_auditee_representatives" ON "InternalAudit_auditee_representatives" (auditee_representatives);
+CREATE INDEX "ix_IsmsAudit_audit_auditees_audit_auditees" ON "IsmsAudit_audit_auditees" (audit_auditees);
+CREATE INDEX "ix_IsmsAudit_audit_auditees_IsmsAudit_isms_id" ON "IsmsAudit_audit_auditees" ("IsmsAudit_isms_id");
 
-CREATE TABLE "InternalAudit_positive_observations" (
-	"InternalAudit_id" TEXT,
-	positive_observations TEXT,
-	PRIMARY KEY ("InternalAudit_id", positive_observations),
-	FOREIGN KEY("InternalAudit_id") REFERENCES "InternalAudit" (id)
+CREATE TABLE "IsmsAudit_audit_report_distribution" (
+	"IsmsAudit_isms_id" TEXT,
+	audit_report_distribution TEXT,
+	PRIMARY KEY ("IsmsAudit_isms_id", audit_report_distribution),
+	FOREIGN KEY("IsmsAudit_isms_id") REFERENCES "IsmsAudit" (isms_id)
 );
-CREATE INDEX "ix_InternalAudit_positive_observations_positive_observations" ON "InternalAudit_positive_observations" (positive_observations);
-CREATE INDEX "ix_InternalAudit_positive_observations_InternalAudit_id" ON "InternalAudit_positive_observations" ("InternalAudit_id");
+CREATE INDEX "ix_IsmsAudit_audit_report_distribution_IsmsAudit_isms_id" ON "IsmsAudit_audit_report_distribution" ("IsmsAudit_isms_id");
+CREATE INDEX "ix_IsmsAudit_audit_report_distribution_audit_report_distribution" ON "IsmsAudit_audit_report_distribution" (audit_report_distribution);
 
-CREATE TABLE "InternalAudit_report_distribution" (
-	"InternalAudit_id" TEXT,
-	report_distribution TEXT,
-	PRIMARY KEY ("InternalAudit_id", report_distribution),
-	FOREIGN KEY("InternalAudit_id") REFERENCES "InternalAudit" (id)
+CREATE TABLE "IsmsAudit_document_distribution" (
+	"IsmsAudit_isms_id" TEXT,
+	document_distribution TEXT,
+	PRIMARY KEY ("IsmsAudit_isms_id", document_distribution),
+	FOREIGN KEY("IsmsAudit_isms_id") REFERENCES "IsmsAudit" (isms_id)
 );
-CREATE INDEX "ix_InternalAudit_report_distribution_InternalAudit_id" ON "InternalAudit_report_distribution" ("InternalAudit_id");
-CREATE INDEX "ix_InternalAudit_report_distribution_report_distribution" ON "InternalAudit_report_distribution" (report_distribution);
+CREATE INDEX "ix_IsmsAudit_document_distribution_IsmsAudit_isms_id" ON "IsmsAudit_document_distribution" ("IsmsAudit_isms_id");
+CREATE INDEX "ix_IsmsAudit_document_distribution_document_distribution" ON "IsmsAudit_document_distribution" (document_distribution);
 
-CREATE TABLE "InternalAudit_distribution_controls" (
-	"InternalAudit_id" TEXT,
-	distribution_controls TEXT,
-	PRIMARY KEY ("InternalAudit_id", distribution_controls),
-	FOREIGN KEY("InternalAudit_id") REFERENCES "InternalAudit" (id)
+CREATE TABLE "IsmsCorrectiveAction_action_nonconformities" (
+	"IsmsCorrectiveAction_isms_id" TEXT,
+	action_nonconformities_isms_id TEXT,
+	PRIMARY KEY ("IsmsCorrectiveAction_isms_id", action_nonconformities_isms_id),
+	FOREIGN KEY("IsmsCorrectiveAction_isms_id") REFERENCES "IsmsCorrectiveAction" (isms_id),
+	FOREIGN KEY(action_nonconformities_isms_id) REFERENCES "IsmsNonconformity" (isms_id)
 );
-CREATE INDEX "ix_InternalAudit_distribution_controls_InternalAudit_id" ON "InternalAudit_distribution_controls" ("InternalAudit_id");
-CREATE INDEX "ix_InternalAudit_distribution_controls_distribution_controls" ON "InternalAudit_distribution_controls" (distribution_controls);
-
-CREATE TABLE "AuditProgramme_planned_audits" (
-	"AuditProgramme_id" TEXT,
-	planned_audits_id TEXT,
-	PRIMARY KEY ("AuditProgramme_id", planned_audits_id),
-	FOREIGN KEY("AuditProgramme_id") REFERENCES "AuditProgramme" (id),
-	FOREIGN KEY(planned_audits_id) REFERENCES "InternalAudit" (id)
-);
-CREATE INDEX "ix_AuditProgramme_planned_audits_planned_audits_id" ON "AuditProgramme_planned_audits" (planned_audits_id);
-CREATE INDEX "ix_AuditProgramme_planned_audits_AuditProgramme_id" ON "AuditProgramme_planned_audits" ("AuditProgramme_id");
-
-CREATE TABLE "AuditProgramme_distribution_controls" (
-	"AuditProgramme_id" TEXT,
-	distribution_controls TEXT,
-	PRIMARY KEY ("AuditProgramme_id", distribution_controls),
-	FOREIGN KEY("AuditProgramme_id") REFERENCES "AuditProgramme" (id)
-);
-CREATE INDEX "ix_AuditProgramme_distribution_controls_distribution_controls" ON "AuditProgramme_distribution_controls" (distribution_controls);
-CREATE INDEX "ix_AuditProgramme_distribution_controls_AuditProgramme_id" ON "AuditProgramme_distribution_controls" ("AuditProgramme_id");
-
-CREATE TABLE "ManagementReview_attendees" (
-	"ManagementReview_id" TEXT,
-	attendees TEXT,
-	PRIMARY KEY ("ManagementReview_id", attendees),
-	FOREIGN KEY("ManagementReview_id") REFERENCES "ManagementReview" (id)
-);
-CREATE INDEX "ix_ManagementReview_attendees_ManagementReview_id" ON "ManagementReview_attendees" ("ManagementReview_id");
-CREATE INDEX "ix_ManagementReview_attendees_attendees" ON "ManagementReview_attendees" (attendees);
-
-CREATE TABLE "ManagementReview_improvement_opportunities" (
-	"ManagementReview_id" TEXT,
-	improvement_opportunities TEXT,
-	PRIMARY KEY ("ManagementReview_id", improvement_opportunities),
-	FOREIGN KEY("ManagementReview_id") REFERENCES "ManagementReview" (id)
-);
-CREATE INDEX "ix_ManagementReview_improvement_opportunities_ManagementReview_id" ON "ManagementReview_improvement_opportunities" ("ManagementReview_id");
-CREATE INDEX "ix_ManagementReview_improvement_opportunities_improvement_opportunities" ON "ManagementReview_improvement_opportunities" (improvement_opportunities);
-
-CREATE TABLE "ManagementReview_decisions" (
-	"ManagementReview_id" TEXT,
-	decisions TEXT,
-	PRIMARY KEY ("ManagementReview_id", decisions),
-	FOREIGN KEY("ManagementReview_id") REFERENCES "ManagementReview" (id)
-);
-CREATE INDEX "ix_ManagementReview_decisions_ManagementReview_id" ON "ManagementReview_decisions" ("ManagementReview_id");
-CREATE INDEX "ix_ManagementReview_decisions_decisions" ON "ManagementReview_decisions" (decisions);
-
-CREATE TABLE "ManagementReview_action_items" (
-	"ManagementReview_id" TEXT,
-	action_items TEXT,
-	PRIMARY KEY ("ManagementReview_id", action_items),
-	FOREIGN KEY("ManagementReview_id") REFERENCES "ManagementReview" (id)
-);
-CREATE INDEX "ix_ManagementReview_action_items_ManagementReview_id" ON "ManagementReview_action_items" ("ManagementReview_id");
-CREATE INDEX "ix_ManagementReview_action_items_action_items" ON "ManagementReview_action_items" (action_items);
-
-CREATE TABLE "ManagementReview_distribution_controls" (
-	"ManagementReview_id" TEXT,
-	distribution_controls TEXT,
-	PRIMARY KEY ("ManagementReview_id", distribution_controls),
-	FOREIGN KEY("ManagementReview_id") REFERENCES "ManagementReview" (id)
-);
-CREATE INDEX "ix_ManagementReview_distribution_controls_ManagementReview_id" ON "ManagementReview_distribution_controls" ("ManagementReview_id");
-CREATE INDEX "ix_ManagementReview_distribution_controls_distribution_controls" ON "ManagementReview_distribution_controls" (distribution_controls);
-
-CREATE TABLE "Nonconformity_immediate_actions" (
-	"Nonconformity_id" TEXT,
-	immediate_actions TEXT,
-	PRIMARY KEY ("Nonconformity_id", immediate_actions),
-	FOREIGN KEY("Nonconformity_id") REFERENCES "Nonconformity" (id)
-);
-CREATE INDEX "ix_Nonconformity_immediate_actions_Nonconformity_id" ON "Nonconformity_immediate_actions" ("Nonconformity_id");
-CREATE INDEX "ix_Nonconformity_immediate_actions_immediate_actions" ON "Nonconformity_immediate_actions" (immediate_actions);
-
-CREATE TABLE "Asset_applicable_controls" (
-	"Asset_id" TEXT,
-	applicable_controls_id TEXT,
-	PRIMARY KEY ("Asset_id", applicable_controls_id),
-	FOREIGN KEY("Asset_id") REFERENCES "Asset" (id),
-	FOREIGN KEY(applicable_controls_id) REFERENCES "SecurityControl" (id)
-);
-CREATE INDEX "ix_Asset_applicable_controls_Asset_id" ON "Asset_applicable_controls" ("Asset_id");
-CREATE INDEX "ix_Asset_applicable_controls_applicable_controls_id" ON "Asset_applicable_controls" (applicable_controls_id);
-
-CREATE TABLE "InformationSecurityIncident_affected_assets" (
-	"InformationSecurityIncident_id" TEXT,
-	affected_assets_id TEXT,
-	PRIMARY KEY ("InformationSecurityIncident_id", affected_assets_id),
-	FOREIGN KEY("InformationSecurityIncident_id") REFERENCES "InformationSecurityIncident" (id),
-	FOREIGN KEY(affected_assets_id) REFERENCES "Asset" (id)
-);
-CREATE INDEX "ix_InformationSecurityIncident_affected_assets_affected_assets_id" ON "InformationSecurityIncident_affected_assets" (affected_assets_id);
-CREATE INDEX "ix_InformationSecurityIncident_affected_assets_InformationSecurityIncident_id" ON "InformationSecurityIncident_affected_assets" ("InformationSecurityIncident_id");
-
-CREATE TABLE "InformationSecurityIncident_affected_cia" (
-	"InformationSecurityIncident_id" TEXT,
-	affected_cia VARCHAR(15),
-	PRIMARY KEY ("InformationSecurityIncident_id", affected_cia),
-	FOREIGN KEY("InformationSecurityIncident_id") REFERENCES "InformationSecurityIncident" (id)
-);
-CREATE INDEX "ix_InformationSecurityIncident_affected_cia_InformationSecurityIncident_id" ON "InformationSecurityIncident_affected_cia" ("InformationSecurityIncident_id");
-CREATE INDEX "ix_InformationSecurityIncident_affected_cia_affected_cia" ON "InformationSecurityIncident_affected_cia" (affected_cia);
-
-CREATE TABLE "InformationSecurityIncident_response_actions" (
-	"InformationSecurityIncident_id" TEXT,
-	response_actions TEXT,
-	PRIMARY KEY ("InformationSecurityIncident_id", response_actions),
-	FOREIGN KEY("InformationSecurityIncident_id") REFERENCES "InformationSecurityIncident" (id)
-);
-CREATE INDEX "ix_InformationSecurityIncident_response_actions_InformationSecurityIncident_id" ON "InformationSecurityIncident_response_actions" ("InformationSecurityIncident_id");
-CREATE INDEX "ix_InformationSecurityIncident_response_actions_response_actions" ON "InformationSecurityIncident_response_actions" (response_actions);
-
-CREATE TABLE "InformationSecurityIncident_containment_actions" (
-	"InformationSecurityIncident_id" TEXT,
-	containment_actions TEXT,
-	PRIMARY KEY ("InformationSecurityIncident_id", containment_actions),
-	FOREIGN KEY("InformationSecurityIncident_id") REFERENCES "InformationSecurityIncident" (id)
-);
-CREATE INDEX "ix_InformationSecurityIncident_containment_actions_InformationSecurityIncident_id" ON "InformationSecurityIncident_containment_actions" ("InformationSecurityIncident_id");
-CREATE INDEX "ix_InformationSecurityIncident_containment_actions_containment_actions" ON "InformationSecurityIncident_containment_actions" (containment_actions);
-
-CREATE TABLE "InformationSecurityIncident_eradication_actions" (
-	"InformationSecurityIncident_id" TEXT,
-	eradication_actions TEXT,
-	PRIMARY KEY ("InformationSecurityIncident_id", eradication_actions),
-	FOREIGN KEY("InformationSecurityIncident_id") REFERENCES "InformationSecurityIncident" (id)
-);
-CREATE INDEX "ix_InformationSecurityIncident_eradication_actions_InformationSecurityIncident_id" ON "InformationSecurityIncident_eradication_actions" ("InformationSecurityIncident_id");
-CREATE INDEX "ix_InformationSecurityIncident_eradication_actions_eradication_actions" ON "InformationSecurityIncident_eradication_actions" (eradication_actions);
-
-CREATE TABLE "InformationSecurityIncident_recovery_actions" (
-	"InformationSecurityIncident_id" TEXT,
-	recovery_actions TEXT,
-	PRIMARY KEY ("InformationSecurityIncident_id", recovery_actions),
-	FOREIGN KEY("InformationSecurityIncident_id") REFERENCES "InformationSecurityIncident" (id)
-);
-CREATE INDEX "ix_InformationSecurityIncident_recovery_actions_InformationSecurityIncident_id" ON "InformationSecurityIncident_recovery_actions" ("InformationSecurityIncident_id");
-CREATE INDEX "ix_InformationSecurityIncident_recovery_actions_recovery_actions" ON "InformationSecurityIncident_recovery_actions" (recovery_actions);
-
-CREATE TABLE "InformationSecurityIncident_lessons_learned" (
-	"InformationSecurityIncident_id" TEXT,
-	lessons_learned TEXT,
-	PRIMARY KEY ("InformationSecurityIncident_id", lessons_learned),
-	FOREIGN KEY("InformationSecurityIncident_id") REFERENCES "InformationSecurityIncident" (id)
-);
-CREATE INDEX "ix_InformationSecurityIncident_lessons_learned_InformationSecurityIncident_id" ON "InformationSecurityIncident_lessons_learned" ("InformationSecurityIncident_id");
-CREATE INDEX "ix_InformationSecurityIncident_lessons_learned_lessons_learned" ON "InformationSecurityIncident_lessons_learned" (lessons_learned);
-
-CREATE TABLE "InformationSecurityIncident_evidence_collected" (
-	"InformationSecurityIncident_id" TEXT,
-	evidence_collected TEXT,
-	PRIMARY KEY ("InformationSecurityIncident_id", evidence_collected),
-	FOREIGN KEY("InformationSecurityIncident_id") REFERENCES "InformationSecurityIncident" (id)
-);
-CREATE INDEX "ix_InformationSecurityIncident_evidence_collected_InformationSecurityIncident_id" ON "InformationSecurityIncident_evidence_collected" ("InformationSecurityIncident_id");
-CREATE INDEX "ix_InformationSecurityIncident_evidence_collected_evidence_collected" ON "InformationSecurityIncident_evidence_collected" (evidence_collected);
-
-CREATE TABLE "InformationSecurityIncident_notifications_made" (
-	"InformationSecurityIncident_id" TEXT,
-	notifications_made TEXT,
-	PRIMARY KEY ("InformationSecurityIncident_id", notifications_made),
-	FOREIGN KEY("InformationSecurityIncident_id") REFERENCES "InformationSecurityIncident" (id)
-);
-CREATE INDEX "ix_InformationSecurityIncident_notifications_made_InformationSecurityIncident_id" ON "InformationSecurityIncident_notifications_made" ("InformationSecurityIncident_id");
-CREATE INDEX "ix_InformationSecurityIncident_notifications_made_notifications_made" ON "InformationSecurityIncident_notifications_made" (notifications_made);
-
-CREATE TABLE "AuditFinding" (
-	finding_type VARCHAR(19),
-	clause_reference TEXT,
-	control_reference TEXT,
-	finding_description TEXT,
-	objective_evidence TEXT,
-	root_cause_analysis TEXT,
-	risk_implication TEXT,
-	recommended_action TEXT,
-	auditee_response TEXT,
-	linked_corrective_action TEXT,
-	closure_status TEXT,
-	closure_date DATE,
-	id TEXT NOT NULL,
-	name TEXT NOT NULL,
-	description TEXT,
-	created_date DATE,
-	modified_date DATE,
-	version TEXT,
-	PRIMARY KEY (id),
-	FOREIGN KEY(control_reference) REFERENCES "SecurityControl" (id),
-	FOREIGN KEY(linked_corrective_action) REFERENCES "CorrectiveAction" (id)
-);
-CREATE INDEX "ix_AuditFinding_id" ON "AuditFinding" (id);
-
-CREATE TABLE "InformationSecurityManagementSystem_leadership_commitment_evidence" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	leadership_commitment_evidence TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", leadership_commitment_evidence),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_leadership_commitment_evidence_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_leadership_commitment_evidence" ("InformationSecurityManagementSystem_id");
-CREATE INDEX "ix_InformationSecurityManagementSystem_leadership_commitment_evidence_leadership_commitment_evidence" ON "InformationSecurityManagementSystem_leadership_commitment_evidence" (leadership_commitment_evidence);
-
-CREATE TABLE "InformationSecurityManagementSystem_scope_boundaries" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	scope_boundaries TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", scope_boundaries),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_scope_boundaries_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_scope_boundaries" ("InformationSecurityManagementSystem_id");
-CREATE INDEX "ix_InformationSecurityManagementSystem_scope_boundaries_scope_boundaries" ON "InformationSecurityManagementSystem_scope_boundaries" (scope_boundaries);
-
-CREATE TABLE "InformationSecurityManagementSystem_scope_exclusions" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	scope_exclusions TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", scope_exclusions),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_scope_exclusions_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_scope_exclusions" ("InformationSecurityManagementSystem_id");
-CREATE INDEX "ix_InformationSecurityManagementSystem_scope_exclusions_scope_exclusions" ON "InformationSecurityManagementSystem_scope_exclusions" (scope_exclusions);
-
-CREATE TABLE "InformationSecurityManagementSystem_interfaces_and_dependencies" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	interfaces_and_dependencies TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", interfaces_and_dependencies),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_interfaces_and_dependencies_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_interfaces_and_dependencies" ("InformationSecurityManagementSystem_id");
-CREATE INDEX "ix_InformationSecurityManagementSystem_interfaces_and_dependencies_interfaces_and_dependencies" ON "InformationSecurityManagementSystem_interfaces_and_dependencies" (interfaces_and_dependencies);
-
-CREATE TABLE "InformationSecurityManagementSystem_context_internal_issues" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	context_internal_issues TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", context_internal_issues),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_context_internal_issues_context_internal_issues" ON "InformationSecurityManagementSystem_context_internal_issues" (context_internal_issues);
-CREATE INDEX "ix_InformationSecurityManagementSystem_context_internal_issues_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_context_internal_issues" ("InformationSecurityManagementSystem_id");
-
-CREATE TABLE "InformationSecurityManagementSystem_context_external_issues" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	context_external_issues TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", context_external_issues),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_context_external_issues_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_context_external_issues" ("InformationSecurityManagementSystem_id");
-CREATE INDEX "ix_InformationSecurityManagementSystem_context_external_issues_context_external_issues" ON "InformationSecurityManagementSystem_context_external_issues" (context_external_issues);
-
-CREATE TABLE "InformationSecurityManagementSystem_interested_parties" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	interested_parties_id TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", interested_parties_id),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
-	FOREIGN KEY(interested_parties_id) REFERENCES "InterestedParty" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_interested_parties_interested_parties_id" ON "InformationSecurityManagementSystem_interested_parties" (interested_parties_id);
-CREATE INDEX "ix_InformationSecurityManagementSystem_interested_parties_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_interested_parties" ("InformationSecurityManagementSystem_id");
-
-CREATE TABLE "InformationSecurityManagementSystem_objectives" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	objectives_id TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", objectives_id),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
-	FOREIGN KEY(objectives_id) REFERENCES "InformationSecurityObjective" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_objectives_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_objectives" ("InformationSecurityManagementSystem_id");
-CREATE INDEX "ix_InformationSecurityManagementSystem_objectives_objectives_id" ON "InformationSecurityManagementSystem_objectives" (objectives_id);
-
-CREATE TABLE "InformationSecurityManagementSystem_risks_and_opportunities_actions" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	risks_and_opportunities_actions TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", risks_and_opportunities_actions),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_risks_and_opportunities_actions_risks_and_opportunities_actions" ON "InformationSecurityManagementSystem_risks_and_opportunities_actions" (risks_and_opportunities_actions);
-CREATE INDEX "ix_InformationSecurityManagementSystem_risks_and_opportunities_actions_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_risks_and_opportunities_actions" ("InformationSecurityManagementSystem_id");
-
-CREATE TABLE "InformationSecurityManagementSystem_planned_changes" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	planned_changes TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", planned_changes),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_planned_changes_planned_changes" ON "InformationSecurityManagementSystem_planned_changes" (planned_changes);
-CREATE INDEX "ix_InformationSecurityManagementSystem_planned_changes_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_planned_changes" ("InformationSecurityManagementSystem_id");
-
-CREATE TABLE "InformationSecurityManagementSystem_externally_provided_services" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	externally_provided_services TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", externally_provided_services),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_externally_provided_services_externally_provided_services" ON "InformationSecurityManagementSystem_externally_provided_services" (externally_provided_services);
-CREATE INDEX "ix_InformationSecurityManagementSystem_externally_provided_services_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_externally_provided_services" ("InformationSecurityManagementSystem_id");
-
-CREATE TABLE "InformationSecurityManagementSystem_controls" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	controls_id TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", controls_id),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
-	FOREIGN KEY(controls_id) REFERENCES "SecurityControl" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_controls_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_controls" ("InformationSecurityManagementSystem_id");
-CREATE INDEX "ix_InformationSecurityManagementSystem_controls_controls_id" ON "InformationSecurityManagementSystem_controls" (controls_id);
-
-CREATE TABLE "InformationSecurityManagementSystem_roles" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	roles_id TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", roles_id),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
-	FOREIGN KEY(roles_id) REFERENCES "Role" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_roles_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_roles" ("InformationSecurityManagementSystem_id");
-CREATE INDEX "ix_InformationSecurityManagementSystem_roles_roles_id" ON "InformationSecurityManagementSystem_roles" (roles_id);
-
-CREATE TABLE "InformationSecurityManagementSystem_resources" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	resources_id TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", resources_id),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
-	FOREIGN KEY(resources_id) REFERENCES "Resource" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_resources_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_resources" ("InformationSecurityManagementSystem_id");
-CREATE INDEX "ix_InformationSecurityManagementSystem_resources_resources_id" ON "InformationSecurityManagementSystem_resources" (resources_id);
-
-CREATE TABLE "InformationSecurityManagementSystem_competence_records" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	competence_records_id TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", competence_records_id),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
-	FOREIGN KEY(competence_records_id) REFERENCES "CompetenceRecord" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_competence_records_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_competence_records" ("InformationSecurityManagementSystem_id");
-CREATE INDEX "ix_InformationSecurityManagementSystem_competence_records_competence_records_id" ON "InformationSecurityManagementSystem_competence_records" (competence_records_id);
-
-CREATE TABLE "InformationSecurityManagementSystem_documented_information_register" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	documented_information_register_id TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", documented_information_register_id),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
-	FOREIGN KEY(documented_information_register_id) REFERENCES "DocumentedInformation" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_documented_information_register_documented_information_register_id" ON "InformationSecurityManagementSystem_documented_information_register" (documented_information_register_id);
-CREATE INDEX "ix_InformationSecurityManagementSystem_documented_information_register_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_documented_information_register" ("InformationSecurityManagementSystem_id");
-
-CREATE TABLE "InformationSecurityManagementSystem_operational_procedures" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	operational_procedures_id TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", operational_procedures_id),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
-	FOREIGN KEY(operational_procedures_id) REFERENCES "OperationalProcedure" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_operational_procedures_operational_procedures_id" ON "InformationSecurityManagementSystem_operational_procedures" (operational_procedures_id);
-CREATE INDEX "ix_InformationSecurityManagementSystem_operational_procedures_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_operational_procedures" ("InformationSecurityManagementSystem_id");
-
-CREATE TABLE "InformationSecurityManagementSystem_risk_assessments" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	risk_assessments_id TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", risk_assessments_id),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
-	FOREIGN KEY(risk_assessments_id) REFERENCES "RiskAssessment" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_risk_assessments_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_risk_assessments" ("InformationSecurityManagementSystem_id");
-CREATE INDEX "ix_InformationSecurityManagementSystem_risk_assessments_risk_assessments_id" ON "InformationSecurityManagementSystem_risk_assessments" (risk_assessments_id);
-
-CREATE TABLE "InformationSecurityManagementSystem_risk_treatment_plans" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	risk_treatment_plans_id TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", risk_treatment_plans_id),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
-	FOREIGN KEY(risk_treatment_plans_id) REFERENCES "RiskTreatmentPlan" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_risk_treatment_plans_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_risk_treatment_plans" ("InformationSecurityManagementSystem_id");
-CREATE INDEX "ix_InformationSecurityManagementSystem_risk_treatment_plans_risk_treatment_plans_id" ON "InformationSecurityManagementSystem_risk_treatment_plans" (risk_treatment_plans_id);
-
-CREATE TABLE "InformationSecurityManagementSystem_internal_audits" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	internal_audits_id TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", internal_audits_id),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
-	FOREIGN KEY(internal_audits_id) REFERENCES "InternalAudit" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_internal_audits_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_internal_audits" ("InformationSecurityManagementSystem_id");
-CREATE INDEX "ix_InformationSecurityManagementSystem_internal_audits_internal_audits_id" ON "InformationSecurityManagementSystem_internal_audits" (internal_audits_id);
-
-CREATE TABLE "InformationSecurityManagementSystem_management_reviews" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	management_reviews_id TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", management_reviews_id),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
-	FOREIGN KEY(management_reviews_id) REFERENCES "ManagementReview" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_management_reviews_management_reviews_id" ON "InformationSecurityManagementSystem_management_reviews" (management_reviews_id);
-CREATE INDEX "ix_InformationSecurityManagementSystem_management_reviews_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_management_reviews" ("InformationSecurityManagementSystem_id");
-
-CREATE TABLE "InformationSecurityManagementSystem_nonconformities" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	nonconformities_id TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", nonconformities_id),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
-	FOREIGN KEY(nonconformities_id) REFERENCES "Nonconformity" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_nonconformities_nonconformities_id" ON "InformationSecurityManagementSystem_nonconformities" (nonconformities_id);
-CREATE INDEX "ix_InformationSecurityManagementSystem_nonconformities_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_nonconformities" ("InformationSecurityManagementSystem_id");
-
-CREATE TABLE "InformationSecurityManagementSystem_corrective_actions" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	corrective_actions_id TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", corrective_actions_id),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
-	FOREIGN KEY(corrective_actions_id) REFERENCES "CorrectiveAction" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_corrective_actions_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_corrective_actions" ("InformationSecurityManagementSystem_id");
-CREATE INDEX "ix_InformationSecurityManagementSystem_corrective_actions_corrective_actions_id" ON "InformationSecurityManagementSystem_corrective_actions" (corrective_actions_id);
-
-CREATE TABLE "InformationSecurityManagementSystem_improvements" (
-	"InformationSecurityManagementSystem_id" TEXT,
-	improvements_id TEXT,
-	PRIMARY KEY ("InformationSecurityManagementSystem_id", improvements_id),
-	FOREIGN KEY("InformationSecurityManagementSystem_id") REFERENCES "InformationSecurityManagementSystem" (id),
-	FOREIGN KEY(improvements_id) REFERENCES "ImprovementOpportunity" (id)
-);
-CREATE INDEX "ix_InformationSecurityManagementSystem_improvements_improvements_id" ON "InformationSecurityManagementSystem_improvements" (improvements_id);
-CREATE INDEX "ix_InformationSecurityManagementSystem_improvements_InformationSecurityManagementSystem_id" ON "InformationSecurityManagementSystem_improvements" ("InformationSecurityManagementSystem_id");
-
-CREATE TABLE "InformationSecurityPolicy_related_topic_policies" (
-	"InformationSecurityPolicy_id" TEXT,
-	related_topic_policies_id TEXT,
-	PRIMARY KEY ("InformationSecurityPolicy_id", related_topic_policies_id),
-	FOREIGN KEY("InformationSecurityPolicy_id") REFERENCES "InformationSecurityPolicy" (id),
-	FOREIGN KEY(related_topic_policies_id) REFERENCES "TopicSpecificPolicy" (id)
-);
-CREATE INDEX "ix_InformationSecurityPolicy_related_topic_policies_related_topic_policies_id" ON "InformationSecurityPolicy_related_topic_policies" (related_topic_policies_id);
-CREATE INDEX "ix_InformationSecurityPolicy_related_topic_policies_InformationSecurityPolicy_id" ON "InformationSecurityPolicy_related_topic_policies" ("InformationSecurityPolicy_id");
-
-CREATE TABLE "TopicSpecificPolicy_applicable_controls" (
-	"TopicSpecificPolicy_id" TEXT,
-	applicable_controls_id TEXT,
-	PRIMARY KEY ("TopicSpecificPolicy_id", applicable_controls_id),
-	FOREIGN KEY("TopicSpecificPolicy_id") REFERENCES "TopicSpecificPolicy" (id),
-	FOREIGN KEY(applicable_controls_id) REFERENCES "SecurityControl" (id)
-);
-CREATE INDEX "ix_TopicSpecificPolicy_applicable_controls_applicable_controls_id" ON "TopicSpecificPolicy_applicable_controls" (applicable_controls_id);
-CREATE INDEX "ix_TopicSpecificPolicy_applicable_controls_TopicSpecificPolicy_id" ON "TopicSpecificPolicy_applicable_controls" ("TopicSpecificPolicy_id");
-
-CREATE TABLE "TopicSpecificPolicy_distribution_controls" (
-	"TopicSpecificPolicy_id" TEXT,
-	distribution_controls TEXT,
-	PRIMARY KEY ("TopicSpecificPolicy_id", distribution_controls),
-	FOREIGN KEY("TopicSpecificPolicy_id") REFERENCES "TopicSpecificPolicy" (id)
-);
-CREATE INDEX "ix_TopicSpecificPolicy_distribution_controls_TopicSpecificPolicy_id" ON "TopicSpecificPolicy_distribution_controls" ("TopicSpecificPolicy_id");
-CREATE INDEX "ix_TopicSpecificPolicy_distribution_controls_distribution_controls" ON "TopicSpecificPolicy_distribution_controls" (distribution_controls);
-
-CREATE TABLE "InformationSecurityObjective_related_risks" (
-	"InformationSecurityObjective_id" TEXT,
-	related_risks_id TEXT,
-	PRIMARY KEY ("InformationSecurityObjective_id", related_risks_id),
-	FOREIGN KEY("InformationSecurityObjective_id") REFERENCES "InformationSecurityObjective" (id),
-	FOREIGN KEY(related_risks_id) REFERENCES "Risk" (id)
-);
-CREATE INDEX "ix_InformationSecurityObjective_related_risks_InformationSecurityObjective_id" ON "InformationSecurityObjective_related_risks" ("InformationSecurityObjective_id");
-CREATE INDEX "ix_InformationSecurityObjective_related_risks_related_risks_id" ON "InformationSecurityObjective_related_risks" (related_risks_id);
-
-CREATE TABLE "InformationSecurityObjective_related_controls" (
-	"InformationSecurityObjective_id" TEXT,
-	related_controls_id TEXT,
-	PRIMARY KEY ("InformationSecurityObjective_id", related_controls_id),
-	FOREIGN KEY("InformationSecurityObjective_id") REFERENCES "InformationSecurityObjective" (id),
-	FOREIGN KEY(related_controls_id) REFERENCES "SecurityControl" (id)
-);
-CREATE INDEX "ix_InformationSecurityObjective_related_controls_InformationSecurityObjective_id" ON "InformationSecurityObjective_related_controls" ("InformationSecurityObjective_id");
-CREATE INDEX "ix_InformationSecurityObjective_related_controls_related_controls_id" ON "InformationSecurityObjective_related_controls" (related_controls_id);
-
-CREATE TABLE "RiskAssessment_risks_identified" (
-	"RiskAssessment_id" TEXT,
-	risks_identified_id TEXT,
-	PRIMARY KEY ("RiskAssessment_id", risks_identified_id),
-	FOREIGN KEY("RiskAssessment_id") REFERENCES "RiskAssessment" (id),
-	FOREIGN KEY(risks_identified_id) REFERENCES "Risk" (id)
-);
-CREATE INDEX "ix_RiskAssessment_risks_identified_risks_identified_id" ON "RiskAssessment_risks_identified" (risks_identified_id);
-CREATE INDEX "ix_RiskAssessment_risks_identified_RiskAssessment_id" ON "RiskAssessment_risks_identified" ("RiskAssessment_id");
-
-CREATE TABLE "Risk_affected_assets" (
-	"Risk_id" TEXT,
-	affected_assets_id TEXT,
-	PRIMARY KEY ("Risk_id", affected_assets_id),
-	FOREIGN KEY("Risk_id") REFERENCES "Risk" (id),
-	FOREIGN KEY(affected_assets_id) REFERENCES "Asset" (id)
-);
-CREATE INDEX "ix_Risk_affected_assets_affected_assets_id" ON "Risk_affected_assets" (affected_assets_id);
-CREATE INDEX "ix_Risk_affected_assets_Risk_id" ON "Risk_affected_assets" ("Risk_id");
-
-CREATE TABLE "Risk_affected_cia_properties" (
-	"Risk_id" TEXT,
-	affected_cia_properties VARCHAR(15),
-	PRIMARY KEY ("Risk_id", affected_cia_properties),
-	FOREIGN KEY("Risk_id") REFERENCES "Risk" (id)
-);
-CREATE INDEX "ix_Risk_affected_cia_properties_Risk_id" ON "Risk_affected_cia_properties" ("Risk_id");
-CREATE INDEX "ix_Risk_affected_cia_properties_affected_cia_properties" ON "Risk_affected_cia_properties" (affected_cia_properties);
-
-CREATE TABLE "Risk_existing_controls" (
-	"Risk_id" TEXT,
-	existing_controls_id TEXT,
-	PRIMARY KEY ("Risk_id", existing_controls_id),
-	FOREIGN KEY("Risk_id") REFERENCES "Risk" (id),
-	FOREIGN KEY(existing_controls_id) REFERENCES "SecurityControl" (id)
-);
-CREATE INDEX "ix_Risk_existing_controls_existing_controls_id" ON "Risk_existing_controls" (existing_controls_id);
-CREATE INDEX "ix_Risk_existing_controls_Risk_id" ON "Risk_existing_controls" ("Risk_id");
-
-CREATE TABLE "RiskTreatmentPlan_risks_addressed" (
-	"RiskTreatmentPlan_id" TEXT,
-	risks_addressed_id TEXT,
-	PRIMARY KEY ("RiskTreatmentPlan_id", risks_addressed_id),
-	FOREIGN KEY("RiskTreatmentPlan_id") REFERENCES "RiskTreatmentPlan" (id),
-	FOREIGN KEY(risks_addressed_id) REFERENCES "Risk" (id)
-);
-CREATE INDEX "ix_RiskTreatmentPlan_risks_addressed_RiskTreatmentPlan_id" ON "RiskTreatmentPlan_risks_addressed" ("RiskTreatmentPlan_id");
-CREATE INDEX "ix_RiskTreatmentPlan_risks_addressed_risks_addressed_id" ON "RiskTreatmentPlan_risks_addressed" (risks_addressed_id);
-
-CREATE TABLE "StatementOfApplicability_soa_entries" (
-	"StatementOfApplicability_id" TEXT,
-	soa_entries_id INTEGER,
-	PRIMARY KEY ("StatementOfApplicability_id", soa_entries_id),
-	FOREIGN KEY("StatementOfApplicability_id") REFERENCES "StatementOfApplicability" (id),
-	FOREIGN KEY(soa_entries_id) REFERENCES "SoAEntry" (id)
-);
-CREATE INDEX "ix_StatementOfApplicability_soa_entries_soa_entries_id" ON "StatementOfApplicability_soa_entries" (soa_entries_id);
-CREATE INDEX "ix_StatementOfApplicability_soa_entries_StatementOfApplicability_id" ON "StatementOfApplicability_soa_entries" ("StatementOfApplicability_id");
-
-CREATE TABLE "Nonconformity_linked_corrective_actions" (
-	"Nonconformity_id" TEXT,
-	linked_corrective_actions_id TEXT,
-	PRIMARY KEY ("Nonconformity_id", linked_corrective_actions_id),
-	FOREIGN KEY("Nonconformity_id") REFERENCES "Nonconformity" (id),
-	FOREIGN KEY(linked_corrective_actions_id) REFERENCES "CorrectiveAction" (id)
-);
-CREATE INDEX "ix_Nonconformity_linked_corrective_actions_linked_corrective_actions_id" ON "Nonconformity_linked_corrective_actions" (linked_corrective_actions_id);
-CREATE INDEX "ix_Nonconformity_linked_corrective_actions_Nonconformity_id" ON "Nonconformity_linked_corrective_actions" ("Nonconformity_id");
-
-CREATE TABLE "Asset_related_risks" (
-	"Asset_id" TEXT,
-	related_risks_id TEXT,
-	PRIMARY KEY ("Asset_id", related_risks_id),
-	FOREIGN KEY("Asset_id") REFERENCES "Asset" (id),
-	FOREIGN KEY(related_risks_id) REFERENCES "Risk" (id)
-);
-CREATE INDEX "ix_Asset_related_risks_Asset_id" ON "Asset_related_risks" ("Asset_id");
-CREATE INDEX "ix_Asset_related_risks_related_risks_id" ON "Asset_related_risks" (related_risks_id);
-
-CREATE TABLE "InformationSecurityEvent_affected_assets" (
-	"InformationSecurityEvent_id" TEXT,
-	affected_assets_id TEXT,
-	PRIMARY KEY ("InformationSecurityEvent_id", affected_assets_id),
-	FOREIGN KEY("InformationSecurityEvent_id") REFERENCES "InformationSecurityEvent" (id),
-	FOREIGN KEY(affected_assets_id) REFERENCES "Asset" (id)
-);
-CREATE INDEX "ix_InformationSecurityEvent_affected_assets_affected_assets_id" ON "InformationSecurityEvent_affected_assets" (affected_assets_id);
-CREATE INDEX "ix_InformationSecurityEvent_affected_assets_InformationSecurityEvent_id" ON "InformationSecurityEvent_affected_assets" ("InformationSecurityEvent_id");
-
-CREATE TABLE "InternalAudit_findings" (
-	"InternalAudit_id" TEXT,
-	findings_id TEXT,
-	PRIMARY KEY ("InternalAudit_id", findings_id),
-	FOREIGN KEY("InternalAudit_id") REFERENCES "InternalAudit" (id),
-	FOREIGN KEY(findings_id) REFERENCES "AuditFinding" (id)
-);
-CREATE INDEX "ix_InternalAudit_findings_findings_id" ON "InternalAudit_findings" (findings_id);
-CREATE INDEX "ix_InternalAudit_findings_InternalAudit_id" ON "InternalAudit_findings" ("InternalAudit_id");
+CREATE INDEX "ix_IsmsCorrectiveAction_action_nonconformities_action_nonconformities_isms_id" ON "IsmsCorrectiveAction_action_nonconformities" (action_nonconformities_isms_id);
+CREATE INDEX "ix_IsmsCorrectiveAction_action_nonconformities_IsmsCorrectiveAction_isms_id" ON "IsmsCorrectiveAction_action_nonconformities" ("IsmsCorrectiveAction_isms_id");

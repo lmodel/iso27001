@@ -1,0 +1,15 @@
+# A Statement of Applicability with an included and an excluded entry.
+isms_id: acme:soa-2026
+title: Statement of Applicability 2026
+document_reference: SOA-2026
+soa_entries:
+  - entry_type: IsmsIncludedControl
+    entry_annex_a_control: a_8_5
+    entry_justification: Needed to treat the phishing risk.
+    included_control: acme:control-mfa
+    implementation_state: in_progress
+    responsible_role: acme:role-ciso
+    included_target_date: "2026-06-30"
+  - entry_type: IsmsExcludedControl
+    entry_annex_a_control: a_7_5
+    entry_justification: Acme has no premises exposed to the physical threats this control addresses.

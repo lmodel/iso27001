@@ -1,0 +1,8 @@
+isms_id: probo:provide-terms-of-service
+title: Provide terms of service
+control_annex_a_controls:
+  - a_5_14
+control_theme: organizational
+control_text: Terms of service set clear legal and ethical boundaries, protect your organization
+  from misuse, and clarify user responsibilities
+implementation_state: not_started

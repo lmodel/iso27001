@@ -1,0 +1,5 @@
+# Fails at: /organization_climate_change_relevant
+# Invalid: whether climate change is relevant is true or false.
+isms_id: acme:organization
+title: Acme Widgets Ltd
+organization_climate_change_relevant: perhaps

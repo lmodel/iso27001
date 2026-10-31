@@ -1,0 +1,10 @@
+isms_id: probo:require-pull-requests-prs
+title: Require Pull Requests (PRs)
+control_annex_a_controls:
+  - a_5_3
+control_theme: organizational
+control_text: Requiring pull requests and code reviews ensures higher code quality and security
+  by allowing multiple team members to catch bugs, inefficiencies, and potential vulnerabilities
+  before code is merged. It also promotes collaboration, knowledge sharing, and accountability
+  within the team
+implementation_state: not_started

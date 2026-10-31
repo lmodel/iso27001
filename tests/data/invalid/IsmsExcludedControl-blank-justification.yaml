@@ -1,0 +1,5 @@
+# Fails at: /entry_justification
+# Invalid: a justification of blanks fails as a missing one does.
+entry_type: IsmsExcludedControl
+entry_annex_a_control: a_7_5
+entry_justification: "  "

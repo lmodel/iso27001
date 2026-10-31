@@ -1,0 +1,14 @@
+# The risk assessment process with its criteria and scales.
+isms_id: acme:process-risk-assessment
+title: Information security risk assessment process
+risk_acceptance_criteria: A risk rated low or very low may be retained by its owner.
+risk_assessment_criteria: Every asset in scope is assessed against the threats in the catalogue.
+risk_assessment_method: Asset-based assessment on five-point scales.
+risk_likelihood_scale: Five points, from rare to almost certain.
+risk_impact_scale: Five points, from negligible to severe.
+risk_matrix: Likelihood times impact, banded into five levels.
+risk_assessment_frequency: yearly
+risk_assessment_triggers:
+  - A major change to systems or suppliers.
+  - A serious incident.
+document_reference: PRO-010

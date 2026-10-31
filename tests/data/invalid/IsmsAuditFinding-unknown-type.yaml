@@ -1,0 +1,5 @@
+# Fails at: /finding_type
+# Invalid: a finding is one of the four kinds of IsmsAuditFindingType.
+isms_id: acme:finding-2026-01
+title: Access reviews not recorded
+finding_type: critical_nonconformity

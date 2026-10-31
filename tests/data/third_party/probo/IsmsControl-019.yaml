@@ -1,0 +1,10 @@
+isms_id: probo:ensure-proof-of-employment
+title: Ensure proof of employment
+control_annex_a_controls:
+  - a_5_32
+  - a_5_34
+  - a_6_2
+control_theme: organizational
+control_text: Having signed employment contracts reduces legal ambiguity, ensures clear understanding
+  of obligations, and underpins accountability
+implementation_state: not_started

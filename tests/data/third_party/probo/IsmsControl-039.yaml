@@ -1,0 +1,11 @@
+isms_id: probo:email-authentication
+title: Implement email authentication (DMARC)
+control_annex_a_controls:
+  - a_8_7
+  - a_8_27
+control_theme: technological
+control_text: 'DMARC (Domain-based Message Authentication, Reporting, and Conformance) helps
+  prevent email spoofing and phishing attacks by verifying the authenticity of emails sent
+  from your domain. It will do two things: so your recipient will know for sure it is coming
+  from you and it will protect your company reputation (with gmail and cie)'
+implementation_state: not_started

@@ -1,0 +1,63 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsRisk
+schema_generating: true
+description: 'An information security risk in the risk register: where it comes from,
+  what it threatens, who owns it, how it is rated before and after controls, and how
+  it is treated.'
+display_name: IsmsRisk
+document_category: IsmsRisk
+weight: 20
+fields:
+- id: affected_assets
+  description: The assets the risk, event or incident affects.
+  display_name: affected_assets
+  cardinality: multi
+- id: affected_security_properties
+  description: Which of confidentiality, integrity and availability the risk or incident
+    threatens.
+  display_name: affected_security_properties
+  cardinality: multi
+- id: risk_source
+  description: Where the risk comes from.
+  display_name: ismsRisk__risk_source
+- id: risk_threat
+  description: The threat that could cause harm.
+  display_name: ismsRisk__risk_threat
+- id: risk_vulnerability
+  description: The weakness the threat could exploit.
+  display_name: ismsRisk__risk_vulnerability
+- id: risk_owner
+  description: The person who is accountable for the risk and has the authority to
+    manage it.
+  display_name: ismsRisk__risk_owner
+- id: risk_likelihood
+  description: How likely the risk is.
+  display_name: ismsRisk__risk_likelihood
+- id: risk_impact
+  description: How severe the consequences would be.
+  display_name: ismsRisk__risk_impact
+- id: risk_inherent_level
+  description: The risk's level before controls.
+  display_name: ismsRisk__risk_inherent_level
+- id: risk_existing_controls
+  description: The organization's controls already acting on the risk.
+  display_name: ismsRisk__risk_existing_controls
+  cardinality: multi
+- id: risk_residual_level
+  description: The risk's level after controls.
+  display_name: ismsRisk__risk_residual_level
+- id: risk_treatment_option
+  description: The treatment chosen for the risk.
+  display_name: ismsRisk__risk_treatment_option
+- id: risk_treatment_priority
+  description: How soon the risk is to be treated, in the organization's own terms.
+  display_name: ismsRisk__risk_treatment_priority
+- id: isms_id
+  description: The record's identifier, unique among the ISMS's records, such as a
+    URI or a CURIE. Other records refer to the record by it.
+  display_name: isms_id
+- id: title
+  description: The name the organization gives the record.
+  display_name: IsmsRecordMixin_title
+- id: description
+  description: What the record says or describes, in the organization's own words.
+  display_name: description

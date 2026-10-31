@@ -1,0 +1,34 @@
+# The information security policy, under document control.
+isms_id: acme:policy-information-security
+title: Information security policy
+description: >-
+  Acme's commitment to protect the information it holds and the frame for
+  its information security objectives.
+policy_statement: >-
+  Acme protects the confidentiality, integrity and availability of the
+  information it holds and keeps improving how it does so.
+policy_objectives_framework: Objectives are set each year by the security committee.
+policy_commitments:
+  - Meet the security requirements of customers, law and contract.
+  - Improve the ISMS continually.
+policy_applicability: All staff, contractors and systems of Acme Widgets Ltd.
+policy_communication_date: "2026-01-20"
+policy_acknowledgement_required: true
+policy_management_systems:
+  - iso_9001
+document_reference: POL-001
+document_version: "3.0"
+document_owner: Chief Information Security Officer
+document_approver: Managing Director
+document_approval_date: "2026-01-15"
+document_effective_date: "2026-02-01"
+document_last_review_date: "2026-01-10"
+document_next_review_date: "2027-01-10"
+document_status: approved
+document_classification: internal
+document_retention: P7Y
+document_distribution:
+  - Published on the intranet to all staff.
+document_storage: Document management system, with weekly backups.
+document_change_control: Version control in the document management system.
+document_external_origin: false

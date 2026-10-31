@@ -1,9 +1,0 @@
-id: iso27001:control-follow-news-in-cybersecurity
-name: Follow news in cybersecurity
-control_id: a_5_6
-control_title: Follow news in cybersecurity
-control_category: organizational
-control_text: >-
-  Monitoring emerging attack trends and security patches enables proactive defenses, letting
-  you adapt strategies quickly and remain resilient as the threat landscape evolves
-implementation_status: not_started

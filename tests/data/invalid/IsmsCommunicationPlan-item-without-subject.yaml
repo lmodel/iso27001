@@ -1,0 +1,6 @@
+# Fails at: /communication_items/0
+# Invalid: each communication of the plan says what it is about.
+isms_id: acme:communication-plan
+title: ISMS communication plan
+communication_items:
+  - communication_audience: Board of directors

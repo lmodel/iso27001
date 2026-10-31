@@ -1,0 +1,10 @@
+isms_id: probo:data-inventory
+title: Data inventory
+control_annex_a_controls:
+  - a_5_13
+  - a_5_12
+control_theme: organizational
+control_text: Having an accurate and up-to-date inventory of all your data assets (databases,
+  cloud storage or even file shares) enables you to be exhaustive in how you treat your data
+  safety
+implementation_state: not_started

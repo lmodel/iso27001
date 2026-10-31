@@ -1,0 +1,8 @@
+# Fails at: /audit_standards/0
+# Invalid: ISO/IEC 27002 gives guidance and is no management system
+# standard.
+isms_id: acme:audit-2026-internal
+title: Internal audit, spring 2026
+audit_type: first_party
+audit_standards:
+  - iso_iec_27002

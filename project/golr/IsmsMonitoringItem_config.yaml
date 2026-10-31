@@ -1,0 +1,41 @@
+# metamodel_version: 1.12.0# version: 2022/Amd 1:2024id: IsmsMonitoringItem
+schema_generating: true
+description: 'One thing the monitoring programme measures: what, how, how often and
+  by whom it is measured and analysed, and against what thresholds.'
+display_name: IsmsMonitoringItem
+document_category: IsmsMonitoringItem
+weight: 20
+fields:
+- id: responsible_role
+  description: The role that answers for the record's activity or outcome.
+  display_name: responsible_role
+- id: monitoring_metric
+  description: The name of what is measured.
+  display_name: ismsMonitoringItem__monitoring_metric
+- id: monitoring_description
+  description: What the measurement shows.
+  display_name: ismsMonitoringItem__monitoring_description
+- id: monitoring_method
+  description: How it is measured.
+  display_name: ismsMonitoringItem__monitoring_method
+- id: monitoring_frequency
+  description: How often it is measured.
+  display_name: ismsMonitoringItem__monitoring_frequency
+- id: monitoring_analysis_frequency
+  description: How often the results are analysed and evaluated.
+  display_name: ismsMonitoringItem__monitoring_analysis_frequency
+- id: monitoring_analyst
+  description: Who analyses and evaluates the results.
+  display_name: ismsMonitoringItem__monitoring_analyst
+- id: monitoring_target
+  description: The value aimed for.
+  display_name: ismsMonitoringItem__monitoring_target
+- id: monitoring_alert_threshold
+  description: The value that calls for action.
+  display_name: ismsMonitoringItem__monitoring_alert_threshold
+- id: monitoring_current_value
+  description: The value last measured.
+  display_name: ismsMonitoringItem__monitoring_current_value
+- id: monitoring_trend
+  description: Which way the value is moving.
+  display_name: ismsMonitoringItem__monitoring_trend

@@ -1,0 +1,5 @@
+# Fails at: /event_type
+# Invalid: the designator names IsmsSecurityEvent or IsmsSecurityIncident.
+isms_id: acme:event-2026-031
+title: Suspicious invoice message
+event_type: IsmsSecurityAlert

@@ -1,0 +1,11 @@
+isms_id: probo:be-automatically-notified-of-issues
+title: Be automatically notified of issues
+control_annex_a_controls:
+  - a_8_15
+control_theme: technological
+control_text: Setting up alerting allows you to respond quickly and minimize downtime or potential
+  data breaches. It ensures that important events, such as unauthorized access or system failures,
+  are addressed promptly
+control_guidance: Don't implement alerts for everything. **Focus on critical events** - if
+  you have alerts on everything, it's not alerting anymore
+implementation_state: not_started

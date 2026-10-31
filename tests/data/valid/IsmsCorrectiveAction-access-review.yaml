@@ -1,0 +1,15 @@
+# A corrective action and the check that it worked.
+isms_id: acme:action-access-review-records
+title: Give the access review an owner
+action_nonconformities:
+  - acme:nonconformity-access-review
+action_root_cause: The review had no owner after a staff change.
+responsible_role: acme:role-ciso
+action_target_date: "2026-05-31"
+action_completion_date: "2026-05-20"
+action_resources: An hour a quarter of the IT Operations lead.
+action_effectiveness_criteria: Two reviews in a row are recorded on time.
+action_effectiveness_review_date: "2026-10-05"
+action_effective: true
+action_isms_changes: The role description lists the review.
+action_status: closed

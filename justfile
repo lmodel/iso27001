@@ -1,8 +1,8 @@
-# ============ Hint for for Windows Users ============
+# ============ Shell configuration for Windows ============
 
-# On Windows the "sh" shell that comes with Git for Windows should be used.
-# If it is not on path, provide the path to the executable in the following line.
-#set windows-shell := ["C:/Program Files/Git/usr/bin/sh", "-cu"]
+# On Windows the "bash" shell from Git for Windows is used.
+# If Git is installed in a non-standard location, edit the path below.
+set windows-shell := ["C:/Program Files/Git/bin/bash", "-cu"]
 
 # ============ Variables used in recipes ============
 
@@ -106,19 +106,14 @@ clean: _wsl2_compat_check _clean_project
 [group('model development')]
 site: gen-project gen-doc
 
-# Deploy documentation site to Github Pages
-[group('deployment')]
-deploy: site
-  mkd-gh-deploy
-
 # Run all tests
 [group('model development')]
 test: _test-schema _test-python _test-examples
 
-# Run linting
+# Run linting; a warning fails it as an error does (CI runs the same command)
 [group('model development')]
 lint:
-  uv run linkml-lint {{source_schema_dir}}
+  uv run linkml-lint {{source_schema_path}}
 
 # Regenerate the empty overlay scaffold from the public schema.
 # Safe to commit - contains no copyrighted text. See src/iso27001/schema/OVERLAY.md
@@ -145,7 +140,7 @@ overlay-licensed-text:
 gen-doc: _gen-yaml && _add-artifacts
   uv run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}
 
-# Build docs and run test server
+# Build docs and serve the website locally
 [group('model development')]
 testdoc: gen-doc _serve
 
@@ -158,7 +153,8 @@ gen-python:
 [group('model development')]
 gen-project:  apply-sssom-overlay
   uv run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
-  mv {{dest}}/*.py {{pymodel}}
+  mkdir -p {{pymodel}}
+  mv {{dest}}/*.py {{pymodel}}/
   uv run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
 
   @# Some generators ignore config_yaml or cannot create directories, so we run them separately.
@@ -226,9 +222,9 @@ _check-config:
 _update-template:
   copier update --trust --skip-answered
 
-# Update LinkML to latest version
+# Update LinkML runtime and LinkML to latest versions
 _update-linkml:
-  uv add linkml --upgrade-package linkml
+  uv lock --upgrade-package linkml-runtime --upgrade-package linkml
 
 # Test schema generation
 _test-schema:
@@ -258,9 +254,9 @@ _gen-yaml:
 # Overridable recipe to add project-specific artifacts to the distribution schema path
 _add-artifacts:
 
-# Run documentation server
+# Run the website's development server
 _serve:
-  uv run mkdocs serve
+  cd website && npm ci --ignore-scripts && npm run dev
 
 # Initialize git repository
 _git-init:

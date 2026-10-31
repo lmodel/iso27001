@@ -1,0 +1,6 @@
+# Fails at: /
+# Invalid: an included entry names an Annex A control, one of the
+# organization's controls, or both.
+entry_type: IsmsIncludedControl
+entry_justification: Needed to treat the phishing risk.
+implementation_state: implemented

@@ -1,0 +1,10 @@
+isms_id: probo:properly-off-board-your-employees
+title: Properly off-board your employees
+control_annex_a_controls:
+  - a_5_11
+  - a_6_5
+  - a_5_15
+control_theme: organizational
+control_text: Yes, people will leave your company (either by your decision or theirs). And
+  you want to be prepare!
+implementation_state: not_started

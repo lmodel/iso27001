@@ -1,0 +1,5 @@
+# Fails at: /audit_type
+# Invalid: internal is an alias of first_party, and data writes the value.
+isms_id: acme:audit-2026-internal
+title: Internal audit, spring 2026
+audit_type: internal

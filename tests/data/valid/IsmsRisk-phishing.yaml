@@ -1,0 +1,20 @@
+# A risk in the register, rated before and after controls.
+isms_id: acme:risk-phishing
+title: Credentials taken by phishing
+risk_source: External attackers
+risk_threat: Phishing messages that capture staff passwords.
+risk_vulnerability: Older mail clients that do not ask for a second factor.
+affected_assets:
+  - acme:asset-mail
+affected_security_properties:
+  - confidentiality
+  - integrity
+risk_owner: Head of IT Operations
+risk_likelihood: likely
+risk_impact: major
+risk_inherent_level: high
+risk_existing_controls:
+  - acme:control-awareness
+risk_residual_level: medium
+risk_treatment_option: modify
+risk_treatment_priority: high

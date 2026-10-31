@@ -1,0 +1,10 @@
+# An internal audit programme that plans an audit.
+isms_id: acme:audit-programme-2026
+title: Internal audit programme 2026
+programme_period: "2026"
+programme_audits:
+  - acme:audit-2026-internal
+programme_frequency_rationale: Every clause yearly; high-risk areas twice.
+programme_resources: One external auditor for five days.
+programme_auditor_qualifications: ISMS lead auditor training.
+programme_status: in progress

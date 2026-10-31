@@ -1,0 +1,10 @@
+isms_id: probo:restrict-public-access-on-your-infrastructure
+title: Restrict public access on your infrastructure
+control_annex_a_controls:
+  - a_8_9
+  - a_8_20
+control_theme: technological
+control_text: Public access to your company's infrastructure is a serious security risk. By
+  configuring your cloud provider to restrict public access, you can reduce the risk of unauthorized
+  access to your sensitive data and systems
+implementation_state: not_started

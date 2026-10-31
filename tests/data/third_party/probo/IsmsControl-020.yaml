@@ -1,0 +1,9 @@
+isms_id: probo:establish-documentation-system
+title: Establish documentation system
+control_annex_a_controls:
+  - a_5_33
+control_theme: organizational
+control_text: A central documentation system ensures information is accessible, consistent,
+  and easily updated. It simplifies audits, maintains clarity across teams, and helps prove
+  compliance with internal and external requirements
+implementation_state: not_started

@@ -1,0 +1,10 @@
+isms_id: probo:help-the-auditor-with-a-data-flow-diagram
+title: Help the auditor with a data-flow diagram
+control_annex_a_controls:
+  - a_8_20
+  - a_5_29
+control_theme: technological
+control_text: The auditor doesn’t know your company and your systems. Providing him with a
+  diagram that show all account data accross your systems & networks will enable him/her to
+  understand your challenges faster and also to better evaluate your tradeoffs (when needed)
+implementation_state: not_started

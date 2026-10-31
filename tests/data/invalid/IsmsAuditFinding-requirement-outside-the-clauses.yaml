@@ -1,0 +1,6 @@
+# Fails at: /finding_requirement
+# Invalid: the requirements of ISO/IEC 27001 are in clauses 4 to 10.
+isms_id: acme:finding-2026-01
+title: Access reviews not recorded
+finding_type: minor_nonconformity
+finding_requirement: "3.1"

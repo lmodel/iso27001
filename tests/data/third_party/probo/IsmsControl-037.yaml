@@ -1,0 +1,9 @@
+isms_id: probo:enable-autoscaling
+title: Enable autoscaling
+control_annex_a_controls:
+  - a_8_6
+control_theme: technological
+control_text: Autoscaling helps maintain stable performance under changing workloads, preventing
+  outages from sudden traffic spikes while optimizing costs when load decreases. It also reduces
+  manual intervention, freeing your team to focus on more critical tasks
+implementation_state: not_started

@@ -10,324 +10,40 @@
 
 namespace iso27001 {
 
-/// The four control domains defined in ISO/IEC 27001:2022 Annex A, corresponding to Clauses 5-8 of ISO/IEC 27002:2022.
-enum class ControlCategory {
-    /// Organizational controls (Annex A.5) - policies, roles, asset management, access control, supplier relationships, incident management, compliance.
+/// The four themes Annex A sorts its controls into, which ISO/IEC 27002:2022 also uses.
+enum class IsmsControlTheme {
+    /// The organizational controls, numbered A.5.1 to A.5.37.
     ORGANIZATIONAL,
-    /// People controls (Annex A.6) - screening, employment terms, awareness, disciplinary process, termination responsibilities, remote working.
+    /// The people controls, numbered A.6.1 to A.6.8.
     PEOPLE,
-    /// Physical controls (Annex A.7) - perimeters, entry controls, equipment protection, secure areas, media handling, cabling, maintenance.
+    /// The physical controls, numbered A.7.1 to A.7.14.
     PHYSICAL,
-    /// Technological controls (Annex A.8) - endpoint security, access restrictions, authentication, malware protection, logging, cryptography, secure development.
+    /// The technological controls, numbered A.8.1 to A.8.34.
     TECHNOLOGICAL
 };
 
-/// Convert ControlCategory to its string representation.
-inline const char* to_string(ControlCategory value) {
+/// Convert IsmsControlTheme to its string representation.
+inline const char* to_string(IsmsControlTheme value) {
     switch (value) {
-        case ControlCategory::ORGANIZATIONAL: return "organizational";
-        case ControlCategory::PEOPLE: return "people";
-        case ControlCategory::PHYSICAL: return "physical";
-        case ControlCategory::TECHNOLOGICAL: return "technological";
+        case IsmsControlTheme::ORGANIZATIONAL: return "organizational";
+        case IsmsControlTheme::PEOPLE: return "people";
+        case IsmsControlTheme::PHYSICAL: return "physical";
+        case IsmsControlTheme::TECHNOLOGICAL: return "technological";
     }
     return "unknown";
 }
 
-/// Parse a string into ControlCategory. Returns false if the string is not a valid value.
-inline bool from_string(const char* str, ControlCategory& out) {
-    if (std::strcmp(str, "organizational") == 0) { out = ControlCategory::ORGANIZATIONAL; return true; }
-    if (std::strcmp(str, "people") == 0) { out = ControlCategory::PEOPLE; return true; }
-    if (std::strcmp(str, "physical") == 0) { out = ControlCategory::PHYSICAL; return true; }
-    if (std::strcmp(str, "technological") == 0) { out = ControlCategory::TECHNOLOGICAL; return true; }
+/// Parse a string into IsmsControlTheme. Returns false if the string is not a valid value.
+inline bool from_string(const char* str, IsmsControlTheme& out) {
+    if (std::strcmp(str, "organizational") == 0) { out = IsmsControlTheme::ORGANIZATIONAL; return true; }
+    if (std::strcmp(str, "people") == 0) { out = IsmsControlTheme::PEOPLE; return true; }
+    if (std::strcmp(str, "physical") == 0) { out = IsmsControlTheme::PHYSICAL; return true; }
+    if (std::strcmp(str, "technological") == 0) { out = IsmsControlTheme::TECHNOLOGICAL; return true; }
     return false;
 }
 
-/// Lifecycle status of a security control, used in Statement of Applicability and control tracking.
-enum class ImplementationStatus {
-    /// Control identified but no implementation activities begun.
-    NOT_STARTED,
-    /// Control scheduled for implementation with defined timeline.
-    PLANNED,
-    /// Implementation actively underway but not yet complete.
-    IN_PROGRESS,
-    /// Control fully implemented and operational.
-    IMPLEMENTED,
-    /// Control excluded from scope with documented justification per 6.1.3 d).
-    NOT_APPLICABLE
-};
-
-/// Convert ImplementationStatus to its string representation.
-inline const char* to_string(ImplementationStatus value) {
-    switch (value) {
-        case ImplementationStatus::NOT_STARTED: return "not_started";
-        case ImplementationStatus::PLANNED: return "planned";
-        case ImplementationStatus::IN_PROGRESS: return "in_progress";
-        case ImplementationStatus::IMPLEMENTED: return "implemented";
-        case ImplementationStatus::NOT_APPLICABLE: return "not_applicable";
-    }
-    return "unknown";
-}
-
-/// Parse a string into ImplementationStatus. Returns false if the string is not a valid value.
-inline bool from_string(const char* str, ImplementationStatus& out) {
-    if (std::strcmp(str, "not_started") == 0) { out = ImplementationStatus::NOT_STARTED; return true; }
-    if (std::strcmp(str, "planned") == 0) { out = ImplementationStatus::PLANNED; return true; }
-    if (std::strcmp(str, "in_progress") == 0) { out = ImplementationStatus::IN_PROGRESS; return true; }
-    if (std::strcmp(str, "implemented") == 0) { out = ImplementationStatus::IMPLEMENTED; return true; }
-    if (std::strcmp(str, "not_applicable") == 0) { out = ImplementationStatus::NOT_APPLICABLE; return true; }
-    return false;
-}
-
-/// Standard risk treatment options per ISO 31000 and ISO 27005.
-enum class RiskTreatmentOption {
-    /// Apply controls to change the risk level (reduce likelihood or impact).
-    MODIFY,
-    /// Accept the risk without further treatment, within risk appetite. Requires risk owner approval.
-    ACCEPT,
-    /// Eliminate the risk by removing the activity or asset that creates it.
-    AVOID,
-    /// Transfer or share risk with external parties (e.g., insurance, outsourcing).
-    SHARE
-};
-
-/// Convert RiskTreatmentOption to its string representation.
-inline const char* to_string(RiskTreatmentOption value) {
-    switch (value) {
-        case RiskTreatmentOption::MODIFY: return "modify";
-        case RiskTreatmentOption::ACCEPT: return "accept";
-        case RiskTreatmentOption::AVOID: return "avoid";
-        case RiskTreatmentOption::SHARE: return "share";
-    }
-    return "unknown";
-}
-
-/// Parse a string into RiskTreatmentOption. Returns false if the string is not a valid value.
-inline bool from_string(const char* str, RiskTreatmentOption& out) {
-    if (std::strcmp(str, "modify") == 0) { out = RiskTreatmentOption::MODIFY; return true; }
-    if (std::strcmp(str, "accept") == 0) { out = RiskTreatmentOption::ACCEPT; return true; }
-    if (std::strcmp(str, "avoid") == 0) { out = RiskTreatmentOption::AVOID; return true; }
-    if (std::strcmp(str, "share") == 0) { out = RiskTreatmentOption::SHARE; return true; }
-    return false;
-}
-
-/// Qualitative risk rating derived from likelihood x impact analysis.
-enum class RiskLevel {
-    /// Negligible risk requiring no immediate action.
-    VERY_LOW,
-    /// Minor risk manageable through routine procedures.
-    LOW,
-    /// Moderate risk requiring management attention and planned controls.
-    MEDIUM,
-    /// Significant risk requiring priority treatment and escalation.
-    HIGH,
-    /// Severe risk threatening organizational objectives; requires immediate executive action and resource allocation.
-    CRITICAL
-};
-
-/// Convert RiskLevel to its string representation.
-inline const char* to_string(RiskLevel value) {
-    switch (value) {
-        case RiskLevel::VERY_LOW: return "very_low";
-        case RiskLevel::LOW: return "low";
-        case RiskLevel::MEDIUM: return "medium";
-        case RiskLevel::HIGH: return "high";
-        case RiskLevel::CRITICAL: return "critical";
-    }
-    return "unknown";
-}
-
-/// Parse a string into RiskLevel. Returns false if the string is not a valid value.
-inline bool from_string(const char* str, RiskLevel& out) {
-    if (std::strcmp(str, "very_low") == 0) { out = RiskLevel::VERY_LOW; return true; }
-    if (std::strcmp(str, "low") == 0) { out = RiskLevel::LOW; return true; }
-    if (std::strcmp(str, "medium") == 0) { out = RiskLevel::MEDIUM; return true; }
-    if (std::strcmp(str, "high") == 0) { out = RiskLevel::HIGH; return true; }
-    if (std::strcmp(str, "critical") == 0) { out = RiskLevel::CRITICAL; return true; }
-    return false;
-}
-
-/// Categories of documented information required or recommended by ISO 27001.
-enum class DocumentType {
-    /// High-level statement of intent and direction (e.g., IS policy per 5.2).
-    POLICY,
-    /// Documented steps for performing activities consistently.
-    PROCEDURE,
-    /// Mandatory requirements for specific technologies or processes.
-    STANDARD,
-    /// Recommended practices that support policies and procedures.
-    GUIDELINE,
-    /// Evidence of activities performed or results achieved.
-    RECORD,
-    /// Documented approach for achieving objectives (e.g., risk treatment plan).
-    PLAN,
-    /// Formal output of assessment, audit, or review activities.
-    REPORT
-};
-
-/// Convert DocumentType to its string representation.
-inline const char* to_string(DocumentType value) {
-    switch (value) {
-        case DocumentType::POLICY: return "policy";
-        case DocumentType::PROCEDURE: return "procedure";
-        case DocumentType::STANDARD: return "standard";
-        case DocumentType::GUIDELINE: return "guideline";
-        case DocumentType::RECORD: return "record";
-        case DocumentType::PLAN: return "plan";
-        case DocumentType::REPORT: return "report";
-    }
-    return "unknown";
-}
-
-/// Parse a string into DocumentType. Returns false if the string is not a valid value.
-inline bool from_string(const char* str, DocumentType& out) {
-    if (std::strcmp(str, "policy") == 0) { out = DocumentType::POLICY; return true; }
-    if (std::strcmp(str, "procedure") == 0) { out = DocumentType::PROCEDURE; return true; }
-    if (std::strcmp(str, "standard") == 0) { out = DocumentType::STANDARD; return true; }
-    if (std::strcmp(str, "guideline") == 0) { out = DocumentType::GUIDELINE; return true; }
-    if (std::strcmp(str, "record") == 0) { out = DocumentType::RECORD; return true; }
-    if (std::strcmp(str, "plan") == 0) { out = DocumentType::PLAN; return true; }
-    if (std::strcmp(str, "report") == 0) { out = DocumentType::REPORT; return true; }
-    return false;
-}
-
-/// Classification of internal audit findings.
-enum class AuditFindingType {
-    /// Significant failure to fulfill a requirement that affects ISMS capability to achieve intended outcomes.
-    MAJOR_NONCONFORMITY,
-    /// Isolated lapse that does not significantly affect ISMS effectiveness.
-    MINOR_NONCONFORMITY,
-    /// Noted condition that could lead to nonconformity if not addressed.
-    OBSERVATION,
-    /// Evidence of effective implementation exceeding requirements.
-    POSITIVE_FINDING
-};
-
-/// Convert AuditFindingType to its string representation.
-inline const char* to_string(AuditFindingType value) {
-    switch (value) {
-        case AuditFindingType::MAJOR_NONCONFORMITY: return "major_nonconformity";
-        case AuditFindingType::MINOR_NONCONFORMITY: return "minor_nonconformity";
-        case AuditFindingType::OBSERVATION: return "observation";
-        case AuditFindingType::POSITIVE_FINDING: return "positive_finding";
-    }
-    return "unknown";
-}
-
-/// Parse a string into AuditFindingType. Returns false if the string is not a valid value.
-inline bool from_string(const char* str, AuditFindingType& out) {
-    if (std::strcmp(str, "major_nonconformity") == 0) { out = AuditFindingType::MAJOR_NONCONFORMITY; return true; }
-    if (std::strcmp(str, "minor_nonconformity") == 0) { out = AuditFindingType::MINOR_NONCONFORMITY; return true; }
-    if (std::strcmp(str, "observation") == 0) { out = AuditFindingType::OBSERVATION; return true; }
-    if (std::strcmp(str, "positive_finding") == 0) { out = AuditFindingType::POSITIVE_FINDING; return true; }
-    return false;
-}
-
-/// Qualitative likelihood scale for risk assessment.
-enum class LikelihoodRating {
-    /// Highly unlikely to occur (< 5% probability).
-    RARE,
-    /// Not expected but possible (5-20% probability).
-    UNLIKELY,
-    /// May occur at some point (20-50% probability).
-    POSSIBLE,
-    /// Probably will occur (50-80% probability).
-    LIKELY,
-    /// Expected to occur in most circumstances (> 80% probability).
-    ALMOST_CERTAIN
-};
-
-/// Convert LikelihoodRating to its string representation.
-inline const char* to_string(LikelihoodRating value) {
-    switch (value) {
-        case LikelihoodRating::RARE: return "rare";
-        case LikelihoodRating::UNLIKELY: return "unlikely";
-        case LikelihoodRating::POSSIBLE: return "possible";
-        case LikelihoodRating::LIKELY: return "likely";
-        case LikelihoodRating::ALMOST_CERTAIN: return "almost_certain";
-    }
-    return "unknown";
-}
-
-/// Parse a string into LikelihoodRating. Returns false if the string is not a valid value.
-inline bool from_string(const char* str, LikelihoodRating& out) {
-    if (std::strcmp(str, "rare") == 0) { out = LikelihoodRating::RARE; return true; }
-    if (std::strcmp(str, "unlikely") == 0) { out = LikelihoodRating::UNLIKELY; return true; }
-    if (std::strcmp(str, "possible") == 0) { out = LikelihoodRating::POSSIBLE; return true; }
-    if (std::strcmp(str, "likely") == 0) { out = LikelihoodRating::LIKELY; return true; }
-    if (std::strcmp(str, "almost_certain") == 0) { out = LikelihoodRating::ALMOST_CERTAIN; return true; }
-    return false;
-}
-
-/// Information security properties whose loss is considered when identifying risks per ISO/IEC 27001:2022 Clause 6.1.2 c) 1).
-enum class CIAProperty {
-    /// Property of information not being made available or disclosed to unauthorized entities.
-    CONFIDENTIALITY,
-    /// Property of accuracy and completeness of information.
-    INTEGRITY,
-    /// Property of being accessible and usable on demand by an authorized entity.
-    AVAILABILITY
-};
-
-/// Convert CIAProperty to its string representation.
-inline const char* to_string(CIAProperty value) {
-    switch (value) {
-        case CIAProperty::CONFIDENTIALITY: return "confidentiality";
-        case CIAProperty::INTEGRITY: return "integrity";
-        case CIAProperty::AVAILABILITY: return "availability";
-    }
-    return "unknown";
-}
-
-/// Parse a string into CIAProperty. Returns false if the string is not a valid value.
-inline bool from_string(const char* str, CIAProperty& out) {
-    if (std::strcmp(str, "confidentiality") == 0) { out = CIAProperty::CONFIDENTIALITY; return true; }
-    if (std::strcmp(str, "integrity") == 0) { out = CIAProperty::INTEGRITY; return true; }
-    if (std::strcmp(str, "availability") == 0) { out = CIAProperty::AVAILABILITY; return true; }
-    return false;
-}
-
-/// Classification of audits referenced by ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1 (audit programmes).
-enum class AuditType {
-    /// First-party audit conducted by the organization itself per 9.2.
-    INTERNAL,
-    /// Audit conducted by a party with an interest in the organization (e.g., customer).
-    EXTERNAL_SECOND_PARTY,
-    /// Independent audit by a certification body or other third party.
-    EXTERNAL_THIRD_PARTY,
-    /// Periodic third-party audit between certification and recertification.
-    SURVEILLANCE,
-    /// Third-party audit conducted to renew certification.
-    RECERTIFICATION,
-    /// Audit performed jointly against two or more management system standards.
-    COMBINED
-};
-
-/// Convert AuditType to its string representation.
-inline const char* to_string(AuditType value) {
-    switch (value) {
-        case AuditType::INTERNAL: return "internal";
-        case AuditType::EXTERNAL_SECOND_PARTY: return "external_second_party";
-        case AuditType::EXTERNAL_THIRD_PARTY: return "external_third_party";
-        case AuditType::SURVEILLANCE: return "surveillance";
-        case AuditType::RECERTIFICATION: return "recertification";
-        case AuditType::COMBINED: return "combined";
-    }
-    return "unknown";
-}
-
-/// Parse a string into AuditType. Returns false if the string is not a valid value.
-inline bool from_string(const char* str, AuditType& out) {
-    if (std::strcmp(str, "internal") == 0) { out = AuditType::INTERNAL; return true; }
-    if (std::strcmp(str, "external_second_party") == 0) { out = AuditType::EXTERNAL_SECOND_PARTY; return true; }
-    if (std::strcmp(str, "external_third_party") == 0) { out = AuditType::EXTERNAL_THIRD_PARTY; return true; }
-    if (std::strcmp(str, "surveillance") == 0) { out = AuditType::SURVEILLANCE; return true; }
-    if (std::strcmp(str, "recertification") == 0) { out = AuditType::RECERTIFICATION; return true; }
-    if (std::strcmp(str, "combined") == 0) { out = AuditType::COMBINED; return true; }
-    return false;
-}
-
-/// Identifiers of the 93 reference information security controls listed in ISO/IEC 27001:2022 Annex A (as also titled in ISO/IEC 27002:2022). Control text and titles are normative ISO content and are not reproduced here.
-enum class AnnexAControlId {
+/// The 93 reference controls of Annex A, by their numbers. The values carry no titles: the titles and the control text are ISO's.
+enum class IsmsAnnexAControl {
     A_5_1,
     A_5_2,
     A_5_3,
@@ -423,302 +139,598 @@ enum class AnnexAControlId {
     A_8_34
 };
 
-/// Convert AnnexAControlId to its string representation.
-inline const char* to_string(AnnexAControlId value) {
+/// Convert IsmsAnnexAControl to its string representation.
+inline const char* to_string(IsmsAnnexAControl value) {
     switch (value) {
-        case AnnexAControlId::A_5_1: return "a_5_1";
-        case AnnexAControlId::A_5_2: return "a_5_2";
-        case AnnexAControlId::A_5_3: return "a_5_3";
-        case AnnexAControlId::A_5_4: return "a_5_4";
-        case AnnexAControlId::A_5_5: return "a_5_5";
-        case AnnexAControlId::A_5_6: return "a_5_6";
-        case AnnexAControlId::A_5_7: return "a_5_7";
-        case AnnexAControlId::A_5_8: return "a_5_8";
-        case AnnexAControlId::A_5_9: return "a_5_9";
-        case AnnexAControlId::A_5_10: return "a_5_10";
-        case AnnexAControlId::A_5_11: return "a_5_11";
-        case AnnexAControlId::A_5_12: return "a_5_12";
-        case AnnexAControlId::A_5_13: return "a_5_13";
-        case AnnexAControlId::A_5_14: return "a_5_14";
-        case AnnexAControlId::A_5_15: return "a_5_15";
-        case AnnexAControlId::A_5_16: return "a_5_16";
-        case AnnexAControlId::A_5_17: return "a_5_17";
-        case AnnexAControlId::A_5_18: return "a_5_18";
-        case AnnexAControlId::A_5_19: return "a_5_19";
-        case AnnexAControlId::A_5_20: return "a_5_20";
-        case AnnexAControlId::A_5_21: return "a_5_21";
-        case AnnexAControlId::A_5_22: return "a_5_22";
-        case AnnexAControlId::A_5_23: return "a_5_23";
-        case AnnexAControlId::A_5_24: return "a_5_24";
-        case AnnexAControlId::A_5_25: return "a_5_25";
-        case AnnexAControlId::A_5_26: return "a_5_26";
-        case AnnexAControlId::A_5_27: return "a_5_27";
-        case AnnexAControlId::A_5_28: return "a_5_28";
-        case AnnexAControlId::A_5_29: return "a_5_29";
-        case AnnexAControlId::A_5_30: return "a_5_30";
-        case AnnexAControlId::A_5_31: return "a_5_31";
-        case AnnexAControlId::A_5_32: return "a_5_32";
-        case AnnexAControlId::A_5_33: return "a_5_33";
-        case AnnexAControlId::A_5_34: return "a_5_34";
-        case AnnexAControlId::A_5_35: return "a_5_35";
-        case AnnexAControlId::A_5_36: return "a_5_36";
-        case AnnexAControlId::A_5_37: return "a_5_37";
-        case AnnexAControlId::A_6_1: return "a_6_1";
-        case AnnexAControlId::A_6_2: return "a_6_2";
-        case AnnexAControlId::A_6_3: return "a_6_3";
-        case AnnexAControlId::A_6_4: return "a_6_4";
-        case AnnexAControlId::A_6_5: return "a_6_5";
-        case AnnexAControlId::A_6_6: return "a_6_6";
-        case AnnexAControlId::A_6_7: return "a_6_7";
-        case AnnexAControlId::A_6_8: return "a_6_8";
-        case AnnexAControlId::A_7_1: return "a_7_1";
-        case AnnexAControlId::A_7_2: return "a_7_2";
-        case AnnexAControlId::A_7_3: return "a_7_3";
-        case AnnexAControlId::A_7_4: return "a_7_4";
-        case AnnexAControlId::A_7_5: return "a_7_5";
-        case AnnexAControlId::A_7_6: return "a_7_6";
-        case AnnexAControlId::A_7_7: return "a_7_7";
-        case AnnexAControlId::A_7_8: return "a_7_8";
-        case AnnexAControlId::A_7_9: return "a_7_9";
-        case AnnexAControlId::A_7_10: return "a_7_10";
-        case AnnexAControlId::A_7_11: return "a_7_11";
-        case AnnexAControlId::A_7_12: return "a_7_12";
-        case AnnexAControlId::A_7_13: return "a_7_13";
-        case AnnexAControlId::A_7_14: return "a_7_14";
-        case AnnexAControlId::A_8_1: return "a_8_1";
-        case AnnexAControlId::A_8_2: return "a_8_2";
-        case AnnexAControlId::A_8_3: return "a_8_3";
-        case AnnexAControlId::A_8_4: return "a_8_4";
-        case AnnexAControlId::A_8_5: return "a_8_5";
-        case AnnexAControlId::A_8_6: return "a_8_6";
-        case AnnexAControlId::A_8_7: return "a_8_7";
-        case AnnexAControlId::A_8_8: return "a_8_8";
-        case AnnexAControlId::A_8_9: return "a_8_9";
-        case AnnexAControlId::A_8_10: return "a_8_10";
-        case AnnexAControlId::A_8_11: return "a_8_11";
-        case AnnexAControlId::A_8_12: return "a_8_12";
-        case AnnexAControlId::A_8_13: return "a_8_13";
-        case AnnexAControlId::A_8_14: return "a_8_14";
-        case AnnexAControlId::A_8_15: return "a_8_15";
-        case AnnexAControlId::A_8_16: return "a_8_16";
-        case AnnexAControlId::A_8_17: return "a_8_17";
-        case AnnexAControlId::A_8_18: return "a_8_18";
-        case AnnexAControlId::A_8_19: return "a_8_19";
-        case AnnexAControlId::A_8_20: return "a_8_20";
-        case AnnexAControlId::A_8_21: return "a_8_21";
-        case AnnexAControlId::A_8_22: return "a_8_22";
-        case AnnexAControlId::A_8_23: return "a_8_23";
-        case AnnexAControlId::A_8_24: return "a_8_24";
-        case AnnexAControlId::A_8_25: return "a_8_25";
-        case AnnexAControlId::A_8_26: return "a_8_26";
-        case AnnexAControlId::A_8_27: return "a_8_27";
-        case AnnexAControlId::A_8_28: return "a_8_28";
-        case AnnexAControlId::A_8_29: return "a_8_29";
-        case AnnexAControlId::A_8_30: return "a_8_30";
-        case AnnexAControlId::A_8_31: return "a_8_31";
-        case AnnexAControlId::A_8_32: return "a_8_32";
-        case AnnexAControlId::A_8_33: return "a_8_33";
-        case AnnexAControlId::A_8_34: return "a_8_34";
+        case IsmsAnnexAControl::A_5_1: return "a_5_1";
+        case IsmsAnnexAControl::A_5_2: return "a_5_2";
+        case IsmsAnnexAControl::A_5_3: return "a_5_3";
+        case IsmsAnnexAControl::A_5_4: return "a_5_4";
+        case IsmsAnnexAControl::A_5_5: return "a_5_5";
+        case IsmsAnnexAControl::A_5_6: return "a_5_6";
+        case IsmsAnnexAControl::A_5_7: return "a_5_7";
+        case IsmsAnnexAControl::A_5_8: return "a_5_8";
+        case IsmsAnnexAControl::A_5_9: return "a_5_9";
+        case IsmsAnnexAControl::A_5_10: return "a_5_10";
+        case IsmsAnnexAControl::A_5_11: return "a_5_11";
+        case IsmsAnnexAControl::A_5_12: return "a_5_12";
+        case IsmsAnnexAControl::A_5_13: return "a_5_13";
+        case IsmsAnnexAControl::A_5_14: return "a_5_14";
+        case IsmsAnnexAControl::A_5_15: return "a_5_15";
+        case IsmsAnnexAControl::A_5_16: return "a_5_16";
+        case IsmsAnnexAControl::A_5_17: return "a_5_17";
+        case IsmsAnnexAControl::A_5_18: return "a_5_18";
+        case IsmsAnnexAControl::A_5_19: return "a_5_19";
+        case IsmsAnnexAControl::A_5_20: return "a_5_20";
+        case IsmsAnnexAControl::A_5_21: return "a_5_21";
+        case IsmsAnnexAControl::A_5_22: return "a_5_22";
+        case IsmsAnnexAControl::A_5_23: return "a_5_23";
+        case IsmsAnnexAControl::A_5_24: return "a_5_24";
+        case IsmsAnnexAControl::A_5_25: return "a_5_25";
+        case IsmsAnnexAControl::A_5_26: return "a_5_26";
+        case IsmsAnnexAControl::A_5_27: return "a_5_27";
+        case IsmsAnnexAControl::A_5_28: return "a_5_28";
+        case IsmsAnnexAControl::A_5_29: return "a_5_29";
+        case IsmsAnnexAControl::A_5_30: return "a_5_30";
+        case IsmsAnnexAControl::A_5_31: return "a_5_31";
+        case IsmsAnnexAControl::A_5_32: return "a_5_32";
+        case IsmsAnnexAControl::A_5_33: return "a_5_33";
+        case IsmsAnnexAControl::A_5_34: return "a_5_34";
+        case IsmsAnnexAControl::A_5_35: return "a_5_35";
+        case IsmsAnnexAControl::A_5_36: return "a_5_36";
+        case IsmsAnnexAControl::A_5_37: return "a_5_37";
+        case IsmsAnnexAControl::A_6_1: return "a_6_1";
+        case IsmsAnnexAControl::A_6_2: return "a_6_2";
+        case IsmsAnnexAControl::A_6_3: return "a_6_3";
+        case IsmsAnnexAControl::A_6_4: return "a_6_4";
+        case IsmsAnnexAControl::A_6_5: return "a_6_5";
+        case IsmsAnnexAControl::A_6_6: return "a_6_6";
+        case IsmsAnnexAControl::A_6_7: return "a_6_7";
+        case IsmsAnnexAControl::A_6_8: return "a_6_8";
+        case IsmsAnnexAControl::A_7_1: return "a_7_1";
+        case IsmsAnnexAControl::A_7_2: return "a_7_2";
+        case IsmsAnnexAControl::A_7_3: return "a_7_3";
+        case IsmsAnnexAControl::A_7_4: return "a_7_4";
+        case IsmsAnnexAControl::A_7_5: return "a_7_5";
+        case IsmsAnnexAControl::A_7_6: return "a_7_6";
+        case IsmsAnnexAControl::A_7_7: return "a_7_7";
+        case IsmsAnnexAControl::A_7_8: return "a_7_8";
+        case IsmsAnnexAControl::A_7_9: return "a_7_9";
+        case IsmsAnnexAControl::A_7_10: return "a_7_10";
+        case IsmsAnnexAControl::A_7_11: return "a_7_11";
+        case IsmsAnnexAControl::A_7_12: return "a_7_12";
+        case IsmsAnnexAControl::A_7_13: return "a_7_13";
+        case IsmsAnnexAControl::A_7_14: return "a_7_14";
+        case IsmsAnnexAControl::A_8_1: return "a_8_1";
+        case IsmsAnnexAControl::A_8_2: return "a_8_2";
+        case IsmsAnnexAControl::A_8_3: return "a_8_3";
+        case IsmsAnnexAControl::A_8_4: return "a_8_4";
+        case IsmsAnnexAControl::A_8_5: return "a_8_5";
+        case IsmsAnnexAControl::A_8_6: return "a_8_6";
+        case IsmsAnnexAControl::A_8_7: return "a_8_7";
+        case IsmsAnnexAControl::A_8_8: return "a_8_8";
+        case IsmsAnnexAControl::A_8_9: return "a_8_9";
+        case IsmsAnnexAControl::A_8_10: return "a_8_10";
+        case IsmsAnnexAControl::A_8_11: return "a_8_11";
+        case IsmsAnnexAControl::A_8_12: return "a_8_12";
+        case IsmsAnnexAControl::A_8_13: return "a_8_13";
+        case IsmsAnnexAControl::A_8_14: return "a_8_14";
+        case IsmsAnnexAControl::A_8_15: return "a_8_15";
+        case IsmsAnnexAControl::A_8_16: return "a_8_16";
+        case IsmsAnnexAControl::A_8_17: return "a_8_17";
+        case IsmsAnnexAControl::A_8_18: return "a_8_18";
+        case IsmsAnnexAControl::A_8_19: return "a_8_19";
+        case IsmsAnnexAControl::A_8_20: return "a_8_20";
+        case IsmsAnnexAControl::A_8_21: return "a_8_21";
+        case IsmsAnnexAControl::A_8_22: return "a_8_22";
+        case IsmsAnnexAControl::A_8_23: return "a_8_23";
+        case IsmsAnnexAControl::A_8_24: return "a_8_24";
+        case IsmsAnnexAControl::A_8_25: return "a_8_25";
+        case IsmsAnnexAControl::A_8_26: return "a_8_26";
+        case IsmsAnnexAControl::A_8_27: return "a_8_27";
+        case IsmsAnnexAControl::A_8_28: return "a_8_28";
+        case IsmsAnnexAControl::A_8_29: return "a_8_29";
+        case IsmsAnnexAControl::A_8_30: return "a_8_30";
+        case IsmsAnnexAControl::A_8_31: return "a_8_31";
+        case IsmsAnnexAControl::A_8_32: return "a_8_32";
+        case IsmsAnnexAControl::A_8_33: return "a_8_33";
+        case IsmsAnnexAControl::A_8_34: return "a_8_34";
     }
     return "unknown";
 }
 
-/// Parse a string into AnnexAControlId. Returns false if the string is not a valid value.
-inline bool from_string(const char* str, AnnexAControlId& out) {
-    if (std::strcmp(str, "a_5_1") == 0) { out = AnnexAControlId::A_5_1; return true; }
-    if (std::strcmp(str, "a_5_2") == 0) { out = AnnexAControlId::A_5_2; return true; }
-    if (std::strcmp(str, "a_5_3") == 0) { out = AnnexAControlId::A_5_3; return true; }
-    if (std::strcmp(str, "a_5_4") == 0) { out = AnnexAControlId::A_5_4; return true; }
-    if (std::strcmp(str, "a_5_5") == 0) { out = AnnexAControlId::A_5_5; return true; }
-    if (std::strcmp(str, "a_5_6") == 0) { out = AnnexAControlId::A_5_6; return true; }
-    if (std::strcmp(str, "a_5_7") == 0) { out = AnnexAControlId::A_5_7; return true; }
-    if (std::strcmp(str, "a_5_8") == 0) { out = AnnexAControlId::A_5_8; return true; }
-    if (std::strcmp(str, "a_5_9") == 0) { out = AnnexAControlId::A_5_9; return true; }
-    if (std::strcmp(str, "a_5_10") == 0) { out = AnnexAControlId::A_5_10; return true; }
-    if (std::strcmp(str, "a_5_11") == 0) { out = AnnexAControlId::A_5_11; return true; }
-    if (std::strcmp(str, "a_5_12") == 0) { out = AnnexAControlId::A_5_12; return true; }
-    if (std::strcmp(str, "a_5_13") == 0) { out = AnnexAControlId::A_5_13; return true; }
-    if (std::strcmp(str, "a_5_14") == 0) { out = AnnexAControlId::A_5_14; return true; }
-    if (std::strcmp(str, "a_5_15") == 0) { out = AnnexAControlId::A_5_15; return true; }
-    if (std::strcmp(str, "a_5_16") == 0) { out = AnnexAControlId::A_5_16; return true; }
-    if (std::strcmp(str, "a_5_17") == 0) { out = AnnexAControlId::A_5_17; return true; }
-    if (std::strcmp(str, "a_5_18") == 0) { out = AnnexAControlId::A_5_18; return true; }
-    if (std::strcmp(str, "a_5_19") == 0) { out = AnnexAControlId::A_5_19; return true; }
-    if (std::strcmp(str, "a_5_20") == 0) { out = AnnexAControlId::A_5_20; return true; }
-    if (std::strcmp(str, "a_5_21") == 0) { out = AnnexAControlId::A_5_21; return true; }
-    if (std::strcmp(str, "a_5_22") == 0) { out = AnnexAControlId::A_5_22; return true; }
-    if (std::strcmp(str, "a_5_23") == 0) { out = AnnexAControlId::A_5_23; return true; }
-    if (std::strcmp(str, "a_5_24") == 0) { out = AnnexAControlId::A_5_24; return true; }
-    if (std::strcmp(str, "a_5_25") == 0) { out = AnnexAControlId::A_5_25; return true; }
-    if (std::strcmp(str, "a_5_26") == 0) { out = AnnexAControlId::A_5_26; return true; }
-    if (std::strcmp(str, "a_5_27") == 0) { out = AnnexAControlId::A_5_27; return true; }
-    if (std::strcmp(str, "a_5_28") == 0) { out = AnnexAControlId::A_5_28; return true; }
-    if (std::strcmp(str, "a_5_29") == 0) { out = AnnexAControlId::A_5_29; return true; }
-    if (std::strcmp(str, "a_5_30") == 0) { out = AnnexAControlId::A_5_30; return true; }
-    if (std::strcmp(str, "a_5_31") == 0) { out = AnnexAControlId::A_5_31; return true; }
-    if (std::strcmp(str, "a_5_32") == 0) { out = AnnexAControlId::A_5_32; return true; }
-    if (std::strcmp(str, "a_5_33") == 0) { out = AnnexAControlId::A_5_33; return true; }
-    if (std::strcmp(str, "a_5_34") == 0) { out = AnnexAControlId::A_5_34; return true; }
-    if (std::strcmp(str, "a_5_35") == 0) { out = AnnexAControlId::A_5_35; return true; }
-    if (std::strcmp(str, "a_5_36") == 0) { out = AnnexAControlId::A_5_36; return true; }
-    if (std::strcmp(str, "a_5_37") == 0) { out = AnnexAControlId::A_5_37; return true; }
-    if (std::strcmp(str, "a_6_1") == 0) { out = AnnexAControlId::A_6_1; return true; }
-    if (std::strcmp(str, "a_6_2") == 0) { out = AnnexAControlId::A_6_2; return true; }
-    if (std::strcmp(str, "a_6_3") == 0) { out = AnnexAControlId::A_6_3; return true; }
-    if (std::strcmp(str, "a_6_4") == 0) { out = AnnexAControlId::A_6_4; return true; }
-    if (std::strcmp(str, "a_6_5") == 0) { out = AnnexAControlId::A_6_5; return true; }
-    if (std::strcmp(str, "a_6_6") == 0) { out = AnnexAControlId::A_6_6; return true; }
-    if (std::strcmp(str, "a_6_7") == 0) { out = AnnexAControlId::A_6_7; return true; }
-    if (std::strcmp(str, "a_6_8") == 0) { out = AnnexAControlId::A_6_8; return true; }
-    if (std::strcmp(str, "a_7_1") == 0) { out = AnnexAControlId::A_7_1; return true; }
-    if (std::strcmp(str, "a_7_2") == 0) { out = AnnexAControlId::A_7_2; return true; }
-    if (std::strcmp(str, "a_7_3") == 0) { out = AnnexAControlId::A_7_3; return true; }
-    if (std::strcmp(str, "a_7_4") == 0) { out = AnnexAControlId::A_7_4; return true; }
-    if (std::strcmp(str, "a_7_5") == 0) { out = AnnexAControlId::A_7_5; return true; }
-    if (std::strcmp(str, "a_7_6") == 0) { out = AnnexAControlId::A_7_6; return true; }
-    if (std::strcmp(str, "a_7_7") == 0) { out = AnnexAControlId::A_7_7; return true; }
-    if (std::strcmp(str, "a_7_8") == 0) { out = AnnexAControlId::A_7_8; return true; }
-    if (std::strcmp(str, "a_7_9") == 0) { out = AnnexAControlId::A_7_9; return true; }
-    if (std::strcmp(str, "a_7_10") == 0) { out = AnnexAControlId::A_7_10; return true; }
-    if (std::strcmp(str, "a_7_11") == 0) { out = AnnexAControlId::A_7_11; return true; }
-    if (std::strcmp(str, "a_7_12") == 0) { out = AnnexAControlId::A_7_12; return true; }
-    if (std::strcmp(str, "a_7_13") == 0) { out = AnnexAControlId::A_7_13; return true; }
-    if (std::strcmp(str, "a_7_14") == 0) { out = AnnexAControlId::A_7_14; return true; }
-    if (std::strcmp(str, "a_8_1") == 0) { out = AnnexAControlId::A_8_1; return true; }
-    if (std::strcmp(str, "a_8_2") == 0) { out = AnnexAControlId::A_8_2; return true; }
-    if (std::strcmp(str, "a_8_3") == 0) { out = AnnexAControlId::A_8_3; return true; }
-    if (std::strcmp(str, "a_8_4") == 0) { out = AnnexAControlId::A_8_4; return true; }
-    if (std::strcmp(str, "a_8_5") == 0) { out = AnnexAControlId::A_8_5; return true; }
-    if (std::strcmp(str, "a_8_6") == 0) { out = AnnexAControlId::A_8_6; return true; }
-    if (std::strcmp(str, "a_8_7") == 0) { out = AnnexAControlId::A_8_7; return true; }
-    if (std::strcmp(str, "a_8_8") == 0) { out = AnnexAControlId::A_8_8; return true; }
-    if (std::strcmp(str, "a_8_9") == 0) { out = AnnexAControlId::A_8_9; return true; }
-    if (std::strcmp(str, "a_8_10") == 0) { out = AnnexAControlId::A_8_10; return true; }
-    if (std::strcmp(str, "a_8_11") == 0) { out = AnnexAControlId::A_8_11; return true; }
-    if (std::strcmp(str, "a_8_12") == 0) { out = AnnexAControlId::A_8_12; return true; }
-    if (std::strcmp(str, "a_8_13") == 0) { out = AnnexAControlId::A_8_13; return true; }
-    if (std::strcmp(str, "a_8_14") == 0) { out = AnnexAControlId::A_8_14; return true; }
-    if (std::strcmp(str, "a_8_15") == 0) { out = AnnexAControlId::A_8_15; return true; }
-    if (std::strcmp(str, "a_8_16") == 0) { out = AnnexAControlId::A_8_16; return true; }
-    if (std::strcmp(str, "a_8_17") == 0) { out = AnnexAControlId::A_8_17; return true; }
-    if (std::strcmp(str, "a_8_18") == 0) { out = AnnexAControlId::A_8_18; return true; }
-    if (std::strcmp(str, "a_8_19") == 0) { out = AnnexAControlId::A_8_19; return true; }
-    if (std::strcmp(str, "a_8_20") == 0) { out = AnnexAControlId::A_8_20; return true; }
-    if (std::strcmp(str, "a_8_21") == 0) { out = AnnexAControlId::A_8_21; return true; }
-    if (std::strcmp(str, "a_8_22") == 0) { out = AnnexAControlId::A_8_22; return true; }
-    if (std::strcmp(str, "a_8_23") == 0) { out = AnnexAControlId::A_8_23; return true; }
-    if (std::strcmp(str, "a_8_24") == 0) { out = AnnexAControlId::A_8_24; return true; }
-    if (std::strcmp(str, "a_8_25") == 0) { out = AnnexAControlId::A_8_25; return true; }
-    if (std::strcmp(str, "a_8_26") == 0) { out = AnnexAControlId::A_8_26; return true; }
-    if (std::strcmp(str, "a_8_27") == 0) { out = AnnexAControlId::A_8_27; return true; }
-    if (std::strcmp(str, "a_8_28") == 0) { out = AnnexAControlId::A_8_28; return true; }
-    if (std::strcmp(str, "a_8_29") == 0) { out = AnnexAControlId::A_8_29; return true; }
-    if (std::strcmp(str, "a_8_30") == 0) { out = AnnexAControlId::A_8_30; return true; }
-    if (std::strcmp(str, "a_8_31") == 0) { out = AnnexAControlId::A_8_31; return true; }
-    if (std::strcmp(str, "a_8_32") == 0) { out = AnnexAControlId::A_8_32; return true; }
-    if (std::strcmp(str, "a_8_33") == 0) { out = AnnexAControlId::A_8_33; return true; }
-    if (std::strcmp(str, "a_8_34") == 0) { out = AnnexAControlId::A_8_34; return true; }
+/// Parse a string into IsmsAnnexAControl. Returns false if the string is not a valid value.
+inline bool from_string(const char* str, IsmsAnnexAControl& out) {
+    if (std::strcmp(str, "a_5_1") == 0) { out = IsmsAnnexAControl::A_5_1; return true; }
+    if (std::strcmp(str, "a_5_2") == 0) { out = IsmsAnnexAControl::A_5_2; return true; }
+    if (std::strcmp(str, "a_5_3") == 0) { out = IsmsAnnexAControl::A_5_3; return true; }
+    if (std::strcmp(str, "a_5_4") == 0) { out = IsmsAnnexAControl::A_5_4; return true; }
+    if (std::strcmp(str, "a_5_5") == 0) { out = IsmsAnnexAControl::A_5_5; return true; }
+    if (std::strcmp(str, "a_5_6") == 0) { out = IsmsAnnexAControl::A_5_6; return true; }
+    if (std::strcmp(str, "a_5_7") == 0) { out = IsmsAnnexAControl::A_5_7; return true; }
+    if (std::strcmp(str, "a_5_8") == 0) { out = IsmsAnnexAControl::A_5_8; return true; }
+    if (std::strcmp(str, "a_5_9") == 0) { out = IsmsAnnexAControl::A_5_9; return true; }
+    if (std::strcmp(str, "a_5_10") == 0) { out = IsmsAnnexAControl::A_5_10; return true; }
+    if (std::strcmp(str, "a_5_11") == 0) { out = IsmsAnnexAControl::A_5_11; return true; }
+    if (std::strcmp(str, "a_5_12") == 0) { out = IsmsAnnexAControl::A_5_12; return true; }
+    if (std::strcmp(str, "a_5_13") == 0) { out = IsmsAnnexAControl::A_5_13; return true; }
+    if (std::strcmp(str, "a_5_14") == 0) { out = IsmsAnnexAControl::A_5_14; return true; }
+    if (std::strcmp(str, "a_5_15") == 0) { out = IsmsAnnexAControl::A_5_15; return true; }
+    if (std::strcmp(str, "a_5_16") == 0) { out = IsmsAnnexAControl::A_5_16; return true; }
+    if (std::strcmp(str, "a_5_17") == 0) { out = IsmsAnnexAControl::A_5_17; return true; }
+    if (std::strcmp(str, "a_5_18") == 0) { out = IsmsAnnexAControl::A_5_18; return true; }
+    if (std::strcmp(str, "a_5_19") == 0) { out = IsmsAnnexAControl::A_5_19; return true; }
+    if (std::strcmp(str, "a_5_20") == 0) { out = IsmsAnnexAControl::A_5_20; return true; }
+    if (std::strcmp(str, "a_5_21") == 0) { out = IsmsAnnexAControl::A_5_21; return true; }
+    if (std::strcmp(str, "a_5_22") == 0) { out = IsmsAnnexAControl::A_5_22; return true; }
+    if (std::strcmp(str, "a_5_23") == 0) { out = IsmsAnnexAControl::A_5_23; return true; }
+    if (std::strcmp(str, "a_5_24") == 0) { out = IsmsAnnexAControl::A_5_24; return true; }
+    if (std::strcmp(str, "a_5_25") == 0) { out = IsmsAnnexAControl::A_5_25; return true; }
+    if (std::strcmp(str, "a_5_26") == 0) { out = IsmsAnnexAControl::A_5_26; return true; }
+    if (std::strcmp(str, "a_5_27") == 0) { out = IsmsAnnexAControl::A_5_27; return true; }
+    if (std::strcmp(str, "a_5_28") == 0) { out = IsmsAnnexAControl::A_5_28; return true; }
+    if (std::strcmp(str, "a_5_29") == 0) { out = IsmsAnnexAControl::A_5_29; return true; }
+    if (std::strcmp(str, "a_5_30") == 0) { out = IsmsAnnexAControl::A_5_30; return true; }
+    if (std::strcmp(str, "a_5_31") == 0) { out = IsmsAnnexAControl::A_5_31; return true; }
+    if (std::strcmp(str, "a_5_32") == 0) { out = IsmsAnnexAControl::A_5_32; return true; }
+    if (std::strcmp(str, "a_5_33") == 0) { out = IsmsAnnexAControl::A_5_33; return true; }
+    if (std::strcmp(str, "a_5_34") == 0) { out = IsmsAnnexAControl::A_5_34; return true; }
+    if (std::strcmp(str, "a_5_35") == 0) { out = IsmsAnnexAControl::A_5_35; return true; }
+    if (std::strcmp(str, "a_5_36") == 0) { out = IsmsAnnexAControl::A_5_36; return true; }
+    if (std::strcmp(str, "a_5_37") == 0) { out = IsmsAnnexAControl::A_5_37; return true; }
+    if (std::strcmp(str, "a_6_1") == 0) { out = IsmsAnnexAControl::A_6_1; return true; }
+    if (std::strcmp(str, "a_6_2") == 0) { out = IsmsAnnexAControl::A_6_2; return true; }
+    if (std::strcmp(str, "a_6_3") == 0) { out = IsmsAnnexAControl::A_6_3; return true; }
+    if (std::strcmp(str, "a_6_4") == 0) { out = IsmsAnnexAControl::A_6_4; return true; }
+    if (std::strcmp(str, "a_6_5") == 0) { out = IsmsAnnexAControl::A_6_5; return true; }
+    if (std::strcmp(str, "a_6_6") == 0) { out = IsmsAnnexAControl::A_6_6; return true; }
+    if (std::strcmp(str, "a_6_7") == 0) { out = IsmsAnnexAControl::A_6_7; return true; }
+    if (std::strcmp(str, "a_6_8") == 0) { out = IsmsAnnexAControl::A_6_8; return true; }
+    if (std::strcmp(str, "a_7_1") == 0) { out = IsmsAnnexAControl::A_7_1; return true; }
+    if (std::strcmp(str, "a_7_2") == 0) { out = IsmsAnnexAControl::A_7_2; return true; }
+    if (std::strcmp(str, "a_7_3") == 0) { out = IsmsAnnexAControl::A_7_3; return true; }
+    if (std::strcmp(str, "a_7_4") == 0) { out = IsmsAnnexAControl::A_7_4; return true; }
+    if (std::strcmp(str, "a_7_5") == 0) { out = IsmsAnnexAControl::A_7_5; return true; }
+    if (std::strcmp(str, "a_7_6") == 0) { out = IsmsAnnexAControl::A_7_6; return true; }
+    if (std::strcmp(str, "a_7_7") == 0) { out = IsmsAnnexAControl::A_7_7; return true; }
+    if (std::strcmp(str, "a_7_8") == 0) { out = IsmsAnnexAControl::A_7_8; return true; }
+    if (std::strcmp(str, "a_7_9") == 0) { out = IsmsAnnexAControl::A_7_9; return true; }
+    if (std::strcmp(str, "a_7_10") == 0) { out = IsmsAnnexAControl::A_7_10; return true; }
+    if (std::strcmp(str, "a_7_11") == 0) { out = IsmsAnnexAControl::A_7_11; return true; }
+    if (std::strcmp(str, "a_7_12") == 0) { out = IsmsAnnexAControl::A_7_12; return true; }
+    if (std::strcmp(str, "a_7_13") == 0) { out = IsmsAnnexAControl::A_7_13; return true; }
+    if (std::strcmp(str, "a_7_14") == 0) { out = IsmsAnnexAControl::A_7_14; return true; }
+    if (std::strcmp(str, "a_8_1") == 0) { out = IsmsAnnexAControl::A_8_1; return true; }
+    if (std::strcmp(str, "a_8_2") == 0) { out = IsmsAnnexAControl::A_8_2; return true; }
+    if (std::strcmp(str, "a_8_3") == 0) { out = IsmsAnnexAControl::A_8_3; return true; }
+    if (std::strcmp(str, "a_8_4") == 0) { out = IsmsAnnexAControl::A_8_4; return true; }
+    if (std::strcmp(str, "a_8_5") == 0) { out = IsmsAnnexAControl::A_8_5; return true; }
+    if (std::strcmp(str, "a_8_6") == 0) { out = IsmsAnnexAControl::A_8_6; return true; }
+    if (std::strcmp(str, "a_8_7") == 0) { out = IsmsAnnexAControl::A_8_7; return true; }
+    if (std::strcmp(str, "a_8_8") == 0) { out = IsmsAnnexAControl::A_8_8; return true; }
+    if (std::strcmp(str, "a_8_9") == 0) { out = IsmsAnnexAControl::A_8_9; return true; }
+    if (std::strcmp(str, "a_8_10") == 0) { out = IsmsAnnexAControl::A_8_10; return true; }
+    if (std::strcmp(str, "a_8_11") == 0) { out = IsmsAnnexAControl::A_8_11; return true; }
+    if (std::strcmp(str, "a_8_12") == 0) { out = IsmsAnnexAControl::A_8_12; return true; }
+    if (std::strcmp(str, "a_8_13") == 0) { out = IsmsAnnexAControl::A_8_13; return true; }
+    if (std::strcmp(str, "a_8_14") == 0) { out = IsmsAnnexAControl::A_8_14; return true; }
+    if (std::strcmp(str, "a_8_15") == 0) { out = IsmsAnnexAControl::A_8_15; return true; }
+    if (std::strcmp(str, "a_8_16") == 0) { out = IsmsAnnexAControl::A_8_16; return true; }
+    if (std::strcmp(str, "a_8_17") == 0) { out = IsmsAnnexAControl::A_8_17; return true; }
+    if (std::strcmp(str, "a_8_18") == 0) { out = IsmsAnnexAControl::A_8_18; return true; }
+    if (std::strcmp(str, "a_8_19") == 0) { out = IsmsAnnexAControl::A_8_19; return true; }
+    if (std::strcmp(str, "a_8_20") == 0) { out = IsmsAnnexAControl::A_8_20; return true; }
+    if (std::strcmp(str, "a_8_21") == 0) { out = IsmsAnnexAControl::A_8_21; return true; }
+    if (std::strcmp(str, "a_8_22") == 0) { out = IsmsAnnexAControl::A_8_22; return true; }
+    if (std::strcmp(str, "a_8_23") == 0) { out = IsmsAnnexAControl::A_8_23; return true; }
+    if (std::strcmp(str, "a_8_24") == 0) { out = IsmsAnnexAControl::A_8_24; return true; }
+    if (std::strcmp(str, "a_8_25") == 0) { out = IsmsAnnexAControl::A_8_25; return true; }
+    if (std::strcmp(str, "a_8_26") == 0) { out = IsmsAnnexAControl::A_8_26; return true; }
+    if (std::strcmp(str, "a_8_27") == 0) { out = IsmsAnnexAControl::A_8_27; return true; }
+    if (std::strcmp(str, "a_8_28") == 0) { out = IsmsAnnexAControl::A_8_28; return true; }
+    if (std::strcmp(str, "a_8_29") == 0) { out = IsmsAnnexAControl::A_8_29; return true; }
+    if (std::strcmp(str, "a_8_30") == 0) { out = IsmsAnnexAControl::A_8_30; return true; }
+    if (std::strcmp(str, "a_8_31") == 0) { out = IsmsAnnexAControl::A_8_31; return true; }
+    if (std::strcmp(str, "a_8_32") == 0) { out = IsmsAnnexAControl::A_8_32; return true; }
+    if (std::strcmp(str, "a_8_33") == 0) { out = IsmsAnnexAControl::A_8_33; return true; }
+    if (std::strcmp(str, "a_8_34") == 0) { out = IsmsAnnexAControl::A_8_34; return true; }
     return false;
 }
 
-/// Categories of information security incident used to classify events and incidents per ISO/IEC 27001:2022 Annex A controls A.5.24-A.5.28 and ISO/IEC 27035 incident management guidance.
-enum class SecurityIncidentCategory {
-    /// Malicious software, including viruses, worms, trojans, and ransomware.
+/// How far a control or a plan has been put into effect.
+enum class IsmsImplementationStatus {
+    /// Nothing has been done yet.
+    NOT_STARTED,
+    /// The work is planned, with a timeline.
+    PLANNED,
+    /// The work is under way.
+    IN_PROGRESS,
+    /// The work is done and in operation.
+    IMPLEMENTED
+};
+
+/// Convert IsmsImplementationStatus to its string representation.
+inline const char* to_string(IsmsImplementationStatus value) {
+    switch (value) {
+        case IsmsImplementationStatus::NOT_STARTED: return "not_started";
+        case IsmsImplementationStatus::PLANNED: return "planned";
+        case IsmsImplementationStatus::IN_PROGRESS: return "in_progress";
+        case IsmsImplementationStatus::IMPLEMENTED: return "implemented";
+    }
+    return "unknown";
+}
+
+/// Parse a string into IsmsImplementationStatus. Returns false if the string is not a valid value.
+inline bool from_string(const char* str, IsmsImplementationStatus& out) {
+    if (std::strcmp(str, "not_started") == 0) { out = IsmsImplementationStatus::NOT_STARTED; return true; }
+    if (std::strcmp(str, "planned") == 0) { out = IsmsImplementationStatus::PLANNED; return true; }
+    if (std::strcmp(str, "in_progress") == 0) { out = IsmsImplementationStatus::IN_PROGRESS; return true; }
+    if (std::strcmp(str, "implemented") == 0) { out = IsmsImplementationStatus::IMPLEMENTED; return true; }
+    return false;
+}
+
+/// The ways of treating a risk, by the names ISO/IEC 27005 gives them.
+enum class IsmsRiskTreatmentOption {
+    /// Change the risk with controls that lower its likelihood or its consequences.
+    MODIFY,
+    /// Keep the risk as it is, with the risk owner's approval.
+    RETAIN,
+    /// Remove the risk by stopping or changing what gives rise to it.
+    AVOID,
+    /// Share the risk with another party, such as an insurer or a supplier.
+    SHARE
+};
+
+/// Convert IsmsRiskTreatmentOption to its string representation.
+inline const char* to_string(IsmsRiskTreatmentOption value) {
+    switch (value) {
+        case IsmsRiskTreatmentOption::MODIFY: return "modify";
+        case IsmsRiskTreatmentOption::RETAIN: return "retain";
+        case IsmsRiskTreatmentOption::AVOID: return "avoid";
+        case IsmsRiskTreatmentOption::SHARE: return "share";
+    }
+    return "unknown";
+}
+
+/// Parse a string into IsmsRiskTreatmentOption. Returns false if the string is not a valid value.
+inline bool from_string(const char* str, IsmsRiskTreatmentOption& out) {
+    if (std::strcmp(str, "modify") == 0) { out = IsmsRiskTreatmentOption::MODIFY; return true; }
+    if (std::strcmp(str, "retain") == 0) { out = IsmsRiskTreatmentOption::RETAIN; return true; }
+    if (std::strcmp(str, "avoid") == 0) { out = IsmsRiskTreatmentOption::AVOID; return true; }
+    if (std::strcmp(str, "share") == 0) { out = IsmsRiskTreatmentOption::SHARE; return true; }
+    return false;
+}
+
+/// A five-point scale of risk level, for an organization that adopts it. ISO/IEC 27001 leaves the scale to the organization.
+enum class IsmsRiskLevel {
+    /// Small enough to need no action.
+    VERY_LOW,
+    /// Managed by routine procedures.
+    LOW,
+    /// Needs management's attention and planned controls.
+    MEDIUM,
+    /// Needs treatment first and escalation.
+    HIGH,
+    /// Threatens the organization's objectives and needs action at once.
+    CRITICAL
+};
+
+/// Convert IsmsRiskLevel to its string representation.
+inline const char* to_string(IsmsRiskLevel value) {
+    switch (value) {
+        case IsmsRiskLevel::VERY_LOW: return "very_low";
+        case IsmsRiskLevel::LOW: return "low";
+        case IsmsRiskLevel::MEDIUM: return "medium";
+        case IsmsRiskLevel::HIGH: return "high";
+        case IsmsRiskLevel::CRITICAL: return "critical";
+    }
+    return "unknown";
+}
+
+/// Parse a string into IsmsRiskLevel. Returns false if the string is not a valid value.
+inline bool from_string(const char* str, IsmsRiskLevel& out) {
+    if (std::strcmp(str, "very_low") == 0) { out = IsmsRiskLevel::VERY_LOW; return true; }
+    if (std::strcmp(str, "low") == 0) { out = IsmsRiskLevel::LOW; return true; }
+    if (std::strcmp(str, "medium") == 0) { out = IsmsRiskLevel::MEDIUM; return true; }
+    if (std::strcmp(str, "high") == 0) { out = IsmsRiskLevel::HIGH; return true; }
+    if (std::strcmp(str, "critical") == 0) { out = IsmsRiskLevel::CRITICAL; return true; }
+    return false;
+}
+
+/// A five-point scale of likelihood, for an organization that adopts it. ISO/IEC 27001 leaves the scale to the organization.
+enum class IsmsLikelihood {
+    /// Not expected to happen.
+    RARE,
+    /// Could happen, but is not expected to.
+    UNLIKELY,
+    /// Might happen at some point.
+    POSSIBLE,
+    /// Will probably happen.
+    LIKELY,
+    /// Expected to happen.
+    ALMOST_CERTAIN
+};
+
+/// Convert IsmsLikelihood to its string representation.
+inline const char* to_string(IsmsLikelihood value) {
+    switch (value) {
+        case IsmsLikelihood::RARE: return "rare";
+        case IsmsLikelihood::UNLIKELY: return "unlikely";
+        case IsmsLikelihood::POSSIBLE: return "possible";
+        case IsmsLikelihood::LIKELY: return "likely";
+        case IsmsLikelihood::ALMOST_CERTAIN: return "almost_certain";
+    }
+    return "unknown";
+}
+
+/// Parse a string into IsmsLikelihood. Returns false if the string is not a valid value.
+inline bool from_string(const char* str, IsmsLikelihood& out) {
+    if (std::strcmp(str, "rare") == 0) { out = IsmsLikelihood::RARE; return true; }
+    if (std::strcmp(str, "unlikely") == 0) { out = IsmsLikelihood::UNLIKELY; return true; }
+    if (std::strcmp(str, "possible") == 0) { out = IsmsLikelihood::POSSIBLE; return true; }
+    if (std::strcmp(str, "likely") == 0) { out = IsmsLikelihood::LIKELY; return true; }
+    if (std::strcmp(str, "almost_certain") == 0) { out = IsmsLikelihood::ALMOST_CERTAIN; return true; }
+    return false;
+}
+
+/// A five-point scale of consequence, for an organization that adopts it. ISO/IEC 27001 leaves the scale to the organization.
+enum class IsmsImpact {
+    /// No noticeable effect on operations or objectives.
+    NEGLIGIBLE,
+    /// An effect normal operations absorb.
+    MINOR,
+    /// An effect that needs management to step in.
+    MODERATE,
+    /// A serious effect on objectives, reputation or compliance.
+    MAJOR,
+    /// An effect that threatens the organization's survival.
+    SEVERE
+};
+
+/// Convert IsmsImpact to its string representation.
+inline const char* to_string(IsmsImpact value) {
+    switch (value) {
+        case IsmsImpact::NEGLIGIBLE: return "negligible";
+        case IsmsImpact::MINOR: return "minor";
+        case IsmsImpact::MODERATE: return "moderate";
+        case IsmsImpact::MAJOR: return "major";
+        case IsmsImpact::SEVERE: return "severe";
+    }
+    return "unknown";
+}
+
+/// Parse a string into IsmsImpact. Returns false if the string is not a valid value.
+inline bool from_string(const char* str, IsmsImpact& out) {
+    if (std::strcmp(str, "negligible") == 0) { out = IsmsImpact::NEGLIGIBLE; return true; }
+    if (std::strcmp(str, "minor") == 0) { out = IsmsImpact::MINOR; return true; }
+    if (std::strcmp(str, "moderate") == 0) { out = IsmsImpact::MODERATE; return true; }
+    if (std::strcmp(str, "major") == 0) { out = IsmsImpact::MAJOR; return true; }
+    if (std::strcmp(str, "severe") == 0) { out = IsmsImpact::SEVERE; return true; }
+    return false;
+}
+
+/// The three properties of information that information security preserves, as ISO/IEC 27000 names them.
+enum class IsmsSecurityProperty {
+    /// Only those allowed to see the information can see it.
+    CONFIDENTIALITY,
+    /// The information is accurate and complete.
+    INTEGRITY,
+    /// Those allowed to use the information can use it when they need it.
+    AVAILABILITY
+};
+
+/// Convert IsmsSecurityProperty to its string representation.
+inline const char* to_string(IsmsSecurityProperty value) {
+    switch (value) {
+        case IsmsSecurityProperty::CONFIDENTIALITY: return "confidentiality";
+        case IsmsSecurityProperty::INTEGRITY: return "integrity";
+        case IsmsSecurityProperty::AVAILABILITY: return "availability";
+    }
+    return "unknown";
+}
+
+/// Parse a string into IsmsSecurityProperty. Returns false if the string is not a valid value.
+inline bool from_string(const char* str, IsmsSecurityProperty& out) {
+    if (std::strcmp(str, "confidentiality") == 0) { out = IsmsSecurityProperty::CONFIDENTIALITY; return true; }
+    if (std::strcmp(str, "integrity") == 0) { out = IsmsSecurityProperty::INTEGRITY; return true; }
+    if (std::strcmp(str, "availability") == 0) { out = IsmsSecurityProperty::AVAILABILITY; return true; }
+    return false;
+}
+
+/// The kinds of documented information an IsmsDocumentedInformation record holds. Policies have records of their own.
+enum class IsmsDocumentKind {
+    /// The steps for carrying out an activity the same way each time.
+    PROCEDURE,
+    /// Mandatory requirements for a technology or a process.
+    STANDARD,
+    /// Recommended practice that supports a policy or a procedure.
+    GUIDELINE,
+    /// Evidence of what was done or achieved.
+    RECORD,
+    /// How the organization means to reach an objective.
+    PLAN,
+    /// The formal output of an assessment, audit or review.
+    REPORT
+};
+
+/// Convert IsmsDocumentKind to its string representation.
+inline const char* to_string(IsmsDocumentKind value) {
+    switch (value) {
+        case IsmsDocumentKind::PROCEDURE: return "procedure";
+        case IsmsDocumentKind::STANDARD: return "standard";
+        case IsmsDocumentKind::GUIDELINE: return "guideline";
+        case IsmsDocumentKind::RECORD: return "record";
+        case IsmsDocumentKind::PLAN: return "plan";
+        case IsmsDocumentKind::REPORT: return "report";
+    }
+    return "unknown";
+}
+
+/// Parse a string into IsmsDocumentKind. Returns false if the string is not a valid value.
+inline bool from_string(const char* str, IsmsDocumentKind& out) {
+    if (std::strcmp(str, "procedure") == 0) { out = IsmsDocumentKind::PROCEDURE; return true; }
+    if (std::strcmp(str, "standard") == 0) { out = IsmsDocumentKind::STANDARD; return true; }
+    if (std::strcmp(str, "guideline") == 0) { out = IsmsDocumentKind::GUIDELINE; return true; }
+    if (std::strcmp(str, "record") == 0) { out = IsmsDocumentKind::RECORD; return true; }
+    if (std::strcmp(str, "plan") == 0) { out = IsmsDocumentKind::PLAN; return true; }
+    if (std::strcmp(str, "report") == 0) { out = IsmsDocumentKind::REPORT; return true; }
+    return false;
+}
+
+/// Who carries out an audit, relative to the organization audited, as ISO 19011 sorts audits.
+enum class IsmsAuditType {
+    /// The organization audits itself; an internal audit.
+    FIRST_PARTY,
+    /// A party with an interest in the organization audits it, such as a customer.
+    SECOND_PARTY,
+    /// An independent body audits it, such as a certification body or a regulator.
+    THIRD_PARTY
+};
+
+/// Convert IsmsAuditType to its string representation.
+inline const char* to_string(IsmsAuditType value) {
+    switch (value) {
+        case IsmsAuditType::FIRST_PARTY: return "first_party";
+        case IsmsAuditType::SECOND_PARTY: return "second_party";
+        case IsmsAuditType::THIRD_PARTY: return "third_party";
+    }
+    return "unknown";
+}
+
+/// Parse a string into IsmsAuditType. Returns false if the string is not a valid value.
+inline bool from_string(const char* str, IsmsAuditType& out) {
+    if (std::strcmp(str, "first_party") == 0) { out = IsmsAuditType::FIRST_PARTY; return true; }
+    if (std::strcmp(str, "second_party") == 0) { out = IsmsAuditType::SECOND_PARTY; return true; }
+    if (std::strcmp(str, "third_party") == 0) { out = IsmsAuditType::THIRD_PARTY; return true; }
+    return false;
+}
+
+/// The kinds of audit finding.
+enum class IsmsAuditFindingType {
+    /// A requirement not met in a way that puts the ISMS's intended results in doubt.
+    MAJOR_NONCONFORMITY,
+    /// A requirement not met in an isolated way that leaves the ISMS's intended results in reach.
+    MINOR_NONCONFORMITY,
+    /// A condition that could lead to a nonconformity if left alone.
+    OBSERVATION,
+    /// Evidence of practice that works well.
+    POSITIVE_FINDING
+};
+
+/// Convert IsmsAuditFindingType to its string representation.
+inline const char* to_string(IsmsAuditFindingType value) {
+    switch (value) {
+        case IsmsAuditFindingType::MAJOR_NONCONFORMITY: return "major_nonconformity";
+        case IsmsAuditFindingType::MINOR_NONCONFORMITY: return "minor_nonconformity";
+        case IsmsAuditFindingType::OBSERVATION: return "observation";
+        case IsmsAuditFindingType::POSITIVE_FINDING: return "positive_finding";
+    }
+    return "unknown";
+}
+
+/// Parse a string into IsmsAuditFindingType. Returns false if the string is not a valid value.
+inline bool from_string(const char* str, IsmsAuditFindingType& out) {
+    if (std::strcmp(str, "major_nonconformity") == 0) { out = IsmsAuditFindingType::MAJOR_NONCONFORMITY; return true; }
+    if (std::strcmp(str, "minor_nonconformity") == 0) { out = IsmsAuditFindingType::MINOR_NONCONFORMITY; return true; }
+    if (std::strcmp(str, "observation") == 0) { out = IsmsAuditFindingType::OBSERVATION; return true; }
+    if (std::strcmp(str, "positive_finding") == 0) { out = IsmsAuditFindingType::POSITIVE_FINDING; return true; }
+    return false;
+}
+
+/// Kinds of information security incident, for sorting incidents. ISO/IEC 27001 sets no list of its own.
+enum class IsmsIncidentCategory {
+    /// Malicious software, such as a virus, a worm or a trojan.
     MALWARE,
-    /// Malware encrypting or exfiltrating data for extortion.
+    /// Malware that encrypts or takes data to extort money.
     RANSOMWARE,
-    /// Social-engineering attempt to obtain credentials or trigger malicious action.
+    /// A message that tries to trick someone into giving up credentials or acting.
     PHISHING,
-    /// Manipulation of people to disclose information or perform unsafe actions.
+    /// Manipulating people into disclosing information or acting unsafely.
     SOCIAL_ENGINEERING,
-    /// Access to systems or data by a party without authorization.
+    /// Access to systems or data by someone not allowed it.
     UNAUTHORIZED_ACCESS,
-    /// Unauthorized control of a legitimate user or service account.
+    /// Someone else taking control of a legitimate account.
     ACCOUNT_COMPROMISE,
-    /// Authorized user exceeding or misusing their granted privileges.
+    /// An authorized user going beyond or misusing their privileges.
     PRIVILEGE_MISUSE,
-    /// Confirmed disclosure of confidential or personal information.
+    /// Confidential or personal information disclosed.
     DATA_BREACH,
-    /// Loss of integrity or availability of information, including accidental deletion.
+    /// Information lost or corrupted, by accident or otherwise.
     DATA_LOSS,
-    /// Disruption of availability through volumetric, protocol, or application attacks.
+    /// Systems made unavailable by flooding or attack.
     DENIAL_OF_SERVICE,
-    /// Attack targeting a web application (e.g., injection, XSS, broken auth).
+    /// An attack on a web application, such as an injection.
     WEB_APPLICATION_ATTACK,
-    /// Incident originating from a supplier, partner, or third-party component.
+    /// An incident that starts at a supplier, a partner or a third-party component.
     SUPPLY_CHAIN,
-    /// Malicious or negligent action by an internal party.
+    /// Harm done by someone inside the organization, on purpose or by neglect.
     INSIDER_THREAT,
-    /// Theft, loss, or damage of physical assets or unauthorized physical access.
+    /// Theft, loss or damage of physical assets, or physical access without permission.
     PHYSICAL_SECURITY,
-    /// Misconfiguration leading to security exposure.
+    /// A misconfiguration that exposes something.
     CONFIGURATION_ERROR,
-    /// Weak, broken, or misused cryptography.
+    /// Cryptography that is weak, broken or misused.
     CRYPTOGRAPHIC_FAILURE,
-    /// Failure to comply with information security policies or procedures.
+    /// A breach of the organization's security policies or procedures.
     POLICY_VIOLATION,
-    /// Other incident type not covered by the listed categories.
+    /// Any incident the other categories do not fit.
     OTHER
 };
 
-/// Convert SecurityIncidentCategory to its string representation.
-inline const char* to_string(SecurityIncidentCategory value) {
+/// Convert IsmsIncidentCategory to its string representation.
+inline const char* to_string(IsmsIncidentCategory value) {
     switch (value) {
-        case SecurityIncidentCategory::MALWARE: return "malware";
-        case SecurityIncidentCategory::RANSOMWARE: return "ransomware";
-        case SecurityIncidentCategory::PHISHING: return "phishing";
-        case SecurityIncidentCategory::SOCIAL_ENGINEERING: return "social_engineering";
-        case SecurityIncidentCategory::UNAUTHORIZED_ACCESS: return "unauthorized_access";
-        case SecurityIncidentCategory::ACCOUNT_COMPROMISE: return "account_compromise";
-        case SecurityIncidentCategory::PRIVILEGE_MISUSE: return "privilege_misuse";
-        case SecurityIncidentCategory::DATA_BREACH: return "data_breach";
-        case SecurityIncidentCategory::DATA_LOSS: return "data_loss";
-        case SecurityIncidentCategory::DENIAL_OF_SERVICE: return "denial_of_service";
-        case SecurityIncidentCategory::WEB_APPLICATION_ATTACK: return "web_application_attack";
-        case SecurityIncidentCategory::SUPPLY_CHAIN: return "supply_chain";
-        case SecurityIncidentCategory::INSIDER_THREAT: return "insider_threat";
-        case SecurityIncidentCategory::PHYSICAL_SECURITY: return "physical_security";
-        case SecurityIncidentCategory::CONFIGURATION_ERROR: return "configuration_error";
-        case SecurityIncidentCategory::CRYPTOGRAPHIC_FAILURE: return "cryptographic_failure";
-        case SecurityIncidentCategory::POLICY_VIOLATION: return "policy_violation";
-        case SecurityIncidentCategory::OTHER: return "other";
+        case IsmsIncidentCategory::MALWARE: return "malware";
+        case IsmsIncidentCategory::RANSOMWARE: return "ransomware";
+        case IsmsIncidentCategory::PHISHING: return "phishing";
+        case IsmsIncidentCategory::SOCIAL_ENGINEERING: return "social_engineering";
+        case IsmsIncidentCategory::UNAUTHORIZED_ACCESS: return "unauthorized_access";
+        case IsmsIncidentCategory::ACCOUNT_COMPROMISE: return "account_compromise";
+        case IsmsIncidentCategory::PRIVILEGE_MISUSE: return "privilege_misuse";
+        case IsmsIncidentCategory::DATA_BREACH: return "data_breach";
+        case IsmsIncidentCategory::DATA_LOSS: return "data_loss";
+        case IsmsIncidentCategory::DENIAL_OF_SERVICE: return "denial_of_service";
+        case IsmsIncidentCategory::WEB_APPLICATION_ATTACK: return "web_application_attack";
+        case IsmsIncidentCategory::SUPPLY_CHAIN: return "supply_chain";
+        case IsmsIncidentCategory::INSIDER_THREAT: return "insider_threat";
+        case IsmsIncidentCategory::PHYSICAL_SECURITY: return "physical_security";
+        case IsmsIncidentCategory::CONFIGURATION_ERROR: return "configuration_error";
+        case IsmsIncidentCategory::CRYPTOGRAPHIC_FAILURE: return "cryptographic_failure";
+        case IsmsIncidentCategory::POLICY_VIOLATION: return "policy_violation";
+        case IsmsIncidentCategory::OTHER: return "other";
     }
     return "unknown";
 }
 
-/// Parse a string into SecurityIncidentCategory. Returns false if the string is not a valid value.
-inline bool from_string(const char* str, SecurityIncidentCategory& out) {
-    if (std::strcmp(str, "malware") == 0) { out = SecurityIncidentCategory::MALWARE; return true; }
-    if (std::strcmp(str, "ransomware") == 0) { out = SecurityIncidentCategory::RANSOMWARE; return true; }
-    if (std::strcmp(str, "phishing") == 0) { out = SecurityIncidentCategory::PHISHING; return true; }
-    if (std::strcmp(str, "social_engineering") == 0) { out = SecurityIncidentCategory::SOCIAL_ENGINEERING; return true; }
-    if (std::strcmp(str, "unauthorized_access") == 0) { out = SecurityIncidentCategory::UNAUTHORIZED_ACCESS; return true; }
-    if (std::strcmp(str, "account_compromise") == 0) { out = SecurityIncidentCategory::ACCOUNT_COMPROMISE; return true; }
-    if (std::strcmp(str, "privilege_misuse") == 0) { out = SecurityIncidentCategory::PRIVILEGE_MISUSE; return true; }
-    if (std::strcmp(str, "data_breach") == 0) { out = SecurityIncidentCategory::DATA_BREACH; return true; }
-    if (std::strcmp(str, "data_loss") == 0) { out = SecurityIncidentCategory::DATA_LOSS; return true; }
-    if (std::strcmp(str, "denial_of_service") == 0) { out = SecurityIncidentCategory::DENIAL_OF_SERVICE; return true; }
-    if (std::strcmp(str, "web_application_attack") == 0) { out = SecurityIncidentCategory::WEB_APPLICATION_ATTACK; return true; }
-    if (std::strcmp(str, "supply_chain") == 0) { out = SecurityIncidentCategory::SUPPLY_CHAIN; return true; }
-    if (std::strcmp(str, "insider_threat") == 0) { out = SecurityIncidentCategory::INSIDER_THREAT; return true; }
-    if (std::strcmp(str, "physical_security") == 0) { out = SecurityIncidentCategory::PHYSICAL_SECURITY; return true; }
-    if (std::strcmp(str, "configuration_error") == 0) { out = SecurityIncidentCategory::CONFIGURATION_ERROR; return true; }
-    if (std::strcmp(str, "cryptographic_failure") == 0) { out = SecurityIncidentCategory::CRYPTOGRAPHIC_FAILURE; return true; }
-    if (std::strcmp(str, "policy_violation") == 0) { out = SecurityIncidentCategory::POLICY_VIOLATION; return true; }
-    if (std::strcmp(str, "other") == 0) { out = SecurityIncidentCategory::OTHER; return true; }
+/// Parse a string into IsmsIncidentCategory. Returns false if the string is not a valid value.
+inline bool from_string(const char* str, IsmsIncidentCategory& out) {
+    if (std::strcmp(str, "malware") == 0) { out = IsmsIncidentCategory::MALWARE; return true; }
+    if (std::strcmp(str, "ransomware") == 0) { out = IsmsIncidentCategory::RANSOMWARE; return true; }
+    if (std::strcmp(str, "phishing") == 0) { out = IsmsIncidentCategory::PHISHING; return true; }
+    if (std::strcmp(str, "social_engineering") == 0) { out = IsmsIncidentCategory::SOCIAL_ENGINEERING; return true; }
+    if (std::strcmp(str, "unauthorized_access") == 0) { out = IsmsIncidentCategory::UNAUTHORIZED_ACCESS; return true; }
+    if (std::strcmp(str, "account_compromise") == 0) { out = IsmsIncidentCategory::ACCOUNT_COMPROMISE; return true; }
+    if (std::strcmp(str, "privilege_misuse") == 0) { out = IsmsIncidentCategory::PRIVILEGE_MISUSE; return true; }
+    if (std::strcmp(str, "data_breach") == 0) { out = IsmsIncidentCategory::DATA_BREACH; return true; }
+    if (std::strcmp(str, "data_loss") == 0) { out = IsmsIncidentCategory::DATA_LOSS; return true; }
+    if (std::strcmp(str, "denial_of_service") == 0) { out = IsmsIncidentCategory::DENIAL_OF_SERVICE; return true; }
+    if (std::strcmp(str, "web_application_attack") == 0) { out = IsmsIncidentCategory::WEB_APPLICATION_ATTACK; return true; }
+    if (std::strcmp(str, "supply_chain") == 0) { out = IsmsIncidentCategory::SUPPLY_CHAIN; return true; }
+    if (std::strcmp(str, "insider_threat") == 0) { out = IsmsIncidentCategory::INSIDER_THREAT; return true; }
+    if (std::strcmp(str, "physical_security") == 0) { out = IsmsIncidentCategory::PHYSICAL_SECURITY; return true; }
+    if (std::strcmp(str, "configuration_error") == 0) { out = IsmsIncidentCategory::CONFIGURATION_ERROR; return true; }
+    if (std::strcmp(str, "cryptographic_failure") == 0) { out = IsmsIncidentCategory::CRYPTOGRAPHIC_FAILURE; return true; }
+    if (std::strcmp(str, "policy_violation") == 0) { out = IsmsIncidentCategory::POLICY_VIOLATION; return true; }
+    if (std::strcmp(str, "other") == 0) { out = IsmsIncidentCategory::OTHER; return true; }
     return false;
 }
 
-/// Other ISO/IEC management system standards with which the ISMS may be integrated or aligned (e.g., harmonized structure of Annex SL).
-enum class RelatedManagementSystem {
+/// Management system standards an ISMS may be integrated with or audited beside, each written to ISO's harmonized structure.
+enum class IsmsManagementSystemStandard {
     /// Information security management systems.
     ISO_IEC_27001,
-    /// Privacy information management systems (PIMS).
+    /// Privacy information management systems.
     ISO_IEC_27701,
-    /// Information security for cloud services.
-    ISO_IEC_27017,
-    /// Protection of personally identifiable information in public clouds.
-    ISO_IEC_27018,
     /// Artificial intelligence management systems.
     ISO_IEC_42001,
     /// Quality management systems.
@@ -727,964 +739,895 @@ enum class RelatedManagementSystem {
     ISO_14001,
     /// Business continuity management systems.
     ISO_22301,
-    /// IT service management systems.
-    ISO_IEC_20000_1,
-    /// Risk management - guidelines.
-    ISO_31000
+    /// Service management systems.
+    ISO_IEC_20000_1
 };
 
-/// Convert RelatedManagementSystem to its string representation.
-inline const char* to_string(RelatedManagementSystem value) {
+/// Convert IsmsManagementSystemStandard to its string representation.
+inline const char* to_string(IsmsManagementSystemStandard value) {
     switch (value) {
-        case RelatedManagementSystem::ISO_IEC_27001: return "iso_iec_27001";
-        case RelatedManagementSystem::ISO_IEC_27701: return "iso_iec_27701";
-        case RelatedManagementSystem::ISO_IEC_27017: return "iso_iec_27017";
-        case RelatedManagementSystem::ISO_IEC_27018: return "iso_iec_27018";
-        case RelatedManagementSystem::ISO_IEC_42001: return "iso_iec_42001";
-        case RelatedManagementSystem::ISO_9001: return "iso_9001";
-        case RelatedManagementSystem::ISO_14001: return "iso_14001";
-        case RelatedManagementSystem::ISO_22301: return "iso_22301";
-        case RelatedManagementSystem::ISO_IEC_20000_1: return "iso_iec_20000_1";
-        case RelatedManagementSystem::ISO_31000: return "iso_31000";
+        case IsmsManagementSystemStandard::ISO_IEC_27001: return "iso_iec_27001";
+        case IsmsManagementSystemStandard::ISO_IEC_27701: return "iso_iec_27701";
+        case IsmsManagementSystemStandard::ISO_IEC_42001: return "iso_iec_42001";
+        case IsmsManagementSystemStandard::ISO_9001: return "iso_9001";
+        case IsmsManagementSystemStandard::ISO_14001: return "iso_14001";
+        case IsmsManagementSystemStandard::ISO_22301: return "iso_22301";
+        case IsmsManagementSystemStandard::ISO_IEC_20000_1: return "iso_iec_20000_1";
     }
     return "unknown";
 }
 
-/// Parse a string into RelatedManagementSystem. Returns false if the string is not a valid value.
-inline bool from_string(const char* str, RelatedManagementSystem& out) {
-    if (std::strcmp(str, "iso_iec_27001") == 0) { out = RelatedManagementSystem::ISO_IEC_27001; return true; }
-    if (std::strcmp(str, "iso_iec_27701") == 0) { out = RelatedManagementSystem::ISO_IEC_27701; return true; }
-    if (std::strcmp(str, "iso_iec_27017") == 0) { out = RelatedManagementSystem::ISO_IEC_27017; return true; }
-    if (std::strcmp(str, "iso_iec_27018") == 0) { out = RelatedManagementSystem::ISO_IEC_27018; return true; }
-    if (std::strcmp(str, "iso_iec_42001") == 0) { out = RelatedManagementSystem::ISO_IEC_42001; return true; }
-    if (std::strcmp(str, "iso_9001") == 0) { out = RelatedManagementSystem::ISO_9001; return true; }
-    if (std::strcmp(str, "iso_14001") == 0) { out = RelatedManagementSystem::ISO_14001; return true; }
-    if (std::strcmp(str, "iso_22301") == 0) { out = RelatedManagementSystem::ISO_22301; return true; }
-    if (std::strcmp(str, "iso_iec_20000_1") == 0) { out = RelatedManagementSystem::ISO_IEC_20000_1; return true; }
-    if (std::strcmp(str, "iso_31000") == 0) { out = RelatedManagementSystem::ISO_31000; return true; }
+/// Parse a string into IsmsManagementSystemStandard. Returns false if the string is not a valid value.
+inline bool from_string(const char* str, IsmsManagementSystemStandard& out) {
+    if (std::strcmp(str, "iso_iec_27001") == 0) { out = IsmsManagementSystemStandard::ISO_IEC_27001; return true; }
+    if (std::strcmp(str, "iso_iec_27701") == 0) { out = IsmsManagementSystemStandard::ISO_IEC_27701; return true; }
+    if (std::strcmp(str, "iso_iec_42001") == 0) { out = IsmsManagementSystemStandard::ISO_IEC_42001; return true; }
+    if (std::strcmp(str, "iso_9001") == 0) { out = IsmsManagementSystemStandard::ISO_9001; return true; }
+    if (std::strcmp(str, "iso_14001") == 0) { out = IsmsManagementSystemStandard::ISO_14001; return true; }
+    if (std::strcmp(str, "iso_22301") == 0) { out = IsmsManagementSystemStandard::ISO_22301; return true; }
+    if (std::strcmp(str, "iso_iec_20000_1") == 0) { out = IsmsManagementSystemStandard::ISO_IEC_20000_1; return true; }
     return false;
 }
 
-/// Qualitative impact scale for risk assessment.
-enum class ImpactRating {
-    /// No significant impact on operations or objectives.
-    NEGLIGIBLE,
-    /// Limited impact, easily absorbed by normal operations.
-    MINOR,
-    /// Noticeable impact requiring management intervention.
-    MODERATE,
-    /// Serious impact on objectives, reputation, or compliance.
-    MAJOR,
-    /// Catastrophic impact threatening organizational viability.
-    SEVERE
-};
-
-/// Convert ImpactRating to its string representation.
-inline const char* to_string(ImpactRating value) {
-    switch (value) {
-        case ImpactRating::NEGLIGIBLE: return "negligible";
-        case ImpactRating::MINOR: return "minor";
-        case ImpactRating::MODERATE: return "moderate";
-        case ImpactRating::MAJOR: return "major";
-        case ImpactRating::SEVERE: return "severe";
-    }
-    return "unknown";
-}
-
-/// Parse a string into ImpactRating. Returns false if the string is not a valid value.
-inline bool from_string(const char* str, ImpactRating& out) {
-    if (std::strcmp(str, "negligible") == 0) { out = ImpactRating::NEGLIGIBLE; return true; }
-    if (std::strcmp(str, "minor") == 0) { out = ImpactRating::MINOR; return true; }
-    if (std::strcmp(str, "moderate") == 0) { out = ImpactRating::MODERATE; return true; }
-    if (std::strcmp(str, "major") == 0) { out = ImpactRating::MAJOR; return true; }
-    if (std::strcmp(str, "severe") == 0) { out = ImpactRating::SEVERE; return true; }
-    return false;
-}
-
-/// Abstract base class for all entities with an identifier, name, and description. Provides common identification and documentation slots.
-struct NamedEntity {
-    /// Unique identifier for this entity instance.
-    std::string id;
-    /// Human-readable name or title.
-    std::string name;
-    /// Detailed description of the entity.
+/// What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.
+struct IsmsRecordMixin {
+    /// The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
+    std::string isms_id;
+    /// The name the organization gives the record.
+    std::string title;
+    /// What the record says or describes, in the organization's own words.
     std::optional<std::string> description = std::nullopt;
-    /// Date when the entity was created.
-    std::optional<std::string> created_date = std::nullopt;
-    /// Date when the entity was last modified.
-    std::optional<std::string> modified_date = std::nullopt;
-    /// Version identifier for the entity.
-    std::optional<std::string> version = std::nullopt;
 };
 
 
-/// Abstract class for documented information per Clause 7.5. Captures metadata required for document control.
-struct DocumentedInformation : public NamedEntity {
-    /// Classification of the documented information.
-    std::optional<DocumentType> document_type = std::nullopt;
-    /// Unique reference number for document control.
+/// The control that documented information is kept under: who wrote, owns and approved it, when it takes effect and is reviewed, how it is classified, distributed, stored and changed, how long it is retained, and whether it came from outside the organization.
+struct IsmsDocumentControlMixin {
+    /// The reference the organization's document control gives it.
     std::optional<std::string> document_reference = std::nullopt;
-    /// Person who created the document.
-    std::optional<std::string> author = std::nullopt;
-    /// Person accountable for the document content and maintenance.
-    std::optional<std::string> owner = std::nullopt;
-    /// Person who approved the document.
-    std::optional<std::string> approved_by = std::nullopt;
-    /// Date when the document was approved.
-    std::optional<std::string> approved_date = std::nullopt;
-    /// Date when the document becomes effective.
-    std::optional<std::string> effective_date = std::nullopt;
-    /// Date when the document is due for review.
-    std::optional<std::string> review_date = std::nullopt;
-    /// Current status of the document or entity.
-    std::optional<std::string> status = std::nullopt;
-    /// Information classification level.
-    std::optional<std::string> classification = std::nullopt;
-    /// Duration for which the document is retained.
-    std::optional<std::string> retention_period = std::nullopt;
-    /// Controls governing distribution, access, retrieval and use of the documented information, per Clause 7.5.3 c).
-    std::vector<std::string> distribution_controls = {};
-    /// Arrangements for storage and preservation (including preservation of legibility) of the documented information, per Clause 7.5.3 d).
-    std::optional<std::string> storage_and_preservation = std::nullopt;
-    /// Method used for control of changes (e.g., version control) of the documented information, per Clause 7.5.3 e).
-    std::optional<std::string> change_control_method = std::nullopt;
-    /// Whether the documented information is of external origin and has been identified as necessary for the planning and operation of the ISMS, per Clause 7.5.3.
-    std::optional<bool> external_origin = std::nullopt;
-    /// Source or provider of the externally originated documented information, per Clause 7.5.3.
-    std::optional<std::string> external_origin_source = std::nullopt;
+    /// The version of the document.
+    std::optional<std::string> document_version = std::nullopt;
+    /// Who wrote the document.
+    std::optional<std::string> document_author = std::nullopt;
+    /// Who answers for the document's content and upkeep.
+    std::optional<std::string> document_owner = std::nullopt;
+    /// Who approved the document.
+    std::optional<std::string> document_approver = std::nullopt;
+    /// When the document was approved.
+    std::optional<std::string> document_approval_date = std::nullopt;
+    /// When the document takes effect.
+    std::optional<std::string> document_effective_date = std::nullopt;
+    /// When the document was last reviewed.
+    std::optional<std::string> document_last_review_date = std::nullopt;
+    /// When the document is next due for review.
+    std::optional<std::string> document_next_review_date = std::nullopt;
+    /// Where the document stands in its life, in the organization's own terms, such as draft, approved or withdrawn.
+    std::optional<std::string> document_status = std::nullopt;
+    /// The information classification the document carries.
+    std::optional<std::string> document_classification = std::nullopt;
+    /// How long the document is kept, as an ISO 8601 duration.
+    std::optional<std::string> document_retention = std::nullopt;
+    /// How the document is distributed, accessed, retrieved and used.
+    std::vector<std::string> document_distribution = {};
+    /// How the document is stored and preserved, so that it stays legible.
+    std::optional<std::string> document_storage = std::nullopt;
+    /// How changes to the document are controlled, such as version control.
+    std::optional<std::string> document_change_control = std::nullopt;
+    /// Whether the document comes from outside the organization and is kept because the ISMS needs it.
+    std::optional<bool> document_external_origin = std::nullopt;
+    /// Who the document came from, when it comes from outside.
+    std::optional<std::string> document_external_source = std::nullopt;
 };
 
 
-/// Top-level container representing an organization's complete ISMS per ISO 27001. Aggregates all components required to support the full ISMS lifecycle.
-struct InformationSecurityManagementSystem : public NamedEntity {
-    /// Reference to the organization operating the ISMS.
-    std::optional<Organization> organization = std::nullopt;
-    /// The person or group of people who direct and control the organization at the highest level, accountable for the ISMS per Clause 5.1.
-    std::optional<std::string> top_management = std::nullopt;
-    /// The governing body to which top management reports, where applicable (e.g., board of directors). Referenced in ISO/IEC 27001:2022 Clause 5.1 NOTE.
-    std::optional<std::string> governing_body = std::nullopt;
-    /// Evidence of leadership and commitment with respect to the ISMS as required by Clause 5.1 a-h).
-    std::vector<std::string> leadership_commitment_evidence = {};
-    /// Documented statement of ISMS scope per 4.3.
-    std::optional<std::string> scope_statement = std::nullopt;
-    /// Defined boundaries of the ISMS scope.
-    std::vector<std::string> scope_boundaries = {};
-    /// Any exclusions from scope with justification.
-    std::vector<std::string> scope_exclusions = {};
-    /// Interfaces and dependencies between activities performed by the organization and those performed by other organizations, considered when determining the ISMS scope per Clause 4.3 c).
-    std::vector<std::string> interfaces_and_dependencies = {};
-    /// Description of the processes needed for the ISMS and their interactions, per Clause 4.4.
-    std::optional<std::string> processes_and_interactions = std::nullopt;
-    /// Internal issues relevant to ISMS per 4.1.
-    std::vector<std::string> context_internal_issues = {};
-    /// External issues relevant to ISMS per 4.1.
-    std::vector<std::string> context_external_issues = {};
-    /// Stakeholders relevant to the ISMS.
-    std::vector<InterestedParty> interested_parties = {};
-    /// Reference to the information security policy.
-    std::optional<InformationSecurityPolicy> information_security_policy = std::nullopt;
-    /// Information security objectives.
-    std::vector<InformationSecurityObjective> objectives = {};
-    /// Actions to address risks and opportunities determined per Clause 6.1.1, including how they are integrated into ISMS processes and how their effectiveness is evaluated.
-    std::vector<std::string> risks_and_opportunities_actions = {};
-    /// Changes to the ISMS planned and controlled per Clause 6.3 and 8.1 (planning of changes; control of planned changes).
-    std::vector<std::string> planned_changes = {};
-    /// Externally provided processes, products or services relevant to the ISMS that are controlled per Clause 8.1.
-    std::vector<std::string> externally_provided_services = {};
-    /// Reference to the risk assessment process.
-    std::optional<RiskAssessmentProcess> risk_assessment_process = std::nullopt;
-    /// Reference to the risk treatment process.
-    std::optional<RiskTreatmentProcess> risk_treatment_process = std::nullopt;
-    /// Reference to the Statement of Applicability.
-    std::optional<StatementOfApplicability> statement_of_applicability = std::nullopt;
-    /// Security controls applied in the ISMS.
-    std::vector<SecurityControl> controls = {};
-    /// Information security roles defined in the ISMS.
-    std::vector<Role> roles = {};
-    /// Resources provided for the ISMS.
-    std::vector<Resource> resources = {};
-    /// Competence records for personnel.
-    std::vector<CompetenceRecord> competence_records = {};
-    /// Reference to the awareness program.
-    std::optional<AwarenessProgram> awareness_program = std::nullopt;
-    /// Reference to the communication plan.
-    std::optional<CommunicationPlan> communication_plan = std::nullopt;
-    /// Register of documented information.
-    std::vector<DocumentedInformation> documented_information_register = {};
-    /// Operational procedures.
-    std::vector<OperationalProcedure> operational_procedures = {};
-    /// Risk assessment instances.
-    std::vector<RiskAssessment> risk_assessments = {};
-    /// Risk treatment plans.
-    std::vector<RiskTreatmentPlan> risk_treatment_plans = {};
-    /// Reference to the monitoring program.
-    std::optional<MonitoringProgram> monitoring_program = std::nullopt;
-    /// Internal audit instances.
-    std::vector<InternalAudit> internal_audits = {};
-    /// Management review instances.
-    std::vector<ManagementReview> management_reviews = {};
-    /// Nonconformities identified.
-    std::vector<Nonconformity> nonconformities = {};
-    /// Corrective actions.
-    std::vector<CorrectiveAction> corrective_actions = {};
-    /// Improvement opportunities tracked.
-    std::vector<ImprovementOpportunity> improvements = {};
-    /// Current certification status.
-    std::optional<std::string> certification_status = std::nullopt;
-    /// Accredited certification body.
-    std::optional<std::string> certification_body = std::nullopt;
-    /// Date certification was achieved.
-    std::optional<std::string> certification_date = std::nullopt;
-    /// Date recertification is due.
-    std::optional<std::string> recertification_date = std::nullopt;
+/// One organization's information security management system: its scope and context, and every record it keeps, each kind in a list of its own.
+struct IsmsManagementSystem : public IsmsRecordMixin {
+    /// The organization that runs the ISMS.
+    std::optional<IsmsOrganization> isms_organization = std::nullopt;
+    /// The person or group that directs and controls the organization at the highest level.
+    std::optional<std::string> isms_top_management = std::nullopt;
+    /// The body top management answers to, such as a board, where there is one.
+    std::optional<std::string> isms_governing_body = std::nullopt;
+    /// What shows that top management leads and commits to the ISMS.
+    std::vector<std::string> isms_leadership_evidence = {};
+    /// The scope of the ISMS, as the organization states it.
+    std::optional<std::string> isms_scope = std::nullopt;
+    /// Where the scope of the ISMS ends.
+    std::vector<std::string> isms_scope_boundaries = {};
+    /// What the scope leaves out, each with the reason.
+    std::vector<std::string> isms_scope_exclusions = {};
+    /// The interfaces and dependencies between what the organization does and what other organizations do, which the scope takes into account.
+    std::vector<std::string> isms_interfaces = {};
+    /// The processes the ISMS needs and how they interact.
+    std::optional<std::string> isms_processes = std::nullopt;
+    /// The internal issues that bear on the ISMS.
+    std::vector<std::string> isms_internal_issues = {};
+    /// The external issues that bear on the ISMS.
+    std::vector<std::string> isms_external_issues = {};
+    /// The actions planned to address the ISMS's risks and opportunities, and how they fit into its processes.
+    std::vector<std::string> isms_risk_and_opportunity_actions = {};
+    /// The changes to the ISMS that are planned.
+    std::vector<std::string> isms_planned_changes = {};
+    /// The processes, products or services from outside the organization that the ISMS relies on and controls.
+    std::vector<std::string> isms_external_services = {};
+    /// Where the ISMS stands with certification, in the organization's own terms.
+    std::optional<std::string> isms_certification_status = std::nullopt;
+    /// The body that certifies the ISMS.
+    std::optional<std::string> isms_certification_body = std::nullopt;
+    /// When the ISMS was certified.
+    std::optional<std::string> isms_certification_date = std::nullopt;
+    /// When the ISMS is next due for recertification.
+    std::optional<std::string> isms_recertification_date = std::nullopt;
+    /// The interested parties the ISMS takes into account.
+    std::vector<IsmsInterestedParty> isms_interested_parties = {};
+    /// The information security policy.
+    std::optional<IsmsPolicy> isms_policy = std::nullopt;
+    /// The topic-specific policies under the information security policy.
+    std::vector<IsmsTopicSpecificPolicy> isms_topic_specific_policies = {};
+    /// The roles that carry the ISMS's responsibilities and authorities.
+    std::vector<IsmsRole> isms_roles = {};
+    /// The information security objectives.
+    std::vector<IsmsObjective> isms_objectives = {};
+    /// The information security risk assessment process.
+    std::optional<IsmsRiskAssessmentProcess> isms_risk_assessment_process = std::nullopt;
+    /// The information security risk treatment process.
+    std::optional<IsmsRiskTreatmentProcess> isms_risk_treatment_process = std::nullopt;
+    /// The risk assessments carried out.
+    std::vector<IsmsRiskAssessment> isms_risk_assessments = {};
+    /// The risks identified, the risk register.
+    std::vector<IsmsRisk> isms_risks = {};
+    /// The risk treatment plans.
+    std::vector<IsmsRiskTreatmentPlan> isms_risk_treatment_plans = {};
+    /// The Statement of Applicability.
+    std::optional<IsmsStatementOfApplicability> isms_statement_of_applicability = std::nullopt;
+    /// The controls the organization has determined it needs.
+    std::vector<IsmsControl> isms_controls = {};
+    /// The inventory of information and other associated assets.
+    std::vector<IsmsAsset> isms_assets = {};
+    /// The resources provided for the ISMS.
+    std::vector<IsmsResource> isms_resources = {};
+    /// The records of competence.
+    std::vector<IsmsCompetenceRecord> isms_competence_records = {};
+    /// The awareness programme.
+    std::optional<IsmsAwarenessProgramme> isms_awareness_programme = std::nullopt;
+    /// The plan for communication about the ISMS.
+    std::optional<IsmsCommunicationPlan> isms_communication_plan = std::nullopt;
+    /// The documented information the ISMS keeps that no more specific list holds, such as procedures, plans and reports.
+    std::vector<IsmsDocumentedInformation> isms_documented_information = {};
+    /// The procedures for operational planning and control.
+    std::vector<IsmsOperationalProcedure> isms_operational_procedures = {};
+    /// The programme of monitoring and measurement.
+    std::optional<IsmsMonitoringProgramme> isms_monitoring_programme = std::nullopt;
+    /// The audit programmes.
+    std::vector<IsmsAuditProgramme> isms_audit_programmes = {};
+    /// The audits of the ISMS, internal and external.
+    std::vector<IsmsAudit> isms_audits = {};
+    /// The management reviews.
+    std::vector<IsmsManagementReview> isms_management_reviews = {};
+    /// The nonconformities found.
+    std::vector<IsmsNonconformity> isms_nonconformities = {};
+    /// The corrective actions taken.
+    std::vector<IsmsCorrectiveAction> isms_corrective_actions = {};
+    /// The opportunities for improvement identified.
+    std::vector<IsmsImprovementOpportunity> isms_improvements = {};
+    /// The information security events reported, the incidents among them.
+    std::vector<IsmsSecurityEvent> isms_security_events = {};
 };
 
 
-/// The organization establishing and operating the ISMS. Captures context needed for Clause 4.1 (understanding the organization).
-struct Organization : public NamedEntity {
-    /// Legal registered name of the organization.
-    std::optional<std::string> legal_name = std::nullopt;
-    /// Names under which the organization conducts business.
-    std::vector<std::string> trading_names = {};
-    /// Type of organization (e.g., corporation, government, nonprofit).
-    std::optional<std::string> organization_type = std::nullopt;
-    /// Primary industry sector of the organization.
-    std::optional<std::string> industry_sector = std::nullopt;
-    /// Organization size classification.
-    std::optional<std::string> size_category = std::nullopt;
-    /// Approximate number of employees.
-    std::optional<int32_t> employee_count = std::nullopt;
-    /// Countries or regions where the organization operates.
-    std::vector<std::string> geographic_locations = {};
-    /// Jurisdictions whose regulations apply to the organization.
-    std::vector<std::string> regulatory_jurisdictions = {};
-    /// Parent organization if applicable.
-    std::optional<std::string> parent_organization = std::nullopt;
-    /// Subsidiary organizations if applicable.
-    std::vector<std::string> subsidiaries = {};
-    /// Whether climate change has been determined to be a relevant issue for the organization's context, per Clause 4.1 as amended by Amd. 1:2024.
-    std::optional<bool> climate_change_relevant = std::nullopt;
+/// The organization that runs the ISMS, with what it needs to know about itself to understand its context.
+struct IsmsOrganization : public IsmsRecordMixin {
+    /// The organization's registered legal name.
+    std::optional<std::string> organization_legal_name = std::nullopt;
+    /// Other names the organization trades under.
+    std::vector<std::string> organization_trading_names = {};
+    /// What kind of organization it is, such as a company, an agency or a charity.
+    std::optional<std::string> organization_kind = std::nullopt;
+    /// The organization's main industry sector.
+    std::optional<std::string> organization_sector = std::nullopt;
+    /// How the organization classes its own size.
+    std::optional<std::string> organization_size = std::nullopt;
+    /// About how many people the organization employs.
+    std::optional<int32_t> organization_employee_count = std::nullopt;
+    /// The countries or regions the organization works in.
+    std::vector<std::string> organization_locations = {};
+    /// The jurisdictions whose laws and regulations apply to the organization.
+    std::vector<std::string> organization_jurisdictions = {};
+    /// The organization's parent, if it has one.
+    std::optional<std::string> organization_parent = std::nullopt;
+    /// The organization's subsidiaries, if it has any.
+    std::vector<std::string> organization_subsidiaries = {};
+    /// Whether the organization has determined that climate change is a relevant issue for its ISMS.
+    std::optional<bool> organization_climate_change_relevant = std::nullopt;
 };
 
 
-/// A stakeholder whose needs and expectations are relevant to the ISMS per 4.2. Includes internal parties (employees, management) and external parties (customers, regulators, suppliers).
-struct InterestedParty : public NamedEntity {
-    /// Category of interested party.
-    std::optional<std::string> party_type = std::nullopt;
-    /// Nature of the relationship with the organization.
-    std::optional<std::string> relationship = std::nullopt;
-    /// Requirements of the interested party.
-    std::vector<std::string> requirements = {};
-    /// Requirements of the interested party that the organization has determined will be addressed through the ISMS, per Clause 4.2 c).
-    std::vector<std::string> addressed_requirements = {};
-    /// Climate-change-related requirements of the interested party, per ISO/IEC 27001:2022 Clause 4.2 NOTE 2 as added by Amd. 1:2024.
-    std::vector<std::string> climate_change_related_requirements = {};
-    /// Communication requirements for this party.
-    std::optional<std::string> communication_needs = std::nullopt;
-    /// Contact details for the party.
-    std::optional<std::string> contact_information = std::nullopt;
+/// A person or organization whose needs and expectations bear on the ISMS, inside the organization or outside it, such as staff, customers, regulators or suppliers.
+struct IsmsInterestedParty : public IsmsRecordMixin {
+    /// What kind of interested party it is, in the organization's own terms.
+    std::optional<std::string> party_category = std::nullopt;
+    /// How the party relates to the organization.
+    std::optional<std::string> party_relationship = std::nullopt;
+    /// The party's requirements that bear on information security.
+    std::vector<std::string> party_requirements = {};
+    /// Which of those requirements the ISMS addresses.
+    std::vector<std::string> party_addressed_requirements = {};
+    /// The party's requirements that concern climate change.
+    std::vector<std::string> party_climate_change_requirements = {};
+    /// What the party needs to be told, and how.
+    std::optional<std::string> party_communication_needs = std::nullopt;
+    /// How to reach the party.
+    std::optional<std::string> party_contact = std::nullopt;
 };
 
 
-/// The information security policy established by top management per Clause 5.2. Provides framework for setting objectives and demonstrates commitment.
-struct InformationSecurityPolicy : public DocumentedInformation {
-    /// The core policy statement text.
+/// The information security policy that top management sets: the organization's commitment and the frame for its information security objectives.
+struct IsmsPolicy : public IsmsRecordMixin, public IsmsDocumentControlMixin {
+    /// The policy's own statement, in the organization's words.
     std::optional<std::string> policy_statement = std::nullopt;
-    /// Framework for setting information security objectives.
+    /// How the policy frames the setting of information security objectives.
     std::optional<std::string> policy_objectives_framework = std::nullopt;
-    /// Statements of commitment included in the policy.
-    std::vector<std::string> commitment_statements = {};
-    /// Statement of policy applicability.
-    std::optional<std::string> applicability_statement = std::nullopt;
-    /// Date when the policy was communicated.
-    std::optional<std::string> communication_date = std::nullopt;
-    /// Whether acknowledgment is required from personnel.
-    std::optional<bool> acknowledgment_required = std::nullopt;
-    /// Date of the most recent information security policy review.
-    std::optional<std::string> last_policy_review_date = std::nullopt;
-    /// Planned date of the next information security policy review.
-    std::optional<std::string> next_policy_review_date = std::nullopt;
-    /// Topic-specific policies supporting this policy.
-    std::vector<TopicSpecificPolicy> related_topic_policies = {};
-    /// Other ISO/IEC management system standards with which the ISMS is integrated or aligned (per the harmonized structure of Annex SL).
-    std::vector<RelatedManagementSystem> integrated_management_systems = {};
+    /// The commitments the policy makes.
+    std::vector<std::string> policy_commitments = {};
+    /// To whom and to what the policy applies.
+    std::optional<std::string> policy_applicability = std::nullopt;
+    /// When the policy was communicated within the organization.
+    std::optional<std::string> policy_communication_date = std::nullopt;
+    /// Whether staff must acknowledge the policy.
+    std::optional<bool> policy_acknowledgement_required = std::nullopt;
+    /// The other management system standards the ISMS is integrated with under the same policy.
+    std::vector<IsmsManagementSystemStandard> policy_management_systems = {};
 };
 
 
-/// A policy addressing a specific information security topic, supporting the overarching information security policy.
-struct TopicSpecificPolicy : public DocumentedInformation {
-    /// The specific topic addressed by the policy.
-    std::optional<std::string> topic_area = std::nullopt;
-    /// The parent policy this topic-specific policy supports.
-    std::optional<InformationSecurityPolicy> parent_policy = std::nullopt;
-    /// Controls related to this policy.
-    std::vector<SecurityControl> applicable_controls = {};
-    /// Intended audience for the policy or document.
-    std::optional<std::string> target_audience = std::nullopt;
+/// A policy on one topic of information security, such as access control or backup, that supports the information security policy.
+struct IsmsTopicSpecificPolicy : public IsmsRecordMixin, public IsmsDocumentControlMixin {
+    /// The organization's controls that the record concerns.
+    std::vector<IsmsControl> relevant_controls = {};
+    /// The topic the policy covers.
+    std::optional<std::string> topic_policy_topic = std::nullopt;
+    /// The information security policy this policy supports.
+    std::optional<IsmsPolicy> topic_policy_parent = std::nullopt;
+    /// Whom the policy is written for.
+    std::optional<std::string> topic_policy_audience = std::nullopt;
 };
 
 
-/// An information security role with defined responsibilities and authorities per Clause 5.3.
-struct Role : public NamedEntity {
-    /// Category of the role.
-    std::optional<std::string> role_type = std::nullopt;
-    /// Responsibilities assigned to the role.
-    std::vector<std::string> responsibilities = {};
-    /// Authorities granted to the role.
-    std::vector<std::string> authorities = {};
+/// A role in the ISMS, with the responsibilities and authorities it carries and who holds it.
+struct IsmsRole : public IsmsRecordMixin {
+    /// What kind of role it is, in the organization's own terms.
+    std::optional<std::string> role_category = std::nullopt;
+    /// The responsibilities assigned to the role.
+    std::vector<std::string> role_responsibilities = {};
+    /// The authorities the role carries.
+    std::vector<std::string> role_authorities = {};
     /// What the role is accountable for.
-    std::optional<std::string> accountability = std::nullopt;
-    /// Person(s) assigned to this role.
-    std::vector<std::string> assigned_to = {};
-    /// Rules for delegating responsibilities.
-    std::optional<std::string> delegation_rules = std::nullopt;
-    /// To whom this role reports.
-    std::optional<std::string> reporting_line = std::nullopt;
+    std::optional<std::string> role_accountability = std::nullopt;
+    /// The people who hold the role.
+    std::vector<std::string> role_holders = {};
+    /// How the role may delegate its responsibilities.
+    std::optional<std::string> role_delegation = std::nullopt;
+    /// The role this role reports to.
+    std::optional<IsmsRole> role_reports_to = std::nullopt;
 };
 
 
-/// A measurable information security objective per Clause 6.2, established at relevant functions and levels of the organization.
-struct InformationSecurityObjective : public NamedEntity {
-    /// Clear statement of the objective.
+/// An information security objective: a measurable result the organization aims for, with how it plans to reach it and how it measures progress.
+struct IsmsObjective : public IsmsRecordMixin {
+    /// The role that answers for the record's activity or outcome.
+    std::optional<IsmsRole> responsible_role = std::nullopt;
+    /// The organization's controls that the record concerns.
+    std::vector<IsmsControl> relevant_controls = {};
+    /// The objective, as the organization states it.
     std::optional<std::string> objective_statement = std::nullopt;
-    /// Target value for the objective metric.
-    std::optional<std::string> target_value = std::nullopt;
-    /// Current measured value.
-    std::optional<std::string> current_value = std::nullopt;
-    /// Definition of how the objective is measured.
-    std::optional<std::string> metric_definition = std::nullopt;
-    /// Method used to measure the metric.
-    std::optional<std::string> measurement_method = std::nullopt;
-    /// How often measurement is performed.
-    std::optional<std::string> measurement_frequency = std::nullopt;
-    /// Role responsible for the objective or control.
-    std::optional<Role> responsible_role = std::nullopt;
-    /// Target date for achieving the objective.
-    std::optional<std::string> target_date = std::nullopt;
-    /// Current status of objective achievement.
-    std::optional<std::string> achievement_status = std::nullopt;
-    /// Associated risks.
-    std::vector<Risk> related_risks = {};
-    /// Other controls related to this one.
-    std::vector<SecurityControl> related_controls = {};
-    /// Plan for achieving the objective.
-    std::optional<std::string> action_plan = std::nullopt;
-    /// Resources required to achieve the information security objective.
-    std::optional<std::string> objective_resources_required = std::nullopt;
+    /// The value the objective aims for.
+    std::optional<std::string> objective_target = std::nullopt;
+    /// The value last measured.
+    std::optional<std::string> objective_current_value = std::nullopt;
+    /// How the objective's value is defined.
+    std::optional<std::string> objective_metric = std::nullopt;
+    /// How the value is measured.
+    std::optional<std::string> objective_measurement_method = std::nullopt;
+    /// How often the value is measured.
+    std::optional<std::string> objective_measurement_frequency = std::nullopt;
+    /// When the objective is to be reached.
+    std::optional<std::string> objective_target_date = std::nullopt;
+    /// How far the objective has been reached, in the organization's own terms.
+    std::optional<std::string> objective_achievement = std::nullopt;
+    /// The risks the objective concerns.
+    std::vector<IsmsRisk> objective_risks = {};
+    /// What will be done to reach the objective.
+    std::optional<std::string> objective_action_plan = std::nullopt;
+    /// The resources needed to reach the objective.
+    std::optional<std::string> objective_resources = std::nullopt;
 };
 
 
-/// The documented risk assessment process per Clause 6.1.2, defining criteria and methodology for identifying, analyzing, and evaluating risks.
-struct RiskAssessmentProcess : public DocumentedInformation {
-    /// Criteria for accepting risks.
+/// The organization's process for assessing information security risks: its criteria for accepting risk and for assessing it, its scales and method, and when it runs.
+struct IsmsRiskAssessmentProcess : public IsmsRecordMixin, public IsmsDocumentControlMixin {
+    /// The criteria for accepting a risk.
     std::optional<std::string> risk_acceptance_criteria = std::nullopt;
-    /// Criteria for performing risk assessments.
-    std::optional<std::string> assessment_criteria = std::nullopt;
-    /// Methodology used for risk assessment.
-    std::optional<std::string> assessment_methodology = std::nullopt;
-    /// Scale used for likelihood rating.
-    std::optional<std::string> likelihood_scale = std::nullopt;
-    /// Scale used for impact rating.
-    std::optional<std::string> impact_scale = std::nullopt;
-    /// Risk matrix or calculation method.
+    /// The criteria for carrying out a risk assessment.
+    std::optional<std::string> risk_assessment_criteria = std::nullopt;
+    /// The method used to identify, analyse and evaluate risks.
+    std::optional<std::string> risk_assessment_method = std::nullopt;
+    /// The scale for rating likelihood.
+    std::optional<std::string> risk_likelihood_scale = std::nullopt;
+    /// The scale for rating consequences.
+    std::optional<std::string> risk_impact_scale = std::nullopt;
+    /// How likelihood and consequence combine into a risk level.
     std::optional<std::string> risk_matrix = std::nullopt;
-    /// Planned frequency of risk assessments.
-    std::optional<std::string> assessment_frequency = std::nullopt;
-    /// Events that trigger risk assessment outside planned schedule.
-    std::vector<std::string> trigger_events = {};
+    /// How often risks are assessed.
+    std::optional<std::string> risk_assessment_frequency = std::nullopt;
+    /// The events that start a risk assessment outside the planned ones.
+    std::vector<std::string> risk_assessment_triggers = {};
 };
 
 
-/// An instance of risk assessment performed per Clause 8.2, identifying and evaluating information security risks.
-struct RiskAssessment : public DocumentedInformation {
-    /// Scope of the assessment.
+/// One risk assessment carried out under the risk assessment process, and what it found.
+struct IsmsRiskAssessment : public IsmsRecordMixin, public IsmsDocumentControlMixin {
+    /// What the assessment covered.
     std::optional<std::string> assessment_scope = std::nullopt;
-    /// Date the assessment was conducted.
+    /// When the assessment was carried out.
     std::optional<std::string> assessment_date = std::nullopt;
-    /// Person or team who conducted the assessment.
-    std::optional<std::string> assessor = std::nullopt;
-    /// Specific methodology applied in this assessment.
-    std::optional<std::string> methodology_used = std::nullopt;
-    /// Risks identified in this assessment.
-    std::vector<Risk> risks_identified = {};
-    /// Summary of assessment findings.
-    std::optional<std::string> summary_findings = std::nullopt;
-    /// Recommendations from the assessment.
-    std::vector<std::string> recommendations = {};
-    /// Planned date for next assessment.
-    std::optional<std::string> next_assessment_date = std::nullopt;
+    /// Who carried out the assessment.
+    std::optional<std::string> assessment_assessor = std::nullopt;
+    /// The method this assessment applied.
+    std::optional<std::string> assessment_method_used = std::nullopt;
+    /// The risks the assessment identified.
+    std::vector<IsmsRisk> assessment_risks = {};
+    /// A summary of what the assessment found.
+    std::optional<std::string> assessment_summary = std::nullopt;
+    /// What the assessment recommends.
+    std::vector<std::string> assessment_recommendations = {};
+    /// When the next assessment is planned.
+    std::optional<std::string> assessment_next_date = std::nullopt;
 };
 
 
-/// An identified information security risk that may affect information security properties within the ISMS scope.
-struct Risk : public NamedEntity {
-    /// Source or origin of the risk.
+/// An information security risk in the risk register: where it comes from, what it threatens, who owns it, how it is rated before and after controls, and how it is treated.
+struct IsmsRisk : public IsmsRecordMixin {
+    /// The assets the risk, event or incident affects.
+    std::vector<IsmsAsset> affected_assets = {};
+    /// Which of confidentiality, integrity and availability the risk or incident threatens.
+    std::vector<IsmsSecurityProperty> affected_security_properties = {};
+    /// Where the risk comes from.
     std::optional<std::string> risk_source = std::nullopt;
-    /// Description of the threat exploiting the vulnerability.
-    std::optional<std::string> threat_description = std::nullopt;
-    /// Description of the vulnerability that could be exploited.
-    std::optional<std::string> vulnerability_description = std::nullopt;
-    /// Assets affected by this risk or incident.
-    std::vector<Asset> affected_assets = {};
-    /// Which CIA properties are affected (confidentiality, integrity, availability).
-    std::vector<CIAProperty> affected_cia_properties = {};
-    /// Person accountable for managing the risk.
+    /// The threat that could cause harm.
+    std::optional<std::string> risk_threat = std::nullopt;
+    /// The weakness the threat could exploit.
+    std::optional<std::string> risk_vulnerability = std::nullopt;
+    /// The person who is accountable for the risk and has the authority to manage it.
     std::optional<std::string> risk_owner = std::nullopt;
-    /// Assessed likelihood of risk occurrence.
-    std::optional<LikelihoodRating> likelihood = std::nullopt;
-    /// Assessed impact if risk materializes.
-    std::optional<ImpactRating> impact = std::nullopt;
-    /// Risk level before controls are applied.
-    std::optional<RiskLevel> inherent_risk_level = std::nullopt;
-    /// Controls currently in place affecting this risk.
-    std::vector<SecurityControl> existing_controls = {};
-    /// Risk level after controls are applied.
-    std::optional<RiskLevel> residual_risk_level = std::nullopt;
-    /// Selected treatment option for the risk.
-    std::optional<RiskTreatmentOption> risk_treatment_option = std::nullopt;
-    /// Priority for treating this risk.
-    std::optional<std::string> treatment_priority = std::nullopt;
-    /// Risk treatment plan addressing this risk.
-    std::optional<RiskTreatmentPlan> related_treatment_plan = std::nullopt;
+    /// How likely the risk is.
+    std::optional<IsmsLikelihood> risk_likelihood = std::nullopt;
+    /// How severe the consequences would be.
+    std::optional<IsmsImpact> risk_impact = std::nullopt;
+    /// The risk's level before controls.
+    std::optional<IsmsRiskLevel> risk_inherent_level = std::nullopt;
+    /// The organization's controls already acting on the risk.
+    std::vector<IsmsControl> risk_existing_controls = {};
+    /// The risk's level after controls.
+    std::optional<IsmsRiskLevel> risk_residual_level = std::nullopt;
+    /// The treatment chosen for the risk.
+    std::optional<IsmsRiskTreatmentOption> risk_treatment_option = std::nullopt;
+    /// How soon the risk is to be treated, in the organization's own terms.
+    std::optional<std::string> risk_treatment_priority = std::nullopt;
 };
 
 
-/// The documented risk treatment process per Clause 6.1.3, defining how treatment options are selected and controls determined.
-struct RiskTreatmentProcess : public DocumentedInformation {
-    /// Guidance on selecting treatment options.
+/// The organization's process for treating information security risks: how it chooses treatments and controls, checks them against Annex A, and produces the Statement of Applicability.
+struct IsmsRiskTreatmentProcess : public IsmsRecordMixin, public IsmsDocumentControlMixin {
+    /// How a treatment option is chosen for a risk.
     std::optional<std::string> treatment_options_guidance = std::nullopt;
-    /// Criteria for selecting controls.
-    std::optional<std::string> control_selection_criteria = std::nullopt;
-    /// Description of how controls determined as necessary are compared with those in Annex A to verify that no necessary controls have been omitted, per Clause 6.1.3 c).
-    std::optional<std::string> annex_a_omission_verification = std::nullopt;
-    /// Template used for Statement of Applicability.
-    std::optional<std::string> soa_template = std::nullopt;
-    /// Workflow for approving risk treatment.
-    std::optional<std::string> approval_workflow = std::nullopt;
+    /// How the controls a treatment needs are chosen.
+    std::optional<std::string> treatment_control_selection = std::nullopt;
+    /// How the chosen controls are compared with Annex A, so that no necessary control is left out.
+    std::optional<std::string> treatment_annex_a_comparison = std::nullopt;
+    /// The template the Statement of Applicability follows.
+    std::optional<std::string> treatment_soa_template = std::nullopt;
+    /// How a treatment plan and its residual risks are approved.
+    std::optional<std::string> treatment_approval_workflow = std::nullopt;
 };
 
 
-/// A risk treatment plan documenting planned actions to address identified risks through selected controls.
-struct RiskTreatmentPlan : public DocumentedInformation {
-    /// Scope of the plan.
+/// A plan to treat one or more risks: the actions and controls, who carries them out and when, and the risk owner's approval of the plan and of the residual risk.
+struct IsmsRiskTreatmentPlan : public IsmsRecordMixin, public IsmsDocumentControlMixin {
+    /// How far the control or the plan has been put into effect.
+    std::optional<IsmsImplementationStatus> implementation_state = std::nullopt;
+    /// What the plan covers.
     std::optional<std::string> plan_scope = std::nullopt;
-    /// Risks addressed by this plan.
-    std::vector<Risk> risks_addressed = {};
-    /// Actions to be taken for treatment.
-    std::vector<std::string> treatment_actions = {};
-    /// Controls to be implemented as part of treatment.
-    std::vector<SecurityControl> controls_to_implement = {};
-    /// Resources required for implementation.
-    std::optional<std::string> resources_required = std::nullopt;
-    /// Parties responsible for implementation.
-    std::vector<std::string> responsible_parties = {};
-    /// Timeline for implementation.
-    std::optional<std::string> implementation_timeline = std::nullopt;
-    /// Risk owner who approved the plan.
-    std::optional<std::string> risk_owner_approval = std::nullopt;
-    /// Date when the risk treatment plan was approved.
-    std::optional<std::string> approved_date = std::nullopt;
-    /// Documentation of residual risk acceptance.
-    std::optional<std::string> residual_risk_acceptance = std::nullopt;
-    /// Current implementation status.
-    std::optional<ImplementationStatus> implementation_status = std::nullopt;
-    /// Date when implementation was completed.
-    std::optional<std::string> completion_date = std::nullopt;
+    /// The risks the plan treats.
+    std::vector<IsmsRisk> plan_risks = {};
+    /// The actions the plan takes.
+    std::vector<std::string> plan_actions = {};
+    /// The controls the plan puts in place.
+    std::vector<IsmsControl> plan_controls = {};
+    /// The resources the plan needs.
+    std::optional<std::string> plan_resources = std::nullopt;
+    /// Who carries out the plan.
+    std::vector<std::string> plan_responsible_parties = {};
+    /// When the plan's actions are to happen.
+    std::optional<std::string> plan_timeline = std::nullopt;
+    /// The risk owner who approved the plan.
+    std::optional<std::string> plan_risk_owner_approval = std::nullopt;
+    /// How the risk owners accepted the risk that remains.
+    std::optional<std::string> plan_residual_risk_acceptance = std::nullopt;
+    /// When the plan was completed.
+    std::optional<std::string> plan_completion_date = std::nullopt;
 };
 
 
-/// The Statement of Applicability (SoA) recording which controls apply, their rationale, and current implementation state.
-struct StatementOfApplicability : public DocumentedInformation {
-    /// Individual control entries in the SoA.
-    std::vector<SoAEntry> soa_entries = {};
-    /// Total number of controls in scope.
-    std::optional<int32_t> total_controls = std::nullopt;
-    /// Number of implemented controls.
-    std::optional<int32_t> implemented_count = std::nullopt;
-    /// Number of controls planned for implementation.
-    std::optional<int32_t> planned_count = std::nullopt;
-    /// Number of controls marked not applicable.
-    std::optional<int32_t> not_applicable_count = std::nullopt;
-    /// Date of last review.
-    std::optional<std::string> last_review_date = std::nullopt;
-    /// Person who approved the document.
-    std::optional<std::string> approved_by = std::nullopt;
+/// The Statement of Applicability: each control the organization needs, with why it is included and whether it is in place, and each Annex A control it leaves out, with why.
+struct IsmsStatementOfApplicability : public IsmsRecordMixin, public IsmsDocumentControlMixin {
+    /// The statement's entries, one for each control included or Annex A control excluded.
+    std::vector<IsmsApplicabilityEntry> soa_entries = {};
 };
 
 
-/// A single entry in the Statement of Applicability, documenting the applicability and implementation status of one control.
-struct SoAEntry {
-    /// Reference to the control (e.g., A.5.1).
-    std::optional<SecurityControl> control_reference = std::nullopt;
-    /// Whether the control is applicable.
-    std::optional<bool> is_applicable = std::nullopt;
-    /// Justification for including the control.
-    std::optional<std::string> inclusion_justification = std::nullopt;
-    /// Justification for excluding the control.
-    std::optional<std::string> exclusion_justification = std::nullopt;
-    /// Current implementation status.
-    std::optional<ImplementationStatus> implementation_status = std::nullopt;
-    /// Evidence of control implementation.
-    std::optional<std::string> implementation_evidence = std::nullopt;
-    /// Role responsible for the objective or control.
-    std::optional<Role> responsible_role = std::nullopt;
-    /// Target date for implementing the control.
-    std::optional<std::string> target_implementation_date = std::nullopt;
+/// One entry of the Statement of Applicability, which either includes a control or excludes an Annex A control, and says why.
+struct IsmsApplicabilityEntry {
+    /// The Annex A control a Statement of Applicability entry concerns.
+    std::optional<IsmsAnnexAControl> entry_annex_a_control = std::nullopt;
+    /// The kind of entry: IsmsIncludedControl or IsmsExcludedControl.
+    std::optional<std::string> entry_type = std::nullopt;
+    /// Why the control is included or excluded.
+    std::string entry_justification;
 };
 
 
-/// A security control from Annex A of ISO/IEC 27001:2022, derived from ISO/IEC 27002:2022. Represents a measure that modifies risk.
-struct SecurityControl : public NamedEntity {
-    /// Control identifier from Annex A (e.g., a_5_1, a_8_24).
-    std::optional<AnnexAControlId> control_id = std::nullopt;
-    /// Title of the control.
-    std::optional<std::string> control_title = std::nullopt;
-    /// Domain category of the control.
-    std::optional<ControlCategory> control_category = std::nullopt;
-    /// Organization-authored control statement or external control summary.
+/// An entry that includes a control the organization needs, from Annex A or from elsewhere, and says whether it is in place.
+struct IsmsIncludedControl : public IsmsApplicabilityEntry {
+    /// How far the control or the plan has been put into effect.
+    IsmsImplementationStatus implementation_state;
+    /// The role that answers for the record's activity or outcome.
+    std::optional<IsmsRole> responsible_role = std::nullopt;
+    /// The organization's control the entry includes.
+    std::optional<IsmsControl> included_control = std::nullopt;
+    /// What shows that the control is in place.
+    std::optional<std::string> included_evidence = std::nullopt;
+    /// When the control is to be in place, if it is not yet.
+    std::optional<std::string> included_target_date = std::nullopt;
+};
+
+
+/// An entry that leaves out an Annex A control the organization does not need, and says why.
+struct IsmsExcludedControl : public IsmsApplicabilityEntry {
+};
+
+
+/// A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.
+struct IsmsControl : public IsmsRecordMixin {
+    /// The organization's controls that the record concerns.
+    std::vector<IsmsControl> relevant_controls = {};
+    /// How far the control or the plan has been put into effect.
+    std::optional<IsmsImplementationStatus> implementation_state = std::nullopt;
+    /// The Annex A controls the control answers to.
+    std::vector<IsmsAnnexAControl> control_annex_a_controls = {};
+    /// Which of Annex A's four themes the control belongs to.
+    std::optional<IsmsControlTheme> control_theme = std::nullopt;
+    /// What the control does, in the organization's own words.
     std::optional<std::string> control_text = std::nullopt;
-    /// Organization-authored implementation notes for the control.
-    std::optional<std::string> implementation_guidance = std::nullopt;
-    /// Other controls related to this one.
-    std::vector<SecurityControl> related_controls = {};
-    /// Threats this control addresses.
-    std::vector<std::string> applicable_threats = {};
-    /// Asset types this control applies to.
-    std::vector<std::string> applicable_assets = {};
-    /// Person responsible for the control.
+    /// The organization's notes on putting the control in place.
+    std::optional<std::string> control_guidance = std::nullopt;
+    /// The threats the control acts against.
+    std::vector<std::string> control_threats = {};
+    /// The kinds of asset the control applies to.
+    std::vector<std::string> control_asset_types = {};
+    /// The person who owns the control.
     std::optional<std::string> control_owner = std::nullopt;
-    /// Current implementation status.
-    std::optional<ImplementationStatus> implementation_status = std::nullopt;
-    /// Date the control was implemented.
-    std::optional<std::string> implementation_date = std::nullopt;
-    /// Rating of control effectiveness.
-    std::optional<std::string> effectiveness_rating = std::nullopt;
-    /// Date the control was last tested.
-    std::optional<std::string> last_test_date = std::nullopt;
-    /// References to evidence of implementation.
-    std::vector<std::string> evidence_references = {};
+    /// When the control was put in place.
+    std::optional<std::string> control_implementation_date = std::nullopt;
+    /// How well the control works, in the organization's own terms.
+    std::optional<std::string> control_effectiveness = std::nullopt;
+    /// When the control was last tested.
+    std::optional<std::string> control_last_tested = std::nullopt;
+    /// Where the evidence that the control is in place is kept.
+    std::vector<std::string> control_evidence = {};
 };
 
 
-/// A resource provided for the ISMS per Clause 7.1, including personnel, infrastructure, technology, and budget.
-struct Resource : public NamedEntity {
-    /// Type of resource.
-    std::optional<std::string> resource_type = std::nullopt;
-    /// Quantity of the resource.
-    std::optional<std::string> quantity = std::nullopt;
-    /// Date the resource was allocated.
-    std::optional<std::string> allocation_date = std::nullopt;
+/// An item in the inventory of information and other associated assets: what it is, who owns and looks after it, where it is, how it is classified and how much it matters.
+struct IsmsAsset : public IsmsRecordMixin {
+    /// The organization's controls that the record concerns.
+    std::vector<IsmsControl> relevant_controls = {};
+    /// What kind of asset it is, such as information, software, hardware or a service.
+    std::optional<std::string> asset_category = std::nullopt;
+    /// Who owns the asset.
+    std::optional<std::string> asset_owner = std::nullopt;
+    /// Who looks after the asset from day to day.
+    std::optional<std::string> asset_custodian = std::nullopt;
+    /// The information classification the asset carries.
+    std::optional<std::string> asset_classification = std::nullopt;
+    /// Where the asset is, physically or logically.
+    std::optional<std::string> asset_location = std::nullopt;
+    /// How much the asset matters, in the organization's own terms.
+    std::optional<std::string> asset_criticality = std::nullopt;
+};
+
+
+/// A resource provided for the ISMS, such as people, time, tools or budget.
+struct IsmsResource : public IsmsRecordMixin {
+    /// What kind of resource it is.
+    std::optional<std::string> resource_category = std::nullopt;
+    /// How much of the resource is provided.
+    std::optional<std::string> resource_quantity = std::nullopt;
+    /// When the resource was allocated.
+    std::optional<std::string> resource_allocation_date = std::nullopt;
     /// What the resource is allocated to.
-    std::optional<std::string> allocated_to = std::nullopt;
-    /// Cost of the resource.
-    std::optional<std::string> cost = std::nullopt;
-    /// Current availability of the resource.
-    std::optional<std::string> availability_status = std::nullopt;
+    std::optional<std::string> resource_allocated_to = std::nullopt;
+    /// What the resource costs.
+    std::optional<std::string> resource_cost = std::nullopt;
+    /// Whether the resource is available now, in the organization's own terms.
+    std::optional<std::string> resource_availability = std::nullopt;
 };
 
 
-/// Evidence of competence for personnel affecting information security performance per Clause 7.2 d).
-struct CompetenceRecord : public DocumentedInformation {
-    /// Name of the person.
-    std::optional<std::string> person_name = std::nullopt;
-    /// Role of the person.
-    std::optional<std::string> person_role = std::nullopt;
-    /// Competencies required for the role.
-    std::vector<std::string> required_competencies = {};
-    /// Education qualifications.
-    std::vector<std::string> education_records = {};
-    /// Training completed.
-    std::vector<std::string> training_records = {};
-    /// Relevant experience.
-    std::vector<std::string> experience_records = {};
-    /// Date of last competency assessment.
-    std::optional<std::string> competency_assessment_date = std::nullopt;
-    /// Identified competency gaps.
-    std::vector<std::string> competency_gaps = {};
-    /// Actions to address competency gaps.
-    std::vector<std::string> development_actions = {};
+/// The evidence of one person's competence for work that affects information security, and what is done to close any gap.
+struct IsmsCompetenceRecord : public IsmsRecordMixin, public IsmsDocumentControlMixin {
+    /// The person the record is about.
+    std::optional<std::string> competence_person = std::nullopt;
+    /// The role the person holds.
+    std::optional<IsmsRole> competence_role = std::nullopt;
+    /// The competences the role needs.
+    std::vector<std::string> competence_required = {};
+    /// The person's relevant education.
+    std::vector<std::string> competence_education = {};
+    /// The training the person has completed.
+    std::vector<std::string> competence_training = {};
+    /// The person's relevant experience.
+    std::vector<std::string> competence_experience = {};
+    /// When the person's competence was last assessed.
+    std::optional<std::string> competence_assessment_date = std::nullopt;
+    /// The gaps the assessment found.
+    std::vector<std::string> competence_gaps = {};
+    /// What is done to close the gaps.
+    std::vector<std::string> competence_actions = {};
 };
 
 
-/// The awareness program ensuring personnel understand their information security responsibilities per Clause 7.3.
-struct AwarenessProgram : public DocumentedInformation {
-    /// Topics covered in awareness program.
+/// The programme that makes people working for the organization aware of the policy, their part in the ISMS and what failing it would mean.
+struct IsmsAwarenessProgramme : public IsmsRecordMixin, public IsmsDocumentControlMixin {
+    /// The topics the programme covers.
     std::vector<std::string> awareness_topics = {};
-    /// Methods used to deliver awareness content.
-    std::vector<std::string> delivery_methods = {};
-    /// Intended audience for the policy or document.
-    std::optional<std::string> target_audience = std::nullopt;
-    /// Frequency of the activity.
-    std::optional<std::string> frequency = std::nullopt;
+    /// How the programme is delivered.
+    std::vector<std::string> awareness_methods = {};
+    /// Whom the programme is for.
+    std::optional<std::string> awareness_audience = std::nullopt;
+    /// How often the programme runs.
+    std::optional<std::string> awareness_frequency = std::nullopt;
     /// How completion is tracked.
-    std::optional<std::string> completion_tracking = std::nullopt;
-    /// How effectiveness is measured.
-    std::optional<std::string> effectiveness_measures = std::nullopt;
+    std::optional<std::string> awareness_completion_tracking = std::nullopt;
+    /// How the programme's effect is measured.
+    std::optional<std::string> awareness_effectiveness = std::nullopt;
 };
 
 
-/// Plan for internal and external communications relevant to the ISMS per Clause 7.4.
-struct CommunicationPlan : public DocumentedInformation {
-    /// Communication items in the plan.
-    std::vector<CommunicationItem> communication_items = {};
+/// The plan for communication about the ISMS, inside the organization and outside it.
+struct IsmsCommunicationPlan : public IsmsRecordMixin, public IsmsDocumentControlMixin {
+    /// The communications the plan provides for.
+    std::vector<IsmsCommunication> communication_items = {};
 };
 
 
-/// A single communication requirement within the communication plan.
-struct CommunicationItem {
-    /// Subject of the communication.
-    std::optional<std::string> subject = std::nullopt;
-    /// Purpose of the communication.
-    std::optional<std::string> purpose = std::nullopt;
-    /// Target audience.
-    std::optional<std::string> audience = std::nullopt;
-    /// Frequency of the activity.
-    std::optional<std::string> frequency = std::nullopt;
-    /// Method of communication.
-    std::optional<std::string> method = std::nullopt;
-    /// Party responsible for the activity.
-    std::optional<std::string> responsible_party = std::nullopt;
-    /// Whether records are required.
-    std::optional<bool> records_required = std::nullopt;
+/// One communication the plan provides for: what about, why, to whom, how often, how, and who communicates.
+struct IsmsCommunication {
+    /// The role that answers for the record's activity or outcome.
+    std::optional<IsmsRole> responsible_role = std::nullopt;
+    /// What the communication is about.
+    std::string communication_subject;
+    /// Why it is communicated.
+    std::optional<std::string> communication_purpose = std::nullopt;
+    /// To whom it is communicated.
+    std::optional<std::string> communication_audience = std::nullopt;
+    /// How often it is communicated.
+    std::optional<std::string> communication_frequency = std::nullopt;
+    /// How it is communicated.
+    std::optional<std::string> communication_method = std::nullopt;
+    /// Whether a record of the communication is kept.
+    std::optional<bool> communication_records_required = std::nullopt;
 };
 
 
-/// A documented procedure for operational planning and control per Clause 8.1.
-struct OperationalProcedure : public DocumentedInformation {
-    /// Scope of the procedure.
+/// A piece of documented information the ISMS keeps under control that no more specific record describes, such as a procedure, a standard, a plan or a report.
+struct IsmsDocumentedInformation : public IsmsRecordMixin, public IsmsDocumentControlMixin {
+    /// What kind of documented information it is.
+    IsmsDocumentKind document_kind;
+};
+
+
+/// A procedure by which the organization plans and controls the processes that meet its information security requirements.
+struct IsmsOperationalProcedure : public IsmsRecordMixin, public IsmsDocumentControlMixin {
+    /// The organization's controls that the record concerns.
+    std::vector<IsmsControl> relevant_controls = {};
+    /// What the procedure covers.
     std::optional<std::string> procedure_scope = std::nullopt;
-    /// Criteria established for the process.
-    std::optional<std::string> process_criteria = std::nullopt;
-    /// Control measures implemented.
-    std::vector<std::string> control_measures = {};
-    /// Roles responsible for the procedure.
-    std::vector<Role> responsible_roles = {};
-    /// Other controls related to this one.
-    std::vector<SecurityControl> related_controls = {};
-    /// Requirements for controlling changes.
-    std::optional<std::string> change_control_requirements = std::nullopt;
+    /// The criteria the processes are run to.
+    std::optional<std::string> procedure_criteria = std::nullopt;
+    /// The measures that control the processes.
+    std::vector<std::string> procedure_control_measures = {};
+    /// The roles that carry out the procedure.
+    std::vector<IsmsRole> procedure_roles = {};
+    /// How changes to the processes are controlled.
+    std::optional<std::string> procedure_change_control = std::nullopt;
 };
 
 
-/// The program for monitoring, measurement, analysis, and evaluation per Clause 9.1.
-struct MonitoringProgram : public DocumentedInformation {
-    /// Items to be monitored.
-    std::vector<MonitoringItem> monitoring_items = {};
+/// The programme of monitoring, measurement, analysis and evaluation of information security performance and of the ISMS's effectiveness.
+struct IsmsMonitoringProgramme : public IsmsRecordMixin, public IsmsDocumentControlMixin {
+    /// What the programme monitors and measures.
+    std::vector<IsmsMonitoringItem> monitoring_items = {};
 };
 
 
-/// A single item to be monitored and measured per 9.1.
-struct MonitoringItem {
-    /// Name of the metric.
-    std::optional<std::string> metric_name = std::nullopt;
-    /// Description of what is measured.
-    std::optional<std::string> metric_description = std::nullopt;
-    /// Method used to measure the metric.
-    std::optional<std::string> measurement_method = std::nullopt;
-    /// How often measurement is performed.
-    std::optional<std::string> measurement_frequency = std::nullopt;
-    /// Party responsible for the activity.
-    std::optional<std::string> responsible_party = std::nullopt;
-    /// How often analysis is performed.
-    std::optional<std::string> analysis_frequency = std::nullopt;
-    /// Person performing analysis.
-    std::optional<std::string> analyst = std::nullopt;
-    /// Target threshold value.
-    std::optional<std::string> target_threshold = std::nullopt;
-    /// Threshold triggering alerts.
-    std::optional<std::string> alert_threshold = std::nullopt;
-    /// Current measured value.
-    std::optional<std::string> current_value = std::nullopt;
-    /// Current trend direction.
-    std::optional<std::string> trend = std::nullopt;
+/// One thing the monitoring programme measures: what, how, how often and by whom it is measured and analysed, and against what thresholds.
+struct IsmsMonitoringItem {
+    /// The role that answers for the record's activity or outcome.
+    std::optional<IsmsRole> responsible_role = std::nullopt;
+    /// The name of what is measured.
+    std::string monitoring_metric;
+    /// What the measurement shows.
+    std::optional<std::string> monitoring_description = std::nullopt;
+    /// How it is measured.
+    std::optional<std::string> monitoring_method = std::nullopt;
+    /// How often it is measured.
+    std::optional<std::string> monitoring_frequency = std::nullopt;
+    /// How often the results are analysed and evaluated.
+    std::optional<std::string> monitoring_analysis_frequency = std::nullopt;
+    /// Who analyses and evaluates the results.
+    std::optional<std::string> monitoring_analyst = std::nullopt;
+    /// The value aimed for.
+    std::optional<std::string> monitoring_target = std::nullopt;
+    /// The value that calls for action.
+    std::optional<std::string> monitoring_alert_threshold = std::nullopt;
+    /// The value last measured.
+    std::optional<std::string> monitoring_current_value = std::nullopt;
+    /// Which way the value is moving.
+    std::optional<std::string> monitoring_trend = std::nullopt;
 };
 
 
-/// An internal audit instance per Clause 9.2, assessing ISMS conformance and effectiveness.
-struct InternalAudit : public DocumentedInformation {
-    /// Reference identifier for the audit.
-    std::optional<std::string> audit_reference = std::nullopt;
-    /// Type of audit per ISO/IEC 27001:2022 Clause 9.2 and ISO/IEC 17021-1.
-    std::optional<AuditType> audit_type = std::nullopt;
-    /// Scope of the audit.
-    std::optional<std::string> audit_scope = std::nullopt;
-    /// Criteria against which audit is conducted.
-    std::vector<std::string> audit_criteria = {};
-    /// Objectives of the audit.
-    std::vector<std::string> audit_objectives = {};
-    /// Start date of audit period.
-    std::optional<std::string> audit_period_start = std::nullopt;
-    /// End date of audit period.
-    std::optional<std::string> audit_period_end = std::nullopt;
-    /// Lead auditor for the audit.
-    std::optional<std::string> lead_auditor = std::nullopt;
-    /// Audit team members.
-    std::vector<std::string> audit_team = {};
-    /// Representatives from audited areas.
-    std::vector<std::string> auditee_representatives = {};
-    /// Audit plan document reference.
-    std::optional<std::string> audit_plan = std::nullopt;
-    /// Audit findings.
-    std::vector<AuditFinding> findings = {};
-    /// Positive observations noted.
-    std::vector<std::string> positive_observations = {};
-    /// Overall audit conclusion.
-    std::optional<std::string> audit_conclusion = std::nullopt;
-    /// Date the report was issued.
-    std::optional<std::string> report_date = std::nullopt;
-    /// Distribution list for the report.
-    std::vector<std::string> report_distribution = {};
-};
-
-
-/// The internal audit programme per 9.2.2, planning audit activities over a defined period.
-struct AuditProgramme : public DocumentedInformation {
-    /// Period covered by the audit programme.
+/// An internal audit programme: the audits planned over a period, how often and why, and the resources and auditors they need.
+struct IsmsAuditProgramme : public IsmsRecordMixin, public IsmsDocumentControlMixin {
+    /// The period the programme covers.
     std::optional<std::string> programme_period = std::nullopt;
-    /// Audits planned in this programme.
-    std::vector<InternalAudit> planned_audits = {};
-    /// Rationale for audit frequency decisions.
-    std::optional<std::string> audit_frequency_rationale = std::nullopt;
-    /// Resource requirements for the programme.
-    std::optional<std::string> resource_requirements = std::nullopt;
-    /// Required qualifications for auditors.
-    std::optional<std::string> auditor_qualifications = std::nullopt;
-    /// Current status of the programme.
+    /// The audits the programme plans.
+    std::vector<IsmsAudit> programme_audits = {};
+    /// Why the audits happen as often as they do.
+    std::optional<std::string> programme_frequency_rationale = std::nullopt;
+    /// The resources the programme needs.
+    std::optional<std::string> programme_resources = std::nullopt;
+    /// The qualifications the auditors need.
+    std::optional<std::string> programme_auditor_qualifications = std::nullopt;
+    /// Where the programme stands, in the organization's own terms.
     std::optional<std::string> programme_status = std::nullopt;
 };
 
 
-/// A finding from an internal audit, including nonconformities, observations, and positive findings.
-struct AuditFinding : public NamedEntity {
-    /// Type of audit finding.
-    std::optional<AuditFindingType> finding_type = std::nullopt;
-    /// Reference to standard clause.
-    std::optional<std::string> clause_reference = std::nullopt;
-    /// Reference to the control (e.g., A.5.1).
-    std::optional<SecurityControl> control_reference = std::nullopt;
-    /// Description of the finding.
-    std::optional<std::string> finding_description = std::nullopt;
-    /// Evidence supporting the finding.
-    std::optional<std::string> objective_evidence = std::nullopt;
-    /// Analysis of root cause.
-    std::optional<std::string> root_cause_analysis = std::nullopt;
-    /// Risk implications of the finding.
-    std::optional<std::string> risk_implication = std::nullopt;
-    /// Recommended action to address finding.
-    std::optional<std::string> recommended_action = std::nullopt;
-    /// Response from the auditee.
-    std::optional<std::string> auditee_response = std::nullopt;
-    /// Corrective action linked to this finding.
-    std::optional<CorrectiveAction> linked_corrective_action = std::nullopt;
-    /// Status of finding closure.
-    std::optional<std::string> closure_status = std::nullopt;
-    /// Date the finding was closed.
-    std::optional<std::string> closure_date = std::nullopt;
+/// An audit of the ISMS: an internal audit, or an audit by a customer or a certification body, with its scope, criteria, team, findings and conclusion.
+struct IsmsAudit : public IsmsRecordMixin, public IsmsDocumentControlMixin {
+    /// Who carries out the audit, relative to the organization.
+    IsmsAuditType audit_type;
+    /// The management system standards the audit covers.
+    std::vector<IsmsManagementSystemStandard> audit_standards = {};
+    /// What the audit covers.
+    std::optional<std::string> audit_scope = std::nullopt;
+    /// What the audit compares the ISMS against.
+    std::vector<std::string> audit_criteria = {};
+    /// What the audit sets out to establish.
+    std::vector<std::string> audit_objectives = {};
+    /// When the audit began.
+    std::optional<std::string> audit_period_start = std::nullopt;
+    /// When the audit ended.
+    std::optional<std::string> audit_period_end = std::nullopt;
+    /// Who led the audit.
+    std::optional<std::string> audit_lead = std::nullopt;
+    /// Who else audited.
+    std::vector<std::string> audit_team = {};
+    /// Who represented the parts of the organization audited.
+    std::vector<std::string> audit_auditees = {};
+    /// The documented information that holds the audit plan.
+    std::optional<IsmsDocumentedInformation> audit_plan = std::nullopt;
+    /// What the audit found, good and bad.
+    std::vector<IsmsAuditFinding> audit_findings = {};
+    /// The audit's overall conclusion.
+    std::optional<std::string> audit_conclusion = std::nullopt;
+    /// When the audit report was issued.
+    std::optional<std::string> audit_report_date = std::nullopt;
+    /// Who received the audit report.
+    std::vector<std::string> audit_report_distribution = {};
 };
 
 
-/// A management review per Clause 9.3, conducted by top management to evaluate ongoing ISMS performance and fitness for purpose.
-struct ManagementReview : public DocumentedInformation {
-    /// Date when the management review was conducted.
-    std::optional<std::string> review_date = std::nullopt;
-    /// Attendees of the review.
-    std::vector<std::string> attendees = {};
-    /// Status of actions from previous reviews.
-    std::optional<std::string> previous_actions_status = std::nullopt;
-    /// Changes in context since last review.
-    std::optional<std::string> context_changes = std::nullopt;
-    /// Changes in interested party requirements.
-    std::optional<std::string> interested_party_changes = std::nullopt;
-    /// Feedback from interested parties considered in the management review.
-    std::optional<std::string> interested_party_feedback = std::nullopt;
-    /// Trends in information security performance.
-    std::optional<std::string> performance_trends = std::nullopt;
-    /// Summary of audit results.
-    std::optional<std::string> audit_results_summary = std::nullopt;
-    /// Results of risk assessment.
-    std::optional<std::string> risk_assessment_results = std::nullopt;
-    /// Status of the risk treatment plan considered in the management review.
-    std::optional<std::string> risk_treatment_status = std::nullopt;
-    /// Changes in risks and opportunities considered in the management review, per Clause 9.3.2 f).
-    std::optional<std::string> risks_and_opportunities_changes = std::nullopt;
-    /// Opportunities for improvement identified.
-    std::vector<std::string> improvement_opportunities = {};
-    /// Decisions made in the review.
-    std::vector<std::string> decisions = {};
-    /// Action items from the review.
-    std::vector<std::string> action_items = {};
-    /// Planned date for next review.
-    std::optional<std::string> next_review_date = std::nullopt;
+/// One finding of an audit: a nonconformity, an observation or a strength, with the requirement or control it concerns, its evidence and how it is closed.
+struct IsmsAuditFinding : public IsmsRecordMixin {
+    /// What kind of finding it is.
+    IsmsAuditFindingType finding_type;
+    /// The clause or Annex A control of ISO/IEC 27001:2022 the finding concerns, by number.
+    std::optional<std::string> finding_requirement = std::nullopt;
+    /// The organization's control the finding concerns.
+    std::optional<IsmsControl> finding_control = std::nullopt;
+    /// The objective evidence for the finding.
+    std::optional<std::string> finding_evidence = std::nullopt;
+    /// What the analysis of the finding's cause found.
+    std::optional<std::string> finding_root_cause = std::nullopt;
+    /// What the finding means for risk.
+    std::optional<std::string> finding_risk = std::nullopt;
+    /// What the auditor recommends.
+    std::optional<std::string> finding_recommendation = std::nullopt;
+    /// How the auditee responded.
+    std::optional<std::string> finding_auditee_response = std::nullopt;
+    /// The corrective action the finding led to.
+    std::optional<IsmsCorrectiveAction> finding_corrective_action = std::nullopt;
+    /// Whether the finding is closed, in the organization's own terms.
+    std::optional<std::string> finding_closure_status = std::nullopt;
+    /// When the finding was closed.
+    std::optional<std::string> finding_closure_date = std::nullopt;
 };
 
 
-/// A nonconformity identified per Clause 10.2, representing failure to fulfill a requirement.
-struct Nonconformity : public NamedEntity {
-    /// Source of nonconformity detection.
+/// A review of the ISMS by top management: what it considered, what it decided and what it asked to be done.
+struct IsmsManagementReview : public IsmsRecordMixin, public IsmsDocumentControlMixin {
+    /// When the review was held.
+    std::string review_held_on;
+    /// Who attended the review.
+    std::vector<std::string> review_attendees = {};
+    /// Where the actions from earlier reviews stand.
+    std::optional<std::string> review_previous_actions = std::nullopt;
+    /// How the issues that bear on the ISMS have changed.
+    std::optional<std::string> review_context_changes = std::nullopt;
+    /// How interested parties' needs and expectations have changed.
+    std::optional<std::string> review_interested_party_changes = std::nullopt;
+    /// What interested parties said.
+    std::optional<std::string> review_interested_party_feedback = std::nullopt;
+    /// The trends in information security performance.
+    std::optional<std::string> review_performance_trends = std::nullopt;
+    /// What the audits found.
+    std::optional<std::string> review_audit_results = std::nullopt;
+    /// What the risk assessments found.
+    std::optional<std::string> review_risk_assessment_results = std::nullopt;
+    /// Where risk treatment stands.
+    std::optional<std::string> review_risk_treatment_status = std::nullopt;
+    /// How risks and opportunities have changed.
+    std::optional<std::string> review_risks_and_opportunities = std::nullopt;
+    /// The opportunities for improvement raised.
+    std::vector<std::string> review_improvement_opportunities = {};
+    /// What the review decided.
+    std::vector<std::string> review_decisions = {};
+    /// What the review asked to be done.
+    std::vector<std::string> review_actions = {};
+    /// When the next review is planned.
+    std::optional<std::string> review_next_date = std::nullopt;
+};
+
+
+/// A nonconformity: a requirement not met, how it was found and contained, its consequences and cause, and how it was closed.
+struct IsmsNonconformity : public IsmsRecordMixin {
+    /// How the nonconformity came to light, such as an audit, a review or an incident.
     std::optional<std::string> nonconformity_source = std::nullopt;
-    /// Date the nonconformity was detected.
-    std::optional<std::string> detection_date = std::nullopt;
-    /// Person or process that detected the nonconformity.
-    std::optional<std::string> detected_by = std::nullopt;
-    /// Requirement that was not fulfilled.
-    std::optional<std::string> requirement_violated = std::nullopt;
-    /// Description of the nonconformity.
-    std::optional<std::string> nonconformity_description = std::nullopt;
-    /// Immediate actions taken to control/correct.
-    std::vector<std::string> immediate_actions = {};
-    /// How consequences were dealt with.
-    std::optional<std::string> consequences_addressed = std::nullopt;
-    /// Root cause of the nonconformity.
-    std::optional<std::string> root_cause = std::nullopt;
-    /// Check for similar nonconformities elsewhere.
-    std::optional<std::string> similar_nonconformities_check = std::nullopt;
-    /// Corrective actions addressing this nonconformity.
-    std::vector<CorrectiveAction> linked_corrective_actions = {};
-    /// Current status of the document or entity.
-    std::optional<std::string> status = std::nullopt;
-    /// Date the finding was closed.
-    std::optional<std::string> closure_date = std::nullopt;
-    /// Evidence supporting closure.
-    std::optional<std::string> closure_evidence = std::nullopt;
+    /// When the nonconformity was found.
+    std::optional<std::string> nonconformity_detected_on = std::nullopt;
+    /// Who or what found it.
+    std::optional<std::string> nonconformity_detected_by = std::nullopt;
+    /// The requirement that was not met, of ISO/IEC 27001, of the organization or of an interested party.
+    std::optional<std::string> nonconformity_requirement = std::nullopt;
+    /// What was done at once to control and correct it.
+    std::vector<std::string> nonconformity_immediate_actions = {};
+    /// How its consequences were dealt with.
+    std::optional<std::string> nonconformity_consequences = std::nullopt;
+    /// What caused it.
+    std::optional<std::string> nonconformity_root_cause = std::nullopt;
+    /// Whether similar nonconformities exist or could occur, and where.
+    std::optional<std::string> nonconformity_similar_check = std::nullopt;
+    /// Where the nonconformity stands, in the organization's own terms.
+    std::optional<std::string> nonconformity_status = std::nullopt;
+    /// When it was closed.
+    std::optional<std::string> nonconformity_closure_date = std::nullopt;
+    /// What shows that it is closed.
+    std::optional<std::string> nonconformity_closure_evidence = std::nullopt;
 };
 
 
-/// A corrective action per Clause 10.2 to address the root cause of a nonconformity and reduce the likelihood of recurrence.
-struct CorrectiveAction : public NamedEntity {
-    /// Nonconformity this action addresses.
-    std::optional<Nonconformity> linked_nonconformity = std::nullopt;
-    /// Description of the action.
-    std::optional<std::string> action_description = std::nullopt;
-    /// Root cause this action addresses.
-    std::optional<std::string> root_cause_addressed = std::nullopt;
-    /// Party responsible for the activity.
-    std::optional<std::string> responsible_party = std::nullopt;
-    /// Target date for completing the action.
-    std::optional<std::string> target_completion_date = std::nullopt;
-    /// Actual date the action was completed.
-    std::optional<std::string> actual_completion_date = std::nullopt;
-    /// Resources required for implementation.
-    std::optional<std::string> resources_required = std::nullopt;
-    /// Criteria for evaluating effectiveness.
-    std::optional<std::string> effectiveness_criteria = std::nullopt;
-    /// Date effectiveness was reviewed.
-    std::optional<std::string> effectiveness_review_date = std::nullopt;
-    /// Whether effectiveness was verified.
-    std::optional<bool> effectiveness_verified = std::nullopt;
-    /// Changes to ISMS required as a result.
-    std::optional<std::string> isms_changes_required = std::nullopt;
-    /// Current status of the document or entity.
-    std::optional<std::string> status = std::nullopt;
+/// An action that removes the cause of one or more nonconformities so that they do not recur, and the check that it worked.
+struct IsmsCorrectiveAction : public IsmsRecordMixin {
+    /// The role that answers for the record's activity or outcome.
+    std::optional<IsmsRole> responsible_role = std::nullopt;
+    /// The nonconformities the action addresses.
+    std::vector<IsmsNonconformity> action_nonconformities = {};
+    /// The cause the action removes.
+    std::optional<std::string> action_root_cause = std::nullopt;
+    /// When the action is to be complete.
+    std::optional<std::string> action_target_date = std::nullopt;
+    /// When the action was complete.
+    std::optional<std::string> action_completion_date = std::nullopt;
+    /// The resources the action needs.
+    std::optional<std::string> action_resources = std::nullopt;
+    /// How the action's effect will be judged.
+    std::optional<std::string> action_effectiveness_criteria = std::nullopt;
+    /// When the action's effect was reviewed.
+    std::optional<std::string> action_effectiveness_review_date = std::nullopt;
+    /// Whether the review found the action effective.
+    std::optional<bool> action_effective = std::nullopt;
+    /// The changes to the ISMS the action needs.
+    std::optional<std::string> action_isms_changes = std::nullopt;
+    /// Where the action stands, in the organization's own terms.
+    std::optional<std::string> action_status = std::nullopt;
 };
 
 
-/// An opportunity for continual improvement per Clause 10.1, enhancing overall ISMS performance.
-struct ImprovementOpportunity : public NamedEntity {
-    /// Source of the improvement opportunity.
+/// An opportunity to improve the ISMS's suitability, adequacy or effectiveness, and what came of it.
+struct IsmsImprovementOpportunity : public IsmsRecordMixin {
+    /// The role that answers for the record's activity or outcome.
+    std::optional<IsmsRole> responsible_role = std::nullopt;
+    /// Where the opportunity came from, such as a review, an audit or daily work.
     std::optional<std::string> improvement_source = std::nullopt;
-    /// Date identified.
-    std::optional<std::string> identification_date = std::nullopt;
-    /// Person who identified it.
-    std::optional<std::string> identified_by = std::nullopt;
-    /// Description of the improvement.
-    std::optional<std::string> improvement_description = std::nullopt;
-    /// Expected benefit from implementation.
-    std::optional<std::string> expected_benefit = std::nullopt;
-    /// Priority level.
-    std::optional<std::string> priority = std::nullopt;
-    /// Plan for implementing the improvement.
-    std::optional<std::string> implementation_plan = std::nullopt;
-    /// Party responsible for the activity.
-    std::optional<std::string> responsible_party = std::nullopt;
-    /// Target date for achieving the objective.
-    std::optional<std::string> target_date = std::nullopt;
-    /// Actual date the action was completed.
-    std::optional<std::string> actual_completion_date = std::nullopt;
-    /// Assessment of actual outcomes.
-    std::optional<std::string> outcome_assessment = std::nullopt;
-    /// Current status of the document or entity.
-    std::optional<std::string> status = std::nullopt;
+    /// When the opportunity was identified.
+    std::optional<std::string> improvement_identified_on = std::nullopt;
+    /// Who identified it.
+    std::optional<std::string> improvement_identified_by = std::nullopt;
+    /// What the improvement is expected to bring.
+    std::optional<std::string> improvement_benefit = std::nullopt;
+    /// How soon it is to be acted on, in the organization's own terms.
+    std::optional<std::string> improvement_priority = std::nullopt;
+    /// How the improvement is to be made.
+    std::optional<std::string> improvement_plan = std::nullopt;
+    /// When the improvement is to be made.
+    std::optional<std::string> improvement_target_date = std::nullopt;
+    /// When it was made.
+    std::optional<std::string> improvement_completion_date = std::nullopt;
+    /// What the improvement brought.
+    std::optional<std::string> improvement_outcome = std::nullopt;
+    /// Where it stands, in the organization's own terms.
+    std::optional<std::string> improvement_status = std::nullopt;
 };
 
 
-/// An information asset or associated asset requiring protection, per Annex A control 5.9.
-struct Asset : public NamedEntity {
-    /// Type of asset.
-    std::optional<std::string> asset_type = std::nullopt;
-    /// Owner of the asset.
-    std::optional<std::string> asset_owner = std::nullopt;
-    /// Custodian responsible for day-to-day protection.
-    std::optional<std::string> asset_custodian = std::nullopt;
-    /// Information classification level.
-    std::optional<std::string> classification = std::nullopt;
-    /// Physical or logical location.
-    std::optional<std::string> location = std::nullopt;
-    /// Criticality rating of the asset.
-    std::optional<std::string> criticality = std::nullopt;
-    /// Associated risks.
-    std::vector<Risk> related_risks = {};
-    /// Controls related to this policy.
-    std::vector<SecurityControl> applicable_controls = {};
+/// An information security event someone reported, and the assessment of whether it is an incident. An event assessed as an incident is recorded as an IsmsSecurityIncident.
+struct IsmsSecurityEvent : public IsmsRecordMixin {
+    /// The assets the risk, event or incident affects.
+    std::vector<IsmsAsset> affected_assets = {};
+    /// The kind of record: IsmsSecurityEvent, or IsmsSecurityIncident for an event assessed as an incident.
+    std::optional<std::string> event_type = std::nullopt;
+    /// When the event happened, or when it was first noticed.
+    std::optional<std::string> event_occurred_at = std::nullopt;
+    /// Who reported the event.
+    std::optional<std::string> event_reporter = std::nullopt;
+    /// What the assessment of the event found.
+    std::optional<std::string> event_assessment = std::nullopt;
 };
 
 
-/// An information security event per A.5.25, which may or may not be categorized as an incident.
-struct InformationSecurityEvent : public NamedEntity {
-    /// Date and time of the event.
-    std::optional<std::string> event_datetime = std::nullopt;
-    /// Person who reported the event.
-    std::optional<std::string> reporter = std::nullopt;
-    /// Description of the event.
-    std::optional<std::string> event_description = std::nullopt;
-    /// Assets affected by this risk or incident.
-    std::vector<Asset> affected_assets = {};
-    /// Initial assessment of the event.
-    std::optional<std::string> initial_assessment = std::nullopt;
-    /// Whether the event was categorized as an incident.
-    std::optional<bool> categorized_as_incident = std::nullopt;
-    /// Linked incident if categorized.
-    std::optional<InformationSecurityIncident> linked_incident = std::nullopt;
-};
-
-
-/// An information security incident per A.5.26, requiring response per documented procedures.
-struct InformationSecurityIncident : public NamedEntity {
-    /// Date and time the incident occurred or was detected.
-    std::optional<std::string> incident_datetime = std::nullopt;
-    /// Category of incident.
-    std::optional<SecurityIncidentCategory> incident_category = std::nullopt;
-    /// Severity rating of the incident.
-    std::optional<RiskLevel> severity = std::nullopt;
-    /// Assets affected by this risk or incident.
-    std::vector<Asset> affected_assets = {};
-    /// CIA properties affected by the incident.
-    std::vector<CIAProperty> affected_cia = {};
-    /// Description of the incident.
-    std::optional<std::string> incident_description = std::nullopt;
+/// An information security event assessed as an incident: its category and severity, how it was detected, contained, eradicated and recovered from, the evidence collected, who was told, and what was learned.
+struct IsmsSecurityIncident : public IsmsSecurityEvent {
+    /// Which of confidentiality, integrity and availability the risk or incident threatens.
+    std::vector<IsmsSecurityProperty> affected_security_properties = {};
+    /// What kind of incident it is.
+    std::optional<IsmsIncidentCategory> incident_category = std::nullopt;
+    /// How severe the incident is.
+    std::optional<IsmsRiskLevel> incident_severity = std::nullopt;
     /// How the incident was detected.
-    std::optional<std::string> detection_method = std::nullopt;
-    /// Actions taken in response.
-    std::vector<std::string> response_actions = {};
-    /// Actions to contain the incident.
-    std::vector<std::string> containment_actions = {};
-    /// Actions to eradicate the cause.
-    std::vector<std::string> eradication_actions = {};
-    /// Actions to recover normal operations.
-    std::vector<std::string> recovery_actions = {};
-    /// Root cause of the nonconformity.
-    std::optional<std::string> root_cause = std::nullopt;
-    /// Lessons learned from the incident.
-    std::vector<std::string> lessons_learned = {};
-    /// Evidence collected.
-    std::vector<std::string> evidence_collected = {};
-    /// Whether notification to authorities/parties was required.
-    std::optional<bool> notification_required = std::nullopt;
-    /// Notifications that were made.
-    std::vector<std::string> notifications_made = {};
-    /// Date and time of incident closure.
-    std::optional<std::string> closure_datetime = std::nullopt;
-    /// Post-incident review findings.
-    std::optional<std::string> post_incident_review = std::nullopt;
+    std::optional<std::string> incident_detection_method = std::nullopt;
+    /// What was done in response.
+    std::vector<std::string> incident_response_actions = {};
+    /// What was done to contain it.
+    std::vector<std::string> incident_containment_actions = {};
+    /// What was done to remove its cause.
+    std::vector<std::string> incident_eradication_actions = {};
+    /// What was done to restore normal operation.
+    std::vector<std::string> incident_recovery_actions = {};
+    /// What caused the incident.
+    std::optional<std::string> incident_root_cause = std::nullopt;
+    /// What the organization learned from it.
+    std::vector<std::string> incident_lessons_learned = {};
+    /// The evidence collected about it.
+    std::vector<std::string> incident_evidence = {};
+    /// Whether authorities or other parties had to be told.
+    std::optional<bool> incident_notification_required = std::nullopt;
+    /// Whom the organization told, and when.
+    std::vector<std::string> incident_notifications = {};
+    /// When the incident was closed.
+    std::optional<std::string> incident_closed_at = std::nullopt;
+    /// What the review after the incident found.
+    std::optional<std::string> incident_review = std::nullopt;
 };
 
 

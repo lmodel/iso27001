@@ -1,0 +1,9 @@
+isms_id: probo:maintain-a-compliance-register
+title: Maintain a compliance register
+control_annex_a_controls:
+  - a_5_31
+control_theme: organizational
+control_text: A formal register of compliance requirements provides clarity on obligations,
+  helps manage compliance tasks systematically, and reduces the risk of overlooked or outdated
+  mandates leading to legal or regulatory issues
+implementation_state: not_started

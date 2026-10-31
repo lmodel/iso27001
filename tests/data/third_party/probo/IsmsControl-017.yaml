@@ -1,0 +1,10 @@
+isms_id: probo:maintain-history-of-incident-review
+title: Maintain history of incident review
+control_annex_a_controls:
+  - a_5_28
+  - a_5_25
+  - a_5_24
+control_theme: organizational
+control_text: Retaining incident review records helps you refine your incident response plans,
+  avoid repeated mistakes, and provide an audit trail for accountability and compliance
+implementation_state: not_started

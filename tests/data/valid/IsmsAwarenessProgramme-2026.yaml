@@ -1,0 +1,13 @@
+# The awareness programme.
+isms_id: acme:awareness-2026
+title: Security awareness 2026
+awareness_topics:
+  - Phishing
+  - Handling customer design files
+awareness_methods:
+  - Monthly short lessons
+  - Simulated phishing
+awareness_audience: All staff and contractors.
+awareness_frequency: monthly
+awareness_completion_tracking: Learning platform records.
+awareness_effectiveness: Report rate in the phishing tests.
