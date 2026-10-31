@@ -51,6 +51,7 @@ import argparse
 import gzip
 import hashlib
 import html
+import http.client
 import json
 import re
 import sys
@@ -133,6 +134,12 @@ def _lines(url: str):
     with _open(url) as resp:
         for raw in resp:
             yield raw.decode("utf-8")
+
+
+def _code(text: object) -> str:
+    """Text a site chose, such as an address it redirected to, as a code
+    span, so it cannot mention a person or add a link in the issue."""
+    return "`" + str(text).replace("`", "'") + "`"
 
 
 def line_of(record: dict) -> str:
@@ -298,7 +305,7 @@ def check_licence() -> tuple[list[str], bool]:
     )
     if not row:
         return [
-            f"- **ISO's open data page ({where}) no longer names the licence of "
+            f"- **ISO's open data page ({_code(where)}) no longer names the licence of "
             "iso_deliverables_metadata where the check looks.** Read the page."
         ], True
     href = re.search(r'href="([^"]+)"', row.group(1))
@@ -306,11 +313,11 @@ def check_licence() -> tuple[list[str], bool]:
     url = href.group(1) if href else ""
     if name != PINNED_LICENCE or url.rstrip("/") != PINNED_LICENCE_URL.rstrip("/"):
         return [
-            f"- **ISO's open data page ({where}) names the dataset's licence as "
+            f"- **ISO's open data page ({_code(where)}) names the dataset's licence as "
             f"{name} ({url or 'no link'}), not {PINNED_LICENCE}.** Check that the "
             "extract and NOTICE still meet its terms."
         ], True
-    return [f"- Licence: {PINNED_LICENCE}, as read at {where}."], False
+    return [f"- Licence: {PINNED_LICENCE}, as read at {_code(where)}."], False
 
 
 # Each check, by the name the report gives it when it cannot finish.
@@ -331,14 +338,12 @@ def main(argv: list[str] | None = None) -> int:
     for label, check in CHECKS:
         try:
             found, needs = check()
-        except (
-            urllib.error.URLError,
-            TimeoutError,
-            OSError,
-            ValueError,
-            UnicodeDecodeError,
-        ) as err:
-            found, needs = [f"- **The {label} check could not finish: {err}.**"], True
+        # OSError covers a refused or failed fetch and a timeout,
+        # HTTPException a connection cut off mid-dataset, EOFError a gzipped
+        # page cut short, and ValueError a line that is not JSON or UTF-8.
+        except (OSError, http.client.HTTPException, EOFError, ValueError) as err:
+            found = [f"- **The {label} check could not finish: {_code(err)}.**"]
+            needs = True
         lines += found
         attention = attention or needs
     text = "\n".join(lines) + "\n"

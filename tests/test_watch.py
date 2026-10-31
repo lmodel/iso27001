@@ -9,6 +9,7 @@ the network fails.
 """
 
 import importlib.util
+import http.client
 import json
 import urllib.error
 from pathlib import Path
@@ -234,11 +235,27 @@ def test_a_network_failure_still_writes_a_report(watch, tmp_path):
     code, text = _run(watch, tmp_path)
     assert code == 1
     assert (
-        "**The records check could not finish: <urlopen error Connection refused>.**"
+        "**The records check could not finish: `<urlopen error Connection refused>`.**"
         in text
     )
     assert "The extract holds the 4 pinned records" in text
     assert f"Licence: {watch.PINNED_LICENCE}" in text
+
+
+def test_a_cut_connection_or_short_page_could_not_finish(watch, tmp_path):
+    """A dataset cut off mid-read and a gzipped page cut short are checks that
+    could not finish, and the extract is still checked."""
+    _stub(
+        watch,
+        _records(),
+        lines_error=http.client.IncompleteRead(b"{"),
+        page_error=EOFError("Compressed file ended before the end-of-stream marker"),
+    )
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert "**The records check could not finish: `IncompleteRead" in text
+    assert "**The licence check could not finish: `Compressed file ended" in text
+    assert "The extract holds the 4 pinned records" in text
 
 
 def test_a_gzipped_page_is_read(watch, tmp_path):
