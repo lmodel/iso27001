@@ -83,9 +83,9 @@ linkml_meta = LinkMLMeta({'annotations': {'amendment': {'tag': 'amendment',
                   "edition. ISO Open Data's records of both, and of ISO/IEC "
                   '27002:2022 and ISO/IEC 27000:2026, are copied to '
                   'src/iso27001/schema/iso-open-data/ as of the date in the '
-                  'annotations, and scripts/check_upstream_release.py reports when '
-                  'ISO publishes another supplement or edition. The release tags '
-                  "are the schema's own versions.",
+                  'annotations. scripts/check_upstream_release.py reports when ISO '
+                  'publishes another supplement or edition. The release tags are '
+                  "the schema's own versions.",
                   'ISO/IEC 27001 is copyright ISO and IEC, and none of its text is '
                   'reproduced here. Each element cites the clause or Annex A '
                   'control it models by number, in the iso27001_clause or '
@@ -109,13 +109,13 @@ linkml_meta = LinkMLMeta({'annotations': {'amendment': {'tag': 'amendment',
      'default_range': 'string',
      'description': 'A LinkML model of the records an organization keeps to run an '
                     'information security management system (ISMS) to ISO/IEC '
-                    '27001:2022 with Amendment 1:2024: its context and scope, '
-                    'policies, roles and objectives, risks and their treatment, '
-                    'its controls and Statement of Applicability, the support and '
-                    'operation it needs, its audits and management reviews, and '
-                    'its nonconformities, corrective actions and improvements. The '
-                    '93 reference controls of Annex A appear by their numbers '
-                    'alone.',
+                    '27001:2022 with Amendment 1:2024. The records cover the '
+                    "ISMS's context and scope, policies, roles and objectives, "
+                    'risks and their treatment, and its controls and Statement of '
+                    'Applicability. They also cover the support and operation it '
+                    'needs, its audits and management reviews, and its '
+                    'nonconformities, corrective actions and improvements. The 93 '
+                    'reference controls of Annex A appear by their numbers alone.',
      'id': 'https://w3id.org/lmodel/iso27001',
      'imports': ['linkml:types'],
      'license': 'Apache-2.0',
@@ -655,7 +655,7 @@ class IsmsRecordMixin(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'comments': ['It is a mixin, not a base class, so that the adapt copy can '
                       "re-root some record classes on LOKF's Concept and leave the "
-                      "others as they are: lokf adapt replaces isms_id with LOKF's id, "
+                      "others as they are. lokf adapt replaces isms_id with LOKF's id, "
                       'and a class that declares id itself must descend from Concept.'],
          'from_schema': 'https://w3id.org/lmodel/iso27001',
          'mixin': True,
@@ -691,7 +691,7 @@ class IsmsRecordMixin(ConfiguredBaseModel):
 
 class IsmsDocumentControlMixin(ConfiguredBaseModel):
     """
-    The control that documented information is kept under: who wrote, owns and approved it, when it takes effect and is reviewed, how it is classified, distributed, stored and changed, how long it is retained, and whether it came from outside the organization.
+    The control that documented information is kept under. It records who wrote, owns and approved the information, when it takes effect and is reviewed, and how it is classified, distributed, stored and changed. It also records how long it is retained, and whether it came from outside the organization.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause', 'value': '7.5'}},
          'from_schema': 'https://w3id.org/lmodel/iso27001',
@@ -1577,7 +1577,7 @@ class IsmsExcludedControl(IsmsApplicabilityEntry):
 
 class IsmsControl(IsmsRecordMixin):
     """
-    A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.
+    A control the organization has determined it needs to treat its risks. It records what the control does in the organization's words and which Annex A controls it answers to. It also records who owns it, how far it is in place and how well it works.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso27001_clause': {'tag': 'iso27001_clause',
                                              'value': '6.1.3'}},

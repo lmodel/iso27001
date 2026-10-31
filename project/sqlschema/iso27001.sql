@@ -2,7 +2,7 @@
 --     * Slot: isms_id Description: The record's identifier, unique among the ISMS's records, such as a URI or a CURIE. Other records refer to the record by it.
 --     * Slot: title Description: The name the organization gives the record.
 --     * Slot: description Description: What the record says or describes, in the organization's own words.
--- # Class: IsmsDocumentControlMixin Description: The control that documented information is kept under: who wrote, owns and approved it, when it takes effect and is reviewed, how it is classified, distributed, stored and changed, how long it is retained, and whether it came from outside the organization.
+-- # Class: IsmsDocumentControlMixin Description: The control that documented information is kept under. It records who wrote, owns and approved the information, when it takes effect and is reviewed, and how it is classified, distributed, stored and changed. It also records how long it is retained, and whether it came from outside the organization.
 --     * Slot: id
 --     * Slot: document_reference Description: The reference the organization's document control gives it.
 --     * Slot: document_version Description: The version of the document.
@@ -297,7 +297,7 @@
 --     * Slot: entry_annex_a_control Description: The Annex A control a Statement of Applicability entry concerns.
 --     * Slot: entry_type Description: The kind of entry: IsmsIncludedControl or IsmsExcludedControl.
 --     * Slot: entry_justification Description: Why the control is included or excluded.
--- # Class: IsmsControl Description: A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.
+-- # Class: IsmsControl Description: A control the organization has determined it needs to treat its risks. It records what the control does in the organization's words and which Annex A controls it answers to. It also records who owns it, how far it is in place and how well it works.
 --     * Slot: implementation_state Description: How far the control or the plan has been put into effect.
 --     * Slot: control_theme Description: Which of Annex A's four themes the control belongs to.
 --     * Slot: control_text Description: What the control does, in the organization's own words.

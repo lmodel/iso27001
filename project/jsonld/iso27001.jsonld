@@ -30,10 +30,10 @@
       "value": "2026-10-28"
     }
   ],
-  "description": "A LinkML model of the records an organization keeps to run an information security management system (ISMS) to ISO/IEC 27001:2022 with Amendment 1:2024: its context and scope, policies, roles and objectives, risks and their treatment, its controls and Statement of Applicability, the support and operation it needs, its audits and management reviews, and its nonconformities, corrective actions and improvements. The 93 reference controls of Annex A appear by their numbers alone.",
+  "description": "A LinkML model of the records an organization keeps to run an information security management system (ISMS) to ISO/IEC 27001:2022 with Amendment 1:2024. The records cover the ISMS's context and scope, policies, roles and objectives, risks and their treatment, and its controls and Statement of Applicability. They also cover the support and operation it needs, its audits and management reviews, and its nonconformities, corrective actions and improvements. The 93 reference controls of Annex A appear by their numbers alone.",
   "title": "ISO/IEC 27001:2022 information security management system records",
   "comments": [
-    "The version is the edition the schema models, 2022, with its one amendment, Amd 1:2024, and source is ISO's page for that edition. ISO Open Data's records of both, and of ISO/IEC 27002:2022 and ISO/IEC 27000:2026, are copied to src/iso27001/schema/iso-open-data/ as of the date in the annotations, and scripts/check_upstream_release.py reports when ISO publishes another supplement or edition. The release tags are the schema's own versions.",
+    "The version is the edition the schema models, 2022, with its one amendment, Amd 1:2024, and source is ISO's page for that edition. ISO Open Data's records of both, and of ISO/IEC 27002:2022 and ISO/IEC 27000:2026, are copied to src/iso27001/schema/iso-open-data/ as of the date in the annotations. scripts/check_upstream_release.py reports when ISO publishes another supplement or edition. The release tags are the schema's own versions.",
     "ISO/IEC 27001 is copyright ISO and IEC, and none of its text is reproduced here. Each element cites the clause or Annex A control it models by number, in the iso27001_clause or annex_a_control annotation, and its description is this project's own words. A licence holder can merge the standard's wording into a private copy with the overlay that src/iso27001/schema/OVERLAY.md describes.",
     "The terms follow ISO/IEC 27000, which ISO/IEC 27001 refers to for them. On the pinned date its current edition is ISO/IEC 27000:2026, which ISO's record titles an overview, where every earlier edition was an overview and vocabulary. Whether that edition still defines the terms has not been checked against its text.",
     "Every record that other records refer to has an isms_id, and a reference holds that identifier. IsmsManagementSystem holds each kind of record in a list of its own.",
@@ -6520,7 +6520,7 @@
       "definition_uri": "https://w3id.org/lmodel/iso27001/IsmsRecordMixin",
       "description": "What every record of the ISMS has, so that other records can refer to it: an identifier, a title and a description.",
       "comments": [
-        "It is a mixin, not a base class, so that the adapt copy can re-root some record classes on LOKF's Concept and leave the others as they are: lokf adapt replaces isms_id with LOKF's id, and a class that declares id itself must descend from Concept."
+        "It is a mixin, not a base class, so that the adapt copy can re-root some record classes on LOKF's Concept and leave the others as they are. lokf adapt replaces isms_id with LOKF's id, and a class that declares id itself must descend from Concept."
       ],
       "from_schema": "https://w3id.org/lmodel/iso27001",
       "mixin": true,
@@ -6543,7 +6543,7 @@
           "@type": "Annotation"
         }
       ],
-      "description": "The control that documented information is kept under: who wrote, owns and approved it, when it takes effect and is reviewed, how it is classified, distributed, stored and changed, how long it is retained, and whether it came from outside the organization.",
+      "description": "The control that documented information is kept under. It records who wrote, owns and approved the information, when it takes effect and is reviewed, and how it is classified, distributed, stored and changed. It also records how long it is retained, and whether it came from outside the organization.",
       "in_subset": [
         "isms_documented_information"
       ],
@@ -8398,7 +8398,7 @@
           "@type": "Annotation"
         }
       ],
-      "description": "A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.",
+      "description": "A control the organization has determined it needs to treat its risks. It records what the control does in the organization's words and which Annex A controls it answers to. It also records who owns it, how far it is in place and how well it works.",
       "comments": [
         "The text and guidance are the organization's own words, never the text of ISO/IEC 27001 or ISO/IEC 27002. A control from another source names no Annex A control."
       ],
@@ -10218,8 +10218,8 @@
   ],
   "metamodel_version": "1.12.0",
   "source_file": "iso27001.yaml",
-  "source_file_date": "2026-10-31T00:37:56",
-  "source_file_size": 78415,
+  "source_file_date": "2026-10-31T01:28:18",
+  "source_file_size": 78553,
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/iso27001.context.jsonld",

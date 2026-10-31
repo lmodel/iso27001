@@ -2,7 +2,7 @@
 # Schema: iso27001
 #
 # id: https://w3id.org/lmodel/iso27001
-# description: A LinkML model of the records an organization keeps to run an information security management system (ISMS) to ISO/IEC 27001:2022 with Amendment 1:2024: its context and scope, policies, roles and objectives, risks and their treatment, its controls and Statement of Applicability, the support and operation it needs, its audits and management reviews, and its nonconformities, corrective actions and improvements. The 93 reference controls of Annex A appear by their numbers alone.
+# description: A LinkML model of the records an organization keeps to run an information security management system (ISMS) to ISO/IEC 27001:2022 with Amendment 1:2024. The records cover the ISMS's context and scope, policies, roles and objectives, risks and their treatment, and its controls and Statement of Applicability. They also cover the support and operation it needs, its audits and management reviews, and its nonconformities, corrective actions and improvements. The 93 reference controls of Annex A appear by their numbers alone.
 # license: Apache-2.0
 
 import dataclasses
@@ -255,9 +255,9 @@ class IsmsRecordMixin(YAMLRoot):
 @dataclass(repr=False)
 class IsmsDocumentControlMixin(YAMLRoot):
     """
-    The control that documented information is kept under: who wrote, owns and approved it, when it takes effect and
-    is reviewed, how it is classified, distributed, stored and changed, how long it is retained, and whether it came
-    from outside the organization.
+    The control that documented information is kept under. It records who wrote, owns and approved the information,
+    when it takes effect and is reviewed, and how it is classified, distributed, stored and changed. It also records
+    how long it is retained, and whether it came from outside the organization.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -1954,8 +1954,9 @@ class IsmsExcludedControl(IsmsApplicabilityEntry):
 @dataclass(repr=False)
 class IsmsControl(YAMLRoot):
     """
-    A control the organization has determined it needs to treat its risks: what it does in the organization's words,
-    which Annex A controls it answers to, who owns it, how far it is in place and how well it works.
+    A control the organization has determined it needs to treat its risks. It records what the control does in the
+    organization's words and which Annex A controls it answers to. It also records who owns it, how far it is in place
+    and how well it works.
     """
     _inherited_slots: ClassVar[list[str]] = []
 

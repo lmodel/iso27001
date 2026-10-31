@@ -10,7 +10,7 @@ import java.util.List;
 import lombok.*;
 
 /**
-  The control that documented information is kept under: who wrote, owns and approved it, when it takes effect and is reviewed, how it is classified, distributed, stored and changed, how long it is retained, and whether it came from outside the organization.
+  The control that documented information is kept under. It records who wrote, owns and approved the information, when it takes effect and is reviewed, and how it is classified, distributed, stored and changed. It also records how long it is retained, and whether it came from outside the organization.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

@@ -10,7 +10,7 @@ import java.util.List;
 import lombok.*;
 
 /**
-  A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works.
+  A control the organization has determined it needs to treat its risks. It records what the control does in the organization's words and which Annex A controls it answers to. It also records who owns it, how far it is in place and how well it works.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)

@@ -59,7 +59,7 @@ iso27001:IsmsCompetenceRecord a sh:NodeShape ;
 	sh:property _:c14n0 , _:c14n129 , _:c14n130 , _:c14n172 , _:c14n18 , _:c14n224 , _:c14n227 , _:c14n307 , _:c14n312 , _:c14n332 , _:c14n376 , _:c14n425 , _:c14n438 , _:c14n443 , _:c14n46 , _:c14n489 , _:c14n505 , _:c14n508 , _:c14n585 , _:c14n627 , _:c14n640 , _:c14n671 , _:c14n726 , _:c14n738 , _:c14n739 , _:c14n740 , _:c14n745 , _:c14n746 , _:c14n90 ;
 	sh:targetClass iso27001:IsmsCompetenceRecord .
 iso27001:IsmsControl a sh:NodeShape ;
-	rdfs:comment "A control the organization has determined it needs to treat its risks: what it does in the organization's words, which Annex A controls it answers to, who owns it, how far it is in place and how well it works." ;
+	rdfs:comment "A control the organization has determined it needs to treat its risks. It records what the control does in the organization's words and which Annex A controls it answers to. It also records who owns it, how far it is in place and how well it works." ;
 	sh:closed true ;
 	sh:ignoredProperties _:c14n419 ;
 	sh:property _:c14n123 , _:c14n14 , _:c14n200 , _:c14n205 , _:c14n220 , _:c14n223 , _:c14n259 , _:c14n279 , _:c14n405 , _:c14n429 , _:c14n478 , _:c14n603 , _:c14n615 , _:c14n699 , _:c14n762 , _:c14n806 ;
@@ -71,7 +71,7 @@ iso27001:IsmsCorrectiveAction a sh:NodeShape ;
 	sh:property _:c14n239 , _:c14n253 , _:c14n297 , _:c14n338 , _:c14n351 , _:c14n414 , _:c14n507 , _:c14n518 , _:c14n522 , _:c14n639 , _:c14n717 , _:c14n770 , _:c14n775 , _:c14n778 ;
 	sh:targetClass iso27001:IsmsCorrectiveAction .
 iso27001:IsmsDocumentControlMixin a sh:NodeShape ;
-	rdfs:comment "The control that documented information is kept under: who wrote, owns and approved it, when it takes effect and is reviewed, how it is classified, distributed, stored and changed, how long it is retained, and whether it came from outside the organization." ;
+	rdfs:comment "The control that documented information is kept under. It records who wrote, owns and approved the information, when it takes effect and is reviewed, and how it is classified, distributed, stored and changed. It also records how long it is retained, and whether it came from outside the organization." ;
 	sh:closed false ;
 	sh:ignoredProperties _:c14n564 ;
 	sh:property _:c14n17 , _:c14n173 , _:c14n232 , _:c14n275 , _:c14n35 , _:c14n450 , _:c14n456 , _:c14n467 , _:c14n521 , _:c14n556 , _:c14n577 , _:c14n605 , _:c14n7 , _:c14n70 , _:c14n757 , _:c14n784 , _:c14n93 ;
