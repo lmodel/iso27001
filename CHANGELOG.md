@@ -6,6 +6,8 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-10-31
+
 ### Added
 
 - **A pinned copy of ISO Open Data's records of ISO/IEC 27001:2022, its Amendment 1:2024, ISO/IEC 27002:2022 and ISO/IEC 27000:2026, and a weekly upstream watch.** The watch reports a new amendment or corrigendum, a stage change, a successor edition, a changed licence or a drifted copy. The copy leaves out each record's scope, which summarizes the standard in ISO's words.
