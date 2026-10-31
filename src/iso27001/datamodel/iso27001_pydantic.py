@@ -73,12 +73,11 @@ linkml_meta = LinkMLMeta({'annotations': {'amendment': {'tag': 'amendment',
                      'edition': {'tag': 'edition', 'value': '3'},
                      'iso_open_data_date': {'tag': 'iso_open_data_date',
                                             'value': '2026-10-28'},
-                     'overview_and_terms': {'tag': 'overview_and_terms',
-                                            'value': 'ISO/IEC 27000:2026'},
                      'publication_date': {'tag': 'publication_date',
                                           'value': '2022-10-25'},
-                     'standard': {'tag': 'standard',
-                                  'value': 'ISO/IEC 27001:2022'}},
+                     'standard': {'tag': 'standard', 'value': 'ISO/IEC 27001:2022'},
+                     'terms_reference': {'tag': 'terms_reference',
+                                         'value': 'ISO/IEC 27000:2026'}},
      'comments': ['The version is the edition the schema models, 2022, with its '
                   "one amendment, Amd 1:2024, and source is ISO's page for that "
                   "edition. ISO Open Data's records of both, and of ISO/IEC "
@@ -95,8 +94,11 @@ linkml_meta = LinkMLMeta({'annotations': {'amendment': {'tag': 'amendment',
                   'wording into a private copy with the overlay that '
                   'src/iso27001/schema/OVERLAY.md describes.',
                   'The terms follow ISO/IEC 27000, which ISO/IEC 27001 refers to '
-                  'for them; the edition current on the pinned date is ISO/IEC '
-                  '27000:2026.',
+                  'for them. On the pinned date its current edition is ISO/IEC '
+                  "27000:2026, which ISO's record titles an overview, where every "
+                  'earlier edition was an overview and vocabulary. Whether that '
+                  'edition still defines the terms has not been checked against '
+                  'its text.',
                   'Every record that other records refer to has an isms_id, and a '
                   'reference holds that identifier. IsmsManagementSystem holds '
                   'each kind of record in a list of its own.',

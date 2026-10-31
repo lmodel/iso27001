@@ -43,7 +43,7 @@ Release tags number the schema's versions.
 
 ## Influences
 
-The schema renders one publication, ISO/IEC 27001:2022 with its amendment. Its enums follow the names ISO/IEC 27000:2026 gives the three security properties, ISO/IEC 27005 the four risk treatment options, and ISO 19011 the three kinds of audit. Its release asset and governance files follow [lmodel/nist-csf-v2](https://github.com/lmodel/nist-csf-v2).
+The schema renders one publication, ISO/IEC 27001:2022 with its amendment. Its enums follow the names ISO/IEC 27000 gives the three security properties, ISO/IEC 27005 the four risk treatment options, and ISO 19011 the three kinds of audit. Its release asset and governance files follow [lmodel/nist-csf-v2](https://github.com/lmodel/nist-csf-v2).
 
 ## Mappings
 

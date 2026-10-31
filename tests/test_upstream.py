@@ -92,7 +92,7 @@ def test_header_pins_match_the_watch():
     assert [a["reference"] for a in amendments] == [notes["amendment"]]
     assert notes["amendment_publication_date"] == amendments[0]["publicationDate"]
     assert watch.PINNED_VERSION == "2022/" + notes["amendment"].rpartition("/")[2]
-    assert notes["overview_and_terms"] in {r["reference"] for r in records.values()}
+    assert notes["terms_reference"] in {r["reference"] for r in records.values()}
 
 
 def test_pinned_records_are_published():

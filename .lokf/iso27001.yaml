@@ -21,7 +21,7 @@ annotations:
   publication_date: '2022-10-25'
   amendment: ISO/IEC 27001:2022/Amd 1:2024
   amendment_publication_date: '2024-02-23'
-  overview_and_terms: ISO/IEC 27000:2026
+  terms_reference: ISO/IEC 27000:2026
   iso_open_data_date: '2026-10-28'
 comments:
 - The version is the edition the schema models, 2022, with its one amendment, Amd 1:2024, and source is
@@ -33,8 +33,10 @@ comments:
   the clause or Annex A control it models by number, in the iso27001_clause or annex_a_control annotation,
   and its description is this project's own words. A licence holder can merge the standard's wording into
   a private copy with the overlay that src/iso27001/schema/OVERLAY.md describes.
-- The terms follow ISO/IEC 27000, which ISO/IEC 27001 refers to for them; the edition current on the pinned
-  date is ISO/IEC 27000:2026.
+- The terms follow ISO/IEC 27000, which ISO/IEC 27001 refers to for them. On the pinned date its current
+  edition is ISO/IEC 27000:2026, which ISO's record titles an overview, where every earlier edition was
+  an overview and vocabulary. Whether that edition still defines the terms has not been checked against
+  its text.
 - Every record that other records refer to has an isms_id, and a reference holds that identifier. IsmsManagementSystem
   holds each kind of record in a list of its own.
 - The mappings name terms of the released lmodel/oscal, lmodel/spdx and lmodel/nist-sp-800-53 schemas,

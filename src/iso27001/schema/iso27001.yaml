@@ -23,7 +23,7 @@ annotations:
   publication_date: "2022-10-25"
   amendment: ISO/IEC 27001:2022/Amd 1:2024
   amendment_publication_date: "2024-02-23"
-  overview_and_terms: ISO/IEC 27000:2026
+  terms_reference: ISO/IEC 27000:2026
   iso_open_data_date: "2026-10-28"
 comments:
   - >-
@@ -42,8 +42,11 @@ comments:
     merge the standard's wording into a private copy with the overlay that
     src/iso27001/schema/OVERLAY.md describes.
   - >-
-    The terms follow ISO/IEC 27000, which ISO/IEC 27001 refers to for them;
-    the edition current on the pinned date is ISO/IEC 27000:2026.
+    The terms follow ISO/IEC 27000, which ISO/IEC 27001 refers to for them.
+    On the pinned date its current edition is ISO/IEC 27000:2026, which
+    ISO's record titles an overview, where every earlier edition was an
+    overview and vocabulary. Whether that edition still defines the terms
+    has not been checked against its text.
   - >-
     Every record that other records refer to has an isms_id, and a
     reference holds that identifier. IsmsManagementSystem holds each kind of
