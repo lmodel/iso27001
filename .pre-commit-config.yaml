@@ -4,8 +4,8 @@
 # Open Data's records and Probo's mitigations, kept byte for byte so their
 # hashes match; what the LinkML generators, `just create-empty-overlay` and
 # `lokf adapt` write, which the next run would rewrite back; the neighbours'
-# released copies; and the KTL sidecar's scripts, which the weekly sync
-# replaces.
+# released copies; npm's lockfile for the release tools; and the KTL
+# sidecar's scripts, which the weekly sync replaces.
 exclude: >-
   (?x)^(
     src/iso27001/schema/iso-open-data/|
@@ -16,6 +16,7 @@ exclude: >-
     tests/data/third_party/probo/mitigations\.json$|
     \.lokf/(scripts|m365)/|
     \.lokf/(lokf|iso27001)\.yaml$|
+    \.github/release/package-lock\.json$|
     tests/neighbours/
   )
 repos:
