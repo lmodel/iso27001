@@ -13,7 +13,7 @@ sources:
     title: the Validating data section
 generated:
   by: process:ktl-librarian
-  at: "2026-10-31T00:21:57Z"
+  at: "2026-10-31T01:17:30Z"
 status: draft
 ---
 
@@ -23,11 +23,13 @@ status: draft
 2. Write each date and time as a quoted string, as JSON carries them: the validator reads a date as text.
 3. Validate a file before loading it into either model in `src/iso27001/datamodel/`. The dataclasses check required fields and enum values but no pattern and no minimum. The Pydantic models also check a pattern or a minimum a field carries itself, but not the patterns of the two types. Neither checks that an included control names an Annex A control or one of the organization's controls.
 
-No check covers these rules:
+No validator checks these rules:
 
 - a reference names a record the ISMS holds;
 - a list never repeats an identifier;
-- an audit ends after it begins;
+- an audit ends on or after the day it begins, and a control's theme is the theme of one of the Annex A controls it answers to;
 - the Statement of Applicability has an entry for each Annex A control.
+
+`tests/test_data.py` checks the first two within the whole ISMS example, and the third over every example and every control derived from Probo. The examples are cut down, so for the last it checks only that no Statement of Applicability lists an Annex A control twice.
 
 [^docs-index.md]: docs/index.md, Validating data

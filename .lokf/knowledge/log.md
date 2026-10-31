@@ -2,6 +2,8 @@
 
 ## 2026-10-31
 
+* **Changed**: `tests/test_data.py` now checks over the examples the rules no validator checks, so the validate-data playbook and the test-data concept say which.
+* **Changed**: the security policy now names the three assets a release carries, as SECURITY.md does.
 * **Changed**: the security properties follow the names ISO/IEC 27000 gives them, since ISO's record of the 2026 edition no longer calls it a vocabulary.
 * **Prose**: reworded 22 concept bodies in plain English. No fact, link, number or frontmatter changed.
 * **Added**: iso27001 LinkML schema, from `src/iso27001/schema/iso27001.yaml` and its adapt copy.

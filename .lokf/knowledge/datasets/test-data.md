@@ -31,7 +31,7 @@ sources:
     title: NEIGHBOURS and the tests
 generated:
   by: process:ktl-librarian
-  at: "2026-10-31T00:21:57Z"
+  at: "2026-10-31T01:17:30Z"
 status: draft
 ---
 
@@ -39,9 +39,9 @@ status: draft
 
 `tests/data/valid/` holds 35 examples, one or more for each class that data can be written in, about a fictional company, Acme Widgets Ltd. `tests/data/invalid/` holds 47 counter-examples, each breaking one constraint. Each counter-example's first line names where the validator must fail, as `# Fails at: <pointer>`.[^data] A file's class is the part of its name before the first hyphen. `tests/data/third_party/probo/` holds Probo's mitigations, under the MIT License, and 61 `IsmsControl` examples that its `convert.py` derives from them, one for each mitigation that names an Annex A control.[^probo]
 
-- `tests/test_data.py` loads each valid example into the dataclasses, holds it and each Probo example to the validator, holds each counter-example to its named failure, and checks that every class has an example.[^test_data.py]
+- `tests/test_data.py` loads each valid example into the dataclasses, holds it and each Probo example to the validator, holds each counter-example to its named failure, and checks that every class has an example. It also checks the rules no validator checks: within the whole ISMS example, that each reference names a record of the right class and no identifier repeats; over every example, a control's theme, an audit's dates and a Statement of Applicability's entries.[^test_data.py]
 - `tests/test_upstream.py` holds the extract to its pinned hashes, the schema header to the watch's pins and the extract's dates, and the Annex A enum to 93 values in four themes.[^test_upstream.py]
-- `tests/test_watch.py` runs the upstream watch against stubbed answers.[^test_watch.py]
+- `tests/test_watch.py` runs the upstream watch against stubbed answers, among them a connection cut off and a gzipped page cut short.[^test_watch.py]
 - `tests/test_overlay.py` checks the overlay scaffold and the merge script.[^test_overlay.py]
 - `tests/test_schema_rules.py` checks the adapt copy against `lokf.yaml`, the schema of the Linked Open Knowledge Format (LOKF), and nine released neighbours, each pinned by its SHA-256 checksum. The neighbours are slsa v0.7.0, github-actions v0.3.0, oscal v0.1.2, spdx v0.1.0, nist-sp-800-218 v0.1.1, nist-sp-800-53 v0.1.0, nist-sp-800-171 v0.1.0, nist-csf-v2 v0.1.0 and in-toto v0.1.0.[^test_schema_rules.py] No class, enum, type or subset may share a name with them, and the copy shares no key with a neighbour.
 

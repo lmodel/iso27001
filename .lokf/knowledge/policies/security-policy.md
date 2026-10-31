@@ -14,7 +14,7 @@ sources:
     title: the five update entries
 generated:
   by: process:ktl-librarian
-  at: "2026-10-31T00:21:57Z"
+  at: "2026-10-31T01:17:30Z"
 status: draft
 ---
 
@@ -22,7 +22,7 @@ status: draft
 
 `SECURITY.md` asks for a vulnerability to be reported through GitHub's private vulnerability reporting, not in a public issue. It says that one person maintains the repository, so a first reply takes days and there is no bounty. It also says that only the latest release receives fixes.[^security.md]
 
-The repository releases the schema, the Python models generated from it, and the adapt copy as a release asset. Nothing is published to PyPI, and nothing released holds text of ISO/IEC 27001. The upstream watch streams ISO's dataset and writes only its report. The overlay scripts read YAML with `yaml.safe_load`, the merge writes only under `tmp/`, and `.gitignore` keeps a licence holder's overlay out of every commit.
+The repository releases the schema and the Python models generated from it. Nothing is published to PyPI, and nothing released holds text of ISO/IEC 27001. When the bundle or the schema has changed, the knowledge release attaches the adapt copy, the bundle as a zip and a Microsoft 365 Copilot skill zip, each with its `.sha256` and a build-provenance attestation. The upstream watch streams ISO's dataset and writes only its report. The overlay scripts read YAML with `yaml.safe_load`, the merge writes only under `tmp/`, and `.gitignore` keeps a licence holder's overlay out of every commit.
 
 The policy's table of surfaces names each workflow and what holds it:
 
