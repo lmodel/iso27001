@@ -1,0 +1,5 @@
+# Policies
+
+* [Licence and attribution](license-and-attribution.md) - The repository's licences and third-party terms: Apache-2.0 for the schema and code, CC BY 4.0 for the knowledge bundle and the mappings, no right to the text of ISO/IEC 27001 or 27002, ODC-By for ISO Open Data's records, MIT for Probo's mitigations and the copier template, and Apache-2.0 for the KTL copies.
+* [Security policy](security-policy.md) - How to report a vulnerability (GitHub's private vulnerability reporting), which release receives fixes (the latest), what executes in the repository and what holds each surface, the ruleset on `main`, and the two repository settings that are not yet in force.
+* [AI covenant](ai-covenant.md) - The repository's rules for work done with artificial intelligence (AI): you own what you submit, an element under the schema names its clause and never quotes it, no text of ISO/IEC 27001 goes anywhere in the repository, ISO Open Data's records are never edited, and the scheduled librarian proposes changes only through reviewed pull requests.
