@@ -19,7 +19,9 @@ Do not submit anything you cannot fully stand behind.
 
 ## A note specific to this project
 
-This repository models someone else's standard. ISO and IEC publish ISO/IEC 27001:2022, the requirements for an information security management system (ISMS), with Amendment 1:2024. Its text is ISO's copyright and is sold, not published openly. This project models the records an organization keeps to run an ISMS to the standard as a LinkML schema, without the standard's text. That makes two failure modes worse here than elsewhere. One is a requirement or control that a model produced, presented as what ISO/IEC 27001 says; a reader cannot tell it from the standard's own text. The other is the standard's own text, reproduced by a model that has read it.
+This repository models someone else's standard. ISO and IEC publish ISO/IEC 27001:2022, the requirements for an information security management system (ISMS), with Amendment 1:2024. Its text is ISO's copyright and is sold, not published openly. This project models the records an organization keeps to run an ISMS to the standard as a LinkML schema, without the standard's text.
+
+That makes two failure modes worse here than elsewhere. One is a requirement or control that a model produced, presented as what ISO/IEC 27001 says. A reader cannot tell it from the standard's own text. The other is the standard's own text, reproduced by a model that has read it.
 
 So:
 

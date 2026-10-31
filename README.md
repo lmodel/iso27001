@@ -90,7 +90,9 @@ IsmsPolicy, IsmsTopicSpecificPolicy, IsmsRole, IsmsControl, IsmsAsset, IsmsDocum
 
 In the copy, LOKF's `id` takes the place of `isms_id`, so a concept's own `id` identifies the record, and a reference names the other concept's `id`. A name and a description are the concept's own `title` and `description`.
 
-A host imports the copy beside LOKF's schema, `lokf.yaml`, and beside other adapt copies. LinkML merges them into one namespace, where the last definition of a name wins silently. So no class, enum or type shares a name with LOKF's or with the copies of slsa, github-actions, oscal, spdx, nist-sp-800-218, nist-sp-800-53, nist-sp-800-171, nist-csf-v2 and in-toto. A slot shares a name only where it carries LOKF's meaning and Internationalized Resource Identifier (IRI), as `title` and `description` do, so `lokf adapt` folds the two into LOKF's and renames nothing. The copy shares no other key with the nine neighbours, and `tests/test_schema_rules.py` fails on a new shared name.
+A host imports the copy beside LOKF's schema, `lokf.yaml`, and beside other adapt copies. LinkML merges them into one namespace, where the last definition of a name wins silently. So no class, enum or type shares a name with LOKF's or with the copies of slsa, github-actions, oscal, spdx, nist-sp-800-218, nist-sp-800-53, nist-sp-800-171, nist-csf-v2 and in-toto.
+
+A slot shares a name only where it carries LOKF's meaning and Internationalized Resource Identifier (IRI), as `title` and `description` do, so `lokf adapt` folds the two into LOKF's and renames nothing. The copy shares no other key with the nine neighbours, and `tests/test_schema_rules.py` fails on a new shared name.
 
 ## License
 
