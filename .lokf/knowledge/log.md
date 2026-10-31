@@ -2,6 +2,7 @@
 
 ## 2026-10-31
 
+* **Prose**: reworded 5 concept bodies in plain English, splitting long sentences and blocks. No fact, link, number or frontmatter changed.
 * **Changed**: `tests/test_data.py` now checks over the examples the rules no validator checks, so the validate-data playbook and the test-data concept say which.
 * **Changed**: the security policy now names the three assets a release carries, as SECURITY.md does.
 * **Changed**: the security properties follow the names ISO/IEC 27000 gives them, since ISO's record of the 2026 edition no longer calls it a vocabulary.

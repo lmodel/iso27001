@@ -20,6 +20,8 @@ status: draft
 
 # Annex A control
 
-Annex A of ISO/IEC 27001:2022 lists 93 reference controls in four themes: organizational (A.5.1 to A.5.37), people (A.6.1 to A.6.8), physical (A.7.1 to A.7.14) and technological (A.8.1 to A.8.34). An organization compares the controls it needs with the list, so that it leaves none out by oversight. The schema names each by number in `IsmsAnnexAControl`, from `a_5_1` to `a_8_34`. Each value is titled with its number, such as `A.5.1`, and annotated with its theme. The schema carries none of the controls' titles or text, which are ISO's.[^iso27001.yaml] An organization's own control is an `IsmsControl`, which lists the Annex A controls it answers to.
+Annex A of ISO/IEC 27001:2022 lists 93 reference controls in four themes: organizational (A.5.1 to A.5.37), people (A.6.1 to A.6.8), physical (A.7.1 to A.7.14) and technological (A.8.1 to A.8.34). An organization compares the controls it needs with the list, so that it leaves none out by oversight.
+
+The schema names each by number in `IsmsAnnexAControl`, from `a_5_1` to `a_8_34`. Each value is titled with its number, such as `A.5.1`, and annotated with its theme. The schema carries none of the controls' titles or text, which are ISO's.[^iso27001.yaml] An organization's own control is an `IsmsControl`, which lists the Annex A controls it answers to.
 
 [^iso27001.yaml]: src/iso27001/schema/iso27001.yaml, the enums IsmsAnnexAControl and IsmsControlTheme
