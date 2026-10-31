@@ -26,7 +26,7 @@ status: draft
 
 # Licence and attribution
 
-The schema and the code are under the Apache License 2.0.[^license] The knowledge bundle in `.lokf/knowledge/` is under the Creative Commons Attribution 4.0 International licence (CC BY 4.0), as its `index.md` declares, and the SSSOM mapping sets carry the same licence.[^readme.md]
+The schema and the code are under the Apache License 2.0.[^license] The knowledge bundle in `.lokf/knowledge/` is under the Creative Commons Attribution 4.0 International licence (CC BY 4.0), as its `index.md` declares. The mapping sets in the Simple Standard for Sharing Ontological Mappings (SSSOM) format carry the same licence.[^readme.md]
 
 `NOTICE` lists the third-party work the repository carries:[^notice]
 

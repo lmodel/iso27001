@@ -20,7 +20,7 @@ status: draft
 
 # ISO Open Data
 
-ISO's open data page publishes machine-readable datasets about ISO's work. One, `iso_deliverables_metadata`, holds metadata describing each deliverable that is published or being developed, and ISO updates it daily, in Parquet, JSON Lines and CSV.[^open-data-page] Its licence is the ODC Attribution License (ODC-By) v1.0, and the page gives the attribution text to cite it with.
+ISO's open data page publishes machine-readable datasets about ISO's work. One, `iso_deliverables_metadata`, holds metadata on each deliverable that is published or being developed. ISO updates it daily, in Parquet, JSON Lines and CSV.[^open-data-page] Its licence is the ODC Attribution License (ODC-By) v1.0, and the page gives the attribution text to cite it with.
 
 iso.org refuses a script, so `scripts/check_upstream_release.py` reads the page through the Internet Archive's latest capture, and streams the dataset's JSON Lines file from ISO's blob storage.[^check_upstream_release.py] [ISO Open Data records of ISO/IEC 27001](../datasets/iso-open-data-records.md) describes the four records the repository pins.
 

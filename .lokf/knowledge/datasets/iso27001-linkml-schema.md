@@ -30,7 +30,7 @@ status: draft
 
 `src/iso27001/schema/iso27001.yaml` is a LinkML schema named `iso27001`, in the namespace `https://w3id.org/lmodel/iso27001/`, under the Apache-2.0 licence.[^iso27001.yaml] Its `version` is `2022/Amd 1:2024`, the edition it models with its one amendment, and its `source` is ISO's page for the edition. Its annotations give the edition (3), its publication date (2022-10-25), the amendment's date (2024-02-23), and the date of ISO Open Data's records it was checked against (2026-10-28). Its comments say that it reproduces no text of the standard.
 
-The schema has 38 classes. One, `IsmsManagementSystem`, is the tree root: it holds the ISMS's scope and context, and one list for each kind of record. Every record mixes in `IsmsRecordMixin`, which gives it an `isms_id`, a `title` and a `description`, and a reference to a record holds its `isms_id`. The records under document control also mix in `IsmsDocumentControlMixin`. The classes cover:
+The schema has 38 classes. One, `IsmsManagementSystem`, is the tree root: it holds the scope and context of the information security management system (ISMS), and one list for each kind of record. Every record mixes in `IsmsRecordMixin`, which gives it an `isms_id`, a `title` and a `description`, and a reference to a record holds its `isms_id`. The records under document control also mix in `IsmsDocumentControlMixin`. The classes cover:
 
 - context and leadership: the organization, interested parties, the information security policy, topic-specific policies and roles;
 - planning and risk: objectives, the risk assessment and treatment processes, risk assessments, risks and risk treatment plans;
@@ -41,7 +41,7 @@ The schema has 38 classes. One, `IsmsManagementSystem`, is the tree root: it hol
 
 It has 13 enums. `IsmsAnnexAControl` holds the 93 Annex A controls as `a_5_1` to `a_8_34`, each titled `A.5.1` and so on and annotated with its theme, and `IsmsControlTheme` the four themes. Two types check a retention period as an ISO 8601 duration and a requirement as a clause or Annex A number.
 
-`just lokf-adapt` writes `.lokf/iso27001.yaml`, the copy a knowledge bundle validates against.[^project.justfile] It roots seven classes on LOKF's `Concept`: `IsmsPolicy`, `IsmsTopicSpecificPolicy`, `IsmsRole`, `IsmsControl`, `IsmsAsset`, `IsmsDocumentedInformation` and `IsmsOperationalProcedure`. In the copy, LOKF's `id` takes the place of `isms_id`, `title` and `description` fold into LOKF's, and the two type designators become plain slots.[^iso27001-copy.yaml] The sidecar's justfile names the copy on its `schema :=` line.[^lokf-justfile]
+`just lokf-adapt` writes `.lokf/iso27001.yaml`, the copy a knowledge bundle validates against.[^project.justfile] It roots seven classes on `Concept`, the base class of the Linked Open Knowledge Format (LOKF): `IsmsPolicy`, `IsmsTopicSpecificPolicy`, `IsmsRole`, `IsmsControl`, `IsmsAsset`, `IsmsDocumentedInformation` and `IsmsOperationalProcedure`. In the copy, LOKF's `id` takes the place of `isms_id`, `title` and `description` fold into LOKF's, and the two type designators become plain slots.[^iso27001-copy.yaml] The sidecar's justfile names the copy on its `schema :=` line.[^lokf-justfile]
 
 [^iso27001.yaml]: src/iso27001/schema/iso27001.yaml, the header, the classes, slots, enums and types
 [^project.justfile]: project.justfile, lokf-adapt and its comment

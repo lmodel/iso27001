@@ -20,6 +20,6 @@ status: draft
 
 # Information security event and incident
 
-An information security event is something someone reports that may bear on information security. Assessed as harming or threatening it, it is an incident, which the organization then responds to and learns from (Annex A 5.24 to 5.28). The schema records an event as `IsmsSecurityEvent`, with when it happened, who reported it, the assets it affects and the assessment. An incident is an `IsmsSecurityIncident`, a kind of event named by `event_type`, with its category, severity, response, containment, eradication and recovery, its evidence, who was told, and what was learned.[^iso27001.yaml]
+An information security event is something someone reports that may bear on information security. An event that is assessed as harming or threatening information security is an incident, which the organization then responds to and learns from (Annex A 5.24 to 5.28). The schema records an event as `IsmsSecurityEvent`, with when it happened, who reported it, the assets it affects and the assessment. An incident is an `IsmsSecurityIncident`, a kind of event named by `event_type`, with its category, severity, response, containment, eradication and recovery, its evidence, who was told, and what was learned.[^iso27001.yaml]
 
 [^iso27001.yaml]: src/iso27001/schema/iso27001.yaml, the classes IsmsSecurityEvent and IsmsSecurityIncident

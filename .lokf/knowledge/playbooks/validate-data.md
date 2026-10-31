@@ -23,6 +23,11 @@ status: draft
 2. Write each date and time as a quoted string, as JSON carries them: the validator reads a date as text.
 3. Validate a file before loading it into either model in `src/iso27001/datamodel/`. The dataclasses check required fields and enum values but no pattern and no minimum. The Pydantic models also check a pattern or a minimum a field carries itself, but not the patterns of the two types. Neither checks that an included control names an Annex A control or one of the organization's controls.
 
-No check covers that a reference names a record the ISMS holds, that a list never repeats an identifier, that an audit ends after it begins, or that the Statement of Applicability has an entry for each Annex A control.
+No check covers these rules:
+
+- a reference names a record the ISMS holds;
+- a list never repeats an identifier;
+- an audit ends after it begins;
+- the Statement of Applicability has an entry for each Annex A control.
 
 [^docs-index.md]: docs/index.md, Validating data

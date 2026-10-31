@@ -36,7 +36,7 @@ status: draft
 
 Each row maps a class of the schema to a class of a released schema, named by the IRI that release gives it, with `skos:closeMatch`, `skos:broadMatch` or `skos:relatedMatch`. Each row's justification is `semapv:LLMBasedMatching`: a language model drafted it, and each kept row was then checked against both classes' descriptions. `just apply-sssom-overlay`, which `just gen-project` runs first, merges the rows into the schema's mapping slots.[^apply_sssom_overlay.py]
 
-`tests/test_schema_rules.py` checks that every mapping in the adapt copy names a term of a released copy in `tests/neighbours/`, and that the SSSOM rows and the schema's mappings agree.[^test_schema_rules.py] The sets to schemas with no release, and the rows that named terms the releases do not hold, were dropped; `docs/value.md` lists them.[^value.md]
+`tests/test_schema_rules.py` checks that every mapping in the adapt copy names a term of a released copy in `tests/neighbours/`, and that the SSSOM rows and the schema's mappings agree.[^test_schema_rules.py] The sets to schemas with no release, and the rows that named terms the releases do not hold, were dropped, and `docs/value.md` lists them.[^value.md]
 
 [^mappings]: src/iso27001/mappings, the three mapping sets
 [^apply_sssom_overlay.py]: scripts/apply_sssom_overlay.py, the docstring

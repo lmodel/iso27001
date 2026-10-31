@@ -113,7 +113,7 @@ status: draft
 
 # Knowledge sources
 
-Steady-state refresh runs re-verify these sources instead of discovering them again. Update this map whenever the repository's knowledge geography changes.
+A refresh run checks these sources again instead of finding them anew. Update this table whenever a source of the repository's knowledge moves, appears or goes.
 
 Each concept derived from a file or folder of this repository names it by its path from the repository root, in `resource` and in `sources`. `knowledge-report.sh worklist` lists the concepts whose source moved since their stamp. It never fetches a page, so re-read the external pages this table names when the schema header's version or the upstream pins move.
 
@@ -139,4 +139,4 @@ Each concept derived from a file or folder of this repository names it by its pa
 | `AI_COVENANT.md` | `policies/ai-covenant` | re-read the project note and the section on agent automation |
 | <https://www.iso.org/open-data.html>, through the Internet Archive | `references/iso-open-data` | an external page, read on 2026-10-30; the upstream watch reads its licence weekly |
 
-The paths under `exclusions` were looked at and left out, each for the reason it gives. They are governance text, tooling settings, template text, package plumbing, the pointer for agents, and the sidecar's own files. Of the sidecar's files, the domain schema, the justfile's `schema :=` line and the `[tool.lokf]` table are sources. `docs/value.md` is a source for its Implementation Status section; its use cases are the project's own discussion and yield no concept.
+The paths under `exclusions` were looked at and left out, each for the reason it gives. They are governance text, tooling settings, template text, package plumbing, the pointer for agents, and the sidecar's files. Some of the sidecar's files are sources even so: the domain schema, the justfile's `schema :=` line and the `[tool.lokf]` table. `docs/value.md` is a source for its Implementation Status section. Its use cases are the project's own discussion and yield no concept.

@@ -2,6 +2,7 @@
 
 ## 2026-10-31
 
+* **Prose**: reworded 22 concept bodies in plain English. No fact, link, number or frontmatter changed.
 * **Added**: iso27001 LinkML schema, from `src/iso27001/schema/iso27001.yaml` and its adapt copy.
 * **Added**: ISO Open Data records of ISO/IEC 27001, from `src/iso27001/schema/iso-open-data/`.
 * **Added**: SSSOM mappings to released lmodel schemas, from `src/iso27001/mappings/`.

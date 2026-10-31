@@ -27,7 +27,7 @@ status: draft
 
 [Upstream watch](../workflows/upstream-watch.md) opens an issue when ISO's records move. Then:
 
-1. Read what changed. A new supplement of ISO/IEC 27001:2022, or a record that replaces it, may change what the schema models; a stage change may mean ISO confirmed, revised or withdrew a standard; a changed licence may change what the extract may hold.[^check_upstream_release.py]
+1. Read what changed. A new supplement of ISO/IEC 27001:2022, or a record that replaces it, may change what the schema models. A stage change may mean ISO confirmed, revised or withdrew a standard. A changed licence may change what the extract may hold.[^check_upstream_release.py]
 2. Replace `src/iso27001/schema/iso-open-data/iso_deliverables_metadata.jsonl` whole from one day's dataset, each record without its `scope`, and never edit a line by hand.[^contributing.md]
 3. Move the pins in `scripts/check_upstream_release.py` together: `PINNED_DATE`, `PINNED_RECORDS`, and `PINNED_VERSION` or `PINNED_SOURCE` when the edition or its amendments change.
 4. Move the schema header's `version`, `source` and annotations to match, then run the schema's checks as [Regenerate and test after a schema change](regenerate-and-test.md) says.

@@ -28,9 +28,16 @@ status: draft
 
 # Generated artefacts
 
-`just gen-project` merges the SSSOM mappings into the schema, then runs LinkML's `gen-project` with the settings in `.linkml/generators.yaml`, moves the Python dataclasses into `src/iso27001/datamodel/`, and writes the Pydantic models, the Java classes, the TypeScript types and the OWL ontology.[^justfile] `.linkml/generators.yaml` leaves out the Markdown generator and passes `mergeimports` to the others.[^generators.yaml] `just gen-doc` writes the merged schema to `docs/schema/iso27001.yaml` and the element pages to `docs/elements/`, which git ignores.
+`just gen-project`:
 
-`just gen-project-extended` adds the other generators LinkML ships, each into its own folder under `project/`: among them a merged schema, RDF, SPARQL checks, a CSV and a Markdown data dictionary, diagrams, SQLAlchemy and DBML, Go, Rust, C++ and Pandera.[^project.justfile] Each runs the stock generator except DBML. `scripts/gen_dbml_patched.py` skips a reference to a class without an identifier, which linkml 1.12.1's generator stops on; LinkML fixed that after the 1.12.1 release, and the script is to go once a release carries the fix.[^gen_dbml_patched.py]
+- merges the SSSOM mappings into the schema;
+- runs LinkML's `gen-project` with the settings in `.linkml/generators.yaml`;
+- moves the Python dataclasses into `src/iso27001/datamodel/`;
+- writes the Pydantic models, the Java classes, the TypeScript types and the OWL ontology.[^justfile]
+
+`.linkml/generators.yaml` leaves out the Markdown generator and passes `mergeimports` to the others.[^generators.yaml] `just gen-doc` writes the merged schema to `docs/schema/iso27001.yaml` and the element pages to `docs/elements/`, which git ignores.
+
+`just gen-project-extended` adds the other generators that LinkML includes, each into its own folder under `project/`. Among them are a merged schema, RDF, SPARQL checks, a CSV and a Markdown data dictionary, diagrams, SQLAlchemy and DBML, Go, Rust, C++ and Pandera.[^project.justfile] Each runs the stock generator except DBML. `scripts/gen_dbml_patched.py` skips a reference to a class without an identifier, which linkml 1.12.1's generator stops on. LinkML fixed that after the 1.12.1 release, and the script is to go once a release carries the fix.[^gen_dbml_patched.py]
 
 Nothing under `project/`, `src/iso27001/datamodel/` or `docs/schema/` is edited by hand: each is regenerated from the schema.
 

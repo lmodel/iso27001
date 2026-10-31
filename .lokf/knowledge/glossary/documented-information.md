@@ -20,6 +20,6 @@ status: draft
 
 # Documented information
 
-Documented information is what an organization must keep under control, whatever holds it: policies, procedures, plans and the records that show what was done. Clause 7.5 of ISO/IEC 27001 asks for it to be identified, approved, protected, kept and changed under control. The schema mixes `IsmsDocumentControlMixin` into the records that are documented information, with fields for their reference, version, owner, approver, dates, classification, retention, distribution, storage and change control, and holds any other piece of it as an `IsmsDocumentedInformation` of a given kind.[^iso27001.yaml]
+Documented information is what an organization must keep under control, whatever holds it: policies, procedures, plans and the records that show what was done. Clause 7.5 of ISO/IEC 27001 asks for it to be identified, approved, protected, kept and changed under control. The schema mixes `IsmsDocumentControlMixin` into the records that are documented information. The mixin gives fields for their reference, version, owner, approver, dates, classification, retention, distribution, storage and change control. The schema holds any other piece of documented information as an `IsmsDocumentedInformation` of a given kind.[^iso27001.yaml]
 
 [^iso27001.yaml]: src/iso27001/schema/iso27001.yaml, the classes IsmsDocumentControlMixin and IsmsDocumentedInformation

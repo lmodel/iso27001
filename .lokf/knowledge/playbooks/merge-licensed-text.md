@@ -35,7 +35,7 @@ The schema's descriptions are the project's own words. A licence holder can put 
 3. Run `just overlay-licensed-text`. It merges only descriptive keys, such as `description` and `comments`, over the public schema, keeps every structural field, and writes `tmp/iso27001-merged.yaml`. It refuses an output path outside `tmp/`.[^overlay_populated_text.py]
 4. Use the merged file with your own tools, and never commit or publish it or the overlay.
 
-`tests/test_overlay.py` checks that the shipped scaffold holds no text and is the one the script writes, that git ignores the overlay and `tmp/`, and that the merge changes only descriptive keys.[^test_overlay.py]
+`tests/test_overlay.py` checks that the scaffold in the repository holds no text and is the one the script writes, that git ignores the overlay and `tmp/`, and that the merge changes only descriptive keys.[^test_overlay.py]
 
 [^overlay.md]: src/iso27001/schema/OVERLAY.md, the three files, the workflow and the merge semantics
 [^create_overlay_template.py]: scripts/create_overlay_template.py, the docstring

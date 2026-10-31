@@ -37,7 +37,16 @@ status: draft
 
 ISO/IEC 27002:2022 names project 94703 as what replaces it, a record the dataset does not yet hold. ISO's title for ISO/IEC 27000:2026 names it an overview.
 
-Each line is ISO's record as published on 2026-10-28, without its `scope` field, which summarizes the standard in ISO's words. `scripts/check_upstream_release.py` pins each line by its SHA-256 hash.[^check_upstream_release.py] Every week it streams the live dataset, about 80 MB, line by line, and reports a new supplement of the edition, a changed record, a record that replaces a pinned one, the 27002 successor appearing, a dropped record or a changed licence. `NOTICE` gives ISO's attribution under the ODC Attribution License (ODC-By) v1.0.[^notice]
+Each line is ISO's record as published on 2026-10-28, without its `scope` field, which summarizes the standard in ISO's words. `scripts/check_upstream_release.py` pins each line by its SHA-256 hash.[^check_upstream_release.py] Every week it streams the live dataset, about 80 MB, line by line, and reports any of these:
+
+- a new supplement of the edition;
+- a changed record;
+- a record that replaces a pinned one;
+- the 27002 successor appearing;
+- a dropped record;
+- a changed licence.
+
+ `NOTICE` gives ISO's attribution under the ODC Attribution License (ODC-By) v1.0.[^notice]
 
 [^iso-open-data]: src/iso27001/schema/iso-open-data, the four records
 [^check_upstream_release.py]: scripts/check_upstream_release.py, the docstring and PINNED_RECORDS
