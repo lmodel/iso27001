@@ -218,3 +218,31 @@ gen-project-extended: \
   gen-pandera-artifact \
   gen-markdown-datadict-artifact \
   gen-golr-artifact
+
+# ============ Knowledge bundle: the adapted domain schema ============
+
+# `.lokf/iso27001.yaml` is the copy `lokf adapt` writes from the schema so
+# that it can sit beside `.lokf/lokf.yaml` (`lokf adapt --help` lists the
+# moves). The roots are the classes a knowledge concept may use as its
+# `type`: the records that describe how an organization runs its ISMS and
+# stay true for a while, which a repository's knowledge would document. They
+# are the information security policy, a topic-specific policy, a role, a
+# control, an asset, a piece of documented information and an operational
+# procedure. Records of events and of work done (risk assessments, audits and
+# findings, reviews, nonconformities, incidents) and the ISMS container are
+# data an ISMS tool keeps, so they stay plain classes. The recipes run the
+# `lokf` the sidecar's floor pins (0.9.0 or later); LOKF_CMD runs another,
+# such as a checkout:
+# LOKF_CMD="uv run --project ../lokf lokf" just lokf-adapt
+lokf_cmd := env_var_or_default("LOKF_CMD", "uv run --project .lokf lokf")
+lokf_adapt_roots := "--root IsmsPolicy --root IsmsTopicSpecificPolicy --root IsmsRole --root IsmsControl --root IsmsAsset --root IsmsDocumentedInformation --root IsmsOperationalProcedure"
+
+# Rewrite .lokf/iso27001.yaml from the schema (run after every schema change)
+[group('knowledge bundle')]
+lokf-adapt:
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/iso27001.yaml
+
+# Fail when .lokf/iso27001.yaml is stale against the schema or .lokf/lokf.yaml
+[group('knowledge bundle')]
+lokf-adapt-check:
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/iso27001.yaml --check
