@@ -2,6 +2,7 @@
 
 ## 2026-10-31
 
+* **Changed**: the security properties follow the names ISO/IEC 27000 gives them, since ISO's record of the 2026 edition no longer calls it a vocabulary.
 * **Prose**: reworded 22 concept bodies in plain English. No fact, link, number or frontmatter changed.
 * **Added**: iso27001 LinkML schema, from `src/iso27001/schema/iso27001.yaml` and its adapt copy.
 * **Added**: ISO Open Data records of ISO/IEC 27001, from `src/iso27001/schema/iso-open-data/`.

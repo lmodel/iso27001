@@ -19,7 +19,7 @@ sources:
     title: the Unreleased section
 generated:
   by: process:ktl-librarian
-  at: "2026-10-31T00:21:57Z"
+  at: "2026-10-31T00:40:04Z"
 status: draft
 ---
 
@@ -27,7 +27,7 @@ status: draft
 
 The schema models the records an organization keeps to run an information security management system (ISMS) to ISO/IEC 27001:2022, third edition, with Amendment 1:2024, which adds climate action changes. It covers the requirements of clauses 4 to 10 and the 93 reference controls of Annex A, which it names by number alone.[^readme.md]
 
-Its influences are that one publication, and the names three other standards give to what its enums list: ISO/IEC 27000:2026 for the security properties, ISO/IEC 27005 for the risk treatment options and ISO 19011 for the kinds of audit. Its release asset and governance files follow lmodel/nist-csf-v2. It maps to OSCAL, SP 800-53 and SPDX through their released lmodel schemas, and borrows from none.
+Its influences are that one publication, and the names three other standards give to what its enums list: ISO/IEC 27000 for the security properties, ISO/IEC 27005 for the risk treatment options and ISO 19011 for the kinds of audit. Its release asset and governance files follow lmodel/nist-csf-v2. It maps to OSCAL, SP 800-53 and SPDX through their released lmodel schemas, and borrows from none.
 
 It leaves out:[^about.md]
 
