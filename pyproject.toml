@@ -18,12 +18,14 @@ dynamic = ["version"]
 
 dependencies = [
   "linkml-runtime >=1.9.5",
-  "ruamel-yaml>=0.19.1",
 ]
 
 [dependency-groups]
 dev = [
     "linkml>=1.9.6",
+    # scripts/apply_sssom_overlay.py merges the SSSOM files into the schema
+    # with it; the datamodel does not need it.
+    "ruamel-yaml>=0.19.1",
 ]
 
 [tool.hatch.build.targets.wheel]
