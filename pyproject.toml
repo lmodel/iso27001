@@ -68,19 +68,22 @@ skip = [
   # copies, copied as published, and files copied in by the KTL sidecar sync
   # or written by npm, not by hand.
   "src/iso27001/schema/iso-open-data/*",
-  "tests/data/third_party/probo/mitigations.json",
+  "tests/data/third_party/probo/*",
   "tests/neighbours/*",
   ".lokf/scripts/*",
   "website/package-lock.json",
 ]
 
 # Reminder: words have to be lowercased for the ignore-words-list
-ignore-words-list = "linke"
+# "OT" is operational technology.
+ignore-words-list = "linke,ot"
 quiet-level = 3
 
 # Ref.: https://github.com/crate-ci/typos (spell checker)
 [tool.typos.default.extend-words]
 linke = "linke"
+# Operational technology.
+OT = "OT"
 
 [tool.typos.files]
 extend-exclude = [
@@ -91,7 +94,7 @@ extend-exclude = [
   "src/iso27001/datamodel/iso27001_pydantic.py",
   "src/iso27001/datamodel/iso27001.py",
   "src/iso27001/schema/iso-open-data/*",
-  "tests/data/third_party/probo/mitigations.json",
+  "tests/data/third_party/probo/*",
   "tests/neighbours/*",
   ".lokf/scripts/*",
   "website/package-lock.json",

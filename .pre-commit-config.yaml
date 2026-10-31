@@ -1,11 +1,12 @@
 ---
 # https://pre-commit.com/
 # No hook may rewrite a file this repository does not write by hand: ISO
-# Open Data's records and Probo's mitigations, kept byte for byte so their
-# hashes match; what the LinkML generators, `just create-empty-overlay` and
-# `lokf adapt` write, which the next run would rewrite back; the neighbours'
-# released copies; npm's lockfile for the release tools; and the KTL
-# sidecar's scripts, which the weekly sync replaces.
+# Open Data's records, kept byte for byte so their hashes match; Probo's
+# mitigations, its licence and the examples convert.py derives from them;
+# what the LinkML generators, `just create-empty-overlay` and `lokf adapt`
+# write, which the next run would rewrite back; the neighbours' released
+# copies; npm's lockfile for the release tools; and the KTL sidecar's
+# scripts, which the weekly sync replaces.
 exclude: >-
   (?x)^(
     src/iso27001/schema/iso-open-data/|
@@ -13,7 +14,7 @@ exclude: >-
     src/iso27001/datamodel/|
     project/|
     docs/schema/|
-    tests/data/third_party/probo/mitigations\.json$|
+    tests/data/third_party/probo/|
     \.lokf/(scripts|m365)/|
     \.lokf/(lokf|iso27001)\.yaml$|
     \.github/release/package-lock\.json$|
