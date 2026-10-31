@@ -317,7 +317,7 @@ def _merge_mappings(
     When ``is_permissible_value`` is True the LinkML ``meaning`` slot
     (singleton CURIE) is preferred for the first ``exact_mappings`` entry,
     per the LinkML PermissibleValue model. Any additional exact mappings
-    still land in ``exact_mappings`` so no information is lost.
+    are still written to ``exact_mappings``, so no information is lost.
     """
     touched = False
     links_added = 0

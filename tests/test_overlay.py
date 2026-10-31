@@ -1,6 +1,6 @@
 """Checks the overlay that lets a licence holder add the standard's text.
 
-The repository ships an empty scaffold of the schema's elements; a licence
+The repository holds an empty scaffold of the schema's elements. A licence
 holder fills a private copy of it, and scripts/overlay_populated_text.py
 merges that copy into the schema under tmp/. These tests hold the scaffold
 to the schema and to holding no text, keep the private copy out of git, and
@@ -51,7 +51,7 @@ def test_template_is_what_the_script_writes(tmp_path):
 
 
 def test_template_holds_no_text():
-    """Every placeholder of the shipped scaffold is empty."""
+    """Every placeholder of the scaffold in the repository is empty."""
     scaffold = yaml.safe_load(TEMPLATE.read_text(encoding="utf-8"))
     found = list(_placeholders({k: scaffold[k] for k in ("classes", "slots", "enums")}))
     assert found
