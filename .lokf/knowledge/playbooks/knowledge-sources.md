@@ -18,7 +18,7 @@ sources:
   - resource: src/iso27001/mappings
   - resource: src/iso27001/datamodel
   - resource: project.justfile
-  - resource: .lokf/iso27001.yaml
+  - resource: .lokf/schema/iso27001.yaml
   - resource: .lokf/justfile
   - resource: .lokf/pyproject.toml
   - resource: NOTICE
@@ -87,7 +87,7 @@ exclusions:
     reason: The sidecar's link to the bundle.
   - resource: .github/PULL_REQUEST_TEMPLATE
     reason: The sidecar sync's pull request template.
-  - resource: .lokf/lokf.yaml
+  - resource: .lokf/schema/lokf.yaml
     reason: LOKF's schema, pinned by the sidecar.
   - resource: .lokf/scripts
     reason: The sidecar's scripts, which the weekly sync replaces.
@@ -107,7 +107,7 @@ exclusions:
     reason: The sidecar's git settings.
 generated:
   by: process:ktl-librarian
-  at: "2026-10-31T00:21:57Z"
+  at: "2026-11-06T21:21:21Z"
 status: draft
 ---
 
@@ -120,7 +120,7 @@ Each concept derived from a file or folder of this repository names it by its pa
 | Source | Yields | Re-check by |
 | --- | --- | --- |
 | `src/iso27001/schema/iso27001.yaml` | `datasets/iso27001-linkml-schema`, `explanations/names-and-references`, the seven `glossary/` terms | re-read the header's `version`, `source`, annotations and comments, the classes, the mixins, the designators and the enums |
-| `project.justfile`, `.lokf/iso27001.yaml`, `.lokf/justfile`, `.lokf/pyproject.toml`, the README's Knowledge Trust Ladder (KTL) section | the adapt-copy paragraph of `datasets/iso27001-linkml-schema` | re-read the `--root` list, the copy's notes, the `schema :=` line and the `[tool.lokf]` table |
+| `project.justfile`, `.lokf/schema/iso27001.yaml`, `.lokf/justfile`, `.lokf/pyproject.toml`, the README's Knowledge Trust Ladder (KTL) section | the adapt-copy paragraph of `datasets/iso27001-linkml-schema` | re-read the `--root` list, the copy's notes, the `schema :=` line and the `[tool.lokf]` table |
 | `src/iso27001/schema/iso-open-data/`, the ISO Open Data section of `NOTICE` | `datasets/iso-open-data-records`, `references/iso-iec-27001-2022` | re-read the four records; the upstream watch compares them with the live dataset weekly |
 | `scripts/check_upstream_release.py`, `.github/scripts/` | `playbooks/update-upstream-pins`, `workflows/upstream-watch`, `references/iso-open-data` | re-read the pins, the docstring and the issue title |
 | `src/iso27001/mappings/`, `scripts/apply_sssom_overlay.py`, the Implementation Status section of `docs/value.md` | `datasets/sssom-mappings` | re-count the rows of each set and re-read their targets |
