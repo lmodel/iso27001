@@ -16,7 +16,7 @@ exclude: >-
     docs/schema/|
     tests/data/third_party/probo/|
     \.lokf/(scripts|m365)/|
-    \.lokf/(lokf|iso27001)\.yaml$|
+    \.lokf/schema/(lokf|iso27001)\.yaml$|
     \.github/release/package-lock\.json$|
     tests/neighbours/
   )
