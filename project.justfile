@@ -221,8 +221,8 @@ gen-project-extended: \
 
 # ============ Knowledge bundle: the adapted domain schema ============
 
-# `.lokf/iso27001.yaml` is the copy `lokf adapt` writes from the schema so
-# that it can sit beside `.lokf/lokf.yaml` (`lokf adapt --help` lists the
+# `.lokf/schema/iso27001.yaml` is the copy `lokf adapt` writes from the schema so
+# that it can sit beside `.lokf/schema/lokf.yaml` (`lokf adapt --help` lists the
 # moves). The roots are the classes a knowledge concept may use as its
 # `type`: the records that describe how an organization runs its ISMS and
 # stay true for a while, which a repository's knowledge would document. They
@@ -237,12 +237,12 @@ gen-project-extended: \
 lokf_cmd := env_var_or_default("LOKF_CMD", "uv run --project .lokf lokf")
 lokf_adapt_roots := "--root IsmsPolicy --root IsmsTopicSpecificPolicy --root IsmsRole --root IsmsControl --root IsmsAsset --root IsmsDocumentedInformation --root IsmsOperationalProcedure"
 
-# Rewrite .lokf/iso27001.yaml from the schema (run after every schema change)
+# Rewrite .lokf/schema/iso27001.yaml from the schema (run after every schema change)
 [group('knowledge bundle')]
 lokf-adapt:
-  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/iso27001.yaml
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/schema/lokf.yaml -o .lokf/schema/iso27001.yaml
 
-# Fail when .lokf/iso27001.yaml is stale against the schema or .lokf/lokf.yaml
+# Fail when .lokf/schema/iso27001.yaml is stale against the schema or .lokf/schema/lokf.yaml
 [group('knowledge bundle')]
 lokf-adapt-check:
-  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/iso27001.yaml --check
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/schema/lokf.yaml -o .lokf/schema/iso27001.yaml --check
