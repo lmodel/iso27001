@@ -10,6 +10,10 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 - **The bundle's schema files sit in `.lokf/schema/`**: `lokf.yaml` and the `lokf adapt` copy `iso27001.yaml`, as KTL v0.62.0 lays them out.
 
+### Security
+
+- **The sidecar copies and the skills pin are at Knowledge Trust Ladder [v0.62.0](https://github.com/noelmcloughlin/knowledge-trust-ladder/compare/v0.60.0...v0.62.0).** The release changed `.github/workflows/knowledge-registrar.yaml`, `.github/workflows/knowledge-librarian.yaml`, `.github/workflows/knowledge-release.yaml`, `.github/workflows/knowledge-sync.yaml`, `.lokf/scripts/knowledge-librarian.sh`, `.lokf/scripts/knowledge-conventions.sh`, `.lokf/scripts/knowledge-conventions.py`, `.lokf/scripts/knowledge-preflight.sh`, `.lokf/scripts/knowledge-provenance.sh`, `.lokf/scripts/knowledge-apply.py`, `.lokf/scripts/knowledge-report.sh`, `.lokf/scripts/knowledge-sync.sh`, `.lokf/justfile`, `website/package-lock.json`, `website/package.json`, `website/scripts/sync.mjs` and `.github/workflows/knowledge-website.yaml` here.
+
 ## [0.1.1] - 2026-11-02
 
 ### Security
