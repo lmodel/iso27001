@@ -9,6 +9,7 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 ### Changed
 
 - **The bundle's schema files sit in `.lokf/schema/`**: `lokf.yaml` and the `lokf adapt` copy `iso27001.yaml`, as KTL v0.62.0 lays them out.
+- **The knowledge website is built with Hugo from the ktl-website templates**, set by `website/site.toml`, in place of the Astro site.
 
 ### Security
 

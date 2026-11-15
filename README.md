@@ -41,7 +41,7 @@ Each mapping names a class of a released lmodel schema and comes from an SSSOM f
 
 ## Repository Structure
 
-* [docs/](docs/): the website's pages, with the generated schema pages in [elements/](docs/elements/)
+* [docs/](docs/): the website's pages, with the generated schema pages in `docs/elements/`
 * [examples/](examples/): usage examples
 * [project/](project/): generated project files (do not edit them)
 * [scripts/](scripts/): the upstream watch, the overlay scripts, the SSSOM merge and the DBML wrapper
@@ -49,7 +49,7 @@ Each mapping names a class of a released lmodel schema and comes from an SSSOM f
 * [src/iso27001/mappings/](src/iso27001/mappings): the SSSOM mappings
 * [src/iso27001/datamodel/](src/iso27001/datamodel): the generated Python datamodel
 * [tests/](tests/): Python tests, with example data in [data/](tests/data), Probo's mitigations in [data/third_party/probo/](tests/data/third_party/probo), and the neighbours' adapt copies in [neighbours/](tests/neighbours)
-* [website/](website/): the Astro Starlight site built from the README, `docs/`, the schema's pages and the knowledge bundle
+* [website/](website/): the Hugo site built from the README, `docs/`, the schema's pages and the knowledge bundle
 
 ## Developer Tools
 
