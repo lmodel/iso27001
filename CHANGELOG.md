@@ -6,6 +6,11 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 ## [Unreleased]
 
+### Added
+
+- **`scorecard.yml` publishes this repository's OpenSSF Scorecard.**
+- **The README shows the CI, licence, OpenSSF Scorecard and KTL scorecard badges.**
+
 ### Changed
 
 - **The bundle's schema files sit in `.lokf/schema/`**: `lokf.yaml` and the `lokf adapt` copy `iso27001.yaml`, as KTL v0.62.0 lays them out.

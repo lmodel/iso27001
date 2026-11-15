@@ -2,6 +2,11 @@
 
 # iso27001
 
+[![Build and test](https://github.com/lmodel/iso27001/actions/workflows/main.yaml/badge.svg)](https://github.com/lmodel/iso27001/actions/workflows/main.yaml)
+[![Licence](https://img.shields.io/github/license/lmodel/iso27001?label=licence)](LICENSE)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/lmodel/iso27001/badge)](https://scorecard.dev/viewer/?uri=github.com/lmodel/iso27001)
+[![KTL scorecard](https://img.shields.io/endpoint?url=https://lmodel.github.io/iso27001/badge.json)](https://lmodel.github.io/iso27001/health/)
+
 ISO/IEC 27001:2022 information security management system records (LinkML)
 
 > **Only want to ask?** Install `ktl-docent` into any agent you use, by a route from [the install page](https://w3id.org/ktl/docs/install/), and ask it about this project. It answers from the bundle and says how far each answer has been checked.
