@@ -19,13 +19,13 @@ sources:
     title: the lokf-adapt recipes
 generated:
   by: process:ktl-librarian
-  at: "2026-10-31T00:21:57Z"
+  at: "2026-11-15T10:36:09Z"
 status: draft
 ---
 
 # Regenerate and test after a schema change
 
-1. Install the toolchain once: Python 3.10 or later, `uv` and `just`, then `uv sync --group dev` in the clone.[^contributing.md]
+1. Install the toolchain once: Python 3.11 or later, `uv` and `just`, then `uv sync --group dev` in the clone.[^contributing.md]
 2. Edit `src/iso27001/schema/iso27001.yaml`, the one file to write by hand. Name the clause or Annex A control a new or changed element models, by number, and quote nothing from the standard.
 3. Run `just lint`, which runs `linkml-lint` on the schema under `.linkmllint.yaml` and fails on a warning.[^justfile]
 4. Run `just gen-project` and `just gen-doc`, then `just create-empty-overlay`, which rewrites the overlay scaffold, and `just lokf-adapt`, which rewrites the adapt copy with its seven roots.[^project.justfile] Commit the output.

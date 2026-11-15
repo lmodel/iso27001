@@ -19,7 +19,7 @@ A LinkML schema of the records an organization keeps to run an information secur
 
 ## Development setup
 
-You need Python 3.10+, [uv](https://docs.astral.sh/uv/) and [just](https://github.com/casey/just).
+You need Python 3.11+, [uv](https://docs.astral.sh/uv/) and [just](https://github.com/casey/just).
 
 ```bash
 git clone https://github.com/lmodel/iso27001.git
