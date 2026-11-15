@@ -152,5 +152,5 @@ skills-lock.json
 # be committed or packaged (src/iso27001/schema/OVERLAY.md).
 /src/iso27001/schema/iso27001-overlay.yaml
 
-# The release job's tools, installed from .github/release/package-lock.json
-/.github/release/node_modules/
+# The release job's tools, installed from .release/package-lock.json
+/.release/node_modules/
