@@ -76,7 +76,7 @@ skip = [
 
 # Reminder: words have to be lowercased for the ignore-words-list
 # "OT" is operational technology.
-ignore-words-list = "linke,ot"
+ignore-words-list = "linke,ot,intoto"
 quiet-level = 3
 
 # Ref.: https://github.com/crate-ci/typos (spell checker)
