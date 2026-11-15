@@ -107,7 +107,7 @@ exclusions:
     reason: The sidecar's git settings.
 generated:
   by: process:ktl-librarian
-  at: "2026-11-06T21:21:21Z"
+  at: "2026-11-15T02:40:50Z"
 status: draft
 ---
 
@@ -133,7 +133,7 @@ Each concept derived from a file or folder of this repository names it by its pa
 | `.releaserc.json`, `.github/scripts/changelog-release.mjs`, `CHANGELOG.md`, the Releasing section of `CONTRIBUTING.md` | `playbooks/release` | re-read the release rules, the commands and the baseline paragraph |
 | the nine files in `.github/workflows/` | the nine `workflows/` concepts | re-read each file's `on` keys, its jobs' permissions and environments, and the variables and secrets it reads |
 | `.github/release/` | `workflows/semantic-release` | re-read `package.json` and the versions the lockfile pins |
-| `website/` | `services/documentation-site` | re-read `site.config.mjs` and `website/README.md` |
+| `website/` | `services/documentation-site` | re-read `site.toml` and `website/README.md` |
 | `NOTICE`, `LICENSE`, `docs/rights.md`, the License section of `README.md` | `policies/license-and-attribution` | re-read each third-party entry |
 | `SECURITY.md`, `.github/dependabot.yml` | `policies/security-policy` | re-read the table of surfaces and the settings not yet in force |
 | `AI_COVENANT.md` | `policies/ai-covenant` | re-read the project note and the section on agent automation |

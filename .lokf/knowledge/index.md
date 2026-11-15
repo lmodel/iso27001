@@ -18,7 +18,7 @@ A [LOKF](https://lokf.nolan-nichols.com) knowledge base for iso27001. Every Mark
 
 # Services
 
-* [Documentation site](services/documentation-site.md) - The Astro Starlight site in `website/`, for <https://lmodel.github.io/iso27001>: the README as its home page, the pages of `docs/`, the schema's element pages, a page per concept of this bundle with its trust label, and the bundle's exports, built and published by Knowledge website, with redirects from the retired mkdocs addresses.
+* [Documentation site](services/documentation-site.md) - The Hugo site in `website/`, for <https://lmodel.github.io/iso27001>: the README as its home page, the pages of `docs/`, the schema's element pages, a page per concept of this bundle with its trust label, and the bundle's exports, built and published by Knowledge website, with redirects from the retired mkdocs addresses.
 
 # Datasets
 
